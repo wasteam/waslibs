@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c6ad54d9-d6ed-4f43-ac3d-6216a079b1aa</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AppStudio.Samples.DataProviders</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppLayout\BingIcon.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppLayout\FacebookIcon.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppLayout\FlickrIcon.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppLayout\InstagramIcon.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AppLayout\YouTubePlay.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DataImages\27.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DataImages\4-key-considerations-when-choosing-web-typography-1ba66c3572.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DataImages\lorem_ipsum023.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Data\StaticStorage.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LightGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\MediumGray.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\DarkGray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseBingControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseFacebookControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseFlickrControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseInstagramControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseLocalStorageControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\LocalStorageDataSchema.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseRssControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseTwitterControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseYouTubeControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BingView.xaml.cs">
+      <DependentUpon>BingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FacebookView.xaml.cs">
+      <DependentUpon>FacebookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FlickrView.xaml.cs">
+      <DependentUpon>FlickrView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\InstagramView.xaml.cs">
+      <DependentUpon>InstagramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LocalStorageView.xaml.cs">
+      <DependentUpon>LocalStorageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RSSView.xaml.cs">
+      <DependentUpon>RSSView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TwitterView.xaml.cs">
+      <DependentUpon>TwitterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\YouTubeView.xaml.cs">
+      <DependentUpon>YouTubeView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\BingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FacebookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\FlickrView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\InstagramView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\LocalStorageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\RSSView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\TwitterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\YouTubeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

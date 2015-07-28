@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="AppStudio.Samples.Common.Navigation"
+    xmlns:local="using:AppStudio.Samples.Common"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="24,12,24,0">
+            <StackPanel Orientation="Horizontal">
+                <local:GoBackControl/>
+                <TextBlock Text="Navigation" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            </StackPanel>            
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="Manage page Navigation with NavigationService" Margin="0,12,0,0"/>
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="0,12,0,0">
+                <Run FontWeight="Bold">Step 1</Run>                
+                <LineBreak/>
+                <LineBreak/>
+                <Run>Register the Root Frame on App.xaml.xs file.</Run>
+                <LineBreak/>                
+                <Run FontFamily="Consolas" Foreground="Gray">NavigationService.Initialize(typeof(App), rootFrame);</Run>
+                <LineBreak/>
+                <LineBreak/>
+                <Run FontWeight="Bold">Step 2</Run>                
+                <LineBreak/>                
+                <Run>Navigate using the page name as string.</Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">NavigationService.NavigateToPage("AboutPage");</Run>
+                <LineBreak/>
+                <LineBreak/>
+                <Run>Extends INavigable in you classes tu attach NavigationInfo and navigate to that classes instances.</Run>
+                <Run FontFamily="Consolas" Foreground="Gray">NavigationService.NavigateTo(selectedItem);</Run>                
+            </TextBlock>
+            <Button Content="Click here to navigate" Margin="-6,24,0,0" Click="NavigateButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Page>

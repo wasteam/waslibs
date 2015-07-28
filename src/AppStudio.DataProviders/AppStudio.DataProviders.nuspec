@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WindowsAppStudio.DataProviders</id>
+    <version>$version$</version>
+    <title>Windows App Studio Data Providers</title>
+    <authors>wasteam</authors>
+    <owners>wasetam</owners>
+    <licenseUrl>https://github.com/wasteam/waslibs/license</licenseUrl>
+    <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Windows AppStudio Data Providers</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <references>
+      <reference file="AppStudio.DataProviders.dll" />
+    </references>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="\bin\$configuration$\AppStudio.DataProviders.*" target="lib\portable-win81+wpa81" />
+  </files>
+</package>

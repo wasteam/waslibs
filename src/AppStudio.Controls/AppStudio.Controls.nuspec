@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WindowsAppStudio.Controls</id>
+    <version>$version$</version>
+    <title>WindowsAppStudio.Controls</title>
+    <authors>wasteam</authors>
+    <owners>wasteam</owners>
+    <licenseUrl>https://github.com/wasteam/waslibs/license.md</licenseUrl>
+    <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Controls classes for Universal Apps</description>
+    <releaseNotes>First Controls</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Windows AppStudio XAML UWP</tags>
+    <references>
+      <reference file="AppStudio.Controls.dll" />
+    </references>
+    <dependencies>
+      <dependency id="WindowsAppStudio.Common" version="0.1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\*.dll"         target="lib\uap10.0" />
+    <file src="bin\$configuration$\*.pdb"         target="lib\uap10.0" />
+    <file src="bin\$configuration$\*.pri"         target="lib\uap10.0" />
+    <file src="bin\$configuration$\**\*.xbf"      target="lib\uap10.0\AppStudio.Controls" />
+    <file src="bin\$configuration$\*.xr.xml"      target="lib\uap10.0\AppStudio.Controls" />
+    <file src="Properties\Default.rd.xml"         target="lib\uap10.0\AppStudio.Controls\Properties" />
+  </files>
+</package>

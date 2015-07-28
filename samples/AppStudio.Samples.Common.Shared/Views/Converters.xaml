@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="AppStudio.Samples.Common.Converters"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Samples.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:AppStudio.Common.Converters"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converter:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel Margin="24,12,24,0">
+                <StackPanel Orientation="Horizontal">
+                    <local:GoBackControl/>
+                    <TextBlock Text="Converters" Style="{ThemeResource HeaderTextBlockStyle}"/>
+                </StackPanel>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="0,12,0,0">
+                <Run>
+                    Converters are classes that implements IValueConverter and allows convert values to specify XAML properties on DataBinding.
+                </Run>
+                <LineBreak/>
+                <Run>
+                    Convert method is used on OneWay and OneTime DataBinding mode and also ConvertBack on TwoWay mode.
+                </Run>
+                </TextBlock>
+                <TextBlock Text="BoolToVisibilityConverter" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Bold" Margin="0,12,0,0"/>
+                <ToggleSwitch IsOn="{Binding BoolValue, Mode=TwoWay}" Margin="0,12,0,0" Width="100" Height="50"/>
+                <TextBlock Text="{Binding BoolValue, Mode=OneWay}" Margin="0,12,0,0"/>
+                <TextBlock Text="This content text is visible if toggle button value is true." Visibility="{Binding BoolValue, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="0,12,0,0"/>
+                <TextBlock Text="StringVisibilityConverter" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Bold" Margin="0,24,0,0"/>
+                <TextBox Text="{Binding StringValue, Mode=TwoWay}" Margin="0,12,0,0"/>
+                <TextBlock Text="This content text is visible TextBox is not empty." Visibility="{Binding StringValue, Converter={StaticResource StringVisibilityConverter}, Mode=OneWay}" Margin="0,12,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

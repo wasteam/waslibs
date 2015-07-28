@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WindowsAppStudio.Common</id>
+    <version>$version$</version>
+    <title>WindowsAppStudio.Common</title>
+    <authors>wasteam</authors>
+    <owners>wasteam</owners>
+    <licenseUrl>https://github.com/wasteam/waslibs/license</licenseUrl>
+    <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common classes for Universal Apps</description>
+    <releaseNotes>First Common</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Windows AppStudio XAML UWP</tags>
+    <references>
+      <reference file="AppStudio.Common.dll" />
+    </references>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="HtmlAgilityPack" version="1.4.9" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\AppStudio.Common.*" target="lib\portable-win81+wpa81" />    
+  </files>
+</package>

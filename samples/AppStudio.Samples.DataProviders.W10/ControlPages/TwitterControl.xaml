@@ -1,0 +1,82 @@
+﻿<local:BaseTwitterControl
+    x:Class="AppStudio.Samples.DataProviders.ControlPages.TwitterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Samples.DataProviders.ControlPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,12,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Twitter Service URL"/>
+                <HyperlinkButton Content="{Binding TwitterQuery}" NavigateUri="{Binding TwitterQuery}" Margin="12,-9,0,0"/>
+            </StackPanel>
+            <TextBlock Text="Params" Margin="0,12,0,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="ConsumerKey" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ConsumerKey, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ConsumerSecret" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ConsumerSecret, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="AccessToken" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AccessToken, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="AccessTokenSecret" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding AccessTokenSecret, Mode=TwoWay}" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Query" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding TwitterQueryParam, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="QueryType" VerticalAlignment="Center"/>
+                <ComboBox Grid.Row="5" Grid.Column="1" x:Name="twitterQueryTypeCombo" ItemsSource="{Binding TwitterQueryTypeComboItems}" SelectedItem="{Binding TwitterQueryTypeSelectedItem, Mode=TwoWay}">
+                </ComboBox>
+            </Grid>
+            <Button Content="Send Request" Margin="0,12,0,0" Click="TwitterRequestClick"/>            
+        </StackPanel>
+        <Pivot Grid.Row="1" Margin="-12,12,0,0">
+            <PivotItem Header="Parsed Items">
+                <GridView ItemsSource="{Binding TwitterItems}" IsItemClickEnabled="False" SelectionMode="None">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <RelativePanel Height="200" Width="350" Margin="5">
+                                <!--<Image x:Name="image" Source="{Binding UserProfileImageUrl}" RelativePanel.AlignTopWithPanel="True" Width="70" Height="70" Stretch="UniformToFill"/>-->
+                                <Ellipse x:Name="image" RelativePanel.AlignTopWithPanel="True" Width="70" Height="70">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding UserProfileImageUrl}" Stretch="UniformToFill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <StackPanel RelativePanel.RightOf="image" Margin="12,0,0,0" RelativePanel.AlignTopWithPanel="True">
+                                    <TextBlock x:Name="titleText" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding UserName}" MaxLines="1"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{Binding CreationDateTime}" MaxLines="1" Foreground="{ThemeResource SystemColorHighlightColor}"/>
+                                </StackPanel>
+                                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Text}" RelativePanel.Below="image"/>
+                            </RelativePanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </PivotItem>
+            <PivotItem Header="Errors">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
+                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding TwitterError, Mode=OneWay}"/>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</local:BaseTwitterControl>

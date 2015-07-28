@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="AppStudio.Samples.Common.HtmlToXaml"
+    xmlns:local="using:AppStudio.Samples.Common"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:html2xaml="using:AppStudio.Common.Controls.Html2Xaml"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel Margin="24,12,24,0">
+                <StackPanel Orientation="Horizontal">
+                    <local:GoBackControl/>
+                    <TextBlock Text="Html To Xaml" Style="{ThemeResource HeaderTextBlockStyle}"/>
+                </StackPanel>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="Convert HTML content to XAML code to include it in a RichTextBlock" Margin="0,12,0,0"/>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="HTML" Margin="0,12,0,0"/>
+                <TextBox FontFamily="Consolas" Text="{Binding HtmlContent, Mode=TwoWay}" Margin="0,6,0,0"/>
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="XAML" Margin="0,24,0,0"/>
+                <RichTextBlock
+                Margin="0,6,0,0"
+                html2xaml:Properties.Html="{Binding HtmlContent, Mode=OneWay}"
+                TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>        
+    </Grid>
+</Page>

@@ -1,0 +1,56 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:was_controls="using:AppStudio.Controls">
+    <Style TargetType="was_controls:SectionList">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="was_controls:SectionList">
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" ZoomMode="Disabled">
+                        <ItemsControl ItemsSource="{TemplateBinding Sections}"/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="was_controls:SectionListItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="was_controls:SectionListItem">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Visibility="{TemplateBinding TitleVisibility}">
+                                <TextBlock Text="{TemplateBinding Title}" Style="{TemplateBinding TitleStyle}" Visibility="{TemplateBinding TitleTextBlockVisibility}"/>
+                                <ContentPresenter ContentTemplate="{TemplateBinding TitleTemplate}" Visibility="{TemplateBinding TitleTemplateVisibility}"/>
+                            </Grid>                            
+                            <HyperlinkButton
+                                Grid.Column="1"
+                                Style="{TemplateBinding HeaderLinkStyle}"
+                                Content="{TemplateBinding HeaderLinkText}"
+                                Command="{TemplateBinding HeaderLinkClickCommand}"
+                                CommandParameter="{Binding}"
+                                Visibility="{TemplateBinding HeaderLinkVisibility}"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Visibility="{TemplateBinding LoadingContainerVisibility}">
+                            <Grid Height="{TemplateBinding LoadingTemplateStaticHeight}">
+                                <ContentPresenter ContentTemplate="{TemplateBinding LoadingTemplate}" Visibility="{TemplateBinding LoadingVisibility}"/>
+                            </Grid>
+                        </Grid>                        
+                        <was_controls:ErrorNotificationControl Grid.Row="2" ErrorVisibility="{TemplateBinding ErrorVisibility}" ErrorText="{TemplateBinding ErrorText}" ErrorColor="{TemplateBinding ErrorColor}" Margin="10,0,18,0"/>
+                        <ContentPresenter Grid.Row="3" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding}" Visibility="{TemplateBinding ContentVisibility}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
