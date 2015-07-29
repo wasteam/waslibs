@@ -4,7 +4,6 @@
     xmlns:was_commands="using:AppStudio.Common.Commands"
     xmlns:converters="using:AppStudio.Common.Converters">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///AppStudio.Controls/CarouselListView/CarouselListView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Controls/ErrorNotificationControl/ErrorNotificationControl.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Controls/ResponsiveGridView/ResponsiveGridView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Controls/SectionList/SectionList.xaml"/>
