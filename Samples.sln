@@ -31,12 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dataproviders", "dataprovid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Controls", "src\AppStudio.Controls\AppStudio.Controls.csproj", "{F2A551A0-5048-471E-8D30-6E9577E44CB0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E73997E-FC5E-45B5-847D-79D32D46B19E}"
-	ProjectSection(SolutionItems) = preProject
-		build.bat = build.bat
-		createNugetPackages.bat = createNugetPackages.bat
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		samples\AppStudio.Samples.Common.Shared\AppStudio.Samples.Common.Shared.projitems*{ef4f3740-e6eb-4fbf-bd09-93f863351e44}*SharedItemsImports = 4
