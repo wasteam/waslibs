@@ -11,6 +11,11 @@ namespace AppStudio.DataProviders.Twitter
     {
         public IEnumerable<TwitterSchema> Parse(string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
             var result = JsonConvert.DeserializeObject<TwitterSearchResult>(data);
 
             return result.statuses.Select(r => r.Parse()).ToList();
@@ -21,7 +26,7 @@ namespace AppStudio.DataProviders.Twitter
     {
         public static TwitterSchema Parse(this TwitterTimelineItem item)
         {
-            TwitterSchema twit = new TwitterSchema
+            TwitterSchema tweet = new TwitterSchema
             {
                 _id = item.Id,
                 Text = item.Text.DecodeHtml(),
@@ -30,26 +35,26 @@ namespace AppStudio.DataProviders.Twitter
             
             if (item.User == null)
             {
-                twit.UserId = string.Empty;
-                twit.UserName = string.Empty;
-                twit.UserScreenName = string.Empty;
-                twit.UserProfileImageUrl = string.Empty;
-                twit.Url = string.Empty;
+                tweet.UserId = string.Empty;
+                tweet.UserName = string.Empty;
+                tweet.UserScreenName = string.Empty;
+                tweet.UserProfileImageUrl = string.Empty;
+                tweet.Url = string.Empty;
             }
             else
             {
-                twit.UserId = item.User.Id;
-                twit.UserName = item.User.Name.DecodeHtml();
-                twit.UserScreenName = string.Concat("@", item.User.ScreenName.DecodeHtml());
-                twit.UserProfileImageUrl = item.User.ProfileImageUrl;
-                twit.Url = string.Format("https://twitter.com/{0}/status/{1}", item.User.ScreenName, item.Id);
-                if (!string.IsNullOrEmpty(twit.UserProfileImageUrl))
+                tweet.UserId = item.User.Id;
+                tweet.UserName = item.User.Name.DecodeHtml();
+                tweet.UserScreenName = string.Concat("@", item.User.ScreenName.DecodeHtml());
+                tweet.UserProfileImageUrl = item.User.ProfileImageUrl;
+                tweet.Url = string.Format("https://twitter.com/{0}/status/{1}", item.User.ScreenName, item.Id);
+                if (!string.IsNullOrEmpty(tweet.UserProfileImageUrl))
                 {
-                    twit.UserProfileImageUrl = twit.UserProfileImageUrl.Replace("_normal", string.Empty);
+                    tweet.UserProfileImageUrl = tweet.UserProfileImageUrl.Replace("_normal", string.Empty);
                 }
             }
 
-            return twit;
+            return tweet;
         }
 
         private static DateTime TryParse(string dateTime)
@@ -68,6 +73,11 @@ namespace AppStudio.DataProviders.Twitter
     {
         public IEnumerable<TwitterSchema> Parse(string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
             var result = JsonConvert.DeserializeObject<TwitterTimelineItem[]>(data);
 
             return result.Select(r => r.Parse()).ToList();
