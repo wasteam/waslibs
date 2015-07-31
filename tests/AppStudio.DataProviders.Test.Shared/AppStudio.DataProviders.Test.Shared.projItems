@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AppStudio.DataProviders.Test</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExceptionsAssert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\BingTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\CollectionsTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\FacebookTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\FlickrTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\HtmlTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\InstagramTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\MenuTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\RssTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\TouchDevelopTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\TwitterTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\YouTubeTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuthKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\FacebookParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\TwitterParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\YouTubeParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\InstagramParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\FlickrParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\BingParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\GenericParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\HtmlParserTestLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Parsers\RssParserTestLibrary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Bing\BingParse1.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Bing\BingParse2.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Facebook\FacebookQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Facebook\FacebookQuery2.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Flickr\FlickrIdQuery.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Flickr\FlickrTagsQuery.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Html\BigBlogPost3.htm" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Html\BigLoremIpsum.htm" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Html\Russian.htm" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Html\LegendsOfManchesterUnitedDataSource.htm" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Instagram\InstagramTagQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LocalMenuData.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LocalCollectionData.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LocalHtml.htm" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Generic\ContactUs.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\AtomBlogger.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\AtomSample1.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\AtomSample2.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\AtomSvbtle.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\AtomWordpress.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssBlogger.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssEnclosure.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssGhost.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssImageNoEnclosure1.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssImageNoEnclosure2.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssMarca.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssMeneame.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssSquarespace.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssSummaryComment.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssSummaryContent.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssTumblr.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssUDiscoverMusic.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssWordpress.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterHomeTimelineQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterSearchQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterUserTimelineQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\YouTube\YouTubeChannelsQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\YouTube\YouTubePlaylistQuery.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\YouTube\YouTubeVideosQuery.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Instagram\InstagramIdQuery.json" />
+  </ItemGroup>
+</Project>

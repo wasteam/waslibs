@@ -12,6 +12,11 @@ namespace AppStudio.DataProviders.Facebook
     {
         public IEnumerable<FacebookSchema> Parse(string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
             Collection<FacebookSchema> resultToReturn = new Collection<FacebookSchema>();
             var searchList = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
             foreach (var i in searchList.data.Where(w => !string.IsNullOrEmpty(w.message) && !string.IsNullOrEmpty(w.link)).OrderByDescending(o => o.created_time))

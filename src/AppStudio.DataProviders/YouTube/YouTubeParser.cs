@@ -9,6 +9,11 @@ namespace AppStudio.DataProviders.YouTube
     {
         public IEnumerable<YouTubeSchema> Parse(string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
             Collection<YouTubeSchema> resultToReturn = new Collection<YouTubeSchema>();
             var playlist = JsonConvert.DeserializeObject<YouTubeResult<YouTubePlaylistResult>>(data);
             if (playlist != null && playlist.items != null)
@@ -36,6 +41,11 @@ namespace AppStudio.DataProviders.YouTube
     {
         public IEnumerable<YouTubeSchema> Parse(string data)
         {
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
             Collection<YouTubeSchema> resultToReturn = new Collection<YouTubeSchema>();
             var searchList = JsonConvert.DeserializeObject<YouTubeResult<YouTubeSearchResult>>(data);
             if (searchList != null && searchList.items != null)
