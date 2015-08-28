@@ -201,26 +201,27 @@ namespace AppStudio.DataProviders.Twitter
             string result = string.Empty;
             var request = CreateRequest(requestUri, tokens);
             var response = await request.GetResponseAsync();
-
-            var encoding = response.Headers["content-encoding"];
-            Stream responseStream;
-
-            if (encoding != null && encoding=="gzip")
-            {
-                responseStream = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
-            }
-            else
-            {
-                responseStream = response.GetResponseStream();
-            }
-
+            var responseStream = GetResponseStream(response);
 
             using (StreamReader sr = new StreamReader(responseStream))
             {
-                result =  sr.ReadToEnd();
+                result = sr.ReadToEnd();
             }
-            responseStream.Dispose();
             return result;
+        }
+
+        private static Stream GetResponseStream(WebResponse response)
+        {
+            var encoding = response.Headers["content-encoding"];
+
+            if (encoding != null && encoding == "gzip")
+            {
+                return new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+            }
+            else
+            {
+                return response.GetResponseStream();
+            }
         }
 
         private static WebRequest CreateRequest(Uri requestUri, TwitterOAuthTokens tokens)
