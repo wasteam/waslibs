@@ -15,10 +15,11 @@
         
         <controls:ReadingWebView
             ImageUrl="{Binding ImageUrl}"  Title="{Binding Title}" SubTitle="{Binding SubTitle}" DetailContent="{Binding WebContent}"
-            FlyoutEnabled="True" Background="Transparent" Foreground="Black">
+            FlyoutEnabled="True" Background="Transparent" Foreground="Black" ContentAlignment="Left"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <controls:ReadingWebView.FlyoutTemplate>
                 <DataTemplate>
-                    <StackPanel HorizontalAlignment="Stretch" Background="DarkGray"  VerticalAlignment="Top">
+                    <StackPanel HorizontalAlignment="Stretch" Background="DarkGray"  VerticalAlignment="Top" Margin="-12,0">
                         <TextBlock Text="{Binding Title}" FontSize="25" Foreground="White" MaxLines="4" Margin="24,6,24,6" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
