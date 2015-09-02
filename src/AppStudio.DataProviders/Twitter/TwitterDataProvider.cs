@@ -11,6 +11,7 @@ using AppStudio.DataProviders.Exceptions;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
+using System.IO.Compression;
 
 namespace AppStudio.DataProviders.Twitter
 {
@@ -197,12 +198,29 @@ namespace AppStudio.DataProviders.Twitter
     {
         public async Task<string> ExecuteAsync(Uri requestUri, TwitterOAuthTokens tokens)
         {
+            string result = string.Empty;
             var request = CreateRequest(requestUri, tokens);
             var response = await request.GetResponseAsync();
+            var responseStream = GetResponseStream(response);
 
-            using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+            using (StreamReader sr = new StreamReader(responseStream))
             {
-                return sr.ReadToEnd();
+                result = sr.ReadToEnd();
+            }
+            return result;
+        }
+
+        private static Stream GetResponseStream(WebResponse response)
+        {
+            var encoding = response.Headers["content-encoding"];
+
+            if (encoding != null && encoding == "gzip")
+            {
+                return new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+            }
+            else
+            {
+                return response.GetResponseStream();
             }
         }
 
