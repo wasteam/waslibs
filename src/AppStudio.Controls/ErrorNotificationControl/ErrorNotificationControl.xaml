@@ -61,7 +61,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="&#x26A0;" FontFamily="Segoe UI Symbol" VerticalAlignment="Center" Foreground="{TemplateBinding ErrorColor}" FontSize="40"/>
-                                    <TextBlock Grid.Column="1" Margin="25,0,40,0" Text="{TemplateBinding ErrorText}" Style="{StaticResource ErrorStyle}" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{TemplateBinding ErrorColor}"/>
+                                    <TextBlock Grid.Column="1" Margin="25,0,40,0" Text="{TemplateBinding ErrorText}" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="{TemplateBinding ErrorColor}"/>
                                 </Grid>
                             </Grid>
                         </Border>

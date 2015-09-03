@@ -11,6 +11,15 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Title="Windows App Studio Controls Sample">
+            <PivotItem Header="VisualBreakpoints">
+                <controlPages:VisualBreakpoints/>
+            </PivotItem>
+            <PivotItem Header="ErrorNotificationControl">
+                <controlPages:ErrorNotificationControl/>
+            </PivotItem>
+            <PivotItem Header="ResponsiveGridView">
+                <controlPages:ResponsiveGridView/>
+            </PivotItem>
             <PivotItem Header="ReadingWebView">
                 <controlPages:ReadingWebView/>
             </PivotItem>

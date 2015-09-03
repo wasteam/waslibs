@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Samples.Controls.W10.ControlPages
 {
-    public sealed partial class ReadingWebView : UserControl, INotifyPropertyChanged
+    public sealed partial class ReadingWebView : BaseControlPage
     {
         public string ImageUrl
         {
@@ -58,29 +58,5 @@ namespace AppStudio.Samples.Controls.W10.ControlPages
                 WebContent = await sRead.ReadToEndAsync();
             }                            
         }
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            var eventHandler = PropertyChanged;
-            if (eventHandler != null)
-            {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
-        {
-            if (Equals(storage, value)) return false;
-
-            storage = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        #endregion INotifyPropertyChanged
     }
 }
