@@ -165,7 +165,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\AppStudio.Controls\AppStudio.Controls.csproj">
+    <ProjectReference Include="..\..\src\AppStudio.Controls\AppStudio.Controls.csproj">
       <Project>{f2a551a0-5048-471e-8d30-6e9577e44cb0}</Project>
       <Name>AppStudio.Controls</Name>
     </ProjectReference>
