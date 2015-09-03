@@ -149,12 +149,6 @@
     <EmbeddedResource Include="ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppStudio.Common\AppStudio.Common.csproj">
-      <Project>{db9ffd8a-eaad-46d7-b68e-c1d003ed40e1}</Project>
-      <Name>AppStudio.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\Default.rd.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
