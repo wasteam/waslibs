@@ -93,14 +93,28 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Desktop.png" />
+    <Content Include="Assets\Phone.png" />
+    <Content Include="Assets\Tablet.png" />
+    <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\BaseControlPage.cs" />
+    <Compile Include="ControlPages\ErrorNotificationControl.xaml.cs">
+      <DependentUpon>ErrorNotificationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\ReadingWebView.xaml.cs">
       <DependentUpon>ReadingWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\ResponsiveGridView.xaml.cs">
+      <DependentUpon>ResponsiveGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\VisualBreakpoints.xaml.cs">
+      <DependentUpon>VisualBreakpoints.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -129,7 +143,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ControlPages\ErrorNotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ControlPages\ReadingWebView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\ResponsiveGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\VisualBreakpoints.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,7 +165,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\AppStudio.Controls\AppStudio.Controls.csproj">
+    <ProjectReference Include="..\..\src\AppStudio.Controls\AppStudio.Controls.csproj">
       <Project>{f2a551a0-5048-471e-8d30-6e9577e44cb0}</Project>
       <Name>AppStudio.Controls</Name>
     </ProjectReference>

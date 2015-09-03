@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Controls", "src\A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "controls", "controls", "{6D4407F2-A95D-4720-B4DA-9CFC63F540C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Samples.Controls.W10", "AppStudio.Samples.Controls.W10\AppStudio.Samples.Controls.W10.csproj", "{DA8EAF12-468E-47A2-8EF3-B4E64CCF3984}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Samples.Controls.W10", "samples\AppStudio.Samples.Controls.W10\AppStudio.Samples.Controls.W10.csproj", "{DA8EAF12-468E-47A2-8EF3-B4E64CCF3984}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

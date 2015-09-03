@@ -1,9 +1,10 @@
-﻿<UserControl
+﻿<base:BaseControlPage
     x:Class="AppStudio.Samples.Controls.W10.ControlPages.ReadingWebView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Samples.Controls.W10.ControlPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:base="using:AppStudio.Samples.Controls.W10.ControlPages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AppStudio.Controls"
     mc:Ignorable="d"
@@ -26,4 +27,4 @@
             </controls:ReadingWebView.FlyoutTemplate>
         </controls:ReadingWebView>
     </Grid>
-</UserControl>
+</base:BaseControlPage>
