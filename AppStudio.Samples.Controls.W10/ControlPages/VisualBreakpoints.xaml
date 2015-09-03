@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="About Visual Break Points" FontSize="20"/>
-            <TextBlock Text="Con los Visual Break Points puedes definir grupos de  propiedades que se cambiaran en tus controles XAML en función del ancho de la ventana de la aplicación. En este caso, definimos propiedades para teléfonos de 0px a 720px, para tablet de 720px a 1680px y para desktop de 1680px en adelante." TextWrapping="Wrap" FontSize="18" FontWeight="Light"/>
+            <TextBlock Text="With Visual Break Points you can generate property groups that will change your XAML controls depending of App window width. In this case, we define properties for phones from 0px to 720px, for tablets from 720px to 1680px and desktop from 1680px." TextWrapping="Wrap" FontSize="18" FontWeight="Light"/>
             <TextBlock Text="Brackground" Margin="0,12,0,0" FontSize="20"/>
             <TextBlock Text="{Binding Active.background, Source={StaticResource vbp}}" FontWeight="Bold" FontSize="18"/>
             <TextBlock Text="Selected" Margin="0,12,0,0" FontSize="20"/>
