@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Windows AppStudio Data Providers</description>
-    <releaseNotes>Initial Release</releaseNotes>
+    <releaseNotes>Fixed Twitter Data Source to accept GZip streams</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <references>
       <reference file="AppStudio.DataProviders.dll" />

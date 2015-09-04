@@ -3,11 +3,12 @@
 This repository contains the source code of the libraries used by [Windows App Studio](http://appstudio.windows.com) in the generated apps.
 There are three libraries:
 
-The libraries are also available as Nuget packages. To reference them you need to use the
-feed hosted at MyGet.org:
+The libraries are also available as Nuget packages. 
 
 ```
-https://www.myget.org/F/wasbeta/api/v2
+https://www.nuget.org/packages/WindowsAppStudio.Common
+https://www.nuget.org/packages/WindowsAppStudio.DataProviders
+https://www.nuget.org/packages/WindowsAppStudio.Controls
 ```
 
 ## Common
