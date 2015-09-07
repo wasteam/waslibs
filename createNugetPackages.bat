@@ -15,7 +15,7 @@ IF EXIST _TempNugets del /q /s _TempNugets\WindowsAppStudio*
 
 IF NOT EXIST _TempNugets md _TempNugets
 
-REM powershell.exe -ExecutionPolicy Bypass -Command .\UpdateVersionFiles.ps1 %_VERSION_% %_SEMANTIC_%
+powershell.exe -ExecutionPolicy Bypass -Command .\UpdateVersionFiles.ps1 %_VERSION_% %_SEMANTIC_%
 
 call build.bat waslibs.sln
 
@@ -23,6 +23,7 @@ call build.bat waslibs.sln
 .nuget\nuget.exe pack src\AppStudio.Common\AppStudio.Common.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_% -Prop Configuration=Release
 
 .nuget\nuget.exe restore -Source %cd%\_TempNugets waslibs.Controls.sln
-build waslibs.controls.sln
+call build.bat waslibs.controls.sln
+
 .nuget\nuget.exe pack src\AppStudio.Controls\AppStudio.Controls.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_%  -Prop Configuration=Release 
 
