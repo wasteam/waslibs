@@ -28,9 +28,9 @@ call build.bat waslibs.controls.sln
 IF "%3"=="" (
 	  ECHO NUGET Key not found. Not publishing
 ) ELSE (
-	.nuget\nuget.exe push src\AppStudio.DataProviders\AppStudio.DataProviders.%_FULLVERSION_%.nupkg %3
-	.nuget\nuget.exe push src\AppStudio.Common\AppStudio.Common.%_FULLVERSION_%.nupkg %3
-	.nuget\nuget.exe push src\AppStudio.Controls\AppStudio.Controls.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\AppStudio.DataProviders.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\AppStudio.Common.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\AppStudio.Controls.%_FULLVERSION_%.nupkg %3
 )
 
 GOTO END
