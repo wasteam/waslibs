@@ -19,7 +19,7 @@ try
 {
     $ScriptPath = (Get-Variable MyInvocation).Value.MyCommand.Path
     $ScriptDir = Split-Path -Parent $ScriptPath
-    $ScriptDir = Join-Path $ScriptDir "src"
+    #$ScriptDir = Join-Path $ScriptDir "src"
 }
 catch {}
 
@@ -66,7 +66,7 @@ else
 
 
 $projectJsonRegex = "WindowsAppStudio\.Common.*\d+\.\d+\.\d+\-(\w+)"
-$projectJsonFile = Join-Path $ScriptDir "AppStudio.Controls\project.json"
+$projectJsonFile = Join-Path $ScriptDir "src\AppStudio.Controls\project.json"
 $newReference = 'WindowsAppStudio.Common": "' + $NewInformationalVersion
 $jsonContent = Get-Content($projectJsonFile)
 attrib $projectJsonFile -r
