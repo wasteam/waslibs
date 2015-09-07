@@ -28,9 +28,9 @@ call build.bat waslibs.controls.sln
 IF "%3"=="" (
 	  ECHO NUGET Key not found. Not publishing
 ) ELSE (
-	.nuget\nuget.exe push _TempNugets\AppStudio.DataProviders.%_FULLVERSION_%.nupkg %3
-	.nuget\nuget.exe push _TempNugets\AppStudio.Common.%_FULLVERSION_%.nupkg %3
-	.nuget\nuget.exe push _TempNugets\AppStudio.Controls.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\WindowsAppStudio.DataProviders.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\WindowsAppStudio.Common.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push _TempNugets\WindowsAppStudio.Controls.%_FULLVERSION_%.nupkg %3
 )
 
 GOTO END
@@ -39,4 +39,8 @@ GOTO END
 ECHO VERSION NOT FOUND
 
 :END
+git add .
+git commit -m "Created version %_FULLVERSION_%"
+git tag v%_FULLVERSION_%
+git push
 ECHO PROCESS FINISHED
