@@ -23,8 +23,20 @@ call build.bat waslibs.sln
 
 .nuget\nuget.exe restore -Source %cd%\_TempNugets waslibs.Controls.sln
 call build.bat waslibs.controls.sln
-
 .nuget\nuget.exe pack src\AppStudio.Controls\AppStudio.Controls.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_%  -Prop Configuration=Release 
+
+IF "%3"=="" (
+	  ECHO NUGET Key not found. Not publishing
+) ELSE (
+	.nuget\nuget.exe push src\AppStudio.DataProviders\AppStudio.DataProviders.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push src\AppStudio.Common\AppStudio.Common.%_FULLVERSION_%.nupkg %3
+	.nuget\nuget.exe push src\AppStudio.Controls\AppStudio.Controls.%_FULLVERSION_%.nupkg %3
+)
+
+GOTO END
 
 :HELL
 ECHO VERSION NOT FOUND
+
+:END
+ECHO PROCESS FINISHED
