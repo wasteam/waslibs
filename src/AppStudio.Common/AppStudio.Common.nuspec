@@ -3,16 +3,17 @@
   <metadata>
     <id>WindowsAppStudio.Common</id>
     <version>$version$</version>
-    <title>WindowsAppStudio.Common</title>
-    <authors>wasteam</authors>
+    <title>Windows AppStudio Common (for XAML)</title>
+    <authors>Windows AppStudio Team</authors>
     <owners>wasteam</owners>
-    <licenseUrl>https://github.com/wasteam/waslibs/license</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wasteam/waslibs/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common classes for Universal Apps</description>
-    <releaseNotes>First Common</releaseNotes>
+    <description>Provides the foundation classes to create XAML Applications</description>
+    <summary>This library is designed to work with 8.1 and 10 apps, and includes utilities like NavigationServices, Command Pattern, Cache, and some usefull converters.</summary>
+    <releaseNotes>Initial Release used by 8.1 and 10 apps</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Windows AppStudio XAML UWP</tags>
+    <tags>Windows AppStudio XAML Converters Cache Command</tags>
     <references>
       <reference file="AppStudio.Common.dll" />
     </references>

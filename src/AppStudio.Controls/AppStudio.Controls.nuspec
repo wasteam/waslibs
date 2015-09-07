@@ -3,21 +3,21 @@
   <metadata>
     <id>WindowsAppStudio.Controls</id>
     <version>$version$</version>
-    <title>WindowsAppStudio.Controls</title>
-    <authors>wasteam</authors>
+    <title>Windows AppStudio Controls (UWP)</title>
+    <authors>Windows AppStudio Team</authors>
     <owners>wasteam</owners>
-    <licenseUrl>https://github.com/wasteam/waslibs/license.md</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wasteam/waslibs/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Controls classes for Universal Apps</description>
-    <releaseNotes>First Controls</releaseNotes>
+    <description>XAML controls for Windows 10 apps created with Windows AppStudio.</description>
+    <releaseNotes>Responsive Grid View, ReadingWebView, Visual BreakPoints and more..</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Windows AppStudio XAML UWP</tags>
+    <tags>Windows AppStudio XAML UWP Responsive</tags>
     <references>
       <reference file="AppStudio.Controls.dll" />
     </references>
     <dependencies>
-      <dependency id="WindowsAppStudio.Common" version="0.1.3-beta" />
+      <dependency id="WindowsAppStudio.Common" version="$version" />
     </dependencies>
   </metadata>
   <files>
