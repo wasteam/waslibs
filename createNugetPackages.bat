@@ -7,8 +7,7 @@ IF  "%1"=="" (
 IF  "%2"=="" (	
 	SET _FULLVERSION_=%_VERSION_%
 ) ELSE (
-	SET _SEMANTIC_=%2
-	SET _FULLVERSION_=%_VERSION_%-%_SEMANTIC_%
+	SET _FULLVERSION_=%_VERSION_%-%2%
 )
 
 IF EXIST _TempNugets del /q /s _TempNugets\WindowsAppStudio*
