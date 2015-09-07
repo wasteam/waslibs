@@ -1,5 +1,5 @@
 IF  "%1"=="" (	
-	SET _VERSION_="0.0"
+	GOTO HELL
 ) ELSE (
 	SET _VERSION_=%1
 )
@@ -26,3 +26,5 @@ call build.bat waslibs.controls.sln
 
 .nuget\nuget.exe pack src\AppStudio.Controls\AppStudio.Controls.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_%  -Prop Configuration=Release 
 
+:HELL
+ECHO VERSION NOT FOUND
