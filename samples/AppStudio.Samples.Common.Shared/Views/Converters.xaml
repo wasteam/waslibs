@@ -11,6 +11,7 @@
     <Page.Resources>
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converter:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
+        <converter:StringToSizeConverter x:Key="StringToSizeConverter"/>        
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer>
@@ -35,8 +36,17 @@
                 <TextBlock Text="StringVisibilityConverter" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Bold" Margin="0,24,0,0"/>
                 <TextBox Text="{Binding StringValue, Mode=TwoWay}" Margin="0,12,0,0"/>
                 <TextBlock Text="This content text is visible TextBox is not empty." Visibility="{Binding StringValue, Converter={StaticResource StringVisibilityConverter}, Mode=OneWay}" Margin="0,12,0,0"/>
+                
+                <TextBlock Text="StringToSizeConverter" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Bold" Margin="0,24,0,0"/>
+                <TextBlock Text="Image container grid has MaxWidth and MaxHeight 0 if Image path is empty and Auto if not." Margin="0,12,0,0"/>
+                <TextBox Text="{Binding StringToSizeImagePath, Mode=TwoWay}" Margin="0,12,0,0"/>
+                <Grid MaxWidth="{Binding StringToSizeImagePath, Converter={StaticResource StringToSizeConverter}}"
+                      MaxHeight="{Binding StringToSizeImagePath, Converter={StaticResource StringToSizeConverter}}"
+                      Width="300" Height="300" HorizontalAlignment="Left"
+                      Background="LightCyan" Margin="0,12,0,0">
+                    <Image Source="{Binding StringToSizeImagePath}"/>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </Page>

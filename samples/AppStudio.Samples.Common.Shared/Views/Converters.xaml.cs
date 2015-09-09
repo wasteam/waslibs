@@ -35,11 +35,18 @@ namespace AppStudio.Samples.Common
             get { return _stringValue; }
             set { _stringValue = value; OnPropertyChanged("StringValue"); }
         }
+        private string _stringToSizeImagePath;
+        public string StringToSizeImagePath
+        {
+            get { return _stringToSizeImagePath; }
+            set { _stringToSizeImagePath = value; OnPropertyChanged("StringToSizeImagePath"); }
+        }
         public Converters()
         {
             this.InitializeComponent();
             StringValue = "Lorem ipsum";
             BoolValue = true;
+            StringToSizeImagePath = "ms-appx:///Assets/SampleImage.png";
         }
 
         #region INotifyPropertyChanged

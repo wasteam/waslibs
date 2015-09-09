@@ -48,6 +48,7 @@
     <Compile Include="Actions\ActionsCommandBar.cs" />
     <Compile Include="Converters\PageHeaderTypeConverter.cs" />
     <Compile Include="Converters\RichTextBlockStyleConverter.cs" />
+    <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />
     <Compile Include="DataSync\ObservableCollectionExtensions.cs" />
     <Compile Include="Fonts\FontSettings.cs" />
