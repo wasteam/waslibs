@@ -31,7 +31,5 @@ ECHO VERSION NOT FOUND
 EXIT
 
 :END
-git checkout .
-git tag v%_FULLVERSION_%
-git push --tag
+
 ECHO PROCESS FINISHED
