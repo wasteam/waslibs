@@ -15,6 +15,7 @@ powershell.exe -ExecutionPolicy Bypass -Command .\UpdateVersionFiles.ps1 %_VERSI
 
 .nuget\nuget.exe restore waslibs.sln
 msbuild /p:Configuration=Release waslibs.sln
+git checkout .
 
 call pack.bat %_FULLVERSION_%
 

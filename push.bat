@@ -8,7 +8,6 @@ IF  "%1"=="" (
 .nuget\nuget.exe push _TempNugets\WindowsAppStudio.Common.%_FULLVERSION_%.nupkg %2 -Source %3
 .nuget\nuget.exe push _TempNugets\WindowsAppStudio.Controls.%_FULLVERSION_%.nupkg %2 -Source %3
 
-git checkout .
 git tag v%_FULLVERSION_%
 git push --tag
 
