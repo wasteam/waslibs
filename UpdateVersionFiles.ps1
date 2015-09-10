@@ -65,13 +65,5 @@ else
 }
 
 
-$projectJsonRegex = "WindowsAppStudio\.Common.*\d+\.\d+\.\d+\-(\w+)"
-$projectJsonFile = Join-Path $ScriptDir "src\AppStudio.Controls\project.json"
-$newReference = 'WindowsAppStudio.Common": "' + $NewInformationalVersion
-$jsonContent = Get-Content($projectJsonFile)
-attrib $projectJsonFile -r
-$jsonContent -replace $projectJsonRegex, $newReference| Out-File $projectJsonFile
-
-
 
 
