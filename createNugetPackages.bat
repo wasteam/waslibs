@@ -4,7 +4,7 @@ IF  "%1"=="" (
 	SET _VERSION_=%1
 )
 
-SET _SEMANTIC_="%2"
+SET _SEMANTIC_=%2
 IF  "%_SEMANTIC_%"=="" (	
 	SET _FULLVERSION_=%_VERSION_%
 ) ELSE (
