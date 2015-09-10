@@ -11,7 +11,7 @@ Param(
 # Regular expression pattern to find the version in the build number 
 # and then apply it to the assemblies
 $VersionRegex = "\d+\.\d+\.\d+\.\d+"
-$InformationalVersionRegex = "\d+\.\d+\.\d+\-*"
+$InformationalVersionRegex = "\d+\.\d+\.\d+\-(\w+)"
 
 
 $ScriptPath = $null
@@ -65,7 +65,7 @@ else
 }
 
 
-$projectJsonRegex = "WindowsAppStudio\.Common.*\d+\.\d+\.\d+\-*"
+$projectJsonRegex = "WindowsAppStudio\.Common.*\d+\.\d+\.\d+\-(\w+)"
 $projectJsonFile = Join-Path $ScriptDir "src\AppStudio.Controls\project.json"
 $newReference = 'WindowsAppStudio.Common": "' + $NewInformationalVersion
 $jsonContent = Get-Content($projectJsonFile)
