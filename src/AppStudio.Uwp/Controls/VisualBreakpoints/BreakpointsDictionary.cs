@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppStudio.Uwp
+namespace AppStudio.Uwp.Controls
 {
     internal class BreakpointsDictionary : Dictionary<string, BreakpointsTable>
     {

@@ -149,10 +149,10 @@
     <Compile Include="Controls\SectionList\SectionListItem.cs" />
     <Compile Include="Services\InternetConnection.cs" />
     <Compile Include="TasksExtensions.cs" />
-    <Compile Include="VisualBreakpoints\BreakpointsConfig.cs" />
-    <Compile Include="VisualBreakpoints\BreakpointsDictionary.cs" />
-    <Compile Include="VisualBreakpoints\Extensions.cs" />
-    <Compile Include="VisualBreakpoints\VisualBreakpoints.cs" />
+    <Compile Include="Controls\VisualBreakpoints\BreakpointsConfig.cs" />
+    <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />
+    <Compile Include="Controls\VisualBreakpoints\Extensions.cs" />
+    <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>

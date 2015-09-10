@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml;
 
-namespace AppStudio.Uwp
+namespace AppStudio.Uwp.Controls
 {
     public sealed class VisualBreakpoints : ObservableBase
     {
