@@ -1,10 +1,10 @@
 ﻿<base:BaseControlPage
-    x:Class="AppStudio.Samples.Controls.W10.ControlPages.VisualBreakpoints"
+    x:Class="AppStudio.Samples.Uwp.ControlPages.VisualBreakpoints"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AppStudio.Samples.Controls.W10.ControlPages"
-    xmlns:controls="using:AppStudio.Controls"
-    xmlns:base="using:AppStudio.Samples.Controls.W10.ControlPages"
+    xmlns:local="using:AppStudio.Samples.Uwp.ControlPages"
+    xmlns:controls="using:AppStudio.Uwp"
+    xmlns:base="using:AppStudio.Samples.Uwp.ControlPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -34,4 +34,4 @@
         </StackPanel>
         <Image Grid.Row="1" Source="{Binding Active.image, Source={StaticResource vbp}}" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top"/>
     </Grid>
-</base:BaseControlPage>
+    </base:BaseControlPage>

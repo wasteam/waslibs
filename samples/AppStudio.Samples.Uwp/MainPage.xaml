@@ -9,22 +9,22 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Title="Windows App Studio Controls Sample">
+        <Pivot Title="Windows App Studio UWP Sample">
             <PivotItem Header="VisualBreakpoints">
-                <!--<controlPages:VisualBreakpoints/>-->
+                <controlPages:VisualBreakpoints/>
             </PivotItem>
             <PivotItem Header="ErrorNotificationControl">
                 <controlPages:ErrorNotificationControl/>
             </PivotItem>
             <PivotItem Header="ResponsiveGridView">
-                <!--<controlPages:ResponsiveGridView/>-->
+                <controlPages:ResponsiveGridView/>
             </PivotItem>
             <PivotItem Header="ReadingWebView">
                 <controlPages:ReadingWebView/>
             </PivotItem>
             <PivotItem Header="About">
                 <StackPanel MaxWidth="600" HorizontalAlignment="Left">
-                    <TextBlock Text="Windows App Studio: Controls Open Source Library" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <TextBlock Text="Windows App Studio: UWP Open Source Library" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     <TextBlock Text="This is a Open Source code library available on following GitHub repository." Style="{StaticResource BodyTextBlockStyle}" Margin="0,12,0,0"/>
                     <HyperlinkButton Content="https://github.com/wasteam/waslibs" NavigateUri="https://github.com/wasteam/waslibs" Margin="0,0,0,0"/>
                     <TextBlock Text="All Apps created with Windows App Studio consumes those librarys to acces data and build interfaces. You can create your project now! Visit Widnows App Studio clicking on floowin link." Style="{StaticResource BodyTextBlockStyle}" Margin="0,12,0,0"/>

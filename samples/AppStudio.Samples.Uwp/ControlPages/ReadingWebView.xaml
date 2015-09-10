@@ -5,14 +5,13 @@
     xmlns:local="using:AppStudio.Samples.Uwp.ControlPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="using:AppStudio.Samples.Uwp.ControlPages"
+    HorizontalAlignment="Left"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
     xmlns:controls="using:AppStudio.Uwp.Controls"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    mc:Ignorable="d">
 
-    <Grid>
-
+    <Grid Height="800" Width="900">
         <controls:ReadingWebView
             ImageUrl="{Binding ImageUrl}"  Title="{Binding Title}" SubTitle="{Binding SubTitle}" DetailContent="{Binding WebContent}"
             FlyoutEnabled="True" Background="Transparent" Foreground="Black" ContentAlignment="Left"

@@ -93,7 +93,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Assets\VBPDevices.json" />
+    <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +106,12 @@
     </Compile>
     <Compile Include="ControlPages\ReadingWebView.xaml.cs">
       <DependentUpon>ReadingWebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\ResponsiveGridView.xaml.cs">
+      <DependentUpon>ResponsiveGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\VisualBreakpoints.xaml.cs">
+      <DependentUpon>VisualBreakpoints.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -142,6 +148,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\ReadingWebView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\ResponsiveGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\VisualBreakpoints.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
