@@ -48,7 +48,6 @@
     <Compile Include="Actions\ActionsCommandBar.cs" />
     <Compile Include="Converters\PageHeaderTypeConverter.cs" />
     <Compile Include="Converters\RichTextBlockStyleConverter.cs" />
-    <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />
     <Compile Include="DataSync\ObservableCollectionExtensions.cs" />
     <Compile Include="Fonts\FontSettings.cs" />
@@ -63,7 +62,6 @@
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="ObservableBase.cs" />
-    <Compile Include="ObservableDictionary.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Services\InternetConnection.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
