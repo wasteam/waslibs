@@ -4,7 +4,9 @@ Param(
 	[Parameter(Mandatory=$True,Position=1)]
 	[string]$NewVersion,
 	[Parameter(Mandatory=$False,Position=2)]
-	[string]$Semantic = ""
+	[string]$Semantic = "",
+    [Parameter(Mandatory=$False,Position=3)]
+	[string]$Revision = ""
 
 )
 
@@ -36,7 +38,8 @@ else{
 	$NewInformationalVersion = $NewVersion  + "-" + $Semantic
 }
 
-$NewVersion=$NewVersion + ".0"
+$NewVersion=$NewVersion + "." + $Revision
+$NewInformationalVersion = $NewInformationalVersion + $Revision
 
 Write-Host "Version: $NewVersion"
 Write-Host "Informational Version: $NewInformationalVersion"
