@@ -13,9 +13,9 @@ Param(
 	[Parameter(Mandatory=$False, Position=6)]
     [string]$TfsBuildNumber="", #Must follow the pattern buildName_YYYYMMDD.r
 	[Parameter(Mandatory=$False,Position=7)]
-	[string]$NuGetFeedKey ="",
+	[string]$PackagesFeedKey ="",
 	[Parameter(Mandatory=$False,Position=8)]
-	[string]$NuGetFeed=""
+	[string]$PackagesFeed=""
 )
 
 
@@ -40,7 +40,7 @@ if($TfsBuildNumber -ne ""){
 			Write-Host "Build Revision: $BuildRevision"		
 			
 			$NewVersion = $MayorVersion + "." + $MinorVersion + "." + $BuildMonthDay
-			$Semantic = "build"
+			$Semantic = "" #Ensure No Semantic Version for CI Builds
 			$Revision = $BuildRevision
 		}
 		else{
@@ -59,7 +59,7 @@ if($NewVersion -and $NewVersion -ne ""){
 	}
 	
 	if($Revision -ne ""){
-		$FullVersion = $FullVersion + "" + $Revision
+		$FullVersion = $FullVersion + "." + $Revision
 	}
 
 	Write-Host "New Version: $NewVersion"
@@ -72,11 +72,11 @@ if($NewVersion -and $NewVersion -ne ""){
 	Write-Host "Creating nuget packages..."
 	Invoke-Command { .\pack.bat $FullVersion }
 	
-	if($NuGetFeedKey -ne ""){
+	if($PackagesFeedKey -eq ""){
 		Write-Warning "NuGet feed key not present. Not publishing."
 	}
 	else{
-		Invoke-Command { .\push.bat $FullVersion $NuGetFeedKey $NuGetFeed }
+		Invoke-Command { .\push.bat $FullVersion $PackagesFeedKey $PackagesFeed }
 	}
 }
 else{
