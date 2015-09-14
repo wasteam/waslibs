@@ -59,7 +59,7 @@ if($NewVersion -and $NewVersion -ne ""){
 	}
 	
 	if($Revision -ne ""){
-		$FullVersion = $FullVersion + "." + $Revision
+		$FullVersion = $FullVersion + $Revision
 	}
 
 	Write-Host "New Version: $NewVersion"
