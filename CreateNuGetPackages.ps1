@@ -11,7 +11,7 @@ Param(
     [Parameter(Mandatory=$False,Position=5)]
 	[string]$Revision = "",
 	[Parameter(Mandatory=$False, Position=6)]
-	[string]$BuildName="", #Must follow the pattern buildName_YYYYMMDD.r
+    [string]$TfsBuildNumber="", #Must follow the pattern buildName_YYYYMMDD.r
 	[Parameter(Mandatory=$False,Position=7)]
 	[string]$NuGetFeedKey ="",
 	[Parameter(Mandatory=$False,Position=8)]
@@ -19,21 +19,21 @@ Param(
 )
 
 
-if($Patch -ne "" -and $BuildName -ne ""){
+if($Patch -ne "" -and $TfsBuildNumber -ne ""){
 	Write-Error "Is not allowed to specify the parameter BuildVersion and BuildName at the same time"
 }
 
-if($Patch -eq "" -and $BuildName -eq ""){
+if($Patch -eq "" -and $TfsBuildNumber -eq ""){
 	Write-Error "You must specify the parameter BuildVersion or BuildName"
 }
-if($BuildName -ne ""){
+if($TfsBuildNumber -ne ""){
 	if($Revision -ne "" -or $Semantic -ne "") {
 		Write-Error "Semantic and/or Revision can't be specified if you set the BuildName parameter"
 	}
 	else{
-		Write-Host "Infering version from BuildName $BuildName"
-		$BuildNameRegEx = "_\d\d\d\d(\d\d\d\d)\.(\d+)"
-		if($BuildName -match $BuildNameRegEx){
+		Write-Host "Infering version from BuildName $TfsBuildNumber"
+		$TfsBuildNumberRegEx = "_\d\d\d\d(\d\d\d\d)\.(\d+)"
+		if($TfsBuildNumber -match $TfsBuildNumberRegEx){
 			$BuildMonthDay = $matches[1]
 			$BuildRevision = $matches[2]
 			Write-Host "Build Month and Day: $BuildMonthDay"
