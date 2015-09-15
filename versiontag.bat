@@ -9,6 +9,8 @@ IF  NOT "%2"=="" (
 	SET _TAG_=%_TAG_%.%2
 )
 
+git config --global user.email "%3@outlook.com"
+git config --global user.name "%3"
 git remote set-url origin https://%3:%4@github.com/wasteam/waslibs.git
 git tag -a %_TAG_% -m "Version built: %_TAG_%"
 git push origin %_TAG_%
