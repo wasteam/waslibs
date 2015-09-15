@@ -20,11 +20,11 @@ Param(
 
 
 if($Patch -ne "" -and $TfsBuildNumber -ne ""){
-	Write-Error "Is not allowed to specify the parameter BuildVersion and BuildName at the same time"
+	Write-Error "Is not allowed to specify the parameter TfsBuildNumber and Patch at the same time"
 }
 
 if($Patch -eq "" -and $TfsBuildNumber -eq ""){
-	Write-Error "You must specify the parameter BuildVersion or BuildName"
+	Write-Error "You must specify the parameter TfsBuildNumber or Patch"
 }
 if($TfsBuildNumber -ne ""){
 	if($Revision -ne "" -or $Semantic -ne "") {
@@ -53,30 +53,31 @@ else{
 }
 
 if($NewVersion -and $NewVersion -ne ""){
-	$FullVersion = $NewVersion
+	$PackageVersion = $NewVersion
 	if($Semantic -ne "") {
-		$FullVersion = $FullVersion + "-" + $Semantic
+		$PackageVersion = $PackageVersion + "-" + $Semantic
 	}
 	
-	if($Revision -ne ""){
-		$FullVersion = $FullVersion + $Revision
-	}
+	#if($Revision -ne ""){
+	#	$PackageVersion = $PackageVersion + $Revision
+	#}
 
 	Write-Host "New Version: $NewVersion"
-	Write-Host "Full Version: $FullVersion"
+	Write-Host "Revision: $Revision"
+	Write-Host "Package Version: $PackageVersion"
     Invoke-Command -ScriptBlock  { .\UpdateVersionFiles.ps1 $NewVersion $Semantic $Revision }
 	
 	Write-Host "Buiding waslibs.sln"
 	Invoke-Command { .\build.bat  } 
 	
 	Write-Host "Creating nuget packages..."
-	Invoke-Command { .\pack.bat $FullVersion }
+	Invoke-Command { .\pack.bat $PackageVersion }
 	
 	if($PackagesFeedKey -eq ""){
 		Write-Warning "NuGet feed key not present. Not publishing."
 	}
 	else{
-		Invoke-Command { .\push.bat $FullVersion $PackagesFeedKey $PackagesFeed }
+		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed }
 	}
 }
 else{
