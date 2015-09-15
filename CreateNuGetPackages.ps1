@@ -22,24 +22,24 @@ Param(
 	[string]$GitAccessToken = ""
 )
 
+if($error){
+	$error.Clear()
+}
 
 if($Patch -ne "" -and $TfsBuildNumber -ne ""){
-	Write-Error "Is not allowed to specify the parameter TfsBuildNumber and Patch at the same time"
-	Return -1
+	throw "Is not allowed to specify the parameter TfsBuildNumber and Patch at the same time"
 }
 
 if($Patch -eq "" -and $TfsBuildNumber -eq ""){
-	Write-Error "You must specify the parameter TfsBuildNumber or Patch"
-	Return -1
+	throw "You must specify the parameter TfsBuildNumber or Patch"
 }
 if($TfsBuildNumber -ne ""){
 	if($Revision -ne "" -or $Semantic -ne "") {
-		Write-Error "Semantic and/or Revision can't be specified if you set the BuildName parameter"
-		Return -1
+		throw "Semantic and/or Revision can't be specified if you set the BuildName parameter"
 	}
 	else{
 		Write-Host "Infering version from BuildName $TfsBuildNumber"
-		$TfsBuildNumberRegEx = "_(\d\d\d\d\d\d\d\d)\.(\d+)"
+		$TfsBuildNumberRegEx = "(_\d\d\d\d\d\d\d\d)\.(\d+)"
 		
 		if($TfsBuildNumber -match $TfsBuildNumberRegEx){
 			$buildDate = [DateTime]::ParseExact($matches[1], "yyyyMMdd", $null)
@@ -53,8 +53,7 @@ if($TfsBuildNumber -ne ""){
 			$Revision = $BuildRevision
 		}
 		else{
-			Write-Error "Build format does not match the expected pattern (buildName_YYYYMMDD.r)"
-			Return -1
+			throw "Build format does not match the expected pattern (buildName_YYYYMMDD.r)"
 		}
 	}
 }
@@ -62,7 +61,7 @@ else{
 	$NewVersion = $MayorVersion + "." + $MinorVersion + "." + $Patch 
 }
 
-if($NewVersion -and $NewVersion -ne ""){
+if(!$error -and $NewVersion -and $NewVersion -ne ""){
 	$PackageVersion = $NewVersion
 	if($Semantic -ne "") {
 		$PackageVersion = $PackageVersion + "-" + $Semantic
@@ -92,6 +91,5 @@ if($NewVersion -and $NewVersion -ne ""){
 	}
 }
 else{
-	Write-Error "New version for packages can't be determined."
-	Return -1
+	throw "New version for packages can't be determined."
 }
