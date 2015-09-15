@@ -13,7 +13,7 @@ git config user.email "%3@outlook.com"
 git config user.name "%3"
 git remote set-url origin https://%3:%4@github.com/wasteam/waslibs.git
 git tag -a %_TAG_% -m "Version built: %_TAG_%"
-git push origin %_TAG_% > gitpush.log
+git push origin %_TAG_%
 
 GOTO END
 

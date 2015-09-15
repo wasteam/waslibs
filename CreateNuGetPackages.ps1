@@ -86,7 +86,8 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed }
 		
 		if($GitUser -ne "" -and $GitAccessToken -ne ""){
-			Invoke-Command { cmd.exe ".\versiontag.bat $PackageVersion $Revision $GitUser $GitAccessToken" > null } -ErrorAction Ignore
+			Write-Host "Invoke-Command { cmd.exe "".\versiontag.bat $PackageVersion $Revision $GitUser $GitAccessToken > versiontag.log"" } -ErrorAction Ignore"
+			Invoke-Command { cmd.exe ".\versiontag.bat $PackageVersion $Revision $GitUser $GitAccessToken" > versiontag.log } -ErrorAction Ignore
 		}
 	}
 }
