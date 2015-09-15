@@ -2,9 +2,11 @@
 [CmdletBinding()] 
 Param(
 	[Parameter(Mandatory=$True,Position=1)]
-	[string]$NewVersion,
+	[string]$NewVersion, #Expected Mayor.Minor.Patch
 	[Parameter(Mandatory=$False,Position=2)]
-	[string]$Semantic = ""
+	[string]$Semantic = "",
+    [Parameter(Mandatory=$False,Position=3)]
+	[string]$Revision = ""
 
 )
 
@@ -19,7 +21,6 @@ try
 {
     $ScriptPath = (Get-Variable MyInvocation).Value.MyCommand.Path
     $ScriptDir = Split-Path -Parent $ScriptPath
-    #$ScriptDir = Join-Path $ScriptDir "src"
 }
 catch {}
 
@@ -29,14 +30,24 @@ if (!$ScriptPath)
 	exit 1
 }
 
-if($Semantic -eq ""){
-	$NewInformationalVersion = $NewVersion
-}
-else{
+
+if($Semantic -ne ""){
 	$NewInformationalVersion = $NewVersion  + "-" + $Semantic
 }
+else{
+    $NewInformationalVersion = $NewVersion
+}
 
-$NewVersion=$NewVersion + ".0"
+if($Revision -ne ""){
+     $NewVersion=$NewVersion + "." + $Revision
+     
+     if($Semantic -ne ""){
+        $NewInformationalVersion = $NewInformationalVersion + $Revision
+     } 
+     else{
+         $NewInformationalVersion = $NewInformationalVersion + "." + $Revision
+     }
+}
 
 Write-Host "Version: $NewVersion"
 Write-Host "Informational Version: $NewInformationalVersion"
