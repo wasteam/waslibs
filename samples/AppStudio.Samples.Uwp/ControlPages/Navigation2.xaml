@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="AppStudio.Samples.Uwp.ControlPages.Navigation2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Samples.Uwp.ControlPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="24,12,24,0">
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+                <Run FontWeight="Bold">Step 3</Run>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Check NavigationService.CanGoBack()" Style="{ThemeResource BodyTextBlockStyle}"/>
+                <TextBlock Text="{Binding CanGoBack}" Margin="12,0,0,0" Style="{ThemeResource BodyTextBlockStyle}" FontFamily="Consolas"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Check NavigationService.CanGoForward()" Style="{ThemeResource BodyTextBlockStyle}"/>
+                <TextBlock Text="{Binding CanGoForward}" Margin="12,0,0,0" Style="{ThemeResource BodyTextBlockStyle}" FontFamily="Consolas"/>
+            </StackPanel>
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="0,12,0,0">
+                <Run FontWeight="Bold">Step 4</Run>                
+                <LineBreak/>
+                <Run>Manage BackPressed on Windows 10 devices.</Run>
+                <LineBreak/>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    SystemNavigationManager.GetForCurrentView().BackRequested += ((sender, eventArgs) => {
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    if (NavigationService.CanGoBack())
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    {
+                </Run>
+                <LineBreak/>
+                
+                <Run FontFamily="Consolas" Foreground="Gray">
+                         eventArgs.Handled = true;                    
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                         NavigationService.GoBack();
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    }});
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    NavigationService.NavigatedToPage += ((a,b)=> {
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    if (NavigationService.CanGoBack())
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    {
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                         SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+                </Run>
+                <LineBreak/>               
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    }
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    else
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    {
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                         SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    }
+                </Run>
+                <LineBreak/>
+                <Run FontFamily="Consolas" Foreground="Gray">
+                    });
+                </Run>
+            </TextBlock>
+            <Button Content="Click here to go back" Margin="-6,24,0,0" Click="GoBackButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Page>

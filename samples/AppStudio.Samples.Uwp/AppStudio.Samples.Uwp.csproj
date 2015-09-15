@@ -93,16 +93,33 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\SampleImage.png" />
     <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\ActionCommandBar.xaml.cs">
+      <DependentUpon>ActionCommandBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\AppCache.xaml.cs">
+      <DependentUpon>AppCache.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\BaseControlPage.cs" />
+    <Compile Include="ControlPages\Converters.xaml.cs">
+      <DependentUpon>Converters.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\ErrorNotificationControl.xaml.cs">
       <DependentUpon>ErrorNotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\Navigation.xaml.cs">
+      <DependentUpon>Navigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\Navigation2.xaml.cs">
+      <DependentUpon>Navigation2.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\ReadingWebView.xaml.cs">
       <DependentUpon>ReadingWebView.xaml</DependentUpon>
@@ -143,7 +160,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ControlPages\ActionCommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\AppCache.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ControlPages\ErrorNotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\Navigation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\Navigation2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Style\AppBarButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\AppStudio.Uwp\AppStudio.Uwp.csproj">
@@ -170,6 +211,7 @@
       <Name>AppStudio.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

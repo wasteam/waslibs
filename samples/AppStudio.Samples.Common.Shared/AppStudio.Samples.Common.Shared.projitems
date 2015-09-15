@@ -70,6 +70,6 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\SampleImage.png" />
+    <Folder Include="$(MSBuildThisFileDirectory)Assets\" />
   </ItemGroup>
 </Project>

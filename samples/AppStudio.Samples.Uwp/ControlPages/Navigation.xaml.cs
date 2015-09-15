@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppStudio.Uwp.Navigation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,19 +14,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace AppStudio.Samples.Uwp
+namespace AppStudio.Samples.Uwp.ControlPages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Navigation : BaseControlPage
     {
-        public MainPage()
+        public Navigation()
         {
             this.InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Required;
+        }
+
+        private void NavigateButtonClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.NavigateToPage("Navigation2");
         }
     }
 }

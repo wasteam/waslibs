@@ -22,6 +22,18 @@
             <PivotItem Header="ReadingWebView">
                 <controlPages:ReadingWebView/>
             </PivotItem>
+            <PivotItem Header="Converters">
+                <controlPages:Converters/>
+            </PivotItem>
+            <PivotItem Header="AppCache">
+                <controlPages:AppCache/>
+            </PivotItem>
+            <PivotItem Header="ActionCommandBar">
+                <controlPages:ActionCommandBar/>
+            </PivotItem>
+            <PivotItem Header="Navigation">
+                <controlPages:Navigation/>
+            </PivotItem>
             <PivotItem Header="About">
                 <StackPanel MaxWidth="600" HorizontalAlignment="Left">
                     <TextBlock Text="Windows App Studio: UWP Open Source Library" Style="{StaticResource SubtitleTextBlockStyle}"/>

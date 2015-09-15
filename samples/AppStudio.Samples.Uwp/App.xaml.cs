@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppStudio.Uwp.Navigation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -68,6 +70,26 @@ namespace AppStudio.Samples.Uwp
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+                NavigationService.Initialize(typeof(App), rootFrame);
+                SystemNavigationManager.GetForCurrentView().BackRequested += ((sender, eventArgs) =>
+                {
+                    if (NavigationService.CanGoBack())
+                    {
+                        eventArgs.Handled = true;
+                        NavigationService.GoBack();
+                    }
+                });
+                NavigationService.NavigatedToPage += ((a,b)=>
+                {
+                    if (NavigationService.CanGoBack())
+                    {
+                        SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+                    }
+                    else
+                    {
+                        SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                    }
+                });
             }
 
             if (rootFrame.Content == null)
@@ -79,6 +101,11 @@ namespace AppStudio.Samples.Uwp
             }
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private void NavigationService_NavigatedToPage(object sender, NavigatedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
