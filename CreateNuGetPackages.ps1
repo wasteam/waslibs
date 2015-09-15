@@ -86,7 +86,7 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed }
 		
 		if($GitUser -ne "" -and $GitAccessToken -ne ""){
-			Invoke-Command { .\versiontag.bat $PackageVersion $GitUser $GitAccessToken }
+			Invoke-Command { .\versiontag.bat $PackageVersion $Revision $GitUser $GitAccessToken }
 		}
 	}
 }

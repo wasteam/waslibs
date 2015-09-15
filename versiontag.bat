@@ -2,11 +2,15 @@
 IF  "%1"=="" (	
 	GOTO HELL
 ) ELSE (
-	SET _FULLVERSION_=%1
+	SET _TAG_=%1
 )
 
-git remote set-url origin https://%2:%3@github.com/wasteam/waslibs.git
-git tag v%_FULLVERSION_%
+IF  NOT "%2"=="" (	
+	SET _TAG_=%1.%2
+)
+
+git remote set-url origin https://%3:%4@github.com/wasteam/waslibs.git
+git tag v%_TAG_%
 git push --tag
 
 
