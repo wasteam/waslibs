@@ -2,18 +2,16 @@
 IF  "%1"=="" (	
 	GOTO HELL
 ) ELSE (
-	SET _TAG_=%1
+	SET _TAG_=v%1
 )
 
 IF  NOT "%2"=="" (	
-	SET _TAG_=%1.%2
+	SET _TAG_=%_TAG_%.%2
 )
 
 git remote set-url origin https://%3:%4@github.com/wasteam/waslibs.git
-git tag v%_TAG_%
-git push --tag
-
-
+git tag -a %_TAG_% -m "Version built: %_TAG_%"
+git push origin %_TAG_%
 
 GOTO END
 
@@ -23,3 +21,4 @@ EXIT -1
 
 :END
 ECHO PROCESS FINISHED
+EXIT 0
