@@ -15,20 +15,27 @@ Param(
 	[Parameter(Mandatory=$False,Position=7)]
 	[string]$PackagesFeedKey ="",
 	[Parameter(Mandatory=$False,Position=8)]
-	[string]$PackagesFeed=""
+	[string]$PackagesFeed="",
+	[Parameter(Mandatory=$False,Position=9)]
+	[string]$GitUser = "",
+	[Parameter(Mandatory=$False,Position=10)]
+	[string]$GitAccessToken = ""
 )
 
 
 if($Patch -ne "" -and $TfsBuildNumber -ne ""){
 	Write-Error "Is not allowed to specify the parameter TfsBuildNumber and Patch at the same time"
+	Return -1
 }
 
 if($Patch -eq "" -and $TfsBuildNumber -eq ""){
 	Write-Error "You must specify the parameter TfsBuildNumber or Patch"
+	Return -1
 }
 if($TfsBuildNumber -ne ""){
 	if($Revision -ne "" -or $Semantic -ne "") {
 		Write-Error "Semantic and/or Revision can't be specified if you set the BuildName parameter"
+		Return -1
 	}
 	else{
 		Write-Host "Infering version from BuildName $TfsBuildNumber"
@@ -47,6 +54,7 @@ if($TfsBuildNumber -ne ""){
 		}
 		else{
 			Write-Error "Build format does not match the expected pattern (buildName_YYYYMMDD.r)"
+			Return -1
 		}
 	}
 }
@@ -60,9 +68,6 @@ if($NewVersion -and $NewVersion -ne ""){
 		$PackageVersion = $PackageVersion + "-" + $Semantic
 	}
 	
-	#if($Revision -ne ""){
-	#	$PackageVersion = $PackageVersion + $Revision
-	#}
 
 	Write-Host "New Version: $NewVersion"
 	Write-Host "Revision: $Revision"
@@ -80,8 +85,13 @@ if($NewVersion -and $NewVersion -ne ""){
 	}
 	else{
 		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed }
+		
+		if($GitUser -ne "" -and $GitAccessToken -ne ""){
+			Invoke-Command { .\versiontag.bat $PackageVersion $GitUser $GitAccessToken }
+		}
 	}
 }
 else{
 	Write-Error "New version for packages can't be determined."
+	Return -1
 }
