@@ -39,7 +39,7 @@ if($TfsBuildNumber -ne ""){
 	}
 	else{
 		Write-Host "Infering version from BuildName $TfsBuildNumber"
-		$TfsBuildNumberRegEx = "(_\d\d\d\d\d\d\d\d)\.(\d+)"
+		$TfsBuildNumberRegEx = "_(\d\d\d\d\d\d\d\d)\.(\d+)"
 		
 		if($TfsBuildNumber -match $TfsBuildNumberRegEx){
 			$buildDate = [DateTime]::ParseExact($matches[1], "yyyyMMdd", $null)
