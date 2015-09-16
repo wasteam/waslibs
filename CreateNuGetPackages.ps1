@@ -43,8 +43,8 @@ if($TfsBuildNumber -ne ""){
 		
 		if($TfsBuildNumber -match $TfsBuildNumberRegEx){
 			$buildDate = [DateTime]::ParseExact($matches[1], "yyyyMMdd", $null)
-			$BuildMonthDay = $buildDate.ToString("Mdd")
-			$BuildRevision = $matches[2]
+			$BuildMonthDay = $buildDate.DayOfYear.ToString("#000");
+			$BuildRevision = ([int]$matches[2]).ToString("#00");
 			Write-Host "Build Month and Day: $BuildMonthDay"
 			Write-Host "Build Revision: $BuildRevision"		
 			
@@ -62,7 +62,7 @@ else{
 }
 
 if(!$error -and $NewVersion -and $NewVersion -ne ""){
-	$PackageVersion = $NewVersion
+	$PackageVersion = $NewVersion + $Revision
 	if($Semantic -ne "") {
 		$PackageVersion = $PackageVersion + "-" + $Semantic
 	}
@@ -71,6 +71,7 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 	Write-Host "New Version: $NewVersion"
 	Write-Host "Revision: $Revision"
 	Write-Host "Package Version: $PackageVersion"
+
     Invoke-Command -ScriptBlock  { .\UpdateVersionFiles.ps1 $NewVersion $Semantic $Revision }
 	
 	Write-Host "Buiding waslibs.sln"
