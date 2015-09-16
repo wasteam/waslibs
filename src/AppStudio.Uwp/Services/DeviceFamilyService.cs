@@ -14,6 +14,11 @@ namespace AppStudio.Uwp.Services
         {
             get
             {
+                if (_qualifierValues == null)
+                {
+                    _qualifierValues = Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().QualifierValues;
+                    
+                }
                 return _qualifierValues;
             }
         }
