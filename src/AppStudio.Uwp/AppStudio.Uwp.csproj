@@ -140,7 +140,6 @@
     <Compile Include="Controls\ResponsiveGridView\ResponsiveGridView.cs" />
     <Compile Include="Controls\SectionList\SectionList.cs" />
     <Compile Include="Controls\SectionList\SectionListItem.cs" />
-    <Compile Include="Services\DeviceFamilyService.cs" />
     <Compile Include="Services\InternetConnection.cs" />
     <Compile Include="Controls\VisualBreakpoints\BreakpointsConfig.cs" />
     <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />

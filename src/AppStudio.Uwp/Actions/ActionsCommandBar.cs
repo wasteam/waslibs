@@ -1,5 +1,4 @@
-﻿using AppStudio.Uwp.Services;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.Graphics.Display;
@@ -12,8 +11,8 @@ namespace AppStudio.Uwp.Actions
     {
         public static readonly DependencyProperty ActionsSourceProperty =
             DependencyProperty.Register("ActionsSource", typeof(List<ActionInfo>), typeof(ActionsCommandBar), new PropertyMetadata(null, ActionsSourcePropertyChanged));
-        public static readonly DependencyProperty HideOnMobileLandscapeProperty =
-            DependencyProperty.Register("HideOnMobileLandscape", typeof(bool), typeof(ActionsCommandBar), new PropertyMetadata(false));
+        public static readonly DependencyProperty HideOnLandscapeProperty =
+            DependencyProperty.Register("HideOnLandscape", typeof(bool), typeof(ActionsCommandBar), new PropertyMetadata(false));
         public static readonly DependencyProperty IsVisibleProperty =
             DependencyProperty.Register("IsVisible", typeof(bool), typeof(ActionsCommandBar), new PropertyMetadata(true, OnIsVisiblePropertyChanged));
 
@@ -49,12 +48,12 @@ namespace AppStudio.Uwp.Actions
             set { SetValue(ActionsSourceProperty, value); }
         }
 
-        public bool HideOnMobileLandscape
+        public bool HideOnLandscape
         {
-            get { return (bool)GetValue(HideOnMobileLandscapeProperty); }
+            get { return (bool)GetValue(HideOnLandscapeProperty); }
             set
             {
-                SetValue(HideOnMobileLandscapeProperty, value);
+                SetValue(HideOnLandscapeProperty, value);
             }
         }
         public bool IsVisible
@@ -126,7 +125,7 @@ namespace AppStudio.Uwp.Actions
 
         private void UpdateVisibility(DisplayOrientations orientation)
         {
-            if (HideOnMobileLandscape && DeviceFamilyService.IsMobile)
+            if (HideOnLandscape)
             {
                 if (orientation == DisplayOrientations.Landscape ||
                    orientation == DisplayOrientations.LandscapeFlipped)

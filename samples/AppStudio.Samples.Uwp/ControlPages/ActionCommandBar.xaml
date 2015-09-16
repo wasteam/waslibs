@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <action:ActionsCommandBar ActionsSource="{Binding CommandActions}" Background="Gray" Foreground="Black" HideOnMobileLandscape="False">
+        <action:ActionsCommandBar ActionsSource="{Binding CommandActions}" Background="Gray" Foreground="Black" HideOnLandscape="False">
             <action:ActionsCommandBar.PrimaryCommands>
                 <AppBarButton Label="from XAML Primary 1" Icon="AddFriend" Foreground="Black" Style="{StaticResource CustomAppBarButtonStyle}"/>
             </action:ActionsCommandBar.PrimaryCommands>
