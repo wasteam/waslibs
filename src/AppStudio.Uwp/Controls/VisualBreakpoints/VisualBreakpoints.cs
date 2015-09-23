@@ -47,6 +47,11 @@ namespace AppStudio.Uwp.Controls
             Window.Current.SizeChanged += Window_SizeChanged;
         }
 
+        public void UpdateActive()
+        {
+            TrySetActive(Window.Current.Bounds.Width);
+        }
+
         private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             TrySetActive(e.Size.Width);
