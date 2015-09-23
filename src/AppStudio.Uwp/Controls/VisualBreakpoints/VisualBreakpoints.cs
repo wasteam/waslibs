@@ -50,11 +50,12 @@ namespace AppStudio.Uwp.Controls
         public void UpdateActive()
         {
             TrySetActive(Window.Current.Bounds.Width);
+            OnPropertyChanged("Active");
         }
 
         private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
-            TrySetActive(e.Size.Width);
+            TrySetActive(e.Size.Width);            
         }
 
         private void TrySetActive(double width)
