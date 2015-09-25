@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     xmlns:converter="using:AppStudio.Uwp.Converters"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Margin="12,0"
     d:DesignHeight="300"
     d:DesignWidth="400">
     <base:BaseControlPage.Resources>

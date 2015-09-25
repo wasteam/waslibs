@@ -24,7 +24,7 @@ namespace AppStudio.Uwp.Controls
             DependencyProperty.Register("ItemHeight", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0D));
 
         public static readonly DependencyProperty OneRowModeEnabledProperty =
-            DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridView), new PropertyMetadata(false, OnOneRowModeEnabledChanged));
+            DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridView), new PropertyMetadata(false, ((o, e) => { OnOneRowModeEnabledChanged(o, e.NewValue); })));
 
         private static readonly DependencyProperty VerticalScrollProperty =
             DependencyProperty.Register("VerticalScroll", typeof(ScrollMode), typeof(ResponsiveGridView), new PropertyMetadata(ScrollMode.Auto));
@@ -32,11 +32,11 @@ namespace AppStudio.Uwp.Controls
         private static readonly DependencyProperty ItemWidthProperty =
             DependencyProperty.Register("ItemWidth", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0D));
 
-        private static void OnOneRowModeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnOneRowModeEnabledChanged(DependencyObject d, object newValue)
         {
             var self = d as ResponsiveGridView;
 
-            if ((bool)e.NewValue)
+            if ((bool)newValue)
             {
                 if (self._isInitialized)
                 {
@@ -156,8 +156,8 @@ namespace AppStudio.Uwp.Controls
 
             gridView = GetTemplateChild("gridView") as GridView;
             gridView.SizeChanged += GridView_SizeChanged;
-
             _isInitialized = true;
+            OnOneRowModeEnabledChanged(this, OneRowModeEnabled);
         }
         private static int CalculateColumns(double containerWidth, double itemWidth)
         {
@@ -167,7 +167,7 @@ namespace AppStudio.Uwp.Controls
                 columns = 1;
             }
             return columns;
-        }       
+        }
 
         private void GridView_SizeChanged(object sender, SizeChangedEventArgs e)
         {

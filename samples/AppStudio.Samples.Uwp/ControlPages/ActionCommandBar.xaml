@@ -13,18 +13,10 @@
     d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <action:ActionsCommandBar ActionsSource="{Binding CommandActions}" Background="Gray" Foreground="Black" HideOnLandscape="False">
-            <action:ActionsCommandBar.PrimaryCommands>
-                <AppBarButton Label="from XAML Primary 1" Icon="AddFriend" Foreground="Black" Style="{StaticResource CustomAppBarButtonStyle}"/>
-            </action:ActionsCommandBar.PrimaryCommands>
-            <action:ActionsCommandBar.SecondaryCommands>
-                <AppBarButton Label="from XAML Secondary 2"/>
-            </action:ActionsCommandBar.SecondaryCommands>
-        </action:ActionsCommandBar>
-        <StackPanel Grid.Row="1">
+        <StackPanel Margin="12,0">
             <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="0,12,0,0">
                 <Run>ActionsCommandBar instance buttons from ActionsSource code behind property.</Run>
                 <LineBreak/>
@@ -34,5 +26,13 @@
                 <Run>Different AppBarButtons must have different labels.</Run>
             </TextBlock>
         </StackPanel>
+        <action:ActionsCommandBar Grid.Row="1" VerticalAlignment="Bottom" ActionsSource="{Binding CommandActions}" Background="Gray" Foreground="Black" HideOnLandscape="False">
+            <action:ActionsCommandBar.PrimaryCommands>
+                <AppBarButton Label="from XAML Primary 1" Icon="AddFriend" Foreground="Black" Style="{StaticResource CustomAppBarButtonStyle}"/>
+            </action:ActionsCommandBar.PrimaryCommands>
+            <action:ActionsCommandBar.SecondaryCommands>
+                <AppBarButton Label="from XAML Secondary 2"/>
+            </action:ActionsCommandBar.SecondaryCommands>
+        </action:ActionsCommandBar>
     </Grid>
 </base:BaseControlPage>
