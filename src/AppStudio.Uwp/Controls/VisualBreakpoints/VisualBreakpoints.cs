@@ -44,18 +44,8 @@ namespace AppStudio.Uwp.Controls
         {
             Active = new ExpandoObject();
 
-            Window.Current.SizeChanged += Window_SizeChanged;
-        }
-
-        public void UpdateActive()
-        {
+            Window.Current.SizeChanged += ((sender, e) => { TrySetActive(e.Size.Width); });
             TrySetActive(Window.Current.Bounds.Width);
-            OnPropertyChanged("Active");
-        }
-
-        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            TrySetActive(e.Size.Width);            
         }
 
         private void TrySetActive(double width)
@@ -69,7 +59,7 @@ namespace AppStudio.Uwp.Controls
                     SetActiveProperties(activeBreakpoint);
 
                     _lastActive = currentActive;
-                } 
+                }
             }
         }
 
