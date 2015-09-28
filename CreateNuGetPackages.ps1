@@ -62,9 +62,10 @@ else{
 }
 
 if(!$error -and $NewVersion -and $NewVersion -ne ""){
-	$PackageVersion = $NewVersion + $Revision
+	
+	$PackageVersion = $NewVersion
 	if($Semantic -ne "") {
-		$PackageVersion = $PackageVersion + "-" + $Semantic
+		$PackageVersion = $PackageVersion + "-" + $Semantic + $Revision
 	}
 	
 
