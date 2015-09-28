@@ -5,24 +5,19 @@
     xmlns:local="using:AppStudio.Samples.Uwp.ControlPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:base="using:AppStudio.Samples.Uwp.ControlPages"
-    HorizontalAlignment="Left" Margin="12,0"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     xmlns:controls="using:AppStudio.Uwp.Controls"
     mc:Ignorable="d">
-
-    <Grid Height="800" Width="900">
-        <controls:ReadingWebView
+    <controls:ReadingWebView
             ImageUrl="{Binding ImageUrl}"  Title="{Binding Title}" SubTitle="{Binding SubTitle}" DetailContent="{Binding WebContent}"
-            FlyoutEnabled="True" Background="Transparent" Foreground="Black" ContentAlignment="Left"
-            ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <controls:ReadingWebView.FlyoutTemplate>
-                <DataTemplate>
-                    <StackPanel HorizontalAlignment="Stretch" Background="DarkGray"  VerticalAlignment="Top" Margin="-12,0">
-                        <TextBlock Text="{Binding Title}" FontSize="25" Foreground="White" MaxLines="4" Margin="24,6,24,6" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </DataTemplate>
-            </controls:ReadingWebView.FlyoutTemplate>
-        </controls:ReadingWebView>
-    </Grid>
+            FlyoutEnabled="True" Background="Transparent" Foreground="Black" ContentAlignment="Left">
+        <controls:ReadingWebView.FlyoutTemplate>
+            <DataTemplate>
+                <StackPanel HorizontalAlignment="Stretch" Background="DarkGray"  VerticalAlignment="Top" Margin="-12,0">
+                    <TextBlock Text="{Binding Title}" FontSize="25" Foreground="White" MaxLines="4" Margin="24,6,24,6" TextWrapping="Wrap"/>
+                </StackPanel>
+            </DataTemplate>
+        </controls:ReadingWebView.FlyoutTemplate>
+    </controls:ReadingWebView>
 </base:BaseControlPage>
