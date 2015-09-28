@@ -93,6 +93,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\HeroImage.png" />
     <Content Include="Assets\SampleImage.png" />
     <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
@@ -126,6 +127,9 @@
     </Compile>
     <Compile Include="ControlPages\ResponsiveGridView.xaml.cs">
       <DependentUpon>ResponsiveGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\SectionList.xaml.cs">
+      <DependentUpon>SectionList.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\VisualBreakpoints.xaml.cs">
       <DependentUpon>VisualBreakpoints.xaml</DependentUpon>
@@ -189,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\ResponsiveGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\SectionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,7 +29,7 @@ namespace AppStudio.DataProviders.Facebook
                     Title = i.message.DecodeHtml(),
                     Summary = i.message.DecodeHtml(),
                     Content = i.message,
-                    ImageUrl = ConvertImageUrlFromParameter(i.picture),
+                    ImageUrl = ConvertImageUrlFromParameter(i.full_picture),
                     FeedUrl = i.link
                 };
                 resultToReturn.Add(item);
@@ -85,7 +85,7 @@ namespace AppStudio.DataProviders.Facebook
         public DateTime created_time { get; set; }
         public DateTime updated_time { get; set; }
         public string message { get; set; }
-        public string picture { get; set; }
+        public string full_picture { get; set; }
         public string link { get; set; }
     }
 }

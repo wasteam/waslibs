@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel Margin="12,0">
             <TextBlock Text="About Visual Break Points" FontSize="20"/>
             <TextBlock Text="With Visual Break Points you can generate property groups that will change your XAML controls depending of App window width. In this case, we define properties for phones from 0px to 720px, for tablets from 720px to 1680px and desktop from 1680px." TextWrapping="Wrap" FontSize="18" FontWeight="Light"/>
             <TextBlock Text="Brackground" Margin="0,12,0,0" FontSize="20"/>
@@ -32,6 +32,6 @@
                 <TextBlock Text="Desktop" FontWeight="{Binding Active.desktopFontWeight, Source={StaticResource vbp}}" Margin="12,0,0,0"/>
             </StackPanel>
         </StackPanel>
-        <Image Grid.Row="1" Source="{Binding Active.image, Source={StaticResource vbp}}" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top"/>
+        <Image Margin="12,0" Grid.Row="1" Source="{Binding Active.image, Source={StaticResource vbp}}" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top"/>
     </Grid>
     </base:BaseControlPage>
