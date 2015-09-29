@@ -8,6 +8,7 @@ The libraries are also available as Nuget packages.
 ```
 https://www.nuget.org/packages/WindowsAppStudio.Common
 https://www.nuget.org/packages/WindowsAppStudio.DataProviders
+https://www.nuget.org/packages/WindowsAppStudio.Uwp
 https://www.nuget.org/packages/WindowsAppStudio.Controls
 ```
 
@@ -29,7 +30,11 @@ This is a Portable Class Library that can be used in:
 - Windows 8.1
 - Windows Phone 8.1 
 
+## Uwp  
+
+This library contains XAML controls for Windows 10 apps **only**.
+
 ## Controls  
 
-This library contains XAML controls for Windows 10 apps **only** .
+This is a legacy library that contains XAML controls for Windows 10 apps **only**. To Be Deprecated.
 
