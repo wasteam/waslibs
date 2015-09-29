@@ -5,13 +5,17 @@ IF  "%1"=="" (
 	SET _TAG_=v%1
 )
 
-IF  NOT "%2"=="" (	
-	SET _TAG_=%_TAG_%.%2
+IF NOT "%3"=="" (
+	SET _TAG_=%_TAG_%-%3%2
 )
 
-git config user.email "%3@outlook.com"
-git config user.name "%3"
-git remote set-url origin https://%3:%4@github.com/wasteam/waslibs.git
+IF "%3"=="" (
+	IF NOT "%2"== "" SET _TAG_=%_TAG_%.%2
+)
+
+git config user.email "%4@outlook.com"
+git config user.name "%4"
+git remote set-url origin https://%4:%5@github.com/wasteam/waslibs.git
 git tag -a %_TAG_% -m "Version built: %_TAG_%"
 git push origin %_TAG_%
 
