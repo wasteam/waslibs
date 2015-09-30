@@ -68,6 +68,7 @@ namespace AppStudio.Uwp.Controls
 
         public ResponsiveGridView()
         {
+            this.IsTabStop = false;
             this.DefaultStyleKey = typeof(ResponsiveGridView);
         }
 

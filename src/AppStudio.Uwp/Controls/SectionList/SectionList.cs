@@ -39,6 +39,7 @@ namespace AppStudio.Uwp.Controls
 
         public SectionList()
         {
+            IsTabStop = false;
             Sections = new List<SectionListItem>();
             DefaultStyleKey = typeof(SectionList);
         }

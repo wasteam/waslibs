@@ -37,6 +37,7 @@
                                 Grid.Column="1"
                                 Style="{TemplateBinding HeaderLinkStyle}"
                                 Content="{TemplateBinding HeaderLinkText}"
+                                AutomationProperties.Name="{TemplateBinding HeaderLinkText}"
                                 Command="{TemplateBinding HeaderLinkClickCommand}"
                                 CommandParameter="{Binding}"
                                 Visibility="{TemplateBinding HeaderLinkVisibility}"/>

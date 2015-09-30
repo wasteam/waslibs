@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="was_controls:ResponsiveGridView">
                     <Grid>
                         <ContentPresenter x:Name="templateProxy" Width="{TemplateBinding ItemWidth}" Height="{TemplateBinding ItemHeight}" ContentTemplate="{TemplateBinding ItemTemplate}" Visibility="Collapsed"></ContentPresenter>
-                        <GridView x:Name="gridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False"
+                        <GridView x:Name="gridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" IsTabStop="False"
                           ScrollViewer.VerticalScrollMode="{TemplateBinding VerticalScroll}" ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           ItemsSource="{TemplateBinding ItemsSource}"
                           was_commands:ItemClickCommand.Command="{TemplateBinding ItemClickCommand}">
