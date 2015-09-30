@@ -117,17 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="actionButton1.AutomationPropertiesName" xml:space="preserve">
+    <value>buttom created from c sharp number 1</value>
+  </data>
   <data name="actionButton1.Label" xml:space="preserve">
     <value>from CS Primary 1</value>
+  </data>
+  <data name="actionButton2.AutomationPropertiesName" xml:space="preserve">
+    <value>buttom created from c sharp number 2</value>
   </data>
   <data name="actionButton2.Label" xml:space="preserve">
     <value>from CS Primary 2</value>
   </data>
+  <data name="actionButton3.AutomationPropertiesName" xml:space="preserve">
+    <value>buttom created from c sharp number 3</value>
+  </data>
   <data name="actionButton3.Label" xml:space="preserve">
     <value>from CS Primary 3</value>
   </data>
+  <data name="actionButton4.AutomationPropertiesName" xml:space="preserve">
+    <value>buttom created from c sharp number 4</value>
+  </data>
   <data name="actionButton4.Label" xml:space="preserve">
     <value>from CS Secondary 4</value>
+  </data>
+  <data name="actionButton5.AutomationPropertiesName" xml:space="preserve">
+    <value>buttom created from c sharp number 5</value>
   </data>
   <data name="actionButton5.Label" xml:space="preserve">
     <value>from CS Secondary 5</value>
