@@ -115,7 +115,14 @@ namespace AppStudio.Uwp.Actions
             }
             if (string.IsNullOrEmpty(text))
             {
-                text = action.Text;
+                if (property == ActionTextProperties.Label)
+                {
+                    text = action.Text;
+                }
+                else if (property == ActionTextProperties.AutomationPropertiesName)
+                {
+                    text = GetText(action, ActionTextProperties.Label);
+                }
             }
             return text;
         }
