@@ -187,24 +187,34 @@ namespace AppStudio.Uwp.Controls
                 grid.MaxWidth = 1000;
             }
             grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Star) });
+            var stackPannel = new StackPanel();
             int baseFontSize = 20;
-            innerTitleTextBlock = new TextBlock() { Text = Title, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 6, FontWeight = FontWeights.Bold, Foreground = this.Foreground };
-            innerSubTitleTextBlock = new TextBlock() { Text = SubTitle, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 2, Foreground = this.Foreground };
-            var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) }, Stretch = Stretch.UniformToFill };
+            if (!string.IsNullOrEmpty(Title))
+            {
+                innerTitleTextBlock = new TextBlock() { Text = Title, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 6, FontWeight = FontWeights.Bold, Foreground = this.Foreground };
+                stackPannel.Children.Add(innerTitleTextBlock);
+            }
+            if (!string.IsNullOrEmpty(SubTitle))
+            {
+                innerSubTitleTextBlock = new TextBlock() { Text = SubTitle, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 2, Foreground = this.Foreground };
+                stackPannel.Children.Add(innerSubTitleTextBlock);
+            }
+            if (!string.IsNullOrEmpty(ImageUrl))
+            {
+                var viewBox = new Viewbox() { StretchDirection = StretchDirection.DownOnly, HorizontalAlignment = ContentAlignment };
+                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) } };
+                viewBox.Child = imageImage;
+                stackPannel.Children.Add(viewBox);
+            }
             innerRichTextBlock = new RichTextBlock() { TextWrapping = TextWrapping.Wrap, FontSize = baseFontSize, Foreground = this.Foreground };
             var p = new Paragraph();
             p.Inlines.Add(new Run() { Text = DetailContent });
             innerRichTextBlock.Blocks.Add(p);
-            Grid.SetRow(innerTitleTextBlock, 0);
-            Grid.SetRow(innerSubTitleTextBlock, 1);
-            Grid.SetRow(imageImage, 2);
-            Grid.SetRow(innerRichTextBlock, 3);
-            grid.Children.Add(innerTitleTextBlock);
-            grid.Children.Add(innerSubTitleTextBlock);
-            grid.Children.Add(imageImage);
+
+            Grid.SetRow(stackPannel, 0);
+            Grid.SetRow(innerRichTextBlock, 1);
+            grid.Children.Add(stackPannel);
             grid.Children.Add(innerRichTextBlock);
             scrollViewer.Content = grid;
             return scrollViewer;
