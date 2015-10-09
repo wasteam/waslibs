@@ -9,10 +9,10 @@
     <licenseUrl>https://raw.githubusercontent.com/wasteam/waslibs/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Implementation of the data sources provided by Windows AppStudio.</description>
-    <releaseNotes>Fixed Twitter Data Source to accept GZip streams</releaseNotes>
+    <description>Implementation of the data sources provided by Windows AppStudio. This library enable access to diferent data source like RSS, Bing, Facebook, Flickr, Instagram, Twitter and YouTube.</description>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Windows AppStudio Net Portable Twitter YouTube OAuth RSS</tags>
+    <tags>Windows AppStudio Net Portable Twitter YouTube OAuth RSS Instagram Facebook Bing</tags>
     <references>
       <reference file="AppStudio.DataProviders.dll" />
     </references>
