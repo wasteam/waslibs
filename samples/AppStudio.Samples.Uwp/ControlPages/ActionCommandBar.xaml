@@ -28,10 +28,10 @@
         </StackPanel>
         <action:ActionsCommandBar Grid.Row="1" VerticalAlignment="Bottom" ActionsSource="{Binding CommandActions}" Background="Gray" Foreground="Black" HideOnLandscape="False">
             <action:ActionsCommandBar.PrimaryCommands>
-                <AppBarButton Label="from XAML Primary 1" Icon="AddFriend" Foreground="Black" Style="{StaticResource CustomAppBarButtonStyle}"/>
+                <AppBarButton Label="from XAML Primary 1" Icon="AddFriend" Foreground="Black" Style="{StaticResource CustomAppBarButtonStyle}" AutomationProperties.Name="buttom created from XAML primary number 1"/>
             </action:ActionsCommandBar.PrimaryCommands>
             <action:ActionsCommandBar.SecondaryCommands>
-                <AppBarButton Label="from XAML Secondary 2"/>
+                <AppBarButton Label="from XAML Secondary 2" AutomationProperties.Name="buttom created from XAML secondary number 2"/>
             </action:ActionsCommandBar.SecondaryCommands>
         </action:ActionsCommandBar>
     </Grid>

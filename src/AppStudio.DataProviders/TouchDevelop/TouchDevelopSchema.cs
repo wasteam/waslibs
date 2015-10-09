@@ -46,5 +46,15 @@ namespace AppStudio.DataProviders.TouchDevelop
         {
             get { return !string.IsNullOrEmpty(this.ScreenshotThumbUrl); }
         }
+
+        public override string ToString()
+        {
+            string toStringResult = "Touch develop";
+            if (!string.IsNullOrEmpty(Name))
+            {
+                toStringResult += Name;
+            }
+            return toStringResult;
+        }
     }
 }

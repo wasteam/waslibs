@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.Web;
 
 namespace AppStudio.Uwp.Controls
@@ -36,12 +43,16 @@ namespace AppStudio.Uwp.Controls
 
         private ContentPresenter titleContentPresenter;
         private WebView innerWebView;
+        private ScrollViewer innerScrollViewer;
+        private RichTextBlock innerRichTextBlock;
+        private TextBlock innerTitleTextBlock;
+        private TextBlock innerSubTitleTextBlock;
         private double lastScroll = 0;
         private double lastWidth = 0;
 
         public ReadingWebView()
         {
-            InitializeUserControl();
+            InitializeUserControl(true);
             HorizontalAlignment = HorizontalAlignment.Stretch;
         }
 
@@ -92,7 +103,16 @@ namespace AppStudio.Uwp.Controls
         {
             try
             {
-                await innerWebView.InvokeScriptAsync("applyFontSizes", new List<string>() { bodyFontSize + "px" });
+                if (!string.IsNullOrEmpty(DetailContent) && !ContainsHTML(DetailContent))
+                {
+                    innerRichTextBlock.FontSize = bodyFontSize;
+                    innerTitleTextBlock.FontSize = bodyFontSize + 6;
+                    innerSubTitleTextBlock.FontSize = bodyFontSize + 2;
+                }
+                else
+                {
+                    await innerWebView.InvokeScriptAsync("applyFontSizes", new List<string>() { bodyFontSize + "px" });
+                }
             }
             catch (Exception ex)
             {
@@ -106,21 +126,26 @@ namespace AppStudio.Uwp.Controls
             innerWebView.NavigateToString(html);
         }
 
-        private void InitializeUserControl()
+        private void InitializeUserControl(bool instanceWebView)
         {
-            // Initialize controls
-            Grid grid = InitializeLayout();
-            innerWebView = InitializeWebView();
-            titleContentPresenter = InitializeTitleContainer();
-
-            // Position controls
-            Grid.SetRow(titleContentPresenter, 0);
-            Grid.SetRow(innerWebView, 1);
-            grid.Children.Add(titleContentPresenter);
-            grid.Children.Add(innerWebView);
-
-            // Set the grid inside the UserControl's content
-            Content = grid;
+            if (instanceWebView)
+            {
+                // Initialize controls
+                Grid grid = InitializeLayout();
+                titleContentPresenter = InitializeTitleContainer();
+                Grid.SetRow(titleContentPresenter, 0);
+                grid.Children.Add(titleContentPresenter);
+                innerWebView = InitializeWebView();
+                Grid.SetRow(innerWebView, 1);
+                grid.Children.Add(innerWebView);
+                // Set the grid inside the UserControl's content
+                Content = grid;
+            }
+            else
+            {
+                innerScrollViewer = InitializeScrollViewer();
+                Content = innerScrollViewer;
+            }
         }
 
         private ContentPresenter InitializeTitleContainer()
@@ -150,14 +175,67 @@ namespace AppStudio.Uwp.Controls
             webView.NavigationStarting += NavigationStarting;
             webView.ScriptNotify += ScriptNotify;
             webView.NavigationCompleted += ((sender, e) => ReadingWebViewNavigationCompleted?.Invoke(this, new ReadingWebViewNavigationCompletedEventArgs(e)));
-
             return webView;
-        }        
+        }
+        private ScrollViewer InitializeScrollViewer()
+        {
+            var scrollViewer = new ScrollViewer();
+            var grid = new Grid() { Margin = new Thickness(12, 0, 12, 12) };
+            grid.HorizontalAlignment = ContentAlignment;
+            if (ContentAlignment != HorizontalAlignment.Stretch)
+            {
+                grid.MaxWidth = 1000;
+            }
+            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Star) });
+            var stackPannel = new StackPanel();
+            int baseFontSize = 20;
+            if (!string.IsNullOrEmpty(Title))
+            {
+                innerTitleTextBlock = new TextBlock() { Text = Title, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 6, FontWeight = FontWeights.Bold, Foreground = this.Foreground };
+                stackPannel.Children.Add(innerTitleTextBlock);
+            }
+            if (!string.IsNullOrEmpty(SubTitle))
+            {
+                innerSubTitleTextBlock = new TextBlock() { Text = SubTitle, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = baseFontSize + 2, Foreground = this.Foreground };
+                stackPannel.Children.Add(innerSubTitleTextBlock);
+            }
+            if (!string.IsNullOrEmpty(ImageUrl))
+            {
+                var viewBox = new Viewbox() { StretchDirection = StretchDirection.DownOnly, HorizontalAlignment = ContentAlignment };
+                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) } };
+                viewBox.Child = imageImage;
+                stackPannel.Children.Add(viewBox);
+            }
+            innerRichTextBlock = new RichTextBlock() { TextWrapping = TextWrapping.Wrap, FontSize = baseFontSize, Foreground = this.Foreground };
+            var p = new Paragraph();
+            p.Inlines.Add(new Run() { Text = DetailContent });
+            innerRichTextBlock.Blocks.Add(p);
+
+            Grid.SetRow(stackPannel, 0);
+            Grid.SetRow(innerRichTextBlock, 1);
+            grid.Children.Add(stackPannel);
+            grid.Children.Add(innerRichTextBlock);
+            scrollViewer.Content = grid;
+            return scrollViewer;
+        }
 
         private static void OnHtmlPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ReadingWebView control = d as ReadingWebView;
+            if (control != null && !string.IsNullOrEmpty(control.DetailContent))
+            {
+                if (!ContainsHTML(control.DetailContent))
+                {
+                    control.InitializeUserControl(false);
+                }
+            }
             control.LoadWebViewContent();
+        }
+
+        private static bool ContainsHTML(string input)
+        {
+            return !Regex.IsMatch(input, @"^(?!.*<[^>]+>).*");
         }
 
         private string ComposeHtmlForReading()
@@ -248,7 +326,7 @@ namespace AppStudio.Uwp.Controls
         {
             var assembly = typeof(ReadingWebView).GetTypeInfo().Assembly;
             using (var stream = assembly.GetManifestResourceStream("AppStudio.Uwp.Controls.ReadingWebView.ReadingWebViewContent.htm"))
-            { 
+            {
                 using (var reader = new StreamReader(stream))
                 {
                     return reader.ReadToEnd();

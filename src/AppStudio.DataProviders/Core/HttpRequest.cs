@@ -1,6 +1,6 @@
 ﻿using System;
-using Windows.Web.Http;
 using System.Threading.Tasks;
+using Windows.Web.Http;
 using Windows.Web.Http.Filters;
 
 namespace AppStudio.DataProviders.Core
@@ -16,10 +16,7 @@ namespace AppStudio.DataProviders.Core
 
             var httpClient = new HttpClient(filter);
 
-            if (!string.IsNullOrEmpty(settings.UserAgent))
-            {
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(settings.UserAgent);
-            }
+            AddRequestHeaders(httpClient, settings);
 
             HttpResponseMessage response = await httpClient.GetAsync(settings.RequestedUri);
             result.StatusCode = response.StatusCode;
@@ -27,6 +24,25 @@ namespace AppStudio.DataProviders.Core
             result.Result = await response.Content.ReadAsStringAsync();
 
             return result;
+        }
+
+        private static void AddRequestHeaders(HttpClient httpClient, HttpRequestSettings settings)
+        {
+            if (!string.IsNullOrEmpty(settings.UserAgent))
+            {
+                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(settings.UserAgent);
+            }
+
+            if (settings.Headers != null)
+            {
+                foreach (var customHeaderName in settings.Headers.AllKeys)
+                {
+                    if (!String.IsNullOrEmpty(settings.Headers[customHeaderName]))
+                    {
+                        httpClient.DefaultRequestHeaders.Add(customHeaderName, settings.Headers[customHeaderName]);
+                    }
+                }
+            }
         }
 
         private static void FixInvalidCharset(HttpResponseMessage response)

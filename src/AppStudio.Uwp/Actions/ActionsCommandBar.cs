@@ -3,6 +3,7 @@ using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Actions
@@ -60,8 +61,7 @@ namespace AppStudio.Uwp.Actions
         {
             get { return (bool)GetValue(IsVisibleProperty); }
             set { SetValue(IsVisibleProperty, value); }
-        }
-
+        }        
         private static void ActionsSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as ActionsCommandBar;
@@ -70,7 +70,8 @@ namespace AppStudio.Uwp.Actions
             {
                 foreach (var action in control.ActionsSource)
                 {
-                    var label = GetText(action);
+                    var label = GetText(action, ActionTextProperties.Label);
+                    var automationPropertiesName = GetText(action, ActionTextProperties.AutomationPropertiesName);
                     var button = FindButton(label, control);
 
                     if (button == null)
@@ -89,6 +90,7 @@ namespace AppStudio.Uwp.Actions
                     button.Command = action.Command;
                     button.CommandParameter = action.CommandParameter;
                     button.Label = label;
+                    AutomationProperties.SetName(button, automationPropertiesName);
 
                     if (Application.Current.Resources.ContainsKey(action.Style))
                     {
@@ -98,19 +100,29 @@ namespace AppStudio.Uwp.Actions
                 }
             }
         }
-
-        private static string GetText(ActionInfo action)
+        private enum ActionTextProperties { Label, AutomationPropertiesName };
+        private static string GetText(ActionInfo action, ActionTextProperties property)
         {
             var resourceLoader = new ResourceLoader();
             string text = null;
 
             if (!string.IsNullOrEmpty(action.Name))
             {
-                text = resourceLoader.GetString(string.Format("{0}/Label", action.Name));
+                if (property == ActionTextProperties.Label)
+                    text = resourceLoader.GetString(string.Format("{0}/Label", action.Name));
+                else if (property == ActionTextProperties.AutomationPropertiesName)
+                    text = resourceLoader.GetString(string.Format("{0}/AutomationPropertiesName", action.Name));
             }
             if (string.IsNullOrEmpty(text))
             {
-                text = action.Text;
+                if (property == ActionTextProperties.Label)
+                {
+                    text = action.Text;
+                }
+                else if (property == ActionTextProperties.AutomationPropertiesName)
+                {
+                    text = GetText(action, ActionTextProperties.Label);
+                }
             }
             return text;
         }

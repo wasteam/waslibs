@@ -30,22 +30,22 @@ namespace AppStudio.Uwp.Converters
             {
                 if (value == null || string.IsNullOrEmpty(value.ToString()))
                 {
-                    return 0;
+                    return (Double)0;
                 }
                 else
                 {
-                    return GridUnitType.Auto;
+                    return Double.PositiveInfinity;
                 }
             }
             else
             {
                 if (value == null || string.IsNullOrEmpty(value.ToString()))
                 {
-                    return GridUnitType.Auto;
+                    return Double.PositiveInfinity;
                 }
                 else
                 {
-                    return 0;
+                    return (Double)0;
                 }
             }
         }
