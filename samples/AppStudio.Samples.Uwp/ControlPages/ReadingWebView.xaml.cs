@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AppStudio.Uwp.Commands;
+using System;
 using System.IO;
+using System.Windows.Input;
 using Windows.Storage;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
@@ -53,6 +55,17 @@ namespace AppStudio.Samples.Uwp.ControlPages
             using (StreamReader sRead = new StreamReader(await file.OpenStreamForReadAsync()))
             {
                 WebContent = await sRead.ReadToEndAsync();
+            }
+        }
+
+        public ICommand ChangeFontSizeCommand
+        {
+            get
+            {
+                return new RelayCommand<string>(async (parameter) =>
+                {
+                    await readingWebView.TryApplyFontSizes(Int32.Parse(parameter));
+                });
             }
         }
     }

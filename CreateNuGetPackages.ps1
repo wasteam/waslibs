@@ -48,9 +48,10 @@ if($TfsBuildNumber -ne ""){
 			Write-Host "Build Month and Day: $BuildMonthDay"
 			Write-Host "Build Revision: $BuildRevision"		
 			
-			$NewVersion = $MayorVersion + "." + $MinorVersion + "." + $BuildMonthDay
-			$Semantic = "" #Ensure No Semantic Version for CI Builds
 			$Revision = $BuildRevision
+			$NewVersion = $MayorVersion + "." + $MinorVersion + "." + $BuildMonthDay + $Revision
+			$Semantic = "" #Ensure No Semantic Version for CI Builds
+			
 		}
 		else{
 			throw "Build format does not match the expected pattern (buildName_YYYYMMDD.r)"

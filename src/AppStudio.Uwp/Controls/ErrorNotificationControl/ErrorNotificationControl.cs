@@ -23,8 +23,9 @@ namespace AppStudio.Uwp.Controls
 
         public ErrorNotificationControl()
         {
+            IsTabStop = false;
             DefaultStyleKey = typeof(ErrorNotificationControl);
-            CloseCommand = new RelayCommand(() => { SetValue(ErrorVisibilityProperty, Visibility.Collapsed); });
+            CloseCommand = new RelayCommand(() => { SetValue(ErrorVisibilityProperty, Visibility.Collapsed); });            
         }
 
         public ICommand CloseCommand
