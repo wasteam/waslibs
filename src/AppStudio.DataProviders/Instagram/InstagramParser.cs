@@ -51,7 +51,7 @@ namespace AppStudio.DataProviders.Instagram
             {
                 result.Author = this.user.username;
             }
-            result.ThumbnailUrl = this.images.thumbnail.url;
+            result.ThumbnailUrl = this.images.low_resolution.url;
             result.ImageUrl = this.images.standard_resolution.url;
             if (this.caption != null)
             {
@@ -71,6 +71,7 @@ namespace AppStudio.DataProviders.Instagram
     {
         public InstagramImage thumbnail { get; set; }
         public InstagramImage standard_resolution { get; set; }
+        public InstagramImage low_resolution { get; set; }        
     }
 
     internal class InstagramImage
