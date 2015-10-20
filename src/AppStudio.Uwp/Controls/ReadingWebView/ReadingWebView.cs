@@ -73,8 +73,6 @@ namespace AppStudio.Uwp.Controls
             innerWebView.NavigationStarting += NavigationStarting;
             innerWebView.ScriptNotify += ScriptNotify;
             innerWebView.NavigationCompleted += NavigationCompleted;
-
-            //InitializeUserControl(true);
         }
 
         public event EventHandler<ReadingWebViewNavigationCompletedEventArgs> ReadingWebViewNavigationCompleted;
