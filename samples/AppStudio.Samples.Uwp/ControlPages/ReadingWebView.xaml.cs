@@ -52,12 +52,12 @@ namespace AppStudio.Samples.Uwp.ControlPages
 
         private async void LoadData()
         {
-            WebContent =  "01. Lorem ipsum dolor sit amet (03:35)\r\n02. Duis sit (04:02)\r\n03. Aenean (02:09)\r\n04. In in massa id sem varius tincidunt (05:43)\r\n05. Nullam urna arcu egestas non augue a tincidunt lobortis sapien (14:52)\r\n06. Maecenas (01:30)\r\n07. Ut (06:32)\r\n08. 888 (08:00)\r\n09. Cras eu purus elementum (06:35)\r\n10. Bye! (01:12)";
-            //StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Assets/WebContent.html"));
-            //using (StreamReader sRead = new StreamReader(await file.OpenStreamForReadAsync()))
-            //{
-            //    WebContent = await sRead.ReadToEndAsync();
-            //}
+            //WebContent =  "01. Lorem ipsum dolor sit amet (03:35)\r\n02. Duis sit (04:02)\r\n03. Aenean (02:09)\r\n04. In in massa id sem varius tincidunt (05:43)\r\n05. Nullam urna arcu egestas non augue a tincidunt lobortis sapien (14:52)\r\n06. Maecenas (01:30)\r\n07. Ut (06:32)\r\n08. 888 (08:00)\r\n09. Cras eu purus elementum (06:35)\r\n10. Bye! (01:12)";
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(@"ms-appx:///Assets/WebContent.html"));
+            using (StreamReader sRead = new StreamReader(await file.OpenStreamForReadAsync()))
+            {
+                WebContent = await sRead.ReadToEndAsync();
+            }
         }
 
         public ICommand ChangeFontSizeCommand
