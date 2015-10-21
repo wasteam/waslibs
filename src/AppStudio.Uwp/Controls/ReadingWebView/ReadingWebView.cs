@@ -54,6 +54,25 @@ namespace AppStudio.Uwp.Controls
         {
             InitializeUserControl(true);
             HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            Loading += ReadingWebView_Loading;
+            Unloaded += ReadingWebView_Unloaded;
+        }
+
+        private void ReadingWebView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            innerWebView.NavigationStarting -= NavigationStarting;
+            innerWebView.ScriptNotify -= ScriptNotify;
+            innerWebView.NavigationCompleted -= NavigationCompleted;
+
+            innerWebView.NavigateToString(string.Empty);
+        }
+
+        private void ReadingWebView_Loading(FrameworkElement sender, object args)
+        {
+            innerWebView.NavigationStarting += NavigationStarting;
+            innerWebView.ScriptNotify += ScriptNotify;
+            innerWebView.NavigationCompleted += NavigationCompleted;
         }
 
         public event EventHandler<ReadingWebViewNavigationCompletedEventArgs> ReadingWebViewNavigationCompleted;
@@ -135,7 +154,7 @@ namespace AppStudio.Uwp.Controls
                 titleContentPresenter = InitializeTitleContainer();
                 Grid.SetRow(titleContentPresenter, 0);
                 grid.Children.Add(titleContentPresenter);
-                innerWebView = InitializeWebView();
+                innerWebView = new WebView(WebViewExecutionMode.SameThread) { DefaultBackgroundColor = Colors.Transparent };
                 Grid.SetRow(innerWebView, 1);
                 grid.Children.Add(innerWebView);
                 // Set the grid inside the UserControl's content
@@ -169,14 +188,6 @@ namespace AppStudio.Uwp.Controls
             return grid;
         }
 
-        private WebView InitializeWebView()
-        {
-            var webView = new WebView(WebViewExecutionMode.SameThread) { DefaultBackgroundColor = Colors.Transparent };
-            webView.NavigationStarting += NavigationStarting;
-            webView.ScriptNotify += ScriptNotify;
-            webView.NavigationCompleted += ((sender, e) => ReadingWebViewNavigationCompleted?.Invoke(this, new ReadingWebViewNavigationCompletedEventArgs(e)));
-            return webView;
-        }
         private ScrollViewer InitializeScrollViewer()
         {
             var scrollViewer = new ScrollViewer();
@@ -202,17 +213,8 @@ namespace AppStudio.Uwp.Controls
             }
             if (!string.IsNullOrEmpty(ImageUrl))
             {
-                string url = string.Empty;
-                if (ImageUrl.ToLower().StartsWith("http"))
-                {
-                    url = ImageUrl;
-                }
-                else
-                {
-                    url = @"ms-appx://" + ImageUrl;
-                }                
                 var viewBox = new Viewbox() { StretchDirection = StretchDirection.DownOnly, HorizontalAlignment = ContentAlignment };
-                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(url) } };
+                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) } };
                 viewBox.Child = imageImage;
                 stackPannel.Children.Add(viewBox);
             }
@@ -417,6 +419,11 @@ namespace AppStudio.Uwp.Controls
                 args.Cancel = true;
                 await Windows.System.Launcher.LaunchUriAsync(args.Uri);
             }
+        }
+
+        private void NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        {
+            ReadingWebViewNavigationCompleted?.Invoke(this, new ReadingWebViewNavigationCompletedEventArgs(args));
         }
 
         private void UpdateFlyoutVisibility(bool? activate)
