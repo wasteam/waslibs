@@ -41,6 +41,9 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ContentAlignmentProperty
             = DependencyProperty.Register("ContentAlignment", typeof(HorizontalAlignment), typeof(ReadingWebView), new PropertyMetadata(HorizontalAlignment.Center, OnHtmlPropertyChanged));
 
+        public static readonly DependencyProperty CacheEnabledProperty
+            = DependencyProperty.Register("CacheEnabled", typeof(HorizontalAlignment), typeof(ReadingWebView), new PropertyMetadata(false));
+
         private ContentPresenter titleContentPresenter;
         private WebView innerWebView;
         private ScrollViewer innerScrollViewer;
@@ -65,7 +68,10 @@ namespace AppStudio.Uwp.Controls
             innerWebView.ScriptNotify -= ScriptNotify;
             innerWebView.NavigationCompleted -= NavigationCompleted;
 
-            innerWebView.NavigateToString(string.Empty);
+            if (!CacheEnabled)
+            {
+                innerWebView.NavigateToString(string.Empty);
+            }
         }
 
         private void ReadingWebView_Loading(FrameworkElement sender, object args)
@@ -116,6 +122,12 @@ namespace AppStudio.Uwp.Controls
         {
             get { return (HorizontalAlignment)GetValue(ContentAlignmentProperty); }
             set { SetValue(ContentAlignmentProperty, value); }
+        }
+
+        public bool CacheEnabled
+        {
+            get { return (bool)GetValue(CacheEnabledProperty); }
+            set { SetValue(CacheEnabledProperty, value); }
         }
 
         public async Task TryApplyFontSizes(int bodyFontSize)
@@ -213,8 +225,17 @@ namespace AppStudio.Uwp.Controls
             }
             if (!string.IsNullOrEmpty(ImageUrl))
             {
+                string url = string.Empty;
+                if (ImageUrl.ToLower().StartsWith("http"))
+                {
+                    url = ImageUrl;
+                }
+                else
+                {
+                    url = @"ms-appx://" + ImageUrl;
+                }
                 var viewBox = new Viewbox() { StretchDirection = StretchDirection.DownOnly, HorizontalAlignment = ContentAlignment };
-                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) } };
+                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(url) } };
                 viewBox.Child = imageImage;
                 stackPannel.Children.Add(viewBox);
             }

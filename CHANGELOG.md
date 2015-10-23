@@ -1,5 +1,7 @@
 Windows AppStudio Libraries ChangeLog
 =====================================
+- **1.0.4 (Oct 23th 2015) BugFixing and performance improvements
+
 - **1.0.2-beta2 (Oct 10th 2015) BugFixing
 - **1.0.0 (Oct 09th 2015) Improve ReadingWebView for multiline plain text. Update InstagramDataProvider to get high resolution thumbnail. Bug fixing.
 - **1.0.0-beta4 (Sept 30th 2015) Controls accessibility improvements. Fix padding on ReadingWebView Control.
