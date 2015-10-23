@@ -225,8 +225,17 @@ namespace AppStudio.Uwp.Controls
             }
             if (!string.IsNullOrEmpty(ImageUrl))
             {
+                string url = string.Empty;
+                if (ImageUrl.ToLower().StartsWith("http"))
+                {
+                    url = ImageUrl;
+                }
+                else
+                {
+                    url = @"ms-appx://" + ImageUrl;
+                }
                 var viewBox = new Viewbox() { StretchDirection = StretchDirection.DownOnly, HorizontalAlignment = ContentAlignment };
-                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(ImageUrl) } };
+                var imageImage = new Image() { Source = new BitmapImage() { UriSource = new Uri(url) } };
                 viewBox.Child = imageImage;
                 stackPannel.Children.Add(viewBox);
             }
