@@ -12,11 +12,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
-    public sealed class VisualBreakpoints : ObservableBase
+    public sealed class VisualBreakpoints : Control, INotifyPropertyChanged
     {
         private static Dictionary<string, string> _configCache = new Dictionary<string, string>();
         private static SemaphoreSlim readFileSemaphore = new SemaphoreSlim(1);
@@ -40,12 +42,47 @@ namespace AppStudio.Uwp.Controls
 
         public dynamic Active { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public VisualBreakpoints()
         {
             Active = new ExpandoObject();
 
-            Window.Current.SizeChanged += ((sender, e) => { TrySetActive(e.Size.Width); });
+            Loaded += VisualBreakpoints_Loaded;
+            Unloaded += VisualBreakpoints_Unloaded;
+        }
+
+        private void VisualBreakpoints_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Window_SizeChanged;
+        }
+
+        private void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged += Window_SizeChanged;
             TrySetActive(Window.Current.Bounds.Width);
+        }
+
+        private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            TrySetActive(e.Size.Width);
+        }
+
+        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value)) return false;
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void TrySetActive(double width)
