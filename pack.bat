@@ -8,6 +8,7 @@ IF EXIST _TempNugets del /q /s _TempNugets\WindowsAppStudio*
 IF EXIST _TempNugetsSymbols del /q /s _TempNugetsSymbols\WindowsAppStudio*
 
 IF NOT EXIST _TempNugets md _TempNugets
+IF NOT EXIST _TempNugetsSymbols md _TempNugetsSymbols
 
 
 .nuget\nuget.exe pack src\AppStudio.DataProviders\AppStudio.DataProviders.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_% -Prop Configuration=Release
