@@ -16,6 +16,8 @@ Param(
 	[string]$PackagesFeedKey ="",
 	[Parameter(Mandatory=$False,Position=8)]
 	[string]$PackagesFeed="",
+	[Parameter(Mandatory=$False,Position=8)]
+	[string]$SymbolsFeed="", 
 	[Parameter(Mandatory=$False,Position=9)]
 	[string]$GitUser = "",
 	[Parameter(Mandatory=$False,Position=10)]
@@ -86,7 +88,7 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 		Write-Warning "NuGet feed key not present. Not publishing."
 	}
 	else{
-		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed }
+		Invoke-Command { .\push.bat $PackageVersion $PackagesFeedKey $PackagesFeed $SymbolsFeed }
 		
 		if($GitUser -ne "" -and $GitAccessToken -ne ""){
 			#Write-Host "Invoke-Command { .\versiontag.bat $PackageVersion $Revision $GitUser $GitAccessToken } -ErrorAction Ignore"
