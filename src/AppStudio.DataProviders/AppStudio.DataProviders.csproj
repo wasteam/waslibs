@@ -103,6 +103,9 @@
     <Compile Include="SchemaBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AppStudio.DataProviders.symbols.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="AppStudio.DataProviders.nuspec">
       <SubType>Designer</SubType>
     </None>

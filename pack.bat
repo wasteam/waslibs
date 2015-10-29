@@ -15,9 +15,9 @@ IF NOT EXIST _TempNugetsSymbols md _TempNugetsSymbols
 .nuget\nuget.exe pack src\AppStudio.Common\AppStudio.Common.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_% -Prop Configuration=Release
 .nuget\nuget.exe pack src\AppStudio.Uwp\AppStudio.Uwp.nuspec -OutPutDirectory _TempNugets -Version %_FULLVERSION_% -Prop Configuration=Release
 
-.nuget\nuget.exe pack src\AppStudio.DataProviders\AppStudio.DataProviders.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
-.nuget\nuget.exe pack src\AppStudio.Common\AppStudio.Common.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
-.nuget\nuget.exe pack src\AppStudio.Uwp\AppStudio.Uwp.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
+.nuget\nuget.exe pack src\AppStudio.DataProviders\AppStudio.DataProviders.symbols.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
+.nuget\nuget.exe pack src\AppStudio.Common\AppStudio.Common.symbols.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
+.nuget\nuget.exe pack src\AppStudio.Uwp\AppStudio.Uwp.symbols.nuspec -OutPutDirectory _TempNugetsSymbols -Symbols -Version %_FULLVERSION_% -Prop Configuration=Release
 
 GOTO END
 

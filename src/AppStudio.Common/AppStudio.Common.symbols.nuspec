@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>WindowsAppStudio.Common</id>
+    <version>$version$</version>
+    <title>Windows AppStudio Common (for XAML)</title>
+    <authors>Windows AppStudio Team</authors>
+    <owners>wasteam</owners>
+    <licenseUrl>https://raw.githubusercontent.com/wasteam/waslibs/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/wasteam/waslibs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides the foundation classes to create XAML Applications</description>
+    <summary>This library is designed to work with 8.1 and 10 apps, and includes utilities like NavigationServices, Command Pattern, Cache, and some usefull converters.</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Windows AppStudio XAML Converters Cache Command</tags>
+    <references>
+      <reference file="AppStudio.Common.dll" />
+    </references>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="HtmlAgilityPack" version="1.4.9" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\AppStudio.Common.*" target="lib\portable-win81+wpa81" />
+    <file src="**\*.cs" target="src" />
+  </files>
+</package>
