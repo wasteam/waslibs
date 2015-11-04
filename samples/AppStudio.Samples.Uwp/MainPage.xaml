@@ -36,6 +36,9 @@
             <PivotItem Header="AppCache">
                 <controlPages:AppCache/>
             </PivotItem>
+            <PivotItem Header="AppCache Bulk Read">
+                <controlPages:AppCacheBulkRead/>
+            </PivotItem>
             <PivotItem Header="ActionCommandBar">
                 <controlPages:ActionCommandBar/>
             </PivotItem>

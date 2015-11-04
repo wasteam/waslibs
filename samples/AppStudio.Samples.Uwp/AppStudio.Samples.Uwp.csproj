@@ -109,6 +109,9 @@
     <Compile Include="ControlPages\AppCache.xaml.cs">
       <DependentUpon>AppCache.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\AppCacheBulkRead.xaml.cs">
+      <DependentUpon>AppCacheBulkRead.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\BaseControlPage.cs" />
     <Compile Include="ControlPages\Converters.xaml.cs">
       <DependentUpon>Converters.xaml</DependentUpon>
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\AppCache.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\AppCacheBulkRead.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

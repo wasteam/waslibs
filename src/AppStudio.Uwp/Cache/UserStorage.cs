@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace AppStudio.Uwp.Cache
 {
@@ -28,6 +29,36 @@ namespace AppStudio.Uwp.Cache
                 Debug.WriteLine(ex);
             }
             return String.Empty;
+        }
+
+        public static async Task<List<string>> GetMatchingFilesByPrefix(string prefix, List<string> excludeFiles)
+        {
+            try
+            {
+                List<string> result = new List<string>();
+                var folder = ApplicationData.Current.LocalFolder;
+                QueryOptions queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, new List<string>() { "*" });
+                queryOptions.UserSearchFilter = $"{prefix}*.*";
+                StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(queryOptions);
+                IReadOnlyList<StorageFile> matchingFiles = await queryResult.GetFilesAsync();
+                if (matchingFiles.Count > 0) {
+                    result = new List<string>(matchingFiles.Count);
+                    foreach (StorageFile file in matchingFiles)
+                    {
+                        if (!excludeFiles.Contains(file.Name))
+                        {
+                            result.Add(file.Name);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return null;
         }
 
         public static async Task WriteText(string fileName, string content)
