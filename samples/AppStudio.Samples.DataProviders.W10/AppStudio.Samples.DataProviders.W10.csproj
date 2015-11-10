@@ -100,6 +100,9 @@
     <Compile Include="ControlPages\FacebookControl.xaml.cs">
       <DependentUpon>FacebookControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\WordPressControl.xaml.cs">
+      <DependentUpon>WordPressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\FlickrControl.xaml.cs">
       <DependentUpon>FlickrControl.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ControlPages\FacebookControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlPages\WordPressControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

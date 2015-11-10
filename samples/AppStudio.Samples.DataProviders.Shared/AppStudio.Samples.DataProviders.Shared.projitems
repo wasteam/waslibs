@@ -25,6 +25,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseBingControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseFacebookControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseWordPressControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseFlickrControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseInstagramControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPages\BaseLocalStorageControl.cs" />

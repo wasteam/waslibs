@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\WordPressTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionsAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\BingTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\CollectionsTestLibrary.cs" />
