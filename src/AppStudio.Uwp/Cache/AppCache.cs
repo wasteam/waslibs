@@ -10,7 +10,7 @@ namespace AppStudio.Uwp.Cache
     public static class AppCache
     {
         private static Dictionary<string, string> _memoryCache = new Dictionary<string, string>();
-
+        private static object lockObject = new Object();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public static async Task<CachedContent<T>> GetItemsAsync<T>(string key)
         {
@@ -71,19 +71,39 @@ namespace AppStudio.Uwp.Cache
             List<T> results = new List<T>();
 
             List<string> keys = _memoryCache.Keys.Where(k => k.StartsWith(prefix)).ToList();
-            List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefix(prefix, keys);
+            List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefixAsync(prefix, keys);
 
             keys.AddRange(inFileKeys);
 
-            foreach (string key in keys)
-            {
-                T data = await GetItemAsync<T>(key);
-                if (data != null)
-                {
-                    results.Add(data);
-                }
-            }
+            List<Task> tasks = new List<Task>();
 
+            ParallelOptions options = new ParallelOptions();
+            options.MaxDegreeOfParallelism = 8;
+
+            Parallel.ForEach(keys, options, key =>
+            {
+                Task t = Task.Factory.StartNew(() =>
+                {
+                    T data = GetItemAsync<T>(key).Result;
+                    if (data != null)
+                    {
+                        lock (lockObject)
+                        {
+                            results.Add(data);
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"File with key {key} can't be loaded.");
+                    }
+                });
+                lock (lockObject)
+                {
+                    tasks.Add(t);
+                }
+            });
+
+            await Task.WhenAll(tasks.ToArray());
 
             return results;
         }

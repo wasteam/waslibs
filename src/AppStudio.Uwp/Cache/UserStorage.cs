@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
+using System.Linq;
 
 namespace AppStudio.Uwp.Cache
 {
@@ -31,7 +32,7 @@ namespace AppStudio.Uwp.Cache
             return String.Empty;
         }
 
-        public static async Task<List<string>> GetMatchingFilesByPrefix(string prefix, List<string> excludeFiles)
+        public static async Task<List<string>> GetMatchingFilesByPrefixAsync(string prefix, List<string> excludeFiles)
         {
             try
             {
@@ -39,19 +40,17 @@ namespace AppStudio.Uwp.Cache
                 var folder = ApplicationData.Current.LocalFolder;
                 QueryOptions queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, new List<string>() { "*" });
                 queryOptions.UserSearchFilter = $"{prefix}*.*";
+                queryOptions.FolderDepth = FolderDepth.Shallow;
+                queryOptions.IndexerOption = IndexerOption.UseIndexerWhenAvailable;
                 StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(queryOptions);
-                IReadOnlyList<StorageFile> matchingFiles = await queryResult.GetFilesAsync();
-                if (matchingFiles.Count > 0) {
-                    result = new List<string>(matchingFiles.Count);
-                    foreach (StorageFile file in matchingFiles)
-                    {
-                        if (!excludeFiles.Contains(file.Name))
-                        {
-                            result.Add(file.Name);
-                        }
-                    }
-                }
 
+                IReadOnlyList<StorageFile> matchingFiles = await queryResult.GetFilesAsync();
+
+                if (matchingFiles.Count > 0) {
+                    result.AddRange(
+                        matchingFiles.Where(f => !excludeFiles.Contains(f.Name)).Select(f => f.Name)
+                    );
+                }
                 return result;
             }
             catch (Exception ex)
