@@ -10,7 +10,6 @@ namespace AppStudio.Uwp.Cache
     public static class AppCache
     {
         private static Dictionary<string, string> _memoryCache = new Dictionary<string, string>();
-        private static object lockObject = new Object();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public static async Task<CachedContent<T>> GetItemsAsync<T>(string key)
         {
@@ -74,15 +73,12 @@ namespace AppStudio.Uwp.Cache
             List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefixAsync(prefix, keys);
 
             keys.AddRange(inFileKeys);
-            
-            foreach(var key in keys)
+
+            foreach (var key in keys)
             {
                 T data = await GetItemAsync<T>(key);
-                lock (lockObject)
-                {
-                    results.Add(data);
-                }
-            }            
+                results.Add(data);
+            }
             return results;
         }
 
