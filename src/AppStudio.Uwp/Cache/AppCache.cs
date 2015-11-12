@@ -74,37 +74,15 @@ namespace AppStudio.Uwp.Cache
             List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefixAsync(prefix, keys);
 
             keys.AddRange(inFileKeys);
-
-            List<Task> tasks = new List<Task>();
-
-            ParallelOptions options = new ParallelOptions();
-            options.MaxDegreeOfParallelism = 8;
-
-            Parallel.ForEach(keys, options, key =>
+            
+            foreach(var key in keys)
             {
-                Task t = Task.Factory.StartNew(() =>
-                {
-                    T data = GetItemAsync<T>(key).Result;
-                    if (data != null)
-                    {
-                        lock (lockObject)
-                        {
-                            results.Add(data);
-                        }
-                    }
-                    else
-                    {
-                        Debug.WriteLine($"File with key {key} can't be loaded.");
-                    }
-                });
+                T data = await GetItemAsync<T>(key);
                 lock (lockObject)
                 {
-                    tasks.Add(t);
+                    results.Add(data);
                 }
-            });
-
-            await Task.WhenAll(tasks.ToArray());
-
+            }            
             return results;
         }
 
