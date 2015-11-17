@@ -166,12 +166,12 @@ namespace AppStudio.DataProviders.YouTube
 
         private Uri GetChannelUrl(string channel)
         {
-            return new Uri(string.Format("{0}/channels?forUsername={1}&part=contentDetails&maxResults=1&key={2}", BaseUrl, channel, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri(string.Format("{0}/channels?forUsername={1}&part=contentDetails&maxResults=20&key={2}", BaseUrl, channel, _tokens.ApiKey), UriKind.Absolute);
         }
 
         private Uri GetPlaylistUrl(string playlistId)
         {
-            return new Uri(string.Format("{0}/playlistItems?playlistId={1}&part=snippet&maxResults=20&key={2}", BaseUrl, playlistId, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri(string.Format("{0}/playlistItems?playlistId={1}&part=snippet&maxResults=100&key={2}", BaseUrl, playlistId, _tokens.ApiKey), UriKind.Absolute);
         }
 
         private Uri GetSearchUrl(string query)
