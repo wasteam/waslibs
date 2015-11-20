@@ -39,7 +39,7 @@ namespace AppStudio.DataProviders.Instagram
                 return parser.Parse(result.Result);
             }
 
-            if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && result.Result.Contains("OAuthParameterException"))
+            if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && (result.Result.Contains("OAuthParameterException")||result.Result.Contains("OAuthAccessTokenException")))
             {
                 throw new OAuthKeysRevokedException();
             }

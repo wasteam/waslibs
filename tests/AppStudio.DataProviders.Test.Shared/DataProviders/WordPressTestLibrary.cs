@@ -33,7 +33,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Category,
-                FilterBy = "apps"
+                FilterBy = "themes"
             };
 
             var dataProvider = new WordPressDataProvider();
