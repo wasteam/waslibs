@@ -159,8 +159,7 @@ ClientBin/
 *~
 *.dbmdl
 *.dbproj.schemaview
-*.pfx
-!**/*_TemporaryKey.pfx
+
 *.publishsettings
 node_modules/
 bower_components/
@@ -199,5 +198,3 @@ _TempNugets/
 # Visual Studio 6 workspace options file
 *.opt
 /src/AppStudio.Controls/project.lock.json
-*.pfx
-!**/*_TemporaryKey.pfx
