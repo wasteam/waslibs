@@ -24,9 +24,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="FilePath" VerticalAlignment="Center"/>
-                <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding FilePath, Mode=TwoWay}" VerticalAlignment="Center" Margin="24,0,0,0"/>                
+                <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding FilePath, Mode=TwoWay}" VerticalAlignment="Center" Margin="24,0,0,0"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Max Records" VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding MaxRecordsParam, Mode=TwoWay}" VerticalAlignment="Center" Margin="24,0,0,0" Width="60" HorizontalAlignment="Left"/>
             </Grid>           
             <Button Content="Send Request" Margin="0,12,0,0" Click="LocalStorageRequestClick"/>
         </StackPanel>

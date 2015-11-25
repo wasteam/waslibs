@@ -64,6 +64,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             set { SetProperty(ref _facebookQueryParam, value); OnPropertyChanged("FacebookQuery"); }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         protected async void FacebookRequestClick(object sender, RoutedEventArgs e)
         {
             try
@@ -77,7 +84,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                     UserId = FacebookQueryParam,
                 };
 
-                var items = await FacebookDataProvider.LoadDataAsync(config);
+                var items = await FacebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     FacebookItems.Add(item);

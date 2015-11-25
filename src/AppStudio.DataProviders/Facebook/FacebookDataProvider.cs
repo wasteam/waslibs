@@ -18,15 +18,8 @@ namespace AppStudio.DataProviders.Facebook
             _tokens = tokens;
         }
 
-        public override async Task<IEnumerable<FacebookSchema>> LoadDataAsync(FacebookDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new FacebookParser());
-        }
-
-        public override async Task<IEnumerable<FacebookSchema>> LoadDataAsync(FacebookDataConfig config, IParser<FacebookSchema> parser)
-        {
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings
             {
                 RequestedUri = new Uri(string.Format("{0}/{1}/posts?&access_token={2}|{3}&fields=id,message,from,created_time,link,full_picture", BaseUrl, config.UserId, _tokens.AppId, _tokens.AppSecret), UriKind.Absolute)
@@ -46,16 +39,13 @@ namespace AppStudio.DataProviders.Facebook
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private void Assertions(FacebookDataConfig config, IParser<FacebookSchema> parser)
+        public override IParser<FacebookSchema> GetDefaultParser(FacebookDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new FacebookParser();
+        }
+
+        protected override void ValidateConfig(FacebookDataConfig config)
+        {
             if (config.UserId == null)
             {
                 throw new ConfigParameterNullException("UserId");

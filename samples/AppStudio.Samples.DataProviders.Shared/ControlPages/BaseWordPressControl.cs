@@ -88,6 +88,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             set { SetProperty(ref _wordPressJsonResult, value); }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         public BaseWordPressControl()
         {
             WordPressQueryParam = "en.blog.wordpress.com";
@@ -103,7 +110,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 WordPressItems.Clear();
                 WordPressJsonResult = await client.GetStringAsync(new Uri(WordPressQuery, UriKind.Absolute));
                 wordPressDataProvider = new WordPressDataProvider();
-                var items = await wordPressDataProvider.LoadDataAsync(new WordPressDataConfig() { Query = WordPressQueryParam, QueryType = WordPressQueryTypeSelectedItem, FilterBy = WordPressQueryFilterBy });
+                var items = await wordPressDataProvider.LoadDataAsync(new WordPressDataConfig() { Query = WordPressQueryParam, QueryType = WordPressQueryTypeSelectedItem, FilterBy = WordPressQueryFilterBy }, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     WordPressItems.Add(item);

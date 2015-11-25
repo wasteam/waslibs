@@ -8,14 +8,8 @@ namespace AppStudio.DataProviders.Rss
 {
     public class RssDataProvider : DataProviderBase<RssDataConfig, RssSchema>
     {
-        public override async Task<IEnumerable<RssSchema>> LoadDataAsync(RssDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(RssDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new RssParser());
-        }
-        public override async Task<IEnumerable<RssSchema>> LoadDataAsync(RssDataConfig config, IParser<RssSchema> parser)
-        {
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = config.Url
@@ -30,16 +24,13 @@ namespace AppStudio.DataProviders.Rss
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private static void Assertions(RssDataConfig config, IParser<RssSchema> parser)
+        public override IParser<RssSchema> GetDefaultParser(RssDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new RssParser();
+        }
+
+        protected override void ValidateConfig(RssDataConfig config)
+        {
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException("Url");
