@@ -10,6 +10,12 @@ namespace AppStudio.Samples.Uwp.ControlPages
             get { return _boolValue; }
             set { SetProperty(ref _boolValue, value); }
         }
+        private bool _secondBoolValue;
+        public bool SecondBoolValue
+        {
+            get { return _secondBoolValue; }
+            set { SetProperty(ref _secondBoolValue, value); }
+        }
         private string _stringValue;
         public string StringValue
         {
@@ -27,6 +33,7 @@ namespace AppStudio.Samples.Uwp.ControlPages
             this.InitializeComponent();
             StringValue = "Lorem ipsum";
             BoolValue = true;
+            SecondBoolValue = true;
             StringToSizeImagePath = "ms-appx:///Assets/SampleImage.png";
         }
     }
