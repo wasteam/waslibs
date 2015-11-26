@@ -71,7 +71,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new FlickrDataProvider();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new FlickrDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<FlickrSchema>(new FlickrDataConfig(), 20, null));
         }
     }
 }

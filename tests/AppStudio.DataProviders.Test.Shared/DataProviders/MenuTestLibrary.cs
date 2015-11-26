@@ -54,7 +54,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new LocalStorageDataProvider<MenuSchema>();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new LocalStorageDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<MenuSchema>(new LocalStorageDataConfig(), 20, null));
         }
     }
 }

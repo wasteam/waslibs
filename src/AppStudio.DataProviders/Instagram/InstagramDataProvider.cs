@@ -40,7 +40,7 @@ namespace AppStudio.DataProviders.Instagram
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<InstagramSchema> GetDefaultParser(InstagramDataConfig config)
+        protected override IParser<InstagramSchema> GetDefaultParserInternal(InstagramDataConfig config)
         {
             return new InstagramParser();
         }

@@ -139,7 +139,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new InstagramDataProvider(OAuthKeys.InstagramValidKeys);
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new InstagramDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<InstagramSchema>(new InstagramDataConfig(), 20, null));
         }
     }
 }

@@ -39,7 +39,7 @@ namespace AppStudio.DataProviders.Facebook
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<FacebookSchema> GetDefaultParser(FacebookDataConfig config)
+        protected override IParser<FacebookSchema> GetDefaultParserInternal(FacebookDataConfig config)
         {
             return new FacebookParser();
         }

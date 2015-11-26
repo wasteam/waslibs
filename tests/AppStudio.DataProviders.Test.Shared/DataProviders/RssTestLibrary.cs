@@ -53,7 +53,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new RssDataProvider();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new RssDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<RssSchema>(new RssDataConfig(), 20, null));
         }
     }
 }

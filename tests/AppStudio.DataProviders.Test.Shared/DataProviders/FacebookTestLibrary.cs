@@ -110,7 +110,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new FacebookDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<FacebookSchema>(new FacebookDataConfig(), 20, null));
         }
     }
 }

@@ -88,7 +88,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new WordPressDataProvider();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new WordPressDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<WordPressSchema>(new WordPressDataConfig(), 20, null));
         }
     }
 }

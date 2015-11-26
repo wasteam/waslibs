@@ -40,7 +40,7 @@ namespace AppStudio.DataProviders.WordPress
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<WordPressSchema> GetDefaultParser(WordPressDataConfig config)
+        protected override IParser<WordPressSchema> GetDefaultParserInternal(WordPressDataConfig config)
         {
             return new WordPressParser();
         }

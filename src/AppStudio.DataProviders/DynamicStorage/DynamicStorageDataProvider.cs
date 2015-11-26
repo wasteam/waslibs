@@ -30,7 +30,7 @@ namespace AppStudio.DataProviders.DynamicStorage
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<T> GetDefaultParser(DynamicStorageDataConfig config)
+        protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
         {
             return new JsonParser<T>();
         }
