@@ -45,7 +45,7 @@
     <Compile Include="Bing\BingDataConfig.cs" />
     <Compile Include="Bing\BingDataProvider.cs" />
     <Compile Include="Bing\BingParser.cs" />
-    <Compile Include="Core\GenericParser.cs" />
+    <Compile Include="Core\JsonParser.cs" />
     <Compile Include="Core\StringValue.cs" />
     <Compile Include="Core\ExtensionMethods.cs" />
     <Compile Include="DataProviderBase.cs" />
@@ -85,10 +85,6 @@
     <Compile Include="Menu\MenuSchema.cs" />
     <Compile Include="Rss\RssParser.cs" />
     <Compile Include="Rss\RssSchema.cs" />
-    <Compile Include="TouchDevelop\TouchDevelopParser.cs" />
-    <Compile Include="TouchDevelop\TouchDevelopDataConfig.cs" />
-    <Compile Include="TouchDevelop\TouchDevelopDataProvider.cs" />
-    <Compile Include="TouchDevelop\TouchDevelopSchema.cs" />
     <Compile Include="Twitter\TwitterParser.cs" />
     <Compile Include="Twitter\TwitterDataConfig.cs" />
     <Compile Include="Twitter\TwitterDataProvider.cs" />

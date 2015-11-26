@@ -24,32 +24,9 @@ namespace AppStudio.DataProviders.Twitter
             _tokens = tokens;
         }
 
-        public override async Task<IEnumerable<TwitterSchema>> LoadDataAsync(TwitterDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TwitterDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            IParser<TwitterSchema> parser = null;
-            if (config != null)
-            {
-                switch (config.QueryType)
-                {
-                    case TwitterQueryType.Search:
-                        parser = new TwitterSearchParser();
-                        break;
-                    case TwitterQueryType.Home:
-                    case TwitterQueryType.User:
-                    default:
-                        parser = new TwitterTimelineParser();
-                        break;
-                }
-            }
-
-            return await LoadDataAsync(config, parser);
-        }
-
-        public override async Task<IEnumerable<TwitterSchema>> LoadDataAsync(TwitterDataConfig config, IParser<TwitterSchema> parser)
-        {
-            Assertions(config, parser);
-
-            IEnumerable<TwitterSchema> items;
+            IEnumerable<TSchema> items;
             switch (config.QueryType)
             {
                 case TwitterQueryType.User:
@@ -67,16 +44,21 @@ namespace AppStudio.DataProviders.Twitter
             return items;
         }
 
-        private void Assertions(TwitterDataConfig config, IParser<TwitterSchema> parser)
+        public override IParser<TwitterSchema> GetDefaultParser(TwitterDataConfig config)
         {
-            if (config == null)
+            switch (config.QueryType)
             {
-                throw new ConfigNullException();
+                case TwitterQueryType.Search:
+                    return new TwitterSearchParser();
+                case TwitterQueryType.Home:
+                case TwitterQueryType.User:
+                default:
+                    return new TwitterTimelineParser();
             }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+        }
+
+        protected override void ValidateConfig(TwitterDataConfig config)
+        {
             if (config.Query == null && config.QueryType != TwitterQueryType.Home)
             {
                 throw new ConfigParameterNullException("Query");
@@ -103,7 +85,7 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TwitterSchema>> GetUserTimeLineAsync(string screenName, IParser<TwitterSchema> parser)
+        private async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
@@ -136,12 +118,12 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TwitterSchema>> GetHomeTimeLineAsync(IParser<TwitterSchema> parser)
+        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(IParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
                 var uri = new Uri("https://api.twitter.com/1.1/statuses/home_timeline.json");
-                
+
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
@@ -165,7 +147,7 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TwitterSchema>> SearchAsync(string hashTag, IParser<TwitterSchema> parser)
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {

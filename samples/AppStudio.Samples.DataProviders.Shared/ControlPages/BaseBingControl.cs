@@ -70,6 +70,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             set { SetProperty(ref _bingXmlResult, value); }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         protected async void BingRequestClick(object sender, RoutedEventArgs e)
         {
             try
@@ -78,7 +85,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 BingItems.Clear();
                 BingXmlResult = await client.GetStringAsync(new Uri(BingQuery, UriKind.Absolute));
                 bingDataProvider = new BingDataProvider();
-                var items = await bingDataProvider.LoadDataAsync(new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem });
+                var items = await bingDataProvider.LoadDataAsync(new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem }, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     BingItems.Add(item);

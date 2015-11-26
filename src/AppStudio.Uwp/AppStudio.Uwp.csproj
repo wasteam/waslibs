@@ -126,6 +126,7 @@
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToSizeConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />

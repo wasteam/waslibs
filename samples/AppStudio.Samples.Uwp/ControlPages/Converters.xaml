@@ -15,6 +15,7 @@
         <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converter:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
         <converter:StringToSizeConverter x:Key="StringToSizeConverter"/>
+        <converter:BoolToSizeConverter x:Key="BoolToSizeConverter"/>
     </base:BaseControlPage.Resources>
     <Grid>
         <ScrollViewer>
@@ -41,6 +42,15 @@
                 <Grid MaxWidth="{Binding StringToSizeImagePath, Converter={StaticResource StringToSizeConverter}}"
                       MaxHeight="{Binding StringToSizeImagePath, Converter={StaticResource StringToSizeConverter}}"
                       Width="300" Height="300" HorizontalAlignment="Left"
+                      Background="LightCyan" Margin="0,12,0,0">
+                    <Image Source="{Binding StringToSizeImagePath}"/>
+                </Grid>
+                <TextBlock Text="BoolToSizeConverter" Style="{ThemeResource BodyTextBlockStyle}" FontWeight="Bold" Margin="0,24,0,0"/>
+                <TextBlock Text="Image container grid has Height 0 if toggle false and Auto if true." Margin="0,12,0,0"/>
+                <ToggleSwitch IsOn="{Binding SecondBoolValue, Mode=TwoWay}" Margin="0,12,0,0" Width="100" Height="50"/>
+                <Grid Width="300"
+                      Height="{Binding SecondBoolValue, Converter={StaticResource BoolToSizeConverter}, Mode=OneWay}"
+                      HorizontalAlignment="Left"
                       Background="LightCyan" Margin="0,12,0,0">
                     <Image Source="{Binding StringToSizeImagePath}"/>
                 </Grid>

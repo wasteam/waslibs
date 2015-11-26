@@ -9,15 +9,8 @@ namespace AppStudio.DataProviders.WordPress
 {
     public class WordPressDataProvider : DataProviderBase<WordPressDataConfig, WordPressSchema>
     {
-        public override async Task<IEnumerable<WordPressSchema>> LoadDataAsync(WordPressDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new WordPressParser());
-        }
-
-        public override async Task<IEnumerable<WordPressSchema>> LoadDataAsync(WordPressDataConfig config, IParser<WordPressSchema> parser)
-        {
-            Assertions(config, parser);
-
             var wordPressUrlRequest = string.Empty;
             switch (config.QueryType)
             {
@@ -30,7 +23,7 @@ namespace AppStudio.DataProviders.WordPress
                 default:
                     wordPressUrlRequest = $"https://public-api.wordpress.com/rest/v1.1/sites/{config.Query}/posts/";
                     break;
-                   
+
             }
 
             var settings = new HttpRequestSettings()
@@ -47,16 +40,13 @@ namespace AppStudio.DataProviders.WordPress
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private static void Assertions(WordPressDataConfig config, IParser<WordPressSchema> parser)
+        public override IParser<WordPressSchema> GetDefaultParser(WordPressDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new WordPressParser();
+        }
+
+        protected override void ValidateConfig(WordPressDataConfig config)
+        {
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

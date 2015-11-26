@@ -95,6 +95,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         public BaseYouTubeControl()
         {
             YouTubeQueryTypeSelectedItem = YouTubeQueryTypeComboItems[0];
@@ -116,7 +123,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                     QueryType = YouTubeQueryTypeSelectedItem
                 };
 
-                var items = await _youTubeDataProvider.LoadDataAsync(config);
+                var items = await _youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     YouTubeItems.Add(item);

@@ -80,6 +80,14 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 }
             }
         }
+
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         public void GoBackButtonClick(object sender, RoutedEventArgs e)
         {
             App.GoBack();
@@ -136,7 +144,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                     QueryType = TwitterQueryTypeSelectedItem
                 };
 
-                var items = await twitterDataProvider.LoadDataAsync(config);
+                var items = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     TwitterItems.Add(item);

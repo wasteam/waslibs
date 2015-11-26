@@ -30,6 +30,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="ClientId" VerticalAlignment="Center"/>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ClientId, Mode=TwoWay}" VerticalAlignment="Center"/>
@@ -38,6 +39,8 @@
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="QueryType" VerticalAlignment="Center"/>
                 <ComboBox Grid.Row="2" Grid.Column="1" x:Name="instagramQueryTypeCombo" ItemsSource="{Binding InstagramQueryTypeComboItems}" SelectedItem="{Binding InstagramQueryTypeSelectedItem, Mode=TwoWay}">
                 </ComboBox>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Max Records" VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="3" Grid.Column="1" Text="{Binding MaxRecordsParam, Mode=TwoWay}" VerticalAlignment="Center" Width="60" HorizontalAlignment="Left"/>
             </Grid>
             <Button Content="Send Request" Margin="0,12,0,0" Click="InstagramRequestClick"/>
         </StackPanel>

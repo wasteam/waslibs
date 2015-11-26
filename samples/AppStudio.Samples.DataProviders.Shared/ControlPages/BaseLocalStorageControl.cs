@@ -49,6 +49,14 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             FilePath = "/Assets/Data/StaticStorage.json";
             LocalStorageItems = new ObservableCollection<LocalStorageDataSchema>();
         }
+
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         protected async void LocalStorageRequestClick(object sender, RoutedEventArgs e)
         {
             try
@@ -58,7 +66,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 LocalStorageItems.Clear();
 
                 _localStorageDataProvider = new LocalStorageDataProvider<LocalStorageDataSchema>();
-                var items = await _localStorageDataProvider.LoadDataAsync(new LocalStorageDataConfig { FilePath = FilePath });
+                var items = await _localStorageDataProvider.LoadDataAsync(new LocalStorageDataConfig { FilePath = FilePath }, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     LocalStorageItems.Add(item);
