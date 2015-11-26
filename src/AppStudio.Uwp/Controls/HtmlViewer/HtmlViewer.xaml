@@ -1,0 +1,25 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Uwp.Controls">
+
+    <Style TargetType="controls:HtmlViewer">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:HtmlViewer">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Top" />
+                        <Grid Name="webViewContainer" />
+                        <Grid Name="glass" ManipulationMode="All" />
+                        <Canvas>
+                            <ContentPresenter Name="footer" ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" />
+                        </Canvas>
+                        <Grid.Clip>
+                            <RectangleGeometry x:Name="clip" />
+                        </Grid.Clip>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

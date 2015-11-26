@@ -94,6 +94,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\HeroImage.png" />
+    <Content Include="Assets\HtmlContent.html" />
     <Content Include="Assets\SampleImage.png" />
     <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="ControlPages\ErrorNotificationControl.xaml.cs">
       <DependentUpon>ErrorNotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\HtmlViewerPage.xaml.cs">
+      <DependentUpon>HtmlViewerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\Navigation.xaml.cs">
       <DependentUpon>Navigation.xaml</DependentUpon>
@@ -143,13 +147,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="AppStudio.Samples.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Desktop.png" />
     <Content Include="Assets\Phone.png" />
     <Content Include="Assets\Tablet.png" />
     <Content Include="Assets\WebContent.html" />
+    <Content Include="Assets\Images\Windows10.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -177,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\ErrorNotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\HtmlViewerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

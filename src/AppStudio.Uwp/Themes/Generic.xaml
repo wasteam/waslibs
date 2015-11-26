@@ -5,7 +5,9 @@
     xmlns:converters="using:AppStudio.Uwp.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ErrorNotificationControl/ErrorNotificationControl.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlViewer/HtmlViewer.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ResponsiveGridView/ResponsiveGridView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SectionList/SectionList.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Virtualbox/Virtualbox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
