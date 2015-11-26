@@ -94,6 +94,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\HeroImage.png" />
+    <Content Include="Assets\HtmlContent.html" />
+    <Content Include="Assets\Images\Windows10.jpg" />
     <Content Include="Assets\SampleImage.png" />
     <Content Include="Assets\VBPDevices.json" />
     <None Include="project.json" />
@@ -118,6 +120,9 @@
     </Compile>
     <Compile Include="ControlPages\ErrorNotificationControl.xaml.cs">
       <DependentUpon>ErrorNotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\HtmlViewerPage.xaml.cs">
+      <DependentUpon>HtmlViewerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\Navigation.xaml.cs">
       <DependentUpon>Navigation.xaml</DependentUpon>
@@ -186,6 +191,10 @@
     <Page Include="ControlPages\ErrorNotificationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\HtmlViewerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ControlPages\Navigation.xaml">
       <SubType>Designer</SubType>

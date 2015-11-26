@@ -30,6 +30,9 @@
             <PivotItem Header="ReadingWebView">
                 <controlPages:ReadingWebView/>
             </PivotItem>
+            <PivotItem Header="HtmlViewer">
+                <controlPages:HtmlViewerPage/>
+            </PivotItem>
             <PivotItem Header="Converters">
                 <controlPages:Converters/>
             </PivotItem>
