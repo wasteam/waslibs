@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\InstagramTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\MenuTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\RssTestLibrary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\TouchDevelopTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\TwitterTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\YouTubeTestLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuthKeys.cs" />
