@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.Core
 {
-    public class GenericParser<T> : IParser<T> where T : SchemaBase
+    public class JsonParser<T> : IParser<T> where T : SchemaBase
     {
         public IEnumerable<T> Parse(string data)
         {

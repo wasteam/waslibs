@@ -19,15 +19,8 @@ namespace AppStudio.DataProviders.Instagram
             _tokens = tokens;
         }
 
-        public override async Task<IEnumerable<InstagramSchema>> LoadDataAsync(InstagramDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new InstagramParser());
-        }
-
-        public override async Task<IEnumerable<InstagramSchema>> LoadDataAsync(InstagramDataConfig config, IParser<InstagramSchema> parser)
-        {
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings
             {
                 RequestedUri = this.GetApiUrl(config)
@@ -39,7 +32,7 @@ namespace AppStudio.DataProviders.Instagram
                 return parser.Parse(result.Result);
             }
 
-            if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && result.Result.Contains("OAuthParameterException"))
+            if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && (result.Result.Contains("OAuthParameterException") || result.Result.Contains("OAuthAccessTokenException")))
             {
                 throw new OAuthKeysRevokedException();
             }
@@ -47,28 +40,13 @@ namespace AppStudio.DataProviders.Instagram
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private Uri GetApiUrl(InstagramDataConfig config)
+        public override IParser<InstagramSchema> GetDefaultParser(InstagramDataConfig config)
         {
-            if (config.QueryType == InstagramQueryType.Tag)
-            {
-                return new Uri(string.Format(URL, config.Query, _tokens.ClientId));
-            }
-            else
-            {
-                return new Uri(string.Format(URLUserID, config.Query, _tokens.ClientId));
-            }
+            return new InstagramParser();
         }
 
-        private void Assertions(InstagramDataConfig config, IParser<InstagramSchema> parser)
+        protected override void ValidateConfig(InstagramDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");
@@ -80,6 +58,18 @@ namespace AppStudio.DataProviders.Instagram
             if (string.IsNullOrEmpty(_tokens.ClientId))
             {
                 throw new OAuthKeysNotPresentException("ClientId");
+            }
+        }
+
+        private Uri GetApiUrl(InstagramDataConfig config)
+        {
+            if (config.QueryType == InstagramQueryType.Tag)
+            {
+                return new Uri(string.Format(URL, config.Query, _tokens.ClientId));
+            }
+            else
+            {
+                return new Uri(string.Format(URLUserID, config.Query, _tokens.ClientId));
             }
         }
     }

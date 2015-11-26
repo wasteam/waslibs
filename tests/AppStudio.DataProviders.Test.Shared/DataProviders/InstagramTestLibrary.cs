@@ -46,7 +46,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new InstagramDataConfig
             {
                 QueryType = InstagramQueryType.Id,
-                Query = "1234"
+                Query = "-1234"
             };
             var dataProvider = new InstagramDataProvider(OAuthKeys.InstagramValidKeys);
             await ExceptionsAssert.ThrowsAsync<RequestFailedException>(async () => await dataProvider.LoadDataAsync(config));

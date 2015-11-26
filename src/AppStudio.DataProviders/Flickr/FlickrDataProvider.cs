@@ -9,15 +9,8 @@ namespace AppStudio.DataProviders.Flickr
 {
     public class FlickrDataProvider : DataProviderBase<FlickrDataConfig, FlickrSchema>
     {
-        public override async Task<IEnumerable<FlickrSchema>> LoadDataAsync(FlickrDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FlickrDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new FlickrParser());
-        }
-
-        public override async Task<IEnumerable<FlickrSchema>> LoadDataAsync(FlickrDataConfig config, IParser<FlickrSchema> parser)
-        {
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = new Uri(string.Format("http://api.flickr.com/services/feeds/photos_public.gne?{0}={1}", config.QueryType.ToString().ToLower(), WebUtility.UrlEncode(config.Query)))
@@ -32,16 +25,13 @@ namespace AppStudio.DataProviders.Flickr
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private static void Assertions(FlickrDataConfig config, IParser<FlickrSchema> parser)
+        public override IParser<FlickrSchema> GetDefaultParser(FlickrDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new FlickrParser();
+        }
+
+        protected override void ValidateConfig(FlickrDataConfig config)
+        {
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

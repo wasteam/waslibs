@@ -42,6 +42,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             set { SetProperty(ref _rssXmlResult, value); }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         public BaseRssControl()
         {
             RssItems = new ObservableCollection<RssSchema>();
@@ -55,7 +62,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 RssItems.Clear();
                 RssDataProvider = new RssDataProvider();
 
-                var items = await RssDataProvider.LoadDataAsync(new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) });
+                var items = await RssDataProvider.LoadDataAsync(new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) }, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     RssItems.Add(item);
