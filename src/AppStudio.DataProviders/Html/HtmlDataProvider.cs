@@ -24,7 +24,7 @@ namespace AppStudio.DataProviders.Html
             }
         }
 
-        public override IParser<HtmlSchema> GetDefaultParser(LocalStorageDataConfig config)
+        protected override IParser<HtmlSchema> GetDefaultParserInternal(LocalStorageDataConfig config)
         {
             return new HtmlParser();
         }

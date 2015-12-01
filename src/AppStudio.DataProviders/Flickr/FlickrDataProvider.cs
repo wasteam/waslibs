@@ -25,7 +25,7 @@ namespace AppStudio.DataProviders.Flickr
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<FlickrSchema> GetDefaultParser(FlickrDataConfig config)
+        protected override IParser<FlickrSchema> GetDefaultParserInternal(FlickrDataConfig config)
         {
             return new FlickrParser();
         }

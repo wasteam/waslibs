@@ -43,6 +43,16 @@ namespace AppStudio.DataProviders
             return await LoadDataAsync(config, maxRecords, GetDefaultParser(config));
         }
 
-        public abstract IParser<TSchema> GetDefaultParser(TConfig config);
+        public IParser<TSchema> GetDefaultParser(TConfig config)
+        {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
+            ValidateConfig(config);
+
+            return GetDefaultParserInternal(config);
+        }
+        protected abstract IParser<TSchema> GetDefaultParserInternal(TConfig config);
     }
 }

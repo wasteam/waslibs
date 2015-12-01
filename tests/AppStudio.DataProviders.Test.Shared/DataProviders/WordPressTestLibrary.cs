@@ -61,6 +61,16 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
+        public async Task GetComments()
+        {
+            var dataProvider = new WordPressDataProvider();
+            var result = await dataProvider.GetComments("en.blog.wordpress.com", "32497", 20);
+
+            Assert.IsNotNull(result);
+            Assert.AreNotEqual(result.Count(), 0);
+        }
+
+        [TestMethod]
         public async Task TestNullQueryConfig()
         {
             var config = new WordPressDataConfig
@@ -88,7 +98,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new WordPressDataProvider();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new WordPressDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<WordPressSchema>(new WordPressDataConfig(), 20, null));
         }
     }
 }

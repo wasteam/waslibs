@@ -44,7 +44,7 @@ namespace AppStudio.DataProviders.Twitter
             return items;
         }
 
-        public override IParser<TwitterSchema> GetDefaultParser(TwitterDataConfig config)
+        protected override IParser<TwitterSchema> GetDefaultParserInternal(TwitterDataConfig config)
         {
             switch (config.QueryType)
             {

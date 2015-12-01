@@ -24,7 +24,7 @@ namespace AppStudio.DataProviders.Rss
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        public override IParser<RssSchema> GetDefaultParser(RssDataConfig config)
+        protected override IParser<RssSchema> GetDefaultParserInternal(RssDataConfig config)
         {
             return new RssParser();
         }

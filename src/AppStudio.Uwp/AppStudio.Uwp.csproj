@@ -126,6 +126,11 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToSizeConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
@@ -133,6 +138,11 @@
     <Compile Include="DataSync\ISyncItem.cs" />
     <Compile Include="DataSync\ObservableCollectionExtensions.cs" />
     <Compile Include="Controls\ErrorNotificationControl\ErrorNotificationControl.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Extensions\SizeExtensions.cs" />
+    <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
@@ -151,6 +161,7 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
+    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewer.js" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
@@ -160,11 +171,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ResponsiveGridView\ResponsiveGridView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SectionList\SectionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Virtualbox\Virtualbox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

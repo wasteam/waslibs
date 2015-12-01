@@ -24,7 +24,7 @@ namespace AppStudio.DataProviders.LocalStorage
             }
         }
 
-        public override IParser<T> GetDefaultParser(LocalStorageDataConfig config)
+        protected override IParser<T> GetDefaultParserInternal(LocalStorageDataConfig config)
         {
             return new JsonParser<T>();
         }

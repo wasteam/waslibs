@@ -40,7 +40,7 @@ namespace AppStudio.DataProviders.YouTube
             return result;
         }
 
-        public override IParser<YouTubeSchema> GetDefaultParser(YouTubeDataConfig config)
+        protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
         {
             switch (config.QueryType)
             {
