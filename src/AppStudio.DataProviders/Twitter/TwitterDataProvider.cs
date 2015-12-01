@@ -30,7 +30,7 @@ namespace AppStudio.DataProviders.Twitter
             switch (config.QueryType)
             {
                 case TwitterQueryType.User:
-                    items = await GetUserTimeLineAsync(config.Query, parser);
+                    items = await GetUserTimeLineAsync(config.Query, maxRecords, parser);
                     break;
                 case TwitterQueryType.Search:
                     items = await SearchAsync(config.Query, parser);
@@ -54,6 +54,47 @@ namespace AppStudio.DataProviders.Twitter
                 case TwitterQueryType.User:
                 default:
                     return new TwitterTimelineParser();
+            }
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> GetUserTimeLineAsync(string screenName, int maxRecords)
+        {
+            return await GetUserTimeLineAsync(screenName, maxRecords, new TwitterTimelineParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            try
+            {
+                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}", screenName));
+
+                OAuthRequest request = new OAuthRequest();
+                var rawResult = await request.ExecuteAsync(uri, _tokens);
+
+                var result = parser.Parse(rawResult);
+                return result
+                        .Take(maxRecords)
+                        .ToList();
+            }
+            catch (WebException wex)
+            {
+                HttpWebResponse response = wex.Response as HttpWebResponse;
+                if (response != null)
+                {
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        throw new UserNotFoundException(screenName);
+                    }
+                    if ((int)response.StatusCode == 429)
+                    {
+                        throw new TooManyRequestsException();
+                    }
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        throw new OAuthKeysRevokedException();
+                    }
+                }
+                throw;
             }
         }
 
@@ -82,39 +123,6 @@ namespace AppStudio.DataProviders.Twitter
             if (string.IsNullOrEmpty(_tokens.AccessTokenSecret))
             {
                 throw new OAuthKeysNotPresentException("AccessTokenSecret");
-            }
-        }
-
-        private async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, IParser<TSchema> parser) where TSchema : SchemaBase
-        {
-            try
-            {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}", screenName));
-
-                OAuthRequest request = new OAuthRequest();
-                var rawResult = await request.ExecuteAsync(uri, _tokens);
-
-                return parser.Parse(rawResult);
-            }
-            catch (WebException wex)
-            {
-                HttpWebResponse response = wex.Response as HttpWebResponse;
-                if (response != null)
-                {
-                    if (response.StatusCode == HttpStatusCode.NotFound)
-                    {
-                        throw new UserNotFoundException(screenName);
-                    }
-                    if ((int)response.StatusCode == 429)
-                    {
-                        throw new TooManyRequestsException();
-                    }
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        throw new OAuthKeysRevokedException();
-                    }
-                }
-                throw;
             }
         }
 

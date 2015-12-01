@@ -26,14 +26,14 @@ namespace AppStudio.DataProviders.YouTube
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Channels:
-                    result = await LoadChannelAsync(config.Query, parser, maxRecords);
+                    result = await LoadChannelAsync(config.Query, maxRecords, parser);
                     break;
                 case YouTubeQueryType.Videos:
-                    result = await SearchAsync(config.Query, parser, maxRecords);
+                    result = await SearchAsync(config.Query, maxRecords, parser);
                     break;
                 case YouTubeQueryType.Playlist:
                 default:
-                    result = await LoadPlaylistAsync(config.Query, parser, maxRecords);
+                    result = await LoadPlaylistAsync(config.Query, maxRecords, parser);
                     break;
             }
 
@@ -53,6 +53,21 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
+        public async Task<IEnumerable<YouTubeSchema>> LoadChannelAsync(string channel, int maxRecords)
+        {
+            return await LoadChannelAsync(channel, maxRecords, new YouTubePlaylistParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var listId = await GetUploadVideosListId(channel, maxRecords);
+            if (!string.IsNullOrEmpty(listId))
+            {
+                return await LoadPlaylistAsync(listId, maxRecords, parser);
+            }
+            return new TSchema[0];
+        }
+
         protected override void ValidateConfig(YouTubeDataConfig config)
         {
             if (config.Query == null)
@@ -69,17 +84,7 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
-        private async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, IParser<TSchema> parser, int maxRecords) where TSchema : SchemaBase
-        {
-            var listId = await GetUploadVideosListId(channel, maxRecords);
-            if (!string.IsNullOrEmpty(listId))
-            {
-                return await LoadPlaylistAsync(listId, parser, maxRecords);
-            }
-            return new TSchema[0];
-        }
-
-        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, IParser<TSchema> parser, int maxRecords) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings
             {
@@ -100,7 +105,7 @@ namespace AppStudio.DataProviders.YouTube
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, IParser<TSchema> parser, int maxRecords) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             HttpRequestSettings settings = new HttpRequestSettings
             {

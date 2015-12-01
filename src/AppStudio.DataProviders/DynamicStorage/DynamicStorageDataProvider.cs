@@ -12,7 +12,7 @@ namespace AppStudio.DataProviders.DynamicStorage
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = new Uri(string.Format("{0}&pageIndex={1}&blockSize={2}", config.Url, config.PageIndex, config.BlockSize)),
+                RequestedUri = new Uri(string.Format("{0}&pageIndex={1}&blockSize={2}", config.Url, config.PageIndex, maxRecords)),
                 UserAgent = "NativeHost"
             };
 
