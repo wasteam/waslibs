@@ -93,8 +93,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Content\HtmlContent.html" />
+    <Content Include="Assets\Content\StarWars1.xml" />
+    <Content Include="Assets\Content\StarWars2.xml" />
+    <Content Include="Assets\Content\StarWars3.xml" />
+    <Content Include="Assets\Content\StarWars4.xml" />
+    <Content Include="Assets\Content\StarWars5.xml" />
+    <Content Include="Assets\Content\StarWars6.xml" />
+    <Content Include="Assets\Content\StarWars7.xml" />
     <Content Include="Assets\HeroImage.png" />
     <Content Include="Assets\HtmlContent.html" />
+    <Content Include="Assets\Images\Nasa.jpg" />
     <Content Include="Assets\Images\Windows10.jpg" />
     <Content Include="Assets\SampleImage.png" />
     <Content Include="Assets\VBPDevices.json" />
@@ -115,6 +124,9 @@
       <DependentUpon>AppCacheBulkRead.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\BaseControlPage.cs" />
+    <Compile Include="ControlPages\CarouselPage.xaml.cs">
+      <DependentUpon>CarouselPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\Converters.xaml.cs">
       <DependentUpon>Converters.xaml</DependentUpon>
     </Compile>
@@ -133,15 +145,28 @@
     <Compile Include="ControlPages\ReadingWebView.xaml.cs">
       <DependentUpon>ReadingWebView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\RelativeAndVirtualPage.xaml.cs">
+      <DependentUpon>RelativeAndVirtualPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\RelativeboxPage.xaml.cs">
+      <DependentUpon>RelativeboxPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\ResponsiveGridView.xaml.cs">
       <DependentUpon>ResponsiveGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlPages\SectionList.xaml.cs">
       <DependentUpon>SectionList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\VirtualboxPage.xaml.cs">
+      <DependentUpon>VirtualboxPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\VisualBreakpoints.xaml.cs">
       <DependentUpon>VisualBreakpoints.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DockView.cs" />
+    <Compile Include="Controls\PropertySet.cs" />
+    <Compile Include="Data\FeedParser.cs" />
+    <Compile Include="Data\FeedSchema.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -184,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ControlPages\CarouselPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ControlPages\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +237,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ControlPages\RelativeAndVirtualPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlPages\RelativeboxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ControlPages\ResponsiveGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +252,10 @@
     <Page Include="ControlPages\SectionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\VirtualboxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ControlPages\VisualBreakpoints.xaml">
       <SubType>Designer</SubType>
@@ -225,6 +266,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\AppBarButtons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

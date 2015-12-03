@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel;
 
@@ -68,14 +69,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(IsHeaderVisibleProperty, value); }
         }
 
-        private static async void IsHeaderVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as HtmlViewer;
-            control._header.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
-            await control.SetHtmlDocumentMargin();
-        }
-
-        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register("IsHeaderVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, IsHeaderVisibleChanged));
+        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register("IsHeaderVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
         #endregion
 
 
@@ -106,17 +100,25 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(IsFooterVisibleProperty, value); }
         }
 
-        private static async void IsFooterVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as HtmlViewer;
-            control._footer.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
-            await control.SetHtmlDocumentMargin();
-        }
-
-        public static readonly DependencyProperty IsFooterVisibleProperty = DependencyProperty.Register("IsFooterVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, IsFooterVisibleChanged));
+        public static readonly DependencyProperty IsFooterVisibleProperty = DependencyProperty.Register("IsFooterVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
         #endregion
 
 
+        #region ContentAlignment
+        public HorizontalAlignment ContentAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(ContentAlignmentProperty); }
+            set { SetValue(ContentAlignmentProperty, value); }
+        }
+
+        private static async void ContentAlignmentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as HtmlViewer;
+            await control.SetContentAlignment((HorizontalAlignment)e.NewValue);
+        }
+
+        public static readonly DependencyProperty ContentAlignmentProperty = DependencyProperty.Register("ContentAlignment", typeof(HorizontalAlignment), typeof(HtmlViewer), new PropertyMetadata(HorizontalAlignment.Left, ContentAlignmentChanged));
+        #endregion
 
         public async void NavigateToContent(string path)
         {
@@ -135,6 +137,10 @@ namespace AppStudio.Uwp.Controls
                 {
                     this.Source = null;
                     _isHtmlLoaded = false;
+                    if (!ContainsHTML(text))
+                    {
+                        text = CovertToHtml(text);
+                    }
                     _webView.NavigateToString(text);
                 }
             }
@@ -158,6 +164,59 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
             }
+        }
+
+        private async Task SetContentAlignment(HorizontalAlignment horizontalAlignment)
+        {
+            if (_webView != null && !DesignMode.DesignModeEnabled)
+            {
+                string maxWidth = "1024px";
+                string marginLeft = "12px";
+                string marginRight = "12px";
+
+                switch (horizontalAlignment)
+                {
+                    case HorizontalAlignment.Left:
+                        marginRight = "auto";
+                        break;
+                    case HorizontalAlignment.Center:
+                        marginLeft = "auto";
+                        marginRight = "auto";
+                        break;
+                    case HorizontalAlignment.Right:
+                        marginLeft = "auto";
+                        break;
+                    case HorizontalAlignment.Stretch:
+                        maxWidth = "unset";
+                        marginLeft = "auto";
+                        marginRight = "auto";
+                        break;
+                    default:
+                        break;
+                }
+                await _webView.InvokeScriptAsync("setHtmlStyle", new string[] { maxWidth, marginLeft, marginRight });
+            }
+        }
+
+        private static async void ComplementVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as HtmlViewer;
+            if (control._header != null)
+            {
+                control._header.Visibility = control.IsHeaderVisible ? Visibility.Visible : Visibility.Collapsed;
+                control._footer.Visibility = control.IsFooterVisible ? Visibility.Visible : Visibility.Collapsed;
+            }
+            await control.SetHtmlDocumentMargin();
+        }
+
+        private static bool ContainsHTML(string str)
+        {
+            return !Regex.IsMatch(str, @"^(?!.*<[^>]+>).*");
+        }
+
+        private static string CovertToHtml(string plainText)
+        {
+            return $"<p style='text-alignment: center'>{plainText.Replace("\r\n", "\r").Replace('\n', '\r').Replace("\r", "<br />")}</p>";
         }
     }
 }

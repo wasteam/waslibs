@@ -15,6 +15,23 @@
                     <TextBlock Text="{Binding}" Margin="12,0,0,0"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
+
+            <PivotItem Header="Carousel">
+                <controlPages:CarouselPage/>
+            </PivotItem>
+            <PivotItem Header="Virtualbox">
+                <controlPages:VirtualboxPage/>
+            </PivotItem>
+            <PivotItem Header="HtmlViewer">
+                <controlPages:HtmlViewerPage/>
+            </PivotItem>
+            <PivotItem Header="Relativebox">
+                <controlPages:RelativeboxPage/>
+            </PivotItem>
+            <PivotItem Header="Relative and Virtual">
+                <controlPages:RelativeAndVirtualPage/>
+            </PivotItem>
+
             <PivotItem Header="SectionList">
                 <controlPages:SectionList/>
             </PivotItem>
@@ -29,9 +46,6 @@
             </PivotItem>
             <PivotItem Header="ReadingWebView">
                 <controlPages:ReadingWebView/>
-            </PivotItem>
-            <PivotItem Header="HtmlViewer">
-                <controlPages:HtmlViewerPage/>
             </PivotItem>
             <PivotItem Header="Converters">
                 <controlPages:Converters/>

@@ -1,0 +1,46 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Samples.Uwp.Controls">
+
+    <Style TargetType="controls:DockView">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DockView">
+                    <SplitView Name="splitView" DisplayMode="CompactInline" CompactPaneLength="28" Content="{TemplateBinding Content}">
+                        <SplitView.Pane>
+                            <Grid>
+                                <ContentPresenter Content="{TemplateBinding Pane}" />
+                                <Button Name="button" Margin="1" Padding="2" BorderThickness="1" Background="White" VerticalAlignment="Top">
+                                    <TextBlock FontSize="20" Text="&#xe700;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                                </Button>
+                            </Grid>
+                        </SplitView.Pane>
+                    </SplitView>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:PropertySet">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PropertySet">
+                    <StackPanel>
+                        <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Property}" FontWeight="Normal" />
+                        <ComboBox Name="combo" ItemsSource="{TemplateBinding ComboItems}" SelectedValue="{Binding Value, Mode=TwoWay}" SelectedValuePath="Value"
+                                  Width="200" Visibility="Collapsed">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Key}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Slider Name="slider" Height="32" Value="{Binding Value, Mode=TwoWay}" Minimum="{TemplateBinding Minimun}" Maximum="{TemplateBinding Maximun}" SmallChange="{TemplateBinding SmallChange}" StepFrequency="{TemplateBinding SmallChange}" Visibility="Collapsed" />
+                        <ToggleSwitch Name="toggle" IsOn="{Binding Value, Mode=TwoWay}" Visibility="Collapsed" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

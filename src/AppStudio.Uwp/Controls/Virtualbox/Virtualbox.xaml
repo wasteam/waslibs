@@ -7,12 +7,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Virtualbox">
-                    <Canvas Background="{TemplateBinding Background}">
-                        <ContentPresenter Name="content" Width="{TemplateBinding VirtualWidth}" Height="{TemplateBinding VirtualHeight}">
+                    <Canvas>
+                        <ContentPresenter Name="content">
                             <ContentPresenter.RenderTransform>
                                 <CompositeTransform />
                             </ContentPresenter.RenderTransform>
                         </ContentPresenter>
+                        <Canvas.Clip>
+                            <RectangleGeometry x:Name="clip" />
+                        </Canvas.Clip>
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.ApplicationModel;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -13,13 +15,18 @@ namespace AppStudio.Uwp.Controls
         private ContentPresenter _footer = null;
         private RectangleGeometry _clip = null;
 
+        private Grid _glass = null;
+
         private bool _isHtmlLoaded = false;
 
         public HtmlViewer()
         {
             this.DefaultStyleKey = typeof(HtmlViewer);
             this.Background = new SolidColorBrush(Colors.Transparent);
-            this.Opacity = 0.001;
+            if (!DesignMode.DesignModeEnabled)
+            {
+                this.Opacity = 0.001;
+            }
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
@@ -27,11 +34,14 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
-            var content = base.GetTemplateChild("webViewContainer") as Grid;
-            _webView = new WebView(WebViewExecutionMode.SameThread) { DefaultBackgroundColor = Colors.Transparent };
-            _webView.Settings.IsJavaScriptEnabled = false;
-            _webView.Settings.IsIndexedDBEnabled = false;
-            content.Children.Add(_webView);
+            if (!DesignMode.DesignModeEnabled)
+            {
+                var content = base.GetTemplateChild("webViewContainer") as Grid;
+                _webView = new WebView(WebViewExecutionMode.SameThread) { DefaultBackgroundColor = Colors.Transparent };
+                _webView.Settings.IsJavaScriptEnabled = false;
+                _webView.Settings.IsIndexedDBEnabled = false;
+                content.Children.Add(_webView);
+            }
 
             _header = base.GetTemplateChild("header") as ContentPresenter;
             _footer = base.GetTemplateChild("footer") as ContentPresenter;
@@ -41,8 +51,6 @@ namespace AppStudio.Uwp.Controls
 
             base.OnApplyTemplate();
         }
-
-        private Grid _glass = null;
 
         private void InitializeGlass()
         {
@@ -55,27 +63,30 @@ namespace AppStudio.Uwp.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            _tokenFontSize = this.RegisterPropertyChangedCallback(FontSizeProperty, (s, d) => { SetFontSize(); });
-            _tokenForeground = this.RegisterPropertyChangedCallback(ForegroundProperty, (s, d) => { SetForeground(); });
+            _tokenFontSize = this.RegisterPropertyChangedCallback(FontSizeProperty, async (s, d) => { await SetFontSize(); });
+            _tokenForeground = this.RegisterPropertyChangedCallback(ForegroundProperty, async (s, d) => { await SetForeground(); });
 
-            _webView.NavigationStarting += OnNavigationStarting;
-            _webView.NavigationCompleted += OnNavigationCompleted;
-            _webView.ScriptNotify += OnScriptNotify;
-
-            _header.SizeChanged += OnHeaderFooterSizeChanged;
-            _footer.SizeChanged += OnHeaderFooterSizeChanged;
-
-            _footer.PointerWheelChanged += OnPointerWheelChanged;
-            _footer.ManipulationStarted += OnFooterManipulationStarted;
-            _footer.ManipulationDelta += OnFooterManipulationDelta;
-
-            if (this.Source != null)
+            if (!DesignMode.DesignModeEnabled)
             {
-                Navigate(this.Source);
-            }
-            else if (this.Html != null)
-            {
-                NavigateToString(this.Html);
+                _webView.NavigationStarting += OnNavigationStarting;
+                _webView.NavigationCompleted += OnNavigationCompleted;
+                _webView.ScriptNotify += OnScriptNotify;
+
+                _header.SizeChanged += OnHeaderFooterSizeChanged;
+                _footer.SizeChanged += OnHeaderFooterSizeChanged;
+
+                _footer.PointerWheelChanged += OnPointerWheelChanged;
+                _footer.ManipulationStarted += OnFooterManipulationStarted;
+                _footer.ManipulationDelta += OnFooterManipulationDelta;
+
+                if (this.Source != null)
+                {
+                    Navigate(this.Source);
+                }
+                else if (this.Html != null)
+                {
+                    NavigateToString(this.Html);
+                }
             }
         }
 
@@ -84,10 +95,6 @@ namespace AppStudio.Uwp.Controls
             this.UnregisterPropertyChangedCallback(FontSizeProperty, _tokenFontSize);
             this.UnregisterPropertyChangedCallback(ForegroundProperty, _tokenForeground);
 
-            _webView.NavigationStarting -= OnNavigationStarting;
-            _webView.NavigationCompleted -= OnNavigationCompleted;
-            _webView.ScriptNotify -= OnScriptNotify;
-
             _header.SizeChanged -= OnHeaderFooterSizeChanged;
             _footer.SizeChanged -= OnHeaderFooterSizeChanged;
 
@@ -95,10 +102,17 @@ namespace AppStudio.Uwp.Controls
             _footer.ManipulationStarted -= OnFooterManipulationStarted;
             _footer.ManipulationDelta -= OnFooterManipulationDelta;
 
-            _webView.NavigateToString("");
+            if (!DesignMode.DesignModeEnabled)
+            {
+                _webView.NavigationStarting -= OnNavigationStarting;
+                _webView.NavigationCompleted -= OnNavigationCompleted;
+                _webView.ScriptNotify -= OnScriptNotify;
+
+                _webView.NavigateToString("");
+            }
         }
 
-        private async void SetFontSize()
+        private async Task SetFontSize()
         {
             if (_isHtmlLoaded)
             {
@@ -106,7 +120,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private async void SetForeground()
+        private async Task SetForeground()
         {
             if (_isHtmlLoaded)
             {

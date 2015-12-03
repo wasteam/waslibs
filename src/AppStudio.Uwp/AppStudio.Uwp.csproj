@@ -125,11 +125,18 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
+    <Compile Include="Controls\Carousel\Carousel.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Slots.cs" />
+    <Compile Include="Controls\Carousel\CarouselSlot.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\Relativebox\Relativebox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToSizeConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
@@ -159,17 +166,25 @@
     <Compile Include="Controls\VisualBreakpoints\Extensions.cs" />
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="TasksExtensions.cs" />
-    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewer.js" />
+    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\Carousel\Carousel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ErrorNotificationControl\ErrorNotificationControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Relativebox\Relativebox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

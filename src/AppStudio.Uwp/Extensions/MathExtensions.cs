@@ -25,5 +25,15 @@ namespace AppStudio.Uwp
             double res = value % module;
             return res >= 0 ? res : (res + module) % module;
         }
+
+        public static double AdDouble(this string str)
+        {
+            double d = 0.0;
+            if (!String.IsNullOrEmpty(str))
+            {
+                Double.TryParse(str, out d);
+            }
+            return d;
+        }
     }
 }
