@@ -32,12 +32,7 @@ namespace AppStudio.Uwp.Controls
         public string ConfigFile
         {
             get { return _configFile; }
-            set
-            {
-                _configFile = value;
-
-                Initialize();
-            }
+            set { _configFile = value; }
         }
 
         public dynamic Active { get; set; }
@@ -65,8 +60,10 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
+        private async void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
         {
+            await Initialize();
+
             var container = Parent as FrameworkElement;
             double initialWidth = 0;
             if (container != null)
@@ -115,6 +112,7 @@ namespace AppStudio.Uwp.Controls
             if (_breakpointsIndex != null && _breakpointsIndex.Length > 0)
             {
                 var currentActive = _breakpointsIndex.FirstOrDefault(b => width < b);
+
                 if (currentActive != _lastActive)
                 {
                     var activeBreakpoint = GetActiveBreakpoint(currentActive);
@@ -157,7 +155,7 @@ namespace AppStudio.Uwp.Controls
             return activeBreakpoint;
         }
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             await InitBreakPoints();
         }
