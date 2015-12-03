@@ -54,13 +54,38 @@ namespace AppStudio.Uwp.Controls
 
         private void VisualBreakpoints_Unloaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged -= Window_SizeChanged;
+            var container = Parent as FrameworkElement;
+            if (container != null)
+            {
+                container.SizeChanged -= Container_SizeChanged;
+            }
+            else
+            {
+                Window.Current.SizeChanged -= Window_SizeChanged;
+            }
         }
 
         private void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged += Window_SizeChanged;
-            TrySetActive(Window.Current.Bounds.Width);
+            var container = Parent as FrameworkElement;
+            double initialWidth = 0;
+            if (container != null)
+            {
+                container.SizeChanged += Container_SizeChanged;
+                initialWidth = container.ActualWidth;
+            }
+            else
+            {
+                Window.Current.SizeChanged += Window_SizeChanged;
+                initialWidth = Window.Current.Bounds.Width;
+            }
+
+            TrySetActive(initialWidth);
+        }
+
+        private void Container_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TrySetActive(e.NewSize.Width);
         }
 
         private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -135,8 +160,6 @@ namespace AppStudio.Uwp.Controls
         private async void Initialize()
         {
             await InitBreakPoints();
-
-            TrySetActive(Window.Current.Bounds.Width);
         }
 
         private async Task InitBreakPoints()
