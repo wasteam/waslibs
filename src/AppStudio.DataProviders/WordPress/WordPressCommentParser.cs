@@ -26,7 +26,7 @@ namespace AppStudio.DataProviders.WordPress
                                             _id = r.id,
                                             Content = r.content,
                                             Author = r.author.name.DecodeHtml(),
-                                            ImageUrl = r.author.avatar_url,
+                                            AuthorImage = r.author.avatar_url,
                                             PublishDate = r.date
                                         });
         }
