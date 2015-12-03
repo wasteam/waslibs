@@ -29,7 +29,9 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToPage(Type page, object parameter)
         {
-            if (IsInitialized() && page != null)
+            CheckIsInitialized();
+
+            if (page != null)
             {
                 _rootFrame.Navigate(page, parameter);
 
@@ -48,6 +50,8 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToPage(string page, object parameter)
         {
+            CheckIsInitialized();
+
             var targetPage = _appAssembly.DefinedTypes.FirstOrDefault(t => t.Name == page);
 
             if (targetPage != null)
@@ -138,9 +142,17 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
+        private static void CheckIsInitialized()
+        {
+            if (!IsInitialized())
+            {
+                throw new NavigationInitializationException();
+            }
+        }
+
         private static bool IsInitialized()
         {
-            return _rootFrame != null;
+            return _rootFrame != null && _appAssembly != null;
         }
     }
 

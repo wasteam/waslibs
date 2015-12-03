@@ -91,10 +91,13 @@
     <Compile Include="Twitter\TwitterSchema.cs" />
     <Compile Include="Exceptions\OAuthKeysNotPresentException.cs" />
     <Compile Include="Exceptions\ConfigParameterNullException.cs" />
+    <Compile Include="WordPress\WordPressCommentParser.cs" />
+    <Compile Include="WordPress\WordPressCommentsResponse.cs" />
     <Compile Include="WordPress\WordPressDataConfig.cs" />
     <Compile Include="WordPress\WordPressDataProvider.cs" />
     <Compile Include="WordPress\WordPressResponse.cs" />
     <Compile Include="WordPress\WordPressParser.cs" />
+    <Compile Include="WordPress\WordPressCommentSchema.cs" />
     <Compile Include="WordPress\WordPressSchema.cs" />
     <Compile Include="YouTube\YouTubeParser.cs" />
     <Compile Include="YouTube\YouTubeDataConfig.cs" />

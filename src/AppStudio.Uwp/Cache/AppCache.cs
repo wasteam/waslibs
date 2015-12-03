@@ -4,12 +4,45 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Net.NetworkInformation;
 
 namespace AppStudio.Uwp.Cache
 {
     public static class AppCache
     {
         private static Dictionary<string, string> _memoryCache = new Dictionary<string, string>();
+
+        public static async Task<DateTime?> LoadItemsAsync<T>(CacheSettings settings, Func<Task<IEnumerable<T>>> loadDataAsync, Action<CachedContent<T>> parseItems, bool refreshForced = false)
+        {
+            if (settings == null)
+            {
+                throw new ArgumentNullException("settings");
+            }
+            if (string.IsNullOrEmpty(settings.Key))
+            {
+                throw new ArgumentException("Cache key is required");
+            }
+
+            var dataInCache = await AppCache.GetItemsAsync<T>(settings.Key);
+            if (dataInCache != null)
+            {
+                parseItems(dataInCache);
+            }
+
+            if (CanPerformLoad<T>(settings.NeedsNetwork) && (refreshForced || DataNeedToBeUpdated(dataInCache, settings.Expiration)))
+            {
+                dataInCache = dataInCache ?? new CachedContent<T>();
+
+                dataInCache.Timestamp = DateTime.Now;
+                dataInCache.Items = await loadDataAsync();
+
+                await AppCache.AddItemsAsync(settings.Key, dataInCache, settings.UseStorage);
+
+                parseItems(dataInCache);
+            }
+            return dataInCache?.Timestamp;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public static async Task<CachedContent<T>> GetItemsAsync<T>(string key)
         {
@@ -143,6 +176,16 @@ namespace AppStudio.Uwp.Cache
             {
                 Debug.WriteLine(ex);
             }
+        }
+
+        private static bool CanPerformLoad<T>(bool needNetwork)
+        {
+            return !needNetwork || NetworkInterface.GetIsNetworkAvailable();
+        }
+
+        private static bool DataNeedToBeUpdated<T>(CachedContent<T> dataInCache, TimeSpan expiration)
+        {
+            return dataInCache == null || (DateTime.Now - dataInCache.Timestamp > expiration);
         }
     }
 }

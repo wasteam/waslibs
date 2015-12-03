@@ -24,17 +24,11 @@ namespace AppStudio.DataProviders
             var result = await GetDataAsync(config, maxRecords, parser);
             if (result != null)
             {
-                return result.Take(maxRecords);
+                return result
+                        .Take(maxRecords)
+                        .ToList();
             }
             return new TSchema[0];
-        }
-
-        public virtual bool IsLocal
-        {
-            get
-            {
-                return false;
-            }
         }
 
         protected abstract Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase;

@@ -12,7 +12,7 @@
                             <Grid>
                                 <ContentPresenter Content="{TemplateBinding Pane}" />
                                 <Button Name="button" Margin="1" Padding="2" BorderThickness="1" Background="White" VerticalAlignment="Top">
-                                    <TextBlock FontSize="20" Text="&#xe700;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                                    <TextBlock FontSize="20" Text="&#xe762;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                                 </Button>
                             </Grid>
                         </SplitView.Pane>

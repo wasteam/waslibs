@@ -61,6 +61,16 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
+        public async Task GetComments()
+        {
+            var dataProvider = new WordPressDataProvider();
+            var result = await dataProvider.GetComments("en.blog.wordpress.com", "32497", 20);
+
+            Assert.IsNotNull(result);
+            Assert.AreNotEqual(result.Count(), 0);
+        }
+
+        [TestMethod]
         public async Task TestNullQueryConfig()
         {
             var config = new WordPressDataConfig

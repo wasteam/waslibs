@@ -23,7 +23,7 @@ namespace AppStudio.Samples.Uwp.ControlPages
         public ResponsiveGridView()
         {
             this.InitializeComponent();
-            DesiredWidth = 130;
+            DesiredWidth = 250;
             LoadData();
         }
 

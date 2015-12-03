@@ -11,14 +11,6 @@ namespace AppStudio.DataProviders.Html
 {
     public class HtmlDataProvider : DataProviderBase<LocalStorageDataConfig, HtmlSchema>
     {
-        public override bool IsLocal
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));

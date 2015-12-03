@@ -32,12 +32,7 @@ namespace AppStudio.Uwp.Controls
         public string ConfigFile
         {
             get { return _configFile; }
-            set
-            {
-                _configFile = value;
-
-                Initialize();
-            }
+            set { _configFile = value; }
         }
 
         public dynamic Active { get; set; }
@@ -54,13 +49,40 @@ namespace AppStudio.Uwp.Controls
 
         private void VisualBreakpoints_Unloaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged -= Window_SizeChanged;
+            var container = Parent as FrameworkElement;
+            if (container != null)
+            {
+                container.SizeChanged -= Container_SizeChanged;
+            }
+            else
+            {
+                Window.Current.SizeChanged -= Window_SizeChanged;
+            }
         }
 
-        private void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
+        private async void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged += Window_SizeChanged;
-            TrySetActive(Window.Current.Bounds.Width);
+            await Initialize();
+
+            var container = Parent as FrameworkElement;
+            double initialWidth = 0;
+            if (container != null)
+            {
+                container.SizeChanged += Container_SizeChanged;
+                initialWidth = container.ActualWidth;
+            }
+            else
+            {
+                Window.Current.SizeChanged += Window_SizeChanged;
+                initialWidth = Window.Current.Bounds.Width;
+            }
+
+            TrySetActive(initialWidth);
+        }
+
+        private void Container_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TrySetActive(e.NewSize.Width);
         }
 
         private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -90,6 +112,7 @@ namespace AppStudio.Uwp.Controls
             if (_breakpointsIndex != null && _breakpointsIndex.Length > 0)
             {
                 var currentActive = _breakpointsIndex.FirstOrDefault(b => width < b);
+
                 if (currentActive != _lastActive)
                 {
                     var activeBreakpoint = GetActiveBreakpoint(currentActive);
@@ -132,11 +155,9 @@ namespace AppStudio.Uwp.Controls
             return activeBreakpoint;
         }
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             await InitBreakPoints();
-
-            TrySetActive(Window.Current.Bounds.Width);
         }
 
         private async Task InitBreakPoints()

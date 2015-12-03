@@ -119,6 +119,7 @@
     <Compile Include="Actions\ActionsCommandBar.cs" />
     <Compile Include="Cache\AppCache.cs" />
     <Compile Include="Cache\CachedContent.cs" />
+    <Compile Include="Cache\CacheSettings.cs" />
     <Compile Include="Cache\UserStorage.cs" />
     <Compile Include="Commands\ActionCommands.cs" />
     <Compile Include="Commands\ItemClickCommand.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
+    <Compile Include="Navigation\NavigationInitializationException.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="ObservableBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />
     <Compile Include="Controls\VisualBreakpoints\Extensions.cs" />
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
+    <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
