@@ -24,7 +24,7 @@ namespace AppStudio.DataProviders.WordPress
                                         .Select( r => new WordPressCommentSchema()
                                         {
                                             _id = r.id,
-                                            Content = r.content,
+                                            Content = r.content.DecodeHtml(),
                                             Author = r.author.name.DecodeHtml(),
                                             AuthorImage = r.author.avatar_url,
                                             PublishDate = r.date
