@@ -147,6 +147,7 @@
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
+    <Compile Include="Navigation\NavigationInitializationException.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="ObservableBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
