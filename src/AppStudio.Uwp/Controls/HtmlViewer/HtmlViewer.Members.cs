@@ -109,7 +109,10 @@ namespace AppStudio.Uwp.Controls
         private static async void IsFooterVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as HtmlViewer;
-            control._footer.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
+            if (control._footer != null)
+            {
+                control._footer.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
+            }            
             await control.SetHtmlDocumentMargin();
         }
 
