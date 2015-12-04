@@ -102,14 +102,15 @@ namespace AppStudio.Uwp.Controls
             _footer.ManipulationStarted -= OnFooterManipulationStarted;
             _footer.ManipulationDelta -= OnFooterManipulationDelta;
 
-            if (!DesignMode.DesignModeEnabled)
-            {
-                _webView.NavigationStarting -= OnNavigationStarting;
-                _webView.NavigationCompleted -= OnNavigationCompleted;
-                _webView.ScriptNotify -= OnScriptNotify;
+            // TODOX: Review. Exception when navigating back in SetHtmlDocumentMargin()
+            //if (!DesignMode.DesignModeEnabled)
+            //{
+            //    _webView.NavigationStarting -= OnNavigationStarting;
+            //    _webView.NavigationCompleted -= OnNavigationCompleted;
+            //    _webView.ScriptNotify -= OnScriptNotify;
 
-                _webView.NavigateToString("");
-            }
+            //    _webView.NavigateToString("");
+            //}
         }
 
         private async Task SetFontSize()
