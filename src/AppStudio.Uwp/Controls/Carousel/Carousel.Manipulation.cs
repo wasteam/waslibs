@@ -65,17 +65,15 @@ namespace AppStudio.Uwp.Controls
                 {
                     double inc = x - x0;
                     control.MoveX(x1 + inc);
-                    control.Content = _items[(this.Index + (MaxItems + 1)).Mod(_items.Count)];
-                    _index = _index.IncMod(_items.Count);
-                    SetValue(IndexProperty, _index);
+                    control.Content = _items[(this.SelectedIndex + (MaxItems + 1)).Mod(_items.Count)];
+                    this.SelectedIndex = this.SelectedIndex.IncMod(_items.Count);
                 }
                 else if (x > x1 - 1)
                 {
                     double inc = x - x1;
                     control.MoveX(x0 + inc);
-                    control.Content = _items[(this.Index - 2).Mod(_items.Count)];
-                    _index = _index.DecMod(_items.Count);
-                    SetValue(IndexProperty, _index);
+                    control.Content = _items[(this.SelectedIndex - 2).Mod(_items.Count)];
+                    this.SelectedIndex = this.SelectedIndex.DecMod(_items.Count);
                 }
                 else
                 {

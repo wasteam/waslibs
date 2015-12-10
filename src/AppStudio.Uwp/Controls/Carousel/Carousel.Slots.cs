@@ -11,7 +11,7 @@ namespace AppStudio.Uwp.Controls
 
         private double _slotWidth = 1;
 
-        private int _index = 0;
+        //private int _index = -1;
         private double _offset = 0;
 
         private IEnumerable<Point> GetPositions(double slotWidth)
@@ -26,11 +26,11 @@ namespace AppStudio.Uwp.Controls
 
         public void MoveNext()
         {
-            _index = _index.IncMod(_items.Count);
+            this.SelectedIndex = this.SelectedIndex.IncMod(_items.Count);
         }
         public void MovePrev()
         {
-            _index = _index.DecMod(_items.Count);
+            this.SelectedIndex = this.SelectedIndex.DecMod(_items.Count);
         }
 
         public void AnimateNext(double duration = 150)
