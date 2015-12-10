@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.Web;
 
 namespace AppStudio.Uwp.Controls
-{
+{    
     public class ReadingWebView : UserControl
     {
         public static readonly DependencyProperty DetailContentProperty
@@ -53,6 +53,7 @@ namespace AppStudio.Uwp.Controls
         private double lastScroll = 0;
         private double lastWidth = 0;
 
+        [Obsolete("We've developed a new HtmlViewer. Try it instead of ReadingWebView.", true)]
         public ReadingWebView()
         {
             InitializeUserControl(true);

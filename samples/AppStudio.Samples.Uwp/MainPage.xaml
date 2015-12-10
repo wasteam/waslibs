@@ -44,9 +44,6 @@
             <PivotItem Header="ResponsiveGridView">
                 <controlPages:ResponsiveGridView/>
             </PivotItem>
-            <PivotItem Header="ReadingWebView">
-                <controlPages:ReadingWebView/>
-            </PivotItem>
             <PivotItem Header="Converters">
                 <controlPages:Converters/>
             </PivotItem>
