@@ -37,6 +37,8 @@ namespace AppStudio.Samples.Uwp.ControlPages
             this.Items7 = new List<FeedSchema>(await GetItems("StarWars7.xml"));
 
             this.DataContext = this;
+
+            carousel.SelectedIndex = 0;
         }
 
         private async Task<IEnumerable<FeedSchema>> GetItems(string name)

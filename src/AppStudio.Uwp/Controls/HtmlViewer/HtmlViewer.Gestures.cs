@@ -24,13 +24,13 @@ namespace AppStudio.Uwp.Controls
         }
 
 
-        private void OnFooterManipulationStarted(object sender, Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs e)
+        private void OnComplementManipulationStarted(object sender, Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs e)
         {
             _glass.Background = new SolidColorBrush(Colors.Transparent);
             _cancelManipulation = false;
         }
 
-        private async void OnFooterManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        private async void OnComplementManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             await _webView.InvokeScriptAsync("verticalScrollBy", -e.Delta.Translation.Y);
             if (_cancelManipulation)

@@ -11,8 +11,12 @@ namespace AppStudio.Uwp.Controls
     public sealed partial class HtmlViewer : Control
     {
         private WebView _webView = null;
+
         private ContentPresenter _header = null;
         private ContentPresenter _footer = null;
+        private ContentPresenter _asideLeft = null;
+        private ContentPresenter _asideRight = null;
+
         private RectangleGeometry _clip = null;
 
         private Grid _glass = null;
@@ -45,6 +49,9 @@ namespace AppStudio.Uwp.Controls
 
             _header = base.GetTemplateChild("header") as ContentPresenter;
             _footer = base.GetTemplateChild("footer") as ContentPresenter;
+            _asideLeft = base.GetTemplateChild("asideleft") as ContentPresenter;
+            _asideRight = base.GetTemplateChild("asideright") as ContentPresenter;
+
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             InitializeGlass();
@@ -63,21 +70,35 @@ namespace AppStudio.Uwp.Controls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            _tokenFontSize = this.RegisterPropertyChangedCallback(FontSizeProperty, async (s, d) => { await SetFontSize(); });
-            _tokenForeground = this.RegisterPropertyChangedCallback(ForegroundProperty, async (s, d) => { await SetForeground(); });
-
             if (!DesignMode.DesignModeEnabled)
             {
+                _tokenFontSize = this.RegisterPropertyChangedCallback(FontSizeProperty, async (s, d) => { await SetFontSize(); });
+                _tokenForeground = this.RegisterPropertyChangedCallback(ForegroundProperty, async (s, d) => { await SetForeground(); });
+
                 _webView.NavigationStarting += OnNavigationStarting;
                 _webView.NavigationCompleted += OnNavigationCompleted;
                 _webView.ScriptNotify += OnScriptNotify;
 
-                _header.SizeChanged += OnHeaderFooterSizeChanged;
-                _footer.SizeChanged += OnHeaderFooterSizeChanged;
+                _header.SizeChanged += OnComplementSizeChanged;
+                _footer.SizeChanged += OnComplementSizeChanged;
+                _asideLeft.SizeChanged += OnComplementSizeChanged;
+                _asideRight.SizeChanged += OnComplementSizeChanged;
+
+                _header.PointerWheelChanged += OnPointerWheelChanged;
+                _header.ManipulationStarted += OnComplementManipulationStarted;
+                _header.ManipulationDelta += OnComplementManipulationDelta;
 
                 _footer.PointerWheelChanged += OnPointerWheelChanged;
-                _footer.ManipulationStarted += OnFooterManipulationStarted;
-                _footer.ManipulationDelta += OnFooterManipulationDelta;
+                _footer.ManipulationStarted += OnComplementManipulationStarted;
+                _footer.ManipulationDelta += OnComplementManipulationDelta;
+
+                _asideLeft.PointerWheelChanged += OnPointerWheelChanged;
+                _asideLeft.ManipulationStarted += OnComplementManipulationStarted;
+                _asideLeft.ManipulationDelta += OnComplementManipulationDelta;
+
+                _asideRight.PointerWheelChanged += OnPointerWheelChanged;
+                _asideRight.ManipulationStarted += OnComplementManipulationStarted;
+                _asideRight.ManipulationDelta += OnComplementManipulationDelta;
 
                 if (this.Source != null)
                 {
@@ -92,25 +113,38 @@ namespace AppStudio.Uwp.Controls
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            this.UnregisterPropertyChangedCallback(FontSizeProperty, _tokenFontSize);
-            this.UnregisterPropertyChangedCallback(ForegroundProperty, _tokenForeground);
+            if (!DesignMode.DesignModeEnabled)
+            {
+                this.UnregisterPropertyChangedCallback(FontSizeProperty, _tokenFontSize);
+                this.UnregisterPropertyChangedCallback(ForegroundProperty, _tokenForeground);
 
-            _header.SizeChanged -= OnHeaderFooterSizeChanged;
-            _footer.SizeChanged -= OnHeaderFooterSizeChanged;
+                _header.SizeChanged -= OnComplementSizeChanged;
+                _footer.SizeChanged -= OnComplementSizeChanged;
+                _asideLeft.SizeChanged -= OnComplementSizeChanged;
+                _asideRight.SizeChanged -= OnComplementSizeChanged;
 
-            _footer.PointerWheelChanged -= OnPointerWheelChanged;
-            _footer.ManipulationStarted -= OnFooterManipulationStarted;
-            _footer.ManipulationDelta -= OnFooterManipulationDelta;
+                _header.PointerWheelChanged -= OnPointerWheelChanged;
+                _header.ManipulationStarted -= OnComplementManipulationStarted;
+                _header.ManipulationDelta -= OnComplementManipulationDelta;
 
-            // TODOX: Review. Exception when navigating back in SetHtmlDocumentMargin()
-            //if (!DesignMode.DesignModeEnabled)
-            //{
-            //    _webView.NavigationStarting -= OnNavigationStarting;
-            //    _webView.NavigationCompleted -= OnNavigationCompleted;
-            //    _webView.ScriptNotify -= OnScriptNotify;
+                _footer.PointerWheelChanged -= OnPointerWheelChanged;
+                _footer.ManipulationStarted -= OnComplementManipulationStarted;
+                _footer.ManipulationDelta -= OnComplementManipulationDelta;
 
-            //    _webView.NavigateToString("");
-            //}
+                _asideLeft.PointerWheelChanged -= OnPointerWheelChanged;
+                _asideLeft.ManipulationStarted -= OnComplementManipulationStarted;
+                _asideLeft.ManipulationDelta -= OnComplementManipulationDelta;
+
+                _asideRight.PointerWheelChanged -= OnPointerWheelChanged;
+                _asideRight.ManipulationStarted -= OnComplementManipulationStarted;
+                _asideRight.ManipulationDelta -= OnComplementManipulationDelta;
+
+                _webView.NavigationStarting -= OnNavigationStarting;
+                _webView.NavigationCompleted -= OnNavigationCompleted;
+                _webView.ScriptNotify -= OnScriptNotify;
+
+                _webView.NavigateToString("");
+            }
         }
 
         private async Task SetFontSize()
