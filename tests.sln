@@ -43,8 +43,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.DataProviders.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.DataProviders.Test.Win81", "tests\AppStudio.DataProviders.Test.Win81\AppStudio.DataProviders.Test.Win81.csproj", "{1AE50A09-9124-4A5A-9763-F72C5177C1C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.DataProviders.Test.WP81", "tests\AppStudio.DataProviders.Test.WP81\AppStudio.DataProviders.Test.WP81.csproj", "{13577D13-9131-4FC7-A7A3-1BDFECCF5399}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		tests\AppStudio.DataProviders.Test.Shared\AppStudio.DataProviders.Test.Shared.projitems*{13577d13-9131-4fc7-a7a3-1bdfeccf5399}*SharedItemsImports = 4
 		samples\AppStudio.Samples.Common.Shared\AppStudio.Samples.Common.Shared.projitems*{ef4f3740-e6eb-4fbf-bd09-93f863351e44}*SharedItemsImports = 4
 		samples\AppStudio.Samples.DataProviders.Shared\AppStudio.Samples.DataProviders.Shared.projitems*{caa11277-55c5-4a2e-bb0b-3e28de8a8f6b}*SharedItemsImports = 4
 		samples\AppStudio.Samples.Common.Shared\AppStudio.Samples.Common.Shared.projitems*{3a055421-44a4-49c6-9de7-b43a72f19883}*SharedItemsImports = 4
@@ -283,6 +286,22 @@ Global
 		{1AE50A09-9124-4A5A-9763-F72C5177C1C8}.Release|x86.ActiveCfg = Release|x86
 		{1AE50A09-9124-4A5A-9763-F72C5177C1C8}.Release|x86.Build.0 = Release|x86
 		{1AE50A09-9124-4A5A-9763-F72C5177C1C8}.Release|x86.Deploy.0 = Release|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|ARM.ActiveCfg = Debug|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|ARM.Build.0 = Debug|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|ARM.Deploy.0 = Debug|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|x64.ActiveCfg = Debug|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|x86.ActiveCfg = Debug|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|x86.Build.0 = Debug|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Debug|x86.Deploy.0 = Debug|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|Any CPU.ActiveCfg = Release|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|ARM.ActiveCfg = Release|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|ARM.Build.0 = Release|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|ARM.Deploy.0 = Release|ARM
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|x64.ActiveCfg = Release|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|x86.ActiveCfg = Release|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|x86.Build.0 = Release|x86
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,5 +320,6 @@ Global
 		{A756217E-1DE2-430E-8CFB-52E7743AE692} = {C1DAE355-2A05-4E45-A422-5F02EE87FE56}
 		{2BD39E42-EDF2-4ADC-B1B0-DB6881F2AA07} = {C1DAE355-2A05-4E45-A422-5F02EE87FE56}
 		{1AE50A09-9124-4A5A-9763-F72C5177C1C8} = {C1DAE355-2A05-4E45-A422-5F02EE87FE56}
+		{13577D13-9131-4FC7-A7A3-1BDFECCF5399} = {C1DAE355-2A05-4E45-A422-5F02EE87FE56}
 	EndGlobalSection
 EndGlobal
