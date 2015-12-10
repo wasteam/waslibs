@@ -42,9 +42,11 @@ namespace AppStudio.Uwp.Controls
         public VisualBreakpoints()
         {
             Active = new ExpandoObject();
-
-            Loaded += VisualBreakpoints_Loaded;
-            Unloaded += VisualBreakpoints_Unloaded;
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                Loaded += VisualBreakpoints_Loaded;
+                Unloaded += VisualBreakpoints_Unloaded;
+            }
         }
 
         private void VisualBreakpoints_Unloaded(object sender, RoutedEventArgs e)
