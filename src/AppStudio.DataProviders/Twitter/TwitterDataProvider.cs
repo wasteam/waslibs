@@ -33,7 +33,7 @@ namespace AppStudio.DataProviders.Twitter
                     items = await GetUserTimeLineAsync(config.Query, maxRecords, parser);
                     break;
                 case TwitterQueryType.Search:
-                    items = await SearchAsync(config.Query, parser);
+                    items = await SearchAsync(config.Query, maxRecords, parser);
                     break;
                 case TwitterQueryType.Home:
                 default:
@@ -98,6 +98,42 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
+        public async Task<IEnumerable<TwitterSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords) where TSchema : SchemaBase
+        {
+            return await SearchAsync(hashTag, maxRecords, new TwitterSearchParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            try
+            {
+                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}", Uri.EscapeDataString(hashTag)));
+                OAuthRequest request = new OAuthRequest();
+                var rawResult = await request.ExecuteAsync(uri, _tokens);
+
+                var result = parser.Parse(rawResult);
+                return result
+                        .Take(maxRecords)
+                        .ToList();
+            }
+            catch (WebException wex)
+            {
+                HttpWebResponse response = wex.Response as HttpWebResponse;
+                if (response != null)
+                {
+                    if ((int)response.StatusCode == 429)
+                    {
+                        throw new TooManyRequestsException();
+                    }
+                    if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        throw new OAuthKeysRevokedException();
+                    }
+                }
+                throw;
+            }
+        }
+
         protected override void ValidateConfig(TwitterDataConfig config)
         {
             if (config.Query == null && config.QueryType != TwitterQueryType.Home)
@@ -132,34 +168,6 @@ namespace AppStudio.DataProviders.Twitter
             {
                 var uri = new Uri("https://api.twitter.com/1.1/statuses/home_timeline.json");
 
-                OAuthRequest request = new OAuthRequest();
-                var rawResult = await request.ExecuteAsync(uri, _tokens);
-
-                return parser.Parse(rawResult);
-            }
-            catch (WebException wex)
-            {
-                HttpWebResponse response = wex.Response as HttpWebResponse;
-                if (response != null)
-                {
-                    if ((int)response.StatusCode == 429)
-                    {
-                        throw new TooManyRequestsException();
-                    }
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        throw new OAuthKeysRevokedException();
-                    }
-                }
-                throw;
-            }
-        }
-
-        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, IParser<TSchema> parser) where TSchema : SchemaBase
-        {
-            try
-            {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}", Uri.EscapeDataString(hashTag)));
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 

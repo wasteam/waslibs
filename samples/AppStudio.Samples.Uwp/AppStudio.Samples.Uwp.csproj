@@ -142,9 +142,6 @@
     <Compile Include="ControlPages\Navigation2.xaml.cs">
       <DependentUpon>Navigation2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ControlPages\ReadingWebView.xaml.cs">
-      <DependentUpon>ReadingWebView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ControlPages\RelativeAndVirtualPage.xaml.cs">
       <DependentUpon>RelativeAndVirtualPage.xaml</DependentUpon>
     </Compile>
@@ -230,10 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\Navigation2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ControlPages\ReadingWebView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
