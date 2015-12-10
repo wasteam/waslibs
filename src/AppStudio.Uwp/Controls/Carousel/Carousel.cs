@@ -28,8 +28,8 @@ namespace AppStudio.Uwp.Controls
             _container = base.GetTemplateChild("container") as Panel;
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
-            BuildSlots();
-            CreateItems();
+            this.BuildSlots();
+            this.CreateItems();
 
             _container.ManipulationStarted += OnManipulationStarted;
             _container.ManipulationDelta += OnManipulationDelta;
