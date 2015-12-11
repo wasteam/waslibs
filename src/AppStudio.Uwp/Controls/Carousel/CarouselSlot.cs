@@ -48,11 +48,18 @@ namespace AppStudio.Uwp.Controls
 
         private void OnTapped(object sender, TappedRoutedEventArgs e)
         {
+            object parameter = null;
+            if (sender != null && sender is CarouselSlot)
+            {
+                CarouselSlot carouselSlot = sender as CarouselSlot;
+                parameter = carouselSlot.Content;
+            }
+
             if (ItemClickCommand != null)
             {
-                if (ItemClickCommand.CanExecute(this))
+                if (ItemClickCommand.CanExecute(parameter))
                 {
-                    ItemClickCommand.Execute(this);
+                    ItemClickCommand.Execute(parameter);
                 }
             }
         }

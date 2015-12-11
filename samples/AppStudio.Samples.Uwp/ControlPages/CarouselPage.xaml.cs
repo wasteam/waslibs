@@ -10,6 +10,7 @@ using Windows.Storage;
 
 using AppStudio.Uwp.Commands;
 using AppStudio.Uwp.Controls;
+using AppStudio.Uwp.Navigation;
 
 namespace AppStudio.Samples.Uwp.ControlPages
 {
@@ -49,13 +50,15 @@ namespace AppStudio.Samples.Uwp.ControlPages
             return FeedParser.Parse(await ReadFile("Assets/Content/" + name));
         }
 
-        public ICommand CarouselItemClickCommand
+        public ICommand ItemClickCommand
         {
-            get { return new RelayCommand<CarouselSlot>(CarouselItemClick); }
-        }
-        private void CarouselItemClick(CarouselSlot item)
-        {
-            // TODO: 
+            get
+            {
+                return new RelayCommand<FeedSchema>(async (item) =>
+                {
+                    await NavigationService.NavigateTo(new Uri(item.MediaUrl, UriKind.Absolute));
+                });
+            }
         }
 
         #region GetResponse
