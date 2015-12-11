@@ -1,15 +1,34 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System.Windows.Input;
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace AppStudio.Uwp.Controls
 {
-    class CarouselSlot : ContentControl
+    public class CarouselSlot : ContentControl
     {
         private Storyboard _storyboard = null;
 
-        public double X1 { get; set; }
+        internal CarouselSlot()
+        {
+            this.Tapped += OnTapped;
+        }
 
-        public void MoveX(double x, double duration = 0)
+        internal double X1 { get; set; }
+
+        #region ItemClickCommand
+        internal ICommand ItemClickCommand
+        {
+            get { return (ICommand)GetValue(ItemClickCommandProperty); }
+            set { SetValue(ItemClickCommandProperty, value); }
+        }
+
+        internal static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(CarouselSlot), new PropertyMetadata(null));
+        #endregion
+
+        internal void MoveX(double x, double duration = 0)
         {
             if (_storyboard != null)
             {
@@ -25,6 +44,17 @@ namespace AppStudio.Uwp.Controls
                 this.TranslateX(x);
             }
             X1 = x;
+        }
+
+        private void OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (ItemClickCommand != null)
+            {
+                if (ItemClickCommand.CanExecute(this))
+                {
+                    ItemClickCommand.Execute(this);
+                }
+            }
         }
     }
 }

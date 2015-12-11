@@ -49,14 +49,14 @@
                     <controls:HtmlViewer.ASideLeftTemplate>
                         <DataTemplate>
                             <Border Margin="12,0" Padding="6" Height="600" Background="#ddd" BorderThickness="1" BorderBrush="#444">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Text="Right ASide" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Text="Left ASide" />
                             </Border>
                         </DataTemplate>
                     </controls:HtmlViewer.ASideLeftTemplate>
                     <controls:HtmlViewer.ASideRightTemplate>
                         <DataTemplate>
                             <Border Margin="12,0" Padding="6" Height="600" Background="#ddd" BorderThickness="1" BorderBrush="#444">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Text="Left ASide" />
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Text="Right ASide" />
                             </Border>
                         </DataTemplate>
                     </controls:HtmlViewer.ASideRightTemplate>

@@ -2,11 +2,14 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+
+using AppStudio.Uwp.Commands;
+using AppStudio.Uwp.Controls;
 
 namespace AppStudio.Samples.Uwp.ControlPages
 {
@@ -44,6 +47,15 @@ namespace AppStudio.Samples.Uwp.ControlPages
         private async Task<IEnumerable<FeedSchema>> GetItems(string name)
         {
             return FeedParser.Parse(await ReadFile("Assets/Content/" + name));
+        }
+
+        public ICommand CarouselItemClickCommand
+        {
+            get { return new RelayCommand<CarouselSlot>(CarouselItemClick); }
+        }
+        private void CarouselItemClick(CarouselSlot item)
+        {
+            // TODO: 
         }
 
         #region GetResponse

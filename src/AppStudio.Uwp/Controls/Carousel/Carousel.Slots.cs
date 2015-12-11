@@ -11,7 +11,6 @@ namespace AppStudio.Uwp.Controls
 
         private double _slotWidth = 1;
 
-        //private int _index = -1;
         private double _offset = 0;
 
         private IEnumerable<Point> GetPositions(double slotWidth)
