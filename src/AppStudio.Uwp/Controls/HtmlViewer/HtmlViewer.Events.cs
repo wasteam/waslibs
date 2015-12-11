@@ -95,10 +95,15 @@ namespace AppStudio.Uwp.Controls
                 double leftWidth = DetermineASideLeftVisibility() == Visibility.Visible ? partWidth : 0.0;
                 double rightWidth = DetermineASideRightVisibility() == Visibility.Visible ? partWidth : 0.0;
 
-                string margin = $"{headerHeight}px {rightWidth}px {footerHeight}px {leftWidth}px";
-                await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
+                try
+                {
+                    // TODO: Review
+                    string margin = $"{headerHeight}px {rightWidth}px {footerHeight}px {leftWidth}px";
+                    await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
 
-                ArrangeParts(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
+                    ArrangeParts(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
+                }
+                catch { }
             }
         }
 

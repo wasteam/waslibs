@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -89,6 +90,30 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty AlignmentXProperty = DependencyProperty.Register("AlignmentX", typeof(AlignmentX), typeof(Carousel), new PropertyMetadata(AlignmentX.Left, OnInvalidate));
         #endregion
 
+        #region ItemClickCommand
+        public ICommand ItemClickCommand
+        {
+            get { return (ICommand)GetValue(ItemClickCommandProperty); }
+            set { SetValue(ItemClickCommandProperty, value); }
+        }
+
+        private static void ItemClickCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Carousel;
+            control.SetItemClickCommand(e.NewValue as ICommand);
+        }
+
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(Carousel), new PropertyMetadata(null, ItemClickCommandChanged));
+        #endregion
+
+        private void SetItemClickCommand(ICommand command)
+        {
+            foreach (CarouselSlot item in _container.Children)
+            {
+                item.ItemClickCommand = command;
+            }
+        }
+
         private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Carousel;
@@ -124,6 +149,7 @@ namespace AppStudio.Uwp.Controls
                     var control = new CarouselSlot
                     {
                         ContentTemplate = ContentTemplate,
+                        ItemClickCommand = ItemClickCommand,
                         HorizontalContentAlignment = HorizontalAlignment.Stretch,
                         VerticalContentAlignment = VerticalAlignment.Stretch,
                         UseLayoutRounding = false
