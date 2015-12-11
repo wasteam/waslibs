@@ -69,6 +69,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsFooterVisible" Value="{Binding IsFooterVisible, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideLeftVisible" Value="{Binding IsASideLeftVisible, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideRightVisible" Value="{Binding IsASideRightVisible, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideRightMaxWidth" Value="{Binding ASideRightMaxWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ContentAlignment" Value="{Binding ContentAlignment, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="FontSize" Value="{Binding FontSize, ElementName=htmlViewer, Mode=TwoWay}" Minimun="10" Maximun="50" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="Foreground" Value="{Binding Foreground, ElementName=htmlViewer, Mode=TwoWay}" />

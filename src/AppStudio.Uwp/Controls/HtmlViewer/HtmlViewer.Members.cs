@@ -150,6 +150,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty IsASideLeftVisibleProperty = DependencyProperty.Register("IsASideLeftVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
         #endregion
 
+        #region ASideLeftMaxWidth
+        public double ASideLeftMaxWidth
+        {
+            get { return (double)GetValue(ASideLeftMaxWidthProperty); }
+            set { SetValue(ASideLeftMaxWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ASideLeftMaxWidthProperty = DependencyProperty.Register("ASideLeftMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(double.PositiveInfinity));
+        #endregion
+
 
         #region ASideRight
         public object ASideRight
@@ -181,6 +191,15 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty IsASideRightVisibleProperty = DependencyProperty.Register("IsASideRightVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
         #endregion
 
+        #region ASideRightMaxWidth
+        public double ASideRightMaxWidth
+        {
+            get { return (double)GetValue(ASideRightMaxWidthProperty); }
+            set { SetValue(ASideRightMaxWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ASideRightMaxWidthProperty = DependencyProperty.Register("ASideRightMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(double.PositiveInfinity));
+        #endregion
 
         public async void NavigateToContent(string path)
         {
