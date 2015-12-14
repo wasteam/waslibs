@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace AppStudio.Uwp.Controls
 {
-    public class CarouselSlot : ContentControl
+    class CarouselSlot : ContentControl
     {
         private Storyboard _storyboard = null;
 
@@ -16,7 +16,7 @@ namespace AppStudio.Uwp.Controls
             this.Tapped += OnTapped;
         }
 
-        internal double X1 { get; set; }
+        internal double X { get; set; }
 
         #region ItemClickCommand
         internal ICommand ItemClickCommand
@@ -43,23 +43,20 @@ namespace AppStudio.Uwp.Controls
             {
                 this.TranslateX(x);
             }
-            X1 = x;
+            this.X = x;
         }
 
         private void OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            object parameter = null;
-            if (sender != null && sender is CarouselSlot)
-            {
-                CarouselSlot carouselSlot = sender as CarouselSlot;
-                parameter = carouselSlot.Content;
-            }
-
             if (ItemClickCommand != null)
             {
-                if (ItemClickCommand.CanExecute(parameter))
+                var contentControl = sender as ContentControl;
+                if (contentControl != null)
                 {
-                    ItemClickCommand.Execute(parameter);
+                    if (ItemClickCommand.CanExecute(contentControl.Content))
+                    {
+                        ItemClickCommand.Execute(contentControl.Content);
+                    }
                 }
             }
         }

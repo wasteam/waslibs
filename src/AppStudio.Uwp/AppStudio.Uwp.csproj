@@ -128,6 +128,7 @@
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
     <Compile Include="Controls\CarouselIndicator\CarouselIndicator.cs" />
     <Compile Include="Controls\Carousel\Carousel.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Items.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
     <Compile Include="Controls\Carousel\Carousel.Members.cs" />
     <Compile Include="Controls\Carousel\Carousel.Slots.cs" />
