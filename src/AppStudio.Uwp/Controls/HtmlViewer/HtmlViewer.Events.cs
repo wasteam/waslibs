@@ -111,11 +111,11 @@ namespace AppStudio.Uwp.Controls
         {
             string[] parts = value.Split('|');
 
-            double y = parts[1].AdDouble();
+            double y = parts[1].AsDouble();
             double hy = y - _header.ActualHeight * (IsHeaderVisible ? 1 : 0);
             double ly = hy;
             double ry = hy;
-            double fy = y + parts[3].AdDouble();
+            double fy = y + parts[3].AsDouble();
             fy = Math.Max(fy, this.ActualHeight - _footer.ActualHeight);
 
             double partWidth = GetPartWidth();

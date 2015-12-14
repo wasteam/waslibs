@@ -29,7 +29,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="Square">
-                <Grid Margin="6,6,0,0">
+                <Grid Margin="0,0,6,6">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="1*"/>

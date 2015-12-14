@@ -26,7 +26,7 @@ namespace AppStudio.Uwp
             return res >= 0 ? res : (res + module) % module;
         }
 
-        public static double AdDouble(this string str)
+        public static double AsDouble(this string str)
         {
             double d = 0.0;
             if (!String.IsNullOrEmpty(str))
