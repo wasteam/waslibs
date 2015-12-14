@@ -88,7 +88,7 @@ namespace AppStudio.Uwp.Controls
             _clip.Rect = new Rect(0, 0, this.ActualWidth - 10, this.ActualHeight);
 
             MeasureLayout();
-            await Task.Delay(50);
+            await Task.Delay(500);
             await SetHtmlDocumentMargin();
         }
 
