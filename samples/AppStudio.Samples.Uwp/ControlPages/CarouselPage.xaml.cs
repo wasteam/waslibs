@@ -2,11 +2,15 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+
+using AppStudio.Uwp.Commands;
+using AppStudio.Uwp.Controls;
+using AppStudio.Uwp.Navigation;
 
 namespace AppStudio.Samples.Uwp.ControlPages
 {
@@ -37,11 +41,24 @@ namespace AppStudio.Samples.Uwp.ControlPages
             this.Items7 = new List<FeedSchema>(await GetItems("StarWars7.xml"));
 
             this.DataContext = this;
+
+            carousel.SelectedIndex = 0;
         }
 
         private async Task<IEnumerable<FeedSchema>> GetItems(string name)
         {
             return FeedParser.Parse(await ReadFile("Assets/Content/" + name));
+        }
+
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                return new RelayCommand<FeedSchema>(async (item) =>
+                {
+                    await NavigationService.NavigateTo(new Uri(item.MediaUrl, UriKind.Absolute));
+                });
+            }
         }
 
         #region GetResponse

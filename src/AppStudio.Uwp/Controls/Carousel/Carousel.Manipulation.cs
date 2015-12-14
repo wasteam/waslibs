@@ -8,8 +8,9 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Carousel
     {
-        private void OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        private void OnManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
         {
+            e.TranslationBehavior.DesiredDeceleration = _slotWidth * 0.15 * 96.0 / (1000.0 * 1000.0);
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -21,11 +22,11 @@ namespace AppStudio.Uwp.Controls
         {
             if (_offset < _slotWidth / 2.0)
             {
-                AnimateNext(50);
+                AnimateNext(150);
             }
             else
             {
-                AnimatePrev(50);
+                AnimatePrev(150);
             }
         }
 
@@ -40,10 +41,6 @@ namespace AppStudio.Uwp.Controls
                     _idleTime = DateTime.Now.AddMilliseconds(duration + 50);
                     MoveOffsetInternal(delta, duration);
                 }
-                else
-                {
-                    return;
-                }
             }
             else
             {
@@ -53,37 +50,42 @@ namespace AppStudio.Uwp.Controls
 
         private void MoveOffsetInternal(double delta, double duration = 0)
         {
-            double x0 = GetLeftBound();
-            double x1 = Math.Round(x0 + _slotWidth * (MaxItems + 2), 2);
-
-            var controls = _container.Children.Cast<CarouselSlot>().ToArray();
-            for (int n = 0; n < controls.Length; n++)
+            if (_items.Count > 0)
             {
-                var control = controls[n];
-                var x = Math.Round(control.X1 + delta, 2);
-                if (x < x0 - 1)
-                {
-                    double inc = x - x0;
-                    control.MoveX(x1 + inc);
-                    control.Content = _items[(this.Index + (MaxItems + 1)).Mod(_items.Count)];
-                    _index = _index.IncMod(_items.Count);
-                    SetValue(IndexProperty, _index);
-                }
-                else if (x > x1 - 1)
-                {
-                    double inc = x - x1;
-                    control.MoveX(x0 + inc);
-                    control.Content = _items[(this.Index - 2).Mod(_items.Count)];
-                    _index = _index.DecMod(_items.Count);
-                    SetValue(IndexProperty, _index);
-                }
-                else
-                {
-                    control.MoveX(x, duration);
-                }
-            }
+                double x0 = GetLeftBound();
+                double x1 = Math.Round(x0 + _slotWidth * (MaxItems + 2), 2);
 
-            _offset = Math.Round((_offset + delta).Mod(_slotWidth), 2);
+                int newIndex = this.SelectedIndex;
+                var controls = _container.Children.Cast<CarouselSlot>().ToArray();
+                for (int n = 0; n < controls.Length; n++)
+                {
+                    var control = controls[n];
+                    var x = Math.Round(control.X + delta, 2);
+                    if (x < x0 - 1)
+                    {
+                        double inc = x - x0;
+                        control.MoveX(x1 + inc);
+                        control.Content = _items[(this.SelectedIndex + (MaxItems + 1)).Mod(_items.Count)];
+                        newIndex = this.SelectedIndex.IncMod(_items.Count);
+                    }
+                    else if (x > x1 - 1)
+                    {
+                        double inc = x - x1;
+                        control.MoveX(x0 + inc);
+                        control.Content = _items[(this.SelectedIndex - 2).Mod(_items.Count)];
+                        newIndex = this.SelectedIndex.DecMod(_items.Count);
+                    }
+                    else
+                    {
+                        control.MoveX(x, duration);
+                    }
+                }
+                _offset = Math.Round((_offset + delta).Mod(_slotWidth), 2);
+
+                _disableSelectedIndexCallback = true;
+                this.SelectedIndex = newIndex;
+                _disableSelectedIndexCallback = false;
+            }
         }
 
         private double GetLeftBound()
@@ -92,10 +94,10 @@ namespace AppStudio.Uwp.Controls
             switch (this.AlignmentX)
             {
                 case AlignmentX.Left:
-                    return -_slotWidth;
+                    return -Math.Round(_slotWidth, 2);
                 case AlignmentX.Right:
                     contentWidth -= _slotWidth;
-                    return _container.ActualWidth - contentWidth;
+                    return Math.Round(_container.ActualWidth - contentWidth, 2);
                 case AlignmentX.Center:
                 default:
                     return -Math.Round((contentWidth - _container.ActualWidth) / 2.0, 2);

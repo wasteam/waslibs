@@ -126,14 +126,21 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
+    <Compile Include="Controls\CarouselIndicator\CarouselIndicator.cs" />
     <Compile Include="Controls\Carousel\Carousel.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Items.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Members.cs" />
     <Compile Include="Controls\Carousel\Carousel.Slots.cs" />
     <Compile Include="Controls\Carousel\CarouselSlot.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Navigation.cs" />
+    <Compile Include="Controls\Indicator\Indicator.cs" />
+    <Compile Include="Controls\Indicator\Indicator.Items.cs" />
+    <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
@@ -175,6 +182,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\CarouselIndicator\CarouselIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Carousel\Carousel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -184,6 +195,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Indicator\Indicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

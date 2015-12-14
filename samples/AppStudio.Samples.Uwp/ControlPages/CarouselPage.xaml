@@ -29,7 +29,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="Square">
-                <Grid Margin="6,6,0,0">
+                <Grid Margin="0,0,6,6">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="1*"/>
@@ -45,13 +45,15 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="#222">
+    <Grid>
         <ctrls:DockView>
             <ctrls:DockView.Content>
-                <ScrollViewer>
+                <ScrollViewer Padding="0,0,18,0">
                     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                        <controls:Carousel Name="carousel" ItemsSource="{Binding Items7}" ContentTemplate="{StaticResource Hero}"
-                                   MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480" />
+                        <controls:Carousel Name="carousel" ItemsSource="{Binding Items7}" ContentTemplate="{StaticResource Hero}" ItemClickCommand="{Binding ItemClickCommand}"
+                                           MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480" />
+
+                        <controls:Indicator ItemsSource="{Binding ItemsSource, ElementName=carousel, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, ElementName=carousel, Mode=TwoWay}" Height="40" />
 
                         <StackPanel Margin="20,16,0,0">
                             <TextBlock Margin="4" Text="Alignment Left" FontSize="24" />
@@ -70,12 +72,15 @@
                 </ScrollViewer>
             </ctrls:DockView.Content>
             <ctrls:DockView.Pane>
-                <StackPanel Margin="28,24,12,24">
-                    <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="AlignmentX" Value="{Binding AlignmentX, ElementName=carousel, Mode=TwoWay}" />
-                    <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="AspectRatio" Value="{Binding AspectRatio, ElementName=carousel, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
-                    <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MinHeight" Value="{Binding MinHeight, ElementName=carousel, Mode=TwoWay}" Minimun="0" Maximun="800" />
-                    <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxHeight" Value="{Binding MaxHeight, ElementName=carousel, Mode=TwoWay}" Minimun="100" Maximun="800" />
-                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="28,24,12,24">
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="AlignmentX" Value="{Binding AlignmentX, ElementName=carousel, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="AspectRatio" Value="{Binding AspectRatio, ElementName=carousel, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxItems" Value="{Binding MaxItems, ElementName=carousel, Mode=TwoWay}" Minimun="1" Maximun="10" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MinHeight" Value="{Binding MinHeight, ElementName=carousel, Mode=TwoWay}" Minimun="0" Maximun="800" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxHeight" Value="{Binding MaxHeight, ElementName=carousel, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                    </StackPanel>
+                </ScrollViewer>
             </ctrls:DockView.Pane>
         </ctrls:DockView>
     </Grid>
