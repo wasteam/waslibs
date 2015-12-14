@@ -12,7 +12,7 @@
     <Grid>
         <ctrls:DockView>
             <ctrls:DockView.Content>
-                <controls:HtmlViewer x:Name="htmlViewer" Padding="12" Source="ms-appx:///Assets/Content/HtmlContent.html" Foreground="#222" FontSize="18">
+                <controls:HtmlViewer x:Name="htmlViewer" Padding="12" Source="ms-appx:///Assets/Content/HtmlContent.html" Foreground="#222" FontSize="18" ContentMinWidth="200">
                     <controls:HtmlViewer.HeaderTemplate>
                         <DataTemplate>
                             <controls:Relativebox AspectRatio="1.5" MinHeight="200" MaxHeight="400">
@@ -31,18 +31,9 @@
                     </controls:HtmlViewer.HeaderTemplate>
                     <controls:HtmlViewer.FooterTemplate>
                         <DataTemplate>
-                            <controls:Relativebox AspectRatio="1.5" MinHeight="200" MaxHeight="400">
-                                <Grid>
-                                    <Grid.Background>
-                                        <ImageBrush ImageSource="/Assets/Images/Windows10.jpg" Stretch="UniformToFill" />
-                                    </Grid.Background>
-                                    <controls:Virtualbox VirtualWidth="400" VirtualHeight="150" AlignmentX="Left" AlignmentY="Bottom">
-                                        <Border>
-                                            <TextBlock Margin="18,12" FontSize="24" TextAlignment="Left" VerticalAlignment="Bottom" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Text="Welcome to Windows 10. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci velit, dignissim nec sagittis a, bibendum vel justo. Duis vitae odio eu metus molestie placerat in quis nisl. Nunc eget leo et nisl scelerisque ultricies ac sit amet dui. In faucibus molestie ullamcorper. Ut libero nisl, placerat non volutpat a, lobortis et mauris. Donec egestas quam et quam pharetra bibendum congue turpis tempor. Morbi risus risus, lacinia sollicitudin ullamcorper in, sollicitudin eget purus. Morbi nec ligula est. Donec quis placerat velit. Etiam a eros elit. Proin libero lectus, suscipit id facilisis ut, faucibus vel dolor. Mauris laoreet ultrices arcu, et fermentum tortor tempus ut." />
-                                        </Border>
-                                    </controls:Virtualbox>
-                                </Grid>
-                            </controls:Relativebox>
+                            <Border Margin="12,0" Padding="6" Height="200" Background="#ddd" BorderThickness="1" BorderBrush="#444">
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Text="Footer" />
+                            </Border>
                         </DataTemplate>
                     </controls:HtmlViewer.FooterTemplate>
 
@@ -69,6 +60,8 @@
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsFooterVisible" Value="{Binding IsFooterVisible, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideLeftVisible" Value="{Binding IsASideLeftVisible, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideRightVisible" Value="{Binding IsASideRightVisible, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ContentMinWidth" Value="{Binding ContentMinWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideLeftMaxWidth" Value="{Binding ASideLeftMaxWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideRightMaxWidth" Value="{Binding ASideRightMaxWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ContentAlignment" Value="{Binding ContentAlignment, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="FontSize" Value="{Binding FontSize, ElementName=htmlViewer, Mode=TwoWay}" Minimun="10" Maximun="50" />

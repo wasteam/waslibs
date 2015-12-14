@@ -137,6 +137,7 @@
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Navigation.cs" />
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\Indicator.Items.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />

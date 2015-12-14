@@ -19,10 +19,11 @@
         win.external.notify(rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
     };
 
-    win.onresize = function () {
-        var rec = htmlDoc.getBoundingClientRect();
-        win.external.notify(rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
-    };
+    // TODO: Review
+    //win.onresize = function () {
+    //    var rec = htmlDoc.getBoundingClientRect();
+    //    win.external.notify(rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
+    //};
 
     var bottom = doc.createElement("div");
     doc.body.appendChild(bottom);
@@ -45,6 +46,10 @@ function setHtmlDocumentMargin(margin) {
 function getHtmlDocumentRect() {
     var rec = htmlDocument.getBoundingClientRect();
     return rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height;
+}
+
+function getContentHeight() {
+    return htmlDocument.getBoundingClientRect().height + "";
 }
 
 function setFontSize(size) {
