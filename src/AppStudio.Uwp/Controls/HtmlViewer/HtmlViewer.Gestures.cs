@@ -131,8 +131,8 @@ namespace AppStudio.Uwp.Controls
             _asideRight.TranslateY(hy);
 
             _header.Opacity = headerHeight > 0 ? (headerHeight + hy) / headerHeight : 0.0;
-            _asideLeft.Opacity = _asideLeft.ActualHeight > 0 ? (_asideLeft.ActualHeight + hy) / _asideLeft.ActualHeight : 0.0;
-            _asideRight.Opacity = _asideRight.ActualHeight > 0 ? (_asideRight.ActualHeight + hy) / _asideRight.ActualHeight : 0.0;
+            //_asideLeft.Opacity = _asideLeft.ActualHeight > 0 ? (_asideLeft.ActualHeight + hy) / _asideLeft.ActualHeight : 0.0;
+            //_asideRight.Opacity = _asideRight.ActualHeight > 0 ? (_asideRight.ActualHeight + hy) / _asideRight.ActualHeight : 0.0;
 
             _htmlBottom = headerHeight + height + footerHeight;
         }
