@@ -137,6 +137,9 @@
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\Indicator\Indicator.cs" />
+    <Compile Include="Controls\Indicator\Indicator.Items.cs" />
+    <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
@@ -191,6 +194,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Indicator\Indicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
