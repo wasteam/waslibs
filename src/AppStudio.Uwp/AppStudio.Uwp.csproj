@@ -138,6 +138,7 @@
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Navigation.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Resize.cs" />
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\Indicator.Items.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
@@ -176,8 +177,8 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
-    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
+    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
   <ItemGroup />
@@ -195,8 +196,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Indicator\Indicator.xaml">
       <Generator>MSBuild:Compile</Generator>

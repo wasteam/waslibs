@@ -24,6 +24,13 @@ namespace AppStudio.Uwp.Controls
 
             await _webView.LoadScriptAsync("AppStudio.Uwp.Controls.HtmlViewer.HtmlViewerScript.js");
 
+            var size = await _webView.InvokeScriptAsync("getHtmlDocumentRect");
+
+            System.Diagnostics.Debug.WriteLine("OnNavigationCompleted " + size);
+
+            _currentHeaderHeight = 0;
+            _currentFooterHeight = 0;
+
             await SetFontSize();
             await SetForeground();
             await SetContentAlignment(this.ContentAlignment);
@@ -33,9 +40,28 @@ namespace AppStudio.Uwp.Controls
             this.FadeIn();
         }
 
-        private void OnScriptNotify(object sender, NotifyEventArgs e)
+        private async void OnScriptNotify(object sender, NotifyEventArgs e)
         {
-            ArrangeParts(e.Value);
+            System.Diagnostics.Debug.WriteLine("OnScriptNotify " + e.Value);
+
+            string value = e.Value;
+            string[] parts = value.Substring(1).Split('|');
+
+            _docX = parts[0].AsDouble();
+            _docY = parts[1].AsDouble();
+            _docWidth = parts[2].AsDouble();
+            _docHeight = parts[3].AsDouble();
+
+            if (value.StartsWith("R"))
+            {
+                System.Diagnostics.Debug.WriteLine("DocumentResize");
+                await OnDocumentResize(_docX, _docY, _docWidth, _docHeight);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Scroll");
+                OnDocumentScroll(_docY);
+            }
         }
 
         private async Task SetFontSize()

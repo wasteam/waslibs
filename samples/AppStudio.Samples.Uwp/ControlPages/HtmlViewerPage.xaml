@@ -56,10 +56,10 @@
             <ctrls:DockView.Pane>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="28,24,12,24">
-                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsHeaderVisible" Value="{Binding IsHeaderVisible, ElementName=htmlViewer, Mode=TwoWay}" />
-                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsFooterVisible" Value="{Binding IsFooterVisible, ElementName=htmlViewer, Mode=TwoWay}" />
-                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideLeftVisible" Value="{Binding IsASideLeftVisible, ElementName=htmlViewer, Mode=TwoWay}" />
-                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="IsASideRightVisible" Value="{Binding IsASideRightVisible, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="HeaderVisibility" Value="{Binding HeaderVisibility, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="FooterVisibility" Value="{Binding FooterVisibility, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideLeftVisibility" Value="{Binding ASideLeftVisibility, ElementName=htmlViewer, Mode=TwoWay}" />
+                        <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideRightVisibility" Value="{Binding ASideRightVisibility, ElementName=htmlViewer, Mode=TwoWay}" />
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ContentMinWidth" Value="{Binding ContentMinWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideLeftMaxWidth" Value="{Binding ASideLeftMaxWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>
                         <ctrls:PropertySet Source="{Binding ElementName=htmlViewer}" Property="ASideRightMaxWidth" Value="{Binding ASideRightMaxWidth, ElementName=htmlViewer, Mode=TwoWay}" Minimun="200" Maximun="600" SmallChange="2"/>

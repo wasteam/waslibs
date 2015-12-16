@@ -45,14 +45,25 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(HtmlViewer), new PropertyMetadata(null));
         #endregion
 
-        #region IsHeaderVisible
-        public bool IsHeaderVisible
+        #region HeaderVisibility
+        public Visibility HeaderVisibility
         {
-            get { return (bool)GetValue(IsHeaderVisibleProperty); }
-            set { SetValue(IsHeaderVisibleProperty, value); }
+            get { return (Visibility)GetValue(HeaderVisibilityProperty); }
+            set { SetValue(HeaderVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register("IsHeaderVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
+        public static readonly DependencyProperty HeaderVisibilityProperty = DependencyProperty.Register("HeaderVisibility", typeof(Visibility), typeof(HtmlViewer), new PropertyMetadata(Visibility.Visible, AdornVisibilityChanged));
+        #endregion
+
+        #region HeaderWidth/HeaderHeight
+        public double HeaderWidth
+        {
+            get { return HeaderVisibility == Visibility ? _header.ActualWidth : 0.0; }
+        }
+        public double HeaderHeight
+        {
+            get { return HeaderVisibility == Visibility ? _header.ActualHeight : 0.0; }
+        }
         #endregion
 
 
@@ -76,14 +87,25 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty FooterTemplateProperty = DependencyProperty.Register("FooterTemplate", typeof(DataTemplate), typeof(HtmlViewer), new PropertyMetadata(null));
         #endregion
 
-        #region IsFooterVisible
-        public bool IsFooterVisible
+        #region FooterVisibility
+        public Visibility FooterVisibility
         {
-            get { return (bool)GetValue(IsFooterVisibleProperty); }
-            set { SetValue(IsFooterVisibleProperty, value); }
+            get { return (Visibility)GetValue(FooterVisibilityProperty); }
+            set { SetValue(FooterVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsFooterVisibleProperty = DependencyProperty.Register("IsFooterVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
+        public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register("FooterVisibility", typeof(Visibility), typeof(HtmlViewer), new PropertyMetadata(Visibility.Visible, AdornVisibilityChanged));
+        #endregion
+
+        #region FooterWidth/FooterHeight
+        public double FooterWidth
+        {
+            get { return FooterVisibility == Visibility ? _footer.ActualWidth : 0.0; }
+        }
+        public double FooterHeight
+        {
+            get { return FooterVisibility == Visibility ? _footer.ActualHeight : 0.0; }
+        }
         #endregion
 
 
@@ -107,14 +129,14 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ASideLeftTemplateProperty = DependencyProperty.Register("ASideLeftTemplate", typeof(DataTemplate), typeof(HtmlViewer), new PropertyMetadata(null));
         #endregion
 
-        #region IsASideLeftVisible
-        public bool IsASideLeftVisible
+        #region ASideLeftVisibility
+        public Visibility ASideLeftVisibility
         {
-            get { return (bool)GetValue(IsASideLeftVisibleProperty); }
-            set { SetValue(IsASideLeftVisibleProperty, value); }
+            get { return (Visibility)GetValue(ASideLeftVisibilityProperty); }
+            set { SetValue(ASideLeftVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsASideLeftVisibleProperty = DependencyProperty.Register("IsASideLeftVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
+        public static readonly DependencyProperty ASideLeftVisibilityProperty = DependencyProperty.Register("ASideLeftVisibility", typeof(Visibility), typeof(HtmlViewer), new PropertyMetadata(Visibility.Visible, AdornVisibilityChanged));
         #endregion
 
         #region ASideLeftMaxWidth
@@ -125,6 +147,17 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty ASideLeftMaxWidthProperty = DependencyProperty.Register("ASideLeftMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue, MeasureLayout));
+        #endregion
+
+        #region ASideLeftWidth/ASideLeftHeight
+        public double ASideLeftWidth
+        {
+            get { return ASideLeftVisibility == Visibility ? _asideLeft.ActualWidth : 0.0; }
+        }
+        public double ASideLeftHeight
+        {
+            get { return ASideLeftVisibility == Visibility ? _asideLeft.ActualHeight : 0.0; }
+        }
         #endregion
 
 
@@ -148,14 +181,14 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ASideRightTemplateProperty = DependencyProperty.Register("ASideRightTemplate", typeof(DataTemplate), typeof(HtmlViewer), new PropertyMetadata(null));
         #endregion
 
-        #region IsASideRightVisible
-        public bool IsASideRightVisible
+        #region ASideRightVisibility
+        public Visibility ASideRightVisibility
         {
-            get { return (bool)GetValue(IsASideRightVisibleProperty); }
-            set { SetValue(IsASideRightVisibleProperty, value); }
+            get { return (Visibility)GetValue(ASideRightVisibilityProperty); }
+            set { SetValue(ASideRightVisibilityProperty, value); }
         }
 
-        public static readonly DependencyProperty IsASideRightVisibleProperty = DependencyProperty.Register("IsASideRightVisible", typeof(bool), typeof(HtmlViewer), new PropertyMetadata(true, ComplementVisibilityChanged));
+        public static readonly DependencyProperty ASideRightVisibilityProperty = DependencyProperty.Register("ASideRightVisibility", typeof(Visibility), typeof(HtmlViewer), new PropertyMetadata(Visibility.Visible, AdornVisibilityChanged));
         #endregion
 
         #region ASideRightMaxWidth
@@ -166,6 +199,17 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty ASideRightMaxWidthProperty = DependencyProperty.Register("ASideRightMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue, MeasureLayout));
+        #endregion
+
+        #region ASideRightWidth/ASideRightHeight
+        public double ASideRightWidth
+        {
+            get { return ASideRightVisibility == Visibility ? _asideRight.ActualWidth : 0.0; }
+        }
+        public double ASideRightHeight
+        {
+            get { return ASideRightVisibility == Visibility ? _asideRight.ActualHeight : 0.0; }
+        }
         #endregion
 
 
@@ -179,15 +223,10 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ContentMinWidthProperty = DependencyProperty.Register("ContentMinWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(400.0, MeasureLayout));
         #endregion
 
-        private static async void MeasureLayout(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void MeasureLayout(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            // TODO: 
             var control = d as HtmlViewer;
-            if (control._webView != null)
-            {
-                control.MeasureLayout();
-                await Task.Delay(50);
-                await control.SetHtmlDocumentMargin();
-            }
         }
 
         private async Task SetContentAlignment(HorizontalAlignment horizontalAlignment)
@@ -195,8 +234,8 @@ namespace AppStudio.Uwp.Controls
             if (_webView != null && !DesignMode.DesignModeEnabled)
             {
                 string maxWidth = "4096px";
-                string marginLeft = "12px";
-                string marginRight = "12px";
+                string marginLeft = "0px";
+                string marginRight = "0px";
 
                 switch (horizontalAlignment)
                 {
@@ -222,17 +261,14 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private static async void ComplementVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static async void AdornVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as HtmlViewer;
             if (control._webView != null)
             {
-                control._header.SetVisibility(control.IsHeaderVisible);
-                control._footer.SetVisibility(control.IsFooterVisible);
-                control._asideLeft.SetVisibility(control.IsASideLeftVisible);
-                control._asideRight.SetVisibility(control.IsASideRightVisible);
+                //await control.SetHtmlDocumentMargin();
+                await control.OnControlResize();
             }
-            await control.SetHtmlDocumentMargin();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace AppStudio.Uwp.Controls
     {
         private WebView _webView = null;
 
+        private Grid _container = null;
         private ContentPresenter _header = null;
         private ContentPresenter _footer = null;
         private ContentPresenter _asideLeft = null;
@@ -33,6 +34,7 @@ namespace AppStudio.Uwp.Controls
         {
             _webView = base.GetTemplateChild("webView") as WebView;
 
+            _container = base.GetTemplateChild("container") as Grid;
             _header = base.GetTemplateChild("header") as ContentPresenter;
             _footer = base.GetTemplateChild("footer") as ContentPresenter;
             _asideLeft = base.GetTemplateChild("asideLeft") as ContentPresenter;
@@ -85,28 +87,8 @@ namespace AppStudio.Uwp.Controls
 
         private async void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            _clip.Rect = new Rect(0, 0, this.ActualWidth - 10, this.ActualHeight);
-
-            MeasureLayout();
-            await Task.Delay(500);
-            await SetHtmlDocumentMargin();
-        }
-
-        private void MeasureLayout()
-        {
-            double actualWidth = this.ActualWidth - MARGIN_RIGHT;
-            double partWidth = actualWidth / (new[] { IsASideLeftVisible, true, IsASideRightVisible }).Where(r => r).Count();
-
-            double leftWidth = Math.Min(IsASideLeftVisible ? partWidth : 0.0, ASideLeftMaxWidth);
-            double rightWidth = Math.Min(IsASideRightVisible ? partWidth : 0.0, ASideRightMaxWidth);
-            double contentWidth = Math.Max(actualWidth - (leftWidth + rightWidth), ContentMinWidth);
-
-            double remain = (actualWidth - (contentWidth + leftWidth + rightWidth)) / 2.0;
-            leftWidth = Math.Min(IsASideLeftVisible ? partWidth + remain : 0.0, ASideLeftMaxWidth);
-            rightWidth = Math.Min(IsASideRightVisible ? partWidth + remain : 0.0, ASideRightMaxWidth);
-
-            _asideLeft.Width = Math.Max(0, leftWidth);
-            _asideRight.Width = Math.Max(0, rightWidth);
+            await OnControlResize();
+            _clip.Rect = new Rect(0, 0, this.ActualWidth - 1, this.ActualHeight);
         }
     }
 }
