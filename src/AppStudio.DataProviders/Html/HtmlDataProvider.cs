@@ -11,16 +11,8 @@ namespace AppStudio.DataProviders.Html
 {
     public class HtmlDataProvider : DataProviderBase<LocalStorageDataConfig, HtmlSchema>
     {
-
-        public override async Task<IEnumerable<HtmlSchema>> LoadDataAsync(LocalStorageDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new HtmlParser());
-        }
-
-        public override async Task<IEnumerable<HtmlSchema>> LoadDataAsync(LocalStorageDataConfig config, IParser<HtmlSchema> parser)
-        {
-            Assertions(config, parser);
-
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
 
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
@@ -32,24 +24,13 @@ namespace AppStudio.DataProviders.Html
             }
         }
 
-        public override bool IsLocal
+        protected override IParser<HtmlSchema> GetDefaultParserInternal(LocalStorageDataConfig config)
         {
-            get
-            {
-                return true;
-            }
+            return new HtmlParser();
         }
 
-        private static void Assertions(LocalStorageDataConfig config, IParser<HtmlSchema> parser)
+        protected override void ValidateConfig(LocalStorageDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
             if (config.FilePath == null)
             {
                 throw new ConfigParameterNullException("FilePath");

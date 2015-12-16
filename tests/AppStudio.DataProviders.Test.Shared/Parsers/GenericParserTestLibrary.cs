@@ -10,8 +10,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
     [TestClass]
     public partial class GenericParserTestLibrary
     {
-        private static GenericParser<MenuSchema> MenuParser = new GenericParser<MenuSchema>();
-        private static GenericParser<CollectionSchema> CollectionParser = new GenericParser<CollectionSchema>();
+        private static JsonParser<MenuSchema> MenuParser = new JsonParser<MenuSchema>();
+        private static JsonParser<CollectionSchema> CollectionParser = new JsonParser<CollectionSchema>();
 
         [TestMethod]
         public async Task LoadMenuContactUs()

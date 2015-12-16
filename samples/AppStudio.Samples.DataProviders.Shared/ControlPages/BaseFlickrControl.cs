@@ -72,6 +72,13 @@ namespace AppStudio.Samples.DataProviders.ControlPages
             set { SetProperty(ref _flickrXmlResult, value); }
         }
 
+        private int _maxRecordsParam = 20;
+        public int MaxRecordsParam
+        {
+            get { return _maxRecordsParam; }
+            set { SetProperty(ref _maxRecordsParam, value); }
+        }
+
         public BaseFlickrControl()
         {
             FlickrQueryParam = "Seatle";
@@ -87,7 +94,7 @@ namespace AppStudio.Samples.DataProviders.ControlPages
                 FlickrItems.Clear();
                 FlickrXmlResult = await client.GetStringAsync(new Uri(FlickrQuery, UriKind.Absolute));
                 flickrDataProvider = new FlickrDataProvider();
-                var items = await flickrDataProvider.LoadDataAsync(new FlickrDataConfig() { Query = FlickrQueryParam, QueryType = FlickrQueryTypeSelectedItem });
+                var items = await flickrDataProvider.LoadDataAsync(new FlickrDataConfig() { Query = FlickrQueryParam, QueryType = FlickrQueryTypeSelectedItem }, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     FlickrItems.Add(item);

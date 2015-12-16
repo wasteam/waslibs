@@ -110,6 +110,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
     <None Include="project.json" />
   </ItemGroup>
@@ -118,22 +119,50 @@
     <Compile Include="Actions\ActionsCommandBar.cs" />
     <Compile Include="Cache\AppCache.cs" />
     <Compile Include="Cache\CachedContent.cs" />
+    <Compile Include="Cache\CacheSettings.cs" />
     <Compile Include="Cache\UserStorage.cs" />
     <Compile Include="Commands\ActionCommands.cs" />
     <Compile Include="Commands\ItemClickCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
+    <Compile Include="Controls\CarouselIndicator\CarouselIndicator.cs" />
+    <Compile Include="Controls\Carousel\Carousel.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Items.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Members.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Slots.cs" />
+    <Compile Include="Controls\Carousel\CarouselSlot.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Events.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Gestures.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Navigation.cs" />
+    <Compile Include="Controls\HtmlViewer\HtmlViewer.Resize.cs" />
+    <Compile Include="Controls\Indicator\Indicator.cs" />
+    <Compile Include="Controls\Indicator\Indicator.Items.cs" />
+    <Compile Include="Controls\Indicator\IndicatorItem.cs" />
+    <Compile Include="Controls\Relativebox\Relativebox.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
+    <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToSizeConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />
     <Compile Include="DataSync\ObservableCollectionExtensions.cs" />
     <Compile Include="Controls\ErrorNotificationControl\ErrorNotificationControl.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Extensions\SizeExtensions.cs" />
+    <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
+    <Compile Include="Navigation\NavigationInitializationException.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="ObservableBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,13 +175,35 @@
     <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />
     <Compile Include="Controls\VisualBreakpoints\Extensions.cs" />
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
+    <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
+    <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\CarouselIndicator\CarouselIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Carousel\Carousel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ErrorNotificationControl\ErrorNotificationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Indicator\Indicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Relativebox\Relativebox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -161,6 +212,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\SectionList\SectionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Virtualbox\Virtualbox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

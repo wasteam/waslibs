@@ -9,15 +9,8 @@ namespace AppStudio.DataProviders.Bing
 {
     public class BingDataProvider : DataProviderBase<BingDataConfig, BingSchema>
     {
-        public override async Task<IEnumerable<BingSchema>> LoadDataAsync(BingDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(BingDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new BingParser());
-        }
-
-        public override async Task<IEnumerable<BingSchema>> LoadDataAsync(BingDataConfig config, IParser<BingSchema> parser)
-        {
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = new Uri(string.Format("http://www.bing.com/search?q={0}&loc:{1}&format=rss", WebUtility.UrlEncode(config.Query), config.Country.GetStringValue()))
@@ -32,16 +25,13 @@ namespace AppStudio.DataProviders.Bing
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private static void Assertions(BingDataConfig config, IParser<BingSchema> parser)
+        protected override IParser<BingSchema> GetDefaultParserInternal(BingDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new BingParser();
+        }
+
+        protected override void ValidateConfig(BingDataConfig config)
+        {
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

@@ -54,7 +54,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new BingDataProvider();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new BingDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<BingSchema>(new BingDataConfig(), 20, null));
         }
     }
 }

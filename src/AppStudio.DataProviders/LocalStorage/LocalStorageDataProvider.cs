@@ -11,15 +11,8 @@ namespace AppStudio.DataProviders.LocalStorage
 {
     public class LocalStorageDataProvider<T> : DataProviderBase<LocalStorageDataConfig, T> where T : SchemaBase
     {
-        public override async Task<IEnumerable<T>> LoadDataAsync(LocalStorageDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new GenericParser<T>());
-        }
-
-        public override async Task<IEnumerable<T>> LoadDataAsync(LocalStorageDataConfig config, IParser<T> parser)
-        {
-            Assertions(config, parser);
-
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
 
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
@@ -31,24 +24,13 @@ namespace AppStudio.DataProviders.LocalStorage
             }
         }
 
-        public override bool IsLocal
+        protected override IParser<T> GetDefaultParserInternal(LocalStorageDataConfig config)
         {
-            get
-            {
-                return true;
-            }
+            return new JsonParser<T>();
         }
 
-        private static void Assertions(LocalStorageDataConfig config, IParser<T> parser)
+        protected override void ValidateConfig(LocalStorageDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
             if (config.FilePath == null)
             {
                 throw new ConfigParameterNullException("FilePath");

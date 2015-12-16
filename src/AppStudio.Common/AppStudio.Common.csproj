@@ -79,6 +79,7 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AppStudio.Common.symbols.nuspec" />
     <None Include="AppStudio.Common.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

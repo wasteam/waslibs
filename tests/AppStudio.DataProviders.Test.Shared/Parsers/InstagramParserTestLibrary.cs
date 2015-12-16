@@ -21,13 +21,13 @@ namespace AppStudio.DataProviders.Test.Parsers
             Assert.IsNotNull(data);
             Assert.AreEqual(20, data.Count());
             var item = data.First();
-            Assert.AreEqual("1038264559833689680_256679330", item._id);
-            Assert.AreEqual("microsoftlumia", item.Author);
-            Assert.AreEqual(GetInstagramDateTime("1437990802"), item.Published);
-            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11325689_473148866191760_1467431584_n.jpg", item.ImageUrl);
-            Assert.AreEqual("https://instagram.com/p/5oqB2_w65Q/", item.SourceUrl);
-            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s150x150/e15/11325689_473148866191760_1467431584_n.jpg", item.ThumbnailUrl);
-            Assert.AreEqual("regram @kelvin_jayd\nEarly morning shot with the lumia535 camera @ the lakeshore.#microsoftlumia #microsoftlumiauk #shotonmylumia #Lumia535", item.Title);
+            Assert.AreEqual("1121786263690425541_1709772956", item._id);
+            Assert.AreEqual("a.mid.e", item.Author);
+            Assert.AreEqual(GetInstagramDateTime("1447947365"), item.Published);
+            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xat1/t51.2885-15/s640x640/sh0.08/e35/12276732_1656184051306956_1776538106_n.jpg", item.ImageUrl);
+            Assert.AreEqual("https://instagram.com/p/-RYqnRLjTF/", item.SourceUrl);
+            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xat1/t51.2885-15/s320x320/e35/12276732_1656184051306956_1776538106_n.jpg", item.ThumbnailUrl);
+            Assert.AreEqual("#sunset #unedited #noedit #lumiacamera #dubai #lowlightphotography #globalvillage #mydubai #lumiaphotography #microsoftlumia #lumia640 #nban #windowsphone #thelumians #globalvillageuae", item.Title);
         }
 
         [TestMethod]
@@ -40,13 +40,13 @@ namespace AppStudio.DataProviders.Test.Parsers
             Assert.IsNotNull(data);
             Assert.AreEqual(20, data.Count());
             var item = data.First();
-            Assert.AreEqual("1039007807387339973_1560042946", item._id);
-            Assert.AreEqual("jeet7t", item.Author);
-            Assert.AreEqual(GetInstagramDateTime("1438079404"), item.Published);
-            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xfp1/t51.2885-15/s640x640/e35/sh0.08/11199427_836943496412921_1916259112_n.jpg", item.ImageUrl);
-            Assert.AreEqual("https://instagram.com/p/5rTBiOLgzF/", item.SourceUrl);
-            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xfp1/t51.2885-15/s150x150/e15/11199427_836943496412921_1916259112_n.jpg", item.ThumbnailUrl);
-            Assert.AreEqual("#microsoft #535", item.Title);
+            Assert.AreEqual("1038988244373352542_2112437955", item._id);
+            Assert.AreEqual("iind26", item.Author);
+            Assert.AreEqual(GetInstagramDateTime("1438077072"), item.Published);
+            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xft1/t51.2885-15/e15/11264664_537348226422324_77284209_n.jpg", item.ImageUrl);
+            Assert.AreEqual("https://instagram.com/p/5rOk2vrjBe/", item.SourceUrl);
+            Assert.AreEqual("https://scontent.cdninstagram.com/hphotos-xft1/t51.2885-15/s320x320/e15/11264664_537348226422324_77284209_n.jpg", item.ThumbnailUrl);
+            Assert.AreEqual("Tidak jauh dari pohon kelapa....#PohonKelapa #CoconutTree #MatahariTerbenam #Sunset #Nokia #NokiaLumia #nokiaLover #lumia #Lumia800 #Lumialover #WindowsPhone #grateful #Alhamdulillah #LatePost", item.Title);
         }
 
         [TestMethod]

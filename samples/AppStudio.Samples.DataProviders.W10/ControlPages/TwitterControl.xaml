@@ -33,6 +33,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="ConsumerKey" VerticalAlignment="Center"/>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ConsumerKey, Mode=TwoWay}" VerticalAlignment="Center"/>
@@ -47,6 +48,8 @@
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="QueryType" VerticalAlignment="Center"/>
                 <ComboBox Grid.Row="5" Grid.Column="1" x:Name="twitterQueryTypeCombo" ItemsSource="{Binding TwitterQueryTypeComboItems}" SelectedItem="{Binding TwitterQueryTypeSelectedItem, Mode=TwoWay}">
                 </ComboBox>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Max Records" VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="6" Grid.Column="1" Text="{Binding MaxRecordsParam, Mode=TwoWay}" VerticalAlignment="Center" Width="60" HorizontalAlignment="Left"/>
             </Grid>
             <Button Content="Send Request" Margin="0,12,0,0" Click="TwitterRequestClick"/>            
         </StackPanel>

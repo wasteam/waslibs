@@ -10,28 +10,26 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <base:BaseControlPage.Resources>
-        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPDevices.json"/>
-    </base:BaseControlPage.Resources>
-    <Grid Background="{Binding Active.background, Source={StaticResource vbp}}">
+    <Grid Background="{Binding Active.background, ElementName=vbp}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPDevices.json"/>
         <StackPanel Margin="12,0">
             <TextBlock Text="About Visual Break Points" FontSize="20"/>
             <TextBlock Text="With Visual Break Points you can generate property groups that will change your XAML controls depending of App window width. In this case, we define properties for phones from 0px to 720px, for tablets from 720px to 1680px and desktop from 1680px." TextWrapping="Wrap" FontSize="18" FontWeight="Light"/>
             <TextBlock Text="Brackground" Margin="0,12,0,0" FontSize="20"/>
-            <TextBlock Text="{Binding Active.background, Source={StaticResource vbp}}" FontWeight="Bold" FontSize="18"/>
+            <TextBlock Text="{Binding Active.background, ElementName=vbp}" FontWeight="Bold" FontSize="18"/>
             <TextBlock Text="Selected" Margin="0,12,0,0" FontSize="20"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Mobile" FontWeight="{Binding Active.phoneFontWeight, Source={StaticResource vbp}}"/>
+                <TextBlock Text="Mobile" FontWeight="{Binding Active.phoneFontWeight, ElementName=vbp}"/>
                 <TextBlock Text="|" Margin="12,0,0,0"/>
-                <TextBlock Text="Tablet" FontWeight="{Binding Active.tabletFontWeight, Source={StaticResource vbp}}" Margin="12,0,0,0"/>
+                <TextBlock Text="Tablet" FontWeight="{Binding Active.tabletFontWeight, ElementName=vbp}" Margin="12,0,0,0"/>
                 <TextBlock Text="|" Margin="12,0,0,0"/>
-                <TextBlock Text="Desktop" FontWeight="{Binding Active.desktopFontWeight, Source={StaticResource vbp}}" Margin="12,0,0,0"/>
+                <TextBlock Text="Desktop" FontWeight="{Binding Active.desktopFontWeight, ElementName=vbp}" Margin="12,0,0,0"/>
             </StackPanel>
         </StackPanel>
-        <Image Margin="12,0" Grid.Row="1" Source="{Binding Active.image, Source={StaticResource vbp}}" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top"/>
+        <Image Margin="12,0" Grid.Row="1" Source="{Binding Active.image, ElementName=vbp}" HorizontalAlignment="Left" Stretch="None" VerticalAlignment="Top"/>
     </Grid>
     </base:BaseControlPage>

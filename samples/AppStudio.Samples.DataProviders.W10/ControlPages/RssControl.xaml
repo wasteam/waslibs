@@ -28,9 +28,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Url" VerticalAlignment="Center"/>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RssQuery, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Max Records" VerticalAlignment="Center"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding MaxRecordsParam, Mode=TwoWay}" VerticalAlignment="Center" Width="60" HorizontalAlignment="Left"/>
             </Grid>
             <Button Content="Send Request" Margin="0,12,0,0" Click="RssRequestClick"/>
         </StackPanel>

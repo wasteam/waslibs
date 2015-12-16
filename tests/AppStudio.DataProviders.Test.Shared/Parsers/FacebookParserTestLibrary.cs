@@ -21,14 +21,14 @@ namespace AppStudio.DataProviders.Test.Parsers
             Assert.IsNotNull(data);
             Assert.AreEqual(24, data.Count());
             var item = data.First();
-            Assert.AreEqual("8195378771_10153163840333772", item._id);
+            Assert.AreEqual("8195378771_10153381796463772", item._id);
             Assert.AreEqual("Microsoft Lumia", item.Author);
-            Assert.AreEqual("https://www.facebook.com/MicrosoftLumia/photos/a.107698418771.94817.8195378771/10153163840333772/?type=1", item.FeedUrl);
-            Assert.AreEqual("https://scontent.xx.fbcdn.net/hphotos-xat1/v/t1.0-9/p130x130/11800619_10153163840333772_8431946436286493498_n.png?oh=e42a3a4764c38e49fcdd759a2dd31725&oe=564EFCCF", item.ImageUrl);
-            Assert.AreEqual(DateTime.Parse("2015-07-28T15:43:28+0000"), item.PublishDate);
-            Assert.AreEqual("Power that delivers. #Lumia640XL http://lumia.ms/1yc8fI9", item.Content);
-            Assert.AreEqual("Power that delivers. #Lumia640XL http://lumia.ms/1yc8fI9", item.Summary);
-            Assert.AreEqual("Power that delivers. #Lumia640XL http://lumia.ms/1yc8fI9", item.Title);
+            Assert.AreEqual("https://www.facebook.com/MicrosoftLumia/photos/a.107698418771.94817.8195378771/10153381796463772/?type=3", item.FeedUrl);
+            Assert.AreEqual("https://scontent.xx.fbcdn.net/hphotos-xta1/v/t1.0-9/p720x720/12239745_10153381796463772_6633006179156403040_n.jpg?oh=ffda67cb1682805215074cfb323b90d7&oe=56B03F40", item.ImageUrl);
+            Assert.AreEqual(DateTime.Parse("2015-11-18T12:00:00+0000"), item.PublishDate);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Content);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Summary);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Title);
         }
 
         [TestMethod]
@@ -39,16 +39,16 @@ namespace AppStudio.DataProviders.Test.Parsers
             var data = Parser.Parse(plainContent);
 
             Assert.IsNotNull(data);
-            Assert.AreEqual(17, data.Count());
+            Assert.AreEqual(22, data.Count());
             var item = data.First();
-            Assert.AreEqual("19034719952_10150889065674953", item._id);
+            Assert.AreEqual("19034719952_10150941103834953", item._id);
             Assert.AreEqual("Real Madrid C.F.", item.Author);
-            Assert.AreEqual("https://www.facebook.com/RealMadrid/videos/10150889065674953/", item.FeedUrl);
-            Assert.AreEqual("https://fbcdn-vthumb-a.akamaihd.net/hvthumb-ak-xat1/v/t15.0-10/s130x130/11407376_10150889068494953_75849734_n.jpg?oh=74f550d45aba00fc64aafca89fd2e82a&oe=5646BEB3&__gda__=1448570675_a98157965d63ae7bc676188d96c12e1e", item.ImageUrl);
-            Assert.AreEqual(DateTime.Parse("2015-07-28T13:50:20+0000"), item.PublishDate);
-            Assert.AreEqual("Did you miss Benzema\u2019s goal against Manchester City or James\u2019 against Inter? You can watch all 7 goals that Madrid has scored so far on their #RMTour2015 here.\n\n\u00bfTe perdiste el golazo de Benzema ante el Manchester City o el de James ante el Inter? Aqu\u00ed puedes ver los 7 tantos que el Madrid ha marcado en su #RMTour2015 hasta el momento.", item.Content);
-            Assert.AreEqual("Did you miss Benzema\u2019s goal against Manchester City or James\u2019 against Inter? You can watch all 7 goals that Madrid has scored so far on their #RMTour2015 here.\n\n\u00bfTe perdiste el golazo de Benzema ante el Manchester City o el de James ante el Inter? Aqu\u00ed puedes ver los 7 tantos que el Madrid ha marcado en su #RMTour2015 hasta el momento.", item.Summary);
-            Assert.AreEqual("Did you miss Benzema\u2019s goal against Manchester City or James\u2019 against Inter? You can watch all 7 goals that Madrid has scored so far on their #RMTour2015 here.\n\n\u00bfTe perdiste el golazo de Benzema ante el Manchester City o el de James ante el Inter? Aqu\u00ed puedes ver los 7 tantos que el Madrid ha marcado en su #RMTour2015 hasta el momento.", item.Title);
+            Assert.AreEqual("https://www.facebook.com/RealMadrid/videos/10150941103834953/", item.FeedUrl);
+            Assert.AreEqual("https://scontent.xx.fbcdn.net/hvthumb-xpf1/v/t15.0-10/11919429_10150941173049953_871677567_n.jpg?oh=cacaee6eb5d5c9ed7f94bcfbf595677d&oe=56F7994B", item.ImageUrl);
+            Assert.AreEqual(DateTime.Parse("2015-11-19T15:06:16+0000"), item.PublishDate);
+            Assert.AreEqual("We are Live from #RMCity\n\u26bd\ufe0f\ud83d\ude4c\nEstamos en Vivo desde #RMCity", item.Content);
+            Assert.AreEqual("We are Live from #RMCity\n\u26bd\ufe0f\ud83d\ude4c\nEstamos en Vivo desde #RMCity", item.Summary);
+            Assert.AreEqual("We are Live from #RMCity\n\u26bd\ufe0f\ud83d\ude4c\nEstamos en Vivo desde #RMCity", item.Title);
         }
 
         [TestMethod]

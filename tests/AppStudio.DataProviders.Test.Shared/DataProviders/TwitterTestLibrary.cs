@@ -143,7 +143,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             TwitterDataProvider dataProvider = new TwitterDataProvider(new TwitterOAuthTokens());
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new TwitterDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<TwitterSchema>(new TwitterDataConfig(), 20, null));
         }
     }
 }

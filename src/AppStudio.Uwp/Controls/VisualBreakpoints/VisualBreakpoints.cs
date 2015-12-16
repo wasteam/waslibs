@@ -12,11 +12,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
-    public sealed class VisualBreakpoints : ObservableBase
+    public sealed class VisualBreakpoints : Control, INotifyPropertyChanged
     {
         private static Dictionary<string, string> _configCache = new Dictionary<string, string>();
         private static SemaphoreSlim readFileSemaphore = new SemaphoreSlim(1);
@@ -30,22 +32,81 @@ namespace AppStudio.Uwp.Controls
         public string ConfigFile
         {
             get { return _configFile; }
-            set
-            {
-                _configFile = value;
-
-                Initialize();
-            }
+            set { _configFile = value; }
         }
 
         public dynamic Active { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public VisualBreakpoints()
         {
             Active = new ExpandoObject();
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                Loaded += VisualBreakpoints_Loaded;
+                Unloaded += VisualBreakpoints_Unloaded;
+            }
+        }
 
-            Window.Current.SizeChanged += ((sender, e) => { TrySetActive(e.Size.Width); });
-            TrySetActive(Window.Current.Bounds.Width);
+        private void VisualBreakpoints_Unloaded(object sender, RoutedEventArgs e)
+        {
+            var container = Parent as FrameworkElement;
+            if (container != null)
+            {
+                container.SizeChanged -= Container_SizeChanged;
+            }
+            else
+            {
+                Window.Current.SizeChanged -= Window_SizeChanged;
+            }
+        }
+
+        private async void VisualBreakpoints_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Initialize();
+
+            var container = Parent as FrameworkElement;
+            double initialWidth = 0;
+            if (container != null)
+            {
+                container.SizeChanged += Container_SizeChanged;
+                initialWidth = container.ActualWidth;
+            }
+            else
+            {
+                Window.Current.SizeChanged += Window_SizeChanged;
+                initialWidth = Window.Current.Bounds.Width;
+            }
+
+            TrySetActive(initialWidth);
+        }
+
+        private void Container_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TrySetActive(e.NewSize.Width);
+        }
+
+        private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+        {
+            TrySetActive(e.Size.Width);
+        }
+
+        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value)) return false;
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void TrySetActive(double width)
@@ -53,6 +114,7 @@ namespace AppStudio.Uwp.Controls
             if (_breakpointsIndex != null && _breakpointsIndex.Length > 0)
             {
                 var currentActive = _breakpointsIndex.FirstOrDefault(b => width < b);
+
                 if (currentActive != _lastActive)
                 {
                     var activeBreakpoint = GetActiveBreakpoint(currentActive);
@@ -95,11 +157,9 @@ namespace AppStudio.Uwp.Controls
             return activeBreakpoint;
         }
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             await InitBreakPoints();
-
-            TrySetActive(Window.Current.Bounds.Width);
         }
 
         private async Task InitBreakPoints()

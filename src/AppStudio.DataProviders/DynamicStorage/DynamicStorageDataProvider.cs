@@ -8,18 +8,11 @@ namespace AppStudio.DataProviders.DynamicStorage
 {
     public class DynamicStorageDataProvider<T> : DataProviderBase<DynamicStorageDataConfig, T> where T : SchemaBase
     {
-        public override async Task<IEnumerable<T>> LoadDataAsync(DynamicStorageDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(DynamicStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            return await LoadDataAsync(config, new GenericParser<T>());
-        }
-
-        public override async Task<IEnumerable<T>> LoadDataAsync(DynamicStorageDataConfig config, IParser<T> parser)
-        { 
-            Assertions(config, parser);
-
             var settings = new HttpRequestSettings
             {
-                RequestedUri = new Uri(string.Format("{0}&pageIndex={1}&blockSize={2}", config.Url, config.PageIndex, config.BlockSize)),
+                RequestedUri = new Uri(string.Format("{0}&pageIndex={1}&blockSize={2}", config.Url, config.PageIndex, maxRecords)),
                 UserAgent = "NativeHost"
             };
 
@@ -37,16 +30,13 @@ namespace AppStudio.DataProviders.DynamicStorage
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private static void Assertions(DynamicStorageDataConfig config, IParser<T> parser)
+        protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
         {
-            if (config == null)
-            {
-                throw new ConfigNullException();
-            }
-            if (parser == null)
-            {
-                throw new ParserNullException();
-            }
+            return new JsonParser<T>();
+        }
+
+        protected override void ValidateConfig(DynamicStorageDataConfig config)
+        {
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException("Url");

@@ -94,7 +94,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new DynamicStorageDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<CollectionSchema>(new DynamicStorageDataConfig(), 20, null));
         }
 
         [TestMethod]
@@ -102,7 +102,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new LocalStorageDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<CollectionSchema>(new LocalStorageDataConfig(), 20, null));
         }
     }
 

@@ -32,6 +32,9 @@
             <PivotItem Header="Twitter">
                 <controlPages:TwitterControl/>
             </PivotItem>
+            <PivotItem Header="WordPress">
+                <controlPages:WordPressControl/>
+            </PivotItem>
             <PivotItem Header="Local Storage">
                 <controlPages:LocalStorageControl/>
             </PivotItem>

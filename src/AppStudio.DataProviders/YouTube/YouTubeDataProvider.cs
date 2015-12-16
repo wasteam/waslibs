@@ -19,60 +19,57 @@ namespace AppStudio.DataProviders.YouTube
             _tokens = tokens;
         }
 
-        public override async Task<IEnumerable<YouTubeSchema>> LoadDataAsync(YouTubeDataConfig config)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(YouTubeDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            IParser<YouTubeSchema> parser = null;
-            if (config != null)
-            {
-                switch (config.QueryType)
-                {
-                    case YouTubeQueryType.Videos:
-                        parser = new YouTubeSearchParser();
-                        break;
-                    case YouTubeQueryType.Channels:
-                    case YouTubeQueryType.Playlist:
-                    default:
-                        parser = new YouTubePlaylistParser();
-                        break;
-                }
-            }
-
-            return await LoadDataAsync(config, parser);
-        }
-
-        public override async Task<IEnumerable<YouTubeSchema>> LoadDataAsync(YouTubeDataConfig config, IParser<YouTubeSchema> parser)
-        {
-            Assertions(config, parser);
-
-            IEnumerable<YouTubeSchema> result;
+            IEnumerable<TSchema> result;
 
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Channels:
-                    result = await LoadChannelAsync(config.Query, parser);
+                    result = await LoadChannelAsync(config.Query, maxRecords, parser);
                     break;
                 case YouTubeQueryType.Videos:
-                    result = await SearchAsync(config.Query, parser);
+                    result = await SearchAsync(config.Query, maxRecords, parser);
                     break;
                 case YouTubeQueryType.Playlist:
                 default:
-                    result = await LoadPlaylistAsync(config.Query, parser);
+                    result = await LoadPlaylistAsync(config.Query, maxRecords, parser);
                     break;
             }
 
             return result;
         }
 
-        private void Assertions(YouTubeDataConfig config, IParser<YouTubeSchema> parser)
+        protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
         {
-            if (config == null)
+            switch (config.QueryType)
             {
-                throw new ConfigNullException();
+                case YouTubeQueryType.Videos:
+                    return new YouTubeSearchParser();
+                case YouTubeQueryType.Channels:
+                case YouTubeQueryType.Playlist:
+                default:
+                    return new YouTubePlaylistParser();
             }
-            if (parser == null)
+        }
+
+        public async Task<IEnumerable<YouTubeSchema>> LoadChannelAsync(string channel, int maxRecords)
+        {
+            return await LoadChannelAsync(channel, maxRecords, new YouTubePlaylistParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var listId = await GetUploadVideosListId(channel, maxRecords);
+            if (!string.IsNullOrEmpty(listId))
             {
-                throw new ParserNullException();
+                return await LoadPlaylistAsync(listId, maxRecords, parser);
             }
+            return new TSchema[0];
+        }
+
+        protected override void ValidateConfig(YouTubeDataConfig config)
+        {
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");
@@ -87,22 +84,11 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
-        private async Task<IEnumerable<YouTubeSchema>> LoadChannelAsync(string channel, IParser<YouTubeSchema> parser)
-        {
-            IEnumerable<YouTubeSchema> result = new ObservableCollection<YouTubeSchema>();
-            var listId = await GetUploadVideosListId(channel);
-            if (!string.IsNullOrEmpty(listId))
-            {
-                result = await LoadPlaylistAsync(listId, parser);
-            }
-            return result;
-        }
-
-        private async Task<IEnumerable<YouTubeSchema>> SearchAsync(string query, IParser<YouTubeSchema> parser)
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = GetSearchUrl(query)
+                RequestedUri = GetSearchUrl(query, maxRecords)
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
@@ -110,7 +96,7 @@ namespace AppStudio.DataProviders.YouTube
             {
                 return parser.Parse(result.Result);
             }
-            
+
             if (result.StatusCode == HttpStatusCode.Forbidden)
             {
                 throw new OAuthKeysRevokedException();
@@ -119,11 +105,32 @@ namespace AppStudio.DataProviders.YouTube
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private async Task<string> GetUploadVideosListId(string channel)
+        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             HttpRequestSettings settings = new HttpRequestSettings
             {
-                RequestedUri = GetChannelUrl(channel)
+                RequestedUri = GetPlaylistUrl(playlistId, maxRecords)
+            };
+
+            var requestResult = await HttpRequest.DownloadAsync(settings);
+            if (requestResult.Success)
+            {
+                return parser.Parse(requestResult.Result);
+            }
+
+            if (requestResult.StatusCode == HttpStatusCode.Forbidden)
+            {
+                throw new OAuthKeysRevokedException();
+            }
+
+            throw new RequestFailedException();
+        }
+
+        private async Task<string> GetUploadVideosListId(string channel, int maxRecords)
+        {
+            HttpRequestSettings settings = new HttpRequestSettings
+            {
+                RequestedUri = GetChannelUrl(channel, maxRecords)
             };
 
             var requestResult = await HttpRequest.DownloadAsync(settings);
@@ -143,40 +150,19 @@ namespace AppStudio.DataProviders.YouTube
             return string.Empty;
         }
 
-        private async Task<IEnumerable<YouTubeSchema>> LoadPlaylistAsync(string playlistId, IParser<YouTubeSchema> parser)
+        private Uri GetChannelUrl(string channel, int maxRecords)
         {
-            HttpRequestSettings settings = new HttpRequestSettings
-            {
-                RequestedUri = GetPlaylistUrl(playlistId)
-            };
-
-            var requestResult = await HttpRequest.DownloadAsync(settings);
-            if (requestResult.Success)
-            {
-                return parser.Parse(requestResult.Result);
-            }
-            
-            if (requestResult.StatusCode == HttpStatusCode.Forbidden)
-            {
-                throw new OAuthKeysRevokedException();
-            }
-
-            throw new RequestFailedException();
+            return new Uri(string.Format("{0}/channels?forUsername={1}&part=contentDetails&maxResults={2}&key={3}", BaseUrl, channel, maxRecords, _tokens.ApiKey), UriKind.Absolute);
         }
 
-        private Uri GetChannelUrl(string channel)
+        private Uri GetPlaylistUrl(string playlistId, int maxRecords)
         {
-            return new Uri(string.Format("{0}/channels?forUsername={1}&part=contentDetails&maxResults=1&key={2}", BaseUrl, channel, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri(string.Format("{0}/playlistItems?playlistId={1}&part=snippet&maxResults={2}&key={3}", BaseUrl, playlistId, maxRecords, _tokens.ApiKey), UriKind.Absolute);
         }
 
-        private Uri GetPlaylistUrl(string playlistId)
+        private Uri GetSearchUrl(string query, int maxRecords)
         {
-            return new Uri(string.Format("{0}/playlistItems?playlistId={1}&part=snippet&maxResults=20&key={2}", BaseUrl, playlistId, _tokens.ApiKey), UriKind.Absolute);
-        }
-
-        private Uri GetSearchUrl(string query)
-        {
-            return new Uri(string.Format("{0}/search?q={1}&part=snippet&maxResults=20&key={2}&type=video", BaseUrl, query, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri(string.Format("{0}/search?q={1}&part=snippet&maxResults={2}&key={3}&type=video", BaseUrl, query, maxRecords, _tokens.ApiKey), UriKind.Absolute);
         }
     }
 }

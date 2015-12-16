@@ -129,7 +129,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             YouTubeDataProvider dataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens());
 
-            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync(new YouTubeDataConfig(), null));
+            await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<YouTubeSchema>(new YouTubeDataConfig(), 20, null));
         }
     }
 }
