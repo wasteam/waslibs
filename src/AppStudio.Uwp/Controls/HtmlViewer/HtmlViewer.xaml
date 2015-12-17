@@ -8,22 +8,25 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:HtmlViewer">
                     <Grid Background="{TemplateBinding Background}">
-                        <WebView Name="webView" DefaultBackgroundColor="Transparent" />
-                        <Canvas>
-                            <Grid Name="container">
-                                <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}"
+                        <Grid Name="frame">
+                            <WebView Name="webView" DefaultBackgroundColor="Transparent" />
+                            <Canvas>
+                                <Grid Name="container">
+                                    <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}"
                                                   HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding HeaderVisibility}" />
-                                <ContentPresenter Name="footer" ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" Foreground="{TemplateBinding Foreground}"
+                                    <ContentPresenter Name="footer" ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" Foreground="{TemplateBinding Foreground}"
                                                   HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding FooterVisibility}" />
-                                <ContentPresenter Name="asideLeft" ContentTemplate="{TemplateBinding ASideLeftTemplate}" Content="{TemplateBinding ASideLeft}" Foreground="{TemplateBinding Foreground}"
+                                    <ContentPresenter Name="asideLeft" ContentTemplate="{TemplateBinding ASideLeftTemplate}" Content="{TemplateBinding ASideLeft}" Foreground="{TemplateBinding Foreground}"
                                                   HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding ASideLeftVisibility}" />
-                                <ContentPresenter Name="asideRight" ContentTemplate="{TemplateBinding ASideRightTemplate}" Content="{TemplateBinding ASideRight}" Foreground="{TemplateBinding Foreground}"
+                                    <ContentPresenter Name="asideRight" ContentTemplate="{TemplateBinding ASideRightTemplate}" Content="{TemplateBinding ASideRight}" Foreground="{TemplateBinding Foreground}"
                                                   HorizontalAlignment="Right" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding ASideRightVisibility}" />
-                            </Grid>
-                        </Canvas>
-                        <Grid.Clip>
-                            <RectangleGeometry x:Name="clip" />
-                        </Grid.Clip>
+                                </Grid>
+                            </Canvas>
+                            <Grid.Clip>
+                                <RectangleGeometry x:Name="clip" />
+                            </Grid.Clip>
+                        </Grid>
+                        <ProgressRing Name="progress" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" IsActive="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

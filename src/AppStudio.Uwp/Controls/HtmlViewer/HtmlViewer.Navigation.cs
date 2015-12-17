@@ -49,7 +49,9 @@ namespace AppStudio.Uwp.Controls
                 if (!String.IsNullOrEmpty(text))
                 {
                     this.Source = null;
-                    this.Opacity = 0.01;
+                    _progress.IsActive = true;
+                    _progress.Visibility = Visibility.Visible;
+                    _frame.Opacity = 0.0;
                     _isHtmlLoaded = false;
                     if (!ContainsHTML(text))
                     {
@@ -73,7 +75,9 @@ namespace AppStudio.Uwp.Controls
                     }
                     else
                     {
-                        this.Opacity = 0.01;
+                        _progress.IsActive = true;
+                        _progress.Visibility = Visibility.Visible;
+                        _frame.Opacity = 0.0;
                         _isHtmlLoaded = false;
                         _webView.Navigate(source);
                     }
@@ -85,7 +89,9 @@ namespace AppStudio.Uwp.Controls
         {
             if (!DesignMode.DesignModeEnabled)
             {
-                this.Opacity = 0.01;
+                _progress.IsActive = true;
+                _progress.Visibility = Visibility.Visible;
+                _frame.Opacity = 0.0;
                 _isHtmlLoaded = false;
                 await _webView.LoadAsync(path);
             }

@@ -11,6 +11,7 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed partial class HtmlViewer : Control
     {
+        private Grid _frame = null;
         private WebView _webView = null;
 
         private Grid _container = null;
@@ -20,6 +21,8 @@ namespace AppStudio.Uwp.Controls
         private ContentPresenter _asideRight = null;
 
         private RectangleGeometry _clip = null;
+
+        private ProgressRing _progress = null;
 
         const double MARGIN_RIGHT = 14.0;
 
@@ -32,6 +35,7 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
+            _frame = base.GetTemplateChild("frame") as Grid;
             _webView = base.GetTemplateChild("webView") as WebView;
 
             _container = base.GetTemplateChild("container") as Grid;
@@ -41,6 +45,8 @@ namespace AppStudio.Uwp.Controls
             _asideRight = base.GetTemplateChild("asideRight") as ContentPresenter;
 
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
+
+            _progress = base.GetTemplateChild("progress") as ProgressRing;
 
             _webView.NavigationStarting += OnNavigationStarting;
             _webView.NavigationCompleted += OnNavigationCompleted;
@@ -83,6 +89,11 @@ namespace AppStudio.Uwp.Controls
         {
             this.UnregisterPropertyChangedCallback(FontSizeProperty, _tokenFontSize);
             this.UnregisterPropertyChangedCallback(ForegroundProperty, _tokenForeground);
+
+            if (_webView != null && _isHtmlLoaded)
+            {
+                _webView.NavigateToString(String.Empty);
+            }
         }
 
         private async void OnSizeChanged(object sender, SizeChangedEventArgs e)

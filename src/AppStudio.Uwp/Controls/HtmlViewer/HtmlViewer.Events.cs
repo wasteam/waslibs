@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.System;
@@ -37,7 +38,9 @@ namespace AppStudio.Uwp.Controls
 
             await SetHtmlDocumentMargin();
 
-            this.FadeIn();
+            _progress.IsActive = false;
+            _progress.Visibility = Visibility.Collapsed;
+            _frame.FadeIn(250);
         }
 
         private async void OnScriptNotify(object sender, NotifyEventArgs e)
