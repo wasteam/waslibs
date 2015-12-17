@@ -26,7 +26,7 @@
                                 <RectangleGeometry x:Name="clip" />
                             </Grid.Clip>
                         </Grid>
-                        <ProgressBar Name="progress" Margin="32,0" IsIndeterminate="True" Height="12" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                        <ProgressRing Name="progress" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" IsActive="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

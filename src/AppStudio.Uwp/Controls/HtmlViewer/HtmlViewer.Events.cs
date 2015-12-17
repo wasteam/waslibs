@@ -38,6 +38,7 @@ namespace AppStudio.Uwp.Controls
 
             await SetHtmlDocumentMargin();
 
+            _progress.IsActive = false;
             _progress.Visibility = Visibility.Collapsed;
             _frame.FadeIn(250);
         }

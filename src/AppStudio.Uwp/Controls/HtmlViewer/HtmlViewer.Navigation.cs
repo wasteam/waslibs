@@ -49,6 +49,7 @@ namespace AppStudio.Uwp.Controls
                 if (!String.IsNullOrEmpty(text))
                 {
                     this.Source = null;
+                    _progress.IsActive = true;
                     _progress.Visibility = Visibility.Visible;
                     _frame.Opacity = 0.0;
                     _isHtmlLoaded = false;
@@ -74,6 +75,7 @@ namespace AppStudio.Uwp.Controls
                     }
                     else
                     {
+                        _progress.IsActive = true;
                         _progress.Visibility = Visibility.Visible;
                         _frame.Opacity = 0.0;
                         _isHtmlLoaded = false;
@@ -87,6 +89,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (!DesignMode.DesignModeEnabled)
             {
+                _progress.IsActive = true;
                 _progress.Visibility = Visibility.Visible;
                 _frame.Opacity = 0.0;
                 _isHtmlLoaded = false;

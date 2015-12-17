@@ -22,7 +22,7 @@ namespace AppStudio.Uwp.Controls
 
         private RectangleGeometry _clip = null;
 
-        private ProgressBar _progress = null;
+        private ProgressRing _progress = null;
 
         const double MARGIN_RIGHT = 14.0;
 
@@ -46,7 +46,7 @@ namespace AppStudio.Uwp.Controls
 
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
-            _progress = base.GetTemplateChild("progress") as ProgressBar;
+            _progress = base.GetTemplateChild("progress") as ProgressRing;
 
             _webView.NavigationStarting += OnNavigationStarting;
             _webView.NavigationCompleted += OnNavigationCompleted;
