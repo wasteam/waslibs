@@ -14,14 +14,19 @@
 
     var htmlDoc = document.documentElement;
 
-    doc.onscroll = function () {
+    win.onload = function () {
         var rec = htmlDoc.getBoundingClientRect();
-        win.external.notify("S" + rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
+        win.external.notify("L" + rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
     };
 
     win.onresize = function () {
         var rec = htmlDoc.getBoundingClientRect();
         win.external.notify("R" + rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
+    };
+
+    doc.onscroll = function () {
+        var rec = htmlDoc.getBoundingClientRect();
+        win.external.notify("S" + rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height);
     };
 
     var bottom = doc.createElement("div");
@@ -47,14 +52,8 @@ function getHtmlDocumentRect() {
     return rec.left + '|' + rec.top + '|' + rec.width + '|' + rec.height;
 }
 
-function getContentHeight() {
-    return htmlDocument.getBoundingClientRect().height + "";
-}
-
 function setFontSize(size) {
     document.body.style.fontSize = size;
-    // TODO: Review (Check if onresize is called already)
-    window.external.notify("R" + getHtmlDocumentRect());
 }
 
 function setHtmlColor(color) {
@@ -78,9 +77,8 @@ function setHtmlStyle(mxW, mL, mR) {
     document.head.appendChild(htmlViewer.style);
     var sheet = style.sheet;
 
-    sheet.addRule("body", "width: 100%");
     sheet.addRule("html, body, div, p", "margin: 0px; padding: 0px");
-    sheet.addRule("html, body", "margin: 0px; padding: 0px; background-color: transparent !important; color: inherit");
+    sheet.addRule("html, body", "background-color: transparent !important; color: inherit");
     sheet.addRule("body", "-ms-content-zooming: none; content-zooming: none");
     sheet.addRule("body", "display: block; margin: 0px; padding: 0px 0px;" + margin);
     sheet.addRule("body", "font-family: 'Segoe WP'; font-size: 1em; text-align: left");

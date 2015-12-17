@@ -146,7 +146,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ASideLeftMaxWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty ASideLeftMaxWidthProperty = DependencyProperty.Register("ASideLeftMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue, MeasureLayout));
+        public static readonly DependencyProperty ASideLeftMaxWidthProperty = DependencyProperty.Register("ASideLeftMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue));
         #endregion
 
         #region ASideLeftWidth/ASideLeftHeight
@@ -198,7 +198,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ASideRightMaxWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty ASideRightMaxWidthProperty = DependencyProperty.Register("ASideRightMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue, MeasureLayout));
+        public static readonly DependencyProperty ASideRightMaxWidthProperty = DependencyProperty.Register("ASideRightMaxWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(Double.MaxValue));
         #endregion
 
         #region ASideRightWidth/ASideRightHeight
@@ -220,14 +220,8 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ContentMinWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty ContentMinWidthProperty = DependencyProperty.Register("ContentMinWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(400.0, MeasureLayout));
+        public static readonly DependencyProperty ContentMinWidthProperty = DependencyProperty.Register("ContentMinWidth", typeof(double), typeof(HtmlViewer), new PropertyMetadata(400.0));
         #endregion
-
-        private static void MeasureLayout(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            // TODO: 
-            var control = d as HtmlViewer;
-        }
 
         private async Task SetContentAlignment(HorizontalAlignment horizontalAlignment)
         {
@@ -266,7 +260,6 @@ namespace AppStudio.Uwp.Controls
             var control = d as HtmlViewer;
             if (control._webView != null)
             {
-                //await control.SetHtmlDocumentMargin();
                 await control.OnControlResize();
             }
         }

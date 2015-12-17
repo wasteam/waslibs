@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -62,6 +60,11 @@ namespace AppStudio.Uwp.Controls
             _asideLeft.ManipulationDelta += OnManipulationDelta;
             _asideRight.ManipulationDelta += OnManipulationDelta;
 
+            _header.SizeChanged += AdornSizeChanged;
+            _footer.SizeChanged += AdornSizeChanged;
+            _asideLeft.SizeChanged += AdornSizeChanged;
+            _asideRight.SizeChanged += AdornSizeChanged;
+
             if (this.Html != null)
             {
                 NavigateToString(this.Html);
@@ -100,6 +103,11 @@ namespace AppStudio.Uwp.Controls
         {
             await OnControlResize();
             _clip.Rect = new Rect(0, 0, this.ActualWidth - 1, this.ActualHeight);
+        }
+
+        private async void AdornSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            await OnAdornResize();
         }
     }
 }

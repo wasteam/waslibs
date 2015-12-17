@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
-using Windows.System;
+using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -25,10 +26,6 @@ namespace AppStudio.Uwp.Controls
 
             await _webView.LoadScriptAsync("AppStudio.Uwp.Controls.HtmlViewer.HtmlViewerScript.js");
 
-            var size = await _webView.InvokeScriptAsync("getHtmlDocumentRect");
-
-            System.Diagnostics.Debug.WriteLine("OnNavigationCompleted " + size);
-
             _currentHeaderHeight = 0;
             _currentFooterHeight = 0;
 
@@ -36,7 +33,11 @@ namespace AppStudio.Uwp.Controls
             await SetForeground();
             await SetContentAlignment(this.ContentAlignment);
 
+            _documentSize = ParseRect(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
             await SetHtmlDocumentMargin();
+
+            _documentSize = ParseRect(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
+            await OnDocumentResize(_documentSize);
 
             _progress.IsActive = false;
             _progress.Visibility = Visibility.Collapsed;
@@ -45,26 +46,30 @@ namespace AppStudio.Uwp.Controls
 
         private async void OnScriptNotify(object sender, NotifyEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("OnScriptNotify " + e.Value);
-
             string value = e.Value;
+            if (!String.IsNullOrEmpty(value))
+            {
+                switch (value[0])
+                {
+                    case 'L':
+                    case 'R':
+                        _documentSize = ParseRect(value);
+                        await OnDocumentResize(_documentSize);
+                        break;
+                    case 'S':
+                        _documentSize = ParseRect(value);
+                        OnDocumentScroll(_documentSize);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private Rect ParseRect(string value)
+        {
             string[] parts = value.Substring(1).Split('|');
-
-            _docX = parts[0].AsDouble();
-            _docY = parts[1].AsDouble();
-            _docWidth = parts[2].AsDouble();
-            _docHeight = parts[3].AsDouble();
-
-            if (value.StartsWith("R"))
-            {
-                System.Diagnostics.Debug.WriteLine("DocumentResize");
-                await OnDocumentResize(_docX, _docY, _docWidth, _docHeight);
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Scroll");
-                OnDocumentScroll(_docY);
-            }
+            return new Rect(parts[0].AsDouble(), parts[1].AsDouble(), parts[2].AsDouble(), parts[3].AsDouble());
         }
 
         private async Task SetFontSize()
