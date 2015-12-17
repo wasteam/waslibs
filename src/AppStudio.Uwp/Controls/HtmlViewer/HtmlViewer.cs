@@ -83,6 +83,11 @@ namespace AppStudio.Uwp.Controls
         {
             this.UnregisterPropertyChangedCallback(FontSizeProperty, _tokenFontSize);
             this.UnregisterPropertyChangedCallback(ForegroundProperty, _tokenForeground);
+
+            if (_webView != null && _isHtmlLoaded)
+            {
+                _webView.NavigateToString(String.Empty);
+            }
         }
 
         private async void OnSizeChanged(object sender, SizeChangedEventArgs e)
