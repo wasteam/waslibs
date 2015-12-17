@@ -29,7 +29,10 @@ namespace AppStudio.Uwp.Controls
 
         private async Task TranslateDelta(double delta)
         {
-            await _webView.InvokeScriptAsync("verticalScrollBy", -delta);
+            if (_webView != null && _isHtmlLoaded)
+            {
+                await _webView.InvokeScriptAsync("verticalScrollBy", -delta);
+            }
         }
     }
 }
