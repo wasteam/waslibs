@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Windows.UI;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class HtmlViewer
     {
+        private bool _cancelManipulation = false;
+
         private async void OnPointerWheelChanged(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             var point = e.GetCurrentPoint(this);
@@ -21,11 +25,46 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private async void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        private void OnAdornManipulationStarted(object sender, Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs e)
+        {
+            _glass.Background = new SolidColorBrush(Colors.Transparent);
+            _cancelManipulation = false;
+        }
+
+        private async void OnAdornManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             double delta = e.Delta.Translation.Y;
             await TranslateDelta(delta);
+            if (_cancelManipulation)
+            {
+                e.Complete();
+            }
         }
+
+        private void OnAdornManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            _glass.Background = null;
+        }
+
+
+        private void OnGlassManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
+        {
+            _glass.Background = null;
+            _cancelManipulation = true;
+        }
+
+        private void OnGlassManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            _glass.Background = null;
+            _cancelManipulation = true;
+        }
+
+        private void OnGlassPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            _glass.Background = null;
+            _cancelManipulation = true;
+        }
+
 
         private async Task TranslateDelta(double delta)
         {

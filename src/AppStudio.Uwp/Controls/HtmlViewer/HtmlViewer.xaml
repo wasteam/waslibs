@@ -9,7 +9,8 @@
                 <ControlTemplate TargetType="controls:HtmlViewer">
                     <Grid Background="{TemplateBinding Background}">
                         <Grid Name="frame">
-                            <WebView Name="webView" DefaultBackgroundColor="Transparent" />
+                            <WebView Name="webView" Margin="0,0,-10,0" DefaultBackgroundColor="Transparent" MaxWidth="{TemplateBinding MaxWidth}" />
+                            <Grid Name="glass" ManipulationMode="All" />
                             <Canvas>
                                 <Grid Name="container">
                                     <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}"

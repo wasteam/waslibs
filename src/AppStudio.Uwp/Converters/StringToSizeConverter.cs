@@ -16,7 +16,7 @@ namespace AppStudio.Uwp.Converters
 {
     public class StringToSizeConverter : IValueConverter
     {
-        public const string DefaultEmpty = "blank";
+        public const string DefaultEmpty = "ms-appx://blank";
         /// <summary>
         /// Modifies the source data before passing it to the target for display in the UI.
         /// </summary>

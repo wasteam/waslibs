@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
+using Windows.UI.Xaml.Input;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -13,6 +12,7 @@ namespace AppStudio.Uwp.Controls
     {
         private Grid _frame = null;
         private WebView _webView = null;
+        private Grid _glass = null;
 
         private Grid _container = null;
         private ContentPresenter _header = null;
@@ -24,7 +24,7 @@ namespace AppStudio.Uwp.Controls
 
         private ProgressRing _progress = null;
 
-        const double MARGIN_RIGHT = 14.0;
+        const double MARGIN_RIGHT = 1.0;
 
         public HtmlViewer()
         {
@@ -37,6 +37,7 @@ namespace AppStudio.Uwp.Controls
         {
             _frame = base.GetTemplateChild("frame") as Grid;
             _webView = base.GetTemplateChild("webView") as WebView;
+            _glass = base.GetTemplateChild("glass") as Grid;
 
             _container = base.GetTemplateChild("container") as Grid;
             _header = base.GetTemplateChild("header") as ContentPresenter;
@@ -52,15 +53,34 @@ namespace AppStudio.Uwp.Controls
             _webView.NavigationCompleted += OnNavigationCompleted;
             _webView.ScriptNotify += OnScriptNotify;
 
+            _glass.ManipulationStarting += OnGlassManipulationStarting;
+            _glass.ManipulationStarted += OnGlassManipulationStarted;
+            _glass.PointerPressed += OnGlassPointerPressed;
+
             _header.PointerWheelChanged += OnPointerWheelChanged;
             _footer.PointerWheelChanged += OnPointerWheelChanged;
             _asideLeft.PointerWheelChanged += OnPointerWheelChanged;
             _asideRight.PointerWheelChanged += OnPointerWheelChanged;
 
-            _header.ManipulationDelta += OnManipulationDelta;
-            _footer.ManipulationDelta += OnManipulationDelta;
-            _asideLeft.ManipulationDelta += OnManipulationDelta;
-            _asideRight.ManipulationDelta += OnManipulationDelta;
+            _header.ManipulationStarted += OnAdornManipulationStarted;
+            _footer.ManipulationStarted += OnAdornManipulationStarted;
+            _asideLeft.ManipulationStarted += OnAdornManipulationStarted;
+            _asideRight.ManipulationStarted += OnAdornManipulationStarted;
+
+            _header.ManipulationDelta += OnAdornManipulationDelta;
+            _footer.ManipulationDelta += OnAdornManipulationDelta;
+            _asideLeft.ManipulationDelta += OnAdornManipulationDelta;
+            _asideRight.ManipulationDelta += OnAdornManipulationDelta;
+
+            _header.ManipulationCompleted += OnAdornManipulationCompleted;
+            _footer.ManipulationCompleted += OnAdornManipulationCompleted;
+            _asideLeft.ManipulationCompleted += OnAdornManipulationCompleted;
+            _asideRight.ManipulationCompleted += OnAdornManipulationCompleted;
+
+            _header.SizeChanged += AdornSizeChanged;
+            _footer.SizeChanged += AdornSizeChanged;
+            _asideLeft.SizeChanged += AdornSizeChanged;
+            _asideRight.SizeChanged += AdornSizeChanged;
 
             if (this.Html != null)
             {
@@ -99,7 +119,12 @@ namespace AppStudio.Uwp.Controls
         private async void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             await OnControlResize();
-            _clip.Rect = new Rect(0, 0, this.ActualWidth - 1, this.ActualHeight);
+            _clip.Rect = new Rect(0, 0, _webView.ActualWidth - 12.0, _webView.ActualHeight);
+        }
+
+        private async void AdornSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            await OnAdornResize();
         }
     }
 }
