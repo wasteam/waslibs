@@ -54,6 +54,7 @@ function getHtmlDocumentRect() {
 
 function setFontSize(size) {
     document.body.style.fontSize = size;
+    window.external.notify("R" + getHtmlDocumentRect());
 }
 
 function setHtmlColor(color) {
@@ -80,7 +81,7 @@ function setHtmlStyle(mxW, mL, mR) {
     sheet.addRule("html, body, div, p", "margin: 0px; padding: 0px");
     sheet.addRule("html, body", "background-color: transparent !important; color: inherit");
     sheet.addRule("body", "-ms-content-zooming: none; content-zooming: none");
-    sheet.addRule("body", "display: block; margin: 0px; padding: 0px 0px;" + margin);
+    sheet.addRule("body", "display: block; margin: 16px; padding: 0px 0px; width: 90%;" + margin);
     sheet.addRule("body", "font-family: 'Segoe WP'; font-size: 1em; text-align: left");
     sheet.addRule("p, h1, h2, h3, h4, h5, h6, a", "margin: 0px; padding: 0px; background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-weight: normal !important");
     sheet.addRule("div", "margin: 0px; padding: 0px; width: 100% !important; min-height: unset !important");

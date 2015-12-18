@@ -14,7 +14,6 @@ namespace AppStudio.Uwp.Controls
 
         private async Task OnControlResize()
         {
-            System.Diagnostics.Debug.WriteLine("OnControlResize");
             if (this.ActualWidth > 0)
             {
                 _container.Width = this.ActualWidth - MARGIN_RIGHT;
@@ -27,7 +26,6 @@ namespace AppStudio.Uwp.Controls
 
         private async Task OnAdornResize()
         {
-            System.Diagnostics.Debug.WriteLine("OnAdornResize");
             await SetHtmlDocumentMargin();
         }
 
@@ -44,7 +42,6 @@ namespace AppStudio.Uwp.Controls
 
         private async Task SetHtmlDocumentMargin()
         {
-            System.Diagnostics.Debug.WriteLine("SetHtmlDocumentMargin");
             if (_isHtmlLoaded)
             {
                 _header.TranslateX(ASideLeftWidth);
@@ -53,7 +50,7 @@ namespace AppStudio.Uwp.Controls
                 double containerHeight = Math.Max(HeaderHeight + _documentSize.Height + FooterHeight, Math.Max(ASideLeftHeight, ASideRightHeight));
                 double footerHeight = Math.Max(FooterHeight, containerHeight - (HeaderHeight + _documentSize.Height));
 
-                string margin = $"{HeaderHeight}px {ASideRightWidth + 24}px {footerHeight}px {ASideLeftWidth + 24}px";
+                string margin = $"{HeaderHeight}px {ASideRightWidth + 16}px {footerHeight}px {ASideLeftWidth + 16}px";
                 await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
 
                 _currentHeaderHeight = HeaderHeight;
