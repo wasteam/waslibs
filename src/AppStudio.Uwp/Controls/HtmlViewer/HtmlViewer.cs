@@ -119,7 +119,7 @@ namespace AppStudio.Uwp.Controls
         private async void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             await OnControlResize();
-            _clip.Rect = new Rect(0, 0, this.ActualWidth - 1.0, this.ActualHeight);
+            _clip.Rect = new Rect(0, 0, _webView.ActualWidth - 12.0, _webView.ActualHeight);
         }
 
         private async void AdornSizeChanged(object sender, SizeChangedEventArgs e)
