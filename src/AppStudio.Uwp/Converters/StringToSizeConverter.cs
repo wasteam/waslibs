@@ -16,6 +16,7 @@ namespace AppStudio.Uwp.Converters
 {
     public class StringToSizeConverter : IValueConverter
     {
+        public const string DefaultEmpty = "ms-appx://blank";
         /// <summary>
         /// Modifies the source data before passing it to the target for display in the UI.
         /// </summary>
@@ -28,7 +29,7 @@ namespace AppStudio.Uwp.Converters
         {
             if (parameter == null)
             {
-                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                if (IsEmpty(value))
                 {
                     return (Double)0;
                 }
@@ -39,7 +40,7 @@ namespace AppStudio.Uwp.Converters
             }
             else
             {
-                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                if (IsEmpty(value))
                 {
                     return Double.PositiveInfinity;
                 }
@@ -60,6 +61,11 @@ namespace AppStudio.Uwp.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+
+        private static bool IsEmpty(object value)
+        {
+            return value == null || string.IsNullOrWhiteSpace(value.ToString()) || value.ToString() == DefaultEmpty;
         }
     }
 }

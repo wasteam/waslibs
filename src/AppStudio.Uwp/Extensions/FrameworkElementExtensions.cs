@@ -7,6 +7,11 @@ namespace AppStudio.Uwp
 {
     public static class FrameworkElementExtensions
     {
+        public static void SetVisibility(this FrameworkElement elem, bool visibility)
+        {
+            elem.Visibility = visibility ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public static double GetTranslateX(this FrameworkElement elem)
         {
             return elem.GetCompositeTransform().TranslateX;
@@ -23,6 +28,15 @@ namespace AppStudio.Uwp
         public static void TranslateY(this FrameworkElement elem, double y)
         {
             elem.GetCompositeTransform().TranslateY = y;
+        }
+
+        public static void TranslateDeltaX(this FrameworkElement elem, double x)
+        {
+            elem.GetCompositeTransform().TranslateX += x;
+        }
+        public static void TranslateDeltaY(this FrameworkElement elem, double y)
+        {
+            elem.GetCompositeTransform().TranslateY += y;
         }
 
         public static CompositeTransform GetCompositeTransform(this FrameworkElement elem)

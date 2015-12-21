@@ -98,7 +98,7 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        public async Task<IEnumerable<TwitterSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords) where TSchema : SchemaBase
+        public async Task<IEnumerable<TwitterSchema>> SearchAsync(string hashTag, int maxRecords)
         {
             return await SearchAsync(hashTag, maxRecords, new TwitterSearchParser());
         }

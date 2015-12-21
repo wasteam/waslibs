@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel;
 using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
@@ -15,7 +16,7 @@ namespace AppStudio.Uwp.Controls
             if (args.Uri != null)
             {
                 args.Cancel = true;
-                await Windows.System.Launcher.LaunchUriAsync(args.Uri);
+                await Launcher.LaunchUriAsync(args.Uri);
             }
         }
 
@@ -24,134 +25,71 @@ namespace AppStudio.Uwp.Controls
             _isHtmlLoaded = true;
 
             await _webView.LoadScriptAsync("AppStudio.Uwp.Controls.HtmlViewer.HtmlViewerScript.js");
-            await SetHtmlDocumentMargin();
 
-            _header.Visibility = IsHeaderVisible ? Visibility.Visible : Visibility.Collapsed;
-            _footer.Visibility = IsFooterVisible ? Visibility.Visible : Visibility.Collapsed;
-
-            _asideLeft.Visibility = DetermineASideLeftVisibility();
-            _asideRight.Visibility = DetermineASideRightVisibility();
+            _currentHeaderHeight = 0;
+            _currentFooterHeight = 0;
 
             await SetFontSize();
             await SetForeground();
             await SetContentAlignment(this.ContentAlignment);
 
-            ArrangeParts(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
-
-            this.FadeIn();
-        }
-
-        private Visibility DetermineASideLeftVisibility()
-        {
-            if (this.ActualWidth > 1200)
-            {
-                return IsASideLeftVisible ? Visibility.Visible : Visibility.Collapsed;
-            }
-            return Visibility.Collapsed;
-        }
-
-        private Visibility DetermineASideRightVisibility()
-        {
-            if (this.ActualWidth > 800)
-            {
-                return IsASideRightVisible ? Visibility.Visible : Visibility.Collapsed;
-            }
-            return Visibility.Collapsed;
-        }
-
-        private void OnScriptNotify(object sender, NotifyEventArgs e)
-        {
-            ArrangeParts(e.Value);
-        }
-
-        private async void OnComplementSizeChanged(object sender, SizeChangedEventArgs e)
-        {
+            _documentSize = ParseRect(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
             await SetHtmlDocumentMargin();
+
+            _documentSize = ParseRect(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
+            await OnDocumentResize(_documentSize);
+
+            _progress.IsActive = false;
+            _progress.Visibility = Visibility.Collapsed;
+            _frame.FadeIn(250);
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        private async void OnScriptNotify(object sender, NotifyEventArgs e)
         {
-            if (_clip != null)
+            string value = e.Value;
+            if (!String.IsNullOrEmpty(value))
             {
-                _header.Width = GetPartWidth();
-                _footer.Width = GetPartWidth();
-                _asideLeft.Width = GetPartWidth();
-                _asideRight.Width = GetPartWidth();
-                _clip.Rect = new Rect(0, 0, this.ActualWidth - 10, this.ActualHeight);
+                switch (value[0])
+                {
+                    case 'L':
+                    case 'R':
+                        _documentSize = ParseRect(value);
+                        await OnDocumentResize(_documentSize);
+                        break;
+                    case 'S':
+                        _documentSize = ParseRect(value);
+                        OnDocumentScroll(_documentSize);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
-        private async Task SetHtmlDocumentMargin()
+        private Rect ParseRect(string value)
         {
-            if (_isHtmlLoaded & !DesignMode.DesignModeEnabled)
+            string[] parts = value.Substring(1).Split('|');
+            return new Rect(parts[0].AsDouble(), parts[1].AsDouble(), parts[2].AsDouble(), parts[3].AsDouble());
+        }
+
+        private async Task SetFontSize()
+        {
+            if (_isHtmlLoaded)
             {
-                double headerHeight = IsHeaderVisible ? _header.ActualHeight : 0.0;
-
-                // TODO: What if aside is higher than WebView? Calculate Max size.
-                double footerHeight = IsFooterVisible ? _footer.ActualHeight : 0.0;
-
-                double partWidth = GetPartWidth();
-
-                double leftWidth = DetermineASideLeftVisibility() == Visibility.Visible ? partWidth : 0.0;
-                double rightWidth = DetermineASideRightVisibility() == Visibility.Visible ? partWidth : 0.0;
-
-                string margin = $"{headerHeight}px {rightWidth}px {footerHeight}px {leftWidth}px";
-                await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
-
-                ArrangeParts(await _webView.InvokeScriptAsync("getHtmlDocumentRect"));
+                await _webView.InvokeScriptAsync("setFontSize", this.FontSize + "px");
             }
         }
 
-        private void ArrangeParts(string value)
+        private async Task SetForeground()
         {
-            string[] parts = value.Split('|');
-
-            double y = parts[1].AdDouble();
-            double hy = y - _header.ActualHeight * (IsHeaderVisible ? 1 : 0);
-            double ly = hy;
-            double ry = hy;
-            double fy = y + parts[3].AdDouble();
-            fy = Math.Max(fy, this.ActualHeight - _footer.ActualHeight);
-
-            double partWidth = GetPartWidth();
-            double ml = DetermineASideLeftVisibility() == Visibility.Visible ? partWidth : 0.0;
-            double mr = this.ActualWidth - partWidth;
-
-            _header.Width = GetPartWidth();
-            _footer.Width = GetPartWidth();
-            _asideLeft.Width = GetPartWidth();
-            _asideRight.Width = GetPartWidth();
-
-            _header.TranslateX(ml);
-            _footer.TranslateX(ml);
-            _asideLeft.TranslateX(0.0);
-            _asideRight.TranslateX(mr);
-
-            _header.TranslateY(hy);
-            _footer.TranslateY(fy);
-            _asideLeft.TranslateY(ly);
-            _asideRight.TranslateY(ry);
-
-            _asideLeft.Visibility = DetermineASideLeftVisibility();
-            _asideRight.Visibility = DetermineASideRightVisibility();
-
-            _header.Opacity = _header.ActualHeight > 0 ? (_header.ActualHeight + hy) / _header.ActualHeight : 0.0;
-            _asideLeft.Opacity = _asideLeft.ActualHeight > 0 ? (_asideLeft.ActualHeight + hy) / _asideLeft.ActualHeight : 0.0;
-            _asideRight.Opacity = _asideRight.ActualHeight > 0 ? (_asideRight.ActualHeight + hy) / _asideRight.ActualHeight : 0.0;
-        }
-
-        private double GetPartWidth()
-        {
-            int count = 1;
-            if (DetermineASideLeftVisibility() == Visibility.Visible)
+            if (_isHtmlLoaded)
             {
-                count++;
+                var solidBrush = this.Foreground as SolidColorBrush;
+                if (solidBrush != null)
+                {
+                    await _webView.InvokeScriptAsync("setHtmlColor", "#" + solidBrush.Color.ToString().Substring(3));
+                }
             }
-            if (DetermineASideRightVisibility() == Visibility.Visible)
-            {
-                count++;
-            }
-            return this.ActualWidth / count;
         }
     }
 }

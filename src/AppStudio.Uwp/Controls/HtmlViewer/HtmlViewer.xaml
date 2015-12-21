@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:AppStudio.Uwp.Controls">
@@ -8,17 +8,26 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:HtmlViewer">
                     <Grid Background="{TemplateBinding Background}">
-                        <Grid Name="webViewContainer" />
-                        <Grid Name="glass" ManipulationMode="All" />
-                        <Canvas>
-                            <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" />
-                            <ContentPresenter Name="footer" ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" />
-                            <ContentPresenter Name="asideleft" ContentTemplate="{TemplateBinding ASideLeftTemplate}" Content="{TemplateBinding ASideLeft}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" />
-                            <ContentPresenter Name="asideright" ContentTemplate="{TemplateBinding ASideRightTemplate}" Content="{TemplateBinding ASideRight}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Left" ManipulationMode="TranslateY, TranslateInertia" />
-                        </Canvas>
-                        <Grid.Clip>
-                            <RectangleGeometry x:Name="clip" />
-                        </Grid.Clip>
+                        <Grid Name="frame">
+                            <WebView Name="webView" Margin="0,0,-10,0" DefaultBackgroundColor="Transparent" MaxWidth="{TemplateBinding MaxWidth}" />
+                            <Grid Name="glass" ManipulationMode="All" />
+                            <Canvas>
+                                <Grid Name="container">
+                                    <ContentPresenter Name="header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding HeaderVisibility}" />
+                                    <ContentPresenter Name="footer" ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding FooterVisibility}" />
+                                    <ContentPresenter Name="asideLeft" ContentTemplate="{TemplateBinding ASideLeftTemplate}" Content="{TemplateBinding ASideLeft}" Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding ASideLeftVisibility}" />
+                                    <ContentPresenter Name="asideRight" ContentTemplate="{TemplateBinding ASideRightTemplate}" Content="{TemplateBinding ASideRight}" Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalAlignment="Right" VerticalAlignment="Top" ManipulationMode="TranslateY, TranslateInertia" Visibility="{TemplateBinding ASideRightVisibility}" />
+                                </Grid>
+                            </Canvas>
+                            <Grid.Clip>
+                                <RectangleGeometry x:Name="clip" />
+                            </Grid.Clip>
+                        </Grid>
+                        <ProgressRing Name="progress" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{TemplateBinding Foreground}" IsActive="True" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

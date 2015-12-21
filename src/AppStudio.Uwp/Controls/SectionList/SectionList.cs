@@ -29,7 +29,7 @@ namespace AppStudio.Uwp.Controls
             DependencyProperty.Register("LoadingTemplateStaticHeight", typeof(double), typeof(SectionList), new PropertyMetadata(double.NaN));
 
         public static readonly DependencyProperty SectionsProperty =
-            DependencyProperty.Register("Sections", typeof(IList<SectionListItem>), typeof(SectionList), new PropertyMetadata(new List<SectionListItem>()));
+            DependencyProperty.Register("Sections", typeof(List<SectionListItem>), typeof(SectionList), new PropertyMetadata(new List<SectionListItem>()));
 
         public static readonly DependencyProperty TitleStyleProperty =
             DependencyProperty.Register("TitleStyle", typeof(Style), typeof(SectionList), new PropertyMetadata(null));
@@ -80,9 +80,9 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(LoadingTemplateStaticHeightProperty, value); }
         }
 
-        public IList<SectionListItem> Sections
+        public List<SectionListItem> Sections
         {
-            get { return (IList<SectionListItem>)GetValue(SectionsProperty); }
+            get { return (List<SectionListItem>)GetValue(SectionsProperty); }
             set { SetValue(SectionsProperty, value); }
         }
 
