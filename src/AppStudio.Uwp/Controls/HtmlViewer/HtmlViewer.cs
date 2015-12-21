@@ -90,6 +90,10 @@ namespace AppStudio.Uwp.Controls
             {
                 NavigateToSource(this.Source);
             }
+            else
+            {
+                NavigateToString("<div></div>");
+            }
 
             this.SizeChanged += OnSizeChanged;
 
