@@ -57,6 +57,7 @@ namespace AppStudio.Uwp.Controls
                     {
                         text = CovertToHtml(text);
                     }
+                    text = text.Replace("ms-appx://", "ms-appx-web://");
                     _webView.NavigateToString(text);
                 }
             }
