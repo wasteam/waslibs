@@ -13,8 +13,6 @@ namespace AppStudio.Uwp.Controls
         public Relativebox()
         {
             this.DefaultStyleKey = typeof(Relativebox);
-            //this.HorizontalAlignment = HorizontalAlignment.Center;
-            //this.VerticalAlignment = VerticalAlignment.Center;
         }
 
         #region AspectRatio
@@ -26,7 +24,6 @@ namespace AppStudio.Uwp.Controls
 
         private static void AspectRatioChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            // TODO: Review
             var control = d as Relativebox;
             control.InvalidateMeasure();
         }
@@ -71,7 +68,6 @@ namespace AppStudio.Uwp.Controls
                 }
                 else
                 {
-                    // TODO: Try by asking base.MeasureOverride(size);
                     width = 512.0;
                     height = width / aspectRatio;
                 }
