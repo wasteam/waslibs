@@ -82,6 +82,16 @@ namespace AppStudio.Uwp.Controls
             _asideLeft.SizeChanged += AdornSizeChanged;
             _asideRight.SizeChanged += AdornSizeChanged;
 
+            this.SizeChanged += OnSizeChanged;
+
+            base.OnApplyTemplate();
+        }
+
+        private long _tokenFontSize;
+        private long _tokenForeground;
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             if (this.Html != null)
             {
                 NavigateToString(this.Html);
@@ -95,16 +105,6 @@ namespace AppStudio.Uwp.Controls
                 NavigateToString("<div></div>");
             }
 
-            this.SizeChanged += OnSizeChanged;
-
-            base.OnApplyTemplate();
-        }
-
-        private long _tokenFontSize;
-        private long _tokenForeground;
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
             _tokenFontSize = this.RegisterPropertyChangedCallback(FontSizeProperty, async (s, d) => { await SetFontSize(); });
             _tokenForeground = this.RegisterPropertyChangedCallback(ForegroundProperty, async (s, d) => { await SetForeground(); });
         }
