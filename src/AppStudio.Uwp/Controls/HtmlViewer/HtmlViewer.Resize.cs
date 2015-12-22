@@ -51,7 +51,10 @@ namespace AppStudio.Uwp.Controls
                 double footerHeight = Math.Max(FooterHeight, containerHeight - (HeaderHeight + _documentSize.Height));
 
                 string margin = $"{HeaderHeight}px {ASideRightWidth + 16}px {footerHeight}px {ASideLeftWidth + 16}px";
-                await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
+                var size = await _webView.InvokeScriptAsync("setHtmlDocumentMargin", margin);
+                _documentSize = ParseRect(size);
+                _container.TranslateY(_documentSize.Y - HeaderHeight);
+                _footer.TranslateY(HeaderHeight + _documentSize.Height);
 
                 _currentHeaderHeight = HeaderHeight;
                 _currentFooterHeight = FooterHeight;
