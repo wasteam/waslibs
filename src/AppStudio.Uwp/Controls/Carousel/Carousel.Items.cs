@@ -149,14 +149,6 @@ namespace AppStudio.Uwp.Controls
         private int GetItemIndex(int n)
         {
             int index = (this.SelectedIndex + n - 1);
-            if (AlignmentX == AlignmentX.Center)
-            {
-                index -= this.MaxItems / 2;
-            }
-            else if (AlignmentX == AlignmentX.Right)
-            {
-                index -= (this.MaxItems - 1);
-            }
             return index.Mod(_items.Count);
         }
     }
