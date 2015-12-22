@@ -45,6 +45,7 @@ var htmlDocument = document.documentElement;
 function setHtmlDocumentMargin(margin) {
     htmlDocument.style.margin = margin;
     htmlViewer.refreshLayout();
+    return getHtmlDocumentRect();
 }
 
 function getHtmlDocumentRect() {
