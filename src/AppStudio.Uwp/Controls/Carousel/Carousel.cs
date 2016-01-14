@@ -20,6 +20,7 @@ namespace AppStudio.Uwp.Controls
         private RectangleGeometry _clip = null;
 
         private List<object> _items = null;
+        private LinearGradientBrush _gradient = null;
 
         public Carousel()
         {
@@ -33,6 +34,7 @@ namespace AppStudio.Uwp.Controls
             _prevArrow = base.GetTemplateChild("prevArrow") as Button;
             _nextArrow = base.GetTemplateChild("nextArrow") as Button;
 
+            _gradient = base.GetTemplateChild("gradient") as LinearGradientBrush;
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             this.BuildSlots();
@@ -121,7 +123,25 @@ namespace AppStudio.Uwp.Controls
         {
             _prevArrow.Height = e.NewSize.Height;
             _nextArrow.Height = e.NewSize.Height;
+            ApplyGradient();
             _clip.Rect = new Rect(new Point(), _container.GetSize());
+        }
+
+        private void ApplyGradient()
+        {
+            if (this.MaxItems > 2)
+            {
+                double factor = 1.0 / this.MaxItems;
+                int index = this.MaxItems / 2;
+                int count = 1;
+                if (this.MaxItems % 2 == 0)
+                {
+                    index--;
+                    count++;
+                }
+                _gradient.GradientStops[1].Offset = factor * index;
+                _gradient.GradientStops[2].Offset = factor * (index + count);
+            }
         }
     }
 }

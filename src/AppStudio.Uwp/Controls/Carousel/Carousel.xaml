@@ -73,6 +73,16 @@
                         <Canvas Name="container" />
                         <Button Name="prevArrow" Width="20" IsTabStop="False" Template="{StaticResource HorizontalPrevTemplate}" UseSystemFocusVisuals="False" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.0" />
                         <Button Name="nextArrow" Width="20" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" UseSystemFocusVisuals="False" HorizontalAlignment="Right" VerticalAlignment="Top" Opacity="0.0" />
+                        <Grid IsHitTestVisible="False" Opacity="{TemplateBinding GradientOpacity}">
+                            <Grid.Background>
+                                <LinearGradientBrush x:Name="gradient" StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Color="Black" Offset="0"/>
+                                    <GradientStop Color="Transparent" Offset="0"/>
+                                    <GradientStop Color="Transparent" Offset="1"/>
+                                    <GradientStop Color="Black" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                        </Grid>
                         <Grid.Clip>
                             <RectangleGeometry x:Name="clip" />
                         </Grid.Clip>

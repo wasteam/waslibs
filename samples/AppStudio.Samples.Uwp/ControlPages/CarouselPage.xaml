@@ -79,6 +79,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxItems" Value="{Binding MaxItems, ElementName=carousel, Mode=TwoWay}" Minimun="1" Maximun="10" />
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MinHeight" Value="{Binding MinHeight, ElementName=carousel, Mode=TwoWay}" Minimun="0" Maximun="800" />
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxHeight" Value="{Binding MaxHeight, ElementName=carousel, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="GradientOpacity" Value="{Binding GradientOpacity, ElementName=carousel, Mode=TwoWay}" Minimun="0.0" Maximun="1.0" SmallChange="0.1" />
                     </StackPanel>
                 </ScrollViewer>
             </ctrls:DockView.Pane>
