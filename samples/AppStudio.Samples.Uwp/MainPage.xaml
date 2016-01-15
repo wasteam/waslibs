@@ -15,7 +15,9 @@
                     <TextBlock Text="{Binding}" Margin="12,0,0,0"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
-
+            <PivotItem Header="SearchBox">
+                <controlPages:SearchBox/>
+            </PivotItem>
             <PivotItem Header="Carousel">
                 <controlPages:CarouselPage/>
             </PivotItem>

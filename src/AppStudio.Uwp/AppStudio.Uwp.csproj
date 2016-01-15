@@ -112,6 +112,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\SearchBox\SearchBox.Members.cs" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@
     <Compile Include="Controls\Indicator\Indicator.Items.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
+    <Compile Include="Controls\SearchBox\SearchBox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
@@ -210,6 +212,11 @@
     <Page Include="Controls\ResponsiveGridView\ResponsiveGridView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SearchBox\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\SectionList\SectionList.xaml">
       <Generator>MSBuild:Compile</Generator>

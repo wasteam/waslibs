@@ -38,6 +38,7 @@
                         </ComboBox>
                         <Slider Name="slider" Height="32" Value="{Binding Value, Mode=TwoWay}" Minimum="{TemplateBinding Minimun}" Maximum="{TemplateBinding Maximun}" SmallChange="{TemplateBinding SmallChange}" StepFrequency="{TemplateBinding SmallChange}" Visibility="Collapsed" />
                         <ToggleSwitch Name="toggle" IsOn="{Binding Value, Mode=TwoWay}" Visibility="Collapsed" />
+                        <TextBox Name="textBox" Text="{Binding Value, Mode=TwoWay}" Visibility="Collapsed"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

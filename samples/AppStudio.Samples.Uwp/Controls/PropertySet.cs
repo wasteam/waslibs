@@ -15,6 +15,7 @@ namespace AppStudio.Samples.Uwp.Controls
         private ComboBox _combo = null;
         private Slider _slider = null;
         private ToggleSwitch _toggle = null;
+        private TextBox _textBox = null;
 
         public PropertySet()
         {
@@ -101,6 +102,8 @@ namespace AppStudio.Samples.Uwp.Controls
             _slider.DataContext = this;
             _toggle = base.GetTemplateChild("toggle") as ToggleSwitch;
             _toggle.DataContext = this;
+            _textBox = base.GetTemplateChild("textBox") as TextBox;
+            _textBox.DataContext = this;
 
             base.OnApplyTemplate();
         }
@@ -136,6 +139,10 @@ namespace AppStudio.Samples.Uwp.Controls
                 else if (type == typeof(bool))
                 {
                     _toggle.Visibility = Visibility.Visible;
+                }
+                else if (type == typeof(string))
+                {
+                    _textBox.Visibility = Visibility.Visible;
                 }
             }
         }

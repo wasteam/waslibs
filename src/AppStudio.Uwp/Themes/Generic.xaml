@@ -11,6 +11,7 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Indicator/Indicator.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Relativebox/Relativebox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ResponsiveGridView/ResponsiveGridView.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SearchBox/SearchBox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SectionList/SectionList.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Virtualbox/Virtualbox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
