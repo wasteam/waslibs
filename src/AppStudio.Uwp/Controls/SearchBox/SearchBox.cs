@@ -145,13 +145,16 @@ namespace AppStudio.Uwp.Controls
         }
         private void UpdateHelpVisibility(object value)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
+            if (placeholderText != null)
             {
-                placeholderText.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                placeholderText.Visibility = Visibility.Collapsed;
+                if (value == null || string.IsNullOrEmpty(value.ToString()))
+                {
+                    placeholderText.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    placeholderText.Visibility = Visibility.Collapsed;
+                }
             }
         }
         private void UpdateTextVisibility()
