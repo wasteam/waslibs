@@ -150,6 +150,7 @@
     <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToSizeConverter.cs" />
+    <Compile Include="Converters\CollectionVisibilityConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />
