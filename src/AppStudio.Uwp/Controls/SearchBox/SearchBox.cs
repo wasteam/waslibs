@@ -12,15 +12,8 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed partial class SearchBox : Control
     {
-        TextBox textBox;
-        TextBlock placeholderText;
-        Grid shadow;
-        Grid searchTextGrid;
-        Grid searchButtonGrid;
-        Storyboard FadeInStoryboard;
-        Storyboard FadeOutStoryboard;
-        Storyboard OpenStoryboard;
-        Storyboard CloseStoryboard;
+        private const double _animationDurationMilliseconds = 500;
+        private TextBox _textBox;
 
         public SearchBox()
         {
@@ -31,47 +24,44 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
+            Grid _searchButtonGrid;
+            _textBox = base.GetTemplateChild("textBox") as TextBox;
+            _searchButtonGrid = base.GetTemplateChild("searchButtonGrid") as Grid;
+            _textBox.LostFocus += OnLostFocus;
+            _textBox.KeyUp += TextKeyUp;
+            _searchButtonGrid.Tapped += OnTapped;
+            _searchButtonGrid.PointerEntered += OnPointerEntered;
+            _searchButtonGrid.PointerExited += OnPointerExited;
+            _searchButtonGrid.PointerPressed += OnPointerPressed;
+            _searchButtonGrid.PointerReleased += OnPointerEntered;            
+            UpdateSearchTextGridVisibility();
             base.OnApplyTemplate();
-            textBox = base.GetTemplateChild("textBox") as TextBox;
-            placeholderText = base.GetTemplateChild("placeholderText") as TextBlock;
-            shadow = base.GetTemplateChild("shadow") as Grid;
-            searchTextGrid = base.GetTemplateChild("searchTextGrid") as Grid;
-            searchButtonGrid = base.GetTemplateChild("searchButtonGrid") as Grid;
-            FadeInStoryboard = base.GetTemplateChild("FadeInStoryboard") as Storyboard;
-            FadeOutStoryboard = base.GetTemplateChild("FadeOutStoryboard") as Storyboard;
-            OpenStoryboard = base.GetTemplateChild("OpenStoryboard") as Storyboard;
-            CloseStoryboard = base.GetTemplateChild("CloseStoryboard") as Storyboard;
-            textBox.LostFocus += OnLostFocus;
-            textBox.KeyUp += TextKeyUp;
-            searchButtonGrid.Tapped += OnTapped;
-            searchButtonGrid.PointerEntered += OnPointerEntered;
-            searchButtonGrid.PointerExited += OnPointerExited;
-            searchButtonGrid.PointerPressed += OnPointerPressed;
-            searchButtonGrid.PointerReleased += OnPointerEntered;
-            UpdateTextVisibility();
         }
 
 
         #region FrameworkElementEvents
         private void TextKeyUp(object sender, KeyRoutedEventArgs e)
         {
-            UpdateHelpVisibility(textBox.Text);
-            if (e.Key == Windows.System.VirtualKey.Enter)
+            TextBox txt = sender as TextBox;
+            if (txt != null)
             {
-                ExecuteCommand(textBox.Text);
-            }
-            else if (e.Key == Windows.System.VirtualKey.Escape)
-            {
-                Reset();
+                Text = txt.Text;
+                UpdatePlaceholderTextVisibility(Text);
+                if (e.Key == Windows.System.VirtualKey.Enter)
+                {
+                    ExecuteCommand(Text);
+                }
+                else if (e.Key == Windows.System.VirtualKey.Escape)
+                {
+                    Reset();
+                }
             }
         }
-        private async void OnTapped(object sender, TappedRoutedEventArgs e)
+        private void OnTapped(object sender, TappedRoutedEventArgs e)
         {
             if (IsTextVisible)
             {
-                //Await 100 miliseconds while databinding set Text property
-                await Task.Delay(100);
-                if (!ExecuteCommand(textBox.Text))
+                if (!ExecuteCommand(Text))
                 {
                     HideSearchText();
                 }
@@ -79,17 +69,32 @@ namespace AppStudio.Uwp.Controls
             else
             {
                 ShowSearchText();
-                textBox.Focus(FocusState.Keyboard);
+                _textBox.Focus(FocusState.Keyboard);
             }
         }
-        public void OnLostFocus(object sender, RoutedEventArgs e) { } //=> HideSearchText();
-        public void OnPointerEntered(object sender, PointerRoutedEventArgs e) => shadow.Opacity = 0.2;
-        public void OnPointerExited(object sender, PointerRoutedEventArgs e) => shadow.Opacity = 0.0;
-        public void OnPointerPressed(object sender, PointerRoutedEventArgs e) => shadow.Opacity = 0.6;
+        public void OnLostFocus(object sender, RoutedEventArgs e)
+        {
+
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                Text = txt.Text;
+                UpdatePlaceholderTextVisibility(Text);
+            }
+            //HideSearchText();
+        }
+        public void OnPointerEntered(object sender, PointerRoutedEventArgs e) => ShadowOpacity = 0.2;
+        public void OnPointerExited(object sender, PointerRoutedEventArgs e) => ShadowOpacity = 0.0;
+        public void OnPointerPressed(object sender, PointerRoutedEventArgs e) => ShadowOpacity = 0.6;
         #endregion
 
 
         #region Methods
+        public void Reset()
+        {
+            Text = string.Empty;
+            HideSearchText();
+        }
         private bool ExecuteCommand(string text)
         {
             if (!string.IsNullOrEmpty(text) && SearchCommand != null)
@@ -102,75 +107,64 @@ namespace AppStudio.Uwp.Controls
             }
             return false;
         }
-        public void Reset()
-        {
-            Text = string.Empty;
-            HideSearchText();
-        }
         private async void HideSearchText()
         {
             if (DisplayMode == DisplayModeValue.Expand)
             {
-                var width = searchTextGrid.Width;
-                CloseStoryboard.Begin();
-                await Task.Delay(500);
-                searchTextGrid.Visibility = Visibility.Collapsed;
-                searchTextGrid.Width = width;
+                var oldValue = SearchWidth;
+                await this.AnimateDoubleAsync("SearchWidth", SearchWidth, 0.0, _animationDurationMilliseconds);
+                SearchTextGridVisibility = Visibility.Collapsed;
                 IsTextVisible = false;
+                SearchWidth = oldValue;
             }
             if (DisplayMode == DisplayModeValue.FadeIn)
             {
-                FadeOutStoryboard.Begin();
-                await Task.Delay(1000);
-                searchTextGrid.Visibility = Visibility.Collapsed;
-                searchTextGrid.Opacity = 1;
+                await this.AnimateDoubleAsync("SearchTextGridOpacity", 1.0, 0.0, _animationDurationMilliseconds);
+                SearchTextGridVisibility = Visibility.Collapsed;
                 IsTextVisible = false;
+                SearchTextGridOpacity = 1.0;
             }
         }
-        private void ShowSearchText()
+
+        private async Task ShowSearchText()
         {
             if (DisplayMode == DisplayModeValue.Expand)
             {
-                searchTextGrid.Visibility = Visibility.Visible;
-                OpenStoryboard.Begin();
+                SearchTextGridVisibility = Visibility.Visible;
+                await this.AnimateDoubleAsync("SearchWidth", 0.0, SearchWidth, _animationDurationMilliseconds);
                 IsTextVisible = true;
             }
             if (DisplayMode == DisplayModeValue.FadeIn)
             {
-                searchTextGrid.Opacity = 0;
-                searchTextGrid.Visibility = Visibility.Visible;
-                FadeInStoryboard.Begin();
+                SearchTextGridVisibility = Visibility.Visible;
+                await this.AnimateDoubleAsync("SearchTextGridOpacity", 0.0, 1.0, _animationDurationMilliseconds);
                 IsTextVisible = true;
             }
         }
-        private void UpdateHelpVisibility(object value)
+        private void UpdatePlaceholderTextVisibility(object value)
         {
-            if (placeholderText != null)
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
-                if (value == null || string.IsNullOrEmpty(value.ToString()))
-                {
-                    placeholderText.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    placeholderText.Visibility = Visibility.Collapsed;
-                }
+                PlaceholderTextVisibility = Visibility.Visible;
+            }
+            else
+            {
+                PlaceholderTextVisibility = Visibility.Collapsed;
             }
         }
-        private void UpdateTextVisibility()
+        private void UpdateSearchTextGridVisibility()
         {
-            searchTextGrid.Opacity = 1.0;
             if (DisplayMode == DisplayModeValue.Visible)
             {
-                searchTextGrid.Visibility = Visibility.Visible;
+                SearchTextGridVisibility = Visibility.Visible;
                 IsTextVisible = true;
             }
             else
             {
-                searchTextGrid.Visibility = Visibility.Collapsed;
+                SearchTextGridVisibility = Visibility.Collapsed;
                 IsTextVisible = false;
             }
         }
-        #endregion  
+        #endregion
     }
 }

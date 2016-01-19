@@ -11,9 +11,9 @@ namespace AppStudio.Uwp.Controls
         public enum DisplayModeValue { Visible, Expand, FadeIn };
 
         public static readonly DependencyProperty PlaceholderTextProperty =
-            DependencyProperty.Register("PlaceholderText", typeof(string), typeof(SearchBox), new PropertyMetadata("search"));
+            DependencyProperty.Register("PlaceholderText", typeof(string), typeof(SearchBox), new PropertyMetadata("search"));        
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(SearchBox), new PropertyMetadata(string.Empty, OnTextPropertyChanged));
+            DependencyProperty.Register("Text", typeof(string), typeof(SearchBox), new PropertyMetadata(string.Empty, (d,e) => { ((SearchBox)d).UpdatePlaceholderTextVisibility(e.NewValue); }));
         public static readonly DependencyProperty MaxLengthProperty =
             DependencyProperty.Register("MaxLength", typeof(int), typeof(SearchBox), new PropertyMetadata(int.MaxValue));
         public static readonly DependencyProperty TextAlignmentProperty =
@@ -25,9 +25,17 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty SearchButtonSizeProperty =
             DependencyProperty.Register("SearchButtonSize", typeof(Double), typeof(SearchBox), new PropertyMetadata(20.0));
         public static readonly DependencyProperty DisplayModeProperty =
-            DependencyProperty.Register("DisplayMode", typeof(DisplayModeValue), typeof(SearchBox), new PropertyMetadata(DisplayModeValue.Visible, OnDisplayModePropertyChanged));        
+            DependencyProperty.Register("DisplayMode", typeof(DisplayModeValue), typeof(SearchBox), new PropertyMetadata(DisplayModeValue.Visible, (d,e) => { ((SearchBox)d).UpdateSearchTextGridVisibility(); }));
         public static readonly DependencyProperty IsTextVisibleProperty =
             DependencyProperty.Register("IsTextVisible", typeof(bool), typeof(SearchBox), new PropertyMetadata(false));
+        public static readonly DependencyProperty PlaceholderTextVisibilityProperty =
+            DependencyProperty.Register("PlaceholderTextVisibility", typeof(Visibility), typeof(SearchBox), new PropertyMetadata(Visibility.Visible));
+        public static readonly DependencyProperty SearchTextGridVisibilityProperty =
+            DependencyProperty.Register("SearchTextGridVisibility", typeof(Visibility), typeof(SearchBox), new PropertyMetadata(Visibility.Collapsed));
+        public static readonly DependencyProperty SearchTextGridOpacityProperty =
+            DependencyProperty.Register("SearchTextGridOpacity", typeof(Double), typeof(SearchBox), new PropertyMetadata(1.0));
+        public static readonly DependencyProperty ShadowOpacityProperty =
+            DependencyProperty.Register("ShadowOpacity", typeof(Double), typeof(SearchBox), new PropertyMetadata(0.0));
 
 
         public string PlaceholderText
@@ -70,28 +78,30 @@ namespace AppStudio.Uwp.Controls
             get { return (DisplayModeValue)GetValue(DisplayModeProperty); }
             set { SetValue(DisplayModeProperty, value); }
         }
+        public Visibility PlaceholderTextVisibility
+        {
+            get { return (Visibility)GetValue(PlaceholderTextVisibilityProperty); }
+            set { SetValue(PlaceholderTextVisibilityProperty, value); }
+        }
+        public Visibility SearchTextGridVisibility
+        {
+            get { return (Visibility)GetValue(SearchTextGridVisibilityProperty); }
+            set { SetValue(SearchTextGridVisibilityProperty, value); }
+        }
+        public Double SearchTextGridOpacity
+        {
+            get { return (Double)GetValue(SearchTextGridOpacityProperty); }
+            set { SetValue(SearchTextGridOpacityProperty, value); }
+        }
+        public Double ShadowOpacity
+        {
+            get { return (Double)GetValue(ShadowOpacityProperty); }
+            set { SetValue(ShadowOpacityProperty, value); }
+        }
         public bool IsTextVisible
         {
             get { return (bool)GetValue(IsTextVisibleProperty); }
             private set { SetValue(IsTextVisibleProperty, value); }
-        }
-        #endregion
-        #region PropertyChangedEvents
-        private static void OnDisplayModePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            SearchBox control = d as SearchBox;
-            if (control != null && control.searchTextGrid != null)
-            {
-                control.UpdateTextVisibility();
-            }
-        }
-        private static void OnTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            SearchBox control = d as SearchBox;
-            if (control != null)
-            {
-                control.UpdateHelpVisibility(e.NewValue);
-            }
         }
         #endregion
     }
