@@ -12,7 +12,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateX() != x)
             {
-                return AnimateDouble(element, "TranslateX", element.Width, x, duration, easingFunction);
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateX", element.Width, x, duration, easingFunction);
             }
             return null;
         }
@@ -20,7 +20,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateX() != x)
             {
-                await AnimateDoubleAsync(element, "TranslateX", element.Width, x, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateX", element.Width, x, duration, easingFunction);
             }
         }
 
@@ -28,7 +28,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateY() != y)
             {
-                return AnimateDouble(element, "TranslateY", element.Width, y, duration, easingFunction);
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateY", element.Width, y, duration, easingFunction);
             }
             return null;
         }
@@ -36,7 +36,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateY() != y)
             {
-                await AnimateDoubleAsync(element, "TranslateY", element.Width, y, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateY", element.Width, y, duration, easingFunction);
             }
         }
 
@@ -105,15 +105,23 @@ namespace AppStudio.Uwp
         }
         public static Task AnimateDoubleAsync(this FrameworkElement element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
+            return AnimateDoublePropertyAsync(element, property, from, to, duration, easingFunction);
+        }
+        public static Storyboard AnimateDouble(this FrameworkElement element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            return AnimateDoubleProperty(element, property, from, to, duration, easingFunction);
+        }
+        private static Task AnimateDoublePropertyAsync(DependencyObject element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Storyboard storyboard = element.AnimateDouble(property, from, to, duration, easingFunction);
+            Storyboard storyboard = AnimateDoubleProperty(element, property, from, to, duration, easingFunction);
             storyboard.Completed += (sender, e) =>
             {
                 tcs.SetResult(true);
             };
             return tcs.Task;
         }
-        public static Storyboard AnimateDouble(this FrameworkElement element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Storyboard AnimateDoubleProperty(DependencyObject element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             var storyboard = new Storyboard();
             var animation = new DoubleAnimation
