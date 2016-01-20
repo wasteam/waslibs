@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -101,6 +103,15 @@ namespace AppStudio.Uwp.Controls
                 control.IsSelected = false;
             }
         }
+        #endregion
+
+        #region SelectedForeground
+        public Brush SelectedForeground
+        {
+            get { return (Brush)GetValue(SelectedForegroundProperty); }
+            set { SetValue(SelectedForegroundProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register("SelectedForeground", typeof(Brush), typeof(Indicator), new PropertyMetadata(new SolidColorBrush(Colors.Red)));
         #endregion
     }
 }

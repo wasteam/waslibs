@@ -112,6 +112,9 @@ namespace AppStudio.Uwp.Controls
             index = index < 0 ? _stack.Children.Count : index;
             var control = new IndicatorItem
             {
+                SelectedForeground = SelectedForeground,
+                Foreground = Foreground,
+                Background = Background,                
                 Style = this.ItemContainerStyle,
                 ContentTemplate = this.ItemTemplate,
                 Content = item
