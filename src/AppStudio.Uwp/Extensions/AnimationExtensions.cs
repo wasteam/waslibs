@@ -44,7 +44,7 @@ namespace AppStudio.Uwp
         {
             if (element.Width != width)
             {
-                return AnimateDouble(element, "Width", element.Width, width, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Width", element.Width, width, duration, easingFunction);
             }
             return null;
         }
@@ -52,7 +52,7 @@ namespace AppStudio.Uwp
         {
             if (element.Width != width)
             {
-                await AnimateDoubleAsync(element, "Width", element.Width, width, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Width", element.Width, width, duration, easingFunction);
             }
         }
 
@@ -60,7 +60,7 @@ namespace AppStudio.Uwp
         {
             if (element.Height != height)
             {
-                return AnimateDouble(element, "Height", element.Height, height, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Height", element.Height, height, duration, easingFunction);
             }
             return null;
         }
@@ -68,60 +68,52 @@ namespace AppStudio.Uwp
         {
             if (element.Height != height)
             {
-                await AnimateDoubleAsync(element, "Height", element.Height, height, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Height", element.Height, height, duration, easingFunction);
             }
         }
 
-        public static Storyboard FadeIn(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Storyboard FadeIn(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             if (element.Opacity < 1.0)
             {
-                return AnimateDouble(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
             }
             return null;
         }
-        public static async Task FadeInAsync(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static async Task FadeInAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             if (element.Opacity < 1.0)
             {
-                await AnimateDoubleAsync(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
             }
         }
 
-        public static Storyboard FadeOut(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Storyboard FadeOut(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             if (element.Opacity > 0.0)
             {
-                return AnimateDouble(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
             }
             return null;
         }
-        public static async Task FadeOutAsync(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static async Task FadeOutAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             if (element.Opacity > 0.0)
             {
-                await AnimateDoubleAsync(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
             }
         }
-        public static Task AnimateDoubleAsync(this FrameworkElement element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            return AnimateDoublePropertyAsync(element, property, from, to, duration, easingFunction);
-        }
-        public static Storyboard AnimateDouble(this FrameworkElement element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            return AnimateDoubleProperty(element, property, from, to, duration, easingFunction);
-        }
-        private static Task AnimateDoublePropertyAsync(DependencyObject element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Task AnimateDoublePropertyAsync(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            Storyboard storyboard = AnimateDoubleProperty(element, property, from, to, duration, easingFunction);
+            Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
             storyboard.Completed += (sender, e) =>
             {
                 tcs.SetResult(true);
             };
             return tcs.Task;
         }
-        public static Storyboard AnimateDoubleProperty(DependencyObject element, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Storyboard AnimateDoubleProperty(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             var storyboard = new Storyboard();
             var animation = new DoubleAnimation
@@ -134,7 +126,7 @@ namespace AppStudio.Uwp
                 EnableDependentAnimation = true
             };
 
-            Storyboard.SetTarget(animation, element);
+            Storyboard.SetTarget(animation, target);
             Storyboard.SetTargetProperty(animation, property);
 
             storyboard.Children.Add(animation);
