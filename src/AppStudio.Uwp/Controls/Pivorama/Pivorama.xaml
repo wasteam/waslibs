@@ -1,0 +1,43 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Uwp.Controls">
+
+    <Style TargetType="controls:Pivorama">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:Pivorama">
+                    <ScrollViewer>
+                        <Grid Name="container" HorizontalAlignment="Left" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:PivoramaItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PivoramaItem">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <StackPanel Orientation="Horizontal" Opacity="{TemplateBinding HeaderOpacity}">
+                                <ContentControl Name="header" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                <Canvas>
+                                    <StackPanel Name="tabs" Orientation="Horizontal" Visibility="{TemplateBinding TabsVisibility}" />
+                                </Canvas>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <ContentPresenter Name="content" Grid.Row="1" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
