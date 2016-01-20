@@ -127,7 +127,6 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
-    <Compile Include="Controls\CarouselIndicator\CarouselIndicator.cs" />
     <Compile Include="Controls\Carousel\Carousel.cs" />
     <Compile Include="Controls\Carousel\Carousel.Items.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
@@ -186,10 +185,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Controls\CarouselIndicator\CarouselIndicator.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\Carousel\Carousel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
