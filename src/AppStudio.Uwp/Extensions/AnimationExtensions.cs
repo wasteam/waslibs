@@ -12,7 +12,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateX() != x)
             {
-                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateX", element.Width, x, duration, easingFunction);
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateX", element.GetTranslateX(), x, duration, easingFunction);
             }
             return null;
         }
@@ -28,7 +28,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateY() != y)
             {
-                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateY", element.Width, y, duration, easingFunction);
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateY", element.GetTranslateY(), y, duration, easingFunction);
             }
             return null;
         }
@@ -44,7 +44,7 @@ namespace AppStudio.Uwp
         {
             if (element.Width != width)
             {
-                return AnimateDoubleProperty(element, "Width", element.Width, width, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
             return null;
         }
@@ -52,7 +52,7 @@ namespace AppStudio.Uwp
         {
             if (element.Width != width)
             {
-                await AnimateDoublePropertyAsync(element, "Width", element.Width, width, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
         }
 
@@ -60,7 +60,7 @@ namespace AppStudio.Uwp
         {
             if (element.Height != height)
             {
-                return AnimateDoubleProperty(element, "Height", element.Height, height, duration, easingFunction);
+                return AnimateDoubleProperty(element, "Height", element.ActualHeight, height, duration, easingFunction);
             }
             return null;
         }
@@ -68,7 +68,7 @@ namespace AppStudio.Uwp
         {
             if (element.Height != height)
             {
-                await AnimateDoublePropertyAsync(element, "Height", element.Height, height, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element, "Height", element.ActualHeight, height, duration, easingFunction);
             }
         }
 

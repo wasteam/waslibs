@@ -5,7 +5,6 @@
     xmlns:converters="using:AppStudio.Uwp.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Carousel/Carousel.xaml"/>
-        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/CarouselIndicator/CarouselIndicator.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ErrorNotificationControl/ErrorNotificationControl.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlViewer/HtmlViewer.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Indicator/Indicator.xaml"/>
