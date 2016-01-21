@@ -28,7 +28,7 @@ namespace AppStudio.Uwp.Commands
         /// <summary>
         /// Backing field for the can execute check function.
         /// </summary>
-        private readonly Func<bool> canExecute;
+        private readonly Func<T, bool> canExecute;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayCommand{T}"/> class.
@@ -44,7 +44,7 @@ namespace AppStudio.Uwp.Commands
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action<T> execute, Func<bool> canExecute)
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
         {
             if (execute == null)
             {
@@ -69,7 +69,7 @@ namespace AppStudio.Uwp.Commands
         /// <returns>true if this command can be executed; otherwise, false.</returns>
         public bool CanExecute(object parameter)
         {
-            return this.canExecute == null ? true : this.canExecute();
+            return this.canExecute == null ? true : this.canExecute((T)parameter);
         }
 
         /// <summary>
