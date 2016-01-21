@@ -42,7 +42,7 @@ namespace AppStudio.Uwp
 
         public static Storyboard AnimateWidth(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.Width != width)
+            if (element.ActualWidth != width)
             {
                 return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
@@ -50,7 +50,7 @@ namespace AppStudio.Uwp
         }
         public static async Task AnimateWidthAsync(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.Width != width)
+            if (element.ActualWidth != width)
             {
                 await AnimateDoublePropertyAsync(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
