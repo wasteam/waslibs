@@ -1,0 +1,26 @@
+﻿using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+
+namespace AppStudio.Samples.Uwp.ControlPages
+{
+    public sealed partial class PivoramaPage : Page
+    {
+        public PivoramaPage()
+        {
+            this.InitializeComponent();
+            this.Items = new ObservableCollection<ItemData>(ItemData.GetItems(7));
+            this.DataContext = this;
+        }
+
+        #region Items
+        public ObservableCollection<ItemData> Items
+        {
+            get { return (ObservableCollection<ItemData>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<ItemData>), typeof(MainPage), new PropertyMetadata(null));
+        #endregion
+    }
+}
