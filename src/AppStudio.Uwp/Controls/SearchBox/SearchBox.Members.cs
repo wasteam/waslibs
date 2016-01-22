@@ -9,6 +9,7 @@ namespace AppStudio.Uwp.Controls
     {
         #region Properties
         public enum DisplayModeValue { Visible, Expand, FadeIn };
+        public event EventHandler<bool> IsTextVisibleChanged;
 
         public static readonly DependencyProperty PlaceholderTextProperty =
             DependencyProperty.Register("PlaceholderText", typeof(string), typeof(SearchBox), new PropertyMetadata("search"));        
@@ -101,7 +102,11 @@ namespace AppStudio.Uwp.Controls
         public bool IsTextVisible
         {
             get { return (bool)GetValue(IsTextVisibleProperty); }
-            private set { SetValue(IsTextVisibleProperty, value); }
+            private set
+            {
+                SetValue(IsTextVisibleProperty, value);
+                RaiseIsTextVisibleChanged(value);
+            }
         }
         #endregion
     }

@@ -165,6 +165,13 @@ namespace AppStudio.Uwp.Controls
                 IsTextVisible = false;
             }
         }
+        private void RaiseIsTextVisibleChanged(bool isTextVisible)
+        {
+            if (IsTextVisibleChanged != null)
+            {
+                IsTextVisibleChanged(this, isTextVisible);
+            }
+        }
         #endregion
     }
 }
