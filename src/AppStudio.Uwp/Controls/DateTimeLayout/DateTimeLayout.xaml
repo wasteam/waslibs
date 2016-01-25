@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:was_controls="using:AppStudio.Uwp.Controls">
+    <Style TargetType="was_controls:DateTimeLayout">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="was_controls:DateTimeLayout">
+                    <Grid
+                        Background="{TemplateBinding Background}"
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Width}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <StackPanel
+                            Margin="12"                            
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <TextBlock Text="{TemplateBinding Line1Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line1FontSize}" FontWeight="ExtraLight" Margin="0"/>
+                            <TextBlock Text="{TemplateBinding Line2Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line2FontSize}" FontWeight="Normal" Margin="0,-6,0,0"/>
+                            <TextBlock Text="{TemplateBinding Line3Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line3FontSize}" FontWeight="Bold" Margin="0" CharacterSpacing="100"/>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

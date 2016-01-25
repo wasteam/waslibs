@@ -133,6 +133,9 @@
     <Compile Include="ControlPages\PivoramaPage.xaml.cs">
       <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\DateTimeLayout.xaml.cs">
+      <DependentUpon>DateTimeLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlPages\PivoramaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlPages\DateTimeLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
