@@ -30,7 +30,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="TextAlignment" Value="{Binding TextAlignment, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Height" Value="{Binding Height, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="30" Maximun="400" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Width" Value="{Binding Width, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="30" Maximun="400" SmallChange="1"/>
-                        <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="TextFontSize" Value="{Binding TextFontSize, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="15" Maximun="200" SmallChange="1"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="TextFontSize" Value="{Binding TextFontSize, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="10" Maximun="100" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Foreground" Value="{Binding Foreground, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Background" Value="{Binding Background, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                     </StackPanel>
