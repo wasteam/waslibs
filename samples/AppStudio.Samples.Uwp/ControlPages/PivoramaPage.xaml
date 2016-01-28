@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <controls:Pivorama ItemsSource="{Binding Items}">
+        <controls:Pivorama ItemsSource="{Binding Items}" ItemWidth="400">
             <controls:Pivorama.HeaderTemplate>
                 <DataTemplate>
                     <Border>
@@ -29,7 +29,7 @@
 
             <controls:Pivorama.ContentTemplate>
                 <DataTemplate>
-                    <Border Margin="6" Width="600" Background="White" BorderBrush="Black" BorderThickness="1">
+                    <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1">
                         <!--<StackPanel>
                             <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
                             <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />

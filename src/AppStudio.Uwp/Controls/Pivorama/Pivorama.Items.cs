@@ -144,6 +144,7 @@ namespace AppStudio.Uwp.Controls
                             TabTemplate = TabTemplate,
                             HeaderTemplate = HeaderTemplate,
                             ContentTemplate = ContentTemplate,
+                            Width = ItemWidth,
                             HorizontalContentAlignment = HorizontalAlignment.Stretch,
                             VerticalContentAlignment = VerticalAlignment.Stretch,
                             UseLayoutRounding = false
@@ -210,7 +211,7 @@ namespace AppStudio.Uwp.Controls
 
         private double GetLeftBound()
         {
-            return -Math.Round(_slotWidth, 2);
+            return -Math.Round(ItemWidth, 2);
         }
 
         private void OnItemHeaderClick(object sender, RoutedEventArgs e)

@@ -18,11 +18,11 @@ namespace AppStudio.Uwp.Controls
             {
                 if (Math.Sign(velocity) > 0)
                 {
-                    e.TranslationBehavior.DesiredDisplacement = _slotWidth * _items.Count - offset;
+                    e.TranslationBehavior.DesiredDisplacement = ItemWidth * _items.Count - offset;
                 }
                 else
                 {
-                    e.TranslationBehavior.DesiredDisplacement = _slotWidth * (_items.Count - 1) + offset;
+                    e.TranslationBehavior.DesiredDisplacement = ItemWidth * (_items.Count - 1) + offset;
                 }
             }
             else
@@ -31,11 +31,11 @@ namespace AppStudio.Uwp.Controls
                 {
                     if (Math.Sign(velocity) > 0)
                     {
-                        e.TranslationBehavior.DesiredDisplacement = _slotWidth * 1 - offset;
+                        e.TranslationBehavior.DesiredDisplacement = ItemWidth * 1 - offset;
                     }
                     else
                     {
-                        e.TranslationBehavior.DesiredDisplacement = _slotWidth * 0 + offset;
+                        e.TranslationBehavior.DesiredDisplacement = ItemWidth * 0 + offset;
                     }
                 }
                 else
@@ -52,9 +52,9 @@ namespace AppStudio.Uwp.Controls
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (_offset > 0.9 && _offset < _slotWidth - 0.9)
+            if (_offset > 0.9 && _offset < ItemWidth - 0.9)
             {
-                if (_offset < _slotWidth / 2.0)
+                if (_offset < ItemWidth / 2.0)
                 {
                     AnimateNext(150);
                 }
@@ -88,7 +88,7 @@ namespace AppStudio.Uwp.Controls
             if (_items.Count > 0)
             {
                 double x0 = GetLeftBound();
-                double x1 = Math.Round(x0 + _slotWidth * (_items.Count + 2), 2);
+                double x1 = Math.Round(x0 + ItemWidth * (_items.Count + 2), 2);
 
                 int newIndex = currentIndex;
                 var controls = _container.Children.Cast<PivoramaItem>().OrderBy(r => r.X).ToArray();
@@ -118,7 +118,7 @@ namespace AppStudio.Uwp.Controls
                     }
 
                     ShowHeader(control, x < this.ActualWidth);
-                    if (n == 1 && this.ActualWidth < _slotWidth)
+                    if (n == 1 && this.ActualWidth < ItemWidth)
                     {
                         control.TabsVisibility = Visibility.Visible;
                     }
@@ -129,7 +129,7 @@ namespace AppStudio.Uwp.Controls
 
                     control.Index = _items.IndexOf(control.Content).IncMod(_items.Count);
                 }
-                _offset = Math.Round((_offset + delta).Mod(_slotWidth), 2);
+                _offset = Math.Round((_offset + delta).Mod(ItemWidth), 2);
 
                 _disableSelectedIndexCallback = true;
                 this.SelectedIndex = newIndex;

@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -56,6 +57,33 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty TabTemplateProperty = DependencyProperty.Register("TabTemplate", typeof(DataTemplate), typeof(Pivorama), new PropertyMetadata(null));
         #endregion
 
+        #region ItemWidth
+        public double ItemWidth
+        {
+            get { return (double)GetValue(ItemWidthProperty); }
+            set { SetValue(ItemWidthProperty, value); }
+        }
+
+        private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Pivorama;
+            control.SetItemWidth();
+        }
+
+        private void SetItemWidth()
+        {
+            if (_container != null)
+            {
+                foreach (Control control in _container.Children)
+                {
+                    control.Width = this.ItemWidth;
+                }
+            }
+        }
+
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0, ItemWidthChanged));
+        #endregion
+
         private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Pivorama;
@@ -86,7 +114,7 @@ namespace AppStudio.Uwp.Controls
 
             // Animate Next
             double delta = Math.Abs(_offset);
-            delta = delta < 1.0 ? _slotWidth : delta;
+            delta = delta < 1.0 ? ItemWidth : delta;
             MoveOffsetInternal(-delta, oldInx, 75);
         }
 

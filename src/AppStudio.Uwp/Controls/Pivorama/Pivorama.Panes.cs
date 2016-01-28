@@ -11,7 +11,6 @@ namespace AppStudio.Uwp.Controls
     partial class Pivorama
     {
         private double _offset = 0;
-        private double _slotWidth = 1;
 
         public void MoveNext()
         {
@@ -25,20 +24,20 @@ namespace AppStudio.Uwp.Controls
         public void AnimateNext(double duration = 50)
         {
             double delta = Math.Abs(_offset);
-            delta = delta < 1.0 ? _slotWidth : delta;
+            delta = delta < 1.0 ? ItemWidth : delta;
             MoveOffset(-delta, duration);
         }
         public void AnimatePrev(double duration = 50)
         {
-            double delta = _slotWidth - _offset;
-            delta = delta < 1.0 ? _slotWidth : delta;
+            double delta = ItemWidth - _offset;
+            delta = delta < 1.0 ? ItemWidth : delta;
             MoveOffset(delta, duration);
         }
 
         public async void AnimateNextPage(double duration = 50)
         {
             double delta = Math.Abs(_offset);
-            delta = delta < 1.0 ? _slotWidth : delta;
+            delta = delta < 1.0 ? ItemWidth : delta;
             for (int n = 0; n < _items.Count * 4; n++)
             {
                 MoveOffsetInternal(-delta / 4.0, this.SelectedIndex);
@@ -47,8 +46,8 @@ namespace AppStudio.Uwp.Controls
         }
         public async void AnimatePrevPage(double duration = 50)
         {
-            double delta = _slotWidth - _offset;
-            delta = delta < 1.0 ? _slotWidth : delta;
+            double delta = ItemWidth - _offset;
+            delta = delta < 1.0 ? ItemWidth : delta;
             for (int n = 0; n < _items.Count * 4; n++)
             {
                 MoveOffsetInternal(delta / 4.0, this.SelectedIndex);

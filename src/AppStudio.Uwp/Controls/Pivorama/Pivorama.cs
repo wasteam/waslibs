@@ -46,22 +46,19 @@ namespace AppStudio.Uwp.Controls
 
             if (_container != null && _container.Children.Count > 0)
             {
-                _slotWidth = (_container.Children[0] as Control).ActualWidth;
-
                 double actualWidth = size.Width - 10;
-                var tabsVisibility = actualWidth > _slotWidth * 2 ? Visibility.Collapsed : Visibility.Visible;
+                var tabsVisibility = actualWidth > ItemWidth * 2 ? Visibility.Collapsed : Visibility.Visible;
 
-                var positions = GetPositions(_slotWidth).ToArray();
+                var positions = GetPositions(ItemWidth).ToArray();
                 var controls = _container.Children.Cast<PivoramaItem>().OrderBy(r => r.X).ToArray();
                 for (int n = 0; n < controls.Length; n++)
                 {
                     var position = positions[n];
                     var control = controls[n];
                     control.MoveX(position.X + _offset);
-                    control.Width = _slotWidth;
 
                     ShowHeader(control, position.X < actualWidth);
-                    if (n == 1 && actualWidth < _slotWidth)
+                    if (n == 1 && actualWidth < ItemWidth)
                     {
                         control.TabsVisibility = Visibility.Visible;
                     }
