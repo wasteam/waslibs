@@ -20,7 +20,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateX() != x)
             {
-                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateX", element.Width, x, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateX", element.GetTranslateX(), x, duration, easingFunction);
             }
         }
 
@@ -36,7 +36,7 @@ namespace AppStudio.Uwp
         {
             if (element.GetTranslateY() != y)
             {
-                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateY", element.Width, y, duration, easingFunction);
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateY", element.GetTranslateY(), y, duration, easingFunction);
             }
         }
 
