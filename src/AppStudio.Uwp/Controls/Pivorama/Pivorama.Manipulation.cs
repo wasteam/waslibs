@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
+
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp.Controls
 {

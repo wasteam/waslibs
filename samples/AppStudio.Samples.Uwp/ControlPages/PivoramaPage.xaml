@@ -10,44 +10,53 @@
     mc:Ignorable="d">
 
     <Grid>
-        <controls:Pivorama ItemsSource="{Binding Items}" ItemWidth="400">
-            <controls:Pivorama.HeaderTemplate>
-                <DataTemplate>
-                    <Border>
-                        <TextBlock Margin="12,6" Text="{Binding Date}" Foreground="Black" FontSize="26" />
-                    </Border>
-                </DataTemplate>
-            </controls:Pivorama.HeaderTemplate>
+        <ctrls:DockView>
+            <ctrls:DockView.Content>
+                <controls:Pivorama Name="pivorama" ItemsSource="{Binding Items}" ItemWidth="400">
+                    <controls:Pivorama.HeaderTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <TextBlock Margin="12,6" Text="{Binding Date}" Foreground="Black" FontSize="26" />
+                            </Border>
+                        </DataTemplate>
+                    </controls:Pivorama.HeaderTemplate>
 
-            <controls:Pivorama.TabTemplate>
-                <DataTemplate>
-                    <Border>
-                        <TextBlock Margin="0,12,6,6" Text="{Binding Date}" Foreground="Gray" FontSize="16" />
-                    </Border>
-                </DataTemplate>
-            </controls:Pivorama.TabTemplate>
+                    <controls:Pivorama.TabTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <TextBlock Margin="0,12,6,6" Text="{Binding Date}" Foreground="Gray" FontSize="16" />
+                            </Border>
+                        </DataTemplate>
+                    </controls:Pivorama.TabTemplate>
 
-            <controls:Pivorama.ContentTemplate>
-                <DataTemplate>
-                    <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1">
-                        <!--<StackPanel>
+                    <controls:Pivorama.ContentTemplate>
+                        <DataTemplate>
+                            <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1">
+                                <!--<StackPanel>
                             <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
                             <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />
                             <TextBlock Margin="12,6" Text="{Binding Body}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" />
                         </StackPanel>-->
-                        <GridView ItemsSource="{Binding SubItems}" SelectionMode="None" Background="White"
+                                <GridView ItemsSource="{Binding SubItems}" SelectionMode="None" Background="White"
                                   ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Disabled">
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="4" Width="120" BorderBrush="Gray" BorderThickness="1" ManipulationMode="TranslateInertia,TranslateX,System">
-                                        <TextBlock Text="{Binding}" FontSize="80" HorizontalAlignment="Center" />
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </Border>
-                </DataTemplate>
-            </controls:Pivorama.ContentTemplate>
-        </controls:Pivorama>
+                                    <GridView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="4" Width="120" BorderBrush="Gray" BorderThickness="1" ManipulationMode="TranslateInertia,TranslateX,System">
+                                                <TextBlock Text="{Binding}" FontSize="80" HorizontalAlignment="Center" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridView.ItemTemplate>
+                                </GridView>
+                            </Border>
+                        </DataTemplate>
+                    </controls:Pivorama.ContentTemplate>
+                </controls:Pivorama>
+            </ctrls:DockView.Content>
+            <ctrls:DockView.Pane>
+                <StackPanel Margin="28,24,12,24">
+                    <ctrls:PropertySet Source="{Binding ElementName=pivorama}" Property="ItemWidth" Value="{Binding ItemWidth, ElementName=pivorama, Mode=TwoWay}" Minimun="100" Maximun="1200" />
+                </StackPanel>
+            </ctrls:DockView.Pane>
+        </ctrls:DockView>
     </Grid>
 </Page>
