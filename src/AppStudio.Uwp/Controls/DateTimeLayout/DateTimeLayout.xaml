@@ -13,7 +13,7 @@
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
                         <StackPanel
-                            Margin="12"                            
+                            Margin="{TemplateBinding Padding}"                            
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <TextBlock Text="{TemplateBinding Line1Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line1FontSize}" FontWeight="ExtraLight" Margin="0"/>

@@ -73,11 +73,12 @@ namespace AppStudio.Uwp.Controls
         }
         #endregion
         public DateTimeLayout()
-        {
+        {            
             this.VerticalAlignment = VerticalAlignment.Center;
             this.HorizontalAlignment = HorizontalAlignment.Center;
             this.HorizontalContentAlignment = HorizontalAlignment.Center;
             this.VerticalContentAlignment = VerticalAlignment.Center;
+            this.Padding = new Thickness(12.0);
             this.Width = 150;
             this.Height = 150;
             this.DefaultStyleKey = typeof(DateTimeLayout);

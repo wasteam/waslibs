@@ -17,7 +17,7 @@
             <ctrls:DockView.Content>
                 <Grid>
                     <controls:DateTimeLayout
-                        x:Name="dateTimeLayout" Foreground="DarkBlue" Background="LightBlue"/>
+                        x:Name="dateTimeLayout" Foreground="DarkBlue" Background="LightBlue" Padding="30"/>
                 </Grid>
             </ctrls:DockView.Content>
             <ctrls:DockView.Pane>
