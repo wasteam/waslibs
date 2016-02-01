@@ -91,7 +91,34 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0));
+        private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Pivorama;
+            control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
+        }
+
+        private void SetItemWidth(double newWidth, double oldWidth)
+        {
+            if (_isInitialized)
+            {
+                int oldIndex = (int)(Position / oldWidth);
+
+                foreach (Control control in _headerItems.Children)
+                {
+                    control.Width = newWidth;
+                }
+                foreach (Control control in _container.Children)
+                {
+                    control.Width = newWidth;
+                }
+
+                Position = oldIndex * newWidth;
+                this.ArrangeTabs();
+                this.ArrangeItems();
+            }
+        }
+
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0, ItemWidthChanged));
         #endregion
 
         private int Index
