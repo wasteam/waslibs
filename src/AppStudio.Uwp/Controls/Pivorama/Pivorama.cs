@@ -1,88 +1,79 @@
 ﻿using System;
 using System.Linq;
 using System.Collections;
-using System.Collections.Generic;
 
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
-using Windows.Foundation;
+using Windows.UI.Xaml.Input;
 
 namespace AppStudio.Uwp.Controls
 {
     public sealed partial class Pivorama : Control
     {
+        private Panel _header = null;
+        private Panel _headerItems = null;
+        private Panel _tabItems = null;
         private Panel _container = null;
-        private List<object> _items = null;
 
         private bool _isInitialized = false;
 
         public Pivorama()
         {
-            _items = new List<object>();
             this.DefaultStyleKey = typeof(Pivorama);
         }
 
         protected override void OnApplyTemplate()
         {
+            _header = base.GetTemplateChild("header") as Panel;
+            _headerItems = base.GetTemplateChild("headerItems") as Panel;
+            _headerItems.SizeChanged += OnHeaderItemsSizeChanged;
+
+            _tabItems = base.GetTemplateChild("tabItems") as Panel;
+
             _container = base.GetTemplateChild("container") as Panel;
+            _container.TranslateX(this.Position);
 
-            this.BuildPanes(this.ItemsSource as IEnumerable);
-            this.ItemsSourceChanged(this.ItemsSource as IEnumerable);
-
-            _container.ManipulationInertiaStarting += OnManipulationInertiaStarting;
             _container.ManipulationDelta += OnManipulationDelta;
             _container.ManipulationCompleted += OnManipulationCompleted;
-            _container.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System | ManipulationModes.TranslateRailsX;
+            _container.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
 
-            _isInitialized = true;
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                _isInitialized = true;
+                this.ItemsSourceChanged(this.ItemsSource as IEnumerable);
+            }
+
+            this.SizeChanged += OnSizeChanged;
 
             base.OnApplyTemplate();
         }
 
-        protected override Size ArrangeOverride(Size finalSize)
+        private void OnHeaderItemsSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            var size = base.ArrangeOverride(finalSize);
-
-            if (_container != null && _container.Children.Count > 0)
-            {
-                double actualWidth = size.Width - 10;
-                var tabsVisibility = actualWidth > ItemWidth * 2 ? Visibility.Collapsed : Visibility.Visible;
-
-                var positions = GetPositions(ItemWidth).ToArray();
-                var controls = _container.Children.Cast<PivoramaItem>().OrderBy(r => r.X).ToArray();
-                for (int n = 0; n < controls.Length; n++)
-                {
-                    var position = positions[n];
-                    var control = controls[n];
-                    control.MoveX(position.X + _offset);
-
-                    ShowHeader(control, position.X < actualWidth);
-                    if (n == 1 && actualWidth < ItemWidth)
-                    {
-                        control.TabsVisibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        control.TabsVisibility = Visibility.Collapsed;
-                    }
-                }
-            }
-
-            return size;
+            _header.Height = _headerItems.ActualHeight;
         }
 
-        private void ShowHeader(PivoramaItem control, bool visible)
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (visible)
+            if (_isInitialized)
             {
-                control.HeaderOpacity = 1.0;
-                control.IsHitTestVisible = true;
-            }
-            else
-            {
-                control.HeaderOpacity = 0.0;
-                control.IsHitTestVisible = true;
+                double height = this.ActualHeight;
+                if (_container.Children.Count > 0)
+                {
+                    height = Math.Max(height, _container.Children.Cast<FrameworkElement>().Max(r => r.ActualHeight));
+                }
+                _container.Height = height;
+                if (this.IsTabVisible)
+                {
+                    _header.Visibility = Visibility.Collapsed;
+                    _tabItems.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    _header.Visibility = Visibility.Visible;
+                    _tabItems.Visibility = Visibility.Collapsed;
+                }
+                this.ArrangeItems();
             }
         }
     }

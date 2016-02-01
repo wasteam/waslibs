@@ -42,7 +42,7 @@ namespace AppStudio.Samples.Uwp.ControlPages
 
             this.DataContext = this;
 
-            carousel.SelectedIndex = 0;
+            //carousel.SelectedIndex = 0;
         }
 
         private async Task<IEnumerable<FeedSchema>> GetItems(string name)

@@ -1,17 +1,67 @@
 ﻿using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
-using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class Pivorama
     {
+        private List<object> _items = new List<object>();
+
+        #region Position
+        internal double Position
+        {
+            get { return -_container.GetTranslateX(); }
+            set
+            {
+                double position = value;
+
+                if (position < 0)
+                {
+                    position = this.PanelWidth + position;
+                }
+                else
+                {
+                    position = position % this.PanelWidth;
+                }
+
+                if (_isInitialized && position != value)
+                {
+                    for (int n = 0; n < _container.Children.Count; n++)
+                    {
+                        double x = TransformX(position, n * ItemWidth);
+
+                        var headerControl = _headerItems.Children[n] as PivoramaItem;
+                        headerControl.MoveX(x);
+
+                        var itemControl = _container.Children[n] as PivoramaItem;
+                        itemControl.MoveX(x);
+                    }
+                }
+
+                SetValue(PositionProperty, position);
+            }
+        }
+
+        private static void PositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Pivorama;
+            control.MoveTo((double)e.NewValue);
+        }
+
+        private void MoveTo(double position)
+        {
+            _headerItems.TranslateX(-position);
+            _container.TranslateX(-position);
+        }
+
+        public static readonly DependencyProperty PositionProperty = DependencyProperty.Register("Position", typeof(double), typeof(Pivorama), new PropertyMetadata(0.0, PositionChanged));
+        #endregion
+
         #region ItemsSource
         public object ItemsSource
         {
@@ -28,202 +78,189 @@ namespace AppStudio.Uwp.Controls
 
             var control = d as Pivorama;
 
-            control.DetachNotificationEvents(e.OldValue as INotifyCollectionChanged);
-            control.AttachNotificationEvents(e.NewValue as INotifyCollectionChanged);
-
             control.ItemsSourceChanged(e.NewValue as IEnumerable);
-        }
-
-        private void AttachNotificationEvents(INotifyCollectionChanged notifyCollection)
-        {
-            if (notifyCollection != null)
-            {
-                notifyCollection.CollectionChanged += OnCollectionChanged;
-            }
-        }
-
-        private void DetachNotificationEvents(INotifyCollectionChanged notifyCollection)
-        {
-            if (notifyCollection != null)
-            {
-                notifyCollection.CollectionChanged -= OnCollectionChanged;
-            }
         }
 
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(object), typeof(Pivorama), new PropertyMetadata(null, ItemsSourceChanged));
         #endregion
 
+        #region ItemWidth
+        public double ItemWidth
+        {
+            get { return (double)GetValue(ItemWidthProperty); }
+            set { SetValue(ItemWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0));
+        #endregion
+
+        private int Index
+        {
+            get { return (int)(Position / this.ItemWidth); }
+        }
+
+        private double PanelWidth
+        {
+            get { return _items.Count * this.ItemWidth; }
+        }
+
+        private bool IsTabVisible
+        {
+            get { return this.ActualWidth < this.ItemWidth * 1.5; }
+        }
+
         private void ItemsSourceChanged(IEnumerable items)
         {
-            if (_container != null)
+            if (_isInitialized)
             {
-                int index = -1;
-                ClearChildren();
-                if (items != null)
-                {
-                    foreach (var item in items)
-                    {
-                        AddItem(item);
-                        index = 0;
-                    }
-                }
-                this.SelectedIndex = index;
-                this.ArrangeItems();
-            }
-        }
-
-        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (_container != null)
-            {
-                switch (e.Action)
-                {
-                    case NotifyCollectionChangedAction.Reset:
-                        ClearChildren();
-                        break;
-                    case NotifyCollectionChangedAction.Add:
-                        int index = e.NewStartingIndex;
-                        foreach (var item in e.NewItems)
-                        {
-                            AddItem(item, index++);
-                        }
-                        break;
-                    case NotifyCollectionChangedAction.Remove:
-                        foreach (var item in e.OldItems)
-                        {
-                            RemoveItem(item);
-                        }
-                        break;
-                    case NotifyCollectionChangedAction.Replace:
-                    case NotifyCollectionChangedAction.Move:
-                    default:
-                        break;
-                }
-                this.ArrangeItems();
-            }
-        }
-
-        private void ClearChildren()
-        {
-            this.SelectedIndex = -1;
-            _items.Clear();
-        }
-
-        private void AddItem(object item, int index = -1)
-        {
-            index = index < 0 ? _items.Count : index;
-            _items.Insert(index, item);
-            this.SelectedIndex = Math.Max(0, this.SelectedIndex);
-        }
-
-        private void RemoveItem(object item)
-        {
-            _items.Remove(item);
-            this.SelectedIndex = Math.Min(_items.Count - 1, this.SelectedIndex);
-        }
-
-        private void BuildPanes(IEnumerable items)
-        {
-            if (items != null)
-            {
-                int count = 2;
                 foreach (var item in items)
                 {
-                    count++;
+                    _items.Add(item);
                 }
 
-                if (_container != null)
-                {
-                    _container.Children.Clear();
-                    for (int n = 0; n < count; n++)
-                    {
-                        var controlItem = new PivoramaItem
-                        {
-                            Index = n % (count - 2),
-                            Items = _items,
-                            TabTemplate = TabTemplate,
-                            HeaderTemplate = HeaderTemplate,
-                            ContentTemplate = ContentTemplate,
-                            Width = ItemWidth,
-                            HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                            VerticalContentAlignment = VerticalAlignment.Stretch,
-                            UseLayoutRounding = false
-                        };
-                        controlItem.HeaderClick += OnItemHeaderClick;
-                        controlItem.TabClick += OnTabClick;
-                        _container.Children.Add(controlItem);
-                        controlItem.MoveX(n);
-                    }
-                }
+                Position = 0;
+
+                this.BuildPanels(items);
+                this.ArrangeTabs();
+                this.ArrangeItems();
             }
+        }
+
+        private void BuildPanels(IEnumerable items)
+        {
+            _headerItems.Children.Clear();
+            _container.Children.Clear();
+            foreach (var item in items)
+            {
+                var headerControl = CreateHeader();
+                headerControl.Width = this.ItemWidth;
+                headerControl.Content = item;
+                _headerItems.Children.Add(headerControl);
+
+                var itemControl = CreateItem();
+                itemControl.Width = this.ItemWidth;
+                itemControl.Content = item;
+                _container.Children.Add(itemControl);
+            }
+        }
+
+        private void ArrangeTabs()
+        {
+            _tabItems.Children.Clear();
+
+            int index = this.Index;
+            for (int n = 0; n < _items.Count; n++)
+            {
+                int inx = (index + n) % _items.Count;
+                var tabControl = new PivoramaTab
+                {
+                    Index = inx,
+                    ContentTemplate = n == 0 ? HeaderTemplate : TabTemplate
+                };
+                tabControl.Content = _items[inx];
+                _tabItems.Children.Add(tabControl);
+                tabControl.Tapped += OnTabControlTapped;
+            }
+            _tabItems.TranslateX(0);
+        }
+
+        private void OnTabControlTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var tab = sender as PivoramaTab;
+            this.Position = tab.Index * this.ItemWidth;
+            this.ArrangeTabs();
+            this.ArrangeItems();
+        }
+
+        private void AnimateTabsLeft()
+        {
+            _tabItems.AnimateX((_tabItems.Children[0] as Control).ActualWidth);
+        }
+
+        private void AnimateTabsRight()
+        {
+            _tabItems.AnimateX(-(_tabItems.Children[0] as Control).ActualWidth);
         }
 
         private void ArrangeItems()
         {
-            ArrangeItems(this.SelectedIndex);
-        }
-        private void ArrangeItems(int currentIndex)
-        {
-            if (_container != null)
+            if (_isInitialized && this.ActualWidth > 0)
             {
-                var panes = _container.Children.Cast<PivoramaItem>().OrderBy(r => r.GetTranslateX()).ToArray();
-                for (int n = 0; n < panes.Length; n++)
+                int count = _items.Count;
+                for (int n = 0; n < count; n++)
                 {
-                    if (_items.Count > 0)
-                    {
-                        int index = GetItemIndex(currentIndex, n);
-                        // TODO: Remove
-                        //panes[n].Index = index;
+                    double x = TransformX(Position, n * ItemWidth);
 
-                        var item = _items[index];
-                        if (panes[n].Content != item)
+                    var headerControl = _headerItems.Children[n] as PivoramaItem;
+                    headerControl.MoveX(x);
+
+                    var itemControl = _container.Children[n] as PivoramaItem;
+                    itemControl.MoveX(x);
+
+                    if (IsItemInRange(n))
+                    {
+                        if (itemControl.Content != _items[n])
                         {
-                            panes[n].Header = null;
-                            panes[n].Header = item;
-                            panes[n].Content = null;
-                            panes[n].Content = item;
+                            headerControl.Content = _items[n];
+                            itemControl.Content = _items[n];
                         }
                     }
                     else
                     {
-                        panes[n].Header = null;
-                        panes[n].Content = null;
+                        headerControl.Content = null;
+                        itemControl.Content = null;
                     }
                 }
             }
         }
 
-        private int GetItemIndex(int currentIndex, int n)
+        private double TransformX(double position, double x)
         {
-            int index = (currentIndex + n - 1);
-            return index.Mod(_items.Count);
-        }
-
-        private IEnumerable<Point> GetPositions(double slotWidth)
-        {
-            double x0 = GetLeftBound();
-            for (int n = 0; n < (_items.Count + 2); n++)
+            if (position < this.ItemWidth && x >= this.PanelWidth - this.ItemWidth)
             {
-                yield return new Point(x0, 0);
-                x0 += slotWidth;
+                return -this.ItemWidth;
             }
+
+            if ((x + this.ItemWidth * 2) > position)
+            {
+                return x;
+            }
+            return x + this.PanelWidth;
         }
 
-        private double GetLeftBound()
+        private bool IsItemInRange(int n)
         {
-            return -Math.Round(ItemWidth, 2);
+            double pos = Position;
+            double x = n * this.ItemWidth;
+            x = TransformX(Position, x);
+
+            if (x < 0)
+            {
+                return true;
+            }
+
+            double rangeWidth = this.ActualWidth + this.ItemWidth;
+            if ((x + this.ItemWidth * 2) > pos && x - pos < rangeWidth)
+            {
+                return true;
+            }
+            return false;
         }
 
-        private void OnItemHeaderClick(object sender, RoutedEventArgs e)
+        private PivoramaItem CreateHeader()
         {
-            var item = sender as PivoramaItem;
-            this.SelectedIndex = _items.IndexOf(item.Content);
+            return new PivoramaItem
+            {
+                ContentTemplate = this.HeaderTemplate
+            };
         }
 
-        private void OnTabClick(object sender, RoutedEventArgs e)
+        private PivoramaItem CreateItem()
         {
-            var item = sender as ContentControl;
-            this.SelectedIndex = _items.IndexOf(item.Content);
+            return new PivoramaItem
+            {
+                ContentTemplate = this.ContentTemplate
+            };
         }
     }
 }

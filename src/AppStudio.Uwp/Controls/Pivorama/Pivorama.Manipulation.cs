@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -9,134 +9,78 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Pivorama
     {
-        private void OnManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
+        private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            double velocity = e.Velocities.Linear.X;
-            double offset = Math.Abs(_offset);
+            double deltaX = -e.Delta.Translation.X;
 
-            if (Math.Abs(velocity) > 20000000.0)
+            if (e.IsInertial)
             {
-                if (Math.Sign(velocity) > 0)
-                {
-                    e.TranslationBehavior.DesiredDisplacement = ItemWidth * _items.Count - offset;
-                }
-                else
-                {
-                    e.TranslationBehavior.DesiredDisplacement = ItemWidth * (_items.Count - 1) + offset;
-                }
+                e.Complete();
             }
             else
             {
-                if (Math.Abs(velocity) > 0.5)
+                if (Math.Abs(e.Cumulative.Translation.X) >= this.ItemWidth)
                 {
-                    if (Math.Sign(velocity) > 0)
-                    {
-                        e.TranslationBehavior.DesiredDisplacement = ItemWidth * 1 - offset;
-                    }
-                    else
-                    {
-                        e.TranslationBehavior.DesiredDisplacement = ItemWidth * 0 + offset;
-                    }
+                    e.Complete();
                 }
                 else
                 {
-                    e.TranslationBehavior.DesiredDeceleration = 2.0;
+                    Position += deltaX;
                 }
             }
-        }
-
-        private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
-        {
-            MoveOffset(e.Delta.Translation.X);
         }
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (_offset > 0.9 && _offset < ItemWidth - 0.9)
+            double offset = this.ItemWidth - Position % this.ItemWidth;
+
+            if (e.IsInertial)
             {
-                if (_offset < ItemWidth / 2.0)
+                if (Math.Sign(e.Cumulative.Translation.X) < 0)
                 {
-                    AnimateNext(150);
+                    AnimateNext();
                 }
                 else
                 {
-                    AnimatePrev(150);
-                }
-            }
-        }
-
-        private DateTime _idleTime = DateTime.MinValue;
-
-        private void MoveOffset(double delta, double duration = 0)
-        {
-            if (duration > 0)
-            {
-                if (DateTime.Now > _idleTime)
-                {
-                    _idleTime = DateTime.Now.AddMilliseconds(duration + 50);
-                    MoveOffsetInternal(delta, this.SelectedIndex, duration);
+                    AnimatePrev();
                 }
             }
             else
             {
-                MoveOffsetInternal(delta, this.SelectedIndex);
+                if (offset < this.ItemWidth / 2.0)
+                {
+                    AnimateNext();
+                }
+                else
+                {
+                    AnimatePrev();
+                }
             }
         }
 
-        private void MoveOffsetInternal(double delta, int currentIndex, double duration = 0)
+
+        private async void AnimateNext(double duration = 500)
         {
-            if (_items.Count > 0)
-            {
-                double x0 = GetLeftBound();
-                double x1 = Math.Round(x0 + ItemWidth * (_items.Count + 2), 2);
+            double delta = this.ItemWidth - Position % this.ItemWidth;
+            double position = (Position + delta);
+            _headerItems.AnimateX(-position);
+            // TODO: 
+            //AnimateTabsRight();
+            await _container.AnimateXAsync(-position);
+            this.ArrangeTabs();
+            this.ArrangeItems();
+        }
 
-                int newIndex = currentIndex;
-                var controls = _container.Children.Cast<PivoramaItem>().OrderBy(r => r.X).ToArray();
-                for (int n = 0; n < controls.Length; n++)
-                {
-                    var control = controls[n];
-                    var x = Math.Round(control.X + delta, 2);
-                    if (x < x0 - 1)
-                    {
-                        double inc = x - x0;
-                        control.MoveX(x1 + inc);
-                        control.Header = _items[(currentIndex + (_items.Count + 1)).Mod(_items.Count)];
-                        control.Content = _items[(currentIndex + (_items.Count + 1)).Mod(_items.Count)];
-                        newIndex = currentIndex.IncMod(_items.Count);
-                    }
-                    else if (x > x1 - 1)
-                    {
-                        double inc = x - x1;
-                        control.MoveX(x0 + inc);
-                        control.Header = _items[(currentIndex - 2).Mod(_items.Count)];
-                        control.Content = _items[(currentIndex - 2).Mod(_items.Count)];
-                        newIndex = currentIndex.DecMod(_items.Count);
-                    }
-                    else
-                    {
-                        control.MoveX(x, duration);
-                    }
-
-                    ShowHeader(control, x < this.ActualWidth);
-                    if (n == 1 && this.ActualWidth < ItemWidth)
-                    {
-                        control.TabsVisibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        control.TabsVisibility = Visibility.Collapsed;
-                    }
-
-                    control.Index = _items.IndexOf(control.Content).IncMod(_items.Count);
-                }
-                _offset = Math.Round((_offset + delta).Mod(ItemWidth), 2);
-
-                _disableSelectedIndexCallback = true;
-                this.SelectedIndex = newIndex;
-                _disableSelectedIndexCallback = false;
-
-                //ApplySelection();
-            }
+        private async void AnimatePrev(double duration = 500)
+        {
+            double delta = -Position % this.ItemWidth;
+            double position = (Position + delta);
+            _headerItems.AnimateX(-position);
+            // TODO: 
+            //AnimateTabsLeft();
+            await _container.AnimateXAsync(-position);
+            this.ArrangeTabs();
+            this.ArrangeItems();
         }
     }
 }

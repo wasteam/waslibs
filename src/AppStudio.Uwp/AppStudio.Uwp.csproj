@@ -112,14 +112,13 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\DateTimeLayout\DateTimeLayout.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Items.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Members.cs" />
-    <Compile Include="Controls\Pivorama\Pivorama.Panes.cs" />
-    <Compile Include="Controls\Pivorama\PivoramaHeader.cs" />
     <Compile Include="Controls\Pivorama\PivoramaItem.cs" />
-    <Compile Include="Controls\DateTimeLayout\DateTimeLayout.cs" />
+    <Compile Include="Controls\Pivorama\PivoramaTab.cs" />
     <Compile Include="Controls\SearchBox\SearchBox.Members.cs" />
     <None Include="project.json" />
   </ItemGroup>

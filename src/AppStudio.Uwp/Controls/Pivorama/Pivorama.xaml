@@ -7,9 +7,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Pivorama">
-                    <ScrollViewer>
-                        <Grid Name="container" HorizontalAlignment="Left" />
-                    </ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Canvas Name="header">
+                            <Grid Name="headerItems" />
+                        </Canvas>
+                        <StackPanel Name="tabItems" Orientation="Horizontal" />
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <Canvas Name="container" />
+                        </ScrollViewer>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -19,23 +29,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PivoramaItem">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
-                            <StackPanel Orientation="Horizontal" Opacity="{TemplateBinding HeaderOpacity}">
-                                <ContentControl Name="header" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                                <Canvas>
-                                    <StackPanel Name="tabs" Orientation="Horizontal" Visibility="{TemplateBinding TabsVisibility}" />
-                                </Canvas>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <ContentPresenter Name="content" Grid.Row="1" />
-                        </Grid>
-                    </Grid>
+                    <ContentPresenter />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
