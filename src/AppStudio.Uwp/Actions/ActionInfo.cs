@@ -21,6 +21,7 @@ namespace AppStudio.Uwp.Actions
         public const string Link = "AppBarLink";
         public const string Phone = "AppBarPhone";
         public const string Mail = "AppBarMail";
+        public const string AddToCalendar = "AppBarAddToCalendar";
         public const string Play = "AppBarPlay";
         public const string Directions = "AppBarDirections";
         public const string Address = "AppBarAddress";

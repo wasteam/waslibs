@@ -11,10 +11,10 @@ namespace AppStudio.Uwp.Commands
     using System.Windows.Input;
     using AppStudio.Uwp.Navigation;
     using Windows.ApplicationModel.DataTransfer;
-
-    /// <summary>
-    /// This class defines commands used to implement the actions.
-    /// </summary>
+    using Windows.ApplicationModel.Appointments;
+    using Windows.UI.Xaml;    /// <summary>
+                              /// This class defines commands used to implement the actions.
+                              /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
     public class ActionCommands
     {
@@ -121,6 +121,23 @@ namespace AppStudio.Uwp.Commands
                 return new RelayCommand(() =>
                 {
                     DataTransferManager.ShowShareUI();
+                });
+            }
+        }
+
+        /// <summary>
+        /// Gets the command used to add Appointment to Calendar
+        /// </summary>
+        public static ICommand AddToCalendar
+        {
+            get
+            {
+                return new RelayCommand<Appointment>(appointment =>
+                {
+                    if (appointment != null)
+                    {
+                        var s = AppointmentManager.ShowAddAppointmentAsync(appointment, RectHelper.Empty);
+                    }
                 });
             }
         }
