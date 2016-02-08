@@ -5,6 +5,7 @@ using System.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -55,6 +56,11 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if (this.FitToScreen)
+            {
+                this.ItemWidth = e.NewSize.Width;
+                this.SetItemWidth(e.NewSize.Width, Math.Max(1, e.PreviousSize.Width));
+            }
             RefreshLayout();
         }
 

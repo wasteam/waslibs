@@ -35,6 +35,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(Pivorama), new PropertyMetadata(null));
         #endregion
 
+        #region FitToScreen
+        public bool FitToScreen
+        {
+            get { return (bool)GetValue(FitToScreenProperty); }
+            set { SetValue(FitToScreenProperty, value); }
+        }
+
+        public static readonly DependencyProperty FitToScreenProperty = DependencyProperty.Register("FitToScreen", typeof(bool), typeof(Pivorama), new PropertyMetadata(false));
+        #endregion
+
         #region ItemWidth
         public double ItemWidth
         {
@@ -45,7 +55,10 @@ namespace AppStudio.Uwp.Controls
         private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Pivorama;
-            control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
+            if (!control.FitToScreen)
+            {
+                control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
+            }
         }
 
         private void SetItemWidth(double newWidth, double oldWidth)

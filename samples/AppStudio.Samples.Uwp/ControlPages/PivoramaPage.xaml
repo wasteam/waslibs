@@ -12,7 +12,7 @@
     <Grid>
         <ctrls:DockView>
             <ctrls:DockView.Content>
-                <controls:Pivorama Name="pivorama" ItemsSource="{Binding Items}" ItemWidth="400">
+                <controls:Pivorama Name="pivorama" ItemsSource="{Binding Items}" ItemWidth="400" FitToScreen="True">
                     <controls:Pivorama.HeaderTemplate>
                         <DataTemplate>
                             <Border>
