@@ -9,8 +9,9 @@ namespace AppStudio.Samples.Uwp.ControlPages
         public PivoramaPage()
         {
             this.InitializeComponent();
-            this.Items = new ObservableCollection<ItemData>(ItemData.GetItems(7));
+            this.Items = new ObservableCollection<ItemData>();
             this.DataContext = this;
+            this.Loaded += OnLoaded;
         }
 
         #region Items
@@ -22,5 +23,13 @@ namespace AppStudio.Samples.Uwp.ControlPages
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<ItemData>), typeof(MainPage), new PropertyMetadata(null));
         #endregion
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in ItemData.GetItems(7))
+            {
+                this.Items.Add(item);
+            }
+        }
     }
 }

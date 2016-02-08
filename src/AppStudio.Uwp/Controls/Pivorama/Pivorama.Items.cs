@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
@@ -78,63 +79,30 @@ namespace AppStudio.Uwp.Controls
 
             var control = d as Pivorama;
 
+            control.DetachNotificationEvents(e.OldValue as INotifyCollectionChanged);
+            control.AttachNotificationEvents(e.NewValue as INotifyCollectionChanged);
+
             control.ItemsSourceChanged(e.NewValue as IEnumerable);
+        }
+
+        private void AttachNotificationEvents(INotifyCollectionChanged notifyCollection)
+        {
+            if (notifyCollection != null)
+            {
+                notifyCollection.CollectionChanged += OnCollectionChanged;
+            }
+        }
+
+        private void DetachNotificationEvents(INotifyCollectionChanged notifyCollection)
+        {
+            if (notifyCollection != null)
+            {
+                notifyCollection.CollectionChanged -= OnCollectionChanged;
+            }
         }
 
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(object), typeof(Pivorama), new PropertyMetadata(null, ItemsSourceChanged));
         #endregion
-
-        #region ItemWidth
-        public double ItemWidth
-        {
-            get { return (double)GetValue(ItemWidthProperty); }
-            set { SetValue(ItemWidthProperty, value); }
-        }
-
-        private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Pivorama;
-            control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
-        }
-
-        private void SetItemWidth(double newWidth, double oldWidth)
-        {
-            if (_isInitialized)
-            {
-                int oldIndex = (int)(Position / oldWidth);
-
-                foreach (Control control in _headerItems.Children)
-                {
-                    control.Width = newWidth;
-                }
-                foreach (Control control in _container.Children)
-                {
-                    control.Width = newWidth;
-                }
-
-                Position = oldIndex * newWidth;
-                this.ArrangeTabs();
-                this.ArrangeItems();
-            }
-        }
-
-        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0, ItemWidthChanged));
-        #endregion
-
-        private int Index
-        {
-            get { return (int)(Position / this.ItemWidth); }
-        }
-
-        private double PanelWidth
-        {
-            get { return _items.Count * this.ItemWidth; }
-        }
-
-        private bool IsTabVisible
-        {
-            get { return this.ActualWidth < this.ItemWidth * 1.5; }
-        }
 
         private void ItemsSourceChanged(IEnumerable items)
         {
@@ -151,6 +119,56 @@ namespace AppStudio.Uwp.Controls
                 this.ArrangeTabs();
                 this.ArrangeItems();
             }
+        }
+
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (_container != null)
+            {
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Reset:
+                        ClearChildren();
+                        break;
+                    case NotifyCollectionChangedAction.Add:
+                        int index = e.NewStartingIndex;
+                        foreach (var item in e.NewItems)
+                        {
+                            AddItem(item, index++);
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Remove:
+                        foreach (var item in e.OldItems)
+                        {
+                            RemoveItem(item);
+                        }
+                        break;
+                    case NotifyCollectionChangedAction.Replace:
+                    case NotifyCollectionChangedAction.Move:
+                    default:
+                        break;
+                }
+
+                this.BuildPanels(_items);
+                this.ArrangeTabs();
+                this.ArrangeItems();
+            }
+        }
+
+        private void ClearChildren()
+        {
+            _items.Clear();
+        }
+
+        private void AddItem(object item, int index = -1)
+        {
+            index = index < 0 ? _items.Count : index;
+            _items.Insert(index, item);
+        }
+
+        private void RemoveItem(object item)
+        {
+            _items.Remove(item);
         }
 
         private void BuildPanels(IEnumerable items)
