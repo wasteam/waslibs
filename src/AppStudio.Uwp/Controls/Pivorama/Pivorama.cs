@@ -55,14 +55,25 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
+            RefreshLayout();
+        }
+
+        private void RefreshLayout()
+        {
             if (_isInitialized)
             {
                 double height = this.ActualHeight;
+                if (!double.IsNaN(_header.Height))
+                {
+                    height = this.ActualHeight - _header.Height;
+                }
+
                 if (_container.Children.Count > 0)
                 {
-                    height = Math.Max(height, _container.Children.Cast<FrameworkElement>().Max(r => r.ActualHeight));
+                    height = Math.Max(height, _container.Children.Cast<FrameworkElement>().Max(r => r.DesiredSize.Height));
                 }
                 _container.Height = height;
+
                 if (this.IsTabVisible)
                 {
                     _header.Visibility = Visibility.Collapsed;

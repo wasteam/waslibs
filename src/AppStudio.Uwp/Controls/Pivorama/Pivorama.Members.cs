@@ -65,7 +65,7 @@ namespace AppStudio.Uwp.Controls
 
                 Position = oldIndex * newWidth;
                 this.ArrangeTabs();
-                this.ArrangeItems();
+                this.RefreshLayout();
             }
         }
 

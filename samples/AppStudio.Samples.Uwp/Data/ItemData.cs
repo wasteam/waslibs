@@ -11,6 +11,8 @@ namespace AppStudio.Samples.Uwp
 {
     public class ItemData
     {
+        private Random _random = new Random();
+
         public ItemData(int n)
         {
             Id = n;
@@ -24,7 +26,8 @@ namespace AppStudio.Samples.Uwp
             Color = new SolidColorBrush(SystemColors.Values.ToArray()[n]);
 
             SubItems = new List<int>();
-            for (int m = 0; m < 31; m++)
+            int count = _random.Next(10, 40);
+            for (int m = 0; m < count; m++)
             {
                 SubItems.Add(n + m);
             }

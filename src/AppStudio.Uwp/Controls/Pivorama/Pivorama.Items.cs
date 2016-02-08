@@ -117,11 +117,11 @@ namespace AppStudio.Uwp.Controls
 
                 this.BuildPanels(items);
                 this.ArrangeTabs();
-                this.ArrangeItems();
+                this.RefreshLayout();
             }
         }
 
-        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private async void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (_container != null)
             {
@@ -152,6 +152,11 @@ namespace AppStudio.Uwp.Controls
                 this.BuildPanels(_items);
                 this.ArrangeTabs();
                 this.ArrangeItems();
+
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    this.RefreshLayout();
+                });
             }
         }
 

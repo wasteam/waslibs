@@ -26,7 +26,7 @@ namespace AppStudio.Samples.Uwp.ControlPages
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            foreach (var item in ItemData.GetItems(7))
+            foreach (var item in ItemData.GetItems(14))
             {
                 this.Items.Add(item);
             }
