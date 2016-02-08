@@ -45,7 +45,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new TwitterDataConfig
             {
                 QueryType = TwitterQueryType.Search,
-                Query = "#windowsappstudio"
+                Query = "#lumia"
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config);
