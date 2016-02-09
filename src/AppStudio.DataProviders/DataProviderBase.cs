@@ -9,7 +9,7 @@ namespace AppStudio.DataProviders
     public abstract class DataProviderBase<TConfig>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
-        public async Task<IEnumerable<TSchema>> LoadDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> LoadDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser, Func<TSchema, object> keySelector = null) where TSchema : SchemaBase
         {
             if (config == null)
             {
@@ -24,9 +24,18 @@ namespace AppStudio.DataProviders
             var result = await GetDataAsync(config, maxRecords, parser);
             if (result != null)
             {
-                return result
+                if (keySelector != null)
+                {
+                    return result
+                        .Take(maxRecords).OrderBy(keySelector)
+                        .ToList();
+                }
+                else
+                {
+                    return result
                         .Take(maxRecords)
                         .ToList();
+                }                
             }
             return new TSchema[0];
         }
@@ -38,9 +47,9 @@ namespace AppStudio.DataProviders
     public abstract class DataProviderBase<TConfig, TSchema> : DataProviderBase<TConfig> where TSchema : SchemaBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
-        public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int maxRecords = 20)
+        public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int maxRecords = 20, Func<TSchema, object> keySelector = null)
         {
-            return await LoadDataAsync(config, maxRecords, GetDefaultParser(config));
+            return await LoadDataAsync(config, maxRecords, GetDefaultParser(config), keySelector);
         }
 
         public IParser<TSchema> GetDefaultParser(TConfig config)
