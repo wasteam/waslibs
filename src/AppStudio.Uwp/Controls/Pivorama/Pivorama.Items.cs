@@ -106,7 +106,7 @@ namespace AppStudio.Uwp.Controls
 
         private void ItemsSourceChanged(IEnumerable items)
         {
-            if (_isInitialized)
+            if (_isInitialized && items != null)
             {
                 foreach (var item in items)
                 {
