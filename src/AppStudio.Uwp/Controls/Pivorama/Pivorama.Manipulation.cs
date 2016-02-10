@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Windows.UI.Xaml.Input;
 
@@ -94,10 +95,13 @@ namespace AppStudio.Uwp.Controls
             double delta = this.ItemWidthEx - this.Offset;
             double position = Position - delta;
             duration = duration * delta / this.ItemWidthEx;
-            _headerContainer.AnimateX(position, duration);
-            _tabsContainer.AnimateX(-_tabs.SelectedTabWidth, duration);
-            await _panelContainer.AnimateXAsync(position, duration);
-            this.Index = (int)(-Position / this.ItemWidthEx);
+
+            var t1 = _headerContainer.AnimateXAsync(position, duration);
+            var t2 = AnimateTabsNext(duration * 1);
+            var t3 = _panelContainer.AnimateXAsync(position, duration);
+            await Task.WhenAll(t1, t2, t3);
+
+            this.Index = (int)(-position / this.ItemWidthEx);
             _tabsContainer.TranslateX(0);
         }
 
@@ -106,11 +110,40 @@ namespace AppStudio.Uwp.Controls
             double delta = this.Offset;
             double position = Position + delta;
             duration = duration * delta / this.ItemWidthEx;
-            _headerContainer.AnimateX(position, duration);
-            _tabsContainer.AnimateX(_tabs.PrevTabWidth, duration);
-            await _panelContainer.AnimateXAsync(position, duration);
-            this.Index = (int)(-Position / this.ItemWidthEx);
+
+            var t1 = _headerContainer.AnimateXAsync(position, duration);
+            var t2 = AnimateTabsPrev(duration * 1);
+            var t3 = _panelContainer.AnimateXAsync(position, duration);
+            await Task.WhenAll(t1, t2, t3);
+
+            this.Index = (int)(-position / this.ItemWidthEx);
             _tabsContainer.TranslateX(0);
+        }
+
+        private async Task AnimateTabsNext(double duration)
+        {
+            double x = _tabsContainer.GetTranslateX();
+            if (x > 0)
+            {
+                await _tabsContainer.AnimateXAsync(0, duration);
+            }
+            else
+            {
+                await _tabsContainer.AnimateXAsync(-_tabs.SelectedTabWidth, duration);
+            }
+        }
+
+        private async Task AnimateTabsPrev(double duration)
+        {
+            double x = _tabsContainer.GetTranslateX();
+            if (x < 0)
+            {
+                await _tabsContainer.AnimateXAsync(0, duration);
+            }
+            else
+            {
+                await _tabsContainer.AnimateXAsync(_tabs.PrevTabWidth, duration);
+            }
         }
     }
 }
