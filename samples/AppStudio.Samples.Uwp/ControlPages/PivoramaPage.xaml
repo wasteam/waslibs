@@ -32,12 +32,12 @@
                     <controls:Pivorama.ContentTemplate>
                         <DataTemplate>
                             <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1">
-                                <!--<StackPanel>
-                            <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
-                            <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />
-                            <TextBlock Margin="12,6" Text="{Binding Body}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" />
-                        </StackPanel>-->
-                                <GridView ItemsSource="{Binding SubItems}" SelectionMode="None" Background="White"
+                                <StackPanel>
+                                    <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
+                                    <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />
+                                    <TextBlock Margin="12,6" Text="{Binding Body}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" />
+                                </StackPanel>
+                                <!--<GridView ItemsSource="{Binding SubItems}" SelectionMode="None" Background="White"
                                   ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Disabled">
                                     <GridView.ItemTemplate>
                                         <DataTemplate>
@@ -46,7 +46,7 @@
                                             </Grid>
                                         </DataTemplate>
                                     </GridView.ItemTemplate>
-                                </GridView>
+                                </GridView>-->
                             </Border>
                         </DataTemplate>
                     </controls:Pivorama.ContentTemplate>
