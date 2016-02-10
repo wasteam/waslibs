@@ -12,7 +12,7 @@
     <Grid>
         <ctrls:DockView>
             <ctrls:DockView.Content>
-                <controls:Pivorama Name="pivorama" ItemsSource="{Binding Items}" ItemWidth="400" FitToScreen="True">
+                <controls:Pivorama Name="pivorama" ItemsSource="{Binding Items}" ItemWidth="400" FitToScreen="False">
                     <controls:Pivorama.HeaderTemplate>
                         <DataTemplate>
                             <Border>
@@ -54,7 +54,9 @@
             </ctrls:DockView.Content>
             <ctrls:DockView.Pane>
                 <StackPanel Margin="28,24,12,24">
-                    <ctrls:PropertySet Source="{Binding ElementName=pivorama}" Property="ItemWidth" Value="{Binding ItemWidth, ElementName=pivorama, Mode=TwoWay}" Minimun="100" Maximun="1200" />
+                    <ctrls:PropertySet Source="{Binding ElementName=pivorama}" Property="Index" Value="{Binding Index, ElementName=pivorama, Mode=TwoWay}" Minimun="-20" Maximun="10" />
+                    <ctrls:PropertySet Source="{Binding ElementName=pivorama}" Property="ItemWidth" Value="{Binding ItemWidth, ElementName=pivorama, Mode=TwoWay}" Minimun="20" Maximun="1600" SmallChange="10" />
+                    <ctrls:PropertySet Source="{Binding ElementName=pivorama}" Property="FitToScreen" Value="{Binding FitToScreen, ElementName=pivorama, Mode=TwoWay}" />
                 </StackPanel>
             </ctrls:DockView.Pane>
         </ctrls:DockView>

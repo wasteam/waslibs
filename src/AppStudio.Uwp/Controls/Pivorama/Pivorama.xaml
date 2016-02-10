@@ -12,24 +12,24 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Canvas Name="header">
-                            <Grid Name="headerItems" />
-                        </Canvas>
-                        <StackPanel Name="tabItems" Orientation="Horizontal" />
-                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                            <Canvas Name="container" />
+                        <Grid Name="headerContainer" Visibility="Collapsed">
+                            <controls:PivoramaPanel x:Name="header" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    ItemTemplate="{TemplateBinding HeaderTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
+                        </Grid>
+                        <Grid Name="tabsContainer" Visibility="Visible">
+                            <controls:PivoramaTabs x:Name="tabs" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                   ItemTemplate="{TemplateBinding HeaderTemplate}" SelectedItemTemplate="{TemplateBinding TabTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
+                        </Grid>
+                        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollMode="Disabled">
+                            <Grid Name="rowPanelContainer">
+                                <controls:PivoramaPanel x:Name="rowPanel" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                        ItemTemplate="{TemplateBinding ContentTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
+                            </Grid>
                         </ScrollViewer>
+                        <Grid.Clip>
+                            <RectangleGeometry x:Name="clip" />
+                        </Grid.Clip>
                     </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="controls:PivoramaItem">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="controls:PivoramaItem">
-                    <ContentPresenter />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -6,9 +6,36 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Pivorama
     {
+        #region Position
+        public double Position
+        {
+            get { return _panelContainer.GetTranslateX(); }
+            set
+            {
+                _headerContainer.TranslateX(value);
+                _panelContainer.TranslateX(value);
+            }
+        }
+        #endregion
+
+        #region Offset
+        public double Offset
+        {
+            get
+            {
+                double position = this.Position % this.ItemWidthEx;
+                if (Math.Sign(position) > 0)
+                {
+                    return this.ItemWidthEx - position;
+                }
+                return -position;
+            }
+        }
+        #endregion
+
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            double deltaX = -e.Delta.Translation.X;
+            double deltaX = e.Delta.Translation.X;
 
             if (e.IsInertial)
             {
@@ -16,21 +43,28 @@ namespace AppStudio.Uwp.Controls
             }
             else
             {
-                if (Math.Abs(e.Cumulative.Translation.X) >= this.ItemWidth)
+                if (Math.Abs(e.Cumulative.Translation.X) >= this.ItemWidthEx)
                 {
                     e.Complete();
                 }
                 else
                 {
-                    Position += deltaX;
+                    _headerContainer.TranslateDeltaX(deltaX);
+                    _panelContainer.TranslateDeltaX(deltaX);
+                    if (Math.Sign(deltaX) > 0)
+                    {
+                        _tabsContainer.TranslateDeltaX(deltaX * _tabs.PrevTabWidth / this.ItemWidthEx);
+                    }
+                    else
+                    {
+                        _tabsContainer.TranslateDeltaX(deltaX * _tabs.SelectedTabWidth / this.ItemWidthEx);
+                    }
                 }
             }
         }
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            double offset = this.ItemWidth - Position % this.ItemWidth;
-
             if (e.IsInertial)
             {
                 if (Math.Sign(e.Cumulative.Translation.X) < 0)
@@ -44,7 +78,7 @@ namespace AppStudio.Uwp.Controls
             }
             else
             {
-                if (offset < this.ItemWidth / 2.0)
+                if (this.Offset > this.ItemWidthEx / 2.0)
                 {
                     AnimateNext();
                 }
@@ -55,29 +89,28 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-
         private async void AnimateNext(double duration = 500)
         {
-            double delta = this.ItemWidth - Position % this.ItemWidth;
-            double position = (Position + delta);
-            _headerItems.AnimateX(-position);
-            // TODO: 
-            //AnimateTabsRight();
-            await _container.AnimateXAsync(-position);
-            this.ArrangeTabs();
-            this.ArrangeItems();
+            double delta = this.ItemWidthEx - this.Offset;
+            double position = Position - delta;
+            duration = duration * delta / this.ItemWidthEx;
+            _headerContainer.AnimateX(position, duration);
+            _tabsContainer.AnimateX(-_tabs.SelectedTabWidth, duration);
+            await _panelContainer.AnimateXAsync(position, duration);
+            this.Index = (int)(-Position / this.ItemWidthEx);
+            _tabsContainer.TranslateX(0);
         }
 
         private async void AnimatePrev(double duration = 500)
         {
-            double delta = -Position % this.ItemWidth;
-            double position = (Position + delta);
-            _headerItems.AnimateX(-position);
-            // TODO: 
-            //AnimateTabsLeft();
-            await _container.AnimateXAsync(-position);
-            this.ArrangeTabs();
-            this.ArrangeItems();
+            double delta = this.Offset;
+            double position = Position + delta;
+            duration = duration * delta / this.ItemWidthEx;
+            _headerContainer.AnimateX(position, duration);
+            _tabsContainer.AnimateX(_tabs.PrevTabWidth, duration);
+            await _panelContainer.AnimateXAsync(position, duration);
+            this.Index = (int)(-Position / this.ItemWidthEx);
+            _tabsContainer.TranslateX(0);
         }
     }
 }

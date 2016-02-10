@@ -1,10 +1,29 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class Pivorama
     {
+        #region ItemsSource
+        public object ItemsSource
+        {
+            get { return (object)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(object), typeof(Pivorama), new PropertyMetadata(null));
+        #endregion
+
+        #region ContentTemplate
+        public DataTemplate ContentTemplate
+        {
+            get { return (DataTemplate)GetValue(ContentTemplateProperty); }
+            set { SetValue(ContentTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(Pivorama), new PropertyMetadata(null));
+        #endregion
+
         #region HeaderTemplate
         public DataTemplate HeaderTemplate
         {
@@ -25,15 +44,6 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty TabTemplateProperty = DependencyProperty.Register("TabTemplate", typeof(DataTemplate), typeof(Pivorama), new PropertyMetadata(null));
         #endregion
 
-        #region ContentTemplate
-        public DataTemplate ContentTemplate
-        {
-            get { return (DataTemplate)GetValue(ContentTemplateProperty); }
-            set { SetValue(ContentTemplateProperty, value); }
-        }
-
-        public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(Pivorama), new PropertyMetadata(null));
-        #endregion
 
         #region FitToScreen
         public bool FitToScreen
@@ -42,7 +52,29 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(FitToScreenProperty, value); }
         }
 
-        public static readonly DependencyProperty FitToScreenProperty = DependencyProperty.Register("FitToScreen", typeof(bool), typeof(Pivorama), new PropertyMetadata(false));
+        private static void FitToScreenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Pivorama;
+            control.SetFitToScreen((bool)e.NewValue);
+        }
+
+        private void SetFitToScreen(bool fitToScreen)
+        {
+            if (_isInitialized)
+            {
+                if (fitToScreen)
+                {
+                    this.ItemWidthEx = this.ActualWidth;
+                }
+                else
+                {
+                    this.ItemWidthEx = this.ItemWidth;
+                }
+                RefreshLayout();
+            }
+        }
+
+        public static readonly DependencyProperty FitToScreenProperty = DependencyProperty.Register("FitToScreen", typeof(bool), typeof(Pivorama), new PropertyMetadata(false, FitToScreenChanged));
         #endregion
 
         #region ItemWidth
@@ -55,49 +87,76 @@ namespace AppStudio.Uwp.Controls
         private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Pivorama;
-            if (!control.FitToScreen)
-            {
-                control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
-            }
+            control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
         }
 
-        private void SetItemWidth(double newWidth, double oldWidth)
+        private void SetItemWidth(double newValue, double oldValue)
         {
             if (_isInitialized)
             {
-                int oldIndex = (int)(Position / oldWidth);
-
-                foreach (Control control in _headerItems.Children)
+                if (this.FitToScreen)
                 {
-                    control.Width = newWidth;
+                    this.ItemWidthEx = this.ActualWidth;
                 }
-                foreach (Control control in _container.Children)
+                else
                 {
-                    control.Width = newWidth;
+                    this.ItemWidthEx = newValue;
                 }
-
-                Position = oldIndex * newWidth;
-                this.ArrangeTabs();
-                this.RefreshLayout();
             }
         }
 
         public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0, ItemWidthChanged));
         #endregion
 
-        private int Index
+        #region ItemWidthEx
+        public double ItemWidthEx
         {
-            get { return (int)(Position / this.ItemWidth); }
+            get { return (double)GetValue(ItemWidthExProperty); }
+            set { SetValue(ItemWidthExProperty, value); }
         }
 
-        private double PanelWidth
+        private static void ItemWidthExChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return _items.Count * this.ItemWidth; }
+            var control = d as Pivorama;
+            control.SetItemWidthEx((double)e.NewValue, (double)e.OldValue);
         }
 
-        private bool IsTabVisible
+        private void SetItemWidthEx(double newValue, double oldValue)
         {
-            get { return this.ActualWidth < this.ItemWidth * 1.5; }
+            if (_isInitialized)
+            {
+                int oldIndex = (int)(-Position / oldValue);
+                Position = -oldIndex * newValue;
+                this.Index = (int)(-Position / this.ItemWidthEx);
+            }
         }
+
+        public static readonly DependencyProperty ItemWidthExProperty = DependencyProperty.Register("ItemWidthEx", typeof(double), typeof(Pivorama), new PropertyMetadata(440.0, ItemWidthExChanged));
+        #endregion
+
+
+        #region Index
+        public int Index
+        {
+            get { return (int)GetValue(IndexProperty); }
+            set { SetValue(IndexProperty, value); }
+        }
+
+        private static void IndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Pivorama;
+            control.SetIndex((int)e.NewValue);
+        }
+
+        private void SetIndex(int newValue)
+        {
+            if (_isInitialized)
+            {
+                Position = -newValue * this.ItemWidthEx;
+            }
+        }
+
+        public static readonly DependencyProperty IndexProperty = DependencyProperty.Register("Index", typeof(int), typeof(Pivorama), new PropertyMetadata(0, IndexChanged));
+        #endregion
     }
 }

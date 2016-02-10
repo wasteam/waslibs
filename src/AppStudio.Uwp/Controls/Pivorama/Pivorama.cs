@@ -1,20 +1,23 @@
-﻿using System;
-using System.Linq;
-using System.Collections;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
 {
-    public sealed partial class Pivorama : Control
+    public partial class Pivorama : Control
     {
-        private Panel _header = null;
-        private Panel _headerItems = null;
-        private Panel _tabItems = null;
-        private Panel _container = null;
+        private Panel _headerContainer = null;
+        private PivoramaPanel _header = null;
+
+        private Panel _tabsContainer = null;
+        private PivoramaTabs _tabs = null;
+
+        private Panel _panelContainer = null;
+        private PivoramaPanel _panel = null;
+
+        private RectangleGeometry _clip = null;
 
         private bool _isInitialized = false;
 
@@ -25,72 +28,73 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
-            _header = base.GetTemplateChild("header") as Panel;
-            _headerItems = base.GetTemplateChild("headerItems") as Panel;
-            _headerItems.SizeChanged += OnHeaderItemsSizeChanged;
+            _headerContainer = base.GetTemplateChild("headerContainer") as Panel;
+            _header = base.GetTemplateChild("header") as PivoramaPanel;
+            _header.SelectionChanged += OnSelectionChanged;
 
-            _tabItems = base.GetTemplateChild("tabItems") as Panel;
+            _tabsContainer = base.GetTemplateChild("tabsContainer") as Panel;
+            _tabs = base.GetTemplateChild("tabs") as PivoramaTabs;
+            _tabs.SelectionChanged += OnSelectionChanged;
 
-            _container = base.GetTemplateChild("container") as Panel;
-            _container.TranslateX(this.Position);
+            _panelContainer = base.GetTemplateChild("rowPanelContainer") as Panel;
+            _panel = base.GetTemplateChild("rowPanel") as PivoramaPanel;
 
-            _container.ManipulationDelta += OnManipulationDelta;
-            _container.ManipulationCompleted += OnManipulationCompleted;
-            _container.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
-            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
-                _isInitialized = true;
-                this.ItemsSourceChanged(this.ItemsSource as IEnumerable);
-            }
+            _headerContainer.ManipulationDelta += OnManipulationDelta;
+            _headerContainer.ManipulationCompleted += OnManipulationCompleted;
+            _headerContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+
+            _tabsContainer.ManipulationDelta += OnManipulationDelta;
+            _tabsContainer.ManipulationCompleted += OnManipulationCompleted;
+            _tabsContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+
+            _panelContainer.ManipulationDelta += OnManipulationDelta;
+            _panelContainer.ManipulationCompleted += OnManipulationCompleted;
+            _panelContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+
+            _isInitialized = true;
 
             this.SizeChanged += OnSizeChanged;
 
             base.OnApplyTemplate();
         }
 
-        private void OnHeaderItemsSizeChanged(object sender, SizeChangedEventArgs e)
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _header.Height = _headerItems.ActualHeight;
+            if (this.Index != _panel.GetIndexOf(e.AddedItems[0]))
+            {
+                this.Index = _panel.GetIndexOf(e.AddedItems[0]) - 1;
+                this.AnimateNext(100);
+            }
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (this.FitToScreen)
-            {
-                this.ItemWidth = e.NewSize.Width;
-                this.SetItemWidth(e.NewSize.Width, Math.Max(1, e.PreviousSize.Width));
-            }
             RefreshLayout();
+            _clip.Rect = new Rect(0, 0, e.NewSize.Width, e.NewSize.Height);
         }
 
         private void RefreshLayout()
         {
-            if (_isInitialized)
+            if (this.FitToScreen)
             {
-                double height = this.ActualHeight;
-                if (!double.IsNaN(_header.Height))
+                this.ItemWidthEx = this.ActualWidth;
+                _headerContainer.Visibility = Visibility.Collapsed;
+                _tabsContainer.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                if (this.ItemWidthEx * 2 < this.ActualWidth)
                 {
-                    height = this.ActualHeight - _header.Height;
-                }
-
-                if (_container.Children.Count > 0)
-                {
-                    height = Math.Max(height, _container.Children.Cast<FrameworkElement>().Max(r => r.DesiredSize.Height));
-                }
-                _container.Height = height;
-
-                if (this.IsTabVisible)
-                {
-                    _header.Visibility = Visibility.Collapsed;
-                    _tabItems.Visibility = Visibility.Visible;
+                    _headerContainer.Visibility = Visibility.Visible;
+                    _tabsContainer.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    _header.Visibility = Visibility.Visible;
-                    _tabItems.Visibility = Visibility.Collapsed;
+                    _headerContainer.Visibility = Visibility.Collapsed;
+                    _tabsContainer.Visibility = Visibility.Visible;
                 }
-                this.ArrangeItems();
             }
         }
     }
