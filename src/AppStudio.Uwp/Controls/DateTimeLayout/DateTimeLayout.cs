@@ -14,8 +14,8 @@ namespace AppStudio.Uwp.Controls
         private static double DefaultTextFontSize = 30.0;
         private static double TextFontSizeDifferenceDate = 15.0;
         private static double TextFontSizeDifferenceTime = 20.0;
-        private static double Line2MarginDifferenceTime = 6;
-        private static double Line2MarginDifferenceDate = 4;
+        private static double Line2MarginDifferenceTime = 4;
+        private static double Line2MarginDifferenceDate = 2;
         public enum DisplayMode { Date, Time }
         #region Properties
         public static readonly DependencyProperty Line1TextProperty =

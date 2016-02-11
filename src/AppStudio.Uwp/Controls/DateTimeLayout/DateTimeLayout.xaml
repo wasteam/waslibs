@@ -21,9 +21,6 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <!--<Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange"/>
-                            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Yellow"/>
-                            <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink"/>-->
                             <Grid Grid.RowSpan="2">
                                 <TextBlock
                                     Text="{TemplateBinding Line1Text}"
