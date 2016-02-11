@@ -60,7 +60,7 @@ namespace AppStudio.Uwp.Controls
                     else
                     {
                         pane.Content = null;
-                        pane.Measure(new Size(0, 0));
+                        //pane.Measure(new Size(0, 0));
                     }
                 }
             }

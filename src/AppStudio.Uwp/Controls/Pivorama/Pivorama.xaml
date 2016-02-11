@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Pivorama">
-                    <Grid>
+                    <Grid Name="frame" Background="{TemplateBinding Background}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -21,8 +21,8 @@
                                                    ItemTemplate="{TemplateBinding HeaderTemplate}" SelectedItemTemplate="{TemplateBinding TabTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                         </Grid>
                         <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollMode="Disabled">
-                            <Grid Name="rowPanelContainer" Background="Transparent">
-                                <controls:PivoramaPanel x:Name="rowPanel" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                            <Grid Name="panelContainer">
+                                <controls:PivoramaPanel x:Name="panel" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                         ItemTemplate="{TemplateBinding ContentTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                             </Grid>
                         </ScrollViewer>

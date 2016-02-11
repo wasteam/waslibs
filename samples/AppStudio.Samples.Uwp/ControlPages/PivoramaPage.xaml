@@ -31,11 +31,10 @@
 
                     <controls:Pivorama.ContentTemplate>
                         <DataTemplate>
-                            <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1">
+                            <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
                                 <StackPanel>
                                     <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
                                     <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />
-                                    <TextBlock Margin="12,6" Text="{Binding Body}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="18" />
                                 </StackPanel>
                                 <!--<GridView ItemsSource="{Binding SubItems}" SelectionMode="None" Background="White"
                                   ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Disabled">

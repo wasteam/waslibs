@@ -8,6 +8,8 @@ namespace AppStudio.Uwp.Controls
 {
     public partial class Pivorama : Control
     {
+        private Panel _frame = null;
+
         private Panel _headerContainer = null;
         private PivoramaPanel _header = null;
 
@@ -28,6 +30,8 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
+            _frame = base.GetTemplateChild("frame") as Panel;
+
             _headerContainer = base.GetTemplateChild("headerContainer") as Panel;
             _header = base.GetTemplateChild("header") as PivoramaPanel;
             _header.SelectionChanged += OnSelectionChanged;
@@ -36,22 +40,14 @@ namespace AppStudio.Uwp.Controls
             _tabs = base.GetTemplateChild("tabs") as PivoramaTabs;
             _tabs.SelectionChanged += OnSelectionChanged;
 
-            _panelContainer = base.GetTemplateChild("rowPanelContainer") as Panel;
-            _panel = base.GetTemplateChild("rowPanel") as PivoramaPanel;
+            _panelContainer = base.GetTemplateChild("panelContainer") as Panel;
+            _panel = base.GetTemplateChild("panel") as PivoramaPanel;
 
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
-            _headerContainer.ManipulationDelta += OnManipulationDelta;
-            _headerContainer.ManipulationCompleted += OnManipulationCompleted;
-            _headerContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
-
-            _tabsContainer.ManipulationDelta += OnManipulationDelta;
-            _tabsContainer.ManipulationCompleted += OnManipulationCompleted;
-            _tabsContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
-
-            _panelContainer.ManipulationDelta += OnManipulationDelta;
-            _panelContainer.ManipulationCompleted += OnManipulationCompleted;
-            _panelContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _frame.ManipulationDelta += OnManipulationDelta;
+            _frame.ManipulationCompleted += OnManipulationCompleted;
+            _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
 
             _isInitialized = true;
 
