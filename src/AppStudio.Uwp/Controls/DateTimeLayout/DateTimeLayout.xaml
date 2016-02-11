@@ -12,14 +12,37 @@
                         Width="{TemplateBinding Width}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
-                        <StackPanel
+                        <Grid
                             Margin="{TemplateBinding Padding}"                            
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <TextBlock Text="{TemplateBinding Line1Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line1FontSize}" FontWeight="ExtraLight" Margin="0"/>
-                            <TextBlock Text="{TemplateBinding Line2Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line2FontSize}" FontWeight="Normal" Margin="0,-6,0,0"/>
-                            <TextBlock Text="{TemplateBinding Line3Text}" Foreground="{TemplateBinding Foreground}" TextAlignment="{TemplateBinding TextAlignment}" FontSize="{TemplateBinding Line3FontSize}" FontWeight="Bold" Margin="0" CharacterSpacing="100"/>
-                        </StackPanel>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <!--<Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Orange"/>
+                            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Yellow"/>
+                            <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink"/>-->
+                            <Grid Grid.RowSpan="2">
+                                <TextBlock
+                                    Text="{TemplateBinding Line1Text}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    TextAlignment="{TemplateBinding TextAlignment}"
+                                    FontSize="{TemplateBinding Line1FontSize}"
+                                    FontWeight="Bold" Padding="0"
+                                    Margin="0"/>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.RowSpan="2">
+                                <TextBlock
+                                    Text="{TemplateBinding Line2Text}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    TextAlignment="{TemplateBinding TextAlignment}"
+                                    FontSize="{TemplateBinding Line2FontSize}"
+                                    FontWeight="Light" Padding="0"
+                                    Margin="{TemplateBinding Line2Margin}"/>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

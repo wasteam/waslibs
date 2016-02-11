@@ -17,7 +17,7 @@
             <ctrls:DockView.Content>
                 <Grid>
                     <controls:DateTimeLayout
-                        x:Name="dateTimeLayout" Foreground="DarkBlue" Background="LightBlue" Padding="30"/>
+                        x:Name="dateTimeLayout" Foreground="DarkBlue" Background="LightBlue" Content="{Binding DateTimeValue}" DisplayModeValue="Time"/>
                 </Grid>
             </ctrls:DockView.Content>
             <ctrls:DockView.Pane>
@@ -28,6 +28,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="TextAlignment" Value="{Binding TextAlignment, ElementName=dateTimeLayout, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="DisplayModeValue" Value="{Binding DisplayModeValue, ElementName=dateTimeLayout, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Height" Value="{Binding Height, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="30" Maximun="400" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="Width" Value="{Binding Width, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="30" Maximun="400" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=dateTimeLayout}" Property="TextFontSize" Value="{Binding TextFontSize, ElementName=dateTimeLayout, Mode=TwoWay}" Minimun="10" Maximun="100" SmallChange="1"/>
