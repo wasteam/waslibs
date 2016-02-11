@@ -21,7 +21,7 @@
                                                    ItemTemplate="{TemplateBinding HeaderTemplate}" SelectedItemTemplate="{TemplateBinding TabTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                         </Grid>
                         <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollMode="Disabled">
-                            <Grid Name="rowPanelContainer">
+                            <Grid Name="rowPanelContainer" Background="Transparent">
                                 <controls:PivoramaPanel x:Name="rowPanel" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                         ItemTemplate="{TemplateBinding ContentTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                             </Grid>
