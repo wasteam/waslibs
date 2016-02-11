@@ -24,14 +24,14 @@
                     <controls:Pivorama.TabTemplate>
                         <DataTemplate>
                             <Border>
-                                <TextBlock Margin="0,12,6,6" Text="{Binding Date}" Foreground="Gray" FontSize="16" />
+                                <TextBlock Margin="12,6" Text="{Binding Date}" Foreground="Gray" FontSize="26" />
                             </Border>
                         </DataTemplate>
                     </controls:Pivorama.TabTemplate>
 
                     <controls:Pivorama.ContentTemplate>
                         <DataTemplate>
-                            <Border Margin="6" Background="White" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
+                            <Border Margin="6" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
                                 <StackPanel>
                                     <TextBlock Margin="12,6" Text="{Binding Date}" HorizontalAlignment="Center" />
                                     <TextBlock Margin="12,6" Text="{Binding Summary}" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="20" />

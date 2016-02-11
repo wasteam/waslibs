@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
@@ -6,7 +8,7 @@ namespace AppStudio.Uwp.Controls
 {
     partial class PivoramaPanel
     {
-        public event SelectionChangedEventHandler SelectionChanged;
+        public event EventHandler<int> SelectedIndexChanged;
 
         #region ItemTemplate
         public DataTemplate ItemTemplate
@@ -50,10 +52,13 @@ namespace AppStudio.Uwp.Controls
 
         private void OnItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (SelectionChanged != null)
+            if (SelectedIndexChanged != null)
             {
                 var contentControl = sender as ContentControl;
-                SelectionChanged(this, new SelectionChangedEventArgs(new object[] { }, new object[] { contentControl.Content }));
+                if (contentControl.Tag != null)
+                {
+                    SelectedIndexChanged(this, (int)contentControl.Tag);
+                }
             }
         }
     }

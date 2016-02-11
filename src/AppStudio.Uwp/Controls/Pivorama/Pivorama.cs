@@ -34,11 +34,11 @@ namespace AppStudio.Uwp.Controls
 
             _headerContainer = base.GetTemplateChild("headerContainer") as Panel;
             _header = base.GetTemplateChild("header") as PivoramaPanel;
-            _header.SelectionChanged += OnSelectionChanged;
+            _header.SelectedIndexChanged += OnSelectedIndexChanged;
 
             _tabsContainer = base.GetTemplateChild("tabsContainer") as Panel;
             _tabs = base.GetTemplateChild("tabs") as PivoramaTabs;
-            _tabs.SelectionChanged += OnSelectionChanged;
+            _tabs.SelectedIndexChanged += OnSelectedIndexChanged;
 
             _panelContainer = base.GetTemplateChild("panelContainer") as Panel;
             _panel = base.GetTemplateChild("panel") as PivoramaPanel;
@@ -56,11 +56,11 @@ namespace AppStudio.Uwp.Controls
             base.OnApplyTemplate();
         }
 
-        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnSelectedIndexChanged(object sender, int index)
         {
-            if (this.Index != _panel.GetIndexOf(e.AddedItems[0]))
+            if (this.Index != index)
             {
-                this.Index = _panel.GetIndexOf(e.AddedItems[0]) - 1;
+                this.Index = index - 1;
                 this.AnimateNext(100);
             }
         }

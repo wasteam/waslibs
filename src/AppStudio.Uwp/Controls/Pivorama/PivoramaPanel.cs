@@ -35,7 +35,7 @@ namespace AppStudio.Uwp.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            int inx = this.Index;
+            int index = this.Index;
             int count = _items.Count;
 
             double x = 0;
@@ -46,10 +46,12 @@ namespace AppStudio.Uwp.Controls
             {
                 for (int n = 0; n < MaxItems; n++)
                 {
-                    var pane = this.Children[(inx + n).Mod(MaxItems)] as ContentControl;
+                    var pane = this.Children[(index + n).Mod(MaxItems)] as ContentControl;
                     if (x < availableSize.Width + itemWidth * 2 && n <= count)
                     {
-                        pane.Content = _items[(inx + n - 1).Mod(count)];
+                        int inx = (index + n - 1).Mod(count);
+                        pane.Tag = inx;
+                        pane.Content = _items[inx];
                         pane.Measure(new Size(itemWidth, availableSize.Height));
                         if (n > 0 && x < availableSize.Width + itemWidth)
                         {
@@ -59,6 +61,7 @@ namespace AppStudio.Uwp.Controls
                     }
                     else
                     {
+                        pane.Tag = null;
                         pane.Content = null;
                         //pane.Measure(new Size(0, 0));
                     }
@@ -70,7 +73,7 @@ namespace AppStudio.Uwp.Controls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            int inx = this.Index;
+            int index = this.Index;
             int count = _items.Count;
 
             double x = 0;
@@ -80,10 +83,10 @@ namespace AppStudio.Uwp.Controls
             {
                 for (int n = 0; n < MaxItems; n++)
                 {
-                    var pane = this.Children[(inx + n).Mod(MaxItems)] as ContentControl;
+                    var pane = this.Children[(index + n).Mod(MaxItems)] as ContentControl;
                     if (x < finalSize.Width)
                     {
-                        pane.Arrange(new Rect(inx * ItemWidth + x - itemWidth, 0, itemWidth, finalSize.Height));
+                        pane.Arrange(new Rect(index * ItemWidth + x - itemWidth, 0, itemWidth, finalSize.Height));
                     }
                     else
                     {

@@ -28,7 +28,7 @@ namespace AppStudio.Uwp.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            int inx = this.Index;
+            int index = this.Index;
             int count = _items.Count;
 
             double x = 0;
@@ -38,7 +38,7 @@ namespace AppStudio.Uwp.Controls
             {
                 for (int n = 0; n < MaxItems; n++)
                 {
-                    var pane = this.Children[(inx + n).Mod(MaxItems)] as ContentControl;
+                    var pane = this.Children[(index + n).Mod(MaxItems)] as ContentControl;
                     if (n == 1)
                     {
                         pane.ContentTemplate = ItemTemplate;
@@ -50,10 +50,13 @@ namespace AppStudio.Uwp.Controls
 
                     if (n <= count)
                     {
-                        pane.Content = _items[(inx + n - 1).Mod(count)];
+                        int inx = (index + n - 1).Mod(count);
+                        pane.Tag = inx;
+                        pane.Content = _items[inx];
                     }
                     else
                     {
+                        pane.Tag = null;
                         pane.Content = null;
                     }
                     pane.Measure(availableSize);
