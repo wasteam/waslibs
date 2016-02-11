@@ -50,8 +50,10 @@ namespace AppStudio.Uwp.Controls
                     if (x < availableSize.Width + itemWidth * 2 && n <= count)
                     {
                         int inx = (index + n - 1).Mod(count);
-                        pane.Tag = inx;
+                        pane.ContentTemplate = ItemTemplate;
                         pane.Content = _items[inx];
+                        pane.Tag = inx;
+
                         pane.Measure(new Size(itemWidth, availableSize.Height));
                         if (n > 0 && x < availableSize.Width + itemWidth)
                         {
@@ -61,9 +63,11 @@ namespace AppStudio.Uwp.Controls
                     }
                     else
                     {
-                        pane.Tag = null;
+                        pane.ContentTemplate = null;
                         pane.Content = null;
-                        //pane.Measure(new Size(0, 0));
+                        pane.Tag = null;
+
+                        pane.Measure(new Size(itemWidth, availableSize.Height));
                     }
                 }
             }

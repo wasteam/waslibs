@@ -20,15 +20,7 @@ namespace AppStudio.Uwp.Controls
         private static void ItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as PivoramaPanel;
-            control.SetItemTemplate(e.NewValue as DataTemplate);
-        }
-
-        private void SetItemTemplate(DataTemplate dataTemplate)
-        {
-            foreach (ContentControl control in this.Children)
-            {
-                control.ContentTemplate = dataTemplate;
-            }
+            control.InvalidateMeasure();
         }
 
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(PivoramaPanel), new PropertyMetadata(null, ItemTemplateChanged));

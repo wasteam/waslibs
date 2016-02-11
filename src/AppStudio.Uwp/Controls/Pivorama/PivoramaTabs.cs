@@ -39,29 +39,24 @@ namespace AppStudio.Uwp.Controls
                 for (int n = 0; n < MaxItems; n++)
                 {
                     var pane = this.Children[(index + n).Mod(MaxItems)] as ContentControl;
-                    if (n == 1)
-                    {
-                        pane.ContentTemplate = ItemTemplate;
-                    }
-                    else
-                    {
-                        pane.ContentTemplate = SelectedItemTemplate;
-                    }
-
                     if (n <= count)
                     {
                         int inx = (index + n - 1).Mod(count);
-                        pane.Tag = inx;
+                        pane.ContentTemplate = n == 1 ? ItemTemplate : SelectedItemTemplate;
                         pane.Content = _items[inx];
+                        pane.Tag = inx;
+
+                        pane.Measure(availableSize);
+                        maxHeight = Math.Max(maxHeight, pane.DesiredSize.Height);
+                        x += pane.DesiredSize.Width;
                     }
                     else
                     {
-                        pane.Tag = null;
+                        pane.ContentTemplate = null;
                         pane.Content = null;
+                        pane.Tag = null;
+                        pane.Measure(availableSize);
                     }
-                    pane.Measure(availableSize);
-                    maxHeight = Math.Max(maxHeight, pane.DesiredSize.Height);
-                    x += pane.DesiredSize.Width;
 
                     if (n == 0)
                     {
