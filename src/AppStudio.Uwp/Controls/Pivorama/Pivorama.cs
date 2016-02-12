@@ -49,6 +49,10 @@ namespace AppStudio.Uwp.Controls
             _frame.ManipulationCompleted += OnManipulationCompleted;
             _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
 
+            _panelContainer.ManipulationDelta += OnManipulationDelta;
+            _panelContainer.ManipulationCompleted += OnManipulationCompleted;
+            _panelContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+
             _isInitialized = true;
 
             this.SizeChanged += OnSizeChanged;

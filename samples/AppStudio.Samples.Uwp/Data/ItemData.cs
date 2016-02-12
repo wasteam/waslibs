@@ -19,7 +19,7 @@ namespace AppStudio.Samples.Uwp
             Date = DateTime.Parse("2000/01/03").AddDays(n).DayOfWeek.ToString();
 
             Title = String.Format("{0:00} {1}", n, SystemColors.Keys.ToArray()[n]);
-            Summary = Lorems[n % 7];
+            Summary = Lorems[n % 7].Substring(0, 100);
             Body = Lorems[(n + 1) % 7];
 
             ImageUrl = $"/Images/Sample0{n % 5 + 1}.jpg";
