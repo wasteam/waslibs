@@ -4,7 +4,7 @@
     xmlns:controls="using:AppStudio.Uwp.Controls">
 
     <Style TargetType="controls:Pivorama">
-        <Setter Property="Background" Value="Red" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:Pivorama">

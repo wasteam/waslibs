@@ -62,6 +62,7 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
             }
+            e.Handled = true;
         }
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -88,6 +89,7 @@ namespace AppStudio.Uwp.Controls
                     AnimatePrev();
                 }
             }
+            e.Handled = true;
         }
 
         private async void AnimateNext(double duration = 500)
