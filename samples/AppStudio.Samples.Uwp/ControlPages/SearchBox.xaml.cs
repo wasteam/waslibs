@@ -21,7 +21,7 @@ namespace AppStudio.Samples.Uwp.ControlPages
         {
             get
             {
-                return new RelayCommand<string>((text) => this.SearchText = text);
+                return new RelayCommand<string>((text) => this.SearchText = text, (text) => text.Length >= 3 );
             }
         }
 

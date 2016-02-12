@@ -81,7 +81,10 @@ namespace AppStudio.Uwp.Controls
                 Text = txt.Text;
                 UpdatePlaceholderTextVisibility(Text);
             }
-            //HideSearchText();
+            if (!SearchCommand.CanExecute(Text))
+            {
+                HideSearchText();
+            }
         }
         public void OnPointerEntered(object sender, PointerRoutedEventArgs e) => ShadowOpacity = 0.2;
         public void OnPointerExited(object sender, PointerRoutedEventArgs e) => ShadowOpacity = 0.0;
