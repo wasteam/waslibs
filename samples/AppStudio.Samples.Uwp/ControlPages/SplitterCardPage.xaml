@@ -1,0 +1,43 @@
+﻿<base:BaseControlPage
+    x:Class="AppStudio.Samples.Uwp.ControlPages.SplitterCardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Samples.Uwp.ControlPages"
+    xmlns:base="using:AppStudio.Samples.Uwp.ControlPages"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:ctrls="using:AppStudio.Samples.Uwp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Margin="12,0"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid>
+        <ctrls:DockView>
+            <ctrls:DockView.Content>
+                <Grid>
+                    <controls:SplitterCard
+                        x:Name="splitterCard" Foreground="DarkBlue" Background="LightBlue" Text="09 NOV"/>
+                </Grid>
+            </ctrls:DockView.Content>
+            <ctrls:DockView.Pane>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="28,24,12,24">
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="HorizontalAlignment" Value="{Binding HorizontalAlignment, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="VerticalAlignment" Value="{Binding VerticalAlignment, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="TextAlignment" Value="{Binding TextAlignment, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Height" Value="{Binding Height, ElementName=splitterCard, Mode=TwoWay}" Minimun="30" Maximun="600" SmallChange="1"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Width" Value="{Binding Width, ElementName=splitterCard, Mode=TwoWay}" Minimun="30" Maximun="600" SmallChange="1"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="TextFontSize" Value="{Binding TextFontSize, ElementName=splitterCard, Mode=TwoWay}" Minimun="10" Maximun="160" SmallChange="1"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Foreground" Value="{Binding Foreground, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Background" Value="{Binding Background, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Line1Text" Value="{Binding Line1Text, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Line2Text" Value="{Binding Line2Text, ElementName=splitterCard, Mode=TwoWay}"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Text" Value="{Binding Text, ElementName=splitterCard, Mode=TwoWay}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </ctrls:DockView.Pane>
+        </ctrls:DockView>
+    </Grid>
+</base:BaseControlPage>

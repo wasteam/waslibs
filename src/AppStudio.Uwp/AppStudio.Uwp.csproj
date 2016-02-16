@@ -112,7 +112,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
-    <Compile Include="Controls\DateTimeLayout\DateTimeLayout.cs" />
+    <Compile Include="Controls\SplitterCard\SplitterCard.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Members.cs" />
@@ -221,7 +221,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\DateTimeLayout\DateTimeLayout.xaml">
+    <Page Include="Controls\SplitterCard\SplitterCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
