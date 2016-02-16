@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace AppStudio.Uwp
 {
@@ -28,10 +29,11 @@ namespace AppStudio.Uwp
 
         public static double AsDouble(this string str)
         {
+            str = str.Replace(',', '.');
             double d = 0.0;
             if (!String.IsNullOrEmpty(str))
             {
-                Double.TryParse(str, out d);
+                Double.TryParse(str, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out d);
             }
             return d;
         }
