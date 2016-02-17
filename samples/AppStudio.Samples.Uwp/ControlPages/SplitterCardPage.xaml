@@ -30,6 +30,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Height" Value="{Binding Height, ElementName=splitterCard, Mode=TwoWay}" Minimun="30" Maximun="600" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Width" Value="{Binding Width, ElementName=splitterCard, Mode=TwoWay}" Minimun="30" Maximun="600" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="TextFontSize" Value="{Binding TextFontSize, ElementName=splitterCard, Mode=TwoWay}" Minimun="10" Maximun="160" SmallChange="1"/>
+                        <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="LineSpacing" Value="{Binding LineSpacing, ElementName=splitterCard, Mode=TwoWay}" Minimun="-50" Maximun="50" SmallChange="1"/>
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Foreground" Value="{Binding Foreground, ElementName=splitterCard, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Background" Value="{Binding Background, ElementName=splitterCard, Mode=TwoWay}"/>
                         <ctrls:PropertySet Source="{Binding ElementName=splitterCard}" Property="Line1Text" Value="{Binding Line1Text, ElementName=splitterCard, Mode=TwoWay}"/>

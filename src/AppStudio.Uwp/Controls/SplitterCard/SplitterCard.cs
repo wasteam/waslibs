@@ -8,14 +8,14 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed partial class SplitterCard : Control
     {
-        private const double MarginFactor = 3.0;
         private const double FontSizeFactor = 1.5;
         private const double DefaultWidth = 350;
         private const double DefaultHeight = 350;
         private const double DefaultTextFontSize = 50.0;
+        private const double DefaultLineSpacing = -30.0;
         private static Thickness DefaultPadding = new Thickness(12.0);
         private static Thickness DefaultMargin = new Thickness(0);
-        private static Thickness DefaultLine2Margin = ScaleMargin(ScaleFont(DefaultTextFontSize));
+        private static Thickness DefaultLine2Margin = GetMargin(DefaultLineSpacing);
 
         #region Properties
         public static readonly DependencyProperty Line1TextProperty =
@@ -30,6 +30,9 @@ namespace AppStudio.Uwp.Controls
             DependencyProperty.Register("TextSplitter", typeof(char), typeof(SplitterCard), new PropertyMetadata(' '));
         public static readonly DependencyProperty TextAlignmentProperty =
             DependencyProperty.Register("TextAlignment", typeof(TextAlignment), typeof(SplitterCard), new PropertyMetadata(TextAlignment.Center));
+        private static readonly DependencyProperty LineSpacingProperty =
+            DependencyProperty.Register("LineSpacing", typeof(double), typeof(SplitterCard), new PropertyMetadata(DefaultLineSpacing, (d, e) => { ((SplitterCard)d).UpdateLineSpacing(e.NewValue); }));
+
         private static readonly DependencyProperty Line1FontWeightProperty =
             DependencyProperty.Register("Line1FontWeight", typeof(FontWeight), typeof(SplitterCard), new PropertyMetadata(FontWeights.Bold));
         private static readonly DependencyProperty Line2FontWeightProperty =
@@ -70,6 +73,11 @@ namespace AppStudio.Uwp.Controls
         {
             get { return (TextAlignment)GetValue(TextAlignmentProperty); }
             set { SetValue(TextAlignmentProperty, value); }
+        }
+        public double LineSpacing
+        {
+            get { return (double)GetValue(LineSpacingProperty); }
+            set { SetValue(LineSpacingProperty, value); }
         }
         internal FontWeight Line1FontWeight
         {
@@ -119,21 +127,17 @@ namespace AppStudio.Uwp.Controls
             if (newValue != null && newValue.GetType() == typeof(double))
             {
                 double newTextFontSize = (double)newValue;
-                if (newTextFontSize != Line2FontSize)
-                {
-                    Line1FontSize = ScaleFont(newTextFontSize);
-                    Line2FontSize = newTextFontSize;
-                    this.Line2Margin = ScaleMargin(Line1FontSize);
-                }                
+                Line1FontSize = ScaleFont(newTextFontSize);
+                Line2FontSize = newTextFontSize;
             }
         }
         private static double ScaleFont(double newTextFontSize)
         {
             return Math.Truncate(newTextFontSize + (newTextFontSize / FontSizeFactor));
         }
-        private static Thickness ScaleMargin(double newMargin)
+        private static Thickness GetMargin(double newLineSpacing)
         {
-            return new Thickness(0, Math.Truncate(newMargin / MarginFactor), 0, 0);
+            return new Thickness(0, Math.Truncate(newLineSpacing), 0, 0);
         }
         private void UpdateText(object newValue)
         {
@@ -149,6 +153,13 @@ namespace AppStudio.Uwp.Controls
                 {
                     Line2Text = splitTexts[1];
                 }
+            }
+        }
+        private void UpdateLineSpacing(object newLineSpacing)
+        {
+            if (newLineSpacing != null && newLineSpacing.GetType() == typeof(double))
+            {
+                Line2Margin = GetMargin((double)newLineSpacing);
             }
         }
     }
