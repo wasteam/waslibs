@@ -28,7 +28,7 @@
                                     TextAlignment="{TemplateBinding TextAlignment}"
                                     FontSize="{TemplateBinding Line1FontSize}"
                                     FontFamily="{TemplateBinding FontFamily}"
-                                    FontWeight="Bold"
+                                    FontWeight="SemiBold"
                                     Padding="0"
                                     Margin="0"/>
                             </Grid>

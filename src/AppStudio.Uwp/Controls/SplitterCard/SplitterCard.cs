@@ -8,14 +8,14 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed partial class SplitterCard : Control
     {
-        private const int MarginFactor = 3;
+        private const double MarginFactor = 3.0;
         private const double FontSizeFactor = 1.5;
         private const double DefaultWidth = 350;
         private const double DefaultHeight = 350;
         private const double DefaultTextFontSize = 50.0;
         private static Thickness DefaultPadding = new Thickness(12.0);
         private static Thickness DefaultMargin = new Thickness(0);
-        private static Thickness DefaultLine2Margin = new Thickness(0, ScaleFont(DefaultTextFontSize) / MarginFactor, 0, 0);        
+        private static Thickness DefaultLine2Margin = ScaleMargin(ScaleFont(DefaultTextFontSize));
 
         #region Properties
         public static readonly DependencyProperty Line1TextProperty =
@@ -95,7 +95,7 @@ namespace AppStudio.Uwp.Controls
         {
             get { return (Thickness)GetValue(Line2MarginProperty); }
             set { SetValue(Line2MarginProperty, value); }
-        }        
+        }
         #endregion
         public SplitterCard()
         {
@@ -119,14 +119,21 @@ namespace AppStudio.Uwp.Controls
             if (newValue != null && newValue.GetType() == typeof(double))
             {
                 double newTextFontSize = (double)newValue;
-                Line1FontSize = ScaleFont(newTextFontSize);
-                Line2FontSize = newTextFontSize;
-                this.Line2Margin = new Thickness(0, Line1FontSize / MarginFactor, 0, 0);
+                if (newTextFontSize != Line2FontSize)
+                {
+                    Line1FontSize = ScaleFont(newTextFontSize);
+                    Line2FontSize = newTextFontSize;
+                    this.Line2Margin = ScaleMargin(Line1FontSize);
+                }                
             }
         }
         private static double ScaleFont(double newTextFontSize)
         {
             return Math.Truncate(newTextFontSize + (newTextFontSize / FontSizeFactor));
+        }
+        private static Thickness ScaleMargin(double newMargin)
+        {
+            return new Thickness(0, Math.Truncate(newMargin / MarginFactor), 0, 0);
         }
         private void UpdateText(object newValue)
         {
