@@ -21,7 +21,7 @@
                             <controls:PivoramaTabs x:Name="tabs" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                    ItemTemplate="{TemplateBinding HeaderTemplate}" SelectedItemTemplate="{TemplateBinding TabTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                         </Grid>
-                        <ScrollViewer Grid.Row="1" ScrollViewer.HorizontalScrollMode="Disabled">
+                        <ScrollViewer Name="scrollViewer" Grid.Row="1" ScrollViewer.HorizontalScrollMode="Disabled">
                             <Grid Name="panelContainer">
                                 <controls:PivoramaPanel x:Name="panel" ItemsSource="{TemplateBinding ItemsSource}" Index="{Binding Index, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                         ItemTemplate="{TemplateBinding ContentTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
