@@ -19,6 +19,8 @@ namespace AppStudio.Uwp.Controls
         private Panel _panelContainer = null;
         private PivoramaPanel _panel = null;
 
+        private ScrollViewer _scrollViewer = null;
+
         private RectangleGeometry _clip = null;
 
         private bool _isInitialized = false;
@@ -43,15 +45,19 @@ namespace AppStudio.Uwp.Controls
             _panelContainer = base.GetTemplateChild("panelContainer") as Panel;
             _panel = base.GetTemplateChild("panel") as PivoramaPanel;
 
+            _scrollViewer = base.GetTemplateChild("scrollViewer") as ScrollViewer;
+
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             _frame.ManipulationDelta += OnManipulationDelta;
             _frame.ManipulationCompleted += OnManipulationCompleted;
             _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _frame.PointerWheelChanged += OnPointerWheelChanged;
 
             _panelContainer.ManipulationDelta += OnManipulationDelta;
             _panelContainer.ManipulationCompleted += OnManipulationCompleted;
             _panelContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _panelContainer.PointerWheelChanged += OnPointerWheelChanged;
 
             _isInitialized = true;
 

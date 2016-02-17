@@ -7,6 +7,8 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Pivorama
     {
+        private bool _isBusy = false;
+
         #region Position
         public double Position
         {
@@ -33,6 +35,37 @@ namespace AppStudio.Uwp.Controls
             }
         }
         #endregion
+
+        private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            if (_isBusy)
+            {
+                return;
+            }
+
+            var point = e.GetCurrentPoint(this);
+            int sign = Math.Sign(point.Properties.MouseWheelDelta);
+            if (sign > 0)
+            {
+                if (_scrollViewer.VerticalOffset == 0)
+                {
+                    _headerContainer.TranslateDeltaX(1);
+                    _panelContainer.TranslateDeltaX(1);
+                    AnimatePrev();
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!(_scrollViewer.VerticalOffset < _scrollViewer.ScrollableHeight))
+                {
+                    _headerContainer.TranslateDeltaX(-1);
+                    _panelContainer.TranslateDeltaX(-1);
+                    AnimateNext();
+                    e.Handled = true;
+                }
+            }
+        }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
@@ -98,10 +131,12 @@ namespace AppStudio.Uwp.Controls
             double position = Position - delta;
             duration = duration * delta / this.ItemWidthEx;
 
+            _isBusy = true;
             var t1 = _headerContainer.AnimateXAsync(position, duration);
             var t2 = AnimateTabsNext(duration * 1);
             var t3 = _panelContainer.AnimateXAsync(position, duration);
             await Task.WhenAll(t1, t2, t3);
+            _isBusy = false;
 
             this.Index = (int)(-position / this.ItemWidthEx);
             _tabsContainer.TranslateX(0);
@@ -113,10 +148,12 @@ namespace AppStudio.Uwp.Controls
             double position = Position + delta;
             duration = duration * delta / this.ItemWidthEx;
 
+            _isBusy = true;
             var t1 = _headerContainer.AnimateXAsync(position, duration);
             var t2 = AnimateTabsPrev(duration * 1);
             var t3 = _panelContainer.AnimateXAsync(position, duration);
             await Task.WhenAll(t1, t2, t3);
+            _isBusy = false;
 
             this.Index = (int)(-position / this.ItemWidthEx);
             _tabsContainer.TranslateX(0);
