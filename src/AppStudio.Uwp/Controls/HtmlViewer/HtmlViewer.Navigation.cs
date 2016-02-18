@@ -44,6 +44,11 @@ namespace AppStudio.Uwp.Controls
 
         public void NavigateToString(string text)
         {
+            if (String.IsNullOrWhiteSpace(text))
+            {
+                text = "<p />";
+            }
+
             if (_webView != null && !DesignMode.DesignModeEnabled)
             {
                 if (!String.IsNullOrEmpty(text))

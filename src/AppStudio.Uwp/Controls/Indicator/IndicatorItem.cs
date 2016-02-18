@@ -3,6 +3,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -89,5 +91,15 @@ namespace AppStudio.Uwp.Controls
                 VisualStateManager.GoToState(this, unselected, false);
             }
         }
+
+
+        #region SelectedForeground
+        public Brush SelectedForeground
+        {
+            get { return (Brush)GetValue(SelectedForegroundProperty); }
+            set { SetValue(SelectedForegroundProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register("SelectedForeground", typeof(Brush), typeof(IndicatorItem), new PropertyMetadata(new SolidColorBrush(Colors.Red)));
+        #endregion
     }
 }

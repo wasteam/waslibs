@@ -51,9 +51,14 @@
                 <ScrollViewer Padding="0,0,18,0">
                     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                         <controls:Carousel Name="carousel" ItemsSource="{Binding Items7}" ContentTemplate="{StaticResource Hero}" ItemClickCommand="{Binding ItemClickCommand}"
-                                           MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480" />
-
-                        <controls:Indicator ItemsSource="{Binding ItemsSource, ElementName=carousel, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, ElementName=carousel, Mode=TwoWay}" Height="40" />
+                                           MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480"/>
+                        <controls:Indicator ItemsSource="{Binding ItemsSource, ElementName=carousel, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, ElementName=carousel, Mode=TwoWay}" Height="40" SelectedForeground="Red" Background="White" Foreground="Black">
+                            <controls:Indicator.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Width="12" Height="8" BorderBrush="Black" BorderThickness="1" />
+                                </DataTemplate>
+                            </controls:Indicator.ItemTemplate>
+                        </controls:Indicator>
 
                         <StackPanel Margin="20,16,0,0">
                             <TextBlock Margin="4" Text="Alignment Left" FontSize="24" />
@@ -79,6 +84,7 @@
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxItems" Value="{Binding MaxItems, ElementName=carousel, Mode=TwoWay}" Minimun="1" Maximun="10" />
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MinHeight" Value="{Binding MinHeight, ElementName=carousel, Mode=TwoWay}" Minimun="0" Maximun="800" />
                         <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="MaxHeight" Value="{Binding MaxHeight, ElementName=carousel, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                        <ctrls:PropertySet Source="{Binding ElementName=carousel}" Property="GradientOpacity" Value="{Binding GradientOpacity, ElementName=carousel, Mode=TwoWay}" Minimun="0.0" Maximun="1.0" SmallChange="0.1" />
                     </StackPanel>
                 </ScrollViewer>
             </ctrls:DockView.Pane>

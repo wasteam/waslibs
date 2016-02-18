@@ -25,8 +25,8 @@ namespace AppStudio.DataProviders
             if (result != null)
             {
                 return result
-                        .Take(maxRecords)
-                        .ToList();
+                    .Take(maxRecords)
+                    .ToList();             
             }
             return new TSchema[0];
         }

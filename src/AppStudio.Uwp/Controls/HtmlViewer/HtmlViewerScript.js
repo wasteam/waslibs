@@ -84,9 +84,9 @@ function setHtmlStyle(mxW, mL, mR) {
     sheet.addRule("body", "-ms-content-zooming: none; content-zooming: none");
     sheet.addRule("body", "display: block; margin: 16px; padding: 0px 0px; width: 90%;" + margin);
     sheet.addRule("body", "font-family: 'Segoe WP'; font-size: 1em; text-align: left");
-    sheet.addRule("p, h1, h2, h3, h4, h5, h6, a", "margin: 0px; padding: 0px; background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-weight: normal !important");
-    sheet.addRule("div", "margin: 0px; padding: 0px; width: 100% !important; min-height: unset !important");
-    sheet.addRule("p", "font-size: inherit !important; line-height: inherit !important");
+    sheet.addRule("p, h1, h2, h3, h4, h5, h6, a", "background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-weight: normal !important");
+    sheet.addRule("div", "margin: 0px; padding: 4px 0px 4px 0px; width: 100% !important; min-height: unset !important");
+    sheet.addRule("p", "padding: 6px 0px 8px, 0px; font-size: inherit !important; line-height: inherit !important");
     sheet.addRule("a", "font-size: inherit !important; font-weight: bold !important; text-decoration: underline !important");
     sheet.addRule("img", "display: block; max-width: 100%; height: auto;" + margin);
     sheet.addRule("iframe", "display: block; max-width: 100%;" + margin);

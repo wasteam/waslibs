@@ -10,7 +10,20 @@ namespace AppStudio.Uwp.Controls
     {
         private void OnManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
         {
-            e.TranslationBehavior.DesiredDeceleration = _slotWidth * 0.15 * 96.0 / (1000.0 * 1000.0);
+            double velocity = e.Velocities.Linear.X;
+
+            if (Math.Abs(velocity) > 2.0)
+            {
+                double offset = Math.Abs(_offset);
+                if (Math.Sign(velocity) > 0)
+                {
+                    e.TranslationBehavior.DesiredDisplacement = _slotWidth * this.MaxItems - offset;
+                }
+                else
+                {
+                    e.TranslationBehavior.DesiredDisplacement = _slotWidth * (this.MaxItems - 1) + offset;
+                }
+            }
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -20,13 +33,16 @@ namespace AppStudio.Uwp.Controls
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (_offset < _slotWidth / 2.0)
+            if (_offset > 0.9 && _offset < _slotWidth - 0.9)
             {
-                AnimateNext(150);
-            }
-            else
-            {
-                AnimatePrev(150);
+                if (_offset < _slotWidth / 2.0)
+                {
+                    AnimateNext(150);
+                }
+                else
+                {
+                    AnimatePrev(150);
+                }
             }
         }
 

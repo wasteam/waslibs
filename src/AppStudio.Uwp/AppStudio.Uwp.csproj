@@ -112,6 +112,15 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\SplitterCard\SplitterCard.cs" />
+    <Compile Include="Controls\Pivorama\Pivorama.cs" />
+    <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />
+    <Compile Include="Controls\Pivorama\Pivorama.Members.cs" />
+    <Compile Include="Controls\Pivorama\PivoramaPanel.cs" />
+    <Compile Include="Controls\Pivorama\PivoramaPanel.Items.cs" />
+    <Compile Include="Controls\Pivorama\PivoramaPanel.Members.cs" />
+    <Compile Include="Controls\Pivorama\PivoramaTabs.cs" />
+    <Compile Include="Controls\SearchBox\SearchBox.Members.cs" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +135,6 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommandEx.cs" />
     <Compile Include="Commands\SectionHeaderClickCommand.cs" />
-    <Compile Include="Controls\CarouselIndicator\CarouselIndicator.cs" />
     <Compile Include="Controls\Carousel\Carousel.cs" />
     <Compile Include="Controls\Carousel\Carousel.Items.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
@@ -143,11 +151,13 @@
     <Compile Include="Controls\Indicator\Indicator.Items.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
+    <Compile Include="Controls\SearchBox\SearchBox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToSizeConverter.cs" />
+    <Compile Include="Converters\CollectionVisibilityConverter.cs" />
     <Compile Include="Converters\StringToSizeConverter.cs" />
     <Compile Include="Converters\StringVisibilityConverter.cs" />
     <Compile Include="DataSync\ISyncItem.cs" />
@@ -183,10 +193,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Controls\CarouselIndicator\CarouselIndicator.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\Carousel\Carousel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\Pivorama\Pivorama.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Relativebox\Relativebox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,6 +220,16 @@
     <Page Include="Controls\ResponsiveGridView\ResponsiveGridView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SplitterCard\SplitterCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Controls\SearchBox\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\SectionList\SectionList.xaml">
       <Generator>MSBuild:Compile</Generator>

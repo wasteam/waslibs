@@ -15,7 +15,9 @@
                     <TextBlock Text="{Binding}" Margin="12,0,0,0"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
-
+            <PivotItem Header="Pivorama">
+                <controlPages:PivoramaPage/>
+            </PivotItem>
             <PivotItem Header="Carousel">
                 <controlPages:CarouselPage/>
             </PivotItem>
@@ -58,6 +60,12 @@
             </PivotItem>
             <PivotItem Header="Navigation">
                 <controlPages:Navigation/>
+            </PivotItem>
+            <PivotItem Header="SearchBox">
+                <controlPages:SearchBox/>
+            </PivotItem>
+            <PivotItem Header="SplitterCard">
+                <controlPages:SplitterCardPage/>
             </PivotItem>
             <PivotItem Header="About">
                 <StackPanel MaxWidth="600" HorizontalAlignment="Left">

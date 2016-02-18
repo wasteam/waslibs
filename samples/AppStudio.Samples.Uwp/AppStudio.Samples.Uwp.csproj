@@ -130,6 +130,15 @@
     <Compile Include="ControlPages\Converters.xaml.cs">
       <DependentUpon>Converters.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlPages\PivoramaPage.xaml.cs">
+      <DependentUpon>PivoramaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\SplitterCardPage.xaml.cs">
+      <DependentUpon>SplitterCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPages\SearchBox.xaml.cs">
+      <DependentUpon>SearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ControlPages\ErrorNotificationControl.xaml.cs">
       <DependentUpon>ErrorNotificationControl.xaml</DependentUpon>
     </Compile>
@@ -164,6 +173,7 @@
     <Compile Include="Controls\PropertySet.cs" />
     <Compile Include="Data\FeedParser.cs" />
     <Compile Include="Data\FeedSchema.cs" />
+    <Compile Include="Data\ItemData.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -213,6 +223,18 @@
     <Page Include="ControlPages\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlPages\PivoramaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlPages\SplitterCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ControlPages\SearchBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ControlPages\ErrorNotificationControl.xaml">
       <SubType>Designer</SubType>

@@ -76,6 +76,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty AlignmentXProperty = DependencyProperty.Register("AlignmentX", typeof(AlignmentX), typeof(Carousel), new PropertyMetadata(AlignmentX.Left, OnInvalidate));
         #endregion
 
+        #region GradientOpacity
+        public double GradientOpacity
+        {
+            get { return (double)GetValue(GradientOpacityProperty); }
+            set { SetValue(GradientOpacityProperty, value); }
+        }
+
+        public static readonly DependencyProperty GradientOpacityProperty = DependencyProperty.Register("GradientOpacity", typeof(double), typeof(Carousel), new PropertyMetadata(0.0));
+        #endregion
+
         #region ItemClickCommand
         public ICommand ItemClickCommand
         {

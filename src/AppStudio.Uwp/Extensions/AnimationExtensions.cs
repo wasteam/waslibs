@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
@@ -10,144 +10,124 @@ namespace AppStudio.Uwp
     {
         public static Storyboard AnimateX(this FrameworkElement element, double x, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.GetTranslateX() == x)
+            if (element.GetTranslateX() != x)
             {
-                return null;
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateX", element.GetTranslateX(), x, duration, easingFunction);
             }
-
-            var storyboard = new Storyboard();
-
-            var animation = new DoubleAnimation
+            return null;
+        }
+        public static async Task AnimateXAsync(this FrameworkElement element, double x, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetTranslateX() != x)
             {
-                To = x,
-                Duration = TimeSpan.FromMilliseconds(duration),
-                EasingFunction = easingFunction ?? new SineEase(),
-                FillBehavior = FillBehavior.HoldEnd,
-                EnableDependentAnimation = false
-            };
-
-            Storyboard.SetTarget(animation, element.GetCompositeTransform());
-            Storyboard.SetTargetProperty(animation, "TranslateX");
-
-            storyboard.Children.Add(animation);
-            storyboard.FillBehavior = FillBehavior.HoldEnd;
-            storyboard.Begin();
-
-            return storyboard;
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateX", element.GetTranslateX(), x, duration, easingFunction);
+            }
         }
 
         public static Storyboard AnimateY(this FrameworkElement element, double y, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.GetTranslateY() == y)
+            if (element.GetTranslateY() != y)
             {
-                return null;
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "TranslateY", element.GetTranslateY(), y, duration, easingFunction);
             }
-
-            var storyboard = new Storyboard();
-
-            var animation = new DoubleAnimation
+            return null;
+        }
+        public static async Task AnimateYAsync(this FrameworkElement element, double y, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetTranslateY() != y)
             {
-                To = y,
-                Duration = TimeSpan.FromMilliseconds(duration),
-                EasingFunction = easingFunction ?? new SineEase(),
-                FillBehavior = FillBehavior.HoldEnd,
-                EnableDependentAnimation = false
-            };
-
-            Storyboard.SetTarget(animation, element.GetCompositeTransform());
-            Storyboard.SetTargetProperty(animation, "TranslateY");
-
-            storyboard.Children.Add(animation);
-            storyboard.FillBehavior = FillBehavior.HoldEnd;
-            storyboard.Begin();
-
-            return storyboard;
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateY", element.GetTranslateY(), y, duration, easingFunction);
+            }
         }
 
         public static Storyboard AnimateWidth(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.Width == width)
+            if (element.ActualWidth != width)
             {
-                return null;
+                return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
             }
-
-            var storyboard = new Storyboard();
-
-            var animation = new DoubleAnimation
+            return null;
+        }
+        public static async Task AnimateWidthAsync(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.ActualWidth != width)
             {
-                To = width,
-                Duration = TimeSpan.FromMilliseconds(duration),
-                EasingFunction = easingFunction ?? new SineEase(),
-                FillBehavior = FillBehavior.HoldEnd,
-                EnableDependentAnimation = false
-            };
-
-            Storyboard.SetTarget(animation, element);
-            Storyboard.SetTargetProperty(animation, "Width");
-
-            storyboard.Children.Add(animation);
-            storyboard.FillBehavior = FillBehavior.HoldEnd;
-            storyboard.Begin();
-
-            return storyboard;
+                await AnimateDoublePropertyAsync(element, "Width", element.ActualWidth, width, duration, easingFunction);
+            }
         }
 
         public static Storyboard AnimateHeight(this FrameworkElement element, double height, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            if (element.Height == height)
+            if (element.Height != height)
             {
-                return null;
+                return AnimateDoubleProperty(element, "Height", element.ActualHeight, height, duration, easingFunction);
             }
-
-            var storyboard = new Storyboard();
-
-            var animation = new DoubleAnimation
+            return null;
+        }
+        public static async Task AnimateHeightAsync(this FrameworkElement element, double height, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Height != height)
             {
-                To = height,
-                Duration = TimeSpan.FromMilliseconds(duration),
-                EasingFunction = easingFunction ?? new SineEase(),
-                FillBehavior = FillBehavior.HoldEnd,
-                EnableDependentAnimation = false
+                await AnimateDoublePropertyAsync(element, "Height", element.ActualHeight, height, duration, easingFunction);
+            }
+        }
+
+        public static Storyboard FadeIn(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity < 1.0)
+            {
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+            }
+            return null;
+        }
+        public static async Task FadeInAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity < 1.0)
+            {
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+            }
+        }
+
+        public static Storyboard FadeOut(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity > 0.0)
+            {
+                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+            }
+            return null;
+        }
+        public static async Task FadeOutAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            if (element.Opacity > 0.0)
+            {
+                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+            }
+        }
+        public static Task AnimateDoublePropertyAsync(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
+        {
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
+            storyboard.Completed += (sender, e) =>
+            {
+                tcs.SetResult(true);
             };
-
-            Storyboard.SetTarget(animation, element);
-            Storyboard.SetTargetProperty(animation, "Height");
-
-            storyboard.Children.Add(animation);
-            storyboard.FillBehavior = FillBehavior.HoldEnd;
-            storyboard.Begin();
-
-            return storyboard;
+            return tcs.Task;
         }
-
-        public static Storyboard FadeIn(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
+        public static Storyboard AnimateDoubleProperty(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
-            return AnimateOpacity(element, 1.0, duration, easingFunction);
-        }
-        public static Storyboard FadeOut(this FrameworkElement element, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            return AnimateOpacity(element, 0.0, duration, easingFunction);
-        }
-        public static Storyboard AnimateOpacity(this FrameworkElement element, double to, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element.Opacity == to)
-            {
-                return null;
-            }
-
             var storyboard = new Storyboard();
-
             var animation = new DoubleAnimation
             {
+                From = from,
                 To = to,
                 Duration = TimeSpan.FromMilliseconds(duration),
                 EasingFunction = easingFunction ?? new SineEase(),
                 FillBehavior = FillBehavior.HoldEnd,
-                EnableDependentAnimation = false
+                EnableDependentAnimation = true
             };
 
-            Storyboard.SetTarget(animation, element);
-            Storyboard.SetTargetProperty(animation, "Opacity");
+            Storyboard.SetTarget(animation, target);
+            Storyboard.SetTargetProperty(animation, property);
 
             storyboard.Children.Add(animation);
             storyboard.FillBehavior = FillBehavior.HoldEnd;
