@@ -33,7 +33,7 @@ namespace AppStudio.Uwp
             double d = 0.0;
             if (!String.IsNullOrEmpty(str))
             {
-                Double.TryParse(str, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out d);
+                Double.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out d);
             }
             return d;
         }
