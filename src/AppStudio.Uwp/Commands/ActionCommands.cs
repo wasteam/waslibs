@@ -136,7 +136,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (appointment != null)
                     {
-                        var s = AppointmentManager.ShowAddAppointmentAsync(appointment, RectHelper.Empty);
+                        var s = AppointmentManager.ShowEditNewAppointmentAsync(appointment);
                     }
                 });
             }
