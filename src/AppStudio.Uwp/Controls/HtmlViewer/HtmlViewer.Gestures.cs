@@ -70,7 +70,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_webView != null && _isHtmlLoaded)
             {
-                await _webView.InvokeScriptAsync("verticalScrollBy", -delta);
+                await _webView.InvokeScriptAsync("verticalScrollBy", (-delta).ToInvariantString());
             }
         }
     }
