@@ -1,9 +1,11 @@
 ﻿using AppStudio.Uwp.Actions;
+using AppStudio.Uwp.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Appointments;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -32,11 +34,11 @@ namespace AppStudio.Samples.Uwp.ControlPages
         public ActionCommandBar()
         {
             this.InitializeComponent();
-            CommandActions.Add(new ActionInfo() { ActionType = ActionType.Primary, Name = "actionButton1", Style = "AppBarRefresh" });
+            CommandActions.Add(new ActionInfo() { ActionType = ActionType.Primary, Name = "actionButton1", Style = "AppBarAddToCalendar", Command = ActionCommands.AddToCalendar, CommandParameter = new Appointment() { StartTime = DateTime.Now, Subject = "App Studio Team meeting", Duration = TimeSpan.FromMinutes(45) } });
             CommandActions.Add(new ActionInfo() { ActionType = ActionType.Primary, Name = "actionButton2", Style = "AppBarAudio" });
             CommandActions.Add(new ActionInfo() { ActionType = ActionType.Primary, Name = "actionButton3", Style = "AppBarCalculator" });
             CommandActions.Add(new ActionInfo() { ActionType = ActionType.Secondary, Name = "actionButton4", Style = "CustomAppBarButtonStyle" });
-            CommandActions.Add(new ActionInfo() { ActionType = ActionType.Secondary, Name = "actionButton5", Style = "CustomAppBarButtonStyle" });
+            CommandActions.Add(new ActionInfo() { ActionType = ActionType.Secondary, Name = "actionButton5", Style = "CustomAppBarButtonStyle" });            
         }        
     }
 }
