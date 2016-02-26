@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
@@ -85,7 +87,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (this.FitToScreen)
             {
-                this.ItemWidthEx = this.ActualWidth;
+                this.ItemWidthEx = Math.Round(this.ActualWidth);
                 _headerContainer.Visibility = Visibility.Collapsed;
                 _tabsContainer.Visibility = Visibility.Visible;
             }
