@@ -11,7 +11,7 @@
     <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
         <Grid Background="White" Opacity="0.85" />
         <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="MaximumRowsOrColumns" Value="{Binding MaximumRowsOrColumns, Mode=TwoWay}" Minimun="4" Maximun="12" SmallChange="2" />
+            <controls:PropertySet Source="{Binding}" Property="MaximumRowsOrColumns" Value="{Binding MaximumRowsOrColumns, Mode=TwoWay}" Minimun="2" Maximun="12" SmallChange="2" />
             <controls:PropertySet Source="{Binding}" Property="Orientation" Value="{Binding Orientation, Mode=TwoWay}" />
             <controls:PropertySet Source="{Binding}" Property="AspectRatio" Value="{Binding AspectRatio, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
         </StackPanel>

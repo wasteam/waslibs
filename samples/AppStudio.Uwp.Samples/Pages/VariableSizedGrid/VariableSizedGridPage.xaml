@@ -36,7 +36,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:VariableSizedGrid Name="control" Margin="24" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+        <controls:VariableSizedGrid Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
                                     Orientation="Horizontal" MaximumRowsOrColumns="4" AspectRatio="1"
                                     HorizontalAlignment="Left" VerticalAlignment="Top" />
     </Grid>
