@@ -112,6 +112,13 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\PropertySet\PropertySet.cs" />
+    <Compile Include="Controls\ShellControl\NavigationItem.cs" />
+    <Compile Include="Controls\ShellControl\NavigationStyleSelector.cs" />
+    <Compile Include="Controls\ShellControl\ShellControl.cs" />
+    <Compile Include="Controls\ShellControl\ShellControl.Items.cs" />
+    <Compile Include="Controls\ShellControl\ShellControl.Members.cs" />
+    <Compile Include="Controls\ShellControl\ShellControl.Selection.cs" />
     <Compile Include="Controls\SplitterCard\SplitterCard.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />
@@ -152,6 +159,8 @@
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
     <Compile Include="Controls\SearchBox\SearchBox.cs" />
+    <Compile Include="Controls\VariableSizedGrid\VariableSizedGrid.cs" />
+    <Compile Include="Controls\VariableSizedGrid\VariableSizedGridPanel.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Measure.cs" />
     <Compile Include="Controls\Virtualbox\Virtualbox.Members.cs" />
@@ -213,11 +222,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PropertySet\PropertySet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Relativebox\Relativebox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ResponsiveGridView\ResponsiveGridView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ShellControl\ShellControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -232,6 +249,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Controls\SectionList\SectionList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\VariableSizedGrid\VariableSizedGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
