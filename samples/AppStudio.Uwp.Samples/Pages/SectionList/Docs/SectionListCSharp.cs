@@ -14,31 +14,31 @@ namespace AppStudio.Uwp.Samples
             this.InitializeComponent();
             this.DataContext = this;
         }
-
-        public ObservableCollection<object> Items
+        #region TabletPCItems
+        public ObservableCollection<object> TabletPCItems
         {
-            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
+            get { return (ObservableCollection<object>)GetValue(TabletPCItemsProperty); }
+            set { SetValue(TabletPCItemsProperty, value); }
         }
-
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(SectionListSample), new PropertyMetadata(null));
+        public static readonly DependencyProperty TabletPCItemsProperty = DependencyProperty.Register("TabletPCItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
+        #endregion
+        //...
+        //Create regions for all item categories
+        //...
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Initialize items collection
-            this.Items = new ObservableCollection<object>(Items);
+            this.TabletPCItems = LoadTabletPCItems(); new ObservableCollection<object>(Items);
         }
 
-        private IEnumerable<object> Items
+        private ObservableCollection<object> LoadTabletPCItems()
         {
-            get
-            {
-                yield return "/Images/Sample01.jpg";
-                yield return "/Images/Sample02.jpg";
-                yield return "/Images/Sample03.jpg";
-                // ...
-            }
+            yield return new DeviceDataItem("Surface Pro 4", "/Images/SurfacePro4.jpg");
+            yield return new DeviceDataItem("Surface Book", "/Images/SurfaceBook.jpg");            
+            // ...
         }
+        //...
+        //Load Data Methods for all item categories
+        //...
     }
 }

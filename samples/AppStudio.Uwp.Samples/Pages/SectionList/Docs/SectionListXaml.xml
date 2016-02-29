@@ -9,8 +9,75 @@
     mc:Ignorable="d">
 
   <Page.Resources>
+    <DataTemplate x:Key="DeviceItemTemplate">
+      <Grid Margin="5">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Stretch="Uniform" Source="{Binding Thumbnail}"/>
+        <TextBlock Grid.Row="1" Text="{Binding Title}" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center"/>
+      </Grid>
+    </DataTemplate>
   </Page.Resources>
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">    
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <controls:SectionList Name="control" HeaderLinkText="View all">
+      <controls:SectionList.TitleStyle>
+        <Style TargetType="TextBlock">
+          <Setter Property="FontWeight" Value="Bold"/>
+          <Setter Property="FontSize" Value="22"/>
+          <Setter Property="Margin" Value="6,0,0,0"/>
+        </Style>
+      </controls:SectionList.TitleStyle>
+      <controls:SectionList.HeaderLinkStyle>
+        <Style TargetType="HyperlinkButton">
+          <Setter Property="Margin" Value="0,0,22,0"/>
+          <Setter Property="Foreground" Value="{ThemeResource SystemColorHighlightColor}"/>
+        </Style>
+      </controls:SectionList.HeaderLinkStyle>
+      <controls:SectionListItem
+          HeaderLinkVisibility="Collapsed"
+          TitleVisibility="Collapsed"
+          ErrorVisibility="Collapsed"
+          LoadingVisibility="Collapsed"
+          ManageLoading="False">
+        <DataTemplate>
+          <Image x:Name="heroImage" Stretch="Uniform" Source="/Assets/Images/HeroImage.png" Margin="-1,0"/>
+        </DataTemplate>
+      </controls:SectionListItem>
+      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Tablet/PC" Margin="12,12,0,0">
+        <DataTemplate>
+          <controls:ResponsiveGridView
+              ItemsSource="{Binding TabletPCItems}" ItemHeight="200" DesiredWidth="300"
+              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+          </controls:ResponsiveGridView>
+        </DataTemplate>
+      </controls:SectionListItem>
+      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Accessory" Margin="12,12,0,0">
+        <DataTemplate>
+          <controls:ResponsiveGridView
+              ItemsSource="{Binding AccessoryItems}" ItemHeight="200" DesiredWidth="300"
+              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+          </controls:ResponsiveGridView>
+        </DataTemplate>
+      </controls:SectionListItem>
+      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Phone" Margin="12,12,0,0">
+        <DataTemplate>
+          <controls:ResponsiveGridView
+              ItemsSource="{Binding PhoneItems}" ItemHeight="200" DesiredWidth="300"
+              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+          </controls:ResponsiveGridView>
+        </DataTemplate>
+      </controls:SectionListItem>
+      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Console" Margin="12,12,0,0">
+        <DataTemplate>
+          <controls:ResponsiveGridView
+              ItemsSource="{Binding ConsoleItems}" ItemHeight="200" DesiredWidth="300"
+              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+          </controls:ResponsiveGridView>
+        </DataTemplate>
+      </controls:SectionListItem>
+    </controls:SectionList>
   </Grid>
 </Page>
