@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -41,11 +42,13 @@ namespace AppStudio.Uwp.Samples
 
         protected virtual IEnumerable<ICommandBarElement> CreatePrimaryCommands()
         {
-            yield return CreateAppBarToggleButton(Symbol.Help, "Help", OnHelpButton);
-            yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
+            yield return CreateAppBarToggleButtonFromSymbol(Symbol.Help, "Help", OnHelpButton);
+            yield return CreateAppBarToggleButtonFromSymbol(Symbol.Setting, "Settings", OnSettingsButton);
             yield return new AppBarSeparator();
-            yield return CreateAppBarToggleButton(Symbol.AlignLeft, "Source Code", OnSourceCodeButton);
-            yield return CreateAppBarToggleButton(Symbol.AlignRight, "Xaml Code", OnXamlCodeButton);
+            yield return CreateAppBarToggleButtonFromGlyph("\xE7C3", "Xaml Code", OnXamlCodeButton);
+            yield return CreateAppBarToggleButtonFromGlyph("\xE8FF", "Source Code", OnSourceCodeButton);
+            yield return CreateAppBarToggleButtonFromImage(new Uri("ms-appx:///Assets/Images/Xaml.png"), "Xaml Code", OnXamlCodeButton);
+            yield return CreateAppBarToggleButtonFromImage(new Uri("ms-appx:///Assets/Images/CSharp.png"), "Source Code", OnSourceCodeButton);
         }
 
         private void OnHelpButton(object sender, RoutedEventArgs e)
@@ -152,9 +155,25 @@ namespace AppStudio.Uwp.Samples
             return command;
         }
 
-        protected ICommandBarElement CreateAppBarToggleButton(Symbol symbol, string label, RoutedEventHandler eventHandler)
+        protected ICommandBarElement CreateAppBarToggleButtonFromSymbol(Symbol symbol, string label, RoutedEventHandler eventHandler)
         {
             var command = new AppBarToggleButton { Icon = new SymbolIcon(symbol), Label = label };
+            ToolTipService.SetToolTip(command, label);
+            command.Checked += eventHandler;
+            command.Unchecked += eventHandler;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarToggleButtonFromGlyph(string glyph, string label, RoutedEventHandler eventHandler)
+        {            
+            var command = new AppBarToggleButton { Icon = new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, Label = label };            
+            ToolTipService.SetToolTip(command, label);
+            command.Checked += eventHandler;
+            command.Unchecked += eventHandler;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarToggleButtonFromImage(Uri UriSource, string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarToggleButton { Icon = new BitmapIcon() { UriSource = UriSource }, Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Checked += eventHandler;
             command.Unchecked += eventHandler;

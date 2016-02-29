@@ -14,31 +14,5 @@ namespace AppStudio.Uwp.Samples
             this.InitializeComponent();
             this.DataContext = this;
         }
-
-        public ObservableCollection<object> Items
-        {
-            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
-        }
-
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(CarouselSample), new PropertyMetadata(null));
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            // Initialize items collection
-            this.Items = new ObservableCollection<object>(Items);
-        }
-
-        private IEnumerable<object> Items
-        {
-            get
-            {
-                yield return new DeviceDataItem("Surface Pro 4", "/Images/SurfacePro4.jpg");
-                yield return new DeviceDataItem("Surface Book", "/Images/SurfaceBook.jpg");
-                yield return new DeviceDataItem("Lumia 950", "/Images/Lumia950.jpg");
-                // ...
-            }
-        }
     }
 }

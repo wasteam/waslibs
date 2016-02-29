@@ -110,6 +110,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Content Include="Assets\Images\Band2.png" />
+    <Content Include="Assets\Images\CSharp.png" />
     <Content Include="Assets\Images\DellInspiron.png" />
     <Content Include="Assets\Images\DellXPS.png" />
     <Content Include="Assets\Images\HeroImage.png" />
@@ -121,6 +122,7 @@
     <Content Include="Assets\Images\SurfacePro4.png" />
     <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
     <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
+    <Content Include="Assets\Images\Xaml.png" />
     <Content Include="Assets\Images\XboxOne.png" />
     <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
