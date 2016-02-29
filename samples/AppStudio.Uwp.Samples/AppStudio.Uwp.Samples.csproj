@@ -112,6 +112,7 @@
     <Content Include="Assets\Images\Band2.png" />
     <Content Include="Assets\Images\DellInspiron.png" />
     <Content Include="Assets\Images\DellXPS.png" />
+    <Content Include="Assets\Images\HeroImage.png" />
     <Content Include="Assets\Images\LifeCamCinema.png" />
     <Content Include="Assets\Images\LifeChat.png" />
     <Content Include="Assets\Images\Lumia950.png" />
@@ -126,6 +127,8 @@
     <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
     <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
     <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
+    <Content Include="Pages\SectionList\Docs\SectionListHelp.html" />
+    <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridCSharp.cs" />
     <Content Include="Pages\Carousel\Docs\CarouselCSharp.cs" />
     <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
@@ -141,11 +144,25 @@
     <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
       <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
+    <Content Include="Pages\SectionList\Docs\SectionListCSharp.cs" />
+    <Compile Include="Pages\SectionList\SectionListSettings.xaml.cs">
+      <DependentUpon>SectionListSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SectionList\SectionListPage.xaml.cs">
+      <DependentUpon>SectionListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
       <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridSettings.xaml.cs">
       <DependentUpon>VariableSizedGridSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
+    <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
+      <DependentUpon>YouTubePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YouTube\YouTubeSettings.xaml.cs">
+      <DependentUpon>YouTubeSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\Prototype\PrototypePage.xaml.cs">
@@ -168,6 +185,8 @@
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridXaml.xml" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.html" />
     <Content Include="Pages\Prototype\Docs\PrototypeHelp.html" />
+    <Content Include="Pages\YouTube\Docs\YouTubeHelp.html" />
+    <Content Include="Pages\YouTube\Docs\YouTubeXaml.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -206,6 +225,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\SectionList\SectionListSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SectionList\SectionListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -221,6 +248,14 @@
     <Page Include="Pages\Prototype\PrototypeSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\YouTube\YouTubePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\YouTube\YouTubeSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

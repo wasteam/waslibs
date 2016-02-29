@@ -46,6 +46,7 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(Symbol.SelectAll, "Layout Controls", GetControlsByCategory("Layout"));
                 yield return new NavigationItem(Symbol.Library, "Misc Controls", GetControlsByCategory("Misc"));
                 yield return new NavigationItem(Symbol.Repair, "Tools", GetControlsByCategory("Tools"));
+                yield return new NavigationItem(Symbol.CalendarWeek, "Data Providers", GetControlsByCategory("DataProviders"));
 
                 yield return NavigationItem.Separator;
                 yield return new NavigationItem(Symbol.FullScreen, "Enter Full Screen", (m) => { shell.EnterFullScreen(); });
