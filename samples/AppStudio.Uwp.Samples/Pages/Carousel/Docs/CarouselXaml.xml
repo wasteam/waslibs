@@ -8,7 +8,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-  <Page.Resources>    
+  <Page.Resources>
+    <DataTemplate x:Key="Hero">
+      <Grid Background="White">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.2*"/>
+          </Grid.RowDefinitions>
+            <Image
+              Source="{Binding Thumbnail}" Stretch="Uniform"
+              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1" Background="Black">
+              <controls:Virtualbox VirtualWidth="640" VirtualHeight="56">
+                <TextBlock
+                  Margin="24,6" Text="{Binding Title}" TextWrapping="NoWrap"
+                  TextTrimming="WordEllipsis" TextAlignment="Center" Foreground="#eee" FontSize="24"/>
+              </controls:Virtualbox>
+            </Grid>
+        </Grid>
+      </Grid>
+    </DataTemplate>
   </Page.Resources>
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

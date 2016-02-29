@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using AppStudio.Uwp.Samples;
 
 namespace AppStudio.Uwp.Samples
 {
-    public sealed partial class CarouselSample : Page
+    public sealed partial class PivoramaSample : Page
     {
-        public CarouselSample()
+        public PivoramaSample()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -22,7 +22,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(CarouselSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(PivoramaSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -34,9 +34,9 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new DeviceDataItem("Surface Pro 4", "/Images/SurfacePro4.jpg");
-                yield return new DeviceDataItem("Surface Book", "/Images/SurfaceBook.jpg");
-                yield return new DeviceDataItem("Lumia 950", "/Images/Lumia950.jpg");
+                yield return "/Images/Sample01.jpg";
+                yield return "/Images/Sample02.jpg";
+                yield return "/Images/Sample03.jpg";
                 // ...
             }
         }

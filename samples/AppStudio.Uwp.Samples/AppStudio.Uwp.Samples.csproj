@@ -123,6 +123,8 @@
     <Content Include="Assets\Images\XboxOne.png" />
     <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
+    <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
+    <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
     <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridCSharp.cs" />
     <Content Include="Pages\Carousel\Docs\CarouselCSharp.cs" />
@@ -131,6 +133,13 @@
     </Compile>
     <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
       <DependentUpon>CarouselSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Pivorama\Docs\PivoramaCSharp.cs" />
+    <Compile Include="Pages\Pivorama\PivoramaSettings.xaml.cs">
+      <DependentUpon>PivoramaSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
+      <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
       <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
@@ -189,6 +198,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Pivorama\PivoramaSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Pivorama\PivoramaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -212,6 +229,7 @@
       <Name>AppStudio.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
