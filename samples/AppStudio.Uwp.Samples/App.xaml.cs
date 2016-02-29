@@ -22,6 +22,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BingDataSource.Load();
+            DevicesDataSource.Load();
 
             var shell = Window.Current.Content as AppShell;
 

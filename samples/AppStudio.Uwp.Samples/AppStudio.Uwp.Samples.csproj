@@ -89,6 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Devices.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -103,12 +104,34 @@
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
+    <Compile Include="Data\DevicesDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Content Include="Assets\Images\Band2.png" />
+    <Content Include="Assets\Images\DellInspiron.png" />
+    <Content Include="Assets\Images\DellXPS.png" />
+    <Content Include="Assets\Images\LifeCamCinema.png" />
+    <Content Include="Assets\Images\LifeChat.png" />
+    <Content Include="Assets\Images\Lumia950.png" />
+    <Content Include="Assets\Images\SculptComfortMouse.png" />
+    <Content Include="Assets\Images\SurfaceBook.png" />
+    <Content Include="Assets\Images\SurfacePro4.png" />
+    <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
+    <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
+    <Content Include="Assets\Images\XboxOne.png" />
+    <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
+    <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
     <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridCSharp.cs" />
+    <Content Include="Pages\Carousel\Docs\CarouselCSharp.cs" />
+    <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
+      <DependentUpon>CarouselPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
+      <DependentUpon>CarouselSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
       <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +178,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Carousel\CarouselPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Carousel\CarouselSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
