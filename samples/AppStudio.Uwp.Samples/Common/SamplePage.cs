@@ -47,6 +47,16 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty PrimaryCommandsProperty = DependencyProperty.Register("PrimaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
         #endregion
 
+        #region SecondaryCommands
+        public IEnumerable<ICommandBarElement> SecondaryCommands
+        {
+            get { return (IEnumerable<ICommandBarElement>)GetValue(SecondaryCommandsProperty); }
+            set { SetValue(SecondaryCommandsProperty, value); }
+        }
+
+        public static readonly DependencyProperty SecondaryCommandsProperty = DependencyProperty.Register("SecondaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
+        #endregion
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.ShowSettings = IsTypePresent($"AppStudio.Uwp.Samples.{SampleName}Settings");
@@ -56,6 +66,7 @@ namespace AppStudio.Uwp.Samples
             this.ShowJson = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Json.json");
 
             this.PrimaryCommands = CreatePrimaryCommands().ToArray();
+            this.SecondaryCommands = CreateSecondaryCommands().ToArray();
 
             base.OnNavigatedTo(e);
         }
@@ -85,6 +96,11 @@ namespace AppStudio.Uwp.Samples
                     yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Json.png"), "Json Data", OnJsonButton);
                 }
             }
+        }
+
+        protected virtual IEnumerable<ICommandBarElement> CreateSecondaryCommands()
+        {
+            yield break;
         }
 
         private void OnHelpButton(object sender, RoutedEventArgs e)
@@ -215,7 +231,25 @@ namespace AppStudio.Uwp.Samples
         #region AppBarButton Helpers
         protected ICommandBarElement CreateAppBarButton(Symbol symbol, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarButton { Icon = new SymbolIcon(symbol), Label = label };
+            return CreateAppBarButton(new SymbolIcon(symbol), label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(string glyph, string label, RoutedEventHandler eventHandler)
+        {
+            return CreateAppBarButton(new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(Uri uriSource, string label, RoutedEventHandler eventHandler)
+        {
+            return CreateAppBarButton(new BitmapIcon { UriSource = uriSource }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(IconElement icon, string label, RoutedEventHandler eventHandler)
+        {
+            var command = CreateAppBarButton(label, eventHandler) as AppBarButton;
+            command.Icon = icon;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarButton(string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarButton { Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Click += eventHandler;
             return command;
@@ -229,13 +263,19 @@ namespace AppStudio.Uwp.Samples
         {
             return CreateAppBarToggleButton(new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, label, eventHandler);
         }
-        protected ICommandBarElement CreateAppBarToggleButton(Uri UriSource, string label, RoutedEventHandler eventHandler)
+        protected ICommandBarElement CreateAppBarToggleButton(Uri uriSource, string label, RoutedEventHandler eventHandler)
         {
-            return CreateAppBarToggleButton(new BitmapIcon { UriSource = UriSource }, label, eventHandler);
+            return CreateAppBarToggleButton(new BitmapIcon { UriSource = uriSource }, label, eventHandler);
         }
         protected ICommandBarElement CreateAppBarToggleButton(IconElement icon, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarToggleButton { Icon = icon, Label = label };
+            var command = CreateAppBarToggleButton(label, eventHandler) as AppBarToggleButton;
+            command.Icon = icon;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarToggleButton(string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarToggleButton { Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Checked += eventHandler;
             command.Unchecked += eventHandler;
