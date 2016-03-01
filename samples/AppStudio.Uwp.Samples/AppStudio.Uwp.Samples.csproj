@@ -109,8 +109,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Content Include="Assets\Icons\CSharp.png" />
+    <Content Include="Assets\Icons\Xaml.png" />
     <Content Include="Assets\Images\Band2.png" />
-    <Content Include="Assets\Images\CSharp.png" />
     <Content Include="Assets\Images\DellInspiron.png" />
     <Content Include="Assets\Images\DellXPS.png" />
     <Content Include="Assets\Images\HeroImage.png" />
@@ -122,10 +123,10 @@
     <Content Include="Assets\Images\SurfacePro4.png" />
     <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
     <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
-    <Content Include="Assets\Images\Xaml.png" />
     <Content Include="Assets\Images\XboxOne.png" />
     <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
+    <Content Include="Pages\Pivorama\Docs\PivoramaCSharp.cs" />
     <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
     <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
     <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
@@ -139,7 +140,6 @@
     <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
       <DependentUpon>CarouselSettings.xaml</DependentUpon>
     </Compile>
-    <Content Include="Pages\Pivorama\Docs\PivoramaCSharp.cs" />
     <Compile Include="Pages\Pivorama\PivoramaSettings.xaml.cs">
       <DependentUpon>PivoramaSettings.xaml</DependentUpon>
     </Compile>
@@ -188,7 +188,6 @@
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.html" />
     <Content Include="Pages\Prototype\Docs\PrototypeHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeHelp.html" />
-    <Content Include="Pages\YouTube\Docs\YouTubeXaml.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

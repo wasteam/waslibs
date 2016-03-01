@@ -43,6 +43,8 @@ namespace AppStudio.Uwp.Samples
         {
             Items = new ObservableCollection<object>(new DevicesDataSource().GetGroupedItems());
             //this.ItemTemplate = Resources["BingTemplate"] as DataTemplate;
+
+            base.OnNavigatedTo(e);
         }
 
         protected override void OnSettings()

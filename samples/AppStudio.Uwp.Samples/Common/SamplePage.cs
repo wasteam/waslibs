@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
+using Windows.Storage;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -32,23 +34,45 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region PrimaryCommands
-        private IEnumerable<ICommandBarElement> _primaryCommands = null;
-
         public IEnumerable<ICommandBarElement> PrimaryCommands
         {
-            get { return _primaryCommands ?? (_primaryCommands = CreatePrimaryCommands().ToArray()); }
+            get { return (IEnumerable<ICommandBarElement>)GetValue(PrimaryCommandsProperty); }
+            set { SetValue(PrimaryCommandsProperty, value); }
         }
+
+        public static readonly DependencyProperty PrimaryCommandsProperty = DependencyProperty.Register("PrimaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
         #endregion
+
+        private bool _xamlExists = false;
+        private bool _codeExists = false;
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _xamlExists = await DocumentFileExists($"{SampleName}Xaml.xml");
+            _codeExists = await DocumentFileExists($"{SampleName}CSharp.cs");
+
+            this.PrimaryCommands = CreatePrimaryCommands().ToArray();
+
+            base.OnNavigatedTo(e);
+        }
 
         protected virtual IEnumerable<ICommandBarElement> CreatePrimaryCommands()
         {
-            yield return CreateAppBarToggleButtonFromSymbol(Symbol.Help, "Help", OnHelpButton);
-            yield return CreateAppBarToggleButtonFromSymbol(Symbol.Setting, "Settings", OnSettingsButton);
-            yield return new AppBarSeparator();
-            yield return CreateAppBarToggleButtonFromGlyph("\xE7C3", "Xaml Code", OnXamlCodeButton);
-            yield return CreateAppBarToggleButtonFromGlyph("\xE8FF", "Source Code", OnSourceCodeButton);
-            yield return CreateAppBarToggleButtonFromImage(new Uri("ms-appx:///Assets/Images/Xaml.png"), "Xaml Code", OnXamlCodeButton);
-            yield return CreateAppBarToggleButtonFromImage(new Uri("ms-appx:///Assets/Images/CSharp.png"), "Source Code", OnSourceCodeButton);
+            yield return CreateAppBarToggleButton(Symbol.Help, "Help", OnHelpButton);
+            yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
+
+            if (_xamlExists || _codeExists)
+            {
+                yield return new AppBarSeparator();
+            }
+            if (_xamlExists)
+            {
+                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), "Xaml Code", OnXamlCodeButton);
+            }
+            if (_codeExists)
+            {
+                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), "Source Code", OnSourceCodeButton);
+            }
         }
 
         private void OnHelpButton(object sender, RoutedEventArgs e)
@@ -155,25 +179,21 @@ namespace AppStudio.Uwp.Samples
             return command;
         }
 
-        protected ICommandBarElement CreateAppBarToggleButtonFromSymbol(Symbol symbol, string label, RoutedEventHandler eventHandler)
+        protected ICommandBarElement CreateAppBarToggleButton(Symbol symbol, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarToggleButton { Icon = new SymbolIcon(symbol), Label = label };
-            ToolTipService.SetToolTip(command, label);
-            command.Checked += eventHandler;
-            command.Unchecked += eventHandler;
-            return command;
+            return CreateAppBarToggleButton(new SymbolIcon(symbol), label, eventHandler);
         }
-        protected ICommandBarElement CreateAppBarToggleButtonFromGlyph(string glyph, string label, RoutedEventHandler eventHandler)
-        {            
-            var command = new AppBarToggleButton { Icon = new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, Label = label };            
-            ToolTipService.SetToolTip(command, label);
-            command.Checked += eventHandler;
-            command.Unchecked += eventHandler;
-            return command;
-        }
-        protected ICommandBarElement CreateAppBarToggleButtonFromImage(Uri UriSource, string label, RoutedEventHandler eventHandler)
+        protected ICommandBarElement CreateAppBarToggleButton(string glyph, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarToggleButton { Icon = new BitmapIcon() { UriSource = UriSource }, Label = label };
+            return CreateAppBarToggleButton(new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarToggleButton(Uri UriSource, string label, RoutedEventHandler eventHandler)
+        {
+            return CreateAppBarToggleButton(new BitmapIcon { UriSource = UriSource }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarToggleButton(IconElement icon, string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarToggleButton { Icon = icon, Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Checked += eventHandler;
             command.Unchecked += eventHandler;
@@ -187,6 +207,15 @@ namespace AppStudio.Uwp.Samples
             {
                 item.IsChecked = false;
             }
+        }
+        #endregion
+
+        #region DocumentFileExists
+        private async Task<bool> DocumentFileExists(string fileName)
+        {
+            var InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            var docsFolder = await InstallationFolder.GetFolderAsync($"Pages\\{SampleName}\\Docs");
+            return await docsFolder.TryGetItemAsync(fileName) != null;
         }
         #endregion
     }

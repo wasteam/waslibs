@@ -43,6 +43,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.Items = new ObservableCollection<object>(new DevicesDataSource().GetItems());
             this.ItemTemplate = Resources["Hero"] as DataTemplate;
+
+            base.OnNavigatedTo(e);
         }
 
         protected override void OnSettings()

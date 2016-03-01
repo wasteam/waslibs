@@ -19,6 +19,7 @@ namespace AppStudio.Uwp.Samples
         {
             get { return "YouTube Data Provider"; }
         }
+
         #region ApiKey
         public string ApiKey
         {
@@ -27,6 +28,7 @@ namespace AppStudio.Uwp.Samples
         }
         public static readonly DependencyProperty ApiKeyProperty = DependencyProperty.Register("ApiKey", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultApiKey));
         #endregion
+
         #region Items
         public ObservableCollection<object> Items
         {
@@ -51,6 +53,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.Items = new ObservableCollection<object>(new BingDataSource().GetItems());
             //this.ItemTemplate = Resources["BingTemplate"] as DataTemplate;
+
+            base.OnNavigatedTo(e);
         }
 
         protected override void OnSettings()
