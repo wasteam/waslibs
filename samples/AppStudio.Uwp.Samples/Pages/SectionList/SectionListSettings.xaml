@@ -9,7 +9,9 @@
     mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300">
 
     <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
-        <Grid Background="White" Opacity="0.85" />
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.85"/>
+        </Grid.Background>
         <StackPanel Padding="24">
             <controls:PropertySet Source="{Binding}" Property="HeaderLinkText" Value="{Binding HeaderLinkText, Mode=TwoWay}"/>
         </StackPanel>

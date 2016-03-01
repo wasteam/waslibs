@@ -91,6 +91,8 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
+    <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <None Include="project.json" />
   </ItemGroup>
@@ -177,6 +179,12 @@
     </Compile>
     <Compile Include="Pages\SectionList\SectionListPage.xaml.cs">
       <DependentUpon>SectionListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardPage.xaml.cs">
+      <DependentUpon>SplitterCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardSettings.xaml.cs">
+      <DependentUpon>SplitterCardSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
       <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
@@ -277,6 +285,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\SectionList\SectionListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
