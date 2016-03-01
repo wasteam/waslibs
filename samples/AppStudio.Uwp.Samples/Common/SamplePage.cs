@@ -108,7 +108,7 @@ namespace AppStudio.Uwp.Samples
                 AppShell.Current.Shell.HideRightPane();
             }
         }
-        protected abstract void OnSettings();
+        protected virtual void OnSettings() { }
 
         private void OnSourceCodeButton(object sender, RoutedEventArgs e)
         {
