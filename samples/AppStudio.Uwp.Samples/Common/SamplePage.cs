@@ -7,7 +7,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
-using Windows.Storage;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -33,6 +32,11 @@ namespace AppStudio.Uwp.Samples
             get { return this.GetType().Name.Substring(0, this.GetType().Name.Length - 4); }
         }
 
+        protected bool ShowSettings { get; set; }
+        protected bool ShowXaml { get; set; }
+        protected bool ShowCode { get; set; }
+        protected bool ShowJson { get; set; }
+
         #region PrimaryCommands
         public IEnumerable<ICommandBarElement> PrimaryCommands
         {
@@ -43,13 +47,13 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty PrimaryCommandsProperty = DependencyProperty.Register("PrimaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
         #endregion
 
-        private bool _xamlExists = false;
-        private bool _codeExists = false;
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            _xamlExists = await DocumentFileExists($"{SampleName}Xaml.xml");
-            _codeExists = await DocumentFileExists($"{SampleName}CSharp.cs");
+            this.ShowSettings = IsTypePresent($"AppStudio.Uwp.Samples.{SampleName}Settings");
+
+            this.ShowXaml = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Xaml.xml");
+            this.ShowCode = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}CSharp.cs");
+            this.ShowJson = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Json.json");
 
             this.PrimaryCommands = CreatePrimaryCommands().ToArray();
 
@@ -59,19 +63,27 @@ namespace AppStudio.Uwp.Samples
         protected virtual IEnumerable<ICommandBarElement> CreatePrimaryCommands()
         {
             yield return CreateAppBarToggleButton(Symbol.Help, "Help", OnHelpButton);
-            yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
 
-            if (_xamlExists || _codeExists)
+            if (ShowSettings)
+            {
+                yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
+            }
+
+            if (ShowXaml || ShowCode || ShowJson)
             {
                 yield return new AppBarSeparator();
-            }
-            if (_xamlExists)
-            {
-                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), "Xaml Code", OnXamlCodeButton);
-            }
-            if (_codeExists)
-            {
-                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), "Source Code", OnSourceCodeButton);
+                if (ShowXaml)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), "Xaml Code", OnXamlCodeButton);
+                }
+                if (ShowCode)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), "Source Code", OnSourceCodeButton);
+                }
+                if (ShowJson)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Json.png"), "Json Data", OnJsonButton);
+                }
             }
         }
 
@@ -170,6 +182,36 @@ namespace AppStudio.Uwp.Samples
             control.FadeIn(100);
         }
 
+        private void OnJsonButton(object sender, RoutedEventArgs e)
+        {
+            var button = sender as AppBarToggleButton;
+            if (button.IsChecked.Value)
+            {
+                _restoreContent = false;
+                this.ReleaseToggleButtons(button);
+                OnJson();
+                _restoreContent = true;
+            }
+            else
+            {
+                if (_restoreContent)
+                {
+                    this.Content = _content;
+                    this.Content.FadeIn();
+                }
+            }
+        }
+        protected virtual async void OnJson()
+        {
+            await this.Content.FadeOutAsync(100);
+
+            var control = new DocumentControl { Opacity = 0.0 };
+            await control.ShowJson(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Json.json"));
+
+            this.Content = control;
+            control.FadeIn(100);
+        }
+
         #region AppBarButton Helpers
         protected ICommandBarElement CreateAppBarButton(Symbol symbol, string label, RoutedEventHandler eventHandler)
         {
@@ -210,12 +252,19 @@ namespace AppStudio.Uwp.Samples
         }
         #endregion
 
-        #region DocumentFileExists
-        private async Task<bool> DocumentFileExists(string fileName)
+        #region ContentFileExists
+        private async Task<bool> ContentFileExists(string path, string fileName)
         {
             var InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            var docsFolder = await InstallationFolder.GetFolderAsync($"Pages\\{SampleName}\\Docs");
+            var docsFolder = await InstallationFolder.GetFolderAsync(path);
             return await docsFolder.TryGetItemAsync(fileName) != null;
+        }
+        #endregion
+
+        #region IsTypePresent
+        private bool IsTypePresent(string typeName)
+        {
+            return Type.GetType(typeName, false) != null;
         }
         #endregion
     }

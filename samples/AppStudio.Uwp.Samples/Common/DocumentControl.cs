@@ -35,27 +35,29 @@ namespace AppStudio.Uwp.Samples
 
         public async Task ShowCSharp(Uri source)
         {
-            var patternFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Html/CSharp.html"));
-            var patternText = await patternFile.ReadTextAsync();
-
-            var csharpFile = await StorageFile.GetFileFromApplicationUriAsync(source);
-            var csharpText = await csharpFile.ReadTextAsync();
-            csharpText = csharpText.Replace("<", "&lt;").Replace(">", "&gt;");
-
-            string html = patternText.Replace("[CODE]", csharpText);
-            _webView.NavigateToString(html);
+            await ShowDocument(source, "CSharp.html");
         }
 
         public async Task ShowXaml(Uri source)
         {
-            var patternFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Html/Xaml.html"));
+            await ShowDocument(source, "Xaml.html");
+        }
+
+        public async Task ShowJson(Uri source)
+        {
+            await ShowDocument(source, "Json.html");
+        }
+
+        private async Task ShowDocument(Uri source, string pattern)
+        {
+            var patternFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri($"ms-appx:///Assets/Html/{pattern}"));
             var patternText = await patternFile.ReadTextAsync();
 
-            var xamlFile = await StorageFile.GetFileFromApplicationUriAsync(source);
-            var xamlText = await xamlFile.ReadTextAsync();
-            xamlText = xamlText.Replace("<", "&lt;").Replace(">", "&gt;");
+            var jsonFile = await StorageFile.GetFileFromApplicationUriAsync(source);
+            var jsonText = await jsonFile.ReadTextAsync();
+            jsonText = jsonText.Replace("<", "&lt;").Replace(">", "&gt;");
 
-            string html = patternText.Replace("[CODE]", xamlText);
+            string html = patternText.Replace("[CODE]", jsonText);
             _webView.NavigateToString(html);
         }
     }
