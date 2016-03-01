@@ -11,8 +11,15 @@
     <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
         <Grid Background="White" Opacity="0.85" />
         <StackPanel Padding="24">
-            <TextBlock Text="ApiKey"/>
-            <TextBox Text="{Binding ApiKey, Mode=TwoWay}"/>
+            <controls:PropertySet Source="{Binding}" Property="ApiKey" Value="{Binding ApiKey, Mode=TwoWay}" />
+            <controls:PropertySet Source="{Binding}" Property="YouTubeQueryParam" Value="{Binding YouTubeQueryParam, Mode=TwoWay}" />
+            <controls:PropertySet Source="{Binding}" Property="YouTubeQueryTypeSelectedItem" Value="{Binding YouTubeQueryTypeSelectedItem, Mode=TwoWay}" />
+            <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
+            <StackPanel Margin="0,30,0,0">
+            <Button Content="Refresh" Command="{Binding RefreshData}" Style="{StaticResource SettingsButtonStyle}"></Button>
+            <Button Content="Open in Browser" Command="{Binding OpenUrl}" Style="{StaticResource SettingsButtonStyle}"/>
+            <Button Content="Set Default Data" Command="{Binding SetDefault}" Style="{StaticResource SettingsButtonStyle}"></Button>
         </StackPanel>
+        </StackPanel>        
     </Grid>
 </UserControl>
