@@ -1,0 +1,57 @@
+﻿<local:SamplePage
+    x:Class="AppStudio.Uwp.Samples.VisualBreakpointsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPDevices.json"/>
+        <ScrollViewer>
+            <StackPanel>
+                <StackPanel Orientation="{Binding Active.stackPanelOrientation, ElementName=vbp}" HorizontalAlignment="Center">
+                    <Border BorderBrush="{Binding Active.borderBrush, ElementName=vbp}" BorderThickness="2" MaxWidth="400" MaxHeight="400">
+                        <Image Source="{Binding Active.image, ElementName=vbp}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="24"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="6">
+                            <TextBlock Text="Window width:" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding WindowWidth}" FontWeight="Light" Margin="6,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="6">
+                            <TextBlock Text="Device Type" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Active.device, ElementName=vbp}" FontWeight="Light" Margin="6,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="6">
+                            <TextBlock Text="VBP Interval" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Active.interval, ElementName=vbp}" FontWeight="Light" Margin="6,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="6">
+                            <TextBlock Text="BorderBrush" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Active.borderBrush, ElementName=vbp}" FontWeight="Light" Margin="6,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <ItemsControl
+                    Margin="0,24,0,0"
+                    HorizontalAlignment="Center"
+                    ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="White" BorderBrush="{Binding Active.borderBrush, ElementName=vbp}" BorderThickness="2" Width="250" Height="220" Margin="1">
+                                <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</local:SamplePage>

@@ -90,6 +90,10 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
+    <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
+    <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -114,29 +118,38 @@
     <Content Include="Assets\Images\Band2.png" />
     <Content Include="Assets\Images\DellInspiron.png" />
     <Content Include="Assets\Images\DellXPS.png" />
+    <Content Include="Assets\Images\Desktop.png" />
     <Content Include="Assets\Images\HeroImage.png" />
+    <Content Include="Assets\Images\HPSpectreX2.png" />
+    <Content Include="Assets\Images\LenovoYoga3.png" />
     <Content Include="Assets\Images\LifeCamCinema.png" />
     <Content Include="Assets\Images\LifeChat.png" />
+    <Content Include="Assets\Images\Lumia550.png" />
+    <Content Include="Assets\Images\Lumia650.png" />
     <Content Include="Assets\Images\Lumia950.png" />
+    <Content Include="Assets\Images\Phone.png" />
     <Content Include="Assets\Images\SculptComfortMouse.png" />
+    <Content Include="Assets\Images\Surface3DockingStation.png" />
     <Content Include="Assets\Images\SurfaceBook.png" />
     <Content Include="Assets\Images\SurfacePro4.png" />
+    <Content Include="Assets\Images\Tablet.png" />
     <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
     <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
+    <Content Include="Assets\Images\Xbox360.png" />
     <Content Include="Assets\Images\XboxOne.png" />
     <Content Include="Assets\Prettify\prettify.css" />
     <Content Include="Assets\Prettify\prettify.js" />
     <Content Include="Assets\Prettify\run_prettify.js" />
     <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
-    <Content Include="Pages\Pivorama\Docs\PivoramaCSharp.cs" />
     <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
     <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
-    <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
+    <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.html" />
+    <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
+    <Content Include="Pages\SearchBox\Docs\SearchBoxHelp.html" />
+    <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
     <Content Include="Pages\SectionList\Docs\SectionListHelp.html" />
     <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
-    <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridCSharp.cs" />
-    <Content Include="Pages\Carousel\Docs\CarouselCSharp.cs" />
     <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
       <DependentUpon>CarouselPage.xaml</DependentUpon>
     </Compile>
@@ -149,12 +162,29 @@
     <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
       <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
-    <Content Include="Pages\SectionList\Docs\SectionListCSharp.cs" />
+    <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
+      <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
+      <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\SearchBoxPage.xaml.cs">
+      <DependentUpon>SearchBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\SearchBoxSettings.xaml.cs">
+      <DependentUpon>SearchBoxSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SectionList\SectionListSettings.xaml.cs">
       <DependentUpon>SectionListSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SectionList\SectionListPage.xaml.cs">
       <DependentUpon>SectionListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardPage.xaml.cs">
+      <DependentUpon>SplitterCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardSettings.xaml.cs">
+      <DependentUpon>SplitterCardSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
       <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
@@ -162,7 +192,12 @@
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridSettings.xaml.cs">
       <DependentUpon>VariableSizedGridSettings.xaml</DependentUpon>
     </Compile>
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.html" />
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
+    <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
+      <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
     </Compile>
@@ -229,11 +264,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\SearchBoxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\SearchBoxSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\SectionList\SectionListSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\SectionList\SectionListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -252,6 +311,10 @@
     <Page Include="Pages\Prototype\PrototypeSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\YouTube\YouTubePage.xaml">
       <Generator>MSBuild:Compile</Generator>
