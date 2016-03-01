@@ -55,10 +55,5 @@ namespace AppStudio.Uwp.Samples
         {
             this.WindowWidth = Math.Truncate(e.NewSize.Width);
         }
-
-        protected override void OnSettings()
-        {
-            AppShell.Current.Shell.ShowRightPane(new VisualBreakpointsSettings() { DataContext = this });
-        }
     }
 }

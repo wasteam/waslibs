@@ -91,6 +91,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +189,6 @@
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsSettings.xaml.cs">
-      <DependentUpon>VisualBreakpointsSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -299,10 +297,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\VisualBreakpoints\VisualBreakpointsSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
