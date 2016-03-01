@@ -29,6 +29,7 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(VisualBreakpointsPage), new PropertyMetadata(null));
         #endregion
+
         #region WindowWidth
         public double WindowWidth
         {
