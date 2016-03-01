@@ -124,6 +124,9 @@
     <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
     <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
     <Content Include="Assets\Images\XboxOne.png" />
+    <Content Include="Assets\Prettify\prettify.css" />
+    <Content Include="Assets\Prettify\prettify.js" />
+    <Content Include="Assets\Prettify\run_prettify.js" />
     <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
     <Content Include="Pages\Pivorama\Docs\PivoramaCSharp.cs" />
