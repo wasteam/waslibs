@@ -12,32 +12,32 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-         <Pivot Grid.Row="1" Margin="12,12,0,0">
+        <Pivot Grid.Row="1" Margin="12,12,0,0">
             <PivotItem Header="Parsed Items">
-                <GridView ItemsSource="{Binding Items}" IsItemClickEnabled="False" SelectionMode="None">
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <RelativePanel Height="470" Width="350" Margin="5">
-                                <Grid x:Name="image" Height="350" Width="350">                                    
-                                    <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" RelativePanel.AlignTopWithPanel="True"/>
-                                    <Image Source="ms-appx:///Assets/AppLayout/YouTubePlay.png" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None"/>
-                                </Grid>                                
-                                <TextBlock x:Name="titleText" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title}" MaxLines="2" RelativePanel.Below="image"/>
-                                <TextBlock x:Name="summaryText" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Summary}" MaxLines="2" RelativePanel.Below="titleText"/>
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Published}" RelativePanel.Below="summaryText" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1"/>
-                            </RelativePanel>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                <Grid>
+                    <GridView ItemsSource="{Binding Items}" IsItemClickEnabled="False" SelectionMode="None">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <RelativePanel Height="470" Width="350" Margin="5">
+                                    <Grid x:Name="image" Height="350" Width="350">
+                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" RelativePanel.AlignTopWithPanel="True"/>
+                                        <Image Source="ms-appx:///Assets/AppLayout/YouTubePlay.png" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None"/>
+                                    </Grid>
+                                    <TextBlock x:Name="titleText" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title}" MaxLines="2" RelativePanel.Below="image"/>
+                                    <TextBlock x:Name="summaryText" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Summary}" MaxLines="2" RelativePanel.Below="titleText"/>
+                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Published}" RelativePanel.Below="summaryText" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1"/>
+                                </RelativePanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
+                        <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderError, Mode=OneWay}"/>
+                    </ScrollViewer>
+                </Grid>
             </PivotItem>
-            <PivotItem Header="JSON Result">
+            <PivotItem Header="Raw Data">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
-                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderJsonResult, Mode=OneWay}"/>
-                </ScrollViewer>
-            </PivotItem>
-            <PivotItem Header="Errors">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
-                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderError, Mode=OneWay}"/>
+                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderRawData, Mode=OneWay}"/>
                 </ScrollViewer>
             </PivotItem>
         </Pivot>

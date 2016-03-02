@@ -104,6 +104,8 @@
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\DocumentControl.cs" />
+    <Compile Include="Common\Providers\RawParser.cs" />
+    <Compile Include="Common\Providers\RawSchema.cs" />
     <Compile Include="Common\SamplePage.cs" />
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Data\BingDataSource.cs" />
