@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="AppStudio.Uwp.Samples.PivoramaSettings"
+    x:Class="AppStudio.Uwp.Samples.ErrorNotificationControlSettings"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Uwp.Samples"
@@ -13,8 +13,9 @@
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
         <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="ItemWidth" Value="{Binding ItemWidth, Mode=TwoWay}" Minimun="300" Maximun="600" SmallChange="10" />
-            <controls:PropertySet Source="{Binding}" Property="FitToScreen" Value="{Binding FitToScreen, Mode=TwoWay}" />
+            <controls:PropertySet Source="{Binding}" Property="ForceCrash" Value="{Binding ForceCrash, Mode=TwoWay}"/>
+            <controls:PropertySet Source="{Binding}" Property="ErrorText" Value="{Binding ErrorText, Mode=TwoWay}"/>
+            <Button Content="Refresh" Command="{Binding RefreshData}" Style="{StaticResource SettingsButtonStyle}" Margin="0,30,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>

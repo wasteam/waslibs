@@ -90,11 +90,20 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
+    <Content Include="Assets\Html\Json.html" />
+    <Content Include="Assets\Icons\Json.png" />
+    <Content Include="Assets\Icons\Misc.png" />
+    <Content Include="Assets\Icons\Pivorama.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
+    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
+    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
+    <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -112,6 +121,7 @@
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\DevicesDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -152,11 +162,21 @@
     <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
     <Content Include="Pages\SectionList\Docs\SectionListHelp.html" />
     <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
+    <Compile Include="Pages\AppCache\AppCachePage.xaml.cs">
+      <DependentUpon>AppCachePage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\AppCache\Docs\AppCacheCSharp.cs" />
     <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
       <DependentUpon>CarouselPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
       <DependentUpon>CarouselSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml.cs">
+      <DependentUpon>ErrorNotificationControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml.cs">
+      <DependentUpon>ErrorNotificationControlSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Pivorama\PivoramaSettings.xaml.cs">
       <DependentUpon>PivoramaSettings.xaml</DependentUpon>
@@ -164,6 +184,7 @@
     <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
       <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
+    <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
     <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
       <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
     </Compile>
@@ -196,9 +217,17 @@
     </Compile>
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.html" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
+    <Content Include="Pages\Rss\Docs\RssHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Rss\Docs\RssCSharp.cs" />
+    <Compile Include="Pages\Rss\RssPage.xaml.cs">
+      <DependentUpon>RssPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Rss\RssSettings.xaml.cs">
+      <DependentUpon>RssSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -250,11 +279,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\AppCache\AppCachePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Carousel\CarouselPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Carousel\CarouselSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -315,6 +356,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\RssPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\RssSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

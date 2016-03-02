@@ -28,6 +28,11 @@ namespace AppStudio.Uwp.Controls
             this.Icon = CreateIcon(glyph);
             this.Caption = caption;
         }
+        public NavigationItem(Uri uriSource, string caption)
+        {
+            this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20 };
+            this.Caption = caption;
+        }
 
         public NavigationItem(string caption, Control control) : this(caption)
         {
@@ -60,6 +65,19 @@ namespace AppStudio.Uwp.Controls
             this.OnClick = onClick;
         }
         public NavigationItem(Symbol symbol, string caption, IEnumerable<NavigationItem> subItems) : this(symbol, caption)
+        {
+            this.SubItems = subItems;
+        }
+
+        public NavigationItem(Uri uriSource, string caption, Control control) : this(uriSource, caption)
+        {
+            this.Control = control;
+        }
+        public NavigationItem(Uri uriSource, string caption, Action<NavigationItem> onClick = null) : this(uriSource, caption)
+        {
+            this.OnClick = onClick;
+        }
+        public NavigationItem(Uri uriSource, string caption, IEnumerable<NavigationItem> subItems) : this(uriSource, caption)
         {
             this.SubItems = subItems;
         }

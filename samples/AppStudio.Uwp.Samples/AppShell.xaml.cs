@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 
 using AppStudio.Uwp.Controls;
+using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -40,16 +41,16 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, "Home", GoHome);
+                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), GoHome);
                 yield return NavigationItem.Separator;
 
-                yield return new NavigationItem(Symbol.SelectAll, "Layout Controls", GetControlsByCategory("Layout"));
-                yield return new NavigationItem(Symbol.Library, "Misc Controls", GetControlsByCategory("Misc"));
-                yield return new NavigationItem(Symbol.Repair, "Tools", GetControlsByCategory("Tools"));
-                yield return new NavigationItem(Symbol.CalendarWeek, "Data Providers", GetControlsByCategory("DataProviders"));
+                yield return new NavigationItem(Symbol.SelectAll, this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("Layout"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/Misc.png"), this.GetResourceString("ShellMenuMiscControls"), GetControlsByCategory("Misc"));
+                yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuTools"), GetControlsByCategory("Tools"));
+                yield return new NavigationItem(Symbol.CalendarWeek, this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"));
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.FullScreen, "Enter Full Screen", (m) => { shell.EnterFullScreen(); });
+                yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
             }
         }
 
@@ -57,17 +58,24 @@ namespace AppStudio.Uwp.Samples
         {
             var currentAssembly = this.GetType().GetTypeInfo().Assembly;
             var samplePages = currentAssembly.DefinedTypes.Where(type => type.CustomAttributes.Any(attr => IsSamplePageByCategory(attr, category)));
-            foreach (var page in samplePages)
-            {
-                var args = page.CustomAttributes.Where(attr => attr.AttributeType == typeof(SamplePageAttribute)).Select(attr => attr.NamedArguments).First();
-                var name = args.Where(a => a.MemberName == "Name").Select(a => a.TypedValue.Value.ToString()).First();
-                yield return new NavigationItem(name, (ni) => NavigateToSample(page.AsType()));
-            }
-        }
 
-        private bool IsSamplePageByCategory(CustomAttributeData attr, string category)
-        {
-            return attr.NamedArguments.Any(arg => attr.AttributeType == typeof(SamplePageAttribute) && arg.MemberName == "Category" && arg.TypedValue.Value.ToString() == category);
+            foreach (var page in samplePages.OrderBy(t => t.GetCustomAttribute<SamplePageAttribute>().Order))
+            {
+                var attr = page.GetCustomAttribute<SamplePageAttribute>();
+
+                if (attr.Glyph != null)
+                {
+                    yield return new NavigationItem(attr.Glyph, attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
+                else if (attr.IconPath != null)
+                {
+                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
+                else
+                {
+                    yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
+            }
         }
 
         #region GoHome
@@ -129,6 +137,13 @@ namespace AppStudio.Uwp.Samples
             {
                 AppFrame.Navigate(type);
             }
+        }
+        #endregion
+
+        #region Reflection Helpers
+        private bool IsSamplePageByCategory(CustomAttributeData attr, string category)
+        {
+            return attr.NamedArguments.Any(arg => attr.AttributeType == typeof(SamplePageAttribute) && arg.MemberName == "Category" && arg.TypedValue.Value.ToString() == category);
         }
         #endregion
     }

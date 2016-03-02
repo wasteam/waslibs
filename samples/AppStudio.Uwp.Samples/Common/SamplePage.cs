@@ -7,7 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
-using Windows.Storage;
+using Windows.ApplicationModel.Resources;
+using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -33,6 +34,11 @@ namespace AppStudio.Uwp.Samples
             get { return this.GetType().Name.Substring(0, this.GetType().Name.Length - 4); }
         }
 
+        protected bool ShowSettings { get; set; }
+        protected bool ShowXaml { get; set; }
+        protected bool ShowCode { get; set; }
+        protected bool ShowJson { get; set; }
+
         #region PrimaryCommands
         public IEnumerable<ICommandBarElement> PrimaryCommands
         {
@@ -43,36 +49,60 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty PrimaryCommandsProperty = DependencyProperty.Register("PrimaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
         #endregion
 
-        private bool _xamlExists = false;
-        private bool _codeExists = false;
+        #region SecondaryCommands
+        public IEnumerable<ICommandBarElement> SecondaryCommands
+        {
+            get { return (IEnumerable<ICommandBarElement>)GetValue(SecondaryCommandsProperty); }
+            set { SetValue(SecondaryCommandsProperty, value); }
+        }
+
+        public static readonly DependencyProperty SecondaryCommandsProperty = DependencyProperty.Register("SecondaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
+        #endregion
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            _xamlExists = await DocumentFileExists($"{SampleName}Xaml.xml");
-            _codeExists = await DocumentFileExists($"{SampleName}CSharp.cs");
+            this.ShowSettings = IsTypePresent($"AppStudio.Uwp.Samples.{SampleName}Settings");
+
+            this.ShowXaml = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Xaml.xml");
+            this.ShowCode = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}CSharp.cs");
+            this.ShowJson = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Json.json");
 
             this.PrimaryCommands = CreatePrimaryCommands().ToArray();
+            this.SecondaryCommands = CreateSecondaryCommands().ToArray();
 
             base.OnNavigatedTo(e);
         }
 
         protected virtual IEnumerable<ICommandBarElement> CreatePrimaryCommands()
         {
-            yield return CreateAppBarToggleButton(Symbol.Help, "Help", OnHelpButton);
-            yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
+            yield return CreateAppBarToggleButton(Symbol.Help, this.GetResourceString("AppBarButtonHelp"), OnHelpButton);
 
-            if (_xamlExists || _codeExists)
+            if (ShowSettings)
+            {
+                yield return CreateAppBarToggleButton(Symbol.Setting, this.GetResourceString("AppBarButtonSettings"), OnSettingsButton);
+            }
+
+            if (ShowXaml || ShowCode || ShowJson)
             {
                 yield return new AppBarSeparator();
+                if (ShowXaml)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), this.GetResourceString("AppBarButtonXamlCode"), OnXamlCodeButton);
+                }
+                if (ShowCode)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), this.GetResourceString("AppBarButtonSourceCode"), OnSourceCodeButton);
+                }
+                if (ShowJson)
+                {
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Json.png"), this.GetResourceString("AppBarButtonJsonData"), OnJsonButton);
+                }
             }
-            if (_xamlExists)
-            {
-                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), "Xaml Code", OnXamlCodeButton);
-            }
-            if (_codeExists)
-            {
-                yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), "Source Code", OnSourceCodeButton);
-            }
+        }
+
+        protected virtual IEnumerable<ICommandBarElement> CreateSecondaryCommands()
+        {
+            yield break;
         }
 
         private void OnHelpButton(object sender, RoutedEventArgs e)
@@ -170,10 +200,58 @@ namespace AppStudio.Uwp.Samples
             control.FadeIn(100);
         }
 
+        private void OnJsonButton(object sender, RoutedEventArgs e)
+        {
+            var button = sender as AppBarToggleButton;
+            if (button.IsChecked.Value)
+            {
+                _restoreContent = false;
+                this.ReleaseToggleButtons(button);
+                OnJson();
+                _restoreContent = true;
+            }
+            else
+            {
+                if (_restoreContent)
+                {
+                    this.Content = _content;
+                    this.Content.FadeIn();
+                }
+            }
+        }
+        protected virtual async void OnJson()
+        {
+            await this.Content.FadeOutAsync(100);
+
+            var control = new DocumentControl { Opacity = 0.0 };
+            await control.ShowJson(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Json.json"));
+
+            this.Content = control;
+            control.FadeIn(100);
+        }
+
         #region AppBarButton Helpers
         protected ICommandBarElement CreateAppBarButton(Symbol symbol, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarButton { Icon = new SymbolIcon(symbol), Label = label };
+            return CreateAppBarButton(new SymbolIcon(symbol), label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(string glyph, string label, RoutedEventHandler eventHandler)
+        {
+            return CreateAppBarButton(new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(Uri uriSource, string label, RoutedEventHandler eventHandler)
+        {
+            return CreateAppBarButton(new BitmapIcon { UriSource = uriSource }, label, eventHandler);
+        }
+        protected ICommandBarElement CreateAppBarButton(IconElement icon, string label, RoutedEventHandler eventHandler)
+        {
+            var command = CreateAppBarButton(label, eventHandler) as AppBarButton;
+            command.Icon = icon;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarButton(string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarButton { Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Click += eventHandler;
             return command;
@@ -187,13 +265,19 @@ namespace AppStudio.Uwp.Samples
         {
             return CreateAppBarToggleButton(new FontIcon() { Glyph = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets") }, label, eventHandler);
         }
-        protected ICommandBarElement CreateAppBarToggleButton(Uri UriSource, string label, RoutedEventHandler eventHandler)
+        protected ICommandBarElement CreateAppBarToggleButton(Uri uriSource, string label, RoutedEventHandler eventHandler)
         {
-            return CreateAppBarToggleButton(new BitmapIcon { UriSource = UriSource }, label, eventHandler);
+            return CreateAppBarToggleButton(new BitmapIcon { UriSource = uriSource }, label, eventHandler);
         }
         protected ICommandBarElement CreateAppBarToggleButton(IconElement icon, string label, RoutedEventHandler eventHandler)
         {
-            var command = new AppBarToggleButton { Icon = icon, Label = label };
+            var command = CreateAppBarToggleButton(label, eventHandler) as AppBarToggleButton;
+            command.Icon = icon;
+            return command;
+        }
+        protected ICommandBarElement CreateAppBarToggleButton(string label, RoutedEventHandler eventHandler)
+        {
+            var command = new AppBarToggleButton { Label = label };
             ToolTipService.SetToolTip(command, label);
             command.Checked += eventHandler;
             command.Unchecked += eventHandler;
@@ -210,13 +294,20 @@ namespace AppStudio.Uwp.Samples
         }
         #endregion
 
-        #region DocumentFileExists
-        private async Task<bool> DocumentFileExists(string fileName)
+        #region ContentFileExists
+        private async Task<bool> ContentFileExists(string path, string fileName)
         {
             var InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            var docsFolder = await InstallationFolder.GetFolderAsync($"Pages\\{SampleName}\\Docs");
+            var docsFolder = await InstallationFolder.GetFolderAsync(path);
             return await docsFolder.TryGetItemAsync(fileName) != null;
         }
         #endregion
+
+        #region IsTypePresent
+        private bool IsTypePresent(string typeName)
+        {
+            return Type.GetType(typeName, false) != null;
+        }
+        #endregion        
     }
 }

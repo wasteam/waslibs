@@ -1,4 +1,4 @@
-﻿using AppStudio.DataProviders.YouTube;
+﻿using AppStudio.DataProviders.Rss;
 using AppStudio.Uwp.Commands;
 using System;
 using System.Collections.ObjectModel;
@@ -9,15 +9,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "YouTube")]
-    public sealed partial class YouTubePage : SamplePage
+    [SamplePage(Category = "DataProviders", Name = "Rss")]
+    public sealed partial class RssPage : SamplePage
     {
-        private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
-        private const string DefaultYouTubeQueryParam = @"MicrosoftLumia";
-        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Channels;
         private const int DefaultMaxRecordsParam = 20;
-      
-        public YouTubePage()
+
+        public RssPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -25,36 +22,10 @@ namespace AppStudio.Uwp.Samples
 
         public override string Caption
         {
-            get { return "YouTube Data Provider"; }
+            get { return "Rss Data Provider"; }
         }
 
-        #region DataProvider Config
-        public string ApiKey
-        {
-            get { return (string)GetValue(ApiKeyProperty); }
-            set { SetValue(ApiKeyProperty, value); }
-        }
-
-        public static readonly DependencyProperty ApiKeyProperty = DependencyProperty.Register("ApiKey", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultApiKey));
-
-
-        public string YouTubeQueryParam
-        {
-            get { return (string)GetValue(YouTubeQueryParamProperty); }
-            set { SetValue(YouTubeQueryParamProperty, value); }
-        }
-
-        public static readonly DependencyProperty YouTubeQueryParamProperty = DependencyProperty.Register("YouTubeQueryParam", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultYouTubeQueryParam));
-
-
-        public YouTubeQueryType YouTubeQueryTypeSelectedItem
-        {
-            get { return (YouTubeQueryType)GetValue(YouTubeQueryTypeSelectedItemProperty); }
-            set { SetValue(YouTubeQueryTypeSelectedItemProperty, value); }
-        }
-
-        public static readonly DependencyProperty YouTubeQueryTypeSelectedItemProperty = DependencyProperty.Register("YouTubeQueryTypeSelectedItem", typeof(YouTubeQueryType), typeof(YouTubePage), new PropertyMetadata(DefaultQueryType));
-
+        #region DataProvider Config    
 
         public int MaxRecordsParam
         {
@@ -135,7 +106,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnSettings()
         {
-            AppShell.Current.Shell.ShowRightPane(new YouTubeSettings() { DataContext = this });
+            AppShell.Current.Shell.ShowRightPane(new RssSettings() { DataContext = this });
         }
 
         private async void Request()
@@ -143,26 +114,19 @@ namespace AppStudio.Uwp.Samples
             try
             {
                 DataProviderError = string.Empty;
-                DataProviderRawData = string.Empty;
                 Items.Clear();
+                var rssDataProvider = new RssDataProvider();
+                var config = new RssDataConfig { Url = new Uri("http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx", UriKind.Absolute) };
 
-                var youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
-                var config = new YouTubeDataConfig
-                {
-                    Query = YouTubeQueryParam,
-                    QueryType = YouTubeQueryTypeSelectedItem
-                };
-
-                var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 foreach (var item in items)
                 {
                     Items.Add(item);
                 }
 
                 var rawParser = new RawParser();
-                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();
-
             }
             catch (Exception ex)
             {
@@ -173,10 +137,7 @@ namespace AppStudio.Uwp.Samples
 
         private void RestoreConfig()
         {
-            ApiKey = DefaultApiKey;
-            YouTubeQueryParam = DefaultYouTubeQueryParam;
-            YouTubeQueryTypeSelectedItem = DefaultQueryType;
-            MaxRecordsParam = DefaultMaxRecordsParam;
+
         }
     }
 }

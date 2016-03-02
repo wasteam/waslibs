@@ -42,6 +42,22 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty PrimaryCommandsProperty = DependencyProperty.Register("PrimaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(ShellControl), new PropertyMetadata(null, PrimaryCommandsChanged));
         #endregion
 
+        #region SecondaryCommands
+        public IEnumerable<ICommandBarElement> SecondaryCommands
+        {
+            get { return (IEnumerable<ICommandBarElement>)GetValue(SecondaryCommandsProperty); }
+            set { SetValue(SecondaryCommandsProperty, value); }
+        }
+
+        private static void SecondaryCommandsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ShellControl;
+            control.ArrangeCommands();
+        }
+
+        public static readonly DependencyProperty SecondaryCommandsProperty = DependencyProperty.Register("SecondaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(ShellControl), new PropertyMetadata(null, SecondaryCommandsChanged));
+        #endregion
+
         #region CommandBarAlignment
         public CommandBarAlignment CommandBarAlignment
         {
@@ -64,6 +80,8 @@ namespace AppStudio.Uwp.Controls
             {
                 _commandBarT.PrimaryCommands.Clear();
                 _commandBarB.PrimaryCommands.Clear();
+                _commandBarT.SecondaryCommands.Clear();
+                _commandBarB.SecondaryCommands.Clear();
                 if (this.CommandBarAlignment == CommandBarAlignment.Top)
                 {
                     if (this.PrimaryCommands != null)
@@ -71,6 +89,13 @@ namespace AppStudio.Uwp.Controls
                         foreach (var item in this.PrimaryCommands)
                         {
                             _commandBarT.PrimaryCommands.Add(item);
+                        }
+                    }
+                    if (this.SecondaryCommands != null)
+                    {
+                        foreach (var item in this.SecondaryCommands)
+                        {
+                            _commandBarT.SecondaryCommands.Add(item);
                         }
                     }
                     _commandBarT.Margin = new Thickness(48, 0, 0, 0);
@@ -83,6 +108,13 @@ namespace AppStudio.Uwp.Controls
                         foreach (var item in this.PrimaryCommands)
                         {
                             _commandBarB.PrimaryCommands.Add(item);
+                        }
+                    }
+                    if (this.SecondaryCommands != null)
+                    {
+                        foreach (var item in this.SecondaryCommands)
+                        {
+                            _commandBarB.SecondaryCommands.Add(item);
                         }
                     }
                     _commandBarT.Margin = new Thickness(48, 0, -48, 0);
