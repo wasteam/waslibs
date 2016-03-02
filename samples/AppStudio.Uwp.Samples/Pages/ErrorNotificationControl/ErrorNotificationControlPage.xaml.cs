@@ -1,9 +1,11 @@
-﻿using AppStudio.Uwp.Commands;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -47,6 +49,7 @@ namespace AppStudio.Uwp.Samples
             get { return (string)GetValue(ErrorTextProperty); }
             set { SetValue(ErrorTextProperty, value); }
         }
+
         public static readonly DependencyProperty ErrorTextProperty = DependencyProperty.Register("ErrorText", typeof(string), typeof(ErrorNotificationControlPage), new PropertyMetadata("Ups! Something went wrong. Try again later."));
         #endregion 
 
@@ -56,6 +59,7 @@ namespace AppStudio.Uwp.Samples
             get { return (Visibility)GetValue(ErrorVisibilityProperty); }
             set { SetValue(ErrorVisibilityProperty, value); }
         }
+
         public static readonly DependencyProperty ErrorVisibilityProperty = DependencyProperty.Register("ErrorVisibility", typeof(Visibility), typeof(ErrorNotificationControlPage), new PropertyMetadata(Visibility.Collapsed));
         #endregion
 
@@ -65,6 +69,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(ForceCrashProperty); }
             set { SetValue(ForceCrashProperty, value); }
         }
+
         public static readonly DependencyProperty ForceCrashProperty = DependencyProperty.Register("ForceCrash", typeof(bool), typeof(ErrorNotificationControlPage), new PropertyMetadata(true));
         #endregion        
 

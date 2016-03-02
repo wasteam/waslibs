@@ -45,8 +45,7 @@ namespace AppStudio.Uwp.Samples
             if (shell.AppFrame.Content == null)
             {
                 // When the navigation stack isn't restored, navigate to the first page suppressing the initial entrance animation.
-                //shell.AppFrame.Navigate(typeof(MainPage), e.Arguments, new SuppressNavigationTransitionInfo());
-                shell.AppFrame.Navigate(typeof(PivoramaPage), e.Arguments, new SuppressNavigationTransitionInfo());
+                shell.AppFrame.Navigate(typeof(MainPage), e.Arguments, new SuppressNavigationTransitionInfo());
             }
 
             Window.Current.Activate();

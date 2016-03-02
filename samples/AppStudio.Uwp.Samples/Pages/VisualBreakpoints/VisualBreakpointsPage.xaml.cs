@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Windows.UI.Core;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
@@ -36,6 +36,7 @@ namespace AppStudio.Uwp.Samples
             get { return (double)GetValue(WindowWidthProperty); }
             set { SetValue(WindowWidthProperty, value); }
         }
+
         public static readonly DependencyProperty WindowWidthProperty = DependencyProperty.Register("WindowWidth", typeof(double), typeof(VisualBreakpointsPage), new PropertyMetadata(0));
         #endregion
 

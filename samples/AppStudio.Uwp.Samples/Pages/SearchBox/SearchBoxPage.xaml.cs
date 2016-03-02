@@ -1,8 +1,9 @@
-﻿using AppStudio.Uwp.Commands;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -15,22 +16,27 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             this.SearchCommand = new RelayCommand<string>((searchTerm) => { this.SearchText = searchTerm; }, (searchTerm) => { return (!string.IsNullOrEmpty(searchTerm) && searchTerm.Length >= 3); });
         }
+
         #region SearchText
         public string SearchText
         {
             get { return (string)GetValue(SearchTextProperty); }
             set { SetValue(SearchTextProperty, value); }
         }
+
         public static readonly DependencyProperty SearchTextProperty = DependencyProperty.Register("SearchText", typeof(string), typeof(SearchBoxPage), new PropertyMetadata(string.Empty));
+        #endregion
+
         #region SearchCommand
         public ICommand SearchCommand
         {
             get { return (ICommand)GetValue(SearchCommandProperty); }
             set { SetValue(SearchCommandProperty, value); }
         }
+
         public static readonly DependencyProperty SearchCommandProperty = DependencyProperty.Register("SearchCommand", typeof(ICommand), typeof(SearchBoxPage), new PropertyMetadata(null));
         #endregion
-        #endregion
+
         public override string Caption
         {
             get { return "SearchBox Control"; }

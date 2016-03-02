@@ -1,13 +1,15 @@
-﻿using AppStudio.Uwp.Cache;
-using AppStudio.Uwp.Commands;
-using System;
+﻿using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
-using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Cache;
+using AppStudio.Uwp.Commands;
 using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
@@ -19,13 +21,15 @@ namespace AppStudio.Uwp.Samples
         public AppCachePage()
         {
             this.InitializeComponent();
-            this.DataContext = this;
+
             this.Options = new ObservableCollection<Option>();
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheAddItem"), Symbol = Symbol.Add, Command = AddItemCommand });
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanMemory"), Symbol = Symbol.Delete, Command = CleanMemoryCommand });
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheLoadFromCache"), Symbol = Symbol.Sync, Command = LoadFromCacheCommand });
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheSaveToCache"), Symbol = Symbol.Save, Command = SaveMemoryToCacheCommand });
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanCache"), Symbol = Symbol.Clear, Command = CleanCacheCommand });
+
+            this.DataContext = this;
         }
 
         public override string Caption
@@ -33,7 +37,16 @@ namespace AppStudio.Uwp.Samples
             get { return "App Cache"; }
         }
 
-        public ObservableCollection<DeviceDataItem> Items;
+        #region Items
+        public ObservableCollection<DeviceDataItem> Items
+        {
+            get { return (ObservableCollection<DeviceDataItem>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<DeviceDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
+        #endregion
+
 
         #region Options
         public ObservableCollection<Option> Options
@@ -51,6 +64,7 @@ namespace AppStudio.Uwp.Samples
             get { return (ObservableCollection<DeviceDataItem>)GetValue(MemoryItemsProperty); }
             set { SetValue(MemoryItemsProperty, value); }
         }
+
         public static readonly DependencyProperty MemoryItemsProperty = DependencyProperty.Register("MemoryItems", typeof(ObservableCollection<DeviceDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
         #endregion
 
@@ -60,6 +74,7 @@ namespace AppStudio.Uwp.Samples
             get { return (int)GetValue(ItemsInMemoryProperty); }
             set { SetValue(ItemsInMemoryProperty, value); }
         }
+
         public static readonly DependencyProperty ItemsInMemoryProperty = DependencyProperty.Register("ItemsInMemory", typeof(int), typeof(AppCachePage), new PropertyMetadata(0));
         #endregion
 
@@ -69,6 +84,7 @@ namespace AppStudio.Uwp.Samples
             get { return (int)GetValue(ItemsInCacheProperty); }
             set { SetValue(ItemsInCacheProperty, value); }
         }
+
         public static readonly DependencyProperty ItemsInCacheProperty = DependencyProperty.Register("ItemsInCache", typeof(int), typeof(AppCachePage), new PropertyMetadata(0));
         #endregion
 
@@ -78,6 +94,7 @@ namespace AppStudio.Uwp.Samples
             get { return (string)GetValue(LastActionProperty); }
             set { SetValue(LastActionProperty, value); }
         }
+
         public static readonly DependencyProperty LastActionProperty = DependencyProperty.Register("LastAction", typeof(string), typeof(AppCachePage), new PropertyMetadata(string.Empty));
         #endregion
 
@@ -91,7 +108,10 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(AppCachePage), new PropertyMetadata(null));
         #endregion
 
+
         #region Commands
+        private bool CanExecute() => !_isBusy;
+
         public ICommand AddItemCommand
         {
             get
@@ -105,6 +125,7 @@ namespace AppStudio.Uwp.Samples
                 });
             }
         }
+
         public ICommand CleanMemoryCommand
         {
             get
@@ -120,7 +141,6 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
-        private bool CanExecute() => !_isBusy;
         public ICommand LoadFromCacheCommand
         {
             get
@@ -140,6 +160,7 @@ namespace AppStudio.Uwp.Samples
                 }, CanExecute);
             }
         }
+
         public ICommand CleanCacheCommand
         {
             get
@@ -152,6 +173,7 @@ namespace AppStudio.Uwp.Samples
                 });
             }
         }
+
         public ICommand SaveMemoryToCacheCommand
         {
             get

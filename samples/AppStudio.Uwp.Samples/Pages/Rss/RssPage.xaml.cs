@@ -1,11 +1,13 @@
-﻿using AppStudio.DataProviders.Rss;
-using AppStudio.Uwp.Commands;
-using System;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.Linq;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.DataProviders.Rss;
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -26,15 +28,13 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region DataProvider Config    
-
         public int MaxRecordsParam
         {
             get { return (int)GetValue(MaxRecordsParamProperty); }
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(YouTubePage), new PropertyMetadata(DefaultMaxRecordsParam));
-
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(RssPage), new PropertyMetadata(DefaultMaxRecordsParam));
         #endregion
 
         #region Items
@@ -44,8 +44,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(YouTubePage), new PropertyMetadata(null));
-
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
         #endregion
 
         #region DataProviderError
@@ -55,8 +54,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderErrorProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderErrorProperty = DependencyProperty.Register("DataProviderError", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
-
+        public static readonly DependencyProperty DataProviderErrorProperty = DependencyProperty.Register("DataProviderError", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
         #endregion
 
         #region RawData
@@ -66,8 +64,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
-
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
         #endregion    
 
         #region ICommands

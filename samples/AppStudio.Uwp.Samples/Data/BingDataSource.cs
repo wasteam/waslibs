@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-
-using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Samples
 {

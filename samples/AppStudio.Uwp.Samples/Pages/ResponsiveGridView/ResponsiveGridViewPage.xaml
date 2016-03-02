@@ -10,17 +10,14 @@
 
     <Page.Resources>
         <DataTemplate x:Key="DeviceDataTemplate">
-            <Grid Background="White" BorderBrush="Black" BorderThickness="1">
+            <Grid Margin="2" Background="White" BorderBrush="LightGray" BorderThickness="1">
                 <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:ResponsiveGridView
-            Name="control"
-            ItemsSource="{Binding Items}"
-            ItemHeight="200" DesiredWidth="300"
-            ItemTemplate="{Binding ItemTemplate}"/>
+        <controls:ResponsiveGridView Name="control" Margin="12,12,6,12" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+                                     ItemHeight="200" DesiredWidth="300" />
     </Grid>
 </local:SamplePage>
