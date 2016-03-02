@@ -29,20 +29,9 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(PivoramaPage), new PropertyMetadata(null));
         #endregion
 
-        #region ItemTemplate
-        public DataTemplate ItemTemplate
-        {
-            get { return (DataTemplate)GetValue(ItemTemplateProperty); }
-            set { SetValue(ItemTemplateProperty, value); }
-        }
-
-        public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(PivoramaPage), new PropertyMetadata(null));
-        #endregion
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Items = new ObservableCollection<object>(new DevicesDataSource().GetGroupedItems());
-            //this.ItemTemplate = Resources["BingTemplate"] as DataTemplate;
 
             base.OnNavigatedTo(e);
         }

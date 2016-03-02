@@ -63,6 +63,8 @@ namespace AppStudio.Uwp.Controls
 
             _isInitialized = true;
 
+            this.ItemWidthEx = this.ItemWidth;
+
             this.SizeChanged += OnSizeChanged;
 
             base.OnApplyTemplate();

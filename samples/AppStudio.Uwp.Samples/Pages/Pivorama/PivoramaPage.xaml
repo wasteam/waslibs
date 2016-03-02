@@ -9,9 +9,39 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <DataTemplate x:Key="CustomHeaderTemplate">
+            <Grid Margin="6,0,12,0">
+                <TextBlock Margin="8,6" Text="{Binding Key}" FontSize="30" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomTabTemplate">
+            <Grid Margin="6,0,12,0" Background="Transparent">
+                <TextBlock Margin="4,10,4,12" Text="{Binding Key}" FontSize="26" Foreground="Gray" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomContentTemplate">
+            <GridView Margin="12,0" ItemsSource="{Binding}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="2" BorderBrush="LightGray" BorderThickness="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.RowSpan="2" Source="{Binding Thumbnail}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Margin="6" Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:Pivorama Name="control"/>
+        <controls:Pivorama x:Name="control" ItemsSource="{Binding Items}" FitToScreen="False" ItemWidth="320"
+                           HeaderTemplate="{StaticResource CustomHeaderTemplate}" TabTemplate="{StaticResource CustomTabTemplate}"
+                           ContentTemplate="{StaticResource CustomContentTemplate}" />
     </Grid>
 </local:SamplePage>
