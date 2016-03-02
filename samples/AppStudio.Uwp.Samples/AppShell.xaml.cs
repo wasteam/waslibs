@@ -57,17 +57,11 @@ namespace AppStudio.Uwp.Samples
         {
             var currentAssembly = this.GetType().GetTypeInfo().Assembly;
             var samplePages = currentAssembly.DefinedTypes.Where(type => type.CustomAttributes.Any(attr => IsSamplePageByCategory(attr, category)));
-            foreach (var page in samplePages)
+            foreach (var page in samplePages.OrderBy(t => t.GetCustomAttribute<SamplePageAttribute>().Order))
             {
-                var args = page.CustomAttributes.Where(attr => attr.AttributeType == typeof(SamplePageAttribute)).Select(attr => attr.NamedArguments).First();
-                var name = args.Where(a => a.MemberName == "Name").Select(a => a.TypedValue.Value.ToString()).First();
+                var name = page.GetCustomAttribute<SamplePageAttribute>().Name;
                 yield return new NavigationItem(name, (ni) => NavigateToSample(page.AsType()));
             }
-        }
-
-        private bool IsSamplePageByCategory(CustomAttributeData attr, string category)
-        {
-            return attr.NamedArguments.Any(arg => attr.AttributeType == typeof(SamplePageAttribute) && arg.MemberName == "Category" && arg.TypedValue.Value.ToString() == category);
         }
 
         #region GoHome
@@ -129,6 +123,13 @@ namespace AppStudio.Uwp.Samples
             {
                 AppFrame.Navigate(type);
             }
+        }
+        #endregion
+
+        #region Reflection Helpers
+        private bool IsSamplePageByCategory(CustomAttributeData attr, string category)
+        {
+            return attr.NamedArguments.Any(arg => attr.AttributeType == typeof(SamplePageAttribute) && arg.MemberName == "Category" && arg.TypedValue.Value.ToString() == category);
         }
         #endregion
     }

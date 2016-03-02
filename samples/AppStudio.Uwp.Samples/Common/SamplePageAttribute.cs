@@ -7,5 +7,6 @@ namespace AppStudio.Uwp.Samples
     {
         public string Category { get; set; }
         public string Name { get; set; }
+        public int Order { get; set; } = 1000;
     }
 }
