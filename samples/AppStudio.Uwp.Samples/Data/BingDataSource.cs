@@ -18,7 +18,7 @@ namespace AppStudio.Uwp.Samples
             return _imageUrls;
         }
 
-        static public async void Load()
+        static public async Task Load()
         {
             _imageUrls = (await GetImageUrls()).Union(await GetImageUrls("es-ES")).Distinct();
         }

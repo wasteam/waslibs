@@ -46,7 +46,7 @@
         </VisualStateManager.VisualStateGroups>
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Left">
-                <TextBlock Text="Options" FontWeight="Bold" FontSize="22" Margin="12,0,0,0"/>
+                <TextBlock x:Uid="AppCacheOptions" FontWeight="Bold" FontSize="22" Margin="12,0,0,0"/>
                 <StackPanel Orientation="Horizontal" x:Name="infoPanel">
                     <ItemsControl ItemsSource="{Binding Options}" Margin="0,12,0,0">
                         <ItemsControl.ItemsPanel>
@@ -73,15 +73,15 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <StackPanel Margin="12">
-                        <TextBlock Text="Items in memory" FontWeight="SemiBold"/>
+                        <TextBlock x:Uid="AppCacheItemsInMemory" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding ItemsInMemory}" FontWeight="Light"/>
-                        <TextBlock Text="Items in cache" FontWeight="SemiBold"/>
+                        <TextBlock x:Uid="AppCacheItemsInCache" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding ItemsInCache}" FontWeight="Light"/>
-                        <TextBlock Text="Last action" FontWeight="SemiBold"/>
+                        <TextBlock x:Uid="AppCacheLastAction" FontWeight="SemiBold"/>
                         <TextBlock Text="{Binding LastAction}" FontWeight="Light"/>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock Text="Items in memory" Margin="12,12,0,0" FontWeight="Bold" FontSize="22"/>
+                <TextBlock x:Uid="AppCacheItemsInMemory" Margin="12,12,0,0" FontWeight="Bold" FontSize="22"/>
                 <ItemsControl ItemTemplate="{Binding ItemTemplate}" ItemsSource="{Binding MemoryItems}" Margin="0,12,0,0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

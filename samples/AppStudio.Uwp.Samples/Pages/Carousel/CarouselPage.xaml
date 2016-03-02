@@ -33,7 +33,7 @@
                 Name="control"
                 ItemsSource="{Binding Items}"            
                 ContentTemplate="{Binding ItemTemplate}"
-                MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480"/>
+                MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480" GradientOpacity="0.3"/>
             <controls:Indicator
                 ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}"
                 SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"

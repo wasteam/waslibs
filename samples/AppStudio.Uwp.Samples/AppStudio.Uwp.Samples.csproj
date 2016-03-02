@@ -101,6 +101,7 @@
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

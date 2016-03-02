@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
+using Windows.ApplicationModel.Resources;
 
 namespace AppStudio.Uwp.Samples
 {
