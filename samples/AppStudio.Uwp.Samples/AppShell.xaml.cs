@@ -44,7 +44,7 @@ namespace AppStudio.Uwp.Samples
                 yield return NavigationItem.Separator;
 
                 yield return new NavigationItem(Symbol.SelectAll, "Layout Controls", GetControlsByCategory("Layout"));
-                yield return new NavigationItem(Symbol.Library, "Misc Controls", GetControlsByCategory("Misc"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/Misc.png"), "Misc Controls", GetControlsByCategory("Misc"));
                 yield return new NavigationItem(Symbol.Repair, "Tools", GetControlsByCategory("Tools"));
                 yield return new NavigationItem(Symbol.CalendarWeek, "Data Providers", GetControlsByCategory("DataProviders"));
 
@@ -57,10 +57,23 @@ namespace AppStudio.Uwp.Samples
         {
             var currentAssembly = this.GetType().GetTypeInfo().Assembly;
             var samplePages = currentAssembly.DefinedTypes.Where(type => type.CustomAttributes.Any(attr => IsSamplePageByCategory(attr, category)));
+
             foreach (var page in samplePages.OrderBy(t => t.GetCustomAttribute<SamplePageAttribute>().Order))
             {
-                var name = page.GetCustomAttribute<SamplePageAttribute>().Name;
-                yield return new NavigationItem(name, (ni) => NavigateToSample(page.AsType()));
+                var attr = page.GetCustomAttribute<SamplePageAttribute>();
+
+                if (attr.Glyph != null)
+                {
+                    yield return new NavigationItem(attr.Glyph, attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
+                else if (attr.IconPath != null)
+                {
+                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
+                else
+                {
+                    yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigateToSample(page.AsType()));
+                }
             }
         }
 

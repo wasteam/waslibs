@@ -92,6 +92,8 @@
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\Html\Json.html" />
     <Content Include="Assets\Icons\Json.png" />
+    <Content Include="Assets\Icons\Misc.png" />
+    <Content Include="Assets\Icons\Pivorama.png" />
     <Content Include="Assets\VBPDevices.json" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />

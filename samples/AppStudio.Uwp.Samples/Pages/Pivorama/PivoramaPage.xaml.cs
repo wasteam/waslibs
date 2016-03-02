@@ -1,11 +1,13 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "Pivorama", Order = 10)]
+    [SamplePage(Category = "Layout", Name = "Pivorama", IconPath = "ms-appx:///Assets/Icons/Pivorama.png", Order = 10)]
     public sealed partial class PivoramaPage : SamplePage
     {
         public PivoramaPage()
