@@ -119,6 +119,7 @@
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\DevicesDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

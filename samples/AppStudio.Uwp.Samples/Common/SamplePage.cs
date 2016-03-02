@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
 using Windows.ApplicationModel.Resources;
+using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -74,11 +75,11 @@ namespace AppStudio.Uwp.Samples
 
         protected virtual IEnumerable<ICommandBarElement> CreatePrimaryCommands()
         {
-            yield return CreateAppBarToggleButton(Symbol.Help, "Help", OnHelpButton);
+            yield return CreateAppBarToggleButton(Symbol.Help, this.GetResourceString("AppBarButtonHelp"), OnHelpButton);
 
             if (ShowSettings)
             {
-                yield return CreateAppBarToggleButton(Symbol.Setting, "Settings", OnSettingsButton);
+                yield return CreateAppBarToggleButton(Symbol.Setting, this.GetResourceString("AppBarButtonSettings"), OnSettingsButton);
             }
 
             if (ShowXaml || ShowCode || ShowJson)
@@ -86,15 +87,15 @@ namespace AppStudio.Uwp.Samples
                 yield return new AppBarSeparator();
                 if (ShowXaml)
                 {
-                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), "Xaml Code", OnXamlCodeButton);
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Xaml.png"), this.GetResourceString("AppBarButtonXamlCode"), OnXamlCodeButton);
                 }
                 if (ShowCode)
                 {
-                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), "Source Code", OnSourceCodeButton);
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/CSharp.png"), this.GetResourceString("AppBarButtonSourceCode"), OnSourceCodeButton);
                 }
                 if (ShowJson)
                 {
-                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Json.png"), "Json Data", OnJsonButton);
+                    yield return CreateAppBarToggleButton(new Uri("ms-appx:///Assets/Icons/Json.png"), this.GetResourceString("AppBarButtonJsonData"), OnJsonButton);
                 }
             }
         }
@@ -307,6 +308,6 @@ namespace AppStudio.Uwp.Samples
         {
             return Type.GetType(typeName, false) != null;
         }
-        #endregion
+        #endregion        
     }
 }

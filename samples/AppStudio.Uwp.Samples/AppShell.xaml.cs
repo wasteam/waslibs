@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 
 using AppStudio.Uwp.Controls;
+using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -40,16 +41,16 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, "Home", GoHome);
+                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), GoHome);
                 yield return NavigationItem.Separator;
 
-                yield return new NavigationItem(Symbol.SelectAll, "Layout Controls", GetControlsByCategory("Layout"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/Misc.png"), "Misc Controls", GetControlsByCategory("Misc"));
-                yield return new NavigationItem(Symbol.Repair, "Tools", GetControlsByCategory("Tools"));
-                yield return new NavigationItem(Symbol.CalendarWeek, "Data Providers", GetControlsByCategory("DataProviders"));
+                yield return new NavigationItem(Symbol.SelectAll, this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("Layout"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/Misc.png"), this.GetResourceString("ShellMenuMiscControls"), GetControlsByCategory("Misc"));
+                yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuTools"), GetControlsByCategory("Tools"));
+                yield return new NavigationItem(Symbol.CalendarWeek, this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"));
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.FullScreen, "Enter Full Screen", (m) => { shell.EnterFullScreen(); });
+                yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
             }
         }
 

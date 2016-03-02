@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -20,11 +21,11 @@ namespace AppStudio.Uwp.Samples
             this.InitializeComponent();
             this.DataContext = this;
             this.Options = new ObservableCollection<Option>();
-            this.Options.Add(new Option() { Text = "Add new item to memory", Symbol = Symbol.Add, Command = AddItemCommand });
-            this.Options.Add(new Option() { Text = "Clean memory", Symbol = Symbol.Delete, Command = CleanMemoryCommand });
-            this.Options.Add(new Option() { Text = "Load memory from Cache", Symbol = Symbol.Sync, Command = LoadFromCacheCommand });
-            this.Options.Add(new Option() { Text = "Save memory to cache", Symbol = Symbol.Save, Command = SaveMemoryToCacheCommand });
-            this.Options.Add(new Option() { Text = "Clean Cache", Symbol = Symbol.Clear, Command = CleanCacheCommand });
+            this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheAddItem"), Symbol = Symbol.Add, Command = AddItemCommand });
+            this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanMemory"), Symbol = Symbol.Delete, Command = CleanMemoryCommand });
+            this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheLoadFromCache"), Symbol = Symbol.Sync, Command = LoadFromCacheCommand });
+            this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheSaveToCache"), Symbol = Symbol.Save, Command = SaveMemoryToCacheCommand });
+            this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanCache"), Symbol = Symbol.Clear, Command = CleanCacheCommand });
         }
 
         public override string Caption

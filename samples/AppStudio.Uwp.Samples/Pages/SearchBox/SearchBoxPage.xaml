@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Margin="0,0,0,24" HorizontalAlignment="Center">
-            <TextBlock Text="Your are searching:" HorizontalAlignment="Center"/>
+            <TextBlock x:Uid="SearchBoxSearchingText" HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding SearchText}" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,12,0,0"/>
         </StackPanel>
         <controls:SearchBox Grid.Row="1" Name="control" SearchCommand="{Binding SearchCommand}" Background="White" Foreground="Black"/>

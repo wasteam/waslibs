@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppBarButtonHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="AppBarButtonJsonData" xml:space="preserve">
+    <value>Json Data</value>
+  </data>
+  <data name="AppBarButtonSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AppBarButtonSourceCode" xml:space="preserve">
+    <value>Source Code</value>
+  </data>
+  <data name="AppBarButtonXamlCode" xml:space="preserve">
+    <value>Xaml Code</value>
+  </data>
+  <data name="AppCacheAddItem" xml:space="preserve">
+    <value>Add new item to memory</value>
+  </data>
+  <data name="AppCacheCleanCache" xml:space="preserve">
+    <value>Clean cache</value>
+  </data>
+  <data name="AppCacheCleanMemory" xml:space="preserve">
+    <value>Clean memory</value>
+  </data>
   <data name="AppCacheItemsInCache.Text" xml:space="preserve">
     <value>Items in cache</value>
   </data>
@@ -126,7 +150,34 @@
   <data name="AppCacheLastAction.Text" xml:space="preserve">
     <value>Last action</value>
   </data>
+  <data name="AppCacheLoadFromCache" xml:space="preserve">
+    <value>Load memory from cache</value>
+  </data>
   <data name="AppCacheOptions.Text" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="AppCacheSaveToCache" xml:space="preserve">
+    <value>Save memory to cache</value>
+  </data>
+  <data name="SearchBoxSearchingText.Text" xml:space="preserve">
+    <value>Your are searching:</value>
+  </data>
+  <data name="ShellMenuDataProviders" xml:space="preserve">
+    <value>Data Providers</value>
+  </data>
+  <data name="ShellMenuEnterFullScreen" xml:space="preserve">
+    <value>Enter Full Screen</value>
+  </data>
+  <data name="ShellMenuHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ShellMenuLayoutControls" xml:space="preserve">
+    <value>Layout Controls</value>
+  </data>
+  <data name="ShellMenuMiscControls" xml:space="preserve">
+    <value>Misc Controls</value>
+  </data>
+  <data name="ShellMenuTools" xml:space="preserve">
+    <value>Tools</value>
   </data>
 </root>
