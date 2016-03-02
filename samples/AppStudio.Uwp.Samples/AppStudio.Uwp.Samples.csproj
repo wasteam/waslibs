@@ -93,6 +93,8 @@
     <Content Include="Assets\Html\Json.html" />
     <Content Include="Assets\Icons\Json.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
+    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
@@ -158,6 +160,12 @@
     </Compile>
     <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
       <DependentUpon>CarouselSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml.cs">
+      <DependentUpon>ErrorNotificationControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml.cs">
+      <DependentUpon>ErrorNotificationControlSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Pivorama\PivoramaSettings.xaml.cs">
       <DependentUpon>PivoramaSettings.xaml</DependentUpon>
@@ -257,6 +265,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Carousel\CarouselSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
