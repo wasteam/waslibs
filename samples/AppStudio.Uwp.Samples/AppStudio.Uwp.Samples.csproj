@@ -93,6 +93,7 @@
     <Content Include="Assets\Html\Json.html" />
     <Content Include="Assets\Icons\Json.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
@@ -155,6 +156,10 @@
     <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
     <Content Include="Pages\SectionList\Docs\SectionListHelp.html" />
     <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
+    <Compile Include="Pages\AppCache\AppCachePage.xaml.cs">
+      <DependentUpon>AppCachePage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\AppCache\Docs\AppCacheCSharp.cs" />
     <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
       <DependentUpon>CarouselPage.xaml</DependentUpon>
     </Compile>
@@ -257,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AppCache\AppCachePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
