@@ -77,18 +77,7 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(YouTubePage), new PropertyMetadata(null));
 
-        #endregion
-
-        #region DataProviderError
-        public string DataProviderError
-        {
-            get { return (string)GetValue(DataProviderErrorProperty); }
-            set { SetValue(DataProviderErrorProperty, value); }
-        }
-
-        public static readonly DependencyProperty DataProviderErrorProperty = DependencyProperty.Register("DataProviderError", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
-
-        #endregion
+        #endregion        
 
         #region RawData
         public string DataProviderRawData
@@ -100,6 +89,24 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
 
         #endregion    
+
+        #region HasErrors
+        public bool HasErrors
+        {
+            get { return (bool)GetValue(HasErrorsProperty); }
+            set { SetValue(HasErrorsProperty, value); }
+        }
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        #endregion
+
+        #region NoItems
+        public bool NoItems
+        {
+            get { return (bool)GetValue(NoItemsProperty); }
+            set { SetValue(NoItemsProperty, value); }
+        }
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        #endregion
 
         #region ICommands
         public ICommand RefreshDataCommand
@@ -144,7 +151,8 @@ namespace AppStudio.Uwp.Samples
         {
             try
             {
-                DataProviderError = string.Empty;
+                HasErrors = false;
+                NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
@@ -155,21 +163,26 @@ namespace AppStudio.Uwp.Samples
                     QueryType = YouTubeQueryTypeSelectedItem
                 };
 
+                var rawParser = new RawParser();
+                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();                                
+
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                if (!items.Any())
+                {
+                    NoItems = true;
+                }
                 foreach (var item in items)
                 {
                     Items.Add(item);
-                }
-
-                var rawParser = new RawParser();
-                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();
+                }                
 
             }
             catch (Exception ex)
             {
-                DataProviderError += ex.Message;
-                DataProviderError += ex.StackTrace;
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
             }
         }
 
