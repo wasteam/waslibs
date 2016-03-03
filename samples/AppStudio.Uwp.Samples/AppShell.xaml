@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <controls:ShellControl Name="shell" NavigationItems="{Binding NavigationItems}" Header="{Binding AppFrame.Content.Caption}"
                                PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}">
             <Frame Name="frame">

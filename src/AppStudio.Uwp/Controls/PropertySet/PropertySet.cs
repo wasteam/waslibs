@@ -83,6 +83,25 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty SmallChangeProperty = DependencyProperty.Register("SmallChange", typeof(double), typeof(PropertySet), new PropertyMetadata(1.0));
         #endregion
 
+        #region ToggleOnContent
+        public object ToggleOnContent
+        {
+            get { return (object)GetValue(ToggleOnContentProperty); }
+            set { SetValue(ToggleOnContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ToggleOnContentProperty = DependencyProperty.Register("ToggleOnContent", typeof(string), typeof(PropertySet), new PropertyMetadata(null));
+        #endregion
+
+        #region ToggleOffContent
+        public object ToggleOffContent
+        {
+            get { return (object)GetValue(ToggleOffContentProperty); }
+            set { SetValue(ToggleOffContentProperty, value); }
+        }
+        public static readonly DependencyProperty ToggleOffContentProperty = DependencyProperty.Register("ToggleOffContent", typeof(object), typeof(PropertySet), new PropertyMetadata(null));
+        #endregion
+
 
         #region ComboItems
         public IEnumerable<KeyValuePair<string, object>> ComboItems
@@ -145,6 +164,14 @@ namespace AppStudio.Uwp.Controls
                     }
                     else if (type == typeof(bool))
                     {
+                        if (ToggleOnContent != null)
+                        {
+                            _toggle.OnContent = ToggleOnContent;
+                        }
+                        if (ToggleOffContent != null)
+                        {
+                            _toggle.OffContent = ToggleOffContent;
+                        }
                         _toggle.Visibility = Visibility.Visible;
                     }
                     else if (type == typeof(string))

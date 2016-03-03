@@ -11,7 +11,7 @@
     <Page.Resources>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <controls:SplitterCard Name="control" Foreground="Black" Background="LightGray" Text="24 SEP"/>
     </Grid>
 </local:SamplePage>

@@ -13,7 +13,7 @@
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>

@@ -16,7 +16,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <controls:ResponsiveGridView Name="control" Margin="12,12,6,12" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
                                      ItemHeight="200" DesiredWidth="300" />
     </Grid>

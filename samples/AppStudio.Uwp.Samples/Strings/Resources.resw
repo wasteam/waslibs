@@ -159,6 +159,21 @@
   <data name="AppCacheSaveToCache" xml:space="preserve">
     <value>Save memory to cache</value>
   </data>
+  <data name="ConvertersBoolToVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if True and Collapsed if False. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOffContent" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOnContent" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDefault" xml:space="preserve">
+    <value>Remove this text to hide de image below.</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if value is null or empty and Collapsed if not. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
   <data name="DataProviderParsedItems.Header" xml:space="preserve">
     <value>Parsed Items</value>
   </data>

@@ -18,12 +18,12 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Image Stretch="Uniform" Source="{Binding Thumbnail}"/>
-                <TextBlock Grid.Row="1" Text="{Binding Title}" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" HorizontalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -46,7 +46,7 @@
         </VisualStateManager.VisualStateGroups>
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Left">
-                <TextBlock x:Uid="AppCacheOptions" FontWeight="Bold" FontSize="22" Margin="12,0,0,0"/>
+                <TextBlock x:Uid="AppCacheOptions" Style="{StaticResource TitleStyle}" Margin="12,0,0,0"/>
                 <StackPanel Orientation="Horizontal" x:Name="infoPanel">
                     <ItemsControl ItemsSource="{Binding Options}" Margin="0,12,0,0">
                         <ItemsControl.ItemsPanel>
@@ -73,15 +73,15 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                     <StackPanel Margin="12">
-                        <TextBlock x:Uid="AppCacheItemsInMemory" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding ItemsInMemory}" FontWeight="Light"/>
-                        <TextBlock x:Uid="AppCacheItemsInCache" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding ItemsInCache}" FontWeight="Light"/>
-                        <TextBlock x:Uid="AppCacheLastAction" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding LastAction}" FontWeight="Light"/>
+                        <TextBlock x:Uid="AppCacheItemsInMemory" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="{Binding ItemsInMemory}" Style="{StaticResource SubtitleStyle}"/>
+                        <TextBlock x:Uid="AppCacheItemsInCache" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="{Binding ItemsInCache}" Style="{StaticResource SubtitleStyle}"/>
+                        <TextBlock x:Uid="AppCacheLastAction" Style="{StaticResource TitleStyle}"/>
+                        <TextBlock Text="{Binding LastAction}" Style="{StaticResource SubtitleStyle}"/>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock x:Uid="AppCacheItemsInMemory" Margin="12,12,0,0" FontWeight="Bold" FontSize="22"/>
+                <TextBlock x:Uid="AppCacheItemsInMemory" Margin="12,12,0,0" Style="{StaticResource TitleStyle}"/>
                 <ItemsControl ItemTemplate="{Binding ItemTemplate}" ItemsSource="{Binding MemoryItems}" Margin="0,12,0,0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

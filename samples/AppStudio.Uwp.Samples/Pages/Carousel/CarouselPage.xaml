@@ -19,7 +19,7 @@
                     <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Grid Grid.Row="1" Background="Black">
                         <controls:Virtualbox VirtualWidth="640" VirtualHeight="56">
-                            <TextBlock Margin="24,6" Text="{Binding Title}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" TextAlignment="Center" Foreground="#eee" FontSize="24" />
+                            <TextBlock Margin="24,6" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" TextAlignment="Center" Foreground="#eee"/>
                         </controls:Virtualbox>
                     </Grid>
                 </Grid>
@@ -27,7 +27,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <StackPanel>
             <controls:Carousel
                 Name="control"
