@@ -29,6 +29,12 @@
 
     <DataTemplate x:Key="NavigationSubItemTemplate">
         <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+            <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="#333" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="NavigationSubItemTemplateWithIcons">
+        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
