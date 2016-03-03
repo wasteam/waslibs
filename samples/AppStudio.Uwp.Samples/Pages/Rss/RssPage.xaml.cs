@@ -15,6 +15,7 @@ namespace AppStudio.Uwp.Samples
     public sealed partial class RssPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 20;
+        private const string DefaultRssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
 
         public RssPage()
         {
@@ -35,6 +36,16 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(RssPage), new PropertyMetadata(DefaultMaxRecordsParam));
+
+
+        public string RssQuery
+        {
+            get { return (string)GetValue(RssQueryProperty); }
+            set { SetValue(RssQueryProperty, value); }
+        }
+
+        public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register("RssQuery", typeof(string), typeof(RssPage), new PropertyMetadata(DefaultRssQuery));
+
         #endregion
 
         #region Items
@@ -45,17 +56,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
-        #endregion
-
-        #region DataProviderError
-        public string DataProviderError
-        {
-            get { return (string)GetValue(DataProviderErrorProperty); }
-            set { SetValue(DataProviderErrorProperty, value); }
-        }
-
-        public static readonly DependencyProperty DataProviderErrorProperty = DependencyProperty.Register("DataProviderError", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
-        #endregion
+        #endregion      
 
         #region RawData
         public string DataProviderRawData
@@ -65,7 +66,25 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
-        #endregion    
+        #endregion
+
+        #region HasErrors
+        public bool HasErrors
+        {
+            get { return (bool)GetValue(HasErrorsProperty); }
+            set { SetValue(HasErrorsProperty, value); }
+        }
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        #endregion
+
+        #region NoItems
+        public bool NoItems
+        {
+            get { return (bool)GetValue(NoItemsProperty); }
+            set { SetValue(NoItemsProperty, value); }
+        }
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        #endregion
 
         #region ICommands
         public ICommand RefreshDataCommand
@@ -110,31 +129,39 @@ namespace AppStudio.Uwp.Samples
         {
             try
             {
-                DataProviderError = string.Empty;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
                 Items.Clear();
                 var rssDataProvider = new RssDataProvider();
-                var config = new RssDataConfig { Url = new Uri("http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx", UriKind.Absolute) };
-
-                var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
 
                 var rawParser = new RawParser();
                 var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();
+
+                var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                if (!items.Any())
+                {
+                    NoItems = true;
+                }
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }              
             }
             catch (Exception ex)
             {
-                DataProviderError += ex.Message;
-                DataProviderError += ex.StackTrace;
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
             }
         }
 
         private void RestoreConfig()
         {
-
+            RssQuery = DefaultRssQuery;
+            MaxRecordsParam = DefaultMaxRecordsParam;
         }
     }
 }

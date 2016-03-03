@@ -4,13 +4,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Uwp.Samples"
     xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:converters="using:AppStudio.Uwp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">     
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem x:Uid="DataProviderParsedItems">
+                <Grid>
+                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="300" DesiredWidth="230">
+                        <controls:ResponsiveGridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding Title}" TextTrimming="CharacterEllipsis" FontSize="18" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="3" Text="{Binding Summary}" TextTrimming="CharacterEllipsis" FontSize="16" FontWeight="Light" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="4" Text="{Binding Author}" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+
+                                </Grid>
+                            </DataTemplate>
+                        </controls:ResponsiveGridView.ItemTemplate>
+                    </controls:ResponsiveGridView>
+                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Uid="DataProviderRawData">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
+                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderRawData, Mode=OneWay}"/>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </local:SamplePage>
