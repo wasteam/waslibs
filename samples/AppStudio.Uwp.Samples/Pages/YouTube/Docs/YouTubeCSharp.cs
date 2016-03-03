@@ -1,11 +1,10 @@
-﻿using System;
+﻿using AppStudio.DataProviders.YouTube;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
-using AppStudio.DataProviders.YouTube;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -24,19 +23,19 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(VariableSizedGridSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(YouTubeSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {           
             GetItems();
         }
 
-        public void GetItems()
+        public async void GetItems()
         {
             string apiKey = "YourApiKey";
             string queryParam = @"MicrosoftLumia";
             YouTubeQueryType queryType = YouTubeQueryType.Channels;
-            int MaxRecordsParam = 20;
+            int maxRecordsParam = 20;
 
             this.Items = new ObservableCollection<object>();
             var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
@@ -46,7 +45,7 @@ namespace AppStudio.Uwp.Samples
                 QueryType = queryType
             };
 
-            var items = await _youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
+            var items = await _youTubeDataProvider.LoadDataAsync(config, maxRecordsParam);
             foreach (var item in items)
             {
                 Items.Add(item);

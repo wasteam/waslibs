@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using AppStudio.DataProviders.YouTube;
+using AppStudio.Uwp.Commands;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-
-using AppStudio.Uwp.Commands;
-using AppStudio.DataProviders.YouTube;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -165,7 +163,7 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();                                
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;                                
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 if (!items.Any())

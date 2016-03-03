@@ -105,6 +105,7 @@
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
@@ -244,6 +245,7 @@
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.html" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
     <Content Include="Pages\Rss\Docs\RssHelp.html" />
+    <Content Include="Pages\Twitter\Docs\TwitterHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
@@ -254,6 +256,16 @@
     </Compile>
     <Compile Include="Pages\Rss\RssSettings.xaml.cs">
       <DependentUpon>RssSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Twitter\Docs\TwitterCSharp.cs" />
+    <Compile Include="Pages\Twitter\TwitterPage.xaml.cs">
+      <DependentUpon>TwitterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twitter\TwitterSettings.xaml.cs">
+      <DependentUpon>TwitterSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
+      <DependentUpon>WordPressPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -345,6 +357,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\WordPress\WordPressPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\WordPressSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\SearchBox\SearchBoxPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -394,6 +414,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Rss\RssSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\TwitterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\TwitterSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
