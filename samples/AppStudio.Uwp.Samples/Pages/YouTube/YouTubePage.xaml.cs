@@ -9,14 +9,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "YouTube")]
+    [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 10)]
     public sealed partial class YouTubePage : SamplePage
     {
         private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
         private const string DefaultYouTubeQueryParam = @"MicrosoftLumia";
         private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Channels;
         private const int DefaultMaxRecordsParam = 20;
-      
+
         public YouTubePage()
         {
             this.InitializeComponent();
@@ -106,6 +106,16 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
         #endregion
 
+        #region IsBusy
+        public bool IsBusy
+        {
+            get { return (bool)GetValue(IsBusyProperty); }
+            set { SetValue(IsBusyProperty, value); }
+        }
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+
+        #endregion
+
         #region ICommands
         public ICommand RefreshDataCommand
         {
@@ -149,6 +159,7 @@ namespace AppStudio.Uwp.Samples
         {
             try
             {
+                IsBusy = true;
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
@@ -163,7 +174,7 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;                                
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 if (!items.Any())
@@ -173,7 +184,7 @@ namespace AppStudio.Uwp.Samples
                 foreach (var item in items)
                 {
                     Items.Add(item);
-                }                
+                }
 
             }
             catch (Exception ex)
@@ -181,6 +192,10 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData += ex.Message;
                 DataProviderRawData += ex.StackTrace;
                 HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 

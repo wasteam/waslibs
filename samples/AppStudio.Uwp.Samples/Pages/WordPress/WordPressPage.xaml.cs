@@ -106,6 +106,16 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(WordPressPage), new PropertyMetadata(false));
         #endregion
 
+        #region IsBusy
+        public bool IsBusy
+        {
+            get { return (bool)GetValue(IsBusyProperty); }
+            set { SetValue(IsBusyProperty, value); }
+        }
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(WordPressPage), new PropertyMetadata(false));
+
+        #endregion
+
         #region ICommands
         public ICommand RefreshDataCommand
         {
@@ -149,6 +159,7 @@ namespace AppStudio.Uwp.Samples
         {
             try
             {
+                IsBusy = true;
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
@@ -182,6 +193,10 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData += ex.Message;
                 DataProviderRawData += ex.StackTrace;
                 HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 

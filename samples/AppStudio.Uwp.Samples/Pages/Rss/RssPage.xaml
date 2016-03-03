@@ -14,10 +14,11 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
-                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="300" DesiredWidth="400">
+                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="400" DesiredWidth="400">
                         <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="8">
