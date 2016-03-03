@@ -69,7 +69,6 @@ namespace AppStudio.Uwp.Controls
                 _lviewSub.Visibility = Visibility.Collapsed;
                 _splitView.IsPaneOpen = true;
             }
-            this.DisplayMode = this.ActualWidth > 640 ? SplitViewDisplayMode.CompactInline : SplitViewDisplayMode.Overlay;
         }
 
         private async void InvokeSubItems(NavigationItem navItem)
