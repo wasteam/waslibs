@@ -105,6 +105,10 @@
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
+    <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
+    <Content Include="Pages\RelativeBox\Docs\RelativeBoxHelp.html" />
+    <Content Include="Pages\VirtualBox\Docs\VirtualBoxHelp.html" />
+    <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
     <None Include="project.json" />
@@ -129,6 +133,18 @@
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
+      <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\VirtualBoxSettings.xaml.cs">
+      <DependentUpon>VirtualBoxSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\RelativeBoxPage.xaml.cs">
+      <DependentUpon>RelativeBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\RelativeBoxSettings.xaml.cs">
+      <DependentUpon>RelativeBoxSettings.xaml</DependentUpon>
     </Compile>
     <Content Include="Assets\Icons\CSharp.png" />
     <Content Include="Assets\Icons\Xaml.png" />
@@ -380,10 +396,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\RelativeBox\RelativeBoxPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RelativeBox\RelativeBoxSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\AppTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Pages\VirtualBox\VirtualBoxPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VirtualBox\VirtualBoxSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
