@@ -1,8 +1,9 @@
-﻿using System;
+﻿using AppStudio.DataProviders.Rss;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -23,14 +24,14 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(VariableSizedGridSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(RssSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {           
             GetItems();
         }
 
-        public void GetItems()
+        public async void GetItems()
         {           
             string rssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
             int maxRecordsParam = 20;

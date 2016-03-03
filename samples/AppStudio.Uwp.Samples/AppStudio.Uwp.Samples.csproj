@@ -103,6 +103,7 @@
     <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
@@ -133,6 +134,13 @@
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
+    <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
+      <DependentUpon>WordPressPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
+      <DependentUpon>WordPressSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
       <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
@@ -341,6 +349,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\WordPressPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\WordPressSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
