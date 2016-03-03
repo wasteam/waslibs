@@ -16,12 +16,12 @@
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Image Stretch="Uniform" Source="{Binding Thumbnail}"/>
-        <TextBlock Grid.Row="1" Text="{Binding Title}" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" HorizontalAlignment="Center"/>
       </Grid>
     </DataTemplate>
   </Page.Resources>
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+  <Grid Background="{StaticResource AppBackground}">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="*"/>

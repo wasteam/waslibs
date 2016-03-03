@@ -13,7 +13,7 @@
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
