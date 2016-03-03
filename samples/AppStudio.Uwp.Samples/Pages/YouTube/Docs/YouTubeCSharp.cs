@@ -33,17 +33,17 @@ namespace AppStudio.Uwp.Samples
 
         public void GetItems()
         {
-            string ApiKey = "YourApiKey";
-            string QueryParam = @"MicrosoftLumia";
-            YouTubeQueryType QueryType = YouTubeQueryType.Channels;
+            string apiKey = "YourApiKey";
+            string queryParam = @"MicrosoftLumia";
+            YouTubeQueryType queryType = YouTubeQueryType.Channels;
             int MaxRecordsParam = 20;
 
             this.Items = new ObservableCollection<object>();
-            var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
+            var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
             var config = new YouTubeDataConfig
             {
-                Query = QueryParam,
-                QueryType = QueryType
+                Query = queryParam,
+                QueryType = queryType
             };
 
             var items = await _youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
@@ -52,6 +52,5 @@ namespace AppStudio.Uwp.Samples
                 Items.Add(item);
             }
         }
-
     }
 }
