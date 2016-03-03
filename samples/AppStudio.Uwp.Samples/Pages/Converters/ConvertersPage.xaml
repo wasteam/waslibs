@@ -12,7 +12,7 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"             />
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
             <StackPanel Margin="12" MaxWidth="800" HorizontalAlignment="Left">
                 <StackPanel>
