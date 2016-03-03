@@ -33,11 +33,12 @@ namespace AppStudio.Uwp.Samples
         public void GetItems()
         {           
             string rssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
+            int maxRecordsParam = 20;
 
             var rssDataProvider = new RssDataProvider();
             var config = new RssDataConfig { Url = new Uri(rssQuery, UriKind.Absolute) };        
 
-            var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);          
+            var items = await rssDataProvider.LoadDataAsync(config, maxRecordsParam);          
             foreach (var item in items)
             {
                 Items.Add(item);

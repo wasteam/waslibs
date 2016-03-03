@@ -138,7 +138,7 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw?.ToString();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
                 if (!items.Any())

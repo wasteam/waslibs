@@ -9,9 +9,9 @@ using AppStudio.DataProviders.YouTube;
 
 namespace AppStudio.Uwp.Samples
 {
-    public sealed partial class YouTubeSample : Page
+    public sealed partial class TwitterSample : Page
     {
-        public YouTubeSample()
+        public TwitterSample()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -27,26 +27,37 @@ namespace AppStudio.Uwp.Samples
             .Register("Items", typeof(ObservableCollection<object>), typeof(VariableSizedGridSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {           
+        {
             GetItems();
         }
 
         public void GetItems()
         {
-            string apiKey = "YourApiKey";
-            string queryParam = @"MicrosoftLumia";
-            YouTubeQueryType queryType = YouTubeQueryType.Channels;
+            string consumerKey = "YourConsumerKey";
+            string consumerSecret = "YourConsumerSecret";
+            string accessToken = "YourAccessToken";
+            string accessTokenSecret = "YourAccessTokenSecret";
+            string twitterQueryParam = "WindowsAppStudio";
+            TwitterQueryType queryType = TwitterQueryType.Search;
             int maxRecordsParam = 20;
 
-            this.Items = new ObservableCollection<object>();
-            var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
-            var config = new YouTubeDataConfig
-            {
-                Query = queryParam,
-                QueryType = queryType
-            };
+            Items.Clear();
 
-            var items = await _youTubeDataProvider.LoadDataAsync(config, maxRecordsParam);
+            var twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+            {
+                AccessToken = accessToken,
+                AccessTokenSecret = accessTokenSecret,
+                ConsumerKey = consumerKey,
+                ConsumerSecret = consumerSecret
+            });
+
+            var config = new TwitterDataConfig
+            {
+                Query = twitterQueryParam,
+                QueryType = queryType
+            };          
+
+            var items = await twitterDataProvider.LoadDataAsync(config, maxRecordsParam);
             foreach (var item in items)
             {
                 Items.Add(item);
