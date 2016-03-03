@@ -4,38 +4,48 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Uwp.Samples"
     xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:converters="using:AppStudio.Uwp.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Grid.Row="1" Margin="12,12,0,0">
-            <PivotItem Header="Parsed Items">
+        <Pivot>
+            <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
-                    <GridView ItemsSource="{Binding Items}" IsItemClickEnabled="False" SelectionMode="None">
-                        <GridView.ItemTemplate>
+                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="300" DesiredWidth="230">
+                        <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
-                                <RelativePanel Height="470" Width="350" Margin="5">
-                                    <Grid x:Name="image" Height="350" Width="350">
-                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" RelativePanel.AlignTopWithPanel="True"/>
-                                        <Image Source="ms-appx:///Assets/AppLayout/YouTubePlay.png" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None"/>
+                                <Grid Margin="8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <Image Source="ms-appx:///Assets/Images/YouTubePlay.png" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Width="80"/>
                                     </Grid>
-                                    <TextBlock x:Name="titleText" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Title}" MaxLines="2" RelativePanel.Below="image"/>
-                                    <TextBlock x:Name="summaryText" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Summary}" MaxLines="2" RelativePanel.Below="titleText"/>
-                                    <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Published}" RelativePanel.Below="summaryText" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1"/>
-                                </RelativePanel>
+                                    <Grid Grid.Row="1" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding Title}" TextTrimming="CharacterEllipsis" FontSize="18" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="3" Text="{Binding Summary}" TextTrimming="CharacterEllipsis" FontSize="16" FontWeight="Light" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="4" Text="{Binding Published}" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+
+                                </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
-                        <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderError, Mode=OneWay}"/>
-                    </ScrollViewer>
+                        </controls:ResponsiveGridView.ItemTemplate>
+                    </controls:ResponsiveGridView>
+                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="Raw Data">
+            <PivotItem x:Uid="DataProviderRawData">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
                     <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderRawData, Mode=OneWay}"/>
                 </ScrollViewer>

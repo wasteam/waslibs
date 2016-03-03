@@ -159,6 +159,24 @@
   <data name="AppCacheSaveToCache" xml:space="preserve">
     <value>Save memory to cache</value>
   </data>
+  <data name="DataProviderParsedItems.Header" xml:space="preserve">
+    <value>Parsed Items</value>
+  </data>
+  <data name="DataProviderRawData.Header" xml:space="preserve">
+    <value>Raw Data</value>
+  </data>
+  <data name="DataProviderRefreshButton.Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="DataProviderRestoreConfigButton.Content" xml:space="preserve">
+    <value>Restore Config</value>
+  </data>
+  <data name="DataProvidersErrorMessage.Text" xml:space="preserve">
+    <value>There was an error. More information in Raw Data Tab.</value>
+  </data>
+  <data name="DataProvidersNoItems.Text" xml:space="preserve">
+    <value>0 Items found. Try changing request configuration on Settings pane.</value>
+  </data>
   <data name="SearchBoxSearchingText.Text" xml:space="preserve">
     <value>Your are searching:</value>
   </data>
