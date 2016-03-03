@@ -1,18 +1,16 @@
-﻿using AppStudio.DataProviders.WordPress;
+﻿using AppStudio.DataProviders.Flickr;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-
 namespace AppStudio.Uwp.Samples
 {
-    public sealed partial class WordPressSample : Page
+    public sealed partial class FlickrSample : Page
     {
-        public WordPressSample()
+        public FlickrSample()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -25,7 +23,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(WordPressSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(FlickrSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {           
@@ -34,22 +32,20 @@ namespace AppStudio.Uwp.Samples
 
         public async void GetItems()
         {
-            string wordPressQuery = "en.blog.wordpress.com";
-            WordPressQueryType queryType = WordPressQueryType.Posts;
-            string queryFilterBy = string.Empty;
-            int maxRecordsParam = 20;
-
+            string flickrQueryParam = "Seatle";
+            FlickrQueryType queryType = FlickrQueryType.Tags;
+            int maxRecordsParam = 10;
             Items.Clear();
-            var wordPressDataProvider = new WordPressDataProvider();
-            var config = new WordPressDataConfig()
+
+            var flickrDataProvider = new FlickrDataProvider();
+            var config = new FlickrDataConfig
             {
-                Query = wordPressQuery,
-                QueryType = queryType,
-                FilterBy = queryFilterBy
-            };           
+                Query = flickrQueryParam,
+                QueryType = queryType
+            };          
 
-            var items = await wordPressDataProvider.LoadDataAsync(config, maxRecordsParam);           
-
+            var items = await flickrDataProvider.LoadDataAsync(config, maxRecordsParam);
+          
             foreach (var item in items)
             {
                 Items.Add(item);

@@ -150,10 +150,9 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
-                if (!items.Any())
-                {
-                    NoItems = true;
-                }
+
+                NoItems = !items.Any();
+
                 foreach (var item in items)
                 {
                     Items.Add(item);
