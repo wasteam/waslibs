@@ -8,6 +8,7 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SplitterCard/SplitterCard.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ErrorNotificationControl/ErrorNotificationControl.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlViewer/HtmlViewer.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ImageEx/ImageEx.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Indicator/Indicator.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Pivorama/Pivorama.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Relativebox/Relativebox.xaml"/>

@@ -112,6 +112,10 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\ImageEx\BitmapTools.cs" />
+    <Compile Include="Controls\ImageEx\BitmapCache.cs" />
+    <Compile Include="Controls\ImageEx\ImageEx.cs" />
+    <Compile Include="Controls\ImageEx\ImageEx.Source.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
     <Compile Include="Controls\ShellControl\NavigationItem.cs" />
     <Compile Include="Controls\ShellControl\NavigationStyleSelector.cs" />
@@ -213,6 +217,10 @@
     <Page Include="Controls\HtmlViewer\HtmlViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ImageEx\ImageEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Indicator\Indicator.xaml">
       <Generator>MSBuild:Compile</Generator>
