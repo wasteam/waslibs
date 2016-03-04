@@ -255,6 +255,7 @@
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
     <Content Include="Pages\Rss\Docs\RssHelp.html" />
     <Content Include="Pages\Twitter\Docs\TwitterHelp.html" />
+    <Content Include="Pages\Flickr\Docs\FlickrHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
@@ -273,8 +274,16 @@
     <Compile Include="Pages\Twitter\TwitterSettings.xaml.cs">
       <DependentUpon>TwitterSettings.xaml</DependentUpon>
     </Compile>
+    <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
     <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
       <DependentUpon>WordPressPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Flickr\Docs\FlickrCSharp.cs" />
+    <Compile Include="Pages\Flickr\FlickrPage.xaml.cs">
+      <DependentUpon>FlickrPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Flickr\FlickrSettings.xaml.cs">
+      <DependentUpon>FlickrSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
       <DependentUpon>WordPressSettings.xaml</DependentUpon>
@@ -442,6 +451,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Twitter\TwitterSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\FlickrPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\FlickrSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
