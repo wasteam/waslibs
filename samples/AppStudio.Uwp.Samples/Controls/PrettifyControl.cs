@@ -216,9 +216,16 @@ namespace AppStudio.Uwp.Samples
 
         private string IndentJson(string json)
         {
-            var parsedJson = JsonConvert.DeserializeObject(json);
-            string indented = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
-            return indented;
+            try
+            {
+                var parsedJson = JsonConvert.DeserializeObject(json);
+                string indented = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+                return indented;
+            }
+            catch (Exception)
+            {
+                return json;
+            }
         }
         #endregion
 

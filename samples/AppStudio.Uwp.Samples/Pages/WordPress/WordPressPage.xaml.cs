@@ -174,10 +174,7 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                var raw = rawData.FirstOrDefault()?.Raw;
-
-                var parsedJson = JsonConvert.DeserializeObject(raw);
-                DataProviderRawData = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;              
 
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

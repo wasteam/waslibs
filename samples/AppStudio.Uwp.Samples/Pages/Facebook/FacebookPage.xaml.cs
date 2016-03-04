@@ -1,4 +1,4 @@
-﻿using AppStudio.DataProviders.YouTube;
+﻿using AppStudio.DataProviders.Facebook;
 using AppStudio.Uwp.Commands;
 using System;
 using System.Collections.ObjectModel;
@@ -9,15 +9,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 10)]
-    public sealed partial class YouTubePage : SamplePage
+    [SamplePage(Category = "DataProviders", Name = "Facebook")]
+    public sealed partial class FacebookPage : SamplePage
     {
-        private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
-        private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
-        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
+        private const string DefaultAppId = "351842111678417";
+        private const string DefaultAppSecret = "74b187b46cf37a8ef6349b990bc039c2";
+        private const string DefaultFacebookQueryParam = "8195378771";
         private const int DefaultMaxRecordsParam = 20;
 
-        public YouTubePage()
+        public FacebookPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -25,36 +25,34 @@ namespace AppStudio.Uwp.Samples
 
         public override string Caption
         {
-            get { return "YouTube Data Provider"; }
+            get { return "Facebook Data Provider"; }
         }
 
         #region DataProvider Config
-        public string ApiKey
+        public string AppId
         {
-            get { return (string)GetValue(ApiKeyProperty); }
-            set { SetValue(ApiKeyProperty, value); }
+            get { return (string)GetValue(AppIdProperty); }
+            set { SetValue(AppIdProperty, value); }
         }
 
-        public static readonly DependencyProperty ApiKeyProperty = DependencyProperty.Register("ApiKey", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultApiKey));
+        public static readonly DependencyProperty AppIdProperty = DependencyProperty.Register("AppId", typeof(string), typeof(FacebookPage), new PropertyMetadata(DefaultAppId));
 
-
-        public string YouTubeQueryParam
+        public string AppSecret
         {
-            get { return (string)GetValue(YouTubeQueryParamProperty); }
-            set { SetValue(YouTubeQueryParamProperty, value); }
+            get { return (string)GetValue(AppSecretProperty); }
+            set { SetValue(AppSecretProperty, value); }
         }
 
-        public static readonly DependencyProperty YouTubeQueryParamProperty = DependencyProperty.Register("YouTubeQueryParam", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultYouTubeQueryParam));
+        public static readonly DependencyProperty AppSecretProperty = DependencyProperty.Register("AppSecret", typeof(string), typeof(FacebookPage), new PropertyMetadata(DefaultAppSecret));
 
 
-        public YouTubeQueryType YouTubeQueryTypeSelectedItem
+        public string FacebookQueryParam
         {
-            get { return (YouTubeQueryType)GetValue(YouTubeQueryTypeSelectedItemProperty); }
-            set { SetValue(YouTubeQueryTypeSelectedItemProperty, value); }
+            get { return (string)GetValue(FacebookQueryParamProperty); }
+            set { SetValue(FacebookQueryParamProperty, value); }
         }
 
-        public static readonly DependencyProperty YouTubeQueryTypeSelectedItemProperty = DependencyProperty.Register("YouTubeQueryTypeSelectedItem", typeof(YouTubeQueryType), typeof(YouTubePage), new PropertyMetadata(DefaultQueryType));
-
+        public static readonly DependencyProperty FacebookQueryParamProperty = DependencyProperty.Register("FacebookQueryParam", typeof(string), typeof(FacebookPage), new PropertyMetadata(DefaultFacebookQueryParam));
 
         public int MaxRecordsParam
         {
@@ -62,7 +60,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(YouTubePage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(FacebookPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
         #endregion
 
@@ -73,7 +71,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(YouTubePage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(FacebookPage), new PropertyMetadata(null));
 
         #endregion        
 
@@ -84,7 +82,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(FacebookPage), new PropertyMetadata(string.Empty));
 
         #endregion    
 
@@ -94,7 +92,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(FacebookPage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -103,7 +101,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(FacebookPage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -112,7 +110,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(FacebookPage), new PropertyMetadata(false));
 
         #endregion
 
@@ -152,7 +150,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnSettings()
         {
-            AppShell.Current.Shell.ShowRightPane(new YouTubeSettings() { DataContext = this });
+            AppShell.Current.Shell.ShowRightPane(new FacebookSettings() { DataContext = this });
         }
 
         private async void Request()
@@ -165,18 +163,17 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
-                var config = new YouTubeDataConfig
+                var facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+                var config = new FacebookDataConfig
                 {
-                    Query = YouTubeQueryParam,
-                    QueryType = YouTubeQueryTypeSelectedItem
+                    UserId = FacebookQueryParam                    
                 };
 
                 var rawParser = new RawParser();
-                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 
@@ -200,9 +197,9 @@ namespace AppStudio.Uwp.Samples
 
         private void RestoreConfig()
         {
-            ApiKey = DefaultApiKey;
-            YouTubeQueryParam = DefaultYouTubeQueryParam;
-            YouTubeQueryTypeSelectedItem = DefaultQueryType;
+            AppId = DefaultAppId;
+            AppSecret = DefaultAppSecret;
+            FacebookQueryParam = DefaultFacebookQueryParam;            
             MaxRecordsParam = DefaultMaxRecordsParam;
         }
     }

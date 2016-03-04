@@ -1,4 +1,4 @@
-﻿using AppStudio.DataProviders.YouTube;
+﻿using AppStudio.DataProviders.Facebook;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,9 +8,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    public sealed partial class YouTubeSample : Page
+    public sealed partial class FacebookSample : Page
     {
-        public YouTubeSample()
+        public FacebookSample()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -23,7 +23,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(YouTubeSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(FacebookSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {           
@@ -32,20 +32,21 @@ namespace AppStudio.Uwp.Samples
 
         public async void GetItems()
         {
-            string apiKey = "YourApiKey";
-            string queryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
-            YouTubeQueryType queryType = YouTubeQueryType.Playlist;
-            int maxRecordsParam = 20;
+            string appId = "";   
+            string appSecret = "";
+            string FacebookQueryParam = "";
+            int MaxRecordsParam = 20;
 
-            this.Items = new ObservableCollection<object>();
-            var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
-            var config = new YouTubeDataConfig
+            Items.Clear();
+
+            var facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = appId, AppSecret = appSecret });
+            var config = new FacebookDataConfig
             {
-                Query = queryParam,
-                QueryType = queryType
-            };
+                UserId = FacebookQueryParam
+            };          
 
-            var items = await _youTubeDataProvider.LoadDataAsync(config, maxRecordsParam);
+            var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);         
+
             foreach (var item in items)
             {
                 Items.Add(item);
