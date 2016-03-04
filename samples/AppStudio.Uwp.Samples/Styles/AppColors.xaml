@@ -5,8 +5,9 @@
         <ResourceDictionary x:Key="Default">
             <Color x:Key="AppForegroundColor">#333</Color>
             <Color x:Key="AppBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="AppHighlightForegroundColor">#0078D7</Color>
 
-            <Color x:Key="AppBarForegroundColor">#CCC</Color>
+            <Color x:Key="AppBarForegroundColor">#FFFFFF</Color>
             <Color x:Key="AppBarBackgroundColor">#333</Color>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

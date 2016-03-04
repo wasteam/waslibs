@@ -101,12 +101,15 @@
     <Content Include="Assets\Images\InstagramIcon.png" />
     <Content Include="Assets\Images\YouTubePlay.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.html" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\Bing\Docs\BingHelp.html" />
     <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
@@ -142,12 +145,23 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml.cs">
+      <DependentUpon>ActionsCommandBarPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarCSharp.cs" />
     <Compile Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml.cs">
       <DependentUpon>AnimationExtensionsPage.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsCSharp.cs" />
     <Compile Include="Pages\Converters\ConvertersPage.xaml.cs">
       <DependentUpon>ConvertersPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Bing\Docs\BingCSharp.cs" />
+    <Compile Include="Pages\Bing\BingPage.xaml.cs">
+      <DependentUpon>BingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bing\BingSettings.xaml.cs">
+      <DependentUpon>BingSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
       <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
@@ -256,6 +270,7 @@
     <Content Include="Pages\Rss\Docs\RssHelp.html" />
     <Content Include="Pages\Twitter\Docs\TwitterHelp.html" />
     <Content Include="Pages\Flickr\Docs\FlickrHelp.html" />
+    <Content Include="Pages\Facebook\Docs\FacebookHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
@@ -287,6 +302,13 @@
     </Compile>
     <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
       <DependentUpon>WordPressSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Facebook\Docs\FacebookCSharp.cs" />
+    <Compile Include="Pages\Facebook\FacebookPage.xaml.cs">
+      <DependentUpon>FacebookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Facebook\FacebookSettings.xaml.cs">
+      <DependentUpon>FacebookSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -342,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -383,6 +409,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -462,6 +496,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Facebook\FacebookPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Facebook\FacebookSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\YouTube\YouTubePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -477,6 +519,11 @@
     <Page Include="Pages\RelativeBox\RelativeBoxSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\AppBarButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\AppColors.xaml">
       <SubType>Designer</SubType>

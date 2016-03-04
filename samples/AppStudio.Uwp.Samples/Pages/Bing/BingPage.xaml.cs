@@ -7,17 +7,18 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 using AppStudio.Uwp.Commands;
-using AppStudio.DataProviders.Rss;
+using AppStudio.DataProviders.Bing;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Rss")]
-    public sealed partial class RssPage : SamplePage
+    [SamplePage(Category = "DataProviders", Name = "Bing")]
+    public sealed partial class BingPage : SamplePage
     {
-        private const int DefaultMaxRecordsParam = 10;
-        private const string DefaultRssQuery = "http://www.blogger.com/feeds/6781693/posts/default";//http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx
+        private const BingCountry DefaultBingCountry = BingCountry.UnitedStates;
+        private const int DefaultMaxRecordsParam = 20;
+        private const string DefaultBingQueryParam = "Windows App Studio";
 
-        public RssPage()
+        public BingPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -25,7 +26,7 @@ namespace AppStudio.Uwp.Samples
 
         public override string Caption
         {
-            get { return "Rss Data Provider"; }
+            get { return "Bing Data Provider"; }
         }
 
         #region DataProvider Config    
@@ -35,16 +36,26 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(RssPage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(BingPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
 
-        public string RssQuery
+        public string BingQueryParam
         {
-            get { return (string)GetValue(RssQueryProperty); }
-            set { SetValue(RssQueryProperty, value); }
+            get { return (string)GetValue(BingQueryParamProperty); }
+            set { SetValue(BingQueryParamProperty, value); }
         }
 
-        public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register("RssQuery", typeof(string), typeof(RssPage), new PropertyMetadata(DefaultRssQuery));
+        public static readonly DependencyProperty BingQueryParamProperty = DependencyProperty.Register("BingQueryParam", typeof(string), typeof(BingPage), new PropertyMetadata(DefaultBingQueryParam));
+
+
+
+        public BingCountry BingCountrySelectedItem
+        {
+            get { return (BingCountry)GetValue(BingCountrySelectedItemProperty); }
+            set { SetValue(BingCountrySelectedItemProperty, value); }
+        }
+
+        public static readonly DependencyProperty BingCountrySelectedItemProperty = DependencyProperty.Register("BingCountrySelectedItem", typeof(BingCountry), typeof(BingPage), new PropertyMetadata(DefaultBingCountry));
 
         #endregion
 
@@ -55,7 +66,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(BingPage), new PropertyMetadata(null));
         #endregion      
 
         #region DataProviderRawData
@@ -65,7 +76,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(BingPage), new PropertyMetadata(string.Empty));
         #endregion
 
         #region HasErrors
@@ -74,7 +85,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -83,7 +94,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -92,7 +103,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
 
         #endregion
 
@@ -132,7 +143,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnSettings()
         {
-            AppShell.Current.Shell.ShowRightPane(new RssSettings() { DataContext = this });
+            AppShell.Current.Shell.ShowRightPane(new BingSettings() { DataContext = this });
         }
 
         private async void Request()
@@ -144,21 +155,21 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                var rssDataProvider = new RssDataProvider();
-                var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
+                var bingDataProvider = new BingDataProvider();
+                var config = new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem };
 
                 var rawParser = new RawParser();
-                var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                var rawData = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                var items = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 
                 foreach (var item in items)
                 {
                     Items.Add(item);
-                }              
+                }
             }
             catch (Exception ex)
             {
@@ -174,7 +185,8 @@ namespace AppStudio.Uwp.Samples
 
         private void RestoreConfig()
         {
-            RssQuery = DefaultRssQuery;
+            BingQueryParam = DefaultBingQueryParam;
+            BingCountrySelectedItem = DefaultBingCountry;
             MaxRecordsParam = DefaultMaxRecordsParam;
         }
     }
