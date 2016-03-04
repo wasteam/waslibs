@@ -17,7 +17,7 @@
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
-                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="200" DesiredWidth="500">
+                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="150" DesiredWidth="500">
                         <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="8">
@@ -29,7 +29,7 @@
                                     <TextBlock Grid.Row="0" Style="{StaticResource LayoutTitleStyle}" Text="{Binding Title}" MaxLines="2"/>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                                         <Image Source="ms-appx:///Assets/Images/BingIcon.png" Width="20" Margin="6" VerticalAlignment="Center"/>
-                                        <TextBlock Style="{StaticResource LayoutSubtitleStyle}" Text="{Binding Link}" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="2" TextTrimming="WordEllipsis" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                                        <TextBlock Style="{StaticResource LayoutHighlightStyle}" Text="{Binding Link}" MaxLines="2" TextTrimming="WordEllipsis" Margin="12,0,0,0" VerticalAlignment="Center"/>
                                     </StackPanel>
                                     <TextBlock Grid.Row="2" Style="{StaticResource LayoutSubtitleStyle}" Text="{Binding Summary}"/>
                                 </Grid>

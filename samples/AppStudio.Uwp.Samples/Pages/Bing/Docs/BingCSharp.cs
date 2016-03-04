@@ -33,13 +33,16 @@ namespace AppStudio.Uwp.Samples
 
         public async void GetItems()
         {           
-            string rssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
+            string bingQueryParam = "Windows App Studio";
+            BingCountry bingCountrySelectedItem = BingCountry.UnitedStates;
             int maxRecordsParam = 20;
+          
+            Items.Clear();
+            var bingDataProvider = new BingDataProvider();
+            var config = new BingDataConfig() { Query = bingQueryParam, Country = bingCountrySelectedItem };
 
-            var rssDataProvider = new BingDataProvider();
-            var config = new BingDataConfig { Url = new Uri(rssQuery, UriKind.Absolute) };        
+            var items = await bingDataProvider.LoadDataAsync(config, maxRecordsParam);          
 
-            var items = await rssDataProvider.LoadDataAsync(config, maxRecordsParam);          
             foreach (var item in items)
             {
                 Items.Add(item);
