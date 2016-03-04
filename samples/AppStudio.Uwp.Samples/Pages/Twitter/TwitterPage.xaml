@@ -11,6 +11,7 @@
 
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:StringToSizeConverter x:Key="StringToSizeConverter"/>
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
@@ -26,17 +27,15 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                        <Ellipse x:Name="image" Width="80" Height="80">
-                                            <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding UserProfileImageUrl}" Stretch="UniformToFill"/>
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                        <StackPanel Margin="10,8,10,8">
-                                            <TextBlock x:Name="titleText" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding UserName}" MaxLines="2" TextWrapping="Wrap"/>
-                                            <TextBlock Text="{Binding CreationDateTime}" MaxLines="1" Foreground="{ThemeResource SystemColorHighlightColor}"/>
+                                        <Grid MaxHeight="{Binding UserProfileImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="60" Width="60" Margin="0,0,20,10">
+                                            <Image Source="{Binding UserProfileImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <StackPanel>
+                                            <TextBlock x:Name="titleText" Style="{StaticResource LayoutTitleStyle}" Text="{Binding UserName}" MaxLines="2"/>
+                                            <TextBlock Text="{Binding CreationDateTime}" MaxLines="1" Style="{StaticResource LayoutHighlightStyle}"/>
                                         </StackPanel>
                                     </StackPanel>
-                                    <TextBlock Grid.Row="1" Text="{Binding Text}" TextTrimming="CharacterEllipsis" FontSize="16" FontWeight="Light" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Text}" Style="{StaticResource LayoutSubtitleStyle}" />
                                 </Grid>
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
