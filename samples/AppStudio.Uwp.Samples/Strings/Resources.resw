@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionsCommandBarDescription.Text" xml:space="preserve">
+    <value>Bind ActionsCommandBar to List&lt;ActionInfo&gt; to read AppBarButtons from C# or add them into Xaml Code.</value>
+  </data>
+  <data name="ActionsCommandBarTitle.Text" xml:space="preserve">
+    <value>Add AppBarButtons from XAML, Add AppBarButtons from C#.</value>
+  </data>
   <data name="AnimationExtensionsDescription.Text" xml:space="preserve">
     <value>Animations invoked from C# using ExtensionMethods</value>
   </data>
