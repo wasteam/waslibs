@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
@@ -87,6 +86,17 @@ namespace AppStudio.Uwp.Controls
 
         public static readonly DependencyProperty RightPaneWidthProperty = DependencyProperty.Register("RightPaneWidth", typeof(double), typeof(ShellControl), new PropertyMetadata(360.0, RightPaneWidthChanged));
         #endregion
+
+        public void OpenLeftPane()
+        {
+            _splitView.OpenPaneLength = this.ActualWidth > 640 ? 360 : 320;
+            _splitView.IsPaneOpen = true;
+        }
+
+        public void CloseLeftPane()
+        {
+            _splitView.IsPaneOpen = false;
+        }
 
         public void ShowTopPane(Control content)
         {
