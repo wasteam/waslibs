@@ -67,7 +67,7 @@ namespace AppStudio.Uwp.Controls
                 _container.Visibility = Visibility.Visible;
                 _content.Visibility = Visibility.Visible;
                 _lviewSub.Visibility = Visibility.Collapsed;
-                _splitView.IsPaneOpen = true;
+                OpenLeftPane();
             }
         }
 
@@ -101,7 +101,7 @@ namespace AppStudio.Uwp.Controls
                 _content.Visibility = Visibility.Collapsed;
                 _lviewSub.Visibility = Visibility.Visible;
                 _lviewSub.ItemsSource = navItem.SubItems;
-                _splitView.IsPaneOpen = true;
+                OpenLeftPane();
             }
         }
 

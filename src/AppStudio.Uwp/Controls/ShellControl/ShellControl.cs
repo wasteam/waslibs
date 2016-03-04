@@ -108,7 +108,14 @@ namespace AppStudio.Uwp.Controls
 
         private void OnToggleClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            _splitView.IsPaneOpen = !_splitView.IsPaneOpen;
+            if (_splitView.IsPaneOpen)
+            {
+                CloseLeftPane();
+            }
+            else
+            {
+                OpenLeftPane();
+            }
             if (_splitView.IsPaneOpen)
             {
                 _lview.Width = _splitView.OpenPaneLength;
@@ -140,7 +147,7 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            _splitView.OpenPaneLength = e.NewSize.Width > 640 ? 360 : 320;
+            //_splitView.OpenPaneLength = e.NewSize.Width > 640 ? 360 : 320;
         }
     }
 }
