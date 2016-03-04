@@ -4,6 +4,7 @@
     
     <SolidColorBrush x:Key="AppForeground" Color="{StaticResource AppForegroundColor}"/>
     <SolidColorBrush x:Key="AppBackground" Color="{StaticResource AppBackgroundColor}"/>
+    <SolidColorBrush x:Key="AppHighlightForeground" Color="{StaticResource AppHighlightForegroundColor}"/>
 
     <SolidColorBrush x:Key="AppBarForeground" Color="{StaticResource AppBarForegroundColor}"/>
     <SolidColorBrush x:Key="AppBarBackground" Color="{StaticResource AppBarBackgroundColor}"/>
@@ -26,11 +27,16 @@
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
     <Style x:Key="LayoutTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
     <Style x:Key="LayoutSubtitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+    <Style x:Key="LayoutHighlightStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource AppHighlightForeground}"/>
     </Style>
 </ResourceDictionary>

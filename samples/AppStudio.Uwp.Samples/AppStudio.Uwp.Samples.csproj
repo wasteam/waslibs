@@ -102,6 +102,7 @@
     <Content Include="Assets\Images\YouTubePlay.png" />
     <Content Include="Assets\VBPDevices.json" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.html" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersHelp.html" />
