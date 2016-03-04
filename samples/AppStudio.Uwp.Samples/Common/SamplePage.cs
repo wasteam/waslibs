@@ -121,9 +121,17 @@ namespace AppStudio.Uwp.Samples
         }
         protected virtual async void OnHelp()
         {
-            var control = new PrettifyControl();
-            AppShell.Current.Shell.ShowTopPane(control);
-            control.HtmlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Help.html"));
+            string typeName = $"AppStudio.Uwp.Samples.{SampleName}Help";
+            if (IsTypePresent(typeName))
+            {
+                AppShell.Current.Shell.ShowTopPane(Activator.CreateInstance(Type.GetType(typeName)) as Control);
+            }
+            else
+            {
+                var control = new PrettifyControl();
+                AppShell.Current.Shell.ShowTopPane(control);
+                control.HtmlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Help.html"));
+            }
         }
 
         private void OnSettingsButton(object sender, RoutedEventArgs e)

@@ -148,6 +148,9 @@
     <Compile Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml.cs">
       <DependentUpon>ActionsCommandBarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Prototype\Docs\PrototypeHelp.xaml.cs">
+      <DependentUpon>PrototypeHelp.xaml</DependentUpon>
+    </Compile>
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarCSharp.cs" />
     <Compile Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml.cs">
       <DependentUpon>AnimationExtensionsPage.xaml</DependentUpon>
@@ -517,6 +520,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RelativeBox\RelativeBoxSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Prototype\Docs\PrototypeHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
