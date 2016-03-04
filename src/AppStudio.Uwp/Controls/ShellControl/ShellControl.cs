@@ -136,14 +136,11 @@ namespace AppStudio.Uwp.Controls
             _currentItem = null;
             _content.Children.Clear();
             _container.Visibility = Visibility.Collapsed;
-            this.DisplayMode = this.ActualWidth > 640 ? SplitViewDisplayMode.CompactOverlay : SplitViewDisplayMode.Overlay;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             _splitView.OpenPaneLength = e.NewSize.Width > 640 ? 360 : 320;
-            this.DisplayMode = e.NewSize.Width > 640 ? SplitViewDisplayMode.CompactOverlay : SplitViewDisplayMode.Overlay;
-            this.CommandBarAlignment = e.NewSize.Width > 640 ? CommandBarAlignment.Top : CommandBarAlignment.Bottom;
         }
     }
 }

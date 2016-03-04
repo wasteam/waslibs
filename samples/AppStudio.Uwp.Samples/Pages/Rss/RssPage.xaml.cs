@@ -1,18 +1,20 @@
-﻿using AppStudio.DataProviders.Rss;
-using AppStudio.Uwp.Commands;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders.Rss;
 
 namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "DataProviders", Name = "Rss")]
     public sealed partial class RssPage : SamplePage
     {
-        private const int DefaultMaxRecordsParam = 20;
+        private const int DefaultMaxRecordsParam = 10;
         private const string DefaultRssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
 
         public RssPage()
@@ -56,7 +58,7 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
         #endregion      
 
-        #region RawData
+        #region DataProviderRawData
         public string DataProviderRawData
         {
             get { return (string)GetValue(DataProviderRawDataProperty); }

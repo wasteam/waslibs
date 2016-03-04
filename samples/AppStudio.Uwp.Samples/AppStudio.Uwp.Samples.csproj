@@ -91,6 +91,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\Html\Json.html" />
+    <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Icons\Json.png" />
     <Content Include="Assets\Icons\Misc.png" />
     <Content Include="Assets\Icons\Pivorama.png" />
@@ -118,17 +119,20 @@
     <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\DocumentControl.cs" />
     <Compile Include="Common\Providers\RawParser.cs" />
     <Compile Include="Common\Providers\RawSchema.cs" />
     <Compile Include="Common\SamplePage.cs" />
     <Compile Include="Common\SamplePageAttribute.cs" />
+    <Compile Include="Controls\PrettifyControl.cs" />
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\DevicesDataSource.cs" />
@@ -276,6 +280,9 @@
     <Compile Include="Pages\Flickr\FlickrSettings.xaml.cs">
       <DependentUpon>FlickrSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
+      <DependentUpon>WordPressSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
     </Compile>
@@ -318,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -475,6 +486,10 @@
     <Page Include="Pages\VirtualBox\VirtualBoxSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

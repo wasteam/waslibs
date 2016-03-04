@@ -7,7 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
-using Windows.ApplicationModel.Resources;
+using Windows.Storage;
+
 using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
@@ -120,9 +121,9 @@ namespace AppStudio.Uwp.Samples
         }
         protected virtual async void OnHelp()
         {
-            var control = new DocumentControl();
+            var control = new PrettifyControl();
             AppShell.Current.Shell.ShowTopPane(control);
-            await control.ShowHelp(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Help.html"));
+            control.HtmlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Help.html"));
         }
 
         private void OnSettingsButton(object sender, RoutedEventArgs e)
@@ -163,11 +164,9 @@ namespace AppStudio.Uwp.Samples
         {
             await this.Content.FadeOutAsync(100);
 
-            var control = new DocumentControl { Opacity = 0.0 };
-            await control.ShowCSharp(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}CSharp.cs"));
-
+            var control = new PrettifyControl();
+            control.CSharpSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}CSharp.cs"));
             this.Content = control;
-            control.FadeIn(100);
         }
 
         private void OnXamlCodeButton(object sender, RoutedEventArgs e)
@@ -193,11 +192,9 @@ namespace AppStudio.Uwp.Samples
         {
             await this.Content.FadeOutAsync(100);
 
-            var control = new DocumentControl { Opacity = 0.0 };
-            await control.ShowXaml(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Xaml.xml"));
-
+            var control = new PrettifyControl();
+            control.XamlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Xaml.xml"));
             this.Content = control;
-            control.FadeIn(100);
         }
 
         private void OnJsonButton(object sender, RoutedEventArgs e)
@@ -223,11 +220,9 @@ namespace AppStudio.Uwp.Samples
         {
             await this.Content.FadeOutAsync(100);
 
-            var control = new DocumentControl { Opacity = 0.0 };
-            await control.ShowJson(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Json.json"));
-
+            var control = new PrettifyControl();
+            control.JsonSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Json.json"));
             this.Content = control;
-            control.FadeIn(100);
         }
 
         #region AppBarButton Helpers
@@ -300,6 +295,14 @@ namespace AppStudio.Uwp.Samples
             var InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             var docsFolder = await InstallationFolder.GetFolderAsync(path);
             return await docsFolder.TryGetItemAsync(fileName) != null;
+        }
+        #endregion
+
+        #region ReadContent
+        private async Task<string> ReadContent(Uri uri)
+        {
+            var docFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            return await docFile.ReadTextAsync();
         }
         #endregion
 
