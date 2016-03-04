@@ -14,7 +14,6 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
-        <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
@@ -41,14 +40,13 @@
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
                     </controls:ResponsiveGridView>
+                    <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
                     <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="DataProviderRawData">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
-                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderRawData, Mode=OneWay}"/>
-                </ScrollViewer>
+                <local:PrettifyControl JsonSource="{Binding DataProviderRawData}" />
             </PivotItem>
         </Pivot>
     </Grid>
