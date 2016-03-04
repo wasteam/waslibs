@@ -107,6 +107,7 @@
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\Bing\Docs\BingHelp.html" />
     <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
@@ -148,6 +149,13 @@
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsCSharp.cs" />
     <Compile Include="Pages\Converters\ConvertersPage.xaml.cs">
       <DependentUpon>ConvertersPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Bing\Docs\BingCSharp.cs" />
+    <Compile Include="Pages\Bing\BingPage.xaml.cs">
+      <DependentUpon>BingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bing\BingSettings.xaml.cs">
+      <DependentUpon>BingSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
       <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
@@ -391,6 +399,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
