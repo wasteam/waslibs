@@ -11,6 +11,7 @@
 
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:StringToSizeConverter x:Key="StringToSizeConverter"/>
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
@@ -28,14 +29,13 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid>
+                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="120" Margin="0,0,0,6">
                                         <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
-                                    <Grid Grid.Row="1" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Grid.Row="2" Text="{Binding Title}" TextTrimming="CharacterEllipsis" FontSize="18" TextWrapping="Wrap"/>
-                                    <TextBlock Grid.Row="3" Text="{Binding Summary}" TextTrimming="CharacterEllipsis" FontSize="16" FontWeight="Light" TextWrapping="Wrap"/>
-                                    <TextBlock Grid.Row="4" Text="{Binding Published}" Foreground="{ThemeResource SystemColorHighlightColor}" MaxLines="1" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
-
+                                    <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}"/>
+                                    <TextBlock Grid.Row="2" Text="{Binding Summary}" Style="{StaticResource LayoutSubtitleStyle}"/>
+                                    <Grid Grid.Row="3" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock Grid.Row="4" Text="{Binding PublishDate}" Style="{StaticResource LayoutHighlightStyle}"/>
                                 </Grid>
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
