@@ -101,6 +101,7 @@
     <Content Include="Assets\Images\InstagramIcon.png" />
     <Content Include="Assets\Images\YouTubePlay.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
@@ -141,6 +142,10 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml.cs">
+      <DependentUpon>AnimationExtensionsPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsCSharp.cs" />
     <Compile Include="Pages\Converters\ConvertersPage.xaml.cs">
       <DependentUpon>ConvertersPage.xaml</DependentUpon>
     </Compile>
@@ -325,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
