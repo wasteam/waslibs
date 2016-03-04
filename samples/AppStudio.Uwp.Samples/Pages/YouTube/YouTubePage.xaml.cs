@@ -13,8 +13,8 @@ namespace AppStudio.Uwp.Samples
     public sealed partial class YouTubePage : SamplePage
     {
         private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
-        private const string DefaultYouTubeQueryParam = @"MicrosoftLumia";
-        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Channels;
+        private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
+        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
         private const int DefaultMaxRecordsParam = 20;
 
         public YouTubePage()

@@ -33,8 +33,8 @@ namespace AppStudio.Uwp.Samples
         public async void GetItems()
         {
             string apiKey = "YourApiKey";
-            string queryParam = @"MicrosoftLumia";
-            YouTubeQueryType queryType = YouTubeQueryType.Channels;
+            string queryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
+            YouTubeQueryType queryType = YouTubeQueryType.Playlist;
             int maxRecordsParam = 20;
 
             this.Items = new ObservableCollection<object>();
