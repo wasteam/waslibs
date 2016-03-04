@@ -46,9 +46,7 @@
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="DataProviderRawData">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" ZoomMode="Disabled">
-                    <TextBlock FontFamily="Consolas" TextWrapping="Wrap" Text="{Binding DataProviderRawData, Mode=OneWay}"/>
-                </ScrollViewer>
+                <local:PrettifyControl JsonSource="{Binding DataProviderRawData}" />
             </PivotItem>
         </Pivot>
     </Grid>

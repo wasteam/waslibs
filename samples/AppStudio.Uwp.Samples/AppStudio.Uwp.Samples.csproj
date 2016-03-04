@@ -91,6 +91,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\Html\Json.html" />
+    <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Icons\Json.png" />
     <Content Include="Assets\Icons\Misc.png" />
     <Content Include="Assets\Icons\Pivorama.png" />
@@ -127,11 +128,11 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\DocumentControl.cs" />
     <Compile Include="Common\Providers\RawParser.cs" />
     <Compile Include="Common\Providers\RawSchema.cs" />
     <Compile Include="Common\SamplePage.cs" />
     <Compile Include="Common\SamplePageAttribute.cs" />
+    <Compile Include="Controls\PrettifyControl.cs" />
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\DevicesDataSource.cs" />
@@ -269,6 +270,9 @@
     </Compile>
     <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
       <DependentUpon>WordPressPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
+      <DependentUpon>WordPressSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -465,6 +469,10 @@
     <Page Include="Pages\VirtualBox\VirtualBoxSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
