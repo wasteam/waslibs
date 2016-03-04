@@ -9,6 +9,17 @@
                 <ControlTemplate TargetType="controls:PropertySet">
                     <StackPanel>
                         <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Property}" FontWeight="Normal" />
+                        <ComboBox Name="colors" ItemsSource="{TemplateBinding ComboItems}" SelectedValue="{Binding Value, Mode=TwoWay}" SelectedValuePath="Value"
+                                  HorizontalAlignment="Stretch" Visibility="Collapsed">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="{Binding Value}" Width="40" Height="20" BorderBrush="Black" BorderThickness="1" />
+                                        <TextBlock Margin="12,0,0,0" Text="{Binding Key}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <ComboBox Name="combo" ItemsSource="{TemplateBinding ComboItems}" SelectedValue="{Binding Value, Mode=TwoWay}" SelectedValuePath="Value"
                                   HorizontalAlignment="Stretch" Visibility="Collapsed">
                             <ComboBox.ItemTemplate>

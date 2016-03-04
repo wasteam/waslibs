@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Reflection;
+
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -11,6 +12,7 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed class PropertySet : Control
     {
+        private ComboBox _colors = null;
         private ComboBox _combo = null;
         private Slider _slider = null;
         private ToggleSwitch _toggle = null;
@@ -102,7 +104,6 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ToggleOffContentProperty = DependencyProperty.Register("ToggleOffContent", typeof(object), typeof(PropertySet), new PropertyMetadata(null));
         #endregion
 
-
         #region ComboItems
         public IEnumerable<KeyValuePair<string, object>> ComboItems
         {
@@ -113,17 +114,13 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ComboItemsProperty = DependencyProperty.Register("ComboItems", typeof(IEnumerable<KeyValuePair<string, object>>), typeof(PropertySet), new PropertyMetadata(null));
         #endregion
 
-
         protected override void OnApplyTemplate()
         {
+            _colors = base.GetTemplateChild("colors") as ComboBox;
             _combo = base.GetTemplateChild("combo") as ComboBox;
-            _combo.DataContext = this;
             _slider = base.GetTemplateChild("slider") as Slider;
-            _slider.DataContext = this;
             _toggle = base.GetTemplateChild("toggle") as ToggleSwitch;
-            _toggle.DataContext = this;
             _textBox = base.GetTemplateChild("textBox") as TextBox;
-            _textBox.DataContext = this;
 
             _isInitialized = true;
 
@@ -150,17 +147,21 @@ namespace AppStudio.Uwp.Controls
 
                     if (type.IsAssignableFrom(typeof(Brush)))
                     {
-                        _combo.Visibility = Visibility.Visible;
+                        _colors.Visibility = Visibility.Visible;
                         this.ComboItems = GetBrushItems(type);
+                        _colors.DataContext = this;
+                        _colors.SelectedIndex = GetColorIndex(this.Value as SolidColorBrush);
                     }
                     else if (type.GetTypeInfo().IsEnum)
                     {
                         _combo.Visibility = Visibility.Visible;
                         this.ComboItems = GetEnumItems(type);
+                        _combo.DataContext = this;
                     }
                     else if (type == typeof(int) || type == typeof(double))
                     {
                         _slider.Visibility = Visibility.Visible;
+                        _slider.DataContext = this;
                     }
                     else if (type == typeof(bool))
                     {
@@ -173,18 +174,15 @@ namespace AppStudio.Uwp.Controls
                             _toggle.OffContent = ToggleOffContent;
                         }
                         _toggle.Visibility = Visibility.Visible;
+                        _toggle.DataContext = this;
                     }
                     else if (type == typeof(string))
                     {
                         _textBox.Visibility = Visibility.Visible;
+                        _textBox.DataContext = this;
                     }
                 }
             }
-        }
-
-        private IEnumerable<KeyValuePair<string, object>> GetBrushItems(Type type)
-        {
-            return typeof(Colors).GetRuntimeProperties().Select(r => new KeyValuePair<string, object>(Name = r.Name, new SolidColorBrush((Color)r.GetValue(null))));
         }
 
         private IEnumerable<KeyValuePair<string, object>> GetEnumItems(Type type)
@@ -193,6 +191,20 @@ namespace AppStudio.Uwp.Controls
             {
                 yield return new KeyValuePair<string, object>(name, Enum.Parse(type, name));
             }
+        }
+
+        private IEnumerable<KeyValuePair<string, object>> GetBrushItems(Type type)
+        {
+            return typeof(Colors).GetRuntimeProperties().Select(r => new KeyValuePair<string, object>(Name = r.Name, new SolidColorBrush((Color)r.GetValue(null))));
+        }
+
+        private int GetColorIndex(SolidColorBrush brush)
+        {
+            if (brush != null)
+            {
+                return new List<Color>(typeof(Colors).GetRuntimeProperties().Select(r => r.GetValue(null)).Cast<Color>()).IndexOf(brush.Color);
+            }
+            return -1;
         }
     }
 }
