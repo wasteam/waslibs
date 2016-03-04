@@ -33,5 +33,4 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
-    
 </ResourceDictionary>
