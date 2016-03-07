@@ -110,6 +110,7 @@
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\Bing\Docs\BingHelp.html" />
+    <Content Include="Pages\LocalStorage\Docs\LocalStorageHelp.html" />
     <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
@@ -119,6 +120,7 @@
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
+    <Content Include="Assets\LocalStorageSamples.json" />
     <None Include="project.json" />
     <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
@@ -148,6 +150,7 @@
     <Compile Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml.cs">
       <DependentUpon>ActionsCommandBarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageDataSchema.cs" />
     <Compile Include="Pages\Prototype\Docs\PrototypeHelp.xaml.cs">
       <DependentUpon>PrototypeHelp.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,13 @@
     </Compile>
     <Compile Include="Pages\Bing\BingSettings.xaml.cs">
       <DependentUpon>BingSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\LocalStorage\LocalStoragePage.xaml.cs">
+      <DependentUpon>LocalStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageSettings.xaml.cs">
+      <DependentUpon>LocalStorageSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
       <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
@@ -420,6 +430,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Bing\BingSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStoragePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStorageSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
