@@ -15,7 +15,7 @@ namespace AppStudio.Uwp.Samples
     public sealed partial class RssPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;
-        private const string DefaultRssQuery = "http://www.blogger.com/feeds/6781693/posts/default";//http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx
+        private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
 
         public RssPage()
         {

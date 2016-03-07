@@ -23,19 +23,24 @@
                             <DataTemplate>
                                 <Grid Margin="8">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="120"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="140"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="120" Margin="0,0,0,6">
+                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="140" Margin="0,0,0,6">
                                         <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
-                                    <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}"/>
-                                    <TextBlock Grid.Row="2" Text="{Binding Summary}" Style="{StaticResource LayoutSubtitleStyle}"/>
-                                    <Grid Grid.Row="3" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Grid.Row="4" Text="{Binding PublishDate}" Style="{StaticResource LayoutHighlightStyle}"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" VerticalAlignment="Top"/>
+                                    <Grid Grid.Row="2" Height="1" Margin="0,0,0,4" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <Grid Grid.Row="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="ms-appx:///Assets/Images/FacebookIcon.png" Width="20" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Author}" Style="{StaticResource LayoutHighlightStyle}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                    </Grid>
                                 </Grid>
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
