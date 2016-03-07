@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap">
+            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                 <Paragraph>
                     <Run FontSize="32" Text="Prototype Help" />
                 </Paragraph>

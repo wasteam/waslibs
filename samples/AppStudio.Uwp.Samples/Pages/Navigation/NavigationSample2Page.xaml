@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="AppStudio.Uwp.Samples.NavigationSample2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples.Pages.Navigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource AppBackground}">
+        <ScrollViewer>
+            <StackPanel Margin="12">
+                <TextBlock x:Uid="NavigationSampleText12" Style="{StaticResource TitleStyle}" />
+                <TextBlock x:Uid="NavigationSampleText13" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
+                <TextBlock x:Uid="NavigationSampleText14" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
+                <TextBlock x:Uid="NavigationSampleText15" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
+                <Button x:Uid="NavigationSampleButton2" Command="{Binding GoBackCommand}" Margin="0,24,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

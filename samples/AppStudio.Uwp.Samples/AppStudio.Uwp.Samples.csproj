@@ -102,20 +102,11 @@
     <Content Include="Assets\Images\YouTubePlay.png" />
     <Content Include="Assets\VBPDevices.json" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
-    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.html" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
-    <Content Include="Pages\AppCache\Docs\AppCacheHelp.html" />
-    <Content Include="Pages\Converters\Docs\ConvertersHelp.html" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
-    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.html" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
-    <Content Include="Pages\Bing\Docs\BingHelp.html" />
-    <Content Include="Pages\WordPress\Docs\WordPressHelp.html" />
-    <Content Include="Pages\SplitterCard\Docs\SplitterCardHelp.html" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
-    <Content Include="Pages\RelativeBox\Docs\RelativeBoxHelp.html" />
-    <Content Include="Pages\VirtualBox\Docs\VirtualBoxHelp.html" />
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
@@ -148,6 +139,49 @@
     <Compile Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml.cs">
       <DependentUpon>ActionsCommandBarPage.xaml</DependentUpon>
     </Compile>
+    <Content Include="Pages\Navigation\Docs\NavigationCSharp.cs" />
+    <Compile Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.xaml.cs">
+      <DependentUpon>ActionsCommandBarHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AnimationExtensions\Docs\AnimationExtensionsHelp.xaml.cs">
+      <DependentUpon>AnimationExtensionsHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppCache\Docs\AppCacheHelp.xaml.cs">
+      <DependentUpon>AppCacheHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bing\Docs\BingHelp.xaml.cs">
+      <DependentUpon>BingHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Carousel\Docs\CarouselHelp.xaml.cs">
+      <DependentUpon>CarouselHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Converters\Docs\ConvertersHelp.xaml.cs">
+      <DependentUpon>ConvertersHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.xaml.cs">
+      <DependentUpon>ErrorNotificationControlHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Facebook\Docs\FacebookHelp.xaml.cs">
+      <DependentUpon>FacebookHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Flickr\Docs\FlickrHelp.xaml.cs">
+      <DependentUpon>FlickrHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\Docs\NavigationHelp.xaml.cs">
+      <DependentUpon>NavigationHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationPage.xaml.cs">
+      <DependentUpon>NavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationSample1Page.xaml.cs">
+      <DependentUpon>NavigationSample1Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationSample2Page.xaml.cs">
+      <DependentUpon>NavigationSample2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pivorama\Docs\PivoramaHelp.xaml.cs">
+      <DependentUpon>PivoramaHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Prototype\Docs\PrototypeHelp.xaml.cs">
       <DependentUpon>PrototypeHelp.xaml</DependentUpon>
     </Compile>
@@ -165,6 +199,33 @@
     </Compile>
     <Compile Include="Pages\Bing\BingSettings.xaml.cs">
       <DependentUpon>BingSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\Docs\RelativeBoxHelp.xaml.cs">
+      <DependentUpon>RelativeBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
+      <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
+      <DependentUpon>RssHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml.cs">
+      <DependentUpon>SearchBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SectionList\Docs\SectionListHelp.xaml.cs">
+      <DependentUpon>SectionListHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml.cs">
+      <DependentUpon>SplitterCardHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twitter\Docs\TwitterHelp.xaml.cs">
+      <DependentUpon>TwitterHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.xaml.cs">
+      <DependentUpon>VariableSizedGridHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\Docs\VirtualBoxHelp.xaml.cs">
+      <DependentUpon>VirtualBoxHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
       <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
@@ -205,15 +266,11 @@
     <Content Include="Assets\Prettify\prettify.css" />
     <Content Include="Assets\Prettify\prettify.js" />
     <Content Include="Assets\Prettify\run_prettify.js" />
-    <Content Include="Pages\Carousel\Docs\CarouselHelp.html" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
     <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
     <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
-    <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.html" />
     <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
-    <Content Include="Pages\SearchBox\Docs\SearchBoxHelp.html" />
     <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
-    <Content Include="Pages\SectionList\Docs\SectionListHelp.html" />
     <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
     <Compile Include="Pages\AppCache\AppCachePage.xaml.cs">
       <DependentUpon>AppCachePage.xaml</DependentUpon>
@@ -268,13 +325,11 @@
     <Compile Include="Pages\VariableSizedGrid\VariableSizedGridSettings.xaml.cs">
       <DependentUpon>VariableSizedGridSettings.xaml</DependentUpon>
     </Compile>
-    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.html" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
-    <Content Include="Pages\Rss\Docs\RssHelp.html" />
-    <Content Include="Pages\Twitter\Docs\TwitterHelp.html" />
-    <Content Include="Pages\Flickr\Docs\FlickrHelp.html" />
-    <Content Include="Pages\Facebook\Docs\FacebookHelp.html" />
     <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
+    <Compile Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml.cs">
+      <DependentUpon>VisualBreakpointsHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
       <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
     </Compile>
@@ -293,6 +348,9 @@
       <DependentUpon>TwitterSettings.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
+    <Compile Include="Pages\WordPress\Docs\WordPressHelp.xaml.cs">
+      <DependentUpon>WordPressHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
       <DependentUpon>WordPressPage.xaml</DependentUpon>
     </Compile>
@@ -312,6 +370,9 @@
     </Compile>
     <Compile Include="Pages\Facebook\FacebookSettings.xaml.cs">
       <DependentUpon>FacebookSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YouTube\Docs\YouTubeHelp.xaml.cs">
+      <DependentUpon>YouTubeHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
       <DependentUpon>YouTubePage.xaml</DependentUpon>
@@ -338,9 +399,7 @@
     <Content Include="Assets\Html\Xaml.html" />
     <Content Include="Pages\Prototype\Docs\PrototypeXaml.xml" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridXaml.xml" />
-    <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.html" />
     <Content Include="Pages\Prototype\Docs\PrototypeHelp.html" />
-    <Content Include="Pages\YouTube\Docs\YouTubeHelp.html" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -371,11 +430,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\AnimationExtensions\Docs\AnimationExtensionsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\AppCache\AppCachePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AppCache\Docs\AppCacheHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\Docs\BingHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -387,7 +462,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Carousel\Docs\CarouselHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Converters\ConvertersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Converters\Docs\ConvertersHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -399,11 +486,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Facebook\Docs\FacebookHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\Docs\NavigationHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\NavigationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\NavigationSample1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Navigation\NavigationSample2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Pivorama\Docs\PivoramaHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Pivorama\PivoramaSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Pivorama\PivoramaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeBox\Docs\RelativeBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -420,6 +543,42 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Bing\BingSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\Docs\RssHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SectionList\Docs\SectionListHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\Docs\TwitterHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VirtualBox\Docs\VirtualBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\Docs\WordPressHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -504,6 +663,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Facebook\FacebookSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\YouTube\Docs\YouTubeHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

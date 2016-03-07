@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap">
+            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                 <Paragraph>
                     <Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci velit, dignissim nec sagittis a, bibendum vel justo. Duis vitae odio eu metus molestie placerat in quis nisl. Nunc eget leo et nisl scelerisque ultricies ac sit amet dui. In faucibus molestie ullamcorper. Ut libero nisl, placerat non volutpat a, lobortis et mauris. Donec egestas quam et quam pharetra bibendum congue turpis tempor. Morbi risus risus, lacinia sollicitudin ullamcorper in, sollicitudin eget purus. Morbi nec ligula est. Donec quis placerat velit. Etiam a eros elit. Proin libero lectus, suscipit id facilisis ut, faucibus vel dolor. Mauris laoreet ultrices arcu, et fermentum tortor tempus ut." />
                 </Paragraph>

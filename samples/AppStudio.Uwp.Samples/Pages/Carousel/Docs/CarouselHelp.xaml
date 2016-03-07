@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="AppStudio.Uwp.Samples.CarouselHelp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource AppBackground}">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+                <Paragraph>
+                    <Run FontSize="32" Text="Carousel Help" />
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Run Text="El carousel es un control que permite la visualización de elementos en un scroll horizontal. El carousel permite además fijar valores visuales como el aspect ratio, gradient opacity o el numero máximo de elementos."/>
+                </Paragraph>
+                <Paragraph />
+            </RichTextBlock>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

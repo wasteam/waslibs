@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="AppStudio.Uwp.Samples.ResponsiveGridViewHelp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource AppBackground}">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+                <Paragraph>
+                    <Run FontSize="32" Text="ResponsiveGridView Help" />
+                </Paragraph>
+                <Paragraph/>
+                <Paragraph>
+                    <Run Text="El ResponsiveGridView es un control que ajustar al ancho total de la pantalla los elementos de un GridView. La propiedad DesiredWidth marcará tamaño mínimo para que tienen que tener los elementos para que pueda entrar una nueva columna. El alto de los elementos será fijo y se indicará a través de la propiedad ItemsHeight."/>
+                </Paragraph>
+            </RichTextBlock>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -26,6 +26,12 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
+    <Style x:Key="ConsolasStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="Foreground" Value="{StaticResource AppHighlightForeground}"/>
+    </Style>
     <Style x:Key="LayoutTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextStyle}">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="SemiBold"/>

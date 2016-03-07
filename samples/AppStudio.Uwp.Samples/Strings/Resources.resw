@@ -204,6 +204,57 @@
   <data name="DataProvidersNoItems.Text" xml:space="preserve">
     <value>0 Items found. Try changing request configuration on Settings pane.</value>
   </data>
+  <data name="NavigationSampleButton1.Content" xml:space="preserve">
+    <value>Navigate</value>
+  </data>
+  <data name="NavigationSampleButton2.Content" xml:space="preserve">
+    <value>Click here to go back</value>
+  </data>
+  <data name="NavigationSampleText1.Text" xml:space="preserve">
+    <value>Manage page navigation with NavigationService</value>
+  </data>
+  <data name="NavigationSampleText10.Text" xml:space="preserve">
+    <value>Navigate to another page using a button.</value>
+  </data>
+  <data name="NavigationSampleText11.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample2Page");</value>
+  </data>
+  <data name="NavigationSampleText12.Text" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
+  <data name="NavigationSampleText13.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoBack()</value>
+  </data>
+  <data name="NavigationSampleText14.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoForward()</value>
+  </data>
+  <data name="NavigationSampleText15.Text" xml:space="preserve">
+    <value>NavigationService.GoBack();</value>
+  </data>
+  <data name="NavigationSampleText2.Text" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
+  <data name="NavigationSampleText3.Text" xml:space="preserve">
+    <value>Initialize NavigationService registering the Frame.</value>
+  </data>
+  <data name="NavigationSampleText4.Text" xml:space="preserve">
+    <value>NavigationService.Initialize(typeof(App), navigationSampleFrame);</value>
+  </data>
+  <data name="NavigationSampleText5.Text" xml:space="preserve">
+    <value>Step 2</value>
+  </data>
+  <data name="NavigationSampleText6.Text" xml:space="preserve">
+    <value>Navigate to your MainPage.</value>
+  </data>
+  <data name="NavigationSampleText7.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage(typeof(NavigationSample1Page));</value>
+  </data>
+  <data name="NavigationSampleText8.Text" xml:space="preserve">
+    <value>You can also navigate using the page name as string.</value>
+  </data>
+  <data name="NavigationSampleText9.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample1Page");</value>
+  </data>
   <data name="SearchBoxSearchingText.Text" xml:space="preserve">
     <value>Your are searching:</value>
   </data>
