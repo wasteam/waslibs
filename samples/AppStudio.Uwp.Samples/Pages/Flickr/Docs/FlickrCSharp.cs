@@ -32,9 +32,9 @@ namespace AppStudio.Uwp.Samples
 
         public async void GetItems()
         {
-            string flickrQueryParam = "Seatle";
+            string flickrQueryParam = "Abstract";
             FlickrQueryType queryType = FlickrQueryType.Tags;
-            int maxRecordsParam = 10;
+            int maxRecordsParam = 12;
             Items.Clear();
 
             var flickrDataProvider = new FlickrDataProvider();

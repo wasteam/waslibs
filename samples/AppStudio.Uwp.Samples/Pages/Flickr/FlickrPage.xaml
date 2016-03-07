@@ -19,12 +19,20 @@
                 <Grid>
                     <controls:VariableSizedGrid
                         ItemsSource="{Binding Items}"
-                        Orientation="Horizontal" MaximumRowsOrColumns="4" AspectRatio="1">
+                        Orientation="Horizontal" MaximumRowsOrColumns="6" AspectRatio="1">
                         <controls:VariableSizedGrid.ItemTemplate>
                             <DataTemplate>
                                 <Grid BorderBrush="Black" BorderThickness="1">
-                                    <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    <Image Source="ms-appx:///Assets/Images/FlickrIcon.png" VerticalAlignment="Bottom" HorizontalAlignment="Right" Stretch="Uniform" Margin="8" Width="80"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.8*"></RowDefinition>
+                                        <RowDefinition Height="0.2*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Image  Grid.Column="1" Grid.Row="1" Source="ms-appx:///Assets/Images/FlickrIcon.png" VerticalAlignment="Bottom" HorizontalAlignment="Right" Stretch="Uniform" Margin="6"/>
                                 </Grid>
                             </DataTemplate>
                         </controls:VariableSizedGrid.ItemTemplate>
