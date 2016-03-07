@@ -49,8 +49,8 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuTools"), GetControlsByCategory("Tools"));
                 yield return new NavigationItem(Symbol.CalendarWeek, this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"));
 
-                yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
+                //yield return NavigationItem.Separator;
+                //yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
 
                 yield return NavigationItem.Separator;
                 yield return new NavigationItem(Symbol.Help, "About", new About());
