@@ -95,6 +95,7 @@
     <Content Include="Assets\Icons\Json.png" />
     <Content Include="Assets\Icons\Misc.png" />
     <Content Include="Assets\Icons\Pivorama.png" />
+    <Content Include="Assets\Images\AppStudio.png" />
     <Content Include="Assets\Images\BingIcon.png" />
     <Content Include="Assets\Images\FacebookIcon.png" />
     <Content Include="Assets\Images\FlickrIcon.png" />

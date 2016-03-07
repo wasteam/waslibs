@@ -11,7 +11,7 @@ namespace AppStudio.Uwp.Samples
 
         public string Caption
         {
-            get { return "AppStudio Uwp"; }
+            get { return "Windows App Studio Uwp Samples"; }
         }
     }
 }
