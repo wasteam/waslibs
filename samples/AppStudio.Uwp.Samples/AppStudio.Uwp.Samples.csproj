@@ -110,6 +110,7 @@
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
+    <Content Include="Assets\LocalStorageSamples.json" />
     <None Include="project.json" />
     <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
@@ -166,6 +167,17 @@
     </Compile>
     <Compile Include="Pages\Flickr\Docs\FlickrHelp.xaml.cs">
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
+      <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageDataSchema.cs" />
+    <Compile Include="Pages\LocalStorage\LocalStoragePage.xaml.cs">
+      <DependentUpon>LocalStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageSettings.xaml.cs">
+      <DependentUpon>LocalStorageSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Navigation\Docs\NavigationHelp.xaml.cs">
       <DependentUpon>NavigationHelp.xaml</DependentUpon>
@@ -491,6 +503,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStoragePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStorageSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -1,4 +1,4 @@
-﻿using AppStudio.DataProviders.Flickr;
+﻿using AppStudio.DataProviders.LocalStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,11 +6,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
+
 namespace AppStudio.Uwp.Samples
 {
-    public sealed partial class FlickrSample : Page
+    public sealed partial class LocalStorageSample : Page
     {
-        public FlickrSample()
+        public LocalStorageSample()
         {
             this.InitializeComponent();
             this.DataContext = this;
@@ -23,7 +24,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(FlickrSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(LocalStorageSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {           
@@ -32,20 +33,15 @@ namespace AppStudio.Uwp.Samples
 
         public async void GetItems()
         {
-            string flickrQueryParam = "Abstract";
-            FlickrQueryType queryType = FlickrQueryType.Tags;
-            int maxRecordsParam = 12;
+            string localStorageQuery = "/Assets/LocalStorageSamples.json";
+            int maxRecordsParam = 10;
+
             Items.Clear();
+            var localStorageDataProvider = new LocalStorageDataProvider<LocalStorageDataSchema>();         
+            var config = new LocalStorageDataConfig { FilePath = localStorageQuery };       
 
-            var flickrDataProvider = new FlickrDataProvider();
-            var config = new FlickrDataConfig
-            {
-                Query = flickrQueryParam,
-                QueryType = queryType
-            };          
+            var items = await localStorageDataProvider.LoadDataAsync(config, maxRecordsParam);           
 
-            var items = await flickrDataProvider.LoadDataAsync(config, maxRecordsParam);
-          
             foreach (var item in items)
             {
                 Items.Add(item);

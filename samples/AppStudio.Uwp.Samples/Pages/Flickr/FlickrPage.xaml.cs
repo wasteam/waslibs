@@ -12,9 +12,9 @@ namespace AppStudio.Uwp.Samples
     [SamplePage(Category = "DataProviders", Name = "Flickr")]
     public sealed partial class FlickrPage : SamplePage
     {       
-        private const string DefaultFlickrQueryParam = "Seatle";
+        private const string DefaultFlickrQueryParam = "Abstract";
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
-        private const int DefaultMaxRecordsParam = 10;
+        private const int DefaultMaxRecordsParam = 12;
 
         public FlickrPage()
         {
