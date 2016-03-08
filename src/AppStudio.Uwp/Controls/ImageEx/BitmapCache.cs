@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Windows.UI.Xaml.Media.Imaging;
@@ -17,6 +18,7 @@ namespace AppStudio.Uwp.Controls
 
         static private Dictionary<string, Task> _concurrentTasks = new Dictionary<string, Task>();
 
+        #region ClearCache
         public static async Task ClearCache()
         {
             try
@@ -24,20 +26,51 @@ namespace AppStudio.Uwp.Controls
                 var folder = await GetCacheFolderAsync();
                 foreach (var file in await folder.GetFilesAsync())
                 {
-                    await file.DeleteAsync();
+                    try
+                    {
+                        await file.DeleteAsync();
+                    }
+                    catch { }
                 }
             }
             catch { }
         }
+        #endregion
 
         public static async Task<BitmapImage> LoadFromCacheAsync(Uri uri, int maxWidth, int maxHeight)
         {
-            var file = await TryGetFileAsync(uri, maxWidth, maxHeight);
-            if (file == null)
+            Task busy = null;
+            string key = BuildKey(uri);
+
+            lock (_lock)
             {
-                await EnsureFilesAsync(uri);
+                if (_concurrentTasks.ContainsKey(key))
+                {
+                    busy = _concurrentTasks[key];
+                }
+                else
+                {
+                    busy = EnsureFilesAsync(uri);
+                    _concurrentTasks.Add(key, busy);
+                }
             }
+
+            await busy;
+
+            lock (_lock)
+            {
+                if (_concurrentTasks.ContainsKey(key))
+                {
+                    _concurrentTasks.Remove(key);
+                }
+            }
+
             return CreateBitmapImage(BuildFileName(uri, maxWidth, maxHeight));
+        }
+
+        private static BitmapImage CreateBitmapImage(string fileName)
+        {
+            return new BitmapImage(new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}"));
         }
 
         private static async Task EnsureFilesAsync(Uri uri)
@@ -51,6 +84,7 @@ namespace AppStudio.Uwp.Controls
                 baseFile = await folder.CreateFileAsync(fileName);
                 if (!await BitmapTools.DownloadImageAsync(baseFile, uri, MAX_RESOLUTION, MAX_RESOLUTION))
                 {
+                    await baseFile.DeleteAsync();
                     return;
                 }
             }
@@ -66,15 +100,11 @@ namespace AppStudio.Uwp.Controls
                 }
                 catch
                 {
+                    await file.DeleteAsync();
                     return;
                 }
             }
             baseFile = file;
-        }
-
-        private static BitmapImage CreateBitmapImage(string fileName)
-        {
-            return new BitmapImage(new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}"));
         }
 
         private static async Task<StorageFile> TryGetFileAsync(Uri uri, int maxWidth, int maxHeight)
@@ -86,15 +116,25 @@ namespace AppStudio.Uwp.Controls
 
         #region GetCacheFolder
         static private StorageFolder _cacheFolder = null;
+        static private SemaphoreSlim _cacheFolderSemaphore = new SemaphoreSlim(1);
 
         private static async Task<StorageFolder> GetCacheFolderAsync()
         {
             if (_cacheFolder == null)
             {
-                _cacheFolder = await ApplicationData.Current.TemporaryFolder.TryGetItemAsync(FOLDER_NAME) as StorageFolder;
-                if (_cacheFolder == null)
+                await _cacheFolderSemaphore.WaitAsync();
+                try
                 {
-                    _cacheFolder = await ApplicationData.Current.TemporaryFolder.CreateFolderAsync(FOLDER_NAME);
+                    _cacheFolder = await ApplicationData.Current.TemporaryFolder.TryGetItemAsync(FOLDER_NAME) as StorageFolder;
+                    if (_cacheFolder == null)
+                    {
+                        _cacheFolder = await ApplicationData.Current.TemporaryFolder.CreateFolderAsync(FOLDER_NAME);
+                    }
+                }
+                catch { }
+                finally
+                {
+                    _cacheFolderSemaphore.Release();
                 }
             }
             return _cacheFolder;

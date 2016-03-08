@@ -71,6 +71,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_isHttpSource)
             {
+                _image.Source = null;
                 _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
             }
         }

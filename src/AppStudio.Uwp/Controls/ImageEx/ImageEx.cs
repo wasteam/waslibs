@@ -1,7 +1,6 @@
 ﻿using System;
 
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 
@@ -17,17 +16,8 @@ namespace AppStudio.Uwp.Controls
         public ImageEx()
         {
             this.DefaultStyleKey = typeof(ImageEx);
+            this.Unloaded += OnUnloaded;
         }
-
-        #region Stretch
-        public Stretch Stretch
-        {
-            get { return (Stretch)GetValue(StretchProperty); }
-            set { SetValue(StretchProperty, value); }
-        }
-
-        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
-        #endregion
 
         protected override void OnApplyTemplate()
         {
@@ -37,13 +27,31 @@ namespace AppStudio.Uwp.Controls
             _isInitialized = true;
 
             this.SetSource(this.Source);
+            this.SetNineGrid(this.NineGrid);
+
+            _image.ImageOpened += OnImageOpened;
+            _image.ImageFailed += OnImageFailed;
 
             this.SizeChanged += OnSizeChanged;
 
             base.OnApplyTemplate();
         }
 
-        private Size _currentSize = new Size(240, 240);
+        private void OnImageOpened(object sender, RoutedEventArgs e)
+        {
+            if (this.ImageOpened != null)
+            {
+                this.ImageOpened(sender, e);
+            }
+        }
+
+        private void OnImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            if (this.ImageFailed != null)
+            {
+                this.ImageFailed(sender, e);
+            }
+        }
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -61,6 +69,8 @@ namespace AppStudio.Uwp.Controls
             return base.ArrangeOverride(finalSize);
         }
 
+        private Size _currentSize = new Size(960, 960);
+
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             var imageSize = _image.DesiredSize;
@@ -77,6 +87,11 @@ namespace AppStudio.Uwp.Controls
         private async void RefreshImage()
         {
             await LoadImageAsync();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            _image.Source = null;
         }
     }
 }

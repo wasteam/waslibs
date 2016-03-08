@@ -56,6 +56,7 @@ namespace AppStudio.Uwp.Controls
                 }
 
                 await _semaphore.WaitAsync();
+
                 try
                 {
                     var bitmapTransform = new BitmapTransform()

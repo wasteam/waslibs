@@ -108,6 +108,7 @@
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
+    <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
@@ -233,6 +234,15 @@
     </Compile>
     <Compile Include="Pages\Twitter\Docs\TwitterHelp.xaml.cs">
       <DependentUpon>TwitterHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\Docs\ImageExHelp.xaml.cs">
+      <DependentUpon>ImageExHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\ImageExPage.xaml.cs">
+      <DependentUpon>ImageExPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\ImageExSettings.xaml.cs">
+      <DependentUpon>ImageExSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.xaml.cs">
       <DependentUpon>VariableSizedGridHelp.xaml</DependentUpon>
@@ -588,6 +598,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Twitter\Docs\TwitterHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\Docs\ImageExHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\ImageExPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\ImageExSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
