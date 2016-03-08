@@ -147,7 +147,7 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //_splitView.OpenPaneLength = e.NewSize.Width > 640 ? 360 : 320;
+            this.CommandBarAlignment = e.NewSize.Width > 640 ? CommandBarAlignment.Top : CommandBarAlignment.Bottom;
         }
     }
 }
