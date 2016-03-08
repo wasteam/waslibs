@@ -18,7 +18,7 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <controls:VariableSizedGrid Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
-                                    Orientation="Horizontal" MaximumRowsOrColumns="2" AspectRatio="1"
+                                    Orientation="Horizontal" MaximumRowsOrColumns="8" AspectRatio="1"
                                     HorizontalAlignment="Left" VerticalAlignment="Top" />
     </Grid>
 </local:SamplePage>

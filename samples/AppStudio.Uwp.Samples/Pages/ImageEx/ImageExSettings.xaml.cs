@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 
 using AppStudio.Uwp.Controls;
+using System.Threading.Tasks;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -17,6 +18,7 @@ namespace AppStudio.Uwp.Samples
         private async void OnClearCache(object sender, RoutedEventArgs e)
         {
             Page.Clear();
+            await Task.Delay(1000);
             await BitmapCache.ClearCache();
         }
 
