@@ -204,6 +204,9 @@
   <data name="DataProvidersNoItems.Text" xml:space="preserve">
     <value>0 Items found. Try changing request configuration on Settings pane.</value>
   </data>
+  <data name="HelpViewCode.Text" xml:space="preserve">
+    <value>View code</value>
+  </data>
   <data name="NavigationSampleButton1.Content" xml:space="preserve">
     <value>Navigate</value>
   </data>

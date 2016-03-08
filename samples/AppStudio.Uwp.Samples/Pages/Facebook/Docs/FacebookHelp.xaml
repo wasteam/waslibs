@@ -26,6 +26,14 @@
                     <Hyperlink NavigateUri="https://developers.facebook.com/docs/graph-api/using-graph-api">https://developers.facebook.com/docs/graph-api/using-graph-api</Hyperlink>
                 </Paragraph>
                 <Paragraph/>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

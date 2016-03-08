@@ -21,6 +21,14 @@
                 <Paragraph>
                     <Run Text="La Navegación puede realizarse, a través de un Type o a traves de un string referenciando la página a la que vamos a navegar, o bien a traves de un elemento que implemente el interface INavigable. Tambien podemos utilizar NavigationService para abrir el Navegador Web."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Navigation">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Navigation</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

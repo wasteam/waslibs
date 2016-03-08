@@ -25,6 +25,14 @@
                 <Paragraph>
                     <Hyperlink NavigateUri="http://idgettr.com/">http://idgettr.com/</Hyperlink>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Flickr">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Flickr</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

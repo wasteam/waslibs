@@ -18,6 +18,14 @@
                     <Run Text="El carousel es un control que permite la visualización de elementos en un scroll horizontal. El carousel permite además fijar valores visuales como el aspect ratio, gradient opacity o el numero máximo de elementos."/>
                 </Paragraph>
                 <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Carousel">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Carousel</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

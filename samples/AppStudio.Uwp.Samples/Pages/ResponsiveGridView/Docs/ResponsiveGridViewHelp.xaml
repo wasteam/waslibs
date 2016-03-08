@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="El ResponsiveGridView es un control que ajustar al ancho total de la pantalla los elementos de un GridView. La propiedad DesiredWidth marcará tamaño mínimo para que tienen que tener los elementos para que pueda entrar una nueva columna. El alto de los elementos será fijo y se indicará a través de la propiedad ItemsHeight."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ResponsiveGridView">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ResponsiveGridView</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

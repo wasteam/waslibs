@@ -15,8 +15,16 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus orci velit, dignissim nec sagittis a, bibendum vel justo. Duis vitae odio eu metus molestie placerat in quis nisl. Nunc eget leo et nisl scelerisque ultricies ac sit amet dui. In faucibus molestie ullamcorper. Ut libero nisl, placerat non volutpat a, lobortis et mauris. Donec egestas quam et quam pharetra bibendum congue turpis tempor. Morbi risus risus, lacinia sollicitudin ullamcorper in, sollicitudin eget purus. Morbi nec ligula est. Donec quis placerat velit. Etiam a eros elit. Proin libero lectus, suscipit id facilisis ut, faucibus vel dolor. Mauris laoreet ultrices arcu, et fermentum tortor tempus ut."/>
+                    <Run Text="ImageEx es un control que permite visualizar imágenes mejorando el rendimiento. La imágen se descarga de forma asíncrona, mostrando primero un indicador de carga, y se guarda en cache para no tener que pedirla de nuevo."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ImageEx">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ImageEx</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

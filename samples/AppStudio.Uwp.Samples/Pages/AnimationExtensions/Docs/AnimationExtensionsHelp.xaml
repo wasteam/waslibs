@@ -18,6 +18,14 @@
                     <Run Text="AnimationExtension es un conjunto de métodos que permiten a cualquier FrameworkElement ejecutar animaciones desde C# para sus propiedades. Las animaciones pueden ser invocadas de forma asíncrona."/>
                 </Paragraph>
                 <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Extensions">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Extensions</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

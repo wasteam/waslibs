@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="VirtualBox es un control que permite aplicar un comportamiento de redimensionado un DataTemplate de XAML."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

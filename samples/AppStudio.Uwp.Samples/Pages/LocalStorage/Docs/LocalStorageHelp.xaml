@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="Este Data Provider obtiene datos del LocalStorage que se especifique en la configuración. Los datos serán leidos del JSON y transformados a objetos de la entidad especificada."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/LocalStorage">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/LocalStorage</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

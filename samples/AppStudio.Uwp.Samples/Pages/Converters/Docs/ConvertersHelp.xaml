@@ -18,6 +18,14 @@
                     <Run Text="Los converters son una clase que permite convertir un valor de un tipo de dato, a otro valor en un tipo de dato igual o diferente. Por poner un ejemplo, vemos que el primer converter devuelve Visibility.Collapsed cuando el valor de entrada es false y Visibility.Visible cuando es true."/>
                 </Paragraph>
                 <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Converters">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Converters</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

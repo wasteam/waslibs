@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="Este Data Provider obtiene datos del Rss que se especifique en la configuración. Los datos serán leidos del XML y transformados a objetos de la entidad RssSchema."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

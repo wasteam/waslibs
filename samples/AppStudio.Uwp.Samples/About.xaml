@@ -23,6 +23,17 @@
                         <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/">https://github.com/wasteam/waslibs/</Hyperlink>
                     </Paragraph>
                     <Paragraph/>
+                    <Paragraph>
+                        <Run Text="Esta aplicación hace uso de las siguientes librerías:"/>
+                    </Paragraph>
+                    <Paragraph/>
+                    <Paragraph>
+                        <Hyperlink NavigateUri="http://www.newtonsoft.com/json">Newtonsoft Json</Hyperlink>
+                    </Paragraph>
+                    <!--<Paragraph LineHeight="1"/>-->
+                    <Paragraph Margin="0,0,0,0">
+                        <Hyperlink NavigateUri="https://github.com/google/code-prettify">Code Prettify</Hyperlink>
+                    </Paragraph>
                     <Paragraph/>
                     <Paragraph>
                         <Run Text="Todas las aplicaciones creadas con Windows App Studio, utilizan estas librerías para obtener datos y visualizar datos en las diferentes páginas. Si aún no has probado Windows App Studio, puedes crear tu primera App ahora!"/>

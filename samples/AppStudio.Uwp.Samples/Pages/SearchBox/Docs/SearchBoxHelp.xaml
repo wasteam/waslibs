@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="El SearchBox es un control que permite gestionar la característica de buscar en una App. Tiene una serie de propiedades visuales que pueden ser parametrizadas como Foreground, Background, PlaceHolderText o FontSize. La propiedad SearchCommand recibe el command que se ejecutará al pulsar Enter o hacer click en el icono Lupa."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SearchBox">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SearchBox</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

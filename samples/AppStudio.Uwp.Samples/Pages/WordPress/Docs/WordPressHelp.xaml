@@ -17,6 +17,14 @@
                 <Paragraph>
                     <Run Text="Este Data Provider obtiene datos de la url de WordPressHelp que se especifique en la configuración. Los datos serán leidos del JSON y transformados a objetos de la entidad WordPressSchema."/>
                 </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/WordPress">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/WordPress</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

@@ -18,6 +18,14 @@
                     <Run Text="Este DataProvider obtiene datos de Bing."/>
                 </Paragraph>
                 <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Bing">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Bing</Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

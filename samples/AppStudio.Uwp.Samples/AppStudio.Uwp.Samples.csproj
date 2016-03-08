@@ -290,7 +290,6 @@
     <Content Include="Assets\Prettify\prettify.js" />
     <Content Include="Assets\Prettify\run_prettify.js" />
     <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
-    <Content Include="Pages\Pivorama\Docs\PivoramaHelp.html" />
     <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
     <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
