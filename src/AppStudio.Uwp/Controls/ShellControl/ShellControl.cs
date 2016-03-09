@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -23,6 +25,8 @@ namespace AppStudio.Uwp.Controls
         private ContentPresenter _presenter = null;
         private ContentControl _topPane = null;
         private ContentControl _rightPane = null;
+
+        private RectangleGeometry _clip = null;
 
         private bool _isInitialized = false;
 
@@ -84,6 +88,7 @@ namespace AppStudio.Uwp.Controls
             _presenter = base.GetTemplateChild("presenter") as ContentPresenter;
             _topPane = base.GetTemplateChild("topPane") as ContentControl;
             _rightPane = base.GetTemplateChild("rightPane") as ContentControl;
+            _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             _lview.ItemContainerStyleSelector = new NavigationStyleSelector(_lview.ItemContainerStyle, this.SeparatorStyle);
             _lview.ItemContainerStyle = null;
@@ -147,7 +152,11 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
+            this.DisplayMode = e.NewSize.Width > 640 ? SplitViewDisplayMode.CompactOverlay : SplitViewDisplayMode.Overlay;
             this.CommandBarAlignment = e.NewSize.Width > 640 ? CommandBarAlignment.Top : CommandBarAlignment.Bottom;
+            this.TopPaneHeight = e.NewSize.Height > 467 ? 420 : e.NewSize.Height - 47;
+            this.RightPaneWidth = e.NewSize.Width > 407 ? 360 : e.NewSize.Width - 47;
+            _clip.Rect = new Rect(new Point(), e.NewSize);
         }
     }
 }

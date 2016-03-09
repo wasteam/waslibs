@@ -12,10 +12,15 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="Background" Value="{Binding Background, Mode=TwoWay}" />
-            <controls:PropertySet Source="{Binding}" Property="Width" Value="{Binding Width, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
-            <controls:PropertySet Source="{Binding}" Property="Height" Value="{Binding Height, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="Background" Value="{Binding Background, Mode=TwoWay}" />
+                <controls:PropertySet Source="{Binding}" Property="Width" Value="{Binding Width, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
+                <controls:PropertySet Source="{Binding}" Property="Height" Value="{Binding Height, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
+                <controls:PropertySet Source="{Binding}" Property="Background" Value="{Binding Background, Mode=TwoWay}" />
+                <controls:PropertySet Source="{Binding}" Property="Width" Value="{Binding Width, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
+                <controls:PropertySet Source="{Binding}" Property="Height" Value="{Binding Height, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

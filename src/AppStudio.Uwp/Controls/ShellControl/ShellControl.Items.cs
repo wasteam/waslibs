@@ -74,6 +74,22 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty CommandBarAlignmentProperty = DependencyProperty.Register("CommandBarAlignment", typeof(CommandBarAlignment), typeof(ShellControl), new PropertyMetadata(CommandBarAlignment.Top, CommandBarAlignmentChanged));
         #endregion
 
+        #region HideCommandBar
+        public bool HideCommandBar
+        {
+            get { return (bool)GetValue(HideCommandBarProperty); }
+            set { SetValue(HideCommandBarProperty, value); }
+        }
+
+        private static void HideCommandBarChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ShellControl;
+            control.ArrangeCommands();
+        }
+
+        public static readonly DependencyProperty HideCommandBarProperty = DependencyProperty.Register("HideCommandBar", typeof(bool), typeof(ShellControl), new PropertyMetadata(false, HideCommandBarChanged));
+        #endregion
+
         private void ArrangeCommands()
         {
             if (_isInitialized)
@@ -82,43 +98,53 @@ namespace AppStudio.Uwp.Controls
                 _commandBarB.PrimaryCommands.Clear();
                 _commandBarT.SecondaryCommands.Clear();
                 _commandBarB.SecondaryCommands.Clear();
-                if (this.CommandBarAlignment == CommandBarAlignment.Top)
+                if (!this.HideCommandBar)
                 {
-                    if (this.PrimaryCommands != null)
+                    _panes.Margin = new Thickness(0, 48, 0, 0);
+                    if (this.CommandBarAlignment == CommandBarAlignment.Top)
                     {
-                        foreach (var item in this.PrimaryCommands)
+                        if (this.PrimaryCommands != null)
                         {
-                            _commandBarT.PrimaryCommands.Add(item);
+                            foreach (var item in this.PrimaryCommands)
+                            {
+                                _commandBarT.PrimaryCommands.Add(item);
+                            }
                         }
+                        if (this.SecondaryCommands != null)
+                        {
+                            foreach (var item in this.SecondaryCommands)
+                            {
+                                _commandBarT.SecondaryCommands.Add(item);
+                            }
+                        }
+                        _commandBarT.Margin = new Thickness(48, 0, 0, 0);
+                        _commandBarB.Visibility = Visibility.Collapsed;
                     }
-                    if (this.SecondaryCommands != null)
+                    else
                     {
-                        foreach (var item in this.SecondaryCommands)
+                        if (this.PrimaryCommands != null)
                         {
-                            _commandBarT.SecondaryCommands.Add(item);
+                            foreach (var item in this.PrimaryCommands)
+                            {
+                                _commandBarB.PrimaryCommands.Add(item);
+                            }
                         }
+                        if (this.SecondaryCommands != null)
+                        {
+                            foreach (var item in this.SecondaryCommands)
+                            {
+                                _commandBarB.SecondaryCommands.Add(item);
+                            }
+                        }
+                        _commandBarT.Margin = new Thickness(48, 0, -48, 0);
+                        _commandBarB.Visibility = Visibility.Visible;
                     }
-                    _commandBarT.Margin = new Thickness(48, 0, 0, 0);
-                    _commandBarB.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    if (this.PrimaryCommands != null)
-                    {
-                        foreach (var item in this.PrimaryCommands)
-                        {
-                            _commandBarB.PrimaryCommands.Add(item);
-                        }
-                    }
-                    if (this.SecondaryCommands != null)
-                    {
-                        foreach (var item in this.SecondaryCommands)
-                        {
-                            _commandBarB.SecondaryCommands.Add(item);
-                        }
-                    }
-                    _commandBarT.Margin = new Thickness(48, 0, -48, 0);
-                    _commandBarB.Visibility = Visibility.Visible;
+                    _panes.Margin = new Thickness(0);
+                    _commandBarT.Visibility = Visibility.Collapsed;
+                    _commandBarB.Visibility = Visibility.Collapsed;
                 }
             }
         }

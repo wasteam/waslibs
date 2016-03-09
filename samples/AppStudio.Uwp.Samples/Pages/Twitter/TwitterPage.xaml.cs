@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Twitter")]
+    [SamplePage(Category = "DataProviders", Name = "Twitter", Order = 60)]
     public sealed partial class TwitterPage : SamplePage
     {
         private const string DefaultConsumerKey = "29TPMHBW0QcFIWvNrfWxUGmlV";
@@ -209,7 +209,7 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;             
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

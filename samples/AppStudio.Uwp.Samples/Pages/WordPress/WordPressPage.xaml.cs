@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "WordPress")]
+    [SamplePage(Category = "DataProviders", Name = "WordPress", Order = 70)]
     public sealed partial class WordPressPage : SamplePage
     {
         private const string DefaultWordPressQuery = "en.blog.wordpress.com";
@@ -174,12 +174,12 @@ namespace AppStudio.Uwp.Samples
 
                 var rawParser = new RawParser();
                 var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;              
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
-                
+
                 foreach (var item in items)
                 {
                     Items.Add(item);

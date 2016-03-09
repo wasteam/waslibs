@@ -19,7 +19,8 @@
                 <Grid>
                     <controls:VariableSizedGrid
                         ItemsSource="{Binding Items}"
-                        Orientation="Horizontal" MaximumRowsOrColumns="6" AspectRatio="1">
+                        Orientation="Horizontal" MaximumRowsOrColumns="6" AspectRatio="1"
+                        HorizontalAlignment="Left" VerticalAlignment="Top">
                         <controls:VariableSizedGrid.ItemTemplate>
                             <DataTemplate>
                                 <Grid BorderBrush="Black" BorderThickness="1">

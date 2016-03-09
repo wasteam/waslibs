@@ -45,7 +45,6 @@ namespace AppStudio.Uwp.Controls
                             {
                                 _image.Opacity = 0.0;
                                 _progress.IsActive = true;
-                                await LoadImageAsync();
                             }
                             else
                             {
@@ -53,8 +52,8 @@ namespace AppStudio.Uwp.Controls
                                 {
                                     _uri = new Uri("ms-appx:///" + url.TrimStart('/'));
                                 }
-                                _image.Source = new BitmapImage(_uri);
                             }
+                            await LoadImageAsync();
                         }
                     }
                     else
@@ -67,12 +66,22 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
+        private bool _isLoadingImage = false;
+
         private async Task LoadImageAsync()
         {
-            if (_isHttpSource)
+            if (!_isLoadingImage)
             {
-                _image.Source = null;
-                _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                _isLoadingImage = true;
+                if (_isHttpSource)
+                {
+                    _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                }
+                else
+                {
+                    _image.Source = new BitmapImage(_uri);
+                }
+                _isLoadingImage = false;
             }
         }
 

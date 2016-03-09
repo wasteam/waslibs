@@ -16,7 +16,7 @@
             <controls:PropertySet Source="{Binding}" Property="AppId" Value="{Binding AppId, Mode=TwoWay}" />
             <controls:PropertySet Source="{Binding}" Property="AppSecret" Value="{Binding AppSecret, Mode=TwoWay}" />
             <controls:PropertySet Source="{Binding}" Property="FacebookQueryParam" Value="{Binding FacebookQueryParam, Mode=TwoWay}" />
-            <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
+            <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="100" SmallChange="1" />
             <StackPanel Margin="0,30,0,0">
                 <Button x:Uid="DataProviderRefreshButton" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
                 <Button x:Uid="DataProviderRestoreConfigButton" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>

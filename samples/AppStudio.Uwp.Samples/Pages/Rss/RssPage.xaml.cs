@@ -11,7 +11,7 @@ using AppStudio.DataProviders.Rss;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Rss")]
+    [SamplePage(Category = "DataProviders", Name = "Rss", Order = 50)]
     public sealed partial class RssPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;
@@ -158,7 +158,7 @@ namespace AppStudio.Uwp.Samples
                 foreach (var item in items)
                 {
                     Items.Add(item);
-                }              
+                }
             }
             catch (Exception ex)
             {
