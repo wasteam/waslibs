@@ -13,7 +13,7 @@ namespace AppStudio.DataProviders.Bing
         {
             var settings = new HttpRequestSettings()
             {
-                RequestedUri = new Uri(string.Format("http://www.bing.com/search?q={0}&loc:{1}&format=rss", WebUtility.UrlEncode(config.Query), config.Country.GetStringValue()))
+                RequestedUri = new Uri(string.Format("http://www.bing.com/search?q=loc:{1}+{0}&format=rss&count={2}", WebUtility.UrlEncode(config.Query), config.Country.GetStringValue(), maxRecords))
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
