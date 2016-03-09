@@ -29,7 +29,6 @@
                 <Paragraph>
                     <Hyperlink NavigateUri="http://idgettr.com/">http://idgettr.com/</Hyperlink>
                 </Paragraph>
-                <Paragraph/>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>

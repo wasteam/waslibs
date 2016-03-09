@@ -21,6 +21,7 @@
                 <Paragraph>
                     <Run Text="The navigation can be implemented in multiple ways: using the .NET Type of the page we want to navigate to; using a string with the page name as target page; or through an element which implements the INavigable interface. We can use the NavigationService to open the web browser as well."/>
                 </Paragraph>
+                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>

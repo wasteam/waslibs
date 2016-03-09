@@ -25,7 +25,6 @@
                 <Paragraph>
                     <Hyperlink NavigateUri="https://apps.twitter.com/">https://apps.twitter.com/</Hyperlink>
                 </Paragraph>
-                <Paragraph/>
                 <Paragraph>
                     <Hyperlink NavigateUri="https://dev.twitter.com/rest/public">https://dev.twitter.com/rest/public</Hyperlink>
                 </Paragraph>

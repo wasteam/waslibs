@@ -25,12 +25,10 @@
                 <Paragraph>
                     <Hyperlink NavigateUri="https://console.developers.google.com/project">https://console.developers.google.com/project</Hyperlink>
                 </Paragraph>
-                <Paragraph/>
                 <Paragraph>
                     <Hyperlink NavigateUri="https://dev.twitter.com/rest/public">https://dev.twitter.com/rest/public</Hyperlink>
                 </Paragraph>
                 <Paragraph/>
-                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>

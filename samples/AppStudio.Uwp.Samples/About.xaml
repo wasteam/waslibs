@@ -15,28 +15,23 @@
                         <Run FontSize="32" Text="Windows App Studio UWP Open Source Library" />
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
-                        <Run Text="Esta aplicación muestra los controles y clases disponibles en la librería de controles de Windows App Studio. El código de estos controles está disponible en el siguiente enlace."/>
+                        <Run Text="This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages."/>
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
                         <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/">https://github.com/wasteam/waslibs/</Hyperlink>
                     </Paragraph>
-                    <Paragraph Margin="0,24,0,0">
-                        <Run Text="Esta aplicación hace uso de las siguientes librerías:"/>
-                    </Paragraph>
                     <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="http://www.newtonsoft.com/json">Newtonsoft Json</Hyperlink>
+                        <Hyperlink NavigateUri="https://www.nuget.org/profiles/wasteam">https://www.nuget.org/profiles/wasteam/</Hyperlink>
                     </Paragraph>
-                    <Paragraph Margin="0,6,0,0">
-                        <Hyperlink NavigateUri="https://github.com/google/code-prettify">Code Prettify</Hyperlink>
-                    </Paragraph>
-                    <Paragraph Margin="0,24,0,0">
-                        <Run Text="App privacy terms"/>
+                    <Paragraph/>
+                    <Paragraph>
+                        <Run Text="App privacy terms:"/>
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
                         <Hyperlink NavigateUri="http://appstudio.windows.com/es-es/home/appprivacyterms/">http://appstudio.windows.com/es-es/home/appprivacyterms/</Hyperlink>
                     </Paragraph>
                     <Paragraph Margin="0,24,0,0">
-                        <Run Text="Todas las aplicaciones creadas con Windows App Studio, utilizan estas librerías para obtener datos y visualizar datos en las diferentes páginas. Si aún no has probado Windows App Studio, puedes crear tu primera App ahora!"/>
+                        <Run Text="All the applications created using Windows App Studio use these UWP Controls and Classes. Check out Windows App Studio and get started creating Apps!"/>
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
                         <Hyperlink NavigateUri="https://appstudio.windows.com/">https://appstudio.windows.com/</Hyperlink>
@@ -44,6 +39,19 @@
                     <Paragraph/>
                 </RichTextBlock>
                 <Image Source="/Assets/Images/AppStudio.png" Stretch="Uniform" Margin="12"/>
+                <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+                    <Paragraph Margin="0,24,0,0">
+                        <Run Text="This App uses the following libraries:"/>
+                    </Paragraph>
+                    <Paragraph Margin="0,12,0,0">
+                        <Hyperlink NavigateUri="http://www.newtonsoft.com/json">Newtonsoft Json</Hyperlink>
+                        <Run Text="which is open source under the MIT license and is free for commercial use."/>
+                    </Paragraph>
+                    <Paragraph Margin="0,6,0,0">
+                        <Hyperlink NavigateUri="https://github.com/google/code-prettify">Code Prettify</Hyperlink>
+                        <Run Text="which is open source under the Apache License 2.0 license."/>
+                    </Paragraph>
+                </RichTextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>

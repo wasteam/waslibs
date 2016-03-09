@@ -25,7 +25,6 @@
                 <Paragraph>
                     <Hyperlink NavigateUri="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</Hyperlink>
                 </Paragraph>
-                <Paragraph/>
                 <Paragraph>
                     <Hyperlink NavigateUri="https://developers.facebook.com/docs/graph-api/using-graph-api">https://developers.facebook.com/docs/graph-api/using-graph-api</Hyperlink>
                 </Paragraph>
