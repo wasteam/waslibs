@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -124,7 +125,15 @@ namespace AppStudio.Uwp.Samples
             string typeName = $"AppStudio.Uwp.Samples.{SampleName}Help";
             if (IsTypePresent(typeName))
             {
-                AppShell.Current.Shell.ShowTopPane(Activator.CreateInstance(Type.GetType(typeName)) as Control);
+                var border = new Border
+                {
+                    Padding = new Thickness(0,0,0,12),
+                    Background = new SolidColorBrush(Colors.White),
+                    BorderBrush = new SolidColorBrush(Colors.LightGray),
+                    BorderThickness = new Thickness(0, 0, 0, 1),
+                    Child = Activator.CreateInstance(Type.GetType(typeName)) as Control
+                };
+                AppShell.Current.Shell.ShowTopPane(border);
             }
             else
             {

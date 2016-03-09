@@ -152,7 +152,9 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
+            this.DisplayMode = e.NewSize.Width > 640 ? SplitViewDisplayMode.CompactOverlay : SplitViewDisplayMode.Overlay;
             this.CommandBarAlignment = e.NewSize.Width > 640 ? CommandBarAlignment.Top : CommandBarAlignment.Bottom;
+            this.TopPaneHeight = e.NewSize.Height > 467 ? 420 : e.NewSize.Height - 47;
             this.RightPaneWidth = e.NewSize.Width > 407 ? 360 : e.NewSize.Width - 47;
             _clip.Rect = new Rect(new Point(), e.NewSize);
         }

@@ -12,10 +12,12 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="MaximumRowsOrColumns" Value="{Binding MaximumRowsOrColumns, Mode=TwoWay}" Minimun="2" Maximun="12" SmallChange="2" />
-            <controls:PropertySet Source="{Binding}" Property="Orientation" Value="{Binding Orientation, Mode=TwoWay}" />
-            <controls:PropertySet Source="{Binding}" Property="AspectRatio" Value="{Binding AspectRatio, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="MaximumRowsOrColumns" Value="{Binding MaximumRowsOrColumns, Mode=TwoWay}" Minimun="2" Maximun="12" SmallChange="2" />
+                <controls:PropertySet Source="{Binding}" Property="Orientation" Value="{Binding Orientation, Mode=TwoWay}" />
+                <controls:PropertySet Source="{Binding}" Property="AspectRatio" Value="{Binding AspectRatio, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

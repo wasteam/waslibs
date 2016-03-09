@@ -16,6 +16,7 @@ namespace AppStudio.Uwp.Controls
         public ImageEx()
         {
             this.DefaultStyleKey = typeof(ImageEx);
+            this.Loaded += OnLoaded;
             this.Unloaded += OnUnloaded;
         }
 
@@ -84,14 +85,22 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private async void RefreshImage()
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await LoadImageAsync();
+            if (_image.Source == null)
+            {
+                RefreshImage();
+            }
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             //_image.Source = null;
+        }
+
+        private async void RefreshImage()
+        {
+            await LoadImageAsync();
         }
     }
 }
