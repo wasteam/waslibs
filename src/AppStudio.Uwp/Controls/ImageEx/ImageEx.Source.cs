@@ -70,7 +70,7 @@ namespace AppStudio.Uwp.Controls
 
         private async Task LoadImageAsync()
         {
-            if (!_isLoadingImage)
+            if (!_isLoadingImage && _uri != null)
             {
                 _isLoadingImage = true;
                 if (_isHttpSource)
