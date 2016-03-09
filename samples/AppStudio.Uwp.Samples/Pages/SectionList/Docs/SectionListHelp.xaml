@@ -15,12 +15,12 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="SectionList es  un control que facilita la visualización de elementos en disposición horizontal. Cada SectionListItem puede albergar cualquier código XAML en su interior, y además dispone de unas propiedades que le permiten tener un Header, un ViewAll Button además de poder gestionar la visualización de un progress bar de carga y un mensaje de error de carga."/>
+                    <Run Text="The SectionList control enables the horizontal item visualization adjusting the number of items shown to the available space. A SectionList is composed by one or more SectionListItem which can contain any XAML code. Each SectionListItem may have a Header and a ViewAll button to navigate to the list of items shown. The control shows a progress indicator while loading. If an exception occurs during the load, an error message is shown."/>
                 </Paragraph>
+                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SectionList">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SectionList</Hyperlink>
                 </Paragraph>

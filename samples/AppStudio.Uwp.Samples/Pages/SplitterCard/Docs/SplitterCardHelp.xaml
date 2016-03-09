@@ -15,12 +15,12 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="SplitterCard es un control aplica un diseño especídico a strings. A través de la propiedad Text tecibe un string, divide ese texto utilizando como separador el caracter espacio en blanco ' ' y pinta los dos primeros resultados. La primera linea tiene tiene un tamaño de fuente mayor y un font weight bold."/>
+                    <Run Text="The SplitterCard control applies a specific design to strings. For any given string, the controls split the text by spaces. The first two words in the text are displayed one over the other using a specific style and highlighting the first one."/>
                 </Paragraph>
+                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SplitterCard">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SplitterCard</Hyperlink>
                 </Paragraph>
