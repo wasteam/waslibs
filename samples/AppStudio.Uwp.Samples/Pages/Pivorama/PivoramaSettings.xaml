@@ -12,9 +12,11 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="ItemWidth" Value="{Binding ItemWidth, Mode=TwoWay}" Minimun="300" Maximun="600" SmallChange="10" />
-            <controls:PropertySet Source="{Binding}" Property="FitToScreen" Value="{Binding FitToScreen, Mode=TwoWay}" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="ItemWidth" Value="{Binding ItemWidth, Mode=TwoWay}" Minimun="300" Maximun="600" SmallChange="10" />
+                <controls:PropertySet Source="{Binding}" Property="FitToScreen" Value="{Binding FitToScreen, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

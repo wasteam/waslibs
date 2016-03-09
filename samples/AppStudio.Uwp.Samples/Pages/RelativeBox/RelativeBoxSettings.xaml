@@ -12,10 +12,12 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="AspectRatio" Value="{Binding AspectRatio, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
-            <controls:PropertySet Source="{Binding}" Property="MinHeight" Value="{Binding MinHeight, Mode=TwoWay}" Minimun="0" Maximun="800" />
-            <controls:PropertySet Source="{Binding}" Property="MaxHeight" Value="{Binding MaxHeight, Mode=TwoWay}" Minimun="100" Maximun="800" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="AspectRatio" Value="{Binding AspectRatio, Mode=TwoWay}" Minimun="0.1" Maximun="2.0" SmallChange="0.05" />
+                <controls:PropertySet Source="{Binding}" Property="MinHeight" Value="{Binding MinHeight, Mode=TwoWay}" Minimun="0" Maximun="800" />
+                <controls:PropertySet Source="{Binding}" Property="MaxHeight" Value="{Binding MaxHeight, Mode=TwoWay}" Minimun="100" Maximun="800" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

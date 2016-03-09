@@ -12,12 +12,14 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="VirtualWidth" Value="{Binding VirtualWidth, Mode=TwoWay}" Minimun="100" Maximun="800" />
-            <controls:PropertySet Source="{Binding}" Property="VirtualHeight" Value="{Binding VirtualHeight, Mode=TwoWay}" Minimun="100" Maximun="800" />
-            <controls:PropertySet Source="{Binding}" Property="MinWidth" Value="{Binding MinWidth, Mode=TwoWay}" Minimun="0" Maximun="800" />
-            <controls:PropertySet Source="{Binding}" Property="MaxWidth" Value="{Binding MaxWidth, Mode=TwoWay}" Minimun="100" Maximun="800" />
-            <controls:PropertySet Source="{Binding}" Property="HorizontalAlignment" Value="{Binding HorizontalAlignment, Mode=TwoWay}" />
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="VirtualWidth" Value="{Binding VirtualWidth, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                <controls:PropertySet Source="{Binding}" Property="VirtualHeight" Value="{Binding VirtualHeight, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                <controls:PropertySet Source="{Binding}" Property="MinWidth" Value="{Binding MinWidth, Mode=TwoWay}" Minimun="0" Maximun="800" />
+                <controls:PropertySet Source="{Binding}" Property="MaxWidth" Value="{Binding MaxWidth, Mode=TwoWay}" Minimun="100" Maximun="800" />
+                <controls:PropertySet Source="{Binding}" Property="HorizontalAlignment" Value="{Binding HorizontalAlignment, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
