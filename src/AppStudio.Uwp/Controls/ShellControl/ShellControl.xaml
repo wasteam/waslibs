@@ -62,42 +62,53 @@
 
                         <SplitView Name="splitView" IsPaneOpen="False" DisplayMode="{TemplateBinding DisplayMode}" CompactPaneLength="48">
                             <SplitView.Pane>
-                                <Grid Name="paneContent" Margin="0,48,1,0" HorizontalAlignment="Stretch">
-                                    <ListView Name="lview" ItemsSource="{TemplateBinding NavigationItems}" ItemTemplate="{StaticResource NavigationItemTemplate}" IsItemClickEnabled="True"
-                                              Width="48" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                                        <ListView.ItemContainerStyle>
-                                            <Style TargetType="ListViewItem">
-                                                <Setter Property="Padding" Value="2,0" />
-                                            </Style>
-                                        </ListView.ItemContainerStyle>
-                                    </ListView>
+                                <Grid Name="paneContent" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="48"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                                    <Grid Name="container" Margin="48,0,0,0" Visibility="Collapsed">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="48"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid Padding="15,8" Background="#ccc">
-                                            <TextBlock Text="{Binding SelectedItem.Caption, ElementName=lview}" FontSize="20" Foreground="#333" />
-                                        </Grid>
-                                        <Grid Grid.Row="1" Name="content">
-                                            <Grid.ChildrenTransitions>
-                                                <TransitionCollection>
-                                                    <EntranceThemeTransition />
-                                                </TransitionCollection>
-                                            </Grid.ChildrenTransitions>
-                                        </Grid>
-                                        <ListView Name="lviewSub" Grid.Row="1" ItemTemplate="{StaticResource NavigationSubItemTemplate}" IsItemClickEnabled="True"
-                                                  HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <Grid Margin="48,0,0,0">
+                                        <ContentControl Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Margin="0,0,1,0">
+                                        <ListView Name="lview" ItemsSource="{TemplateBinding NavigationItems}" ItemTemplate="{StaticResource NavigationItemTemplate}" IsItemClickEnabled="True"
+                                              Width="48" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                             <ListView.ItemContainerStyle>
                                                 <Style TargetType="ListViewItem">
                                                     <Setter Property="Padding" Value="2,0" />
                                                 </Style>
                                             </ListView.ItemContainerStyle>
                                         </ListView>
-                                    </Grid>
 
-                                    <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="LightGray" Stretch="UniformToFill" HorizontalAlignment="Left" />
+                                        <Grid Name="container" Margin="48,0,0,0" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="48"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Padding="15,8" Background="#ccc">
+                                                <TextBlock Text="{Binding SelectedItem.Caption, ElementName=lview}" FontSize="20" Foreground="#333" />
+                                            </Grid>
+                                            <Grid Grid.Row="1" Name="content">
+                                                <Grid.ChildrenTransitions>
+                                                    <TransitionCollection>
+                                                        <EntranceThemeTransition />
+                                                    </TransitionCollection>
+                                                </Grid.ChildrenTransitions>
+                                            </Grid>
+                                            <ListView Name="lviewSub" Grid.Row="1" ItemTemplate="{StaticResource NavigationSubItemTemplate}" IsItemClickEnabled="True"
+                                                  HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                <ListView.ItemContainerStyle>
+                                                    <Style TargetType="ListViewItem">
+                                                        <Setter Property="Padding" Value="2,0" />
+                                                    </Style>
+                                                </ListView.ItemContainerStyle>
+                                            </ListView>
+                                        </Grid>
+
+                                        <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="LightGray" Stretch="UniformToFill" HorizontalAlignment="Left" />
+                                    </Grid>
                                 </Grid>
                             </SplitView.Pane>
                             <SplitView.Content>
