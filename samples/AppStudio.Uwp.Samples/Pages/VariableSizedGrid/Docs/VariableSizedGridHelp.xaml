@@ -15,12 +15,12 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="VariableSizedGrid es un control que permite visualizar elementos de un listado en deferentes tamaños de Width y Height. La propiedad MaximumsRowsOrColumns nos marcará la cantidad de filas o columnas que vemos en pantalla y la propiedad orientation nos deja indicar la distribución de los elementos en el panel. AspectRatio nos permite cambiar las proporciones alto y ancho del elemento."/>
+                    <Run Text="The VariableSizedGrid control allows to display items from a list using different values for Width and Height item properties. You can control the number of rows and columns to be displayed as well as the items orientation in the panel. Finally, the AspectRatio property allow us to control the relation between Width and Height."/>
                 </Paragraph>
+                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid</Hyperlink>
                 </Paragraph>

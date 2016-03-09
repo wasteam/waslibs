@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="AnimationExtension es un conjunto de métodos que permiten a cualquier FrameworkElement ejecutar animaciones desde C# para sus propiedades. Las animaciones pueden ser invocadas de forma asíncrona."/>
+                    <Run Text="This is a set of extension methods on the FrameworkElement control which allows to execute animations from C# code. The animations can be invoked asynchronously."/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Los converters son una clase que permite convertir un valor de un tipo de dato, a otro valor en un tipo de dato igual o diferente. Por poner un ejemplo, vemos que el primer converter devuelve Visibility.Collapsed cuando el valor de entrada es false y Visibility.Visible cuando es true."/>
+                    <Run Text="Converters allow you to transform a certain value from a data type in other different value. Using Converters leads to have a cleaner XAML code. In the samples shown, the first converter is used to change the Visibility of an image based in the value a Toggle control. If the Toggle is True (Boolean value), the converter returns 'Visible' for the Visibility property of the image control. When the Toggle is False, it returns 'Collapsed' for the Visibility property."/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

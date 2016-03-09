@@ -15,13 +15,12 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="La ActionsCommandBar es un control que extiende la Windows.UI.Xaml.Controls.CommandBar de del sistema y te permite cargar los botones código C#." />
+                    <Run Text="The ActionsCommandBar control extends the system Windows.UI.Xaml.Controls.CommandBar allowing to dynamically load the AppBarButtons through binding the control to a List of ActionInfo items created from C#. The control can define the AppBarButtons in XAML as well." />
                 </Paragraph>
-                <Paragraph />
+                <Paragraph />  
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Actions">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Actions</Hyperlink>
                 </Paragraph>

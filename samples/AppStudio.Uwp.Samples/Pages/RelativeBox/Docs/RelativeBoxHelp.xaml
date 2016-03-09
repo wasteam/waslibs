@@ -15,12 +15,11 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="RelativeBox es un control que permite aplicar un comportamiento responsive a un DataTemplate con código XAML."/>
+                    <Run Text="The RelativeBox control uses XAML to apply a responsive behavior to the DataTemplate configured."/>
                 </Paragraph>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Relativebox">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Relativebox</Hyperlink>
                 </Paragraph>

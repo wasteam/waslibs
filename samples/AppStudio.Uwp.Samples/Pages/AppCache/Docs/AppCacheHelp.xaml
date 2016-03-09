@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="AppCache permite leer y escribir elementos en la memoria cache del dispositivo."/>
+                    <Run Text="The AppCache is a service class which use local storage to maintain persisten information among App executions hiding the complexity of saving to and load from the local storage the elements added to memory."/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

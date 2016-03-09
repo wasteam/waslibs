@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="El SearchBox es un control que permite gestionar la característica de buscar en una App. Tiene una serie de propiedades visuales que pueden ser parametrizadas como Foreground, Background, PlaceHolderText o FontSize. La propiedad SearchCommand recibe el command que se ejecutará al pulsar Enter o hacer click en el icono Lupa."/>
+                    <Run Text="The SearchBox control allows to handle the App search feature. You can decide how the control will be displayed using properties Foreground, Background, PlaceHolderText, FontSize, etc. The SearchCommand property establish the command to execute when the user press enter or click the magnifier."/>
                 </Paragraph>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
