@@ -1,0 +1,20 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples">
+
+    <Style TargetType="local:PrettifyControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:PrettifyControl">
+                    <Grid>
+                        <Viewbox>
+                            <ProgressRing Name="progress" Margin="64" Foreground="{TemplateBinding Foreground}" IsActive="True" />
+                        </Viewbox>
+                        <WebView Name="webView" Visibility="Collapsed" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

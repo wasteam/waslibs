@@ -1,0 +1,53 @@
+﻿<local:SamplePage
+    x:Class="AppStudio.Uwp.Samples.BingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:converters="using:AppStudio.Uwp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource AppBackground}">
+        <Pivot>
+            <PivotItem x:Uid="DataProviderParsedItems">
+                <Grid>
+                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="150" DesiredWidth="500">
+                        <controls:ResponsiveGridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="6">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Style="{StaticResource LayoutTitleStyle}" Text="{Binding Title}" MaxLines="2"/>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="ms-appx:///Assets/Images/BingIcon.png" Width="20" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Margin="12,0,0,0" Style="{StaticResource LayoutHighlightStyle}" Text="{Binding Link}" MaxLines="1" VerticalAlignment="Center"/>
+                                    </Grid>
+                                    <TextBlock Grid.Row="2" Style="{StaticResource LayoutSubtitleStyle}" Text="{Binding Summary}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </controls:ResponsiveGridView.ItemTemplate>
+                    </controls:ResponsiveGridView>
+                    <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
+                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Uid="DataProviderRawData">
+                <local:PrettifyControl XmlSource="{Binding DataProviderRawData}" />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</local:SamplePage>

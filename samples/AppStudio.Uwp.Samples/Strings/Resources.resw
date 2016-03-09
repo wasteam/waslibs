@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionsCommandBarDescription.Text" xml:space="preserve">
+    <value>Bind ActionsCommandBar to List&lt;ActionInfo&gt; to read AppBarButtons from C# or add them into Xaml Code.</value>
+  </data>
+  <data name="ActionsCommandBarTitle.Text" xml:space="preserve">
+    <value>Add AppBarButtons from XAML, Add AppBarButtons from C#.</value>
+  </data>
+  <data name="AnimationExtensionsDescription.Text" xml:space="preserve">
+    <value>Animations invoked from C# using ExtensionMethods</value>
+  </data>
+  <data name="AnimationExtensionsTitle.Text" xml:space="preserve">
+    <value>Animations from C#</value>
+  </data>
+  <data name="AppBarButtonHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="AppBarButtonJsonData" xml:space="preserve">
+    <value>Json Data</value>
+  </data>
+  <data name="AppBarButtonSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AppBarButtonSourceCode" xml:space="preserve">
+    <value>Source Code</value>
+  </data>
+  <data name="AppBarButtonXamlCode" xml:space="preserve">
+    <value>Xaml Code</value>
+  </data>
+  <data name="AppCacheAddItem" xml:space="preserve">
+    <value>Add new item to memory</value>
+  </data>
+  <data name="AppCacheCleanCache" xml:space="preserve">
+    <value>Clean cache</value>
+  </data>
+  <data name="AppCacheCleanMemory" xml:space="preserve">
+    <value>Clean memory</value>
+  </data>
+  <data name="AppCacheItemsInCache.Text" xml:space="preserve">
+    <value>Items in cache</value>
+  </data>
+  <data name="AppCacheItemsInMemory.Text" xml:space="preserve">
+    <value>Items in memory</value>
+  </data>
+  <data name="AppCacheLastAction.Text" xml:space="preserve">
+    <value>Last action</value>
+  </data>
+  <data name="AppCacheLoadFromCache" xml:space="preserve">
+    <value>Load memory from cache</value>
+  </data>
+  <data name="AppCacheOptions.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="AppCacheSaveToCache" xml:space="preserve">
+    <value>Save memory to cache</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if True and Collapsed if False. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOffContent" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOnContent" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDefault" xml:space="preserve">
+    <value>Remove this text to hide de image below.</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if value is null or empty and Collapsed if not. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
+  <data name="DataProviderParsedItems.Header" xml:space="preserve">
+    <value>Parsed Items</value>
+  </data>
+  <data name="DataProviderRawData.Header" xml:space="preserve">
+    <value>Raw Data</value>
+  </data>
+  <data name="DataProviderRefreshButton.Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="DataProviderRestoreConfigButton.Content" xml:space="preserve">
+    <value>Restore Config</value>
+  </data>
+  <data name="DataProvidersErrorMessage.Text" xml:space="preserve">
+    <value>There was an error. More information in Raw Data Tab.</value>
+  </data>
+  <data name="DataProvidersNoItems.Text" xml:space="preserve">
+    <value>0 Items found. Try changing request configuration on Settings pane.</value>
+  </data>
+  <data name="HelpViewCode.Text" xml:space="preserve">
+    <value>View code</value>
+  </data>
+  <data name="NavigationSampleButton1.Content" xml:space="preserve">
+    <value>Navigate</value>
+  </data>
+  <data name="NavigationSampleButton2.Content" xml:space="preserve">
+    <value>Click here to go back</value>
+  </data>
+  <data name="NavigationSampleText1.Text" xml:space="preserve">
+    <value>Manage page navigation with NavigationService</value>
+  </data>
+  <data name="NavigationSampleText10.Text" xml:space="preserve">
+    <value>Navigate to another page using a button.</value>
+  </data>
+  <data name="NavigationSampleText11.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample2Page");</value>
+  </data>
+  <data name="NavigationSampleText12.Text" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
+  <data name="NavigationSampleText13.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoBack()</value>
+  </data>
+  <data name="NavigationSampleText14.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoForward()</value>
+  </data>
+  <data name="NavigationSampleText15.Text" xml:space="preserve">
+    <value>NavigationService.GoBack();</value>
+  </data>
+  <data name="NavigationSampleText2.Text" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
+  <data name="NavigationSampleText3.Text" xml:space="preserve">
+    <value>Initialize NavigationService registering the Frame.</value>
+  </data>
+  <data name="NavigationSampleText4.Text" xml:space="preserve">
+    <value>NavigationService.Initialize(typeof(App), navigationSampleFrame);</value>
+  </data>
+  <data name="NavigationSampleText5.Text" xml:space="preserve">
+    <value>Step 2</value>
+  </data>
+  <data name="NavigationSampleText6.Text" xml:space="preserve">
+    <value>Navigate to your MainPage.</value>
+  </data>
+  <data name="NavigationSampleText7.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage(typeof(NavigationSample1Page));</value>
+  </data>
+  <data name="NavigationSampleText8.Text" xml:space="preserve">
+    <value>You can also navigate using the page name as string.</value>
+  </data>
+  <data name="NavigationSampleText9.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample1Page");</value>
+  </data>
+  <data name="SearchBoxSearchingText.Text" xml:space="preserve">
+    <value>Your are searching:</value>
+  </data>
+  <data name="ShellMenuDataProviders" xml:space="preserve">
+    <value>Data Providers</value>
+  </data>
+  <data name="ShellMenuEnterFullScreen" xml:space="preserve">
+    <value>Enter Full Screen</value>
+  </data>
+  <data name="ShellMenuHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ShellMenuLayoutControls" xml:space="preserve">
+    <value>Layout Controls</value>
+  </data>
+  <data name="ShellMenuMiscControls" xml:space="preserve">
+    <value>Misc Controls</value>
+  </data>
+  <data name="ShellMenuTools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+</root>
