@@ -4,25 +4,30 @@ using System.Net;
 using System.Threading.Tasks;
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using System.Linq; 
+using System.Linq;
 
 namespace AppStudio.DataProviders.WordPress
 {
     public class WordPressDataProvider : DataProviderBase<WordPressDataConfig, WordPressSchema>
     {
+        private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";
+        private const int NUMBER = 100;
+
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
+            maxRecords = maxRecords > NUMBER ? NUMBER : maxRecords;
+
             var wordPressUrlRequest = string.Empty;
             switch (config.QueryType)
             {
                 case WordPressQueryType.Tag:
-                    wordPressUrlRequest = $"https://public-api.wordpress.com/rest/v1.1/sites/{config.Query}/posts/?tag={config.FilterBy}";
+                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?tag={config.FilterBy}&number={maxRecords}";
                     break;
                 case WordPressQueryType.Category:
-                    wordPressUrlRequest = $"https://public-api.wordpress.com/rest/v1.1/sites/{config.Query}/posts/?category={config.FilterBy}";
+                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?category={config.FilterBy}&number={maxRecords}";
                     break;
                 default:
-                    wordPressUrlRequest = $"https://public-api.wordpress.com/rest/v1.1/sites/{config.Query}/posts/";
+                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?number={maxRecords}";
                     break;
 
             }
@@ -48,7 +53,7 @@ namespace AppStudio.DataProviders.WordPress
 
         public async Task<IEnumerable<TSchema>> GetComments<TSchema>(string site, string postId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var wordPressUrlRequest = string.Format("https://public-api.wordpress.com/rest/v1.1/sites/{0}/posts/{1}/replies", site, postId);
+            var wordPressUrlRequest = $"{BaseUrl}/sites/{site}/posts/{postId}/replies";
 
             var settings = new HttpRequestSettings()
             {
