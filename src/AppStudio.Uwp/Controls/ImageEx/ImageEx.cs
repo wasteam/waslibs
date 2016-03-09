@@ -91,7 +91,7 @@ namespace AppStudio.Uwp.Controls
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _image.Source = null;
+            //_image.Source = null;
         }
     }
 }
