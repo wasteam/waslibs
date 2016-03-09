@@ -123,7 +123,7 @@ namespace AppStudio.DataProviders.YouTube
                 throw new OAuthKeysRevokedException();
             }
 
-            throw new RequestFailedException();
+            throw new RequestFailedException(requestResult.StatusCode, requestResult.Result);
         }
 
         private async Task<string> GetUploadVideosListId(string channel, int maxRecords)
@@ -146,23 +146,28 @@ namespace AppStudio.DataProviders.YouTube
                 {
                     return channelResult.items[0].contentDetails.relatedPlaylists.uploads;
                 }
+                else
+                {
+                    return string.Empty;
+                }
             }
-            return string.Empty;
+
+            throw new RequestFailedException(requestResult.StatusCode, requestResult.Result);
         }
 
         private Uri GetChannelUrl(string channel, int maxRecords)
         {
-            return new Uri(string.Format("{0}/channels?forUsername={1}&part=contentDetails&maxResults={2}&key={3}", BaseUrl, channel, maxRecords, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri($"{BaseUrl}/channels?forUsername={channel}&part=contentDetails&maxResults={maxRecords}&key={_tokens.ApiKey}", UriKind.Absolute);
         }
 
         private Uri GetPlaylistUrl(string playlistId, int maxRecords)
         {
-            return new Uri(string.Format("{0}/playlistItems?playlistId={1}&part=snippet&maxResults={2}&key={3}", BaseUrl, playlistId, maxRecords, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri($"{BaseUrl}/playlistItems?playlistId={playlistId}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}", UriKind.Absolute);
         }
 
         private Uri GetSearchUrl(string query, int maxRecords)
         {
-            return new Uri(string.Format("{0}/search?q={1}&part=snippet&maxResults={2}&key={3}&type=video", BaseUrl, query, maxRecords, _tokens.ApiKey), UriKind.Absolute);
+            return new Uri($"{BaseUrl}/search?q={query}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}&type=video", UriKind.Absolute);
         }
     }
 }

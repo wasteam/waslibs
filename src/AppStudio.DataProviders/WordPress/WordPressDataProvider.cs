@@ -10,13 +10,10 @@ namespace AppStudio.DataProviders.WordPress
 {
     public class WordPressDataProvider : DataProviderBase<WordPressDataConfig, WordPressSchema>
     {
-        private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";
-        private const int NUMBER = 100;
+        private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";     
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int maxRecords, IParser<TSchema> parser)
-        {
-            maxRecords = maxRecords > NUMBER ? NUMBER : maxRecords;
-
+        {      
             var wordPressUrlRequest = string.Empty;
             switch (config.QueryType)
             {
