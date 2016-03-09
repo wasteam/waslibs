@@ -60,7 +60,10 @@ namespace AppStudio.Uwp.Controls
 
         private void SetTopPaneHeight()
         {
-            _topPane.TranslateY(-this.TopPaneHeight);
+            if (_topPane.GetTranslateX() < 0)
+            {
+                _topPane.TranslateY(-this.TopPaneHeight);
+            }
         }
 
         public static readonly DependencyProperty TopPaneHeightProperty = DependencyProperty.Register("TopPaneHeight", typeof(double), typeof(ShellControl), new PropertyMetadata(360.0, TopPaneHeightChanged));
@@ -101,7 +104,7 @@ namespace AppStudio.Uwp.Controls
             _splitView.IsPaneOpen = false;
         }
 
-        public void ShowTopPane(Control content)
+        public void ShowTopPane(FrameworkElement content)
         {
             _splitView.IsPaneOpen = false;
             if (_isInitialized && _topPane.Visibility == Visibility.Collapsed)
@@ -122,7 +125,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        public void ShowRightPane(Control content)
+        public void ShowRightPane(FrameworkElement content)
         {
             _splitView.IsPaneOpen = false;
             if (_isInitialized && _rightPane.Visibility == Visibility.Collapsed)
