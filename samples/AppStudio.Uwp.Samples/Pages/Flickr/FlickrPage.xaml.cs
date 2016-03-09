@@ -9,9 +9,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Flickr")]
+    [SamplePage(Category = "DataProviders", Name = "Flickr", Order = 30)]
     public sealed partial class FlickrPage : SamplePage
-    {       
+    {
         private const string DefaultFlickrQueryParam = "Abstract";
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
         private const int DefaultMaxRecordsParam = 12;
@@ -28,7 +28,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region DataProvider Config
-      
+
         public string FlickrQueryParam
         {
             get { return (string)GetValue(FlickrQueryParamProperty); }
@@ -170,7 +170,7 @@ namespace AppStudio.Uwp.Samples
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
-                
+
                 foreach (var item in items)
                 {
                     Items.Add(item);

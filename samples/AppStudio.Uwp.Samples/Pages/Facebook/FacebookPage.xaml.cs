@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Facebook")]
+    [SamplePage(Category = "DataProviders", Name = "Facebook", Order = 20)]
     public sealed partial class FacebookPage : SamplePage
     {
         private const string DefaultAppId = "351842111678417";
@@ -166,7 +166,7 @@ namespace AppStudio.Uwp.Samples
                 var facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
                 var config = new FacebookDataConfig
                 {
-                    UserId = FacebookQueryParam                    
+                    UserId = FacebookQueryParam
                 };
 
                 var rawParser = new RawParser();
@@ -199,7 +199,7 @@ namespace AppStudio.Uwp.Samples
         {
             AppId = DefaultAppId;
             AppSecret = DefaultAppSecret;
-            FacebookQueryParam = DefaultFacebookQueryParam;            
+            FacebookQueryParam = DefaultFacebookQueryParam;
             MaxRecordsParam = DefaultMaxRecordsParam;
         }
     }

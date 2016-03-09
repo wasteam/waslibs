@@ -18,6 +18,7 @@ namespace AppStudio.DataProviders.Twitter
     public class TwitterDataProvider : DataProviderBase<TwitterDataConfig, TwitterSchema>
     {
         private TwitterOAuthTokens _tokens;
+        private const string BaseUrl = "https://api.twitter.com/1.1";
 
         public TwitterDataProvider(TwitterOAuthTokens tokens)
         {
@@ -66,7 +67,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}&count={1}&include_rts=1", screenName, maxRecords));
+                var uri = new Uri($"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1");
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
@@ -107,7 +108,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}&count={1}", Uri.EscapeDataString(hashTag), maxRecords));
+                var uri = new Uri($"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}");
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
@@ -166,7 +167,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/home_timeline.json?count={0}", maxRecords));
+                var uri = new Uri($"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}");
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
