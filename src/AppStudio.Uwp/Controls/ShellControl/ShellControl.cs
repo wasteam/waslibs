@@ -153,6 +153,7 @@ namespace AppStudio.Uwp.Controls
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.CommandBarAlignment = e.NewSize.Width > 640 ? CommandBarAlignment.Top : CommandBarAlignment.Bottom;
+            this.RightPaneWidth = e.NewSize.Width > 407 ? 360 : e.NewSize.Width - 47;
             _clip.Rect = new Rect(new Point(), e.NewSize);
         }
     }

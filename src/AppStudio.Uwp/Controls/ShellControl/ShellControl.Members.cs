@@ -81,7 +81,10 @@ namespace AppStudio.Uwp.Controls
 
         private void SetRightPaneWidth()
         {
-            _rightPane.TranslateX(this.RightPaneWidth);
+            if (_rightPane.GetTranslateX() > 0)
+            {
+                _rightPane.TranslateX(this.RightPaneWidth);
+            }
         }
 
         public static readonly DependencyProperty RightPaneWidthProperty = DependencyProperty.Register("RightPaneWidth", typeof(double), typeof(ShellControl), new PropertyMetadata(360.0, RightPaneWidthChanged));
