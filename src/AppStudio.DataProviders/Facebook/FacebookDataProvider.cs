@@ -9,20 +9,23 @@ namespace AppStudio.DataProviders.Facebook
 {
     public class FacebookDataProvider : DataProviderBase<FacebookDataConfig, FacebookSchema>
     {
-        private const string BaseUrl = @"https://graph.facebook.com/v2.4";
+        private const string BaseUrl = @"https://graph.facebook.com/v2.5";
+        private const int LIMIT = 100;
 
         private FacebookOAuthTokens _tokens;
 
         public FacebookDataProvider(FacebookOAuthTokens tokens)
-        { 
+        {
             _tokens = tokens;
         }
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
+            maxRecords = maxRecords > LIMIT ? LIMIT : maxRecords;
+
             var settings = new HttpRequestSettings
             {
-                RequestedUri = new Uri(string.Format("{0}/{1}/posts?&access_token={2}|{3}&fields=id,message,from,created_time,link,full_picture", BaseUrl, config.UserId, _tokens.AppId, _tokens.AppSecret), UriKind.Absolute)
+                RequestedUri = new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute)
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
