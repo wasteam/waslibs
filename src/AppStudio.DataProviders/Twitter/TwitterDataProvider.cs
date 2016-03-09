@@ -37,7 +37,7 @@ namespace AppStudio.DataProviders.Twitter
                     break;
                 case TwitterQueryType.Home:
                 default:
-                    items = await GetHomeTimeLineAsync(parser);
+                    items = await GetHomeTimeLineAsync(maxRecords, parser);
                     break;
             }
 
@@ -66,7 +66,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}", screenName));
+                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}&count={1}&include_rts=1", screenName, maxRecords));
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
@@ -107,7 +107,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}", Uri.EscapeDataString(hashTag)));
+                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}&count={1}", Uri.EscapeDataString(hashTag), maxRecords));
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
@@ -162,11 +162,11 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri("https://api.twitter.com/1.1/statuses/home_timeline.json");
+                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/home_timeline.json?count={0}", maxRecords));
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
