@@ -11,9 +11,11 @@ namespace AppStudio.DataProviders.Bing
     {
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(BingDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
+            var countryValue = config.Country.GetStringValue();
+            var locParameter = string.IsNullOrEmpty(countryValue) ? string.Empty : $"loc:{countryValue}+";
             var settings = new HttpRequestSettings()
             {
-                RequestedUri = new Uri(string.Format("http://www.bing.com/search?q=loc:{1}+{0}&format=rss&count={2}", WebUtility.UrlEncode(config.Query), config.Country.GetStringValue(), maxRecords))
+                RequestedUri = new Uri(string.Format("http://www.bing.com/search?q={1}{0}&format=rss&count={2}", WebUtility.UrlEncode(config.Query), locParameter, maxRecords))
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);

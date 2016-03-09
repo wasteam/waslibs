@@ -10,7 +10,8 @@ namespace AppStudio.DataProviders.Bing
     }
 
     public enum BingCountry
-    {
+    {      
+        [StringValue("")]None,
         [StringValue("ae")]UnitedArabEmirates,
         [StringValue("al")]Albania,
         [StringValue("am")]Armenia,
