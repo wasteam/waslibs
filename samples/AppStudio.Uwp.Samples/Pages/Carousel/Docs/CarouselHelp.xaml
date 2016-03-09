@@ -21,7 +21,6 @@
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Carousel">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Carousel</Hyperlink>
                 </Paragraph>

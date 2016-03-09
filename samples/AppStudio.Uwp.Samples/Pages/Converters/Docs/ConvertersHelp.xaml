@@ -21,7 +21,6 @@
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Converters">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Converters</Hyperlink>
                 </Paragraph>

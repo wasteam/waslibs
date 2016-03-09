@@ -11,7 +11,7 @@
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="Flickr Help" />
+                    <Run FontSize="32" Text="Flickr Data Provider Help" />
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

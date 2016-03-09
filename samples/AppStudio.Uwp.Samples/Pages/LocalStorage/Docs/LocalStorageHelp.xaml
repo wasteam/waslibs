@@ -11,12 +11,13 @@
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="LocalStorage Help" />
+                    <Run FontSize="32" Text="LocalStorage Data Provider Help" />
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
                     <Run Text="This Data Provider access data from the LocalStorage. You can configure which file will be used as content source. The information, stored in JSON format, is transformed to the specified data type."/>
                 </Paragraph>
+                <Paragraph/>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>

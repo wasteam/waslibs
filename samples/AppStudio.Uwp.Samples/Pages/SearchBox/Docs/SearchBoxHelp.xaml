@@ -17,10 +17,10 @@
                 <Paragraph>
                     <Run Text="The SearchBox control allows to handle the App search feature. You can decide how the control will be displayed using properties Foreground, Background, PlaceHolderText, FontSize, etc. The SearchCommand property establish the command to execute when the user press enter or click the magnifier."/>
                 </Paragraph>
+                <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SearchBox">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SearchBox</Hyperlink>
                 </Paragraph>
