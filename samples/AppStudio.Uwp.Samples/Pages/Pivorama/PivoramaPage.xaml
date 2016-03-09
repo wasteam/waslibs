@@ -22,7 +22,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="CustomContentTemplate">
-            <GridView Margin="12,0" ItemsSource="{Binding}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
+            <GridView Margin="12,0" ItemsSource="{Binding}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Disabled">
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2" BorderBrush="LightGray" BorderThickness="1">
