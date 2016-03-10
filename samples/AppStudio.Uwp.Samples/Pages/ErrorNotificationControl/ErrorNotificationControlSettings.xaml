@@ -15,6 +15,7 @@
         <StackPanel Padding="24">
             <controls:PropertySet Source="{Binding}" Property="ForceCrash" Value="{Binding ForceCrash, Mode=TwoWay}"/>
             <controls:PropertySet Source="{Binding}" Property="ErrorText" Value="{Binding ErrorText, Mode=TwoWay}"/>
+            <controls:PropertySet Source="{Binding}" Property="ErrorColor" Value="{Binding ErrorColor, Mode=TwoWay}"/>
             <Button Content="Refresh" Command="{Binding RefreshData}" Style="{StaticResource SettingsButtonStyle}" Margin="0,30,0,0"/>
         </StackPanel>
     </Grid>

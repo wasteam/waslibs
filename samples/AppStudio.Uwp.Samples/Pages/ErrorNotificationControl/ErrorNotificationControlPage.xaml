@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
         <controls:ErrorNotificationControl
             ErrorText="{Binding ErrorText}"
-            ErrorColor="Black"
+            ErrorColor="{Binding ErrorColor}"
             Margin="12"
             MaxWidth="600"
             ErrorVisibility="{Binding ErrorVisibility, Mode=TwoWay}"/>

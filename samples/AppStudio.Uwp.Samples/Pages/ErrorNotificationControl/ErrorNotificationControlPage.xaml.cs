@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
+using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using AppStudio.Uwp.Commands;
@@ -51,6 +53,16 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ErrorTextProperty = DependencyProperty.Register("ErrorText", typeof(string), typeof(ErrorNotificationControlPage), new PropertyMetadata("Ups! Something went wrong. Try again later."));
+        #endregion 
+
+        #region ErrorColor
+        public Brush ErrorColor
+        {
+            get { return (Brush)GetValue(ErrorColorProperty); }
+            set { SetValue(ErrorColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty ErrorColorProperty = DependencyProperty.Register("ErrorColor", typeof(Brush), typeof(ErrorNotificationControlPage), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
         #endregion 
 
         #region ErrorVisibility
