@@ -111,7 +111,6 @@
     <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
-    <Content Include="Pages\Prototype\Docs\PrototypeJson.json" />
     <Content Include="Assets\LocalStorageSamples.json" />
     <None Include="project.json" />
     <PRIResource Include="Strings\Resources.resw" />
@@ -195,9 +194,6 @@
     </Compile>
     <Compile Include="Pages\Pivorama\Docs\PivoramaHelp.xaml.cs">
       <DependentUpon>PivoramaHelp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Prototype\Docs\PrototypeHelp.xaml.cs">
-      <DependentUpon>PrototypeHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarCSharp.cs" />
     <Compile Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml.cs">
@@ -316,7 +312,6 @@
     <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
       <DependentUpon>PivoramaPage.xaml</DependentUpon>
     </Compile>
-    <Content Include="Pages\Prototype\Docs\PrototypeCSharp.cs" />
     <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
       <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
     </Compile>
@@ -403,12 +398,6 @@
       <DependentUpon>YouTubeSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\Prototype\PrototypePage.xaml.cs">
-      <DependentUpon>PrototypePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Prototype\PrototypeSettings.xaml.cs">
-      <DependentUpon>PrototypeSettings.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Extensions\StorageExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +408,7 @@
   <ItemGroup>
     <Content Include="Assets\Html\CSharp.html" />
     <Content Include="Assets\Html\Xaml.html" />
-    <Content Include="Pages\Prototype\Docs\PrototypeXaml.xml" />
     <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridXaml.xml" />
-    <Content Include="Pages\Prototype\Docs\PrototypeHelp.html" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -668,14 +655,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Prototype\PrototypePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Prototype\PrototypeSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -729,10 +708,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RelativeBox\RelativeBoxSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Prototype\Docs\PrototypeHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
