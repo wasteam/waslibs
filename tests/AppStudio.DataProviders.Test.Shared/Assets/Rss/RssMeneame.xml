@@ -1,0 +1,500 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:meneame="http://meneame.net/faq-es.php" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+    <channel>
+        <atom:link href="http://www.meneame.net/rss2.php" rel="self" type="application/rss+xml" />
+        <title>Menéame: publicadas</title>
+        <link>http://www.meneame.net</link>
+        <description>Sitio colaborativo de publicación y comunicación entre blogs</description>
+        <language>es</language>
+        <pubDate>Fri, 12 Jun 2015 09:15:03 GMT</pubDate>
+        <lastBuildDate>Fri, 12 Jun 2015 09:15:03 GMT</lastBuildDate>
+        <ttl>10</ttl>
+        <image>
+            <title>Menéame: publicadas</title>
+            <url>http://mnmstatic.net/img/mnm/eli-rss.png</url>
+            <link>http://www.meneame.net</link>
+        </image>
+        <item>
+            <title>Rita Barberá dimite</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472c8464/sc/3/l/0M0Smeneame0Bnet0Cstory0Crita0Ebarbera0Edimite/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0e/media_thumb-link-2428470.jpeg?1434099006' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;La alcaldesa en funciones de la ciudad de Valencia y durante los últimos 24 años, Rita Barberá, dimite de su cargo a escasas horas de tener que entregar la vara de mando al candidato de Compromís Joan Ribó. La candidata del Partido Popular ha convocado una rueda de prensa a las 12:30 horas para comunicar lo que adelantaba este jueves Valenciaplaza.com, que no recogería su acta de concejala y dejaría el cargo antes de la constitución del nuevo Consistorio.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: rita barbera, dimision, valencia&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428470" &gt;noticia original&lt;/a&gt; (www.valenciaplaza.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472c8464/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122868536/u/192/f/639540/c/34737/s/472c8464/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">actualidad</category>
+            <category domain="">dimision</category>
+            <category domain="">rita barbera</category>
+            <category domain="">valencia</category>
+            <pubDate>Fri, 12 Jun 2015 09:15:05 GMT</pubDate>
+            <comments>https://www.meneame.net/story/rita-barbera-dimite</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/rita-barbera-dimite</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428470</wfw:commentRss>
+            <dc:creator>juanlu73</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0e/media_thumb-link-2428470.jpeg?1434099006" width="60" height="60" />
+            <meneame:link_id>2428470</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>juanlu73</meneame:user>
+            <meneame:votes>170</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>1150</meneame:karma>
+            <meneame:comments>53</meneame:comments>
+            <meneame:url>http://www.valenciaplaza.com/ver/158399/rita-barbera-dimite.html</meneame:url>
+        </item>
+        <item>
+            <title>Zimbabue cambia de divisa (5$ = 175.000.000.000.000.000 Z) [EN]</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472bb38d/sc/24/l/0M0Smeneame0Bnet0Cstory0Czimbabue0Ecambia0Edivisa0E50E1750E0A0A0A0E0A0A0A0E0A0A0A0E0A0A0A0E0A0A0A0Ez/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0d/media_thumb-link-2428272.jpeg?1434058986' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Zimbabue cambia de divisa. Su Banco Central ofrece a cada ahorrador canjear 175 trillones de Zimbawe dólares por 5 USD Más info en Español: &lt;a href="http://www.gurusblog.com/archives/zimbawe-divisa-banco-central/11/06/2015/" title="www.gurusblog.com/archives/zimbawe-divisa-banco-central/11/06/2015/" rel="nofollow"&gt;www.gurusblog.com/archives/zimbawe-divisa-banco-central/11/06/2015/&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: zimbabue, cambio monetario, cuatrillones, gritones&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428272" &gt;noticia original&lt;/a&gt; (uk.businessinsider.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472bb38d/sc/24/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122900180/u/192/f/639540/c/34737/s/472bb38d/sc/24/a2t.img" border="0"/&gt;</description>
+            <category domain="">cambio monetario</category>
+            <category domain="">gritones</category>
+            <category domain="">cuatrillones</category>
+            <category domain="">zimbabue</category>
+            <category domain="">actualidad</category>
+            <pubDate>Fri, 12 Jun 2015 08:15:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/zimbabue-cambia-divisa-5-175-000-000-000-000-000-z</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/zimbabue-cambia-divisa-5-175-000-000-000-000-000-z</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428272</wfw:commentRss>
+            <dc:creator>fuckenyou</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0d/media_thumb-link-2428272.jpeg?1434058986" width="60" height="60" />
+            <meneame:link_id>2428272</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>fuckenyou</meneame:user>
+            <meneame:votes>61</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>567</meneame:karma>
+            <meneame:comments>34</meneame:comments>
+            <meneame:url>http://uk.businessinsider.com/zimbabwes-government-is-paying-its-citizens-5-for-175-quadrillion-zimbabwe-dollars-2015-6?r=US</meneame:url>
+        </item>
+        <item>
+            <title>Ciudadanos no consentirá un "tamayazo" en Madrid y también mostrará su voto</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472b39f5/sc/3/l/0M0Smeneame0Bnet0Cstory0Cciudadanos0Eno0Econsentira0Etamayazo0Emadrid0Etambien0Emostrara0Evoto/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0d/media_thumb-link-2428331.jpeg?1434072366' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;La candidata de la plataforma ciudadana Ahora Madrid necesita que los nueve ediles del PSOE voten a favor de su investidura para sumar, con los suyos, los 29 escaños necesarios para alcanzar la mayoría absoluta. Cabría la posibilidad de que, si el voto es público y alguien del PSM le falla a Carmena, alguno de los naranjas pueda salir al rescate y votar a su favor.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: ciudadanos, madrid, tamayazo&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428331" &gt;noticia original&lt;/a&gt; (www.publico.es)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472b39f5/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122895358/u/192/f/639540/c/34737/s/472b39f5/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">ciudadanos</category>
+            <category domain="">actualidad</category>
+            <category domain="">madrid</category>
+            <category domain="">tamayazo</category>
+            <pubDate>Fri, 12 Jun 2015 06:45:04 GMT</pubDate>
+            <comments>https://www.meneame.net/story/ciudadanos-no-consentira-tamayazo-madrid-tambien-mostrara-voto</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/ciudadanos-no-consentira-tamayazo-madrid-tambien-mostrara-voto</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428331</wfw:commentRss>
+            <dc:creator>alcaloidedos</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0d/media_thumb-link-2428331.jpeg?1434072366" width="60" height="60" />
+            <meneame:link_id>2428331</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>alcaloidedos</meneame:user>
+            <meneame:votes>56</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>532</meneame:karma>
+            <meneame:comments>12</meneame:comments>
+            <meneame:url>http://www.publico.es/politica/ciudadanos-no-consentira-tamayazo-madrid.html</meneame:url>
+        </item>
+        <item>
+            <title>La Biblioteca Nacional ha sido más consultada en estos últimos años que en trescientos de su historia</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472ae5df/sc/26/l/0M0Smeneame0Bnet0Cstory0Cbiblioteca0Enacional0Eha0Esido0Emas0Econsultada0Eestos0Eultimos0Eanos/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0b/media_thumb-link-2427865.jpeg?1434023766' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Ana Santos Aramburu ha pasado su vida profesional entre libros, desde sus inicios en la Biblioteca de la Universidad Complutense hasta la dirección de la Biblioteca Nacional, cargo que desempeña desde 2013. La institución afronta el reto de adaptarse al entorno digital para preservar el presente de la misma forma que atesora el pasado; junto a volúmenes de papel conservados durante más de trescientos años se almacenan ceros y unos que serán nuestro legado y que permiten ampliar exponencialmente la difusión del patrimonio cultural.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: jotdown, biblioteca nacional, consultas, cultura&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427865" &gt;noticia original&lt;/a&gt; (www.jotdown.es)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472ae5df/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231064239076/u/192/f/639540/c/34737/s/472ae5df/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">biblioteca nacional</category>
+            <category domain="">jotdown</category>
+            <category domain="">consultas</category>
+            <category domain="">cultura</category>
+            <pubDate>Fri, 12 Jun 2015 05:35:04 GMT</pubDate>
+            <comments>https://www.meneame.net/story/biblioteca-nacional-ha-sido-mas-consultada-estos-ultimos-anos</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/biblioteca-nacional-ha-sido-mas-consultada-estos-ultimos-anos</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427865</wfw:commentRss>
+            <dc:creator>tul</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0b/media_thumb-link-2427865.jpeg?1434023766" width="60" height="60" />
+            <meneame:link_id>2427865</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>tul</meneame:user>
+            <meneame:votes>51</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>487</meneame:karma>
+            <meneame:comments>6</meneame:comments>
+            <meneame:url>http://www.jotdown.es/2015/06/ana-santos-la-biblioteca-nacional-ha-sido-mas-consultada-en-estos-ultimos-anos-que-en-trescientos-de-su-historia/</meneame:url>
+        </item>
+        <item>
+            <title>Borrar el historial del navegador es un crimen con cárcel en USA</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472a7624/sc/3/l/0M0Smeneame0Bnet0Cstory0Cborrar0Ehistorial0Enavegador0Ecrimen0Ecarcel0Eusa/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0d/media_thumb-link-2428175.jpeg?1434048487' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;En Estados Unidos, la ley Sarbanes-Oxley Act de 2002 permite condenar con hasta 20 años de cárcel a quien borre o destruya datos que puedan ser relevantes en una investigación [...] El problema de este acta es que no pone ningún límite a este poder de las autoridades. Pueden acusar de borrar datos a personas que no saben que están siendo investigadas, o que no son acusadas de ningún delito. Incluso años después de que hayan eliminado los datos. Los defensores de los derechos civiles afirman que la ley no ha cumplido su objetivo...&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: borrar, historial, navegador, carcel, crimen, usa, derechos, leyes&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428175" &gt;noticia original&lt;/a&gt; (computerhoy.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472a7624/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231064236119/u/192/f/639540/c/34737/s/472a7624/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">historial</category>
+            <category domain="">tecnología</category>
+            <category domain="">leyes</category>
+            <category domain="">derechos</category>
+            <category domain="">borrar</category>
+            <category domain="">usa</category>
+            <category domain="">navegador</category>
+            <category domain="">carcel</category>
+            <category domain="">crimen</category>
+            <pubDate>Fri, 12 Jun 2015 04:00:05 GMT</pubDate>
+            <comments>https://www.meneame.net/story/borrar-historial-navegador-crimen-carcel-usa</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/borrar-historial-navegador-crimen-carcel-usa</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428175</wfw:commentRss>
+            <dc:creator>manwy</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0d/media_thumb-link-2428175.jpeg?1434048487" width="60" height="60" />
+            <meneame:link_id>2428175</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>manwy</meneame:user>
+            <meneame:votes>71</meneame:votes>
+            <meneame:negatives>2</meneame:negatives>
+            <meneame:karma>537</meneame:karma>
+            <meneame:comments>17</meneame:comments>
+            <meneame:url>http://computerhoy.com/noticias/software/borrar-historial-del-navegador-es-crimen-carcel-usa-29609</meneame:url>
+        </item>
+        <item>
+            <title>Estas son las Multinacionales que se han hecho con las tierras colombianas gracias a la guerra</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4729f868/sc/3/l/0M0Smeneame0Bnet0Cstory0Cestas0Eson0Emultinacionales0Ehan0Ehecho0Etierras0Ecolombianas0Egracias/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0b/media_thumb-link-2427895.jpeg?1434025806' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;El informe &amp;#34;Falsas víctimas, no&amp;#34; analiza 1000 sentencias por las que grandes empresas mineras se habrían beneficiado de la guerra en Colombia para hacerse con tierras que explotar. La ley 1448 de Víctimas y Restitución de Tierras de Colombia, aprobada en el año 2011, pretende restituir entre 6,5 y 8 millones de hectáreas de tierras que hubieran sido robadas a los agricultores o abandonadas debido a la violencia.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: multinacionales, colombia, guerra, compañias mineras, tierras&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427895" &gt;noticia original&lt;/a&gt; (www.seguimosinformando.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4729f868/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049390886/u/192/f/639540/c/34737/s/4729f868/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">colombia</category>
+            <category domain="">multinacionales</category>
+            <category domain="">guerra</category>
+            <category domain="">actualidad</category>
+            <category domain="">compañias mineras</category>
+            <category domain="">tierras</category>
+            <pubDate>Fri, 12 Jun 2015 01:10:18 GMT</pubDate>
+            <comments>https://www.meneame.net/story/estas-son-multinacionales-han-hecho-tierras-colombianas-gracias</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/estas-son-multinacionales-han-hecho-tierras-colombianas-gracias</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427895</wfw:commentRss>
+            <dc:creator>tul</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0b/media_thumb-link-2427895.jpeg?1434025806" width="60" height="60" />
+            <meneame:link_id>2427895</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>tul</meneame:user>
+            <meneame:votes>149</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>541</meneame:karma>
+            <meneame:comments>7</meneame:comments>
+            <meneame:url>http://www.seguimosinformando.com/estas-son-las-multinacionales-que-se-han-hecho-con-las-tierras-colombianas-gracias-a-la-guerra-2015-06-11/</meneame:url>
+        </item>
+        <item>
+            <title>Rita Barberá se rinde</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472955f9/sc/3/l/0M0Smeneame0Bnet0Cstory0Crita0Ebarbera0Erinde/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0d/media_thumb-link-2428292.jpeg?1434062046' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Rita Barberá pasa sus últimas horas como alcaldesa de Valencia. Así se mostraba hoy, derrumbada, durante la sesión constitutiva de la novena legislatura de Les Corts.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: valencia, rita barberá, pp&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428292" &gt;noticia original&lt;/a&gt; (www.valenciaplaza.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472955f9/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049389663/u/192/f/639540/c/34737/s/472955f9/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">rita barberá</category>
+            <category domain="">actualidad</category>
+            <category domain="">pp</category>
+            <category domain="">valencia</category>
+            <pubDate>Fri, 12 Jun 2015 00:20:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/rita-barbera-rinde</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/rita-barbera-rinde</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428292</wfw:commentRss>
+            <dc:creator>ReportaroES</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0d/media_thumb-link-2428292.jpeg?1434062046" width="60" height="60" />
+            <meneame:link_id>2428292</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>ReportaroES</meneame:user>
+            <meneame:votes>52</meneame:votes>
+            <meneame:negatives>2</meneame:negatives>
+            <meneame:karma>615</meneame:karma>
+            <meneame:comments>13</meneame:comments>
+            <meneame:url>http://www.valenciaplaza.com/bd/imagenes/imagen189306g.jpg</meneame:url>
+        </item>
+        <item>
+            <title>Alerta en Europa por la llegada del Estado Islámico a los Balcanes</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/47294e28/sc/3/l/0M0Smeneame0Bnet0Cstory0Calerta0Eeuropa0Ellegada0Eestado0Eislamico0Ebalcanes/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428117.jpeg?1434043086' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Un grupo de combatientes bosnios que viajó a Siria e Irak para luchar con ISIS retornó de Medio Oriente y ahora se extiende por Serbia, Montenegro, Macedonia, Albania y Kosovo. [&lt;b&gt;Aviso&lt;/b&gt;: contiene imágenes fuertes]&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: europa, alerta, estado islámico, llega, balcanes&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428117" &gt;noticia original&lt;/a&gt; (www.infobae.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/47294e28/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049388149/u/192/f/639540/c/34737/s/47294e28/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">balcanes</category>
+            <category domain="">europa</category>
+            <category domain="">alerta</category>
+            <category domain="">actualidad</category>
+            <category domain="">llega</category>
+            <category domain="">estado islámico</category>
+            <pubDate>Thu, 11 Jun 2015 23:35:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/alerta-europa-llegada-estado-islamico-balcanes</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/alerta-europa-llegada-estado-islamico-balcanes</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428117</wfw:commentRss>
+            <dc:creator>dos_azucarillos_porfa</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428117.jpeg?1434043086" width="60" height="60" />
+            <meneame:link_id>2428117</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>dos_azucarillos_porfa</meneame:user>
+            <meneame:votes>56</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>531</meneame:karma>
+            <meneame:comments>23</meneame:comments>
+            <meneame:url>http://www.infobae.com/2015/06/11/1734652-alerta-europa-la-llegada-del-estado-islamico-los-balcanes</meneame:url>
+        </item>
+        <item>
+            <title>17 contenidos de su disco duro que la gente tiene en Google sin darse cuenta</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/47294b9a/sc/26/l/0M0Smeneame0Bnet0Cstory0C170Econtenidos0Edisco0Eduro0Egente0Etiene0Egoogle0Esin0Edarse0Ecuenta/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428085.jpeg?1434040326' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Una lista de archivos personales que te puedes encontrar en Google, de discos duros con nube privada que no están bien protegidos&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: google&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428085" &gt;noticia original&lt;/a&gt; (www.genbeta.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/47294b9a/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049387660/u/192/f/639540/c/34737/s/47294b9a/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">actualidad</category>
+            <category domain="">google</category>
+            <pubDate>Thu, 11 Jun 2015 23:10:02 GMT</pubDate>
+            <comments>https://www.meneame.net/story/17-contenidos-disco-duro-gente-tiene-google-sin-darse-cuenta</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/17-contenidos-disco-duro-gente-tiene-google-sin-darse-cuenta</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428085</wfw:commentRss>
+            <dc:creator>tito_vilanova</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428085.jpeg?1434040326" width="60" height="60" />
+            <meneame:link_id>2428085</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>tito_vilanova</meneame:user>
+            <meneame:votes>42</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>551</meneame:karma>
+            <meneame:comments>10</meneame:comments>
+            <meneame:url>http://www.genbeta.com/seguridad/17-contenidos-de-su-disco-duro-que-la-gente-tiene-en-google-sin-darse-cuenta</meneame:url>
+        </item>
+        <item>
+            <title>La vieja lógica de sillones y cheques en blanco. Por Pablo Echenique [OPINIÓN]</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4729464d/sc/26/l/0M0Smeneame0Bnet0Cstory0Cvieja0Elogica0Esillones0Echeques0Eblanco0Epablo0Eechenique0Eopinion/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428050.jpeg?1434038466' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Un día, para prepararme un evento, me leí entero (sí, entero) el programa electoral con el que Luisa Fernanda Rudi ganó las elecciones autonómicas en Aragón en 2011 e inició una de las legislaturas más lesivas para la economía y los derechos de las personas que esta tierra ha conocido. En este enlace lo podéis consultar íntegro si tenéis tiempo, ganas y un puntito de masoquismo.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: echenique, podemos, pp, psoe, programa electoral, aragón&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428050" &gt;noticia original&lt;/a&gt; (www.eldiario.es)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4729464d/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049386602/u/192/f/639540/c/34737/s/4729464d/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">aragón</category>
+            <category domain="">podemos</category>
+            <category domain="">actualidad</category>
+            <category domain="">echenique</category>
+            <category domain="">programa electoral</category>
+            <category domain="">psoe</category>
+            <category domain="">pp</category>
+            <pubDate>Thu, 11 Jun 2015 22:30:02 GMT</pubDate>
+            <comments>https://www.meneame.net/story/vieja-logica-sillones-cheques-blanco-pablo-echenique-opinion</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/vieja-logica-sillones-cheques-blanco-pablo-echenique-opinion</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428050</wfw:commentRss>
+            <dc:creator>duowen</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428050.jpeg?1434038466" width="60" height="60" />
+            <meneame:link_id>2428050</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>duowen</meneame:user>
+            <meneame:votes>59</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>602</meneame:karma>
+            <meneame:comments>6</meneame:comments>
+            <meneame:url>http://www.eldiario.es/aragon/elprismatico/vieja-logica-sillones-cheques-blanco_6_397270291.html</meneame:url>
+        </item>
+        <item>
+            <title>Susana Díaz, investida presidenta de la Junta con los votos de PSOE-A y Ciudadanos</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4728a498/sc/3/l/0M0Smeneame0Bnet0Cstory0Csusana0Ediaz0Einvestida0Epresidenta0Ejunta0Evotos0Epsoe0Eciudadanos/story01.htm</link>
+            <description>&lt;p&gt;La socialista Susana Díaz ha sido elegida este jueves, con los votos favorables de los 47 diputados del PSOE-A y los nueve de Ciudadanos (C's), como presidenta de la Junta de Andalucía de la décima legislatura, 81 días después de la celebración de las elecciones autonómicas del 22 de marzo.. Noticias, última hora, vídeos y fotos de Elecciones europeas en lainformacion.com&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: elecciones, autonómicas, andalucía, susana diaz, psoe, ciudadanos&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428081" &gt;noticia original&lt;/a&gt; (noticias.lainformacion.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4728a498/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049385582/u/192/f/639540/c/34737/s/4728a498/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">ciudadanos</category>
+            <category domain="">elecciones</category>
+            <category domain="">andalucía</category>
+            <category domain="">susana diaz</category>
+            <category domain="">actualidad</category>
+            <category domain="">psoe</category>
+            <category domain="">autonómicas</category>
+            <pubDate>Thu, 11 Jun 2015 21:45:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/susana-diaz-investida-presidenta-junta-votos-psoe-ciudadanos</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/susana-diaz-investida-presidenta-junta-votos-psoe-ciudadanos</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428081</wfw:commentRss>
+            <dc:creator>rantamplanzzz</dc:creator>
+            <meneame:link_id>2428081</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>rantamplanzzz</meneame:user>
+            <meneame:votes>144</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>658</meneame:karma>
+            <meneame:comments>59</meneame:comments>
+            <meneame:url>http://noticias.lainformacion.com/politica/elecciones-europeas/susana-diaz-investida-presidenta-de-la-junta-con-los-votos-de-psoe-a-y-ciudadanos_GSY7rW20gtghhSQe11TrV1/</meneame:url>
+        </item>
+        <item>
+            <title>El Rey revoca el título de Duquesa de Palma a Doña Cristina</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4728f714/sc/3/l/0M0Smeneame0Bnet0Cstory0Crey0Erevoca0Etitulo0Eduquesa0Epalma0Edona0Ecristina/story01.htm</link>
+            <description>&lt;p&gt;El Rey revoca el título de Duquesa de Palma a Doña Cristina.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: infanta, doña cristina, rey, duquesa de palma, borbones&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428246" &gt;noticia original&lt;/a&gt; (www.elconfidencial.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4728f714/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122843527/u/192/f/639540/c/34737/s/4728f714/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">duquesa de palma</category>
+            <category domain="">doña cristina</category>
+            <category domain="">borbones</category>
+            <category domain="">actualidad</category>
+            <category domain="">rey</category>
+            <category domain="">infanta</category>
+            <pubDate>Thu, 11 Jun 2015 21:00:07 GMT</pubDate>
+            <comments>https://www.meneame.net/story/rey-revoca-titulo-duquesa-palma-dona-cristina</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/rey-revoca-titulo-duquesa-palma-dona-cristina</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428246</wfw:commentRss>
+            <dc:creator>scarecrow</dc:creator>
+            <meneame:link_id>2428246</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>scarecrow</meneame:user>
+            <meneame:votes>40</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>773</meneame:karma>
+            <meneame:comments>18</meneame:comments>
+            <meneame:url>http://www.elconfidencial.com/espana/2015-06-11/el-rey-revoca-el-titulo-de-duquesa-de-palma-a-dona-cristina_880295/</meneame:url>
+        </item>
+        <item>
+            <title>Industria penalizará a los que usen velas para alumbrarse y abanicos para refrigerarse</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4728f717/sc/26/l/0M0Smeneame0Bnet0Cstory0Cindustria0Epenalizara0Eusen0Evelas0Ealumbrarse0Eabanicos0Erefrigerarse/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0b/media_thumb-link-2427827.jpeg?1434021306' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;según ha podido saber El Jueves, el departamento que dirige Soria tiene en fase de elaboración un segundo borrador, que va a penalizar a los que usen velas para alumbrarse y abanicos para refrigerarse. Ya podéis ir haciendo acopio, porque dentro de poco las velas van a llevar un euro de recargo (impuesto que irá directamente a las compañías) y los abanicos, dos. Habrá, eso sí, una especie de “bono social” para mujeres menopáusicas en paro que usen mucho este segundo sistema.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: autoconsumo, energía, impuestos, electricidad, puertas giratorias&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427827" &gt;noticia original&lt;/a&gt; (www.eljueves.es)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4728f717/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122843526/u/192/f/639540/c/34737/s/4728f717/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">impuestos</category>
+            <category domain="">autoconsumo</category>
+            <category domain="">electricidad</category>
+            <category domain="">ocio</category>
+            <category domain="">energía</category>
+            <category domain="">puertas giratorias</category>
+            <pubDate>Thu, 11 Jun 2015 20:55:04 GMT</pubDate>
+            <comments>https://www.meneame.net/story/industria-penalizara-usen-velas-alumbrarse-abanicos-refrigerarse</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/industria-penalizara-usen-velas-alumbrarse-abanicos-refrigerarse</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427827</wfw:commentRss>
+            <dc:creator>albertiño12</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0b/media_thumb-link-2427827.jpeg?1434021306" width="60" height="60" />
+            <meneame:link_id>2427827</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>albertiño12</meneame:user>
+            <meneame:votes>201</meneame:votes>
+            <meneame:negatives>7</meneame:negatives>
+            <meneame:karma>685</meneame:karma>
+            <meneame:comments>16</meneame:comments>
+            <meneame:url>http://www.eljueves.es/2015/06/09/industria_penalizara_los_que_usen_velas_para_alumbrarse_abanicos_para_refrigerarse.html</meneame:url>
+        </item>
+        <item>
+            <title>Primera estructura geológica identificable en Plutón. Una gran línea oscura</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4728622f/sc/26/l/0M0Smeneame0Bnet0Cstory0Cprimera0Eestructura0Egeologica0Eidentificable0Epluton0Egran0Elinea/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0a/media_thumb-link-2427634.jpeg?1434007746' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Estos son los primeros esbozos de lo que en poco más de un mes será un mapa detallado de Plutón. Por ahora sabemos que podría tener un casquete polar y ahora esta gran línea oscura que rodea al planeta en al menos una de sus caras. Algunas teorías empiezan a decir que Plutón es un mundo fracturado, hasta que no haya mejor resolución no tendremos respuestas.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: primera, estructura, geológica, plutón, línea, oscura&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427634" &gt;noticia original&lt;/a&gt; (milesdemillones.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4728622f/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231064223808/u/192/f/639540/c/34737/s/4728622f/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">plutón</category>
+            <category domain="">geológica</category>
+            <category domain="">primera</category>
+            <category domain="">línea</category>
+            <category domain="">oscura</category>
+            <category domain="">estructura</category>
+            <category domain="">cultura</category>
+            <pubDate>Thu, 11 Jun 2015 20:10:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/primera-estructura-geologica-identificable-pluton-gran-linea</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/primera-estructura-geologica-identificable-pluton-gran-linea</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427634</wfw:commentRss>
+            <dc:creator>Jabiertzo</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0a/media_thumb-link-2427634.jpeg?1434007746" width="60" height="60" />
+            <meneame:link_id>2427634</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>Jabiertzo</meneame:user>
+            <meneame:votes>46</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>645</meneame:karma>
+            <meneame:comments>10</meneame:comments>
+            <meneame:url>http://milesdemillones.com/2015/06/11/primera-estructura-geologica-identificable-en-pluton-una-gran-linea-oscura/</meneame:url>
+        </item>
+        <item>
+            <title>Hola, soy un ex jefe de escuadra de CEDADE (Nacional socialismo español), turno de ruegos y preguntas</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472805d5/sc/26/l/0M0Smeneame0Bnet0Cm0CTeRespondo0Chola0Esoy0Eex0Ejefe0Eescuadra0Ecedade0Enacional0Esocialismo0Eespanol/story01.htm</link>
+            <description>&lt;p&gt;Desfilé como portaestandarte con Leon Degrelle en el homenaje a Rudolf Hess en 1987 y serví a las ordenes de Pedro Varela. Fui un &amp;#34;camisa parda&amp;#34;. Pregunta lo que quieras, prometo no enviarte a las duchas.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: cedade, nacional socialismo, pan-europeismo&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427401" &gt;noticia original&lt;/a&gt; ()&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472805d5/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122876337/u/192/f/639540/c/34737/s/472805d5/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">TeRespondo</category>
+            <category domain="">nacional socialismo</category>
+            <category domain="">cedade</category>
+            <category domain="">pan-europeismo</category>
+            <pubDate>Thu, 11 Jun 2015 19:25:02 GMT</pubDate>
+            <comments>https://www.meneame.net/m/TeRespondo/hola-soy-ex-jefe-escuadra-cedade-nacional-socialismo-espanol</comments>
+            <guid isPermaLink="false">https://www.meneame.net/m/TeRespondo/hola-soy-ex-jefe-escuadra-cedade-nacional-socialismo-espanol</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427401</wfw:commentRss>
+            <dc:creator>El_Mentecato</dc:creator>
+            <meneame:link_id>2427401</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>El_Mentecato</meneame:user>
+            <meneame:votes>60</meneame:votes>
+            <meneame:negatives>4</meneame:negatives>
+            <meneame:karma>562</meneame:karma>
+            <meneame:comments>69</meneame:comments>
+            <meneame:url />
+        </item>
+        <item>
+            <title>Quemando horas de trabajo por un bote de Mistol</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4727fdba/sc/26/l/0M0Smeneame0Bnet0Cstory0Cquemando0Ehoras0Etrabajo0Ebote0Emistol/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428053.jpeg?1434038226' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Hace unos meses llegó a un laboratorio del CSIC una carta del Ministerio de Economía y Competitividad (MINECO) donde se informaba de los resultados de una auditoría efectuada a un proyecto de investigación del Plan Nacional. En la carta se anunciaba que se debían devolver más de 60.000 euros que, pese haber sido gastados, no se habían justificado adecuadamente. Un análisis pormenorizado de la auditoría lleva al más absoluto esperpento&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: mineco, proyecto investigación, justificación gastos&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428053" &gt;noticia original&lt;/a&gt; (lacienciaysusdemonios.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4727fdba/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122874863/u/192/f/639540/c/34737/s/4727fdba/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">proyecto investigación</category>
+            <category domain="">justificación gastos</category>
+            <category domain="">mineco</category>
+            <category domain="">actualidad</category>
+            <pubDate>Thu, 11 Jun 2015 18:30:05 GMT</pubDate>
+            <comments>https://www.meneame.net/story/quemando-horas-trabajo-bote-mistol</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/quemando-horas-trabajo-bote-mistol</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428053</wfw:commentRss>
+            <dc:creator>conversador</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428053.jpeg?1434038226" width="60" height="60" />
+            <meneame:link_id>2428053</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>conversador</meneame:user>
+            <meneame:votes>73</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>699</meneame:karma>
+            <meneame:comments>5</meneame:comments>
+            <meneame:url>http://lacienciaysusdemonios.com/2015/06/10/quemando-horas-de-trabajo-por-un-bote-de-mistol/</meneame:url>
+        </item>
+        <item>
+            <title>Si este es el comienzo del fin para Reddit, entonces Reddit merece morir [ENG]</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4727e7bc/sc/26/l/0M0Smeneame0Bnet0Cstory0Ceste0Ecomienzo0Efin0Ereddit0Eentonces0Ereddit0Emerece0Emorir0Eeng/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428087.jpeg?1434041526' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;Reddit ha decidido suprimir los subreddits más polémicos que alberga en cumplimiento con las normas anti acoso que anunció el mes pasado. Los trolls del agregador de noticias más popular de Internet no se lo han tomado bien y amenazan con convertirlo en el próximo Digg. Artículo de opinión en el que The Verge valora el asunto. Relacionado: &lt;a href="https://www.meneame.net/story/reddit-banea-5-subforos" title="www.meneame.net/story/reddit-banea-5-subforos" rel="nofollow"&gt;www.meneame.net/story/reddit-banea-5-subforos&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: reddit&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428087" &gt;noticia original&lt;/a&gt; (www.theverge.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4727e7bc/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049379699/u/192/f/639540/c/34737/s/4727e7bc/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">tecnología</category>
+            <category domain="">reddit</category>
+            <pubDate>Thu, 11 Jun 2015 18:10:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/este-comienzo-fin-reddit-entonces-reddit-merece-morir-eng</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/este-comienzo-fin-reddit-entonces-reddit-merece-morir-eng</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428087</wfw:commentRss>
+            <dc:creator>Alf_B</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428087.jpeg?1434041526" width="60" height="60" />
+            <meneame:link_id>2428087</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>Alf_B</meneame:user>
+            <meneame:votes>43</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>665</meneame:karma>
+            <meneame:comments>18</meneame:comments>
+            <meneame:url>http://www.theverge.com/2015/6/10/8762839/jerks</meneame:url>
+        </item>
+        <item>
+            <title>Soviet Digital Electronics Museum: un paseo por la electrónica soviética</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/47273386/sc/26/l/0M0Smeneame0Bnet0Cstory0Csoviet0Edigital0Eelectronics0Emuseum0Epaseo0Eelectronica0Esovietica/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0b/media_thumb-link-2427786.jpeg?1434018906' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;A lo largo de los últimos 18 años, Sergei Frolov ha ido recopilando dispositivos electrónicos de la antigua Unión Soviética, que presenta en Soviet Digital Electronics Museum. Hemos hablado con él para conocer un poco mejor cómo se ha gestado el proyecto&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: tecnologia, retro, electronica, urss&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427786" &gt;noticia original&lt;/a&gt; (www.malavida.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/47273386/sc/26/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231049378938/u/192/f/639540/c/34737/s/47273386/sc/26/a2t.img" border="0"/&gt;</description>
+            <category domain="">retro</category>
+            <category domain="">electronica</category>
+            <category domain="">tecnologia</category>
+            <category domain="">cultura</category>
+            <category domain="">urss</category>
+            <pubDate>Thu, 11 Jun 2015 17:50:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/soviet-digital-electronics-museum-paseo-electronica-sovietica</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/soviet-digital-electronics-museum-paseo-electronica-sovietica</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427786</wfw:commentRss>
+            <dc:creator>munoloperez</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0b/media_thumb-link-2427786.jpeg?1434018906" width="60" height="60" />
+            <meneame:link_id>2427786</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>munoloperez</meneame:user>
+            <meneame:votes>64</meneame:votes>
+            <meneame:negatives>0</meneame:negatives>
+            <meneame:karma>605</meneame:karma>
+            <meneame:comments>8</meneame:comments>
+            <meneame:url>http://www.malavida.com/analisis/soviet-digital-electronics-museum-un-paseo-por-la-electronica-sovietica-005312</meneame:url>
+        </item>
+        <item>
+            <title>Motín en RNE ante la negativa del director de informativos a abrir con la muerte de Zerolo</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/472797fe/sc/3/l/0M0Smeneame0Bnet0Cstory0Cmotin0Erne0Eante0Enegativa0Edirector0Einformativos0Eabrir0Emuerte/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2427967.jpeg?1434031434' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;El día del fallecimiento de Pedro Zerolo, Martínez Arias dijo que no se abrían los boletines de Radio Nacional con esta noticia. Arias le comunicó a la editora que no se debía dar en primer lugar esta información pero ella se negó. Entonces, Arias se dirigó a todo el equipo de edición que también se niega y ocurrió lo mismo con la redacción.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: zerolo, motín, rne, muerte, noticia&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2427967" &gt;noticia original&lt;/a&gt; (www.lasexta.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/472797fe/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231064218883/u/192/f/639540/c/34737/s/472797fe/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">motín</category>
+            <category domain="">rne</category>
+            <category domain="">actualidad</category>
+            <category domain="">muerte</category>
+            <category domain="">zerolo</category>
+            <category domain="">noticia</category>
+            <pubDate>Thu, 11 Jun 2015 17:35:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/motin-rne-ante-negativa-director-informativos-abrir-muerte</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/motin-rne-ante-negativa-director-informativos-abrir-muerte</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2427967</wfw:commentRss>
+            <dc:creator>Ratoncolorao</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2427967.jpeg?1434031434" width="60" height="60" />
+            <meneame:link_id>2427967</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>Ratoncolorao</meneame:user>
+            <meneame:votes>156</meneame:votes>
+            <meneame:negatives>8</meneame:negatives>
+            <meneame:karma>745</meneame:karma>
+            <meneame:comments>33</meneame:comments>
+            <meneame:url>http://www.lasexta.com/programas/al-rojo-vivo/noticias/motin-rne-negativa-director-informativos-abrir-muerte-zerolo_2015061100166.html</meneame:url>
+        </item>
+        <item>
+            <title>Cospedal "con las maletas en la mano" firma el mayor contrato de la historia de la Junta en NNTT por 120 millones</title>
+            <link>http://meneame.feedsportal.com/c/34737/f/639540/s/4726e4c9/sc/3/l/0M0Smeneame0Bnet0Cstory0Ccospedal0Emaletas0Emano0Efirma0Emayor0Econtrato0Ehistoria0Ejunta0Enntt/story01.htm</link>
+            <description>&lt;img src='https://mnmstatic.net/cache/25/0c/media_thumb-link-2428030.jpeg?1434035826' width='60' height='60' alt='' class='thumbnail' style='float:right;margin-left: 3px' align='right' hspace='3'/&gt;&lt;p&gt;La presidenta regional en funciones, María Dolores Cospedal, ha firmado el mayor contrato de la historia de la Junta en materia de telecomunicaciones por un importe de más de 120 millones de euros, tras haber resuelto este concurso al día siguiente de convocar las elecciones del 24 de mayo que ha supuesto su derrota electoral y la pérdida del Gobierno.este macrocontrato de nuevas tecnologías, que según los expertos consultados por El Porvenir puede estar sobrevalorado en un 25%.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;etiquetas&lt;/strong&gt;: cospedal, contrato, 120 millones, adjudicación, telefonica, funciones&lt;/p&gt;&lt;p&gt;&amp;#187;&amp;#160;&lt;a href="http://www.meneame.net/go?id=2428030" &gt;noticia original&lt;/a&gt; (www.elporvenirclm.com)&lt;/p&gt;&lt;img width='1' height='1' src='http://meneame.feedsportal.com/c/34737/f/639540/s/4726e4c9/sc/3/mf.gif' border='0'/&gt;&lt;br clear='all'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/1/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/1/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/2/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/2/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/3/rc.htm" rel="nofollow"&gt;&lt;img src="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/rc/3/rc.img" border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a href="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/a2.htm"&gt;&lt;img src="http://da.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img width="1" height="1" src="http://pi.feedsportal.com/r/231122835759/u/192/f/639540/c/34737/s/4726e4c9/sc/3/a2t.img" border="0"/&gt;</description>
+            <category domain="">120 millones</category>
+            <category domain="">funciones</category>
+            <category domain="">actualidad</category>
+            <category domain="">telefonica</category>
+            <category domain="">adjudicación</category>
+            <category domain="">cospedal</category>
+            <category domain="">contrato</category>
+            <pubDate>Thu, 11 Jun 2015 16:50:03 GMT</pubDate>
+            <comments>https://www.meneame.net/story/cospedal-maletas-mano-firma-mayor-contrato-historia-junta-nntt</comments>
+            <guid isPermaLink="false">https://www.meneame.net/story/cospedal-maletas-mano-firma-mayor-contrato-historia-junta-nntt</guid>
+            <wfw:commentRss>http://www.meneame.net/comments_rss?id=2428030</wfw:commentRss>
+            <dc:creator>javiy</dc:creator>
+            <media:thumbnail url="https://mnmstatic.net/cache/25/0c/media_thumb-link-2428030.jpeg?1434035826" width="60" height="60" />
+            <meneame:link_id>2428030</meneame:link_id>
+            <meneame:status>published</meneame:status>
+            <meneame:user>javiy</meneame:user>
+            <meneame:votes>152</meneame:votes>
+            <meneame:negatives>1</meneame:negatives>
+            <meneame:karma>688</meneame:karma>
+            <meneame:comments>22</meneame:comments>
+            <meneame:url>http://www.elporvenirclm.com/16580/cospedal-con-las-maletas-en-la-mano-firma-el-mayor-contrato-de-la-historia-de-la-junta-en-tics-por-120-millones.html</meneame:url>
+        </item>
+    </channel>
+</rss>

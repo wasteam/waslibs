@@ -1,0 +1,30 @@
+[
+  {
+    "MenuType": "DeepLink",
+    "Title": "Address",
+    "Icon": "/Assets/DataImages/Item-dd7eb8ba-7f16-46b0-9a38-ff3ebe9433c5.png",
+    "Target": "bingmaps:?collection=point.47.70117950439453_-122.13028717041016_Contoso&lvl=18",
+    "_id": "5ff5e805-dbdb-466b-97fe-ed12e51a61f2"
+  },
+  {
+    "MenuType": "DeepLink",
+    "Title": "Ph: 1-800-555-0122",
+    "Icon": "/Assets/DataImages/Item-9ce253a3-5d2c-4151-b88c-6188566638a0.png",
+    "Target": "tel:1-800-555-0122",
+    "_id": "591cbccb-b4c0-4cf9-adca-d8f6afcfc766"
+  },
+  {
+    "MenuType": "DeepLink",
+    "Title": "info@contoso.com",
+    "Icon": "/Assets/DataImages/Item-18a79169-63d2-4418-931d-dc6f9a6be1a8.png",
+    "Target": "mailto:info@contoso.com",
+    "_id": "bdc4ca4f-9352-4d8a-9c32-13657b33398e"
+  },
+  {
+    "MenuType": "DeepLink",
+    "Title": "www.contoso.com",
+    "Icon": "/Assets/DataImages/Item-492dd772-70d2-480e-b4d5-66c89315293c.png",
+    "Target": "http://www.contoso.com",
+    "_id": "4481651b-95a8-43d7-ac3c-a98c5b66f9b5"
+  }
+]

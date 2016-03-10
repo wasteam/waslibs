@@ -15,13 +15,12 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Error Notification Control permite mostrar un mensaje cuando se ha producido un error. El control también dispone de un boton de cierre que lo ocultará. Además del texto del mensaje, permite fijarle un color que marcará su visualización."/>
+                    <Run Text="The ErrorNotificationControl allows to show a message when an exception occurs. You can configure the message background color and the user can close it once read."/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ErrorNotificationControl">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ErrorNotificationControl</Hyperlink>
                 </Paragraph>

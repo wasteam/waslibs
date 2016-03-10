@@ -11,17 +11,20 @@
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="Facebook Help" />
+                    <Run FontSize="32" Text="Facebook Data Provider Help" />
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Este Data Provider obtiene datos del API de Facebook. Para poder pedir los datos, será necesario registrarse en Facebook Apps y obtener un AppId y un AppSecret. Para pedir los datos se requiere el ID de la página de Facebook de la cual se van a pedir los datos."/>
+                    <Run Text="Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance."/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Run Text="The FacebookDataProvider allow retrieve Facebook data through its API. You have to be registered in Facebook Apps to be able to interact with the Facebook API and you must obtain an AppId and AppSecret to configure the data access. Finally, you must use the Page ID from what you want to get the information."/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
                     <Hyperlink NavigateUri="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</Hyperlink>
                 </Paragraph>
-                <Paragraph/>
                 <Paragraph>
                     <Hyperlink NavigateUri="https://developers.facebook.com/docs/graph-api/using-graph-api">https://developers.facebook.com/docs/graph-api/using-graph-api</Hyperlink>
                 </Paragraph>
@@ -29,7 +32,6 @@
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
-                <Paragraph />
                 <Paragraph>
                     <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook</Hyperlink>
                 </Paragraph>
