@@ -49,6 +49,8 @@
     </DataTemplate>
 
     <Style TargetType="controls:ShellControl">
+        <Setter Property="Background" Value="#eee" />
+        <Setter Property="Foreground" Value="#222" />
         <Setter Property="HeaderTemplate" Value="{StaticResource NavigationHeaderTemplate}" />
         <Setter Property="NavigationItemTemplate" Value="{StaticResource NavigationItemTemplate}" />
         <Setter Property="NavigationSubItemTemplate" Value="{StaticResource NavigationSubItemTemplate}" />
