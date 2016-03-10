@@ -159,7 +159,7 @@ namespace AppStudio.Uwp.Controls
         private void SetForeground(ICommandBarElement item)
         {
             var control = item as Control;
-            control.Foreground = this.Foreground;
+            control.Foreground = this.CommandBarForeground;
         }
 
         private void ReleaseCommands()

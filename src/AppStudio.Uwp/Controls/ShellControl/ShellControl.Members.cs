@@ -106,6 +106,26 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty HamburgerBorderBrushProperty = DependencyProperty.Register("HamburgerBorderBrush", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
+        #region NavigationBackground
+        public Brush NavigationBackground
+        {
+            get { return (Brush)GetValue(NavigationBackgroundProperty); }
+            set { SetValue(NavigationBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavigationBackgroundProperty = DependencyProperty.Register("NavigationBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region NavigationForeground
+        public Brush NavigationForeground
+        {
+            get { return (Brush)GetValue(NavigationForegroundProperty); }
+            set { SetValue(NavigationForegroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavigationForegroundProperty = DependencyProperty.Register("NavigationForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
         #region DisplayMode
         public SplitViewDisplayMode DisplayMode
         {

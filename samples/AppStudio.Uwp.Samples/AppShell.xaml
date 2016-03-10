@@ -45,7 +45,7 @@
                                Header="{Binding AppFrame.Content.Caption}" HeaderTemplate="{Binding AppFrame.Content.HeaderTemplate}"
                                PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}"
                                NavigationItemTemplate="{StaticResource NavigationItemTemplate}" NavigationSubItemTemplate="{StaticResource NavigationSubItemTemplate}" SeparatorStyle="{StaticResource NavigationSeparatorStyle}"
-                               Background="#234567" Foreground="White" BorderBrush="#345678"
+                               NavigationBackground="#234567" NavigationForeground="White" BorderBrush="#345678"
                                CommandBarBackground="#345678" CommandBarForeground="White"
                                HamburgerBackground="Brown" HamburgerForeground="White" HamburgerBorderBrush="Brown">
             <Frame Name="frame">

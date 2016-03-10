@@ -49,8 +49,8 @@
     </DataTemplate>
 
     <Style TargetType="controls:ShellControl">
-        <Setter Property="Background" Value="#eee" />
-        <Setter Property="Foreground" Value="#222" />
+        <Setter Property="NavigationBackground" Value="#eee" />
+        <Setter Property="NavigationForeground" Value="#222" />
         <Setter Property="HeaderTemplate" Value="{StaticResource NavigationHeaderTemplate}" />
         <Setter Property="NavigationItemTemplate" Value="{StaticResource NavigationItemTemplate}" />
         <Setter Property="NavigationSubItemTemplate" Value="{StaticResource NavigationSubItemTemplate}" />
@@ -69,7 +69,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <SplitView Name="splitView" IsPaneOpen="False" DisplayMode="{TemplateBinding DisplayMode}" CompactPaneLength="48" PaneBackground="{TemplateBinding Background}">
+                        <SplitView Name="splitView" IsPaneOpen="False" DisplayMode="{TemplateBinding DisplayMode}" CompactPaneLength="48" PaneBackground="{TemplateBinding NavigationBackground}">
                             <SplitView.Pane>
                                 <Grid Name="paneContent" Margin="0,0,0,0" HorizontalAlignment="Stretch">
                                     <Grid.RowDefinitions>
@@ -100,7 +100,7 @@
                                                 <Grid.Background>
                                                     <SolidColorBrush Opacity="0.25" Color="Black" />
                                                 </Grid.Background>
-                                                <TextBlock Text="{Binding SelectedItem.Caption, ElementName=lview}" FontSize="20" Foreground="{TemplateBinding Foreground}" />
+                                                <TextBlock Text="{Binding SelectedItem.Caption, ElementName=lview}" FontSize="20" Foreground="{TemplateBinding NavigationForeground}" />
                                             </Grid>
                                             <Grid Grid.Row="1" Name="content">
                                                 <Grid.ChildrenTransitions>
