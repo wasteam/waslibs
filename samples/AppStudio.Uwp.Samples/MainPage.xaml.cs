@@ -40,7 +40,7 @@ namespace AppStudio.Uwp.Samples
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.NewSize.Width > 520)
+            if (AppShell.Current.Shell.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
                 this.TopContentTemplate = this.Resources["WideTopTemplate"] as DataTemplate;
             }
