@@ -29,8 +29,8 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="120" Margin="0,0,0,6">
-                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Margin="0,0,0,6">
+                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" Height="120" VerticalAlignment="Center"/>
                                     </Grid>
                                     <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}"/>
                                     <TextBlock Grid.Row="2" Text="{Binding Summary}" Style="{StaticResource LayoutSubtitleStyle}"/>
