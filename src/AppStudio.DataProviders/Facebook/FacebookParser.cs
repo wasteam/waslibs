@@ -6,6 +6,7 @@ using System.Net;
 using AppStudio.DataProviders.Core;
 using Newtonsoft.Json;
 
+
 namespace AppStudio.DataProviders.Facebook
 {
     public class FacebookParser : IParser<FacebookSchema>
@@ -19,7 +20,7 @@ namespace AppStudio.DataProviders.Facebook
 
             Collection<FacebookSchema> resultToReturn = new Collection<FacebookSchema>();
             var searchList = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
-            foreach (var i in searchList.data.Where(w => !string.IsNullOrEmpty(w.message) && !string.IsNullOrEmpty(w.link)).OrderByDescending(o => o.created_time))
+            foreach (var i in searchList.data.Where(w => !string.IsNullOrEmpty(w.message)).OrderByDescending(o => o.created_time))
             {
                 var item = new FacebookSchema
                 {
@@ -30,7 +31,7 @@ namespace AppStudio.DataProviders.Facebook
                     Summary = i.message.DecodeHtml(),
                     Content = i.message,
                     ImageUrl = ConvertImageUrlFromParameter(i.full_picture),
-                    FeedUrl = i.link
+                    FeedUrl = BuildFeedUrl(i.from.id, i.id)
                 };
                 resultToReturn.Add(item);
             }
@@ -63,7 +64,24 @@ namespace AppStudio.DataProviders.Facebook
 
             return parsedImageUrl;
         }
-    }
+
+        private string BuildFeedUrl(string authorId, string id)
+        {
+            const string baseUrl = "https://www.facebook.com";
+            string postId = null;
+            try
+            {              
+                postId = id.Split('_')[1];
+            }
+            catch (Exception)
+            {
+
+                return $"{baseUrl}/{authorId}";
+            }    
+            return $"{baseUrl}/{authorId}/posts/{postId}";
+        }
+
+}
 
     internal class FacebookGraphResponse
     {
