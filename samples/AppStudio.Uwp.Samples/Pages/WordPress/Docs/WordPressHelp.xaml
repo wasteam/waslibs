@@ -15,11 +15,11 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance."/>
+                    <Run x:Uid="HelpWordPress1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The WordPress Data Provider retrieve data from the Word Press blog configured in the property WordPressQuery. You can configure the search in the Data Provider by using one of the following options: Posts, Categories or Tags. The information is read in JSON format and transformed to the WordPressSchema entity. This Data Provider relies on the REST API to access the source content. If the target blog is self-hosted (not in Wordpress.com) it must have the JetPack plug-in installed and the JSON API enabled."/>
+                    <Run x:Uid="HelpWordPress2"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

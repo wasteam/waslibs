@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="Enables the definition of different visual breakpoints for a certain layout as well as modifies the properties of child controls based on the breakpoints defined. In other words, adds the ability to change the layout and property values of controls based on the defined 'breakpoint values'. There are two main advantages over the platform VisualStateManager control: 1) all the visual breakpoints are defined in a centralized JSON file, which can reference other JSON files; 2) allows the modification of properties inside controls that belongs to DataTemplates."/>
+                    <Run x:Uid="HelpVisualBreakpoints1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

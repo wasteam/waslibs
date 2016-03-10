@@ -15,11 +15,11 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance."/>
+                    <Run x:Uid="HelpFacebook1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The FacebookDataProvider allow retrieve Facebook data through its API. You have to be registered in Facebook Apps to be able to interact with the Facebook API and you must obtain an AppId and AppSecret to configure the data access. Finally, you must use the Page ID from what you want to get the information."/>
+                    <Run x:Uid="HelpFacebook2"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>

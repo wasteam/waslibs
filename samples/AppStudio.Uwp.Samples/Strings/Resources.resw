@@ -204,8 +204,107 @@
   <data name="DataProvidersNoItems.Text" xml:space="preserve">
     <value>0 Items found. Try changing request configuration on Settings pane.</value>
   </data>
+  <data name="HelpActionsCommandBar1.Text" xml:space="preserve">
+    <value>The ActionsCommandBar control extends the system Windows.UI.Xaml.Controls.CommandBar allowing to dynamically load the AppBarButtons through binding the control to a List of ActionInfo items created from C#. The control can define the AppBarButtons in XAML as well.</value>
+  </data>
+  <data name="HelpAnimationExtensions1.Text" xml:space="preserve">
+    <value>The Animation Extensions are a set of extension Methods on the FrameworkElement control which allows to execute animations from C# code. The animations can be invoked asynchronously.</value>
+  </data>
+  <data name="HelpAppCache1.Text" xml:space="preserve">
+    <value>The AppCache is a service class which use local storage to maintain persisten information among App executions hiding the complexity of saving to and load from the local storage the elements added to memory.</value>
+  </data>
+  <data name="HelpBing1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers.  All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpBing2.Text" xml:space="preserve">
+    <value>The Bing DataProvider allows you to retreive Microsoft Bing web search engine results direct to your App.</value>
+  </data>
+  <data name="HelpCarousel1.Text" xml:space="preserve">
+    <value>The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.</value>
+  </data>
+  <data name="HelpConverters1.Text" xml:space="preserve">
+    <value>Converters allow you to transform a certain value from a data type in other different value. Using Converters leads to have a cleaner XAML code. In the samples shown, the first converter is used to change the Visibility of an image based in the value a Toggle control. If the Toggle is True (Boolean value), the converter returns 'Visible' for the Visibility property of the image control. When the Toggle is False, it returns 'Collapsed' for the Visibility property.</value>
+  </data>
+  <data name="HelpErrorNotificationControl1.Text" xml:space="preserve">
+    <value>The ErrorNotificationControl allows to show a message when an exception occurs. You can configure the message background color and the user can close it once read.</value>
+  </data>
+  <data name="HelpFacebook1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpFacebook2.Text" xml:space="preserve">
+    <value>The FacebookDataProvider allow retrieve Facebook data through its API. You have to be registered in Facebook Apps to be able to interact with the Facebook API and you must obtain an AppId and AppSecret to configure the data access. Finally, you must use the Page ID from what you want to get the information.</value>
+  </data>
+  <data name="HelpFlickr1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers.  All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpFlickr2.Text" xml:space="preserve">
+    <value>The FlickrDataProvider gets images using the Flickr API. You can retrieve content based on tags or you can access the images from a Flickr account by using the UserID. To resolve which UserID is assigned to a certain Flickr account use http://idgettr.com/</value>
+  </data>
+  <data name="HelpImageEx1.Text" xml:space="preserve">
+    <value>The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps. Source images are downloaded asynchronously showing a load indicator while in progress. Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.</value>
+  </data>
+  <data name="HelpLocalStorage1.Text" xml:space="preserve">
+    <value>This Data Provider access data from the LocalStorage. You can configure which file will be used as content source. The information, stored in JSON format, is transformed to the specified data type.</value>
+  </data>
+  <data name="HelpNavigation1.Text" xml:space="preserve">
+    <value>The NavigationService service handles the complexity of navigating among App pages. It can be used in the main rootFrame as well as in other internal frames, like a ShellControl with Hamburger button.</value>
+  </data>
+  <data name="HelpNavigation2.Text" xml:space="preserve">
+    <value>The navigation can be implemented in multiple ways: using the .NET Type of the page we want to navigate to; using a string with the page name as target page; or through an element which implements the INavigable interface. We can use the NavigationService to open the web browser as well.</value>
+  </data>
+  <data name="HelpPivorama1.Text" xml:space="preserve">
+    <value>The Pivorama control allows to visualize a set of elements optimizing the available space to display them. The Pivorama behaves differently based on the screen size: in big screens, it maximizes the number of items displayed using a table kind layout, with the ability to slide horizontally; in small screens, it behaves more like a Pivot control, showing the items in groups, with a heading inviting to slide horizontally. The Pivorama control is ideal to display big number of items in the best way depending on the device form factor.</value>
+  </data>
+  <data name="HelpRelativeBox1.Text" xml:space="preserve">
+    <value>The RelativeBox control uses XAML to apply a responsive behavior to the DataTemplate configured.</value>
+  </data>
+  <data name="HelpResponsiveGridView1.Text" xml:space="preserve">
+    <value>The ResponsiveGridView control allows to present information within a Grid View perfectly adjusting the total display available space. It reacts to changes in the layout as well as the content so it can adapt to different form factors automatically. The number and the width of items are calculated based on the screen resolution in order to fully leverage the available screen space. The property ItemsHeight define the items fixed height and the property DesiredWidth sets the minimum width for the elements to add a new column.</value>
+  </data>
+  <data name="HelpRss1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpRss2.Text" xml:space="preserve">
+    <value>The RssDataProvider retrieve information from the configured RSS Url, the data is read form the source in XML format and transformed to a RssSchema entity.</value>
+  </data>
+  <data name="HelpSearchBox1.Text" xml:space="preserve">
+    <value>The SearchBox control allows to handle the App search feature. You can decide how the control will be displayed using properties Foreground, Background, PlaceHolderText, FontSize, etc. The SearchCommand property establish the command to execute when the user press enter or click the magnifier.</value>
+  </data>
+  <data name="HelpSectionList1.Text" xml:space="preserve">
+    <value>The SectionList control enables the horizontal item visualization adjusting the number of items shown to the available space. A SectionList is composed by one or more SectionListItem which can contain any XAML code. Each SectionListItem may have a Header and a ViewAll button to navigate to the list of items shown. The control shows a progress indicator while loading. If an exception occurs during the load, an error message is shown.</value>
+  </data>
+  <data name="HelpSplitterCard1.Text" xml:space="preserve">
+    <value>The SplitterCard control applies a specific design to strings. For any given string, the controls split the text by spaces. The first two words in the text are displayed one over the other using a specific style and highlighting the first one.</value>
+  </data>
+  <data name="HelpTwitter1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpTwitter2.Text" xml:space="preserve">
+    <value>The TwitterDataProvider retrieve data using the Twitter API. To be able to request Twitter data, the user must be registered in Twitter Apps and obtain a ConsumerSecret, an AccessToken and an AccessTokenSecret. This Data Provider can retrieve the user TimeLine or gather data by Twitter User Name or Hashtag.</value>
+  </data>
+  <data name="HelpVariableSizedGrid1.Text" xml:space="preserve">
+    <value>The VariableSizedGrid control allows to display items from a list using different values for Width and Height item properties. You can control the number of rows and columns to be displayed as well as the items orientation in the panel. Finally, the AspectRatio property allow us to control the relation between Width and Height.</value>
+  </data>
   <data name="HelpViewCode.Text" xml:space="preserve">
     <value>View code</value>
+  </data>
+  <data name="HelpVirtualBox1.Text" xml:space="preserve">
+    <value>The VirtualBox control allows to redimension any XAML DataTemplate proportionaly. The control works directly with the underlying ContentPresenter to have a smooth behavior and high optimized performance.</value>
+  </data>
+  <data name="HelpVisualBreakpoints1.Text" xml:space="preserve">
+    <value>Enables the definition of different visual breakpoints for a certain layout as well as modifies the properties of child controls based on the breakpoints defined. In other words, adds the ability to change the layout and property values of controls based on the defined 'breakpoint values'. There are two main advantages over the platform VisualStateManager control: 1) all the visual breakpoints are defined in a centralized JSON file, which can reference other JSON files; 2) allows the modification of properties inside controls that belongs to DataTemplates.</value>
+  </data>
+  <data name="HelpWordPress1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpWordPress2.Text" xml:space="preserve">
+    <value>The WordPress Data Provider retrieve data from the Word Press blog configured in the property WordPressQuery. You can configure the search in the Data Provider by using one of the following options: Posts, Categories or Tags. The information is read in JSON format and transformed to the WordPressSchema entity. This Data Provider relies on the REST API to access the source content. If the target blog is self-hosted (not in Wordpress.com) it must have the JetPack plug-in installed and the JSON API enabled.</value>
+  </data>
+  <data name="HelpYouTube1.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpYouTube2.Text" xml:space="preserve">
+    <value>The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key.</value>
   </data>
   <data name="NavigationSampleButton1.Content" xml:space="preserve">
     <value>Navigate</value>

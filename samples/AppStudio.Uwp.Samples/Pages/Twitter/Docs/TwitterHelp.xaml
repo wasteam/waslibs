@@ -15,11 +15,11 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance."/>
+                    <Run x:Uid="HelpTwitter1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The TwitterDataProvider retrieve data using the Twitter API. To be able to request Twitter data, the user must be registered in Twitter Apps and obtain a ConsumerSecret, an AccessToken and an AccessTokenSecret. This Data Provider can retrieve the user TimeLine or gather data by Twitter User Name or Hashtag."/>
+                    <Run x:Uid="HelpTwitter2"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>

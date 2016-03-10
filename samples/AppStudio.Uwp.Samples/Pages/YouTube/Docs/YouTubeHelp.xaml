@@ -15,11 +15,11 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers. All Data Providers take advantage of the AppCache service to improve the App performance."/>
+                    <Run x:Uid="HelpYouTube1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key."/>
+                    <Run x:Uid="HelpYouTube2"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>

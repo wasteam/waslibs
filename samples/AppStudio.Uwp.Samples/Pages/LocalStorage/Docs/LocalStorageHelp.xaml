@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="This Data Provider access data from the LocalStorage. You can configure which file will be used as content source. The information, stored in JSON format, is transformed to the specified data type."/>
+                    <Run x:Uid="HelpLocalStorage1"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>

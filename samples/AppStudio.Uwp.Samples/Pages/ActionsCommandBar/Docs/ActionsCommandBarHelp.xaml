@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The ActionsCommandBar control extends the system Windows.UI.Xaml.Controls.CommandBar allowing to dynamically load the AppBarButtons through binding the control to a List of ActionInfo items created from C#. The control can define the AppBarButtons in XAML as well." />
+                    <Run x:Uid="HelpActionsCommandBar1"/>
                 </Paragraph>
                 <Paragraph />  
                 <Paragraph>

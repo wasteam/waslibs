@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="The VirtualBox control allows to redimension any XAML DataTemplate proportionaly. The control works directly with the underlying ContentPresenter to have a smooth behavior and high optimized performance."/>
+                    <Run x:Uid="HelpVirtualBox1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The ErrorNotificationControl allows to show a message when an exception occurs. You can configure the message background color and the user can close it once read."/>
+                    <Run x:Uid="HelpErrorNotificationControl1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

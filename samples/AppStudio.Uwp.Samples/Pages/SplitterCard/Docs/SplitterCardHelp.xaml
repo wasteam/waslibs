@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="The SplitterCard control applies a specific design to strings. For any given string, the controls split the text by spaces. The first two words in the text are displayed one over the other using a specific style and highlighting the first one."/>
+                    <Run x:Uid="HelpSplitterCard1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="The RelativeBox control uses XAML to apply a responsive behavior to the DataTemplate configured."/>
+                    <Run x:Uid="HelpRelativeBox1"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>

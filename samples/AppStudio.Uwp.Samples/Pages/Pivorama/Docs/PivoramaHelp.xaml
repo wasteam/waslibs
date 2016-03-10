@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="The Pivorama control allows to visualize a set of elements optimizing the available space to display them. The Pivorama behaves differently based on the screen size: in big screens, it maximizes the number of items displayed using a table kind layout, with the ability to slide horizontally; in small screens, it behaves more like a Pivot control, showing the items in groups, with a heading inviting to slide horizontally. The Pivorama control is ideal to display big number of items in the best way depending on the device form factor."/>
+                    <Run x:Uid="HelpPivorama1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run Text="The SectionList control enables the horizontal item visualization adjusting the number of items shown to the available space. A SectionList is composed by one or more SectionListItem which can contain any XAML code. Each SectionListItem may have a Header and a ViewAll button to navigate to the list of items shown. The control shows a progress indicator while loading. If an exception occurs during the load, an error message is shown."/>
+                    <Run x:Uid="HelpSectionList1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>

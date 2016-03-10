@@ -15,7 +15,7 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run Text="The Animation Extensions are a set of extension Methods on the FrameworkElement control which allows to execute animations from C# code. The animations can be invoked asynchronously. "/>
+                    <Run x:Uid="HelpAnimationExtensions1"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
