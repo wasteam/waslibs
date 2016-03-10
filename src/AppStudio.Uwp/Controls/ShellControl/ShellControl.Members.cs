@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
@@ -25,6 +26,26 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
+        #region NavigationItemTemplate
+        public DataTemplate NavigationItemTemplate
+        {
+            get { return (DataTemplate)GetValue(NavigationItemTemplateProperty); }
+            set { SetValue(NavigationItemTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavigationItemTemplateProperty = DependencyProperty.Register("NavigationItemTemplate", typeof(DataTemplate), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region NavigationSubItemTemplate
+        public DataTemplate NavigationSubItemTemplate
+        {
+            get { return (DataTemplate)GetValue(NavigationSubItemTemplateProperty); }
+            set { SetValue(NavigationSubItemTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty NavigationSubItemTemplateProperty = DependencyProperty.Register("NavigationSubItemTemplate", typeof(DataTemplate), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
         #region SeparatorStyle
         public Style SeparatorStyle
         {
@@ -33,6 +54,56 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region CommandBarBackground
+        public Brush CommandBarBackground
+        {
+            get { return (Brush)GetValue(CommandBarBackgroundProperty); }
+            set { SetValue(CommandBarBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommandBarBackgroundProperty = DependencyProperty.Register("CommandBarBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region CommandBarForeground
+        public Brush CommandBarForeground
+        {
+            get { return (Brush)GetValue(CommandBarForegroundProperty); }
+            set { SetValue(CommandBarForegroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommandBarForegroundProperty = DependencyProperty.Register("CommandBarForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region HamburgerBackground
+        public Brush HamburgerBackground
+        {
+            get { return (Brush)GetValue(HamburgerBackgroundProperty); }
+            set { SetValue(HamburgerBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty HamburgerBackgroundProperty = DependencyProperty.Register("HamburgerBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region HamburgerForeground
+        public Brush HamburgerForeground
+        {
+            get { return (Brush)GetValue(HamburgerForegroundProperty); }
+            set { SetValue(HamburgerForegroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty HamburgerForegroundProperty = DependencyProperty.Register("HamburgerForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region HamburgerBorderBrush
+        public Brush HamburgerBorderBrush
+        {
+            get { return (Brush)GetValue(HamburgerBorderBrushProperty); }
+            set { SetValue(HamburgerBorderBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty HamburgerBorderBrushProperty = DependencyProperty.Register("HamburgerBorderBrush", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
         #region DisplayMode

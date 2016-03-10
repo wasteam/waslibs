@@ -9,7 +9,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="WideTopTemplate">
-            <Grid Padding="12" Height="200" Background="#123456">
+            <Grid Padding="12" Height="200" Background="#345678">
                 <Viewbox>
                     <StackPanel>
                         <TextBlock Text="Wide Top Content" FontSize="40" Foreground="White" HorizontalAlignment="Center" />
@@ -20,7 +20,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="TinyTopTemplate">
-            <Grid Padding="48,12" Height="100" Background="#123456">
+            <Grid Padding="48,12" Height="100" Background="#345678">
                 <Viewbox>
                     <StackPanel>
                         <TextBlock Text="Tiny Top Content" FontSize="40" Foreground="White" HorizontalAlignment="Center" />
@@ -43,7 +43,7 @@
 
         <Grid Grid.Row="1" Margin="6" Padding="6" BorderBrush="Gray" BorderThickness="1">
             <Viewbox>
-                <TextBlock Margin="12" Text="AppStudio Universal Windows Projects" />
+                <TextBlock Margin="12" Text="AppStudio Universal Windows Projects" Foreground="Black" />
             </Viewbox>
         </Grid>
     </Grid>

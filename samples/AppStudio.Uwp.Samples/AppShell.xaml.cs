@@ -45,7 +45,7 @@ namespace AppStudio.Uwp.Samples
                 yield return NavigationItem.Separator;
 
                 yield return new NavigationItem(Symbol.SelectAll, this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("Layout"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/Misc.png"), this.GetResourceString("ShellMenuMiscControls"), GetControlsByCategory("Misc"));
+                yield return new NavigationItem(Symbol.Library, this.GetResourceString("ShellMenuMiscControls"), GetControlsByCategory("Misc"));
                 yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuTools"), GetControlsByCategory("Tools"));
                 yield return new NavigationItem(Symbol.CalendarWeek, this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"));
 

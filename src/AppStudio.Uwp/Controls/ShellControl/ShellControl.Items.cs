@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -107,6 +108,7 @@ namespace AppStudio.Uwp.Controls
                         {
                             foreach (var item in this.PrimaryCommands)
                             {
+                                SetForeground(item);
                                 _commandBarT.PrimaryCommands.Add(item);
                             }
                         }
@@ -114,6 +116,7 @@ namespace AppStudio.Uwp.Controls
                         {
                             foreach (var item in this.SecondaryCommands)
                             {
+                                SetForeground(item);
                                 _commandBarT.SecondaryCommands.Add(item);
                             }
                         }
@@ -127,6 +130,7 @@ namespace AppStudio.Uwp.Controls
                         {
                             foreach (var item in this.PrimaryCommands)
                             {
+                                SetForeground(item);
                                 _commandBarB.PrimaryCommands.Add(item);
                             }
                         }
@@ -134,6 +138,7 @@ namespace AppStudio.Uwp.Controls
                         {
                             foreach (var item in this.SecondaryCommands)
                             {
+                                SetForeground(item);
                                 _commandBarB.SecondaryCommands.Add(item);
                             }
                         }
@@ -149,6 +154,12 @@ namespace AppStudio.Uwp.Controls
                     _commandBarB.Visibility = Visibility.Collapsed;
                 }
             }
+        }
+
+        private void SetForeground(ICommandBarElement item)
+        {
+            var control = item as Control;
+            control.Foreground = this.Foreground;
         }
 
         private void ReleaseCommands()

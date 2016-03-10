@@ -7,11 +7,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="NavigationItemTemplate">
+            <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ContentControl Margin="12,10" Content="{Binding Icon}" Foreground="White" />
+                <TextBlock Grid.Column="1" Margin="16,10" Text="{Binding Caption}" Foreground="White" />
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="NavigationSeparatorStyle" TargetType="ContentControl">
+            <Setter Property="Margin" Value="8,0" />
+            <Setter Property="MinHeight" Value="7"/>
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Line X1="0" X2="1" Stretch="UniformToFill" Stroke="#345678" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="NavigationSubItemTemplate">
+            <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+                <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="White" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
         <controls:ShellControl Name="shell" NavigationItems="{Binding NavigationItems}" HideCommandBar="{Binding AppFrame.Content.HideCommandBar}"
                                Header="{Binding AppFrame.Content.Caption}" HeaderTemplate="{Binding AppFrame.Content.HeaderTemplate}"
-                               PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}">
+                               PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}"
+                               NavigationItemTemplate="{StaticResource NavigationItemTemplate}" NavigationSubItemTemplate="{StaticResource NavigationSubItemTemplate}" SeparatorStyle="{StaticResource NavigationSeparatorStyle}"
+                               Background="#234567" Foreground="White" BorderBrush="#345678"
+                               CommandBarBackground="#345678" CommandBarForeground="White"
+                               HamburgerBackground="Brown" HamburgerForeground="White" HamburgerBorderBrush="Brown">
             <Frame Name="frame">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
