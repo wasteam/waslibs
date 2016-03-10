@@ -2,7 +2,7 @@
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "SplitterCard")]
+    [SamplePage(Category = "LayoutControls", Name = "SplitterCard", Order = 60)]
     public sealed partial class SplitterCardPage : SamplePage
     {
         public SplitterCardPage()

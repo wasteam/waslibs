@@ -97,8 +97,11 @@
     <Content Include="Assets\Icons\Pivorama.png" />
     <Content Include="Assets\Images\AppStudio.png" />
     <Content Include="Assets\Images\BingIcon.png" />
+    <Content Include="Assets\Images\Carousel.png" />
     <Content Include="Assets\Images\FacebookIcon.png" />
     <Content Include="Assets\Images\FlickrIcon.png" />
+    <Content Include="Assets\Images\HomeLogo.png" />
+    <Content Include="Assets\Images\HomeLogo2.png" />
     <Content Include="Assets\Images\InstagramIcon.png" />
     <Content Include="Assets\Images\YouTubePlay.png" />
     <Content Include="Assets\VBPDevices.json" />
@@ -112,6 +115,8 @@
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
     <Content Include="Assets\LocalStorageSamples.json" />
+    <Content Include="Assets\FeaturedControls.json" />
+    <Content Include="Assets\VBPVariableSizedGrid.json" />
     <None Include="project.json" />
     <PRIResource Include="Strings\Resources.resw" />
   </ItemGroup>
@@ -132,6 +137,7 @@
     <Compile Include="Controls\PrettifyControl.cs" />
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
+    <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\DevicesDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />

@@ -33,10 +33,10 @@
                 </Style>
             </actions:ActionsCommandBar.CommandBarOverflowPresenterStyle>
             <actions:ActionsCommandBar.PrimaryCommands>
-                <AppBarButton Label="Primary Xaml" Style="{StaticResource AppBarAddress}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Primary Xaml"/>
+                <AppBarButton x:Uid="MessageCommandFromXaml" Label="Primary Xaml" Style="{StaticResource AppBarAddress}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Primary Xaml" Command="{Binding MessageCommand}"/>
             </actions:ActionsCommandBar.PrimaryCommands>
             <actions:ActionsCommandBar.SecondaryCommands>
-                <AppBarButton Label="Xaml" Style="{StaticResource AppBarDirections}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Xaml"/>
+                <AppBarButton x:Uid="MessageCommandFromXaml" Label="Xaml" Style="{StaticResource AppBarDirections}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Xaml" Command="{Binding MessageCommand}"/>
             </actions:ActionsCommandBar.SecondaryCommands>
         </actions:ActionsCommandBar>
     </Grid>

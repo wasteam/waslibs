@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Misc", Name = "VisualBreakpoints")]
+    [SamplePage(Category = "FoundationControls", Name = "VisualBreakpoints", Order = 05)]
     public sealed partial class VisualBreakpointsPage : SamplePage
     {
         public VisualBreakpointsPage()

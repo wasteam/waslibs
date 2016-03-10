@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "ImageEx")]
+    [SamplePage(Category = "FoundationControls", Name = "ImageEx", Order = 10)]
     public sealed partial class ImageExPage : SamplePage
     {
         public ImageExPage()

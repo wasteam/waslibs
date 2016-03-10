@@ -7,7 +7,7 @@ using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "SearchBox")]
+    [SamplePage(Category = "FoundationControls", Name = "SearchBox", Order = 40)]
     public sealed partial class SearchBoxPage : SamplePage
     {
         public SearchBoxPage()

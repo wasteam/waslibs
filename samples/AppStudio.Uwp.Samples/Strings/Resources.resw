@@ -288,6 +288,12 @@
   <data name="HelpYouTube1.Text" xml:space="preserve">
     <value>The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key.</value>
   </data>
+  <data name="MessageCommandFromCode" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from C#.</value>
+  </data>
+  <data name="MessageCommandFromXaml.CommandParameter" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from XAML.</value>
+  </data>
   <data name="NavigationSampleButton1.Content" xml:space="preserve">
     <value>Navigate</value>
   </data>
@@ -342,11 +348,17 @@
   <data name="SearchBoxSearchingText.Text" xml:space="preserve">
     <value>Your are searching:</value>
   </data>
+  <data name="ShellMenuAppServices" xml:space="preserve">
+    <value>App Services</value>
+  </data>
   <data name="ShellMenuDataProviders" xml:space="preserve">
     <value>Data Providers</value>
   </data>
   <data name="ShellMenuEnterFullScreen" xml:space="preserve">
     <value>Enter Full Screen</value>
+  </data>
+  <data name="ShellMenuFoundationControls" xml:space="preserve">
+    <value>Foundation Controls</value>
   </data>
   <data name="ShellMenuHome" xml:space="preserve">
     <value>Home</value>
@@ -354,10 +366,7 @@
   <data name="ShellMenuLayoutControls" xml:space="preserve">
     <value>Layout Controls</value>
   </data>
-  <data name="ShellMenuMiscControls" xml:space="preserve">
-    <value>Misc Controls</value>
-  </data>
-  <data name="ShellMenuTools" xml:space="preserve">
-    <value>Tools</value>
+  <data name="ShellMenuUtilities" xml:space="preserve">
+    <value>Utilities</value>
   </data>
 </root>

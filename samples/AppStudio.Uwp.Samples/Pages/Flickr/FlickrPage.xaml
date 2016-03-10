@@ -14,12 +14,13 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
+        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
                     <controls:VariableSizedGrid
                         ItemsSource="{Binding Items}"
-                        Orientation="Horizontal" MaximumRowsOrColumns="6" AspectRatio="1"
+                        Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}" AspectRatio="1"
                         HorizontalAlignment="Left" VerticalAlignment="Top">
                         <controls:VariableSizedGrid.ItemTemplate>
                             <DataTemplate>

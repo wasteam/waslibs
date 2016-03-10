@@ -1,5 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -37,6 +39,22 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty TopContentTemplateProperty = DependencyProperty.Register("TopContentTemplate", typeof(DataTemplate), typeof(MainPage), new PropertyMetadata(null));
         #endregion
+
+        #region Items
+        public ObservableCollection<object> Items
+        {
+            get { return (ObservableCollection<object>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(MainPage), new PropertyMetadata(null));
+        #endregion
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            this.Items = new ObservableCollection<object>(new FeaturedControlsDataSource().GetItems());
+            base.OnNavigatedTo(e);
+        }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {

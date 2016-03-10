@@ -7,7 +7,7 @@ using Windows.UI.Popups;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "VirtualBox")]
+    [SamplePage(Category = "FoundationControls", Name = "VirtualBox", Order = 20)]
     public sealed partial class VirtualBoxPage : SamplePage
     {
         public VirtualBoxPage()

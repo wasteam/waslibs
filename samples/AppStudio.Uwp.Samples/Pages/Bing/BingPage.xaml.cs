@@ -11,7 +11,7 @@ using AppStudio.DataProviders.Bing;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Bing", Order = 10)]
+    [SamplePage(Category = "DataProviders", Name = "Bing", Order = 70)]
     public sealed partial class BingPage : SamplePage
     {
         private const BingCountry DefaultBingCountry = BingCountry.UnitedStates;

@@ -18,7 +18,7 @@
                 <controls:PropertySet Source="{Binding}" Property="VerticalAlignment" Value="{Binding VerticalAlignment, Mode=TwoWay}"/>
                 <controls:PropertySet Source="{Binding}" Property="DisplayMode" Value="{Binding DisplayMode, Mode=TwoWay}"/>
                 <controls:PropertySet Source="{Binding}" Property="Height" Value="{Binding Height, Mode=TwoWay}" Minimun="30" Maximun="400" SmallChange="1"/>
-                <controls:PropertySet Source="{Binding}" Property="Width" Value="{Binding Width, Mode=TwoWay}" Minimun="400" Maximun="4000" SmallChange="1"/>
+                <controls:PropertySet Source="{Binding}" Property="Width" Value="{Binding Width, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="1"/>
                 <controls:PropertySet Source="{Binding}" Property="SearchWidth" Value="{Binding SearchWidth, Mode=TwoWay}" Minimun="100" Maximun="800" SmallChange="10"/>
                 <controls:PropertySet Source="{Binding}" Property="FontSize" Value="{Binding FontSize, Mode=TwoWay}" Minimun="10" Maximun="120" SmallChange="1"/>
                 <controls:PropertySet Source="{Binding}" Property="FontSize" Value="{Binding FontSize, Mode=TwoWay}" Minimun="10" Maximun="120" SmallChange="1"/>

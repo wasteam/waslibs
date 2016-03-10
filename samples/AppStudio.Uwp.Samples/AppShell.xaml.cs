@@ -44,9 +44,10 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), GoHome);
                 yield return NavigationItem.Separator;
 
-                yield return new NavigationItem(Symbol.SelectAll, this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("Layout"));
-                yield return new NavigationItem(Symbol.Library, this.GetResourceString("ShellMenuMiscControls"), GetControlsByCategory("Misc"));
-                yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuTools"), GetControlsByCategory("Tools"));
+                yield return new NavigationItem(Symbol.SelectAll, this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"));
+                yield return new NavigationItem(Symbol.Library, this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"));
+                yield return new NavigationItem(Symbol.AddFriend, this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"));
+                yield return new NavigationItem(Symbol.Repair, this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"));
                 yield return new NavigationItem(Symbol.CalendarWeek, this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"));
 
                 //yield return NavigationItem.Separator;
