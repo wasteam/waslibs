@@ -288,6 +288,12 @@
   <data name="HelpYouTube1.Text" xml:space="preserve">
     <value>The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key.</value>
   </data>
+  <data name="MessageCommandFromCode" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from C#.</value>
+  </data>
+  <data name="MessageCommandFromXaml.CommandParameter" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from XAML.</value>
+  </data>
   <data name="NavigationSampleButton1.Content" xml:space="preserve">
     <value>Navigate</value>
   </data>
