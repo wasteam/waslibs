@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "Pivorama", Order = 10)]
+    [SamplePage(Category = "LayoutControls", Name = "Pivorama", Order = 20)]
     public sealed partial class PivoramaPage : SamplePage
     {
         public PivoramaPage()

@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "VariableSizedGrid")]
+    [SamplePage(Category = "LayoutControls", Name = "VariableSizedGrid", Order = 30)]
     public sealed partial class VariableSizedGridPage : SamplePage
     {
         public VariableSizedGridPage()

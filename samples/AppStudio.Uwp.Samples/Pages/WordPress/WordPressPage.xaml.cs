@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "WordPress", Order = 70)]
+    [SamplePage(Category = "DataProviders", Name = "WordPress", Order = 50)]
     public sealed partial class WordPressPage : SamplePage
     {
         private const string DefaultWordPressQuery = "en.blog.wordpress.com";

@@ -22,6 +22,7 @@ namespace AppStudio.Uwp.Samples
         {
             await BingDataSource.Load();
             await DevicesDataSource.Load();
+            await FeaturedControlsDataSource.Load();
 
             var shell = Window.Current.Content as AppShell;
 

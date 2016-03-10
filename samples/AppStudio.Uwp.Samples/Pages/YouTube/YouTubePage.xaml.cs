@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 80)]
+    [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 40)]
     public sealed partial class YouTubePage : SamplePage
     {
         private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";

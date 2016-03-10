@@ -7,7 +7,7 @@ using Windows.UI.Popups;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "RelativeBox")]
+    [SamplePage(Category = "FoundationControls", Name = "RelativeBox", Order = 30)]
     public sealed partial class RelativeBoxPage : SamplePage
     {
         public RelativeBoxPage()

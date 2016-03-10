@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Facebook", Order = 20)]
+    [SamplePage(Category = "DataProviders", Name = "Facebook", Order = 10)]
     public sealed partial class FacebookPage : SamplePage
     {
         private const string DefaultAppId = "351842111678417";

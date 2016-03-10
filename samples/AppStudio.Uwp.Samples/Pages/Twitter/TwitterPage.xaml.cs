@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "Twitter", Order = 60)]
+    [SamplePage(Category = "DataProviders", Name = "Twitter", Order = 20)]
     public sealed partial class TwitterPage : SamplePage
     {
         private const string DefaultConsumerKey = "29TPMHBW0QcFIWvNrfWxUGmlV";

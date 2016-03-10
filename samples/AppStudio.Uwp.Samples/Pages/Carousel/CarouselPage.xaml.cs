@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "Carousel")]
+    [SamplePage(Category = "LayoutControls", Name = "Carousel", Order = 40)]
     public sealed partial class CarouselPage : SamplePage
     {
         public CarouselPage()

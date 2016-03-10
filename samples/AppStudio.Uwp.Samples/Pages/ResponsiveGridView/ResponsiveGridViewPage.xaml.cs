@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "ResponsiveGridView")]
+    [SamplePage(Category = "LayoutControls", Name = "ResponsiveGridView", Order = 10)]
     public sealed partial class ResponsiveGridViewPage : SamplePage
     {
         public ResponsiveGridViewPage()

@@ -7,7 +7,7 @@ using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "Converters")]
+    [SamplePage(Category = "Utilities", Name = "Converters", Order = 40)]
     public sealed partial class ConvertersPage : SamplePage
     {
         public ConvertersPage()

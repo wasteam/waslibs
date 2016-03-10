@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "AnimationExtensions")]
+    [SamplePage(Category = "Utilities", Name = "AnimationExtensions", Order = 30)]
     public sealed partial class AnimationExtensionsPage : SamplePage
     {
         public AnimationExtensionsPage()

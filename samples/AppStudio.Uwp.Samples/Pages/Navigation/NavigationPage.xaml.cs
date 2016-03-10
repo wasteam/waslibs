@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "Navigation")]
+    [SamplePage(Category = "AppServices", Name = "Navigation", Order = 10)]
     public sealed partial class NavigationPage : SamplePage
     {
         public NavigationPage()

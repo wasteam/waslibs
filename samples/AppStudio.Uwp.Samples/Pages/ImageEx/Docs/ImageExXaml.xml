@@ -17,8 +17,10 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:VariableSizedGrid Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
-                                    Orientation="Horizontal" MaximumRowsOrColumns="8" AspectRatio="1"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top" />
+      <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
+      <controls:VariableSizedGrid
+          Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+          Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}" AspectRatio="1"
+          HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </Page>

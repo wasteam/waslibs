@@ -342,11 +342,17 @@
   <data name="SearchBoxSearchingText.Text" xml:space="preserve">
     <value>Your are searching:</value>
   </data>
+  <data name="ShellMenuAppServices" xml:space="preserve">
+    <value>App Services</value>
+  </data>
   <data name="ShellMenuDataProviders" xml:space="preserve">
     <value>Data Providers</value>
   </data>
   <data name="ShellMenuEnterFullScreen" xml:space="preserve">
     <value>Enter Full Screen</value>
+  </data>
+  <data name="ShellMenuFoundationControls" xml:space="preserve">
+    <value>Foundation Controls</value>
   </data>
   <data name="ShellMenuHome" xml:space="preserve">
     <value>Home</value>
@@ -354,10 +360,7 @@
   <data name="ShellMenuLayoutControls" xml:space="preserve">
     <value>Layout Controls</value>
   </data>
-  <data name="ShellMenuMiscControls" xml:space="preserve">
-    <value>Misc Controls</value>
-  </data>
-  <data name="ShellMenuTools" xml:space="preserve">
-    <value>Tools</value>
+  <data name="ShellMenuUtilities" xml:space="preserve">
+    <value>Utilities</value>
   </data>
 </root>

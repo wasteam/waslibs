@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "ActionsCommandBar")]
+    [SamplePage(Category = "Utilities", Name = "ActionsCommandBar", Order = 20)]
     public sealed partial class ActionsCommandBarPage : SamplePage
     {
         public ActionsCommandBarPage()

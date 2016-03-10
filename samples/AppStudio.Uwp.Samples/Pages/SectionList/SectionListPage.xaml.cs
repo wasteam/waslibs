@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Layout", Name = "SectionList")]
+    [SamplePage(Category = "LayoutControls", Name = "SectionList", Order = 50)]
     public sealed partial class SectionListPage : SamplePage
     {
         public SectionListPage()

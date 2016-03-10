@@ -11,7 +11,7 @@ using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Misc", Name = "ErrorNotificationControl")]
+    [SamplePage(Category = "Utilities", Name = "ErrorNotificationControl", Order = 10)]
     public sealed partial class ErrorNotificationControlPage : SamplePage
     {
         public ErrorNotificationControlPage()

@@ -11,7 +11,7 @@ using AppStudio.DataProviders.LocalStorage;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "LocalStorage", Order = 40)]
+    [SamplePage(Category = "DataProviders", Name = "LocalStorage", Order = 80)]
     public sealed partial class LocalStoragePage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;

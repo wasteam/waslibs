@@ -14,7 +14,7 @@ using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "Tools", Name = "AppCache")]
+    [SamplePage(Category = "AppServices", Name = "AppCache", Order = 20)]
     public sealed partial class AppCachePage : SamplePage
     {
         private bool _isBusy = false;
