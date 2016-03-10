@@ -15,11 +15,11 @@
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run x:Uid="HelpRss1"/>
+                    <Run x:Uid="HelpDataProvidersInfo"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
-                    <Run x:Uid="HelpRss2"/>
+                    <Run x:Uid="HelpRss1"/>
                 </Paragraph>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
