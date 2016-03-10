@@ -3,12 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <Color x:Key="AppForegroundColor">#333</Color>
+            <Color x:Key="AppForegroundColor">#FFFFFF</Color>
             <Color x:Key="AppBackgroundColor">#FFFFFF</Color>
             <Color x:Key="AppHighlightForegroundColor">#0078D7</Color>
 
             <Color x:Key="AppBarForegroundColor">#FFFFFF</Color>
-            <Color x:Key="AppBarBackgroundColor">#333</Color>
+            <Color x:Key="AppBarBackgroundColor">#345678</Color>
+            <Color x:Key="NavigationForegroundColor">#FFFFFF</Color>
+            <Color x:Key="NavigationBackgroundColor">#234567</Color>
+            <Color x:Key="NavigationSeparatorLineColor">#345678</Color>
+            <Color x:Key="HamburgerBackgroundColor">#a52a2a</Color>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

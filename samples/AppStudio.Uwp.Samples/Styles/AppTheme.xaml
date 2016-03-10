@@ -8,7 +8,11 @@
 
     <SolidColorBrush x:Key="AppBarForeground" Color="{StaticResource AppBarForegroundColor}"/>
     <SolidColorBrush x:Key="AppBarBackground" Color="{StaticResource AppBarBackgroundColor}"/>
-
+    <SolidColorBrush x:Key="NavigationForeground" Color="{StaticResource NavigationForegroundColor}"/>
+    <SolidColorBrush x:Key="NavigationBackground" Color="{StaticResource NavigationBackgroundColor}"/>
+    <SolidColorBrush x:Key="NavigationSeparatorLine" Color="{StaticResource NavigationSeparatorLineColor}"/>
+    <SolidColorBrush x:Key="HamburgerBackground" Color="{StaticResource HamburgerBackgroundColor}"/>
+    
     <Style x:Key="SettingsButtonStyle" TargetType="Button">
         <Setter Property="Margin" Value="0,5,0,5" />
         <Setter Property="Width" Value="200" />

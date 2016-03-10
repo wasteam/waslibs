@@ -15,8 +15,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ContentControl Margin="12,10" Content="{Binding Icon}" Foreground="White" />
-                <TextBlock Grid.Column="1" Margin="16,10" Text="{Binding Caption}" Foreground="White" />
+                <ContentControl Margin="12,10" Content="{Binding Icon}" Foreground="{StaticResource NavigationForeground}" />
+                <TextBlock Grid.Column="1" Margin="16,10" Text="{Binding Caption}" Foreground="{StaticResource NavigationForeground}" />
             </Grid>
         </DataTemplate>
 
@@ -27,7 +27,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Line X1="0" X2="1" Stretch="UniformToFill" Stroke="#345678" />
+                        <Line X1="0" X2="1" Stretch="UniformToFill" Stroke="{StaticResource NavigationSeparatorLine}" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -35,7 +35,7 @@
 
         <DataTemplate x:Key="NavigationSubItemTemplate">
             <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
-                <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="White" />
+                <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="{StaticResource NavigationForeground}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -45,9 +45,9 @@
                                Header="{Binding AppFrame.Content.Caption}" HeaderTemplate="{Binding AppFrame.Content.HeaderTemplate}"
                                PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}"
                                NavigationItemTemplate="{StaticResource NavigationItemTemplate}" NavigationSubItemTemplate="{StaticResource NavigationSubItemTemplate}" SeparatorStyle="{StaticResource NavigationSeparatorStyle}"
-                               NavigationBackground="#234567" NavigationForeground="White" BorderBrush="#345678"
-                               CommandBarBackground="#345678" CommandBarForeground="White"
-                               HamburgerBackground="Brown" HamburgerForeground="White" HamburgerBorderBrush="Brown">
+                               NavigationBackground="{StaticResource NavigationBackground}" NavigationForeground="{StaticResource NavigationForeground}" BorderBrush="{StaticResource AppBarBackground}"
+                               CommandBarBackground="{StaticResource AppBarBackground}" CommandBarForeground="{StaticResource AppBarForeground}"
+                               HamburgerBackground="{StaticResource HamburgerBackground}" HamburgerForeground="{StaticResource NavigationForeground}" HamburgerBorderBrush="{StaticResource HamburgerBackground}">
             <Frame Name="frame">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
