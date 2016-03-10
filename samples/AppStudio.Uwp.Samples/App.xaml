@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Styles/AppBarButtons.xaml"/>
                 <ResourceDictionary Source="Styles/AppColors.xaml"/>
                 <ResourceDictionary Source="Styles/AppTheme.xaml"/>
+                <ResourceDictionary Source="Templates/HeaderTemplates.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

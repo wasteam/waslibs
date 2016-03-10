@@ -31,6 +31,16 @@ namespace AppStudio.Uwp.Samples
 
         abstract public string Caption { get; }
 
+        virtual public bool HideCommandBar
+        {
+            get { return false; }
+        }
+
+        virtual public DataTemplate HeaderTemplate
+        {
+            get { return App.Current.Resources["DefaultHeaderTemplate"] as DataTemplate; }
+        }
+
         protected string SampleName
         {
             get { return this.GetType().Name.Substring(0, this.GetType().Name.Length - 4); }
@@ -127,7 +137,7 @@ namespace AppStudio.Uwp.Samples
             {
                 var border = new Border
                 {
-                    Padding = new Thickness(0,0,0,12),
+                    Padding = new Thickness(0, 0, 0, 12),
                     Background = new SolidColorBrush(Colors.White),
                     BorderBrush = new SolidColorBrush(Colors.LightGray),
                     BorderThickness = new Thickness(0, 0, 0, 1),

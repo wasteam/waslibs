@@ -7,9 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <DataTemplate x:Key="WideTopTemplate">
+            <Grid Padding="12" Height="200" Background="#123456">
+                <Viewbox>
+                    <StackPanel>
+                        <TextBlock Text="Wide Top Content" FontSize="40" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding}" Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TinyTopTemplate">
+            <Grid Padding="48,12" Height="100" Background="#123456">
+                <Viewbox>
+                    <StackPanel>
+                        <TextBlock Text="Tiny Top Content" FontSize="40" Foreground="White" HorizontalAlignment="Center" />
+                        <TextBlock Text="{Binding}" Foreground="White" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Background="{StaticResource AppBackground}">
-        <Viewbox>
-            <TextBlock Margin="12" Text="AppStudio Universal Windows Projects" />
-        </Viewbox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ContentControl ContentTemplate="{Binding TopContentTemplate}"
+                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ContentControl.Content>Etiam ac diam nisi, et mattis diam. Praesent congue porta libero a feugiat.</ContentControl.Content>
+        </ContentControl>
+
+        <Grid Grid.Row="1" Margin="6" Padding="6" BorderBrush="Gray" BorderThickness="1">
+            <Viewbox>
+                <TextBlock Margin="12" Text="AppStudio Universal Windows Projects" />
+            </Viewbox>
+        </Grid>
     </Grid>
 </Page>

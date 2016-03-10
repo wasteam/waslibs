@@ -118,6 +118,7 @@ namespace AppStudio.Uwp.Controls
                             }
                         }
                         _commandBarT.Margin = new Thickness(48, 0, 0, 0);
+                        _commandBarT.Visibility = Visibility.Visible;
                         _commandBarB.Visibility = Visibility.Collapsed;
                     }
                     else
@@ -137,6 +138,7 @@ namespace AppStudio.Uwp.Controls
                             }
                         }
                         _commandBarT.Margin = new Thickness(48, 0, -48, 0);
+                        _commandBarT.Visibility = Visibility.Visible;
                         _commandBarB.Visibility = Visibility.Visible;
                     }
                 }

@@ -9,7 +9,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:ShellControl Name="shell" NavigationItems="{Binding NavigationItems}" Header="{Binding AppFrame.Content.Caption}"
+        <controls:ShellControl Name="shell" NavigationItems="{Binding NavigationItems}" HideCommandBar="{Binding AppFrame.Content.HideCommandBar}"
+                               Header="{Binding AppFrame.Content.Caption}" HeaderTemplate="{Binding AppFrame.Content.HeaderTemplate}"
                                PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}">
             <Frame Name="frame">
                 <Frame.ContentTransitions>
