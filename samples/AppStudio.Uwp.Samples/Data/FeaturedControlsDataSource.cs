@@ -8,6 +8,9 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 
 using Newtonsoft.Json;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+using System.Globalization;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -44,9 +47,27 @@ namespace AppStudio.Uwp.Samples
     }
     public class ControlDataItem
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }        
         public string Category { get; set; }        
-        public string Thumbnail { get; set; }        
+        public string Thumbnail { get; set; }
+        public string Color { get; set; }
+        public string DetailPageName { get; set; }
+        public Brush Background
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Color))
+                {
+                    return new SolidColorBrush(Colors.Transparent);
+                }
+                return new SolidColorBrush(new Color()
+                {
+                    A = 255,
+                    R = Convert.ToByte(Color.Substring(1, 2), 16),
+                    G = Convert.ToByte(Color.Substring(3, 2), 16),
+                    B = Convert.ToByte(Color.Substring(5, 2), 16)
+                });
+            }
+        }        
     }
 }

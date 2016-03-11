@@ -3,16 +3,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
+            
             <Color x:Key="AppForegroundColor">#333</Color>
             <Color x:Key="AppBackgroundColor">#FFFFFF</Color>
             <Color x:Key="AppHighlightForegroundColor">#0078D7</Color>
 
+            <!--ShellControl-->
             <Color x:Key="AppBarForegroundColor">#FFFFFF</Color>
-            <Color x:Key="AppBarBackgroundColor">#345678</Color>
-            <Color x:Key="NavigationForegroundColor">#FFFFFF</Color>
-            <Color x:Key="NavigationBackgroundColor">#234567</Color>
-            <Color x:Key="NavigationSeparatorLineColor">#345678</Color>
-            <Color x:Key="HamburgerBackgroundColor">#a52a2a</Color>
+            <Color x:Key="AppBarBackgroundColor">#f2f2f2</Color>
+            <Color x:Key="NavigationForegroundColor">#333333</Color>
+            <Color x:Key="NavigationBackgroundColor">#f2f2f2</Color>
+            <Color x:Key="NavigationSeparatorLineColor">#d3d3d3</Color>
+            <Color x:Key="HamburgerBackgroundColor">#d3d3d3</Color>
+            <Color x:Key="HomeHeaderBackgroundColor">#037AD6</Color>
+
+            <!--Categories-->
+            <Color x:Key="LayoutControlsBackgroundColor">#9d5192</Color>
+            <Color x:Key="FoundationControlsBackgroundColor">#fa9419</Color>
+            <Color x:Key="AppServicesBackgroundColor">#5270c1</Color>
+            <Color x:Key="UtilitiesBackgroundColor">#f2c919</Color>
+            <Color x:Key="DataProvidersBackgroundColor">#238c7f</Color>
+            
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

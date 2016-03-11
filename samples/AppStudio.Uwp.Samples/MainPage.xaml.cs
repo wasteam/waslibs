@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using AppStudio.Uwp.Commands;
+using AppStudio.Uwp.Navigation;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -49,6 +52,17 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(MainPage), new PropertyMetadata(null));
         #endregion
+        
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                return new RelayCommand<ControlDataItem>((control) =>
+                {
+                    NavigationService.NavigateToPage(control.DetailPageName);
+                });
+            }
+        }        
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

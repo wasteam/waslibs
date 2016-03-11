@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <DataTemplate x:Key="NavigationItemTemplate">
             <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
@@ -35,7 +35,7 @@
 
         <DataTemplate x:Key="NavigationSubItemTemplate">
             <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
-                <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="{StaticResource NavigationForeground}" />
+                <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" Foreground="White"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -46,7 +46,7 @@
                                PrimaryCommands="{Binding AppFrame.Content.PrimaryCommands}" SecondaryCommands="{Binding AppFrame.Content.SecondaryCommands}"
                                NavigationItemTemplate="{StaticResource NavigationItemTemplate}" NavigationSubItemTemplate="{StaticResource NavigationSubItemTemplate}" SeparatorStyle="{StaticResource NavigationSeparatorStyle}"
                                NavigationBackground="{StaticResource NavigationBackground}" NavigationForeground="{StaticResource NavigationForeground}" BorderBrush="{StaticResource AppBarBackground}"
-                               CommandBarBackground="{StaticResource AppBarBackground}" CommandBarForeground="{StaticResource AppBarForeground}"
+                               CommandBarBackground="{Binding AppFrame.Content.CommandBarBackground}" CommandBarForeground="{StaticResource AppBarForeground}"
                                HamburgerBackground="{StaticResource HamburgerBackground}" HamburgerForeground="{StaticResource NavigationForeground}" HamburgerBorderBrush="{StaticResource HamburgerBackground}">
             <Frame Name="frame">
                 <Frame.ContentTransitions>

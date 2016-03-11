@@ -1,74 +1,86 @@
 ﻿[
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
+    "Title": "Carousel",
     "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Thumbnail": "/Assets/Images/Carousel.png",
+    "Color": "#9d5192",
+    "DetailPageName": "CarouselPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "Facebook",
+    "Category": "Data provider",
+    "Thumbnail": "/Assets/Images/Facebook.png",
+    "Color": "#238c7f",
+    "DetailPageName": "FacebookPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
+    "Title": "Pivorama",
     "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Thumbnail": "/Assets/Images/Pivorama.png",
+    "Color": "#9d5192",
+    "DetailPageName": "PivoramaPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
+    "Title": "VariableSizedGrid",
     "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Thumbnail": "/Assets/Images/VariableSizedGrid.png",
+    "Color": "#9d5192",
+    "DetailPageName": "VariableSizedGridPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "ImageEx",
+    "Category": "Foundation",
+    "Thumbnail": "/Assets/Images/ImageEx.png",
+    "Color": "#fa9419",
+    "DetailPageName": "ImageExPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "VirtualBox",
+    "Category": "Foundation",
+    "Thumbnail": "/Assets/Images/VirtualBox.png",
+    "Color": "#fa9419",
+    "DetailPageName": "VirtualBoxPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "Animation",
+    "Category": "Utilities",
+    "Thumbnail": "/Assets/Images/Animation.png",
+    "Color": "#f2c919",
+    "DetailPageName": "AnimationExtensionsPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "Navigation",
+    "Category": "App Services",
+    "Thumbnail": "/Assets/Images/Navigation.png",
+    "Color": "#5270c1",
+    "DetailPageName": "NavigationPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "Twitter",
+    "Category": "Data provider",
+    "Thumbnail": "/Assets/Images/Twitter.png",
+    "Color": "#238c7f",
+    "DetailPageName": "TwitterPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
+    "Title": "ResponsiveGridView",
     "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Thumbnail": "/Assets/Images/ResponsiveGridView.png",
+    "Color": "#9d5192",
+    "DetailPageName": "ResponsiveGridViewPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "WordPress",
+    "Category": "Data provider",
+    "Thumbnail": "/Assets/Images/WordPress.png",
+    "Color": "#238c7f",
+    "DetailPageName": "WordPressPage"
   },
   {
-    "Title": "Carousel Control",
-    "Description": "The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Carousel.png"
+    "Title": "AppCache",
+    "Category": "App Services",
+    "Thumbnail": "/Assets/Images/AppCache.png",
+    "Color": "#5270c1",
+    "DetailPageName": "AppCachePage"
   }
 ]

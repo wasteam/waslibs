@@ -47,39 +47,63 @@ namespace AppStudio.Uwp.Controls
         {
             this.Control = control;
         }
-        public NavigationItem(string glyph, string caption, Action<NavigationItem> onClick) : this(glyph, caption)
+        public NavigationItem(string glyph, string caption, Action<NavigationItem> onClick, Brush background = null) : this(glyph, caption)
         {
             this.OnClick = onClick;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
-        public NavigationItem(string glyph, string caption, IEnumerable<NavigationItem> subItems) : this(glyph, caption)
+        public NavigationItem(string glyph, string caption, IEnumerable<NavigationItem> subItems, Brush background = null) : this(glyph, caption)
         {
             this.SubItems = subItems;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
 
         public NavigationItem(Symbol symbol, string caption, Control control) : this(symbol, caption)
         {
             this.Control = control;
         }
-        public NavigationItem(Symbol symbol, string caption, Action<NavigationItem> onClick = null) : this(symbol, caption)
+        public NavigationItem(Symbol symbol, string caption, Action<NavigationItem> onClick = null, Brush background = null) : this(symbol, caption)
         {
             this.OnClick = onClick;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
-        public NavigationItem(Symbol symbol, string caption, IEnumerable<NavigationItem> subItems) : this(symbol, caption)
+        public NavigationItem(Symbol symbol, string caption, IEnumerable<NavigationItem> subItems, Brush background = null) : this(symbol, caption)
         {
             this.SubItems = subItems;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
 
         public NavigationItem(Uri uriSource, string caption, Control control) : this(uriSource, caption)
         {
             this.Control = control;
         }
-        public NavigationItem(Uri uriSource, string caption, Action<NavigationItem> onClick = null) : this(uriSource, caption)
+        public NavigationItem(Uri uriSource, string caption, Action<NavigationItem> onClick = null, Brush background = null) : this(uriSource, caption)
         {
             this.OnClick = onClick;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
-        public NavigationItem(Uri uriSource, string caption, IEnumerable<NavigationItem> subItems) : this(uriSource, caption)
+        public NavigationItem(Uri uriSource, string caption, IEnumerable<NavigationItem> subItems, Brush background = null) : this(uriSource, caption)
         {
             this.SubItems = subItems;
+            if (background != null)
+            {
+                this.Background = background;
+            }
         }
 
         public bool IsSeparator { get; set; }
@@ -102,6 +126,16 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty CaptionProperty = DependencyProperty.Register("Caption", typeof(string), typeof(NavigationItem), new PropertyMetadata(null));
+        #endregion
+
+        #region Background
+        public Brush Background
+        {
+            get { return (Brush)GetValue(BackgroundProperty); }
+            set { SetValue(BackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty BackgroundProperty = DependencyProperty.Register("Background", typeof(Brush), typeof(NavigationItem), new PropertyMetadata(null));
         #endregion
 
         #region Control

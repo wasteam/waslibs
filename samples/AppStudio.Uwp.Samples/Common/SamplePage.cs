@@ -71,6 +71,11 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty SecondaryCommandsProperty = DependencyProperty.Register("SecondaryCommands", typeof(IEnumerable<ICommandBarElement>), typeof(SamplePage), new PropertyMetadata(null));
         #endregion
 
+        public virtual Brush CommandBarBackground
+        {
+            get { return this.GetCategoryBackground(); }
+        }
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.ShowSettings = IsTypePresent($"AppStudio.Uwp.Samples.{SampleName}Settings");
