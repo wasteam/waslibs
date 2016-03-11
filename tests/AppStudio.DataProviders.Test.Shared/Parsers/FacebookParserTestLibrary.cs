@@ -52,6 +52,26 @@ namespace AppStudio.DataProviders.Test.Parsers
         }
 
         [TestMethod]
+        public async Task LoadFacebookWithoutLink()
+        {
+            string plainContent = await Common.ReadAssetFile("/Assets/Facebook/FacebookQuery3.json");
+
+            var data = Parser.Parse(plainContent);
+
+            Assert.IsNotNull(data);
+            Assert.AreEqual(2, data.Count());
+            var item = data.First();
+            Assert.AreEqual("8195378771_10153381796463772", item._id);
+            Assert.AreEqual("Microsoft Lumia", item.Author);
+            Assert.AreEqual("https://www.facebook.com/8195378771/posts/10153381796463772", item.FeedUrl);
+            Assert.IsNull(item.ImageUrl);
+            Assert.AreEqual(DateTime.Parse("2015-11-18T12:00:00+0000"), item.PublishDate);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Content);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Summary);
+            Assert.AreEqual("Lumia and our Lotus F1 Team #ambassador, Romain Grosjean, are focused on one goal, to be the best that we can be: http://lumia.ms/1j3kWUa", item.Title);
+        }
+
+        [TestMethod]
         public void LoadNullQuery()
         {
             var data = Parser.Parse(null);

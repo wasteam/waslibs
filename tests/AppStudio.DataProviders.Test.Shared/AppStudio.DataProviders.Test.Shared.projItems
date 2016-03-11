@@ -35,6 +35,7 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Bing\BingParse1.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Bing\BingParse2.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Facebook\FacebookQuery3.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Facebook\FacebookQuery.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Facebook\FacebookQuery2.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Flickr\FlickrIdQuery.xml" />
