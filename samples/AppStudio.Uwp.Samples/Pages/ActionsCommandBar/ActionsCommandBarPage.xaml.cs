@@ -1,14 +1,13 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Input;
+
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
-using AppStudio.Uwp.Commands;
 using AppStudio.Uwp.Actions;
-using System.Collections.Generic;
-using Windows.UI.Xaml;
-using System;
-using System.Collections.ObjectModel;
-using Windows.UI.Popups;
-using AppStudio.Uwp.Samples.Extensions;
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {

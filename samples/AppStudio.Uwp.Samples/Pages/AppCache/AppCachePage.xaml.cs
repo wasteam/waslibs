@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.Uwp.Cache;
 using AppStudio.Uwp.Commands;
-using AppStudio.Uwp.Samples.Extensions;
 
 namespace AppStudio.Uwp.Samples
 {

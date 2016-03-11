@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace AppStudio.Uwp.Samples.Extensions
+namespace AppStudio.Uwp.Samples
 {
     public static class PageExtensions
     {

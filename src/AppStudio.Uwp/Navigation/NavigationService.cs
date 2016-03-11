@@ -22,6 +22,18 @@ namespace AppStudio.Uwp.Navigation
             _rootFrame = rootFrame;
         }
 
+        public static void NavigateToRoot()
+        {
+            while (_rootFrame.BackStackDepth > 1)
+            {
+                _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+            }
+            if (_rootFrame.CanGoBack)
+            {
+                _rootFrame.GoBack();
+            }
+        }
+
         public static void NavigateToPage(Type page)
         {
             NavigateToPage(page, null);

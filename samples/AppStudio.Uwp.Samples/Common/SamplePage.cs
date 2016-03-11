@@ -10,8 +10,6 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
 using Windows.Storage;
 
-using AppStudio.Uwp.Samples.Extensions;
-
 namespace AppStudio.Uwp.Samples
 {
     abstract public class SamplePage : Page

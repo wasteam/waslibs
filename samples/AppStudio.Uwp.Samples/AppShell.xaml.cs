@@ -8,14 +8,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 
-using AppStudio.Uwp.Controls;
-using AppStudio.Uwp.Samples.Extensions;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.Foundation;
+
 using AppStudio.Uwp.Navigation;
-using Windows.UI.Xaml;
+using AppStudio.Uwp.Controls;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -48,9 +45,9 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), GoHome);
+                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot());
                 yield return NavigationItem.Separator;
-                
+
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconFoundation.png"), this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"), this.GetCategoryBackground("FoundationControls"));
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconAppServices.png"), this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"), this.GetCategoryBackground("AppServices"));
@@ -64,16 +61,6 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(Symbol.Help, "About", new About());
             }
         }
-
-        //private Brush GetBackgroundByCategory(string category)
-        //{
-        //    string resourceName = string.Format("{0}Background", category);
-        //    if (!Resources.ContainsKey(resourceName))
-        //    {
-        //        return null;
-        //    }
-        //    return Resources[resourceName] as Brush;
-        //}
 
         public IEnumerable<NavigationItem> GetControlsByCategory(string category)
         {
@@ -97,27 +84,12 @@ namespace AppStudio.Uwp.Samples
                     yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigateToSample(page.AsType()), this.GetCategoryBackground(category));
                 }
             }
-        }        
-
-        #region GoHome
-        public void GoHome(NavigationItem menuItem)
-        {
-            while (this.AppFrame.BackStackDepth > 1)
-            {
-                this.AppFrame.BackStack.RemoveAt(this.AppFrame.BackStackDepth - 1);
-            }
-            if (this.AppFrame.CanGoBack)
-            {
-                this.AppFrame.GoBack();
-            }
         }
-        #endregion
 
         #region Navigation
         private void SetupNavigation()
         {
             this.AppFrame.Navigated += OnNavigated;
-            NavigationService.Initialize(typeof(App), AppFrame);
 
             _navigationManager = SystemNavigationManager.GetForCurrentView();
             _navigationManager.BackRequested += OnBackRequested;
@@ -131,12 +103,6 @@ namespace AppStudio.Uwp.Samples
             }
             this.Shell.HideTopPane();
             this.Shell.HideRightPane();
-
-            //SamplePage page = AppFrame.Content as SamplePage;
-            //if (page != null)
-            //{
-            //    this.CommandBarBackground = GetBackgroundByCategory();
-            //}            
         }
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
