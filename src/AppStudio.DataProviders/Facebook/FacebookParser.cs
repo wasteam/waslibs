@@ -31,7 +31,7 @@ namespace AppStudio.DataProviders.Facebook
                     Summary = i.message.DecodeHtml(),
                     Content = i.message,
                     ImageUrl = ConvertImageUrlFromParameter(i.full_picture),
-                    FeedUrl = BuildFeedUrl(i.from.id, i.id)
+                    FeedUrl = BuildFeedUrl(i.from.id, i.id, i.link)
                 };
                 resultToReturn.Add(item);
             }
@@ -65,8 +65,13 @@ namespace AppStudio.DataProviders.Facebook
             return parsedImageUrl;
         }
 
-        private string BuildFeedUrl(string authorId, string id)
+        private string BuildFeedUrl(string authorId, string id, string link)
         {
+            if (!string.IsNullOrEmpty(link))
+            {
+                return link;
+            }
+
             const string baseUrl = "https://www.facebook.com";
             string postId = null;
             try
