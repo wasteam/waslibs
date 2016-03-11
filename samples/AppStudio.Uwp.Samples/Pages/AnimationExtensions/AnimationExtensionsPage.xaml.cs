@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
-using AppStudio.Uwp.Samples.Extensions;
-using System.Windows.Input;
-using AppStudio.Uwp.Commands;
-using Windows.UI.Xaml.Media;
 using System.Threading.Tasks;
+using System.Windows.Input;
+
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {

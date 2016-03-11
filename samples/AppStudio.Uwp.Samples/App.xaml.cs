@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 
+using AppStudio.Uwp.Navigation;
+
 namespace AppStudio.Uwp.Samples
 {
     sealed partial class App : Application
@@ -32,6 +34,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Language = Windows.Globalization.ApplicationLanguages.Languages[0]
                 };
+                NavigationService.Initialize(typeof(App), shell.AppFrame);
                 shell.AppFrame.NavigationFailed += OnNavigationFailed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
