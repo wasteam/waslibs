@@ -14,14 +14,14 @@
             <Color x:Key="NavigationForegroundColor">#333333</Color>
             <Color x:Key="NavigationBackgroundColor">#f2f2f2</Color>
             <Color x:Key="NavigationSeparatorLineColor">#d3d3d3</Color>
-            <Color x:Key="HamburgerBackgroundColor">#d3d3d3</Color>
+            <Color x:Key="HamburgerBackgroundColor">#dc5900</Color>
             <Color x:Key="HomeHeaderBackgroundColor">#037AD6</Color>
 
             <!--Categories-->
             <Color x:Key="LayoutControlsBackgroundColor">#9d5192</Color>
             <Color x:Key="FoundationControlsBackgroundColor">#fa9419</Color>
             <Color x:Key="AppServicesBackgroundColor">#5270c1</Color>
-            <Color x:Key="UtilitiesBackgroundColor">#f2c919</Color>
+            <Color x:Key="UtilitiesBackgroundColor">#fec631</Color>
             <Color x:Key="DataProvidersBackgroundColor">#238c7f</Color>
             
         </ResourceDictionary>
