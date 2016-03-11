@@ -9,7 +9,7 @@ namespace AppStudio.DataProviders.Facebook
 {
     public class FacebookDataProvider : DataProviderBase<FacebookDataConfig, FacebookSchema>
     {
-        private const string BaseUrl = @"https://graph.facebook.com/v2.5";       
+        private const string BaseUrl = @"https://graph.facebook.com/v2.5";
 
         private FacebookOAuthTokens _tokens;
 
@@ -19,7 +19,7 @@ namespace AppStudio.DataProviders.Facebook
         }
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
-        {            
+        {
             var settings = new HttpRequestSettings
             {
                 RequestedUri = new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute)
@@ -29,7 +29,12 @@ namespace AppStudio.DataProviders.Facebook
             if (result.Success)
             {
                 return parser.Parse(result.Result);
-            }           
+            }
+
+            if (result.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new OAuthKeysRevokedException($"Request failed with status code {(int)HttpStatusCode.BadRequest} and reason '{result.Result}'");
+            }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
