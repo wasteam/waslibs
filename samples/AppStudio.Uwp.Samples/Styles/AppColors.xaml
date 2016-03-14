@@ -7,6 +7,7 @@
             <Color x:Key="AppForegroundColor">#333</Color>
             <Color x:Key="AppBackgroundColor">#FFFFFF</Color>
             <Color x:Key="AppHighlightForegroundColor">#0078D7</Color>
+            <Color x:Key="AboutBackgroundColor">#b2b2b2</Color>
 
             <!--ShellControl-->
             <Color x:Key="AppBarForegroundColor">#FFFFFF</Color>

@@ -153,6 +153,7 @@
     <Compile Include="Common\Providers\RawSchema.cs" />
     <Compile Include="Common\SamplePage.cs" />
     <Compile Include="Common\SamplePageAttribute.cs" />
+    <Compile Include="Controls\IndexTemplateSelector.cs" />
     <Compile Include="Controls\PrettifyControl.cs" />
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />

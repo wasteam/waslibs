@@ -1,5 +1,6 @@
 ﻿[
   {
+    "Index": 0,
     "Title": "Carousel",
     "Category": "Layout",
     "Thumbnail": "/Assets/Images/Carousel.png",
@@ -7,6 +8,7 @@
     "DetailPageName": "CarouselPage"
   },
   {
+    "Index": 1,
     "Title": "Facebook",
     "Category": "Data provider",
     "Thumbnail": "/Assets/Images/Facebook.png",
@@ -14,6 +16,7 @@
     "DetailPageName": "FacebookPage"
   },
   {
+    "Index": 2,
     "Title": "Pivorama",
     "Category": "Layout",
     "Thumbnail": "/Assets/Images/Pivorama.png",
@@ -21,6 +24,7 @@
     "DetailPageName": "PivoramaPage"
   },
   {
+    "Index": 3,
     "Title": "VariableSizedGrid",
     "Category": "Layout",
     "Thumbnail": "/Assets/Images/VariableSizedGrid.png",
@@ -28,6 +32,7 @@
     "DetailPageName": "VariableSizedGridPage"
   },
   {
+    "Index": 4,
     "Title": "ImageEx",
     "Category": "Foundation",
     "Thumbnail": "/Assets/Images/ImageEx.png",
@@ -35,6 +40,7 @@
     "DetailPageName": "ImageExPage"
   },
   {
+    "Index": 5,
     "Title": "VirtualBox",
     "Category": "Foundation",
     "Thumbnail": "/Assets/Images/VirtualBox.png",
@@ -42,6 +48,7 @@
     "DetailPageName": "VirtualBoxPage"
   },
   {
+    "Index": 6,
     "Title": "Animation",
     "Category": "Utilities",
     "Thumbnail": "/Assets/Images/Animation.png",
@@ -49,6 +56,7 @@
     "DetailPageName": "AnimationExtensionsPage"
   },
   {
+    "Index": 7,
     "Title": "Navigation",
     "Category": "App Services",
     "Thumbnail": "/Assets/Images/Navigation.png",
@@ -56,6 +64,7 @@
     "DetailPageName": "NavigationPage"
   },
   {
+    "Index": 8,
     "Title": "Twitter",
     "Category": "Data provider",
     "Thumbnail": "/Assets/Images/Twitter.png",
@@ -63,6 +72,7 @@
     "DetailPageName": "TwitterPage"
   },
   {
+    "Index": 9,
     "Title": "ResponsiveGridView",
     "Category": "Layout",
     "Thumbnail": "/Assets/Images/ResponsiveGridView.png",
@@ -70,6 +80,7 @@
     "DetailPageName": "ResponsiveGridViewPage"
   },
   {
+    "Index": 10,
     "Title": "WordPress",
     "Category": "Data provider",
     "Thumbnail": "/Assets/Images/WordPress.png",
@@ -77,6 +88,7 @@
     "DetailPageName": "WordPressPage"
   },
   {
+    "Index": 11,
     "Title": "AppCache",
     "Category": "App Services",
     "Thumbnail": "/Assets/Images/AppCache.png",

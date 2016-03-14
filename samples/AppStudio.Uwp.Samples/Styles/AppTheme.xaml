@@ -5,6 +5,7 @@
     <SolidColorBrush x:Key="AppForeground" Color="{StaticResource AppForegroundColor}"/>
     <SolidColorBrush x:Key="AppBackground" Color="{StaticResource AppBackgroundColor}"/>
     <SolidColorBrush x:Key="AppHighlightForeground" Color="{StaticResource AppHighlightForegroundColor}"/>
+    <SolidColorBrush x:Key="AboutBackground" Color="{StaticResource AboutBackgroundColor}"/>
 
     <!--Categories-->
     <SolidColorBrush x:Key="LayoutControlsBackground" Color="{StaticResource LayoutControlsBackgroundColor}"/>

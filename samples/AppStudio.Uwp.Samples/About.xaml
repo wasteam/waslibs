@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource AppBackground}">
+    <Grid Background="{StaticResource AboutBackground}">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">

@@ -47,6 +47,7 @@ namespace AppStudio.Uwp.Samples
     }
     public class ControlDataItem
     {
+        public int Index { get; set; }
         public string Title { get; set; }        
         public string Category { get; set; }        
         public string Thumbnail { get; set; }
