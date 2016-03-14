@@ -4,8 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.Storage;
 using Windows.Foundation;
+using Windows.Storage;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -18,9 +18,18 @@ namespace AppStudio.Uwp.Controls
 
         static private Dictionary<string, Task> _concurrentTasks = new Dictionary<string, Task>();
 
-        #region ClearCache
-        public static async Task ClearCache()
+        static BitmapCache()
         {
+            CacheDuration = TimeSpan.FromHours(24);
+        }
+
+        static public TimeSpan CacheDuration { get; set; }
+
+        #region ClearCache
+        public static async Task ClearCache(TimeSpan? duration = null)
+        {
+            duration = duration ?? TimeSpan.FromSeconds(0);
+            DateTime expirationDate = DateTime.Now.Subtract(duration.Value);
             try
             {
                 var folder = await GetCacheFolderAsync();
@@ -28,7 +37,10 @@ namespace AppStudio.Uwp.Controls
                 {
                     try
                     {
-                        await file.DeleteAsync();
+                        if (file.DateCreated < expirationDate)
+                        {
+                            await file.DeleteAsync();
+                        }
                     }
                     catch { }
                 }
@@ -55,7 +67,14 @@ namespace AppStudio.Uwp.Controls
                 }
             }
 
-            await busy;
+            try
+            {
+                await busy;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
             lock (_lock)
             {
@@ -75,13 +94,15 @@ namespace AppStudio.Uwp.Controls
 
         private static async Task EnsureFilesAsync(Uri uri)
         {
+            DateTime expirationDate = DateTime.Now.Subtract(CacheDuration);
+
             var folder = await GetCacheFolderAsync();
 
             string fileName = BuildFileName(uri, MAX_RESOLUTION, MAX_RESOLUTION);
             var baseFile = await folder.TryGetItemAsync(fileName) as StorageFile;
-            if (baseFile == null)
+            if (await IsFileOutOfDate(baseFile, expirationDate))
             {
-                baseFile = await folder.CreateFileAsync(fileName);
+                baseFile = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 if (!await BitmapTools.DownloadImageAsync(baseFile, uri, MAX_RESOLUTION, MAX_RESOLUTION))
                 {
                     await baseFile.DeleteAsync();
@@ -91,9 +112,9 @@ namespace AppStudio.Uwp.Controls
 
             fileName = BuildFileName(uri, 960, 960);
             var file = await folder.TryGetItemAsync(fileName) as StorageFile;
-            if (file == null)
+            if (await IsFileOutOfDate(file, expirationDate))
             {
-                file = await folder.CreateFileAsync(fileName);
+                file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 try
                 {
                     await BitmapTools.ResizeImageUniformAsync(baseFile, file, 960, 960);
@@ -107,11 +128,14 @@ namespace AppStudio.Uwp.Controls
             baseFile = file;
         }
 
-        private static async Task<StorageFile> TryGetFileAsync(Uri uri, int maxWidth, int maxHeight)
+        private static async Task<bool> IsFileOutOfDate(StorageFile file, DateTime expirationDate)
         {
-            string fileName = BuildFileName(uri, maxWidth, maxHeight);
-            StorageFolder folder = await GetCacheFolderAsync();
-            return await folder.TryGetItemAsync(fileName) as StorageFile;
+            if (file != null)
+            {
+                var properties = await file.GetBasicPropertiesAsync();
+                return properties.DateModified < expirationDate;
+            }
+            return true;
         }
 
         #region GetCacheFolder
