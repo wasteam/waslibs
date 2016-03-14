@@ -34,25 +34,19 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
+        public static void NavigateToPage<T>()
+        {
+            NavigateToPage<T>(null);
+        }
+
+        public static void NavigateToPage<T>(object parameter)
+        {
+            NavigateToPage(typeof(T), null);
+        }
+
         public static void NavigateToPage(Type page)
         {
             NavigateToPage(page, null);
-        }
-
-        public static void NavigateToPage(Type page, object parameter)
-        {
-            CheckIsInitialized();
-
-            if (page != null)
-            {
-                _rootFrame.Navigate(page, parameter);
-
-                var navigatedToPage = NavigatedToPage;
-                if (navigatedToPage != null)
-                {
-                    NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
-                }
-            }
         }
 
         public static void NavigateToPage(string page)
@@ -70,6 +64,31 @@ namespace AppStudio.Uwp.Navigation
             {
                 NavigateToPage(targetPage.AsType(), parameter);
             }
+        }
+
+        public static void NavigateToPage(Type page, object parameter)
+        {
+            CheckIsInitialized();
+
+            if (page != null && !IsSamePage(page))
+            {
+                _rootFrame.Navigate(page, parameter);
+
+                var navigatedToPage = NavigatedToPage;
+                if (navigatedToPage != null)
+                {
+                    NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
+                }
+            }
+        }
+
+        private static bool IsSamePage(Type page)
+        {
+            if (_rootFrame.Content != null)
+            {
+                return _rootFrame.Content.GetType() == page;
+            }
+            return false;
         }
 
         public static async Task NavigateTo(Uri uri)

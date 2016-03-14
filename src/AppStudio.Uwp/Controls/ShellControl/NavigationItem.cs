@@ -165,7 +165,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ClearSelectionProperty, value); }
         }
 
-        public static readonly DependencyProperty ClearSelectionProperty = DependencyProperty.Register("ClearSelection", typeof(bool), typeof(NavigationItem), new PropertyMetadata(true));
+        public static readonly DependencyProperty ClearSelectionProperty = DependencyProperty.Register("ClearSelection", typeof(bool), typeof(NavigationItem), new PropertyMetadata(false));
         #endregion
 
         #region OnClick

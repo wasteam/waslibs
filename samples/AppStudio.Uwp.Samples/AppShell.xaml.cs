@@ -45,7 +45,7 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot());
+                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot()) { ClearSelection = true };
                 yield return NavigationItem.Separator;
 
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
