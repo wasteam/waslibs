@@ -6,52 +6,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <UserControl.Resources>
+    </UserControl.Resources>
 
     <Grid Background="{StaticResource AboutBackground}">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+                <RichTextBlock Margin="12" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                     <Paragraph>
-                        <Run FontSize="32" Text="Windows App Studio UWP Open Source Library" />
+                        <Run FontSize="18" FontWeight="SemiBold" Text="Windows App Studio UWP Samples"/>
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
-                        <Run Text="This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages."/>
+                        <Run FontWeight="Light" FontSize="14" Text="This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages."/>
                     </Paragraph>
-                    <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/">https://github.com/wasteam/waslibs/</Hyperlink>
-                    </Paragraph>
-                    <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="https://www.nuget.org/profiles/wasteam">https://www.nuget.org/profiles/wasteam/</Hyperlink>
-                    </Paragraph>
-                    <Paragraph/>
-                    <Paragraph>
-                        <Run Text="App privacy terms:"/>
-                    </Paragraph>
-                    <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="http://appstudio.windows.com/es-es/home/appprivacyterms/">http://appstudio.windows.com/es-es/home/appprivacyterms/</Hyperlink>
-                    </Paragraph>
+                    <!--App Code-->
                     <Paragraph Margin="0,24,0,0">
-                        <Run Text="All the applications created using Windows App Studio use these UWP Controls and Classes. Check out Windows App Studio and get started creating Apps!"/>
-                    </Paragraph>
-                    <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="https://appstudio.windows.com/">https://appstudio.windows.com/</Hyperlink>
-                    </Paragraph>
-                    <Paragraph/>
-                </RichTextBlock>
-                <Image Source="/Assets/Images/AppStudio.png" Stretch="Uniform" Margin="12"/>
-                <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
-                    <Paragraph Margin="0,24,0,0">
-                        <Run Text="This App uses the following libraries:"/>
-                    </Paragraph>
-                    <Paragraph Margin="0,12,0,0">
-                        <Hyperlink NavigateUri="http://www.newtonsoft.com/json">Newtonsoft Json</Hyperlink>
-                        <Run Text="which is open source under the MIT license and is free for commercial use."/>
+                        <Run Text="App Code" FontWeight="SemiBold" FontSize="18"/>
                     </Paragraph>
                     <Paragraph Margin="0,6,0,0">
-                        <Hyperlink NavigateUri="https://github.com/google/code-prettify">Code Prettify</Hyperlink>
-                        <Run Text="which is open source under the Apache License 2.0 license."/>
+                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://github.com/wasteam/waslibs/" FontSize="14">GitHub Repository</Hyperlink>
+                    </Paragraph>
+                    <!--App Studio URL-->
+                    <Paragraph Margin="0,24,0,0">
+                        <Run Text="URL" FontWeight="SemiBold" FontSize="18"/>
+                    </Paragraph>
+                    <Paragraph Margin="0,6,0,0">
+                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://appstudio.windows.com/" FontSize="14">https://appstudio.windows.com/</Hyperlink>
+                    </Paragraph>
+                    <!--Dependences-->
+                    <Paragraph Margin="0,24,0,0">
+                        <Run Text="Dependneces:" FontWeight="SemiBold" FontSize="18"/>
+                    </Paragraph>
+                    <Paragraph Margin="12,6,0,0">
+                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="http://www.newtonsoft.com/json" FontSize="14">· Newtonsoft Json</Hyperlink>
+                    </Paragraph>
+                    <Paragraph Margin="12,6,0,0">
+                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://github.com/google/code-prettify" FontSize="14">· Code Prettify</Hyperlink>
                     </Paragraph>
                 </RichTextBlock>
+                <Grid Background="#7a7a7c" Margin="0,0,0,48">
+                    <StackPanel Orientation="Horizontal" Margin="12,0">
+                        <Image Source="/Assets/Images/PrivacyTerms.png" Stretch="None" VerticalAlignment="Center"/>
+                        <RichTextBlock Margin="12,0,0,0" VerticalAlignment="Center" Foreground="White">
+                            <Paragraph>
+                                <Hyperlink FontSize="24" NavigateUri="http://appstudio.windows.com/home/appprivacyterms/" Foreground="White">Privacy terms</Hyperlink>
+                            </Paragraph>
+                        </RichTextBlock>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
     </Grid>

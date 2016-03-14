@@ -58,7 +58,7 @@ namespace AppStudio.Uwp.Samples
                 //yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.Help, "About", new About());
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About());
             }
         }
 

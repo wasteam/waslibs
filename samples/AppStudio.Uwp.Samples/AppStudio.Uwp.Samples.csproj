@@ -92,6 +92,7 @@
     <Content Include="Assets\Devices.json" />
     <Content Include="Assets\Html\Json.html" />
     <Content Include="Assets\Html\Xml.html" />
+    <Content Include="Assets\Icons\about.png" />
     <Content Include="Assets\Icons\IconAppServices.png" />
     <Content Include="Assets\Icons\IconFoundation.png" />
     <Content Include="Assets\Icons\IconDataProviders.png" />
@@ -101,7 +102,6 @@
     <Content Include="Assets\Icons\Misc.png" />
     <Content Include="Assets\Icons\Pivorama.png" />
     <Content Include="Assets\Images\Animation.png" />
-    <Content Include="Assets\Images\AppStudio.png" />
     <Content Include="Assets\Images\BingIcon.png" />
     <Content Include="Assets\Images\AppCache.png" />
     <Content Include="Assets\Images\Carousel.png" />
@@ -114,6 +114,7 @@
     <Content Include="Assets\Images\InstagramIcon.png" />
     <Content Include="Assets\Images\Navigation.png" />
     <Content Include="Assets\Images\Pivorama.png" />
+    <Content Include="Assets\Images\PrivacyTerms.png" />
     <Content Include="Assets\Images\ResponsiveGridView.png" />
     <Content Include="Assets\Images\Twitter.png" />
     <Content Include="Assets\Images\VariableSizedGrid.png" />

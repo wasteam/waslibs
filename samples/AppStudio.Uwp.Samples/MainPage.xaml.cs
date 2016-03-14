@@ -15,12 +15,12 @@ namespace AppStudio.Uwp.Samples
             this.InitializeComponent();
             this.TopContentTemplate = this.Resources["WideTopTemplate"] as DataTemplate;
             this.DataContext = this;
-            this.SizeChanged += OnSizeChanged;
+            SizeChanged += OnSizeChanged;
         }
 
         public string Caption
         {
-            get { return "WasLibs Samples"; }
+            get { return ""; }
         }
 
         public bool HideCommandBar
@@ -28,10 +28,10 @@ namespace AppStudio.Uwp.Samples
             get { return true; }
         }
 
-        public DataTemplate HeaderTemplate
-        {
-            get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
-        }
+        //public DataTemplate HeaderTemplate
+        //{
+        //    get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
+        //}
 
         #region TopContentTemplate
         public DataTemplate TopContentTemplate
