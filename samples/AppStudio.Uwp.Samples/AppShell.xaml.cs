@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Samples
             this.SetupNavigation();
             this.DataContext = this;
             Current = this;
-            
+
         }
 
         static public AppShell Current { get; private set; }
@@ -45,7 +45,7 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot());
+                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot()) { ClearSelection = true };
                 yield return NavigationItem.Separator;
 
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
@@ -58,7 +58,7 @@ namespace AppStudio.Uwp.Samples
                 //yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.Help, "About", new About());
+                yield return new NavigationItem(Symbol.Help, "About", new About()) { ClearSelection = true };
             }
         }
 
