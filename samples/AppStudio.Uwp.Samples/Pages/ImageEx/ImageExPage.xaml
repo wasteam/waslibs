@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="BingTemplate">
             <Grid Background="{Binding}" BorderBrush="Black" BorderThickness="1">
-                <controls:ImageEx Source="{Binding}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <controls:ImageEx Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
     </Page.Resources>

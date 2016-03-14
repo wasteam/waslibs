@@ -49,6 +49,7 @@ namespace AppStudio.Uwp.Samples
             return JsonConvert.DeserializeObject<IList<DeviceDataItem>>(jsonData);
         }
     }
+
     public class DeviceDataItem
     {
         public string Title { get; set; }

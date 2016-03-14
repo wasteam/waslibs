@@ -1,16 +1,14 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 using Newtonsoft.Json;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
-using System.Globalization;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -45,6 +43,7 @@ namespace AppStudio.Uwp.Samples
             return JsonConvert.DeserializeObject<IList<ControlDataItem>>(jsonData);
         }
     }
+
     public class ControlDataItem
     {
         public int Index { get; set; }
@@ -53,6 +52,7 @@ namespace AppStudio.Uwp.Samples
         public string Thumbnail { get; set; }
         public string Color { get; set; }
         public string DetailPageName { get; set; }
+
         public Brush Background
         {
             get

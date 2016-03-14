@@ -8,19 +8,19 @@ namespace AppStudio.Uwp.Samples
 {
     class BingDataSource
     {
-        static private IEnumerable<string> _imageUrls = null;
+        static private IEnumerable<BingDataItem> _items = null;
 
-        public IEnumerable<object> GetItems()
+        public IEnumerable<BingDataItem> GetItems()
         {
-            return _imageUrls;
+            return _items;
         }
 
-        static public async Task Load()
+        public static async Task Load()
         {
-            _imageUrls = (await GetImageUrls()).Union(await GetImageUrls("es-ES")).Distinct();
+            _items = (await ReadItems()).Union(await ReadItems("es-ES")).Distinct();
         }
 
-        public static async Task<string[]> GetImageUrls(string mkt = "en-US")
+        private static async Task<BingDataItem[]> ReadItems(string mkt = "en-US")
         {
             using (var httpClient = new HttpClient())
             {
@@ -28,16 +28,26 @@ namespace AppStudio.Uwp.Samples
                 string xml = await httpClient.GetStringAsync(url);
 
                 var xdoc = XDocument.Parse(xml);
-                return GetImageUrls(xdoc).ToArray();
+                return ReadItems(xdoc).ToArray();
             }
         }
 
-        private static IEnumerable<string> GetImageUrls(XDocument xdoc)
+        private static IEnumerable<BingDataItem> ReadItems(XDocument xdoc)
         {
-            foreach (var item in xdoc.Descendants("images").Descendants("image").Descendants("url"))
+            foreach (var item in xdoc.Descendants("images").Descendants("image"))
             {
-                yield return $"http://www.bing.com{item.Value}";
+                yield return new BingDataItem
+                {
+                    ImageUrl = $"http://www.bing.com{item.Element("url").Value}",
+                    Copyright = item.Element("copyright").Value
+                };
             }
         }
+    }
+
+    public class BingDataItem
+    {
+        public string ImageUrl { get; set; }
+        public string Copyright { get; set; }
     }
 }
