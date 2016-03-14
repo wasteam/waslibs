@@ -12,9 +12,11 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <Button Margin="12,6" Content="Clear Cache" HorizontalAlignment="Stretch" Click="OnClearCache" />
-            <Button Margin="12,6" Content="Refresh" HorizontalAlignment="Stretch" Click="OnRefresh" />
-        </StackPanel>
+        <ScrollViewer>
+            <StackPanel Padding="24">
+                <Button Margin="12,6" Content="Clear Cache" HorizontalAlignment="Stretch" Click="OnClearCache" />
+                <Button Margin="12,6" Content="Refresh" HorizontalAlignment="Stretch" Click="OnRefresh" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

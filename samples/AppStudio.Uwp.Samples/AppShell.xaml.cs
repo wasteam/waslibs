@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Samples
             this.SetupNavigation();
             this.DataContext = this;
             Current = this;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 600));
+            
         }
 
         static public AppShell Current { get; private set; }

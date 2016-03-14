@@ -8,6 +8,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 
 using AppStudio.Uwp.Navigation;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -22,6 +24,9 @@ namespace AppStudio.Uwp.Samples
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 600));
             await BingDataSource.Load();
             await DevicesDataSource.Load();
             await FeaturedControlsDataSource.Load();

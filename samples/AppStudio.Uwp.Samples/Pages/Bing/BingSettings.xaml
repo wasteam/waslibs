@@ -12,14 +12,16 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="BingQueryParam" Value="{Binding BingQueryParam, Mode=TwoWay}" />
-            <controls:PropertySet Source="{Binding}" Property="BingCountrySelectedItem" Value="{Binding BingCountrySelectedItem, Mode=TwoWay}" />
-            <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
-            <StackPanel Margin="0,30,0,0">
-                <Button Content="Refresh" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
-                <Button Content="Restore Config" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
+        <ScrollViewer>
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="BingQueryParam" Value="{Binding BingQueryParam, Mode=TwoWay}" />
+                <controls:PropertySet Source="{Binding}" Property="BingCountrySelectedItem" Value="{Binding BingCountrySelectedItem, Mode=TwoWay}" />
+                <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
+                <StackPanel Margin="0,30,0,0">
+                    <Button Content="Refresh" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
+                    <Button Content="Restore Config" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

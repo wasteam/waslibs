@@ -12,8 +12,10 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <StackPanel Padding="24">
-            <controls:PropertySet Source="{Binding}" Property="HeaderLinkText" Value="{Binding HeaderLinkText, Mode=TwoWay}"/>
-        </StackPanel>
+        <ScrollViewer>
+            <StackPanel Padding="24">
+                <controls:PropertySet Source="{Binding}" Property="HeaderLinkText" Value="{Binding HeaderLinkText, Mode=TwoWay}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
