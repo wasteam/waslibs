@@ -39,7 +39,7 @@
                         HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         <Grid Grid.Row="1">
             <controls:VariableSizedGrid
-                Name="HomeVariableSizedGrid"
+                Name="HomeVariableSizedGrid" Margin="8"
                 ItemsSource="{Binding Items}" SelectionMode="None" IsItemClickEnabled="True"
                 Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}" AspectRatio="1"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -47,21 +47,13 @@
                 <controls:VariableSizedGrid.ItemTemplate>
                     <DataTemplate>
                         <Grid Background="{Binding Background}" Margin="6">
-                            <StackPanel Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Viewbox StretchDirection="DownOnly" Margin="12" VerticalAlignment="Center">
-                                    <Image Source="{Binding Thumbnail}"/>
-                                </Viewbox>
-                                <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="12,6">
-                                    <TextBlock
-                                        Text="{Binding Title}"
-                                        Foreground="White" FontWeight="SemiBold" FontSize="18"
-                                        HorizontalAlignment="Center" MaxLines="1" TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock
-                                        Text="{Binding Category}"
-                                        Foreground="White" FontWeight="Light" FontSize="20"
-                                        HorizontalAlignment="Center" MaxLines="1" TextTrimming="CharacterEllipsis"/>
+                            <controls:Virtualbox Margin="6" VirtualWidth="200" VirtualHeight="200" MaxWidth="200" MaxHeight="200">
+                                <StackPanel VerticalAlignment="Center">
+                                    <Image Source="{Binding Thumbnail}" Height="120" />
+                                    <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="SemiBold" FontSize="18" HorizontalAlignment="Center" MaxLines="1" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="{Binding Category}" Foreground="White" FontWeight="Light" FontSize="20" HorizontalAlignment="Center" MaxLines="1" TextTrimming="CharacterEllipsis"/>
                                 </StackPanel>
-                            </StackPanel>
+                            </controls:Virtualbox>
                         </Grid>
                     </DataTemplate>
                 </controls:VariableSizedGrid.ItemTemplate>
