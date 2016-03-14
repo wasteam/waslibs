@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="BingTemplate">
-            <Grid Background="{Binding}" BorderBrush="Black" BorderThickness="1">
+            <Grid BorderBrush="Black" BorderThickness="1">
                 <controls:ImageEx Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>

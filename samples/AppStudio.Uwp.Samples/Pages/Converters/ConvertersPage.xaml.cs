@@ -8,7 +8,7 @@ namespace AppStudio.Uwp.Samples
     {
         public ConvertersPage()
         {
-            StringVisibilityValue = this.GetResourceString("ConvertersStringVisibilityConverterDefault");
+            this.StringVisibilityValue = this.GetResourceString("ConvertersStringVisibilityConverterDefault");
             this.InitializeComponent();
             this.DataContext = this;
         }
@@ -24,6 +24,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsImageVisibleProperty); }
             set { SetValue(IsImageVisibleProperty, value); }
         }
+
         public static readonly DependencyProperty IsImageVisibleProperty = DependencyProperty.Register("IsImageVisible", typeof(bool), typeof(ConvertersPage), new PropertyMetadata(true));
         #endregion
 
@@ -33,12 +34,8 @@ namespace AppStudio.Uwp.Samples
             get { return (string)GetValue(StringVisibilityValueProperty); }
             set { SetValue(StringVisibilityValueProperty, value); }
         }
+
         public static readonly DependencyProperty StringVisibilityValueProperty = DependencyProperty.Register("StringVisibilityValue", typeof(string), typeof(ConvertersPage), new PropertyMetadata(string.Empty));
         #endregion
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
     }
 }

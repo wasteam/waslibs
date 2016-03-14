@@ -1,10 +1,14 @@
-﻿using AppStudio.Uwp.Commands;
-using AppStudio.Uwp.Navigation;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
+using AppStudio.Uwp.Navigation;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -32,6 +36,23 @@ namespace AppStudio.Uwp.Samples
         {
             get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
         }
+
+        #region PrimaryCommands, SecondaryCommands, CommandBarBackground
+        public IEnumerable<ICommandBarElement> PrimaryCommands
+        {
+            get { return null; }
+        }
+
+        public IEnumerable<ICommandBarElement> SecondaryCommands
+        {
+            get { return null; }
+        }
+
+        public Brush CommandBarBackground
+        {
+            get { return null; }
+        }
+        #endregion
 
         #region TopContentTemplate
         public DataTemplate TopContentTemplate
