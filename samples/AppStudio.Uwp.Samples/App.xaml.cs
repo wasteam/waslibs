@@ -4,12 +4,12 @@ using System.IO;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.ViewManagement;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
 
 using AppStudio.Uwp.Navigation;
-using Windows.UI.ViewManagement;
-using Windows.Foundation;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -24,9 +24,10 @@ namespace AppStudio.Uwp.Samples
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 600));
+
             await BingDataSource.Load();
             await DevicesDataSource.Load();
             await FeaturedControlsDataSource.Load();
