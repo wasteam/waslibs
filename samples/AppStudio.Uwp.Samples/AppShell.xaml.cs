@@ -51,9 +51,6 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconUtilities.png"), this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"), this.GetCategoryBackground("Utilities"));
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"));
 
-                //yield return NavigationItem.Separator;
-                //yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
-
                 yield return NavigationItem.Separator;
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About());
             }
@@ -70,15 +67,15 @@ namespace AppStudio.Uwp.Samples
 
                 if (attr.Glyph != null)
                 {
-                    yield return new NavigationItem(attr.Glyph, attr.Name, (ni) => NavigateToSample(page.AsType()), this.GetCategoryBackground(category));
+                    yield return new NavigationItem(attr.Glyph, attr.Name, (ni) => NavigationService.NavigateToPage(page.AsType()), this.GetCategoryBackground(category));
                 }
                 else if (attr.IconPath != null)
                 {
-                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigateToSample(page.AsType()), this.GetCategoryBackground(category));
+                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType()), this.GetCategoryBackground(category)));
                 }
                 else
                 {
-                    yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigateToSample(page.AsType()), this.GetCategoryBackground(category));
+                    yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType()), this.GetCategoryBackground(category)));
                 }
             }
         }
@@ -112,17 +109,5 @@ namespace AppStudio.Uwp.Samples
             }
         }
         #endregion
-
-        #region NavigateToSample
-        private void NavigateToSample<T>() where T : Page
-        {
-            NavigationService.NavigateToPage(typeof(T));
-        }
-
-        private void NavigateToSample(Type type)
-        {
-            NavigationService.NavigateToPage(type);
-        }
-        #endregion        
     }
 }
