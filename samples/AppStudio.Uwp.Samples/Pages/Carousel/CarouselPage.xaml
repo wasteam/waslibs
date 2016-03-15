@@ -15,7 +15,7 @@
                     <RowDefinition Height="8*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <controls:ImageEx Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Grid Grid.Row="1">
                     <Grid.Background>
                         <SolidColorBrush Color="Black" Opacity="0.25" />
