@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.DataProviders.WordPress;
 using AppStudio.Uwp.Commands;
-using Newtonsoft.Json;
 
 namespace AppStudio.Uwp.Samples
 {

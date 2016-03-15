@@ -12,7 +12,7 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
                 <controls:PropertySet Source="{Binding}" Property="HorizontalAlignment" Value="{Binding HorizontalAlignment, Mode=TwoWay}" />
                 <controls:PropertySet Source="{Binding}" Property="VerticalAlignment" Value="{Binding VerticalAlignment, Mode=TwoWay}" />

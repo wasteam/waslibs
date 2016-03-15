@@ -1,12 +1,13 @@
-﻿using AppStudio.DataProviders.Twitter;
-using AppStudio.Uwp.Commands;
-using Newtonsoft.Json;
-using System;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.Linq;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders.Twitter;
 
 namespace AppStudio.Uwp.Samples
 {

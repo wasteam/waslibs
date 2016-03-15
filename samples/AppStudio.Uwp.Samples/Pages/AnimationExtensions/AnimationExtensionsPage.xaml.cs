@@ -137,10 +137,5 @@ namespace AppStudio.Uwp.Samples
         {
             get { return "Animation Extensions"; }
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
     }
 }
