@@ -41,7 +41,7 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToPage<T>(object parameter)
         {
-            NavigateToPage(typeof(T), null);
+            NavigateToPage(typeof(T), parameter);
         }
 
         public static void NavigateToPage(Type page)
