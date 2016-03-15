@@ -29,7 +29,7 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}"  Margin="0,0,0,6">
-                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" Height="140" VerticalAlignment="Center"/>
+                                        <controls:ImageEx Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" Height="140" VerticalAlignment="Center"/>
                                     </Grid>
                                     <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" VerticalAlignment="Top"/>
                                     <Grid Grid.Row="2" Height="1" Margin="0,0,0,4" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

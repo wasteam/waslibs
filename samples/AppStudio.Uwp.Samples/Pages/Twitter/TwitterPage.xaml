@@ -28,7 +28,7 @@
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal">
                                         <Grid MaxHeight="{Binding UserProfileImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="60" Width="60" Margin="0,0,20,10">
-                                            <Image Source="{Binding UserProfileImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <controls:ImageEx Source="{Binding UserProfileImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
                                         <StackPanel>
                                             <TextBlock x:Name="titleText" Style="{StaticResource LayoutTitleStyle}" Text="{Binding UserName}" MaxLines="2"/>

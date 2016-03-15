@@ -30,7 +30,7 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="120" Margin="0,0,0,6">
-                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <controls:ImageEx Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <Image Source="ms-appx:///Assets/Images/YouTubePlay.png" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Uniform" Width="80"/>
                                     </Grid>
                                     <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}"/>
