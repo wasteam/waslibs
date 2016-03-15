@@ -8,9 +8,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 
-using Windows.UI.ViewManagement;
-using Windows.Foundation;
-
 using AppStudio.Uwp.Navigation;
 using AppStudio.Uwp.Controls;
 
@@ -26,7 +23,7 @@ namespace AppStudio.Uwp.Samples
             this.SetupNavigation();
             this.DataContext = this;
             Current = this;
-
+            
         }
 
         static public AppShell Current { get; private set; }
@@ -58,7 +55,7 @@ namespace AppStudio.Uwp.Samples
                 //yield return new NavigationItem(Symbol.FullScreen, this.GetResourceString("ShellMenuEnterFullScreen"), (m) => { shell.EnterFullScreen(); });
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(Symbol.Help, "About", new About()) { ClearSelection = true };
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About());
             }
         }
 

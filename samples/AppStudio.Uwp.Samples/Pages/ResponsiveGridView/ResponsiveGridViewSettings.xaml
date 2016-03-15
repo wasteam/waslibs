@@ -12,7 +12,7 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
                 <controls:PropertySet Source="{Binding}" Property="DesiredWidth" Value="{Binding DesiredWidth, Mode=TwoWay}" Minimun="50" Maximun="800"/>
                 <controls:PropertySet Source="{Binding}" Property="ItemHeight" Value="{Binding ItemHeight, Mode=TwoWay}" Minimun="50" Maximun="800"/>

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 using AppStudio.Uwp.Actions;
 using AppStudio.Uwp.Commands;
@@ -43,6 +43,7 @@ namespace AppStudio.Uwp.Samples
             get { return (List<ActionInfo>)GetValue(ActionCommandsProperty); }
             set { SetValue(ActionCommandsProperty, value); }
         }
+
         public static readonly DependencyProperty ActionCommandsProperty =DependencyProperty.Register("ActionCommands", typeof(List<ActionInfo>), typeof(ActionsCommandBarPage), new PropertyMetadata(null));
         #endregion
 
@@ -63,11 +64,6 @@ namespace AppStudio.Uwp.Samples
         public override string Caption
         {
             get { return "ActionsCommandBar"; }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);            
         }
     }
 }

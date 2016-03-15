@@ -7,6 +7,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Data;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -53,6 +54,16 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(object), typeof(PropertySet), new PropertyMetadata(null));
+        #endregion
+
+        #region Label
+        public string Label
+        {
+            get { return (string)GetValue(LabelProperty); }
+            set { SetValue(LabelProperty, value); }
+        }
+
+        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(PropertySet), new PropertyMetadata(string.Empty));
         #endregion
 
         #region Minimun
@@ -125,7 +136,10 @@ namespace AppStudio.Uwp.Controls
             _isInitialized = true;
 
             ExploreProperty();
-
+            if (string.IsNullOrEmpty(Label))
+            {
+                Label = Property;
+            }
             base.OnApplyTemplate();
         }
 
@@ -150,6 +164,7 @@ namespace AppStudio.Uwp.Controls
                         _colors.Visibility = Visibility.Visible;
                         this.ComboItems = GetBrushItems(type);
                         _colors.DataContext = this;
+                        SetBinding(ComboBox.SelectedValueProperty, _colors);
                         _colors.SelectedIndex = GetColorIndex(this.Value as SolidColorBrush);
                     }
                     else if (type.GetTypeInfo().IsEnum)
@@ -157,11 +172,13 @@ namespace AppStudio.Uwp.Controls
                         _combo.Visibility = Visibility.Visible;
                         this.ComboItems = GetEnumItems(type);
                         _combo.DataContext = this;
+                        SetBinding(ComboBox.SelectedValueProperty, _combo);
                     }
                     else if (type == typeof(int) || type == typeof(double))
                     {
                         _slider.Visibility = Visibility.Visible;
                         _slider.DataContext = this;
+                        SetBinding(Slider.ValueProperty, _slider);
                     }
                     else if (type == typeof(bool))
                     {
@@ -175,11 +192,13 @@ namespace AppStudio.Uwp.Controls
                         }
                         _toggle.Visibility = Visibility.Visible;
                         _toggle.DataContext = this;
+                        SetBinding(ToggleSwitch.IsOnProperty, _toggle);
                     }
                     else if (type == typeof(string))
                     {
                         _textBox.Visibility = Visibility.Visible;
                         _textBox.DataContext = this;
+                        SetBinding(TextBox.TextProperty, _textBox);
                     }
                 }
             }
@@ -205,6 +224,17 @@ namespace AppStudio.Uwp.Controls
                 return new List<Color>(typeof(Colors).GetRuntimeProperties().Select(r => r.GetValue(null)).Cast<Color>()).IndexOf(brush.Color);
             }
             return -1;
+        }
+
+        private void SetBinding(DependencyProperty dp, FrameworkElement element)
+        {
+            var binding = new Binding
+            {
+                Source = this,
+                Path = new PropertyPath("Value"),
+                Mode = BindingMode.TwoWay
+            };
+            element.SetBinding(dp, binding);
         }
     }
 }

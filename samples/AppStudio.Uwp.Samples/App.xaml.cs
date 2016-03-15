@@ -26,7 +26,6 @@ namespace AppStudio.Uwp.Samples
         {
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 600));
 
             await BingDataSource.Load();
             await DevicesDataSource.Load();

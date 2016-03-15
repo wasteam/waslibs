@@ -8,8 +8,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PropertySet">
                     <StackPanel>
-                        <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Property}" FontWeight="Normal" />
-                        <ComboBox Name="colors" ItemsSource="{TemplateBinding ComboItems}" SelectedValue="{Binding Value, Mode=TwoWay}" SelectedValuePath="Value"
+                        <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Label}" FontWeight="Normal" />
+                        <ComboBox Name="colors" ItemsSource="{TemplateBinding ComboItems}" SelectedValuePath="Value"
                                   HorizontalAlignment="Stretch" Visibility="Collapsed">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -20,7 +20,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ComboBox Name="combo" ItemsSource="{TemplateBinding ComboItems}" SelectedValue="{Binding Value, Mode=TwoWay}" SelectedValuePath="Value"
+                        <ComboBox Name="combo" ItemsSource="{TemplateBinding ComboItems}" SelectedValuePath="Value"
                                   HorizontalAlignment="Stretch" Visibility="Collapsed">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -28,9 +28,9 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Slider Name="slider" Height="32" Value="{Binding Value, Mode=TwoWay}" Minimum="{TemplateBinding Minimun}" Maximum="{TemplateBinding Maximun}" SmallChange="{TemplateBinding SmallChange}" StepFrequency="{TemplateBinding SmallChange}" Visibility="Collapsed" />
-                        <ToggleSwitch Name="toggle" IsOn="{Binding Value, Mode=TwoWay}" Visibility="Collapsed" />
-                        <TextBox Name="textBox" Text="{Binding Value, Mode=TwoWay}" Visibility="Collapsed"/>
+                        <Slider Name="slider" Height="32" Minimum="{TemplateBinding Minimun}" Maximum="{TemplateBinding Maximun}" SmallChange="{TemplateBinding SmallChange}" StepFrequency="{TemplateBinding SmallChange}" Visibility="Collapsed" />
+                        <ToggleSwitch Name="toggle" Visibility="Collapsed" />
+                        <TextBox Name="textBox" Visibility="Collapsed"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

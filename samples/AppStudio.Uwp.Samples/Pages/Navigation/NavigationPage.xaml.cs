@@ -1,5 +1,9 @@
-﻿using AppStudio.Uwp.Navigation;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.Uwp.Navigation;
+using System.Windows.Input;
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -17,11 +21,17 @@ namespace AppStudio.Uwp.Samples
             get { return "Navigation"; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        #region Commands
+        public ICommand NavigateCommand
         {
-            base.OnNavigatedTo(e);
-            NavigationService.Initialize(typeof(App), navigationSampleFrame);
-            NavigationService.NavigateToPage(typeof(NavigationSample1Page));            
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    NavigationService.NavigateToPage("NavigationSample1Page");
+                });
+            }
         }
+        #endregion
     }
 }
