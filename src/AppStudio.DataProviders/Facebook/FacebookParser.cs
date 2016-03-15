@@ -65,7 +65,7 @@ namespace AppStudio.DataProviders.Facebook
             return parsedImageUrl;
         }
 
-        private string BuildFeedUrl(string authorId, string id, string link)
+        private static string BuildFeedUrl(string authorId, string id, string link)
         {
             if (!string.IsNullOrEmpty(link))
             {
