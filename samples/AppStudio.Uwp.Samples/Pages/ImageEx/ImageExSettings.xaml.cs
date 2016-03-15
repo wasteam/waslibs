@@ -19,7 +19,7 @@ namespace AppStudio.Uwp.Samples
         {
             Page.Clear();
             await Task.Delay(1000);
-            await BitmapCache.ClearCache();
+            await BitmapCache.ClearCacheAsync();
         }
 
         private void OnRefresh(object sender, RoutedEventArgs e)

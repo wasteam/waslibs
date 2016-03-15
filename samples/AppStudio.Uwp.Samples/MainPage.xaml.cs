@@ -32,10 +32,10 @@ namespace AppStudio.Uwp.Samples
             get { return true; }
         }
 
-        //public DataTemplate HeaderTemplate
-        //{
-        //    get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
-        //}
+        public DataTemplate HeaderTemplate
+        {
+            get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
+        }
 
         #region PrimaryCommands, SecondaryCommands, CommandBarBackground
         public IEnumerable<ICommandBarElement> PrimaryCommands
