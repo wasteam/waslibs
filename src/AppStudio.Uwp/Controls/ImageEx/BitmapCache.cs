@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Controls
         static public TimeSpan CacheDuration { get; set; }
 
         #region ClearCache
-        public static async Task ClearCache(TimeSpan? duration = null)
+        public static async Task ClearCacheAsync(TimeSpan? duration = null)
         {
             duration = duration ?? TimeSpan.FromSeconds(0);
             DateTime expirationDate = DateTime.Now.Subtract(duration.Value);

@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 
 using AppStudio.Uwp.Navigation;
+using AppStudio.Uwp.Controls;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -26,7 +27,7 @@ namespace AppStudio.Uwp.Samples
         {
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
-
+            await BitmapCache.ClearCacheAsync(TimeSpan.FromHours(24));
             await BingDataSource.Load();
             await DevicesDataSource.Load();
             await FeaturedControlsDataSource.Load();
@@ -56,7 +57,7 @@ namespace AppStudio.Uwp.Samples
                 shell.AppFrame.Navigate(typeof(MainPage), e.Arguments, new SuppressNavigationTransitionInfo());
             }
 
-            Window.Current.Activate();
+            Window.Current.Activate();            
         }
 
         private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
