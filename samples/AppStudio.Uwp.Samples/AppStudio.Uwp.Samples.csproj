@@ -216,9 +216,6 @@
     <Compile Include="Pages\Navigation\NavigationSample1Page.xaml.cs">
       <DependentUpon>NavigationSample1Page.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Navigation\NavigationSample2Page.xaml.cs">
-      <DependentUpon>NavigationSample2Page.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Pivorama\Docs\PivoramaHelp.xaml.cs">
       <DependentUpon>PivoramaHelp.xaml</DependentUpon>
     </Compile>
@@ -560,10 +557,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Navigation\NavigationSample1Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Navigation\NavigationSample2Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

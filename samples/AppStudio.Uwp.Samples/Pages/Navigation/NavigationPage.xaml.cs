@@ -2,14 +2,14 @@
 using Windows.UI.Xaml.Navigation;
 
 using AppStudio.Uwp.Navigation;
+using System.Windows.Input;
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "AppServices", Name = "Navigation", Order = 10)]
     public sealed partial class NavigationPage : SamplePage
     {
-        private Frame _frameBackup;
-
         public NavigationPage()
         {
             this.InitializeComponent();
@@ -21,21 +21,17 @@ namespace AppStudio.Uwp.Samples
             get { return "Navigation"; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        #region Commands
+        public ICommand NavigateCommand
         {
-            _frameBackup = NavigationService.RootFrame;
-
-            NavigationService.Initialize(typeof(App), navigationSampleFrame);
-            NavigationService.NavigateToPage(typeof(NavigationSample1Page));
-
-            base.OnNavigatedTo(e);
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    NavigationService.NavigateToPage("NavigationSample1Page");
+                });
+            }
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            NavigationService.Initialize(typeof(App), _frameBackup);
-
-            base.OnNavigatedFrom(e);
-        }
+        #endregion
     }
 }

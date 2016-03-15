@@ -9,18 +9,11 @@
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
             <StackPanel Margin="12">
-                <TextBlock x:Uid="NavigationSampleText1" Style="{StaticResource SubtitleStyle}"/>
-                <TextBlock x:Uid="NavigationSampleText2" Style="{StaticResource TitleStyle}" Margin="0,24,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText3" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText4" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText5" Style="{StaticResource TitleStyle}" Margin="0,24,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText6" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText7" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText8" Style="{StaticResource SubtitleStyle}" Margin="0,24,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText9" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText10" Style="{StaticResource SubtitleStyle}" Margin="0,24,0,0"/>
-                <TextBlock x:Uid="NavigationSampleText11" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
-                <Button x:Uid="NavigationSampleButton1" Command="{Binding NavigateCommand}" Margin="0,12,0,0"/>
+                <TextBlock x:Uid="NavigationSampleText12" Style="{StaticResource TitleStyle}" />
+                <TextBlock x:Uid="NavigationSampleText13" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
+                <TextBlock x:Uid="NavigationSampleText14" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
+                <TextBlock x:Uid="NavigationSampleText15" Style="{StaticResource ConsolasStyle}" Margin="0,6,0,0"/>
+                <Button x:Uid="NavigationSampleButton2" Command="{Binding GoBackCommand}" Margin="0,24,0,0"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

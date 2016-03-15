@@ -14,9 +14,9 @@
         </Grid.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
-                <controls:PropertySet Source="{Binding}" Property="FlickrQueryParam" Value="{Binding FlickrQueryParam, Mode=TwoWay}" />
-                <controls:PropertySet Source="{Binding}" Property="FlickrQueryTypeSelectedItem" Value="{Binding FlickrQueryTypeSelectedItem, Mode=TwoWay}" />
-                <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="20" SmallChange="1" />
+                <controls:PropertySet x:Uid="propQueryParam" Source="{Binding}" Property="FlickrQueryParam" Value="{Binding FlickrQueryParam, Mode=TwoWay}" />
+                <controls:PropertySet x:Uid="propQueryType" Source="{Binding}" Property="FlickrQueryTypeSelectedItem" Value="{Binding FlickrQueryTypeSelectedItem, Mode=TwoWay}" />
+                <controls:PropertySet x:Uid="propMaxRecords" Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="20" SmallChange="1" />
                 <StackPanel Margin="0,30,0,0">
                     <Button x:Uid="DataProviderRefreshButton" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
                     <Button x:Uid="DataProviderRestoreConfigButton" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>

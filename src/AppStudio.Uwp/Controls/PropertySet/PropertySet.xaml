@@ -8,7 +8,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PropertySet">
                     <StackPanel>
-                        <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Property}" FontWeight="Normal" />
+                        <TextBlock Margin="0,12,0,6" Text="{TemplateBinding Label}" FontWeight="Normal" />
                         <ComboBox Name="colors" ItemsSource="{TemplateBinding ComboItems}" SelectedValuePath="Value"
                                   HorizontalAlignment="Stretch" Visibility="Collapsed">
                             <ComboBox.ItemTemplate>

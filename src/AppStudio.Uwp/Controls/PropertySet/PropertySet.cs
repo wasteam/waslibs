@@ -56,6 +56,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(object), typeof(PropertySet), new PropertyMetadata(null));
         #endregion
 
+        #region Label
+        public string Label
+        {
+            get { return (string)GetValue(LabelProperty); }
+            set { SetValue(LabelProperty, value); }
+        }
+
+        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(PropertySet), new PropertyMetadata(string.Empty));
+        #endregion
+
         #region Minimun
         public double Minimun
         {
@@ -126,7 +136,10 @@ namespace AppStudio.Uwp.Controls
             _isInitialized = true;
 
             ExploreProperty();
-
+            if (string.IsNullOrEmpty(Label))
+            {
+                Label = Property;
+            }
             base.OnApplyTemplate();
         }
 

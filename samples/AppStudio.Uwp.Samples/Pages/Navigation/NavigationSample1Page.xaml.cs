@@ -16,13 +16,16 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Commands
-        public ICommand NavigateCommand
+        public ICommand GoBackCommand
         {
             get
             {
                 return new RelayCommand(() =>
                 {
-                    NavigationService.NavigateToPage("NavigationSample2Page");
+                    if (NavigationService.CanGoBack())
+                    {
+                        NavigationService.GoBack();
+                    }
                 });
             }
         }

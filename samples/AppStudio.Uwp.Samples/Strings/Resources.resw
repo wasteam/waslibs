@@ -372,4 +372,43 @@
   <data name="ShellMenuUtilities" xml:space="preserve">
     <value>Utilities</value>
   </data>
+  <data name="propAccessToken.Label" xml:space="preserve">
+    <value>Access token</value>
+  </data>
+  <data name="propAccessTokenSecret.Label" xml:space="preserve">
+    <value>Access token secret</value>
+  </data>
+  <data name="propApiKey.Label" xml:space="preserve">
+    <value>API Key</value>
+  </data>
+  <data name="propAppId.Label" xml:space="preserve">
+    <value>App Id</value>
+  </data>
+  <data name="propAppSecret.Label" xml:space="preserve">
+    <value>App secret</value>
+  </data>
+  <data name="propConsumerKey.Label" xml:space="preserve">
+    <value>Consumer key</value>
+  </data>
+  <data name="propConsumerSecret.Label" xml:space="preserve">
+    <value>Consumer secret</value>
+  </data>
+  <data name="propCountry.Label" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="propMaxRecords.Label" xml:space="preserve">
+    <value>Maximun records</value>
+  </data>
+  <data name="propQuery.Label" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="propQueryFilter.Label" xml:space="preserve">
+    <value>Query filter</value>
+  </data>
+  <data name="propQueryParam.Label" xml:space="preserve">
+    <value>Query parameter</value>
+  </data>
+  <data name="propQueryType.Label" xml:space="preserve">
+    <value>Query type</value>
+  </data>
 </root>

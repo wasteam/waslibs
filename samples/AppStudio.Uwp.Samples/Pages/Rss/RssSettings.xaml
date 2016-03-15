@@ -14,8 +14,8 @@
         </Grid.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
-                <controls:PropertySet Source="{Binding}" Property="RssQuery" Value="{Binding RssQuery, Mode=TwoWay}" />
-                <controls:PropertySet Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
+                <controls:PropertySet x:Uid="propQuery" Source="{Binding}" Property="RssQuery" Value="{Binding RssQuery, Mode=TwoWay}" />
+                <controls:PropertySet x:Uid="propMaxRecords" Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="50" SmallChange="1" />
                 <StackPanel Margin="0,30,0,0">
                     <Button Content="Refresh" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
                     <Button Content="Restore Config" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
