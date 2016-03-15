@@ -8,10 +8,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"             />
     </Page.Resources>
+    
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
             <StackPanel Margin="12" MaxWidth="800" HorizontalAlignment="Left">
@@ -25,10 +27,11 @@
                         <Line Stroke="Black" X1="50" X2="50" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
                         <Line Stroke="Black" X1="250" X2="250" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
                         <Image Margin="51" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"
-                           Source="http://www.bing.com/az/hprichbg/rb/LaPedrera_EN-US9374830496_1366x768.jpg"
-                           Visibility="{Binding IsImageVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                               Source="http://www.bing.com/az/hprichbg/rb/LaPedrera_EN-US9374830496_1366x768.jpg"
+                               Visibility="{Binding IsImageVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     </Grid>
                 </StackPanel>
+                
                 <StackPanel Margin="0,36,0,0">
                     <TextBlock Text="StringVisibilityConverter" FontWeight="SemiBold"/>
                     <TextBlock x:Uid="ConvertersStringVisibilityConverterDescription" FontWeight="Light" Margin="0,6,0,0"/>
@@ -39,8 +42,8 @@
                         <Line Stroke="Black" X1="50" X2="50" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
                         <Line Stroke="Black" X1="250" X2="250" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
                         <Image Margin="51" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"
-                           Source="http://www.bing.com/az/hprichbg/rb/IcelandAurora_EN-US5456362533_1366x768.jpg"
-                           Visibility="{Binding StringVisibilityValue, Converter={StaticResource StringVisibilityConverter}}"/>
+                               Source="http://www.bing.com/az/hprichbg/rb/IcelandAurora_EN-US5456362533_1366x768.jpg"
+                               Visibility="{Binding StringVisibilityValue, Converter={StaticResource StringVisibilityConverter}}"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>

@@ -41,7 +41,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Items = new ObservableCollection<object>(new DevicesDataSource().GetItems());
+            this.Items = new ObservableCollection<object>(new BingDataSource().GetItems());
             this.ItemTemplate = Resources["Hero"] as DataTemplate;
 
             base.OnNavigatedTo(e);

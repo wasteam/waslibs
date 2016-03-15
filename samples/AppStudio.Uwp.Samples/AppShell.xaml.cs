@@ -8,9 +8,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
 
-using Windows.UI.ViewManagement;
-using Windows.Foundation;
-
 using AppStudio.Uwp.Navigation;
 using AppStudio.Uwp.Controls;
 

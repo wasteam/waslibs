@@ -12,7 +12,7 @@
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
                 <controls:PropertySet Source="{Binding}" Property="BingQueryParam" Value="{Binding BingQueryParam, Mode=TwoWay}" />
                 <controls:PropertySet Source="{Binding}" Property="BingCountrySelectedItem" Value="{Binding BingCountrySelectedItem, Mode=TwoWay}" />

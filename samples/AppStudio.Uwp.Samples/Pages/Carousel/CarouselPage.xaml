@@ -10,38 +10,33 @@
 
     <Page.Resources>
         <DataTemplate x:Key="Hero">
-            <Grid Background="White">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.8*"/>
-                        <RowDefinition Height="0.2*"/>
-                    </Grid.RowDefinitions>
-                    <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Grid Grid.Row="1" Background="Black">
-                        <controls:Virtualbox VirtualWidth="640" VirtualHeight="56">
-                            <TextBlock Margin="24,6" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" TextAlignment="Center" Foreground="#eee"/>
-                        </controls:Virtualbox>
-                    </Grid>
+            <Grid Background="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Grid Grid.Row="1">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.25" />
+                    </Grid.Background>
+                    <controls:Virtualbox VirtualWidth="640" VirtualHeight="64">
+                        <TextBlock Margin="12,6" Text="{Binding Copyright}" Style="{StaticResource LayoutTitleStyle}" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Foreground="#eee"/>
+                    </controls:Virtualbox>
                 </Grid>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{StaticResource AppBackground}">
+    <Grid Background="{StaticResource AppBackground}" Margin="0,30">
         <StackPanel>
-            <controls:Carousel
-                Name="control"
-                ItemsSource="{Binding Items}"            
-                ContentTemplate="{Binding ItemTemplate}"
-                MaxItems="3" AspectRatio="1.6" AlignmentX="Center" MinHeight="220" MaxHeight="480" GradientOpacity="0.3"/>
-            <controls:Indicator
-                ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}"
-                SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"
-                Height="40"
-                SelectedForeground="{ThemeResource SystemColorHighlightColor}">
+            <controls:Carousel Name="control" ItemsSource="{Binding Items}" ContentTemplate="{Binding ItemTemplate}"
+                               MaxItems="3" AspectRatio="1.5" AlignmentX="Center" MinHeight="240" MaxHeight="480" GradientOpacity="0.3"/>
+            <controls:Indicator ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"
+                                Height="40" SelectedForeground="{ThemeResource SystemColorHighlightColor}">
                 <controls:Indicator.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="12" Height="8" BorderBrush="{ThemeResource SystemBaseHighColor}" BorderThickness="1" />
+                        <Border Width="12" Height="8" Background="Transparent" BorderBrush="{ThemeResource SystemChromeHighColor}" BorderThickness="1" />
                     </DataTemplate>
                 </controls:Indicator.ItemTemplate>
             </controls:Indicator>

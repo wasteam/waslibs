@@ -22,6 +22,11 @@ namespace AppStudio.Uwp.Navigation
             _rootFrame = rootFrame;
         }
 
+        public static Frame RootFrame
+        {
+            get { return _rootFrame; }
+        }
+
         public static void NavigateToRoot()
         {
             while (_rootFrame.BackStackDepth > 1)
