@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AppStudio.Uwp.Commands;
+
 using Windows.System;
 using Windows.UI.Xaml.Controls;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Navigation
 {
@@ -33,10 +35,7 @@ namespace AppStudio.Uwp.Navigation
             {
                 _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
             }
-            if (_rootFrame.CanGoBack)
-            {
-                _rootFrame.GoBack();
-            }
+            GoBack();
         }
 
         public static void NavigateToPage<T>()
