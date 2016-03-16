@@ -33,14 +33,19 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToRoot()
         {
-            ClearNavigationStack();
-
             if (_rootPage == null)
             {
+                while (_rootFrame.BackStackDepth > 1)
+                {
+                    _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+                }
+
                 GoBack();
             }
             else
             {
+                _rootFrame.BackStack.Clear();
+
                 NavigateToPage(_rootPage);
             }
         }
@@ -90,14 +95,6 @@ namespace AppStudio.Uwp.Navigation
                 {
                     NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
                 }
-            }
-        }
-
-        private static void ClearNavigationStack()
-        {
-            while (_rootFrame.BackStackDepth > 1)
-            {
-                _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
             }
         }
 
