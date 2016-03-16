@@ -17,11 +17,13 @@ namespace AppStudio.Uwp.Navigation
 
         private static Assembly _appAssembly;
         private static Frame _rootFrame;
+        private static Type _rootPage;
 
-        public static void Initialize(Type app, Frame rootFrame)
+        public static void Initialize(Type app, Frame rootFrame, Type rootPage = null)
         {
             _appAssembly = app.GetTypeInfo().Assembly;
             _rootFrame = rootFrame;
+            _rootPage = rootPage;
         }
 
         public static Frame RootFrame
@@ -31,11 +33,16 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToRoot()
         {
-            while (_rootFrame.BackStackDepth > 1)
+            ClearNavigationStack();
+
+            if (_rootPage == null)
             {
-                _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+                GoBack();
             }
-            GoBack();
+            else
+            {
+                NavigateToPage(_rootPage);
+            }
         }
 
         public static void NavigateToPage<T>()
@@ -83,6 +90,14 @@ namespace AppStudio.Uwp.Navigation
                 {
                     NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
                 }
+            }
+        }
+
+        private static void ClearNavigationStack()
+        {
+            while (_rootFrame.BackStackDepth > 1)
+            {
+                _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
             }
         }
 
