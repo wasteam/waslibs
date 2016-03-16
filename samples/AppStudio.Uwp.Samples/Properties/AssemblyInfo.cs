@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Windows App Studio Uwp Samples")]
-[assembly: AssemblyDescription("Windows App Studio Uwp Samples Application")]
+[assembly: AssemblyTitle("Windows App Studio UWP Samples")]
+[assembly: AssemblyDescription("Windows App Studio UWP Samples Application")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Windows App Studio")]
-[assembly: AssemblyProduct("Windows App Studio Uwp Samples")]
+[assembly: AssemblyProduct("Windows App Studio UWP Samples")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
