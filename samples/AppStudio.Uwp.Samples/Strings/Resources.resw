@@ -411,4 +411,22 @@
   <data name="propQueryType.Label" xml:space="preserve">
     <value>Query type</value>
   </data>
+  <data name="About_AppCode.Text" xml:space="preserve">
+    <value>App Code</value>
+  </data>
+  <data name="About_Dependencies.Text" xml:space="preserve">
+    <value>Dependencies</value>
+  </data>
+  <data name="About_GitHubRepository.Text" xml:space="preserve">
+    <value>GitHub Repository</value>
+  </data>
+  <data name="About_Info.Text" xml:space="preserve">
+    <value>This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages.</value>
+  </data>
+  <data name="About_Url.Text" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="About_PrivacyTerms.Text" xml:space="preserve">
+    <value>Privacy terms</value>
+  </data>
 </root>

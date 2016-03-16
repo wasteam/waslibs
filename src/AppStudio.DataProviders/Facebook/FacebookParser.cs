@@ -65,7 +65,7 @@ namespace AppStudio.DataProviders.Facebook
             return parsedImageUrl;
         }
 
-        private string BuildFeedUrl(string authorId, string id, string link)
+        private static string BuildFeedUrl(string authorId, string id, string link)
         {
             if (!string.IsNullOrEmpty(link))
             {
@@ -73,20 +73,17 @@ namespace AppStudio.DataProviders.Facebook
             }
 
             const string baseUrl = "https://www.facebook.com";
-            string postId = null;
-            try
-            {              
-                postId = id.Split('_')[1];
-            }
-            catch (Exception)
+            var Ids = id.Split('_');
+            if (Ids.Length > 1)
             {
+                var postId = id.Split('_')[1];
+                return $"{baseUrl}/{authorId}/posts/{postId}";
+            }
 
-                return $"{baseUrl}/{authorId}";
-            }    
-            return $"{baseUrl}/{authorId}/posts/{postId}";
+            return $"{baseUrl}/{authorId}";
         }
 
-}
+    }
 
     internal class FacebookGraphResponse
     {

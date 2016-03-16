@@ -4,7 +4,6 @@
 
     <DataTemplate x:Key="HomeHeaderTemplate">
         <Grid Background="Transparent">
-            <!--<TextBlock Margin="14,8" Text="{Binding}" TextTrimming="CharacterEllipsis" FontSize="22" Foreground="White" />-->
         </Grid>
     </DataTemplate>
 
