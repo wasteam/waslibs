@@ -52,7 +52,7 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"));
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About());
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About()) { ClearSelection = true };
             }
         }
 
