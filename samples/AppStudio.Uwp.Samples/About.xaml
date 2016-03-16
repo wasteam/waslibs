@@ -14,28 +14,36 @@
             <StackPanel>
                 <RichTextBlock Margin="12" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
                     <Paragraph>
-                        <Run FontSize="18" FontWeight="SemiBold" Text="Windows App Studio UWP Samples"/>
+                        <Run FontSize="17" FontWeight="SemiBold" Text="{Binding AppName}"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run FontSize="12" Text="{Binding Publisher}"/>
+                    </Paragraph>
+                    <Paragraph FontSize="12">
+                        <Run Text="{Binding Version}"/>
                     </Paragraph>
                     <Paragraph Margin="0,12,0,0">
-                        <Run FontWeight="Light" FontSize="14" Text="This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages."/>
+                        <Run x:Uid="About_Info" FontWeight="Light" FontSize="14" />
                     </Paragraph>
                     <!--App Code-->
                     <Paragraph Margin="0,24,0,0">
-                        <Run Text="App Code" FontWeight="SemiBold" FontSize="18"/>
+                        <Run x:Uid="About_AppCode" FontWeight="SemiBold" FontSize="17"/>
                     </Paragraph>
                     <Paragraph Margin="0,6,0,0">
-                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://github.com/wasteam/waslibs/" FontSize="14">GitHub Repository</Hyperlink>
+                        <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://github.com/wasteam/waslibs/" FontSize="14">
+                            <Run x:Uid="About_GitHubRepository" />
+                        </Hyperlink>
                     </Paragraph>
                     <!--App Studio URL-->
                     <Paragraph Margin="0,24,0,0">
-                        <Run Text="URL" FontWeight="SemiBold" FontSize="18"/>
+                        <Run x:Uid="About_Url" FontWeight="SemiBold" FontSize="17"/>
                     </Paragraph>
                     <Paragraph Margin="0,6,0,0">
                         <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="https://appstudio.windows.com/" FontSize="14">https://appstudio.windows.com/</Hyperlink>
                     </Paragraph>
                     <!--Dependences-->
                     <Paragraph Margin="0,24,0,0">
-                        <Run Text="Dependneces:" FontWeight="SemiBold" FontSize="18"/>
+                        <Run x:Uid="About_Dependencies" FontWeight="SemiBold" FontSize="17"/>
                     </Paragraph>
                     <Paragraph Margin="12,6,0,0">
                         <Hyperlink FontWeight="Light" Foreground="{StaticResource AppForeground}" NavigateUri="http://www.newtonsoft.com/json" FontSize="14">· Newtonsoft Json</Hyperlink>
@@ -49,7 +57,9 @@
                         <Image Source="/Assets/Images/PrivacyTerms.png" Stretch="None" VerticalAlignment="Center"/>
                         <RichTextBlock Margin="12,0,0,0" VerticalAlignment="Center" Foreground="White">
                             <Paragraph>
-                                <Hyperlink FontSize="24" NavigateUri="http://appstudio.windows.com/home/appprivacyterms/" Foreground="White">Privacy terms</Hyperlink>
+                                <Hyperlink FontSize="24" NavigateUri="http://appstudio.windows.com/home/appprivacyterms/" Foreground="White" >
+                                    <Run x:Uid="About_PrivacyTerms"/>
+                                </Hyperlink>
                             </Paragraph>
                         </RichTextBlock>
                     </StackPanel>

@@ -3,7 +3,7 @@
   <Identity Name="9575d22b-d47e-42d8-a53e-b90ea5a554e7" Publisher="CN=alvar" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="9575d22b-d47e-42d8-a53e-b90ea5a554e7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>AppStudio.Uwp.Samples</DisplayName>
+    <DisplayName>Windows App Studio UWP Samples</DisplayName>
     <PublisherDisplayName>alvar</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
