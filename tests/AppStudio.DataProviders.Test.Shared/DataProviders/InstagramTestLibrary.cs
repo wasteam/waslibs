@@ -143,7 +143,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsTags_1()
+        public async Task TestMaxRecordsTags_Min()
         {
             int maxRecords = 1;
             var config = new InstagramDataConfig
@@ -158,7 +158,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsUserId_1()
+        public async Task TestMaxRecordsUserId_Min()
         {
             int maxRecords = 1;
             var config = new InstagramDataConfig
@@ -173,7 +173,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsTags_30()
+        public async Task TestMaxRecordsTags()
         {
             int maxRecords = 30;
             var config = new InstagramDataConfig
@@ -188,7 +188,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsUserId_30()
+        public async Task TestMaxRecordsUserId()
         {
             int maxRecords = 30;
             var config = new InstagramDataConfig

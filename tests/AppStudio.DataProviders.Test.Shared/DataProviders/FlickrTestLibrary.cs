@@ -75,7 +75,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsUser_1()
+        public async Task TestMaxRecordsUser_Min()
         {
             int maxRecords = 1;
             var config = new FlickrDataConfig
@@ -91,7 +91,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsTags_1()
+        public async Task TestMaxRecordsTags_Min()
         {
             int maxRecords = 1;
             var config = new FlickrDataConfig
@@ -107,7 +107,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsUser_20()
+        public async Task TestMaxRecordsUser()
         {
             int maxRecords = 20;
             var config = new FlickrDataConfig
@@ -123,7 +123,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsTags_20()
+        public async Task TestMaxRecordsTags()
         {
             int maxRecords = 20;
             var config = new FlickrDataConfig

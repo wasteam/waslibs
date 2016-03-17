@@ -114,7 +114,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecords_1()
+        public async Task TestMaxRecords_Min()
         {
             int maxRecords = 1;
             var config = new FacebookDataConfig
@@ -129,7 +129,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecords_70()
+        public async Task TestMaxRecords()
         {
             int maxRecords = 70;
             var config = new FacebookDataConfig

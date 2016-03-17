@@ -134,7 +134,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
 
         [TestMethod]
-        public async Task TestMaxRecordsVideos_50()
+        public async Task TestMaxRecordsVideos()
         {
             int maxRecords = 50;
             var config = new YouTubeDataConfig
@@ -149,7 +149,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsPlaylist_50()
+        public async Task TestMaxRecordsPlaylist()
         {
             int maxRecords = 50;
             var config = new YouTubeDataConfig
@@ -164,7 +164,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsChannels_50()
+        public async Task TestMaxRecordsChannels()
         {
             int maxRecords = 50;
             var config = new YouTubeDataConfig
@@ -179,7 +179,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsVideos_1()
+        public async Task TestMaxRecordsVideos_Min()
         {
             int maxRecords = 1;
             var config = new YouTubeDataConfig
@@ -194,7 +194,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsPlaylist_1()
+        public async Task TestMaxRecordsPlaylist_Min()
         {
             int maxRecords = 1;
             var config = new YouTubeDataConfig
@@ -209,7 +209,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestMaxRecordsChannels_1()
+        public async Task TestMaxRecordsChannels_Min()
         {
             int maxRecords = 1;
             var config = new YouTubeDataConfig
