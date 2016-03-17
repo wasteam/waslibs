@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AppStudio.Uwp.Commands;
+
 using Windows.System;
 using Windows.UI.Xaml.Controls;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Navigation
 {
@@ -15,11 +17,13 @@ namespace AppStudio.Uwp.Navigation
 
         private static Assembly _appAssembly;
         private static Frame _rootFrame;
+        private static Type _rootPage;
 
-        public static void Initialize(Type app, Frame rootFrame)
+        public static void Initialize(Type app, Frame rootFrame, Type rootPage = null)
         {
             _appAssembly = app.GetTypeInfo().Assembly;
             _rootFrame = rootFrame;
+            _rootPage = rootPage;
         }
 
         public static Frame RootFrame
@@ -29,13 +33,20 @@ namespace AppStudio.Uwp.Navigation
 
         public static void NavigateToRoot()
         {
-            while (_rootFrame.BackStackDepth > 1)
+            if (_rootPage == null)
             {
-                _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+                while (_rootFrame.BackStackDepth > 1)
+                {
+                    _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+                }
+
+                GoBack();
             }
-            if (_rootFrame.CanGoBack)
+            else
             {
-                _rootFrame.GoBack();
+                _rootFrame.BackStack.Clear();
+
+                NavigateToPage(_rootPage);
             }
         }
 

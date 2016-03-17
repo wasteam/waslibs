@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
@@ -31,11 +30,8 @@ namespace AppStudio.Uwp.Controls
         private void InvokeClick(NavigationItem navItem)
         {
             _splitView.IsPaneOpen = false;
-            if (navItem != _currentItem)
-            {
-                _currentItem = navItem;
-                navItem.OnClick(navItem);
-            }
+            _currentItem = navItem;
+            navItem.OnClick(navItem);
         }
 
         private async void InvokeContent(NavigationItem navItem)
@@ -104,7 +100,7 @@ namespace AppStudio.Uwp.Controls
                 _lviewSub.Visibility = Visibility.Visible;
                 _lviewSub.ItemsSource = navItem.SubItems;
                 OpenLeftPane();
-            }            
+            }
         }
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
