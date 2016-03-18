@@ -15,14 +15,24 @@
           <RowDefinition Height="*"/>
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image Stretch="Uniform" Source="{Binding Thumbnail}"/>
-        <TextBlock Grid.Row="1" Text="{Binding Title}" TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Center"/>
+        <Image
+            Stretch="Uniform"
+            Source="{Binding Thumbnail}"/>
+        <TextBlock
+            Grid.Row="1"
+            Text="{Binding Title}"
+            TextWrapping="Wrap"
+            FontSize="20"
+            HorizontalAlignment="Center"/>
       </Grid>
     </DataTemplate>
   </Page.Resources>
 
-  <Grid Background="{StaticResource AppBackground}">
-    <controls:SectionList Name="control" HeaderLinkText="View all">
+  <Grid
+      Background="{StaticResource AppBackground}">
+    <controls:SectionList
+        Name="control"
+        HeaderLinkText="View all">
       <controls:SectionList.TitleStyle>
         <Style TargetType="TextBlock">
           <Setter Property="FontWeight" Value="Bold"/>
@@ -43,38 +53,70 @@
           LoadingVisibility="Collapsed"
           ManageLoading="False">
         <DataTemplate>
-          <Image x:Name="heroImage" Stretch="Uniform" Source="/Assets/Images/HeroImage.png" Margin="-1,0"/>
+          <Image
+              x:Name="heroImage"
+              Stretch="Uniform"
+              Source="/Assets/Images/HeroImage.png"
+              Margin="-1,0"/>
         </DataTemplate>
       </controls:SectionListItem>
-      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Tablet/PC" Margin="12,12,0,0">
+      <controls:SectionListItem
+          HeaderLinkVisibility="Visible"
+          Title="Tablet/PC"
+          Margin="12,12,0,0">
         <DataTemplate>
           <controls:ResponsiveGridView
-              ItemsSource="{Binding TabletPCItems}" ItemHeight="200" DesiredWidth="300"
-              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+              ItemsSource="{Binding TabletPCItems}"
+              ItemHeight="200"
+              DesiredWidth="240"
+              MaxHeight="200"
+              OneRowModeEnabled="True"
+              ItemTemplate="{Binding ItemTemplate}">
           </controls:ResponsiveGridView>
         </DataTemplate>
       </controls:SectionListItem>
-      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Accessory" Margin="12,12,0,0">
+      <controls:SectionListItem
+          HeaderLinkVisibility="Visible"
+          Title="Accessory"
+          Margin="12,12,0,0">
         <DataTemplate>
           <controls:ResponsiveGridView
-              ItemsSource="{Binding AccessoryItems}" ItemHeight="200" DesiredWidth="300"
-              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+              ItemsSource="{Binding AccessoryItems}"
+              ItemHeight="200"
+              DesiredWidth="240"
+              MaxHeight="200"
+              OneRowModeEnabled="True"
+              ItemTemplate="{Binding ItemTemplate}">
           </controls:ResponsiveGridView>
         </DataTemplate>
       </controls:SectionListItem>
-      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Phone" Margin="12,12,0,0">
+      <controls:SectionListItem
+          HeaderLinkVisibility="Visible"
+          Title="Phone"
+          Margin="12,12,0,0">
         <DataTemplate>
           <controls:ResponsiveGridView
-              ItemsSource="{Binding PhoneItems}" ItemHeight="200" DesiredWidth="300"
-              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+              ItemsSource="{Binding PhoneItems}"
+              ItemHeight="200"
+              DesiredWidth="240"
+              MaxHeight="200"
+              OneRowModeEnabled="True"
+              ItemTemplate="{Binding ItemTemplate}">
           </controls:ResponsiveGridView>
         </DataTemplate>
       </controls:SectionListItem>
-      <controls:SectionListItem HeaderLinkVisibility="Visible" Title="Console" Margin="12,12,0,0">
+      <controls:SectionListItem
+          HeaderLinkVisibility="Visible"
+          Title="Console"
+          Margin="12,12,0,0">
         <DataTemplate>
           <controls:ResponsiveGridView
-              ItemsSource="{Binding ConsoleItems}" ItemHeight="200" DesiredWidth="300"
-              MaxHeight="200" OneRowModeEnabled="True" Margin="0" ItemTemplate="{Binding ItemTemplate}">
+              ItemsSource="{Binding ConsoleItems}"
+              ItemHeight="200"
+              DesiredWidth="240"
+              MaxHeight="200"
+              OneRowModeEnabled="True"
+              ItemTemplate="{Binding ItemTemplate}">
           </controls:ResponsiveGridView>
         </DataTemplate>
       </controls:SectionListItem>

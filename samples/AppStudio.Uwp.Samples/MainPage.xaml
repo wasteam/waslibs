@@ -1,30 +1,41 @@
 ﻿<Page
     x:Class="AppStudio.Uwp.Samples.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AppStudio.Uwp.Samples"
-    xmlns:was_controls="using:AppStudio.Uwp.Controls"
-    xmlns:controls="using:AppStudio.Uwp.Samples.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:was_controls="using:AppStudio.Uwp.Controls"
+    xmlns:controls="using:AppStudio.Uwp.Samples.Controls"    
     xmlns:was_commands="using:AppStudio.Uwp.Commands"
     mc:Ignorable="d">
 
     <Page.Resources>
         <DataTemplate x:Key="WideTopTemplate">
-            <Grid Padding="12" Background="{StaticResource HomeHeaderBackground}">
-                <Viewbox StretchDirection="DownOnly" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Image Source="/Assets/Images/HomeLogo2.png"/>
+            <Grid
+                Padding="12"
+                Background="{StaticResource HomeHeaderBackground}">
+                <Viewbox
+                    StretchDirection="DownOnly"
+                    Margin="12"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+                    <Image
+                        Source="/Assets/Images/HomeLogo2.png"/>
                 </Viewbox>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="TinyTopTemplate">
-            <Grid Padding="48,12" Background="{StaticResource HomeHeaderBackground}">
-                <Viewbox StretchDirection="DownOnly" Margin="12" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Image Source="/Assets/Images/HomeLogo2.png"/>
+            <Grid
+                Padding="48,12"
+                Background="{StaticResource HomeHeaderBackground}">
+                <Viewbox
+                    StretchDirection="DownOnly"
+                    Margin="12"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+                    <Image
+                        Source="/Assets/Images/HomeLogo2.png"/>
                 </Viewbox>
             </Grid>
         </DataTemplate>
@@ -35,26 +46,62 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <was_controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
-        <ContentControl ContentTemplate="{Binding TopContentTemplate}"
-                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <was_controls:VisualBreakpoints
+            x:Name="vbp"
+            ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
+        <ContentControl
+            ContentTemplate="{Binding TopContentTemplate}"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"/>
         <Grid Grid.Row="1">
             <was_controls:VariableSizedGrid
-                Name="HomeVariableSizedGrid" Margin="8"
-                ItemsSource="{Binding Items}" SelectionMode="None" IsItemClickEnabled="True"
-                Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}" AspectRatio="1"
-                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Name="HomeVariableSizedGrid"
+                Margin="8"
+                AspectRatio="1"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                IsItemClickEnabled="True"
+                Orientation="Horizontal"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}"                                
                 was_commands:ItemClickCommand.Command="{Binding ItemClickCommand}">
                 <was_controls:VariableSizedGrid.ItemTemplateSelector>
                     <controls:IndexTemplateSelector>
                         <controls:IndexTemplateSelector.BigItemTemplate>
                             <DataTemplate>
-                                <Grid Background="{Binding Background}" Margin="6">
-                                    <was_controls:Virtualbox Margin="6" VirtualWidth="300" VirtualHeight="300" MaxWidth="300" MaxHeight="300">
-                                        <StackPanel VerticalAlignment="Center">
-                                            <Image Source="{Binding Thumbnail}" Height="120" />
-                                            <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="Bold" FontSize="28" HorizontalAlignment="Center" MaxLines="2" TextTrimming="CharacterEllipsis" Margin="0,20,0,0"/>
-                                            <TextBlock Text="{Binding Category}" Foreground="White" FontWeight="Light" FontSize="26" HorizontalAlignment="Center" MaxLines="2" TextTrimming="CharacterEllipsis" Margin="0,-9,0,0"/>
+                                <Grid
+                                    Margin="6"
+                                    Background="{Binding Background}">
+                                    <was_controls:Virtualbox
+                                        Margin="6"
+                                        VirtualWidth="300"
+                                        VirtualHeight="300"
+                                        MaxWidth="300"
+                                        MaxHeight="300">
+                                        <StackPanel
+                                            VerticalAlignment="Center">
+                                            <Image
+                                                Source="{Binding Thumbnail}"
+                                                Height="120" />
+                                            <TextBlock
+                                                Margin="0,20,0,0"
+                                                Text="{Binding Title}"
+                                                MaxLines="2"
+                                                FontSize="28"
+                                                Foreground="White"
+                                                FontWeight="Bold"                                                
+                                                HorizontalAlignment="Center"                                                
+                                                TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock
+                                                Margin="0,-9,0,0"
+                                                Text="{Binding Category}"
+                                                Foreground="White"
+                                                FontWeight="Light"
+                                                FontSize="26"
+                                                MaxLines="2"
+                                                TextTrimming="CharacterEllipsis"
+                                                HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </was_controls:Virtualbox>
                                 </Grid>
@@ -62,12 +109,38 @@
                         </controls:IndexTemplateSelector.BigItemTemplate>
                         <controls:IndexTemplateSelector.MediumItemTemplate>
                             <DataTemplate>
-                                <Grid Background="{Binding Background}" Margin="6">
-                                    <was_controls:Virtualbox Margin="6" VirtualWidth="200" VirtualHeight="200" MaxWidth="200" MaxHeight="200">
-                                        <StackPanel VerticalAlignment="Center">
-                                            <Image Source="{Binding Thumbnail}" Height="120" />
-                                            <TextBlock Text="{Binding Title}" Foreground="White" FontWeight="Bold" FontSize="26" HorizontalAlignment="Center" MaxLines="2" TextTrimming="CharacterEllipsis" Margin="0,0,0,0"/>
-                                            <TextBlock Text="{Binding Category}" Foreground="White" FontWeight="Light" FontSize="24" HorizontalAlignment="Center" MaxLines="2" TextTrimming="CharacterEllipsis" Margin="0,-6,0,0"/>
+                                <Grid
+                                    Margin="6"
+                                    Background="{Binding Background}">
+                                    <was_controls:Virtualbox
+                                        Margin="6"
+                                        VirtualWidth="200"
+                                        VirtualHeight="200"
+                                        MaxWidth="200"
+                                        MaxHeight="200">
+                                        <StackPanel
+                                            VerticalAlignment="Center">
+                                            <Image
+                                                Height="120"
+                                                Source="{Binding Thumbnail}"/>
+                                            <TextBlock
+                                                Text="{Binding Title}"
+                                                Foreground="White"
+                                                FontWeight="Bold"
+                                                FontSize="26"
+                                                HorizontalAlignment="Center"
+                                                MaxLines="2"
+                                                TextTrimming="CharacterEllipsis"
+                                                Margin="0,0,0,0"/>
+                                            <TextBlock
+                                                Margin="0,-6,0,0"
+                                                Text="{Binding Category}"
+                                                Foreground="White"
+                                                FontWeight="Light"
+                                                FontSize="24"
+                                                HorizontalAlignment="Center"
+                                                MaxLines="2"
+                                                TextTrimming="CharacterEllipsis"/>
                                         </StackPanel>
                                     </was_controls:Virtualbox>
                                 </Grid>

@@ -8,16 +8,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-    </Page.Resources>
+    
     <Grid Background="{StaticResource AppBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="12" MaxWidth="1000" HorizontalAlignment="Left">
-            <TextBlock x:Uid="ActionsCommandBarTitle" Style="{StaticResource TitleStyle}"/>
-            <TextBlock x:Uid="ActionsCommandBarDescription" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
+        <StackPanel
+            Margin="12"
+            MaxWidth="1000"
+            HorizontalAlignment="Left">
+            <TextBlock
+                x:Uid="ActionsCommandBarTitle"
+                Style="{StaticResource TitleStyle}"/>
+            <TextBlock
+                x:Uid="ActionsCommandBarDescription"
+                Style="{StaticResource SubtitleStyle}"
+                Margin="0,6,0,0"/>
         </StackPanel>
         <actions:ActionsCommandBar
             Grid.Row="1"
@@ -33,10 +40,22 @@
                 </Style>
             </actions:ActionsCommandBar.CommandBarOverflowPresenterStyle>
             <actions:ActionsCommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="MessageCommandFromXaml" Label="Primary Xaml" Style="{StaticResource AppBarAddress}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Primary Xaml" Command="{Binding MessageCommand}"/>
+                <AppBarButton
+                    x:Uid="MessageCommandFromXaml"
+                    Label="Primary Xaml"
+                    Style="{StaticResource AppBarAddress}"
+                    ToolTipService.Placement="Mouse"
+                    ToolTipService.ToolTip="Primary Xaml"
+                    Command="{Binding MessageCommand}"/>
             </actions:ActionsCommandBar.PrimaryCommands>
             <actions:ActionsCommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="MessageCommandFromXaml" Label="Xaml" Style="{StaticResource AppBarDirections}" ToolTipService.Placement="Mouse" ToolTipService.ToolTip="Xaml" Command="{Binding MessageCommand}"/>
+                <AppBarButton
+                    x:Uid="MessageCommandFromXaml"
+                    Label="Xaml"
+                    Style="{StaticResource AppBarDirections}"
+                    ToolTipService.Placement="Mouse"
+                    ToolTipService.ToolTip="Xaml"
+                    Command="{Binding MessageCommand}"/>
             </actions:ActionsCommandBar.SecondaryCommands>
         </actions:ActionsCommandBar>
     </Grid>

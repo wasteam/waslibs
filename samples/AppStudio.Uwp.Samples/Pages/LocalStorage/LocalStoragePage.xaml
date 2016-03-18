@@ -18,7 +18,10 @@
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
-                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="350" DesiredWidth="350">
+                    <controls:ResponsiveGridView
+                        ItemsSource="{Binding Items}"
+                        ItemHeight="350"
+                        DesiredWidth="350">
                         <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="8">
@@ -29,21 +32,56 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}" Height="200" Margin="0,0,0,6">
-                                        <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Grid
+                                        MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}"
+                                        Height="200"
+                                        Margin="0,0,0,6">
+                                        <Image
+                                            Source="{Binding ImageUrl}"
+                                            Stretch="UniformToFill"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
                                     </Grid>
-                                    <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}"/>
-                                    <TextBlock Grid.Row="2" Text="{Binding Description}" Style="{StaticResource LayoutSubtitleStyle}"/>
-                                    <Grid Grid.Row="3" Height="1" Margin="0,8,0,2" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                    <TextBlock Grid.Row="4" Text="{Binding Category}" Style="{StaticResource LayoutHighlightStyle}" MaxLines="1"/>
-
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource LayoutTitleStyle}"/>
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Text="{Binding Description}"
+                                        Style="{StaticResource LayoutSubtitleStyle}"/>
+                                    <Grid
+                                        Grid.Row="3"
+                                        Height="1"
+                                        Margin="0,8,0,2"
+                                        Background="LightGray"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"/>
+                                    <TextBlock
+                                        Grid.Row="4"
+                                        Text="{Binding Category}"
+                                        Style="{StaticResource LayoutHighlightStyle}"
+                                        MaxLines="1"/>
                                 </Grid>
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
                     </controls:ResponsiveGridView>
-                    <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
-                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <ProgressRing
+                        Foreground="Black"
+                        Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Width="100"
+                        Height="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsActive="True"/>
+                    <TextBlock
+                        x:Uid="DataProvidersErrorMessage"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock
+                        x:Uid="DataProvidersNoItems"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="DataProviderRawData">

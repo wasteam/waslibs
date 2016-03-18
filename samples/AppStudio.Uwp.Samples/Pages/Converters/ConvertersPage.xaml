@@ -18,32 +18,131 @@
         <ScrollViewer>
             <StackPanel Margin="12" MaxWidth="800" HorizontalAlignment="Left">
                 <StackPanel>
-                    <TextBlock Text="BoolToVisibilityConverter" Style="{StaticResource TitleStyle}"/>
-                    <TextBlock x:Uid="ConvertersBoolToVisibilityConverterDescription" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
-                    <controls:PropertySet x:Uid="ConvertersBoolToVisibilityConverterToggle" Source="{Binding}" Property="IsImageVisible" Value="{Binding IsImageVisible, Mode=TwoWay}" Margin="0,6,0,0"/>
-                    <Grid Width="300" Height="300" HorizontalAlignment="Left" Margin="0,12,0,0">
-                        <Line Stroke="Black" X1="0" X2="300" Y1="50" Y2="50" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="0" X2="300" Y1="250" Y2="250" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="50" X2="50" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="250" X2="250" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Image Margin="51" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"
-                               Source="http://www.bing.com/az/hprichbg/rb/LaPedrera_EN-US9374830496_1366x768.jpg"
-                               Visibility="{Binding IsImageVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock
+                        Text="BoolToVisibilityConverter"
+                        Style="{StaticResource TitleStyle}"/>
+                    <TextBlock
+                        x:Uid="ConvertersBoolToVisibilityConverterDescription"
+                        Style="{StaticResource SubtitleStyle}"
+                        Margin="0,6,0,0"/>
+                    <controls:PropertySet
+                        x:Uid="ConvertersBoolToVisibilityConverterToggle"
+                        Source="{Binding}"
+                        Property="IsImageVisible"
+                        Value="{Binding IsImageVisible, Mode=TwoWay}"
+                        Margin="0,6,0,0"/>
+                    <Grid
+                        Width="300"
+                        Height="300"
+                        HorizontalAlignment="Left"
+                        Margin="0,12,0,0">
+                        <Line
+                            Stroke="Black"
+                            X1="0"
+                            X2="300"
+                            Y1="50"
+                            Y2="50"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="0"
+                            X2="300"
+                            Y1="250"
+                            Y2="250"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="50"
+                            X2="50"
+                            Y1="0"
+                            Y2="300"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="250"
+                            X2="250"
+                            Y1="0"
+                            Y2="300"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Image
+                            Margin="51"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Stretch="UniformToFill"
+                            Source="http://www.bing.com/az/hprichbg/rb/LaPedrera_EN-US9374830496_1366x768.jpg"
+                            Visibility="{Binding IsImageVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     </Grid>
                 </StackPanel>
                 
                 <StackPanel Margin="0,36,0,0">
-                    <TextBlock Text="StringVisibilityConverter" FontWeight="SemiBold"/>
-                    <TextBlock x:Uid="ConvertersStringVisibilityConverterDescription" FontWeight="Light" Margin="0,6,0,0"/>
-                    <controls:PropertySet Source="{Binding}" Property="StringVisibilityValue" Value="{Binding StringVisibilityValue, Mode=TwoWay}" Margin="0,6,0,0"/>
-                    <Grid Width="300" Height="300" HorizontalAlignment="Left" Margin="0,12,0,0">
-                        <Line Stroke="Black" X1="0" X2="300" Y1="50" Y2="50" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="0" X2="300" Y1="250" Y2="250" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="50" X2="50" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Line Stroke="Black" X1="250" X2="250" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                        <Image Margin="51" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"
-                               Source="http://www.bing.com/az/hprichbg/rb/IcelandAurora_EN-US5456362533_1366x768.jpg"
-                               Visibility="{Binding StringVisibilityValue, Converter={StaticResource StringVisibilityConverter}}"/>
+                    <TextBlock
+                        Text="StringVisibilityConverter"
+                        FontWeight="SemiBold"/>
+                    <TextBlock
+                        x:Uid="ConvertersStringVisibilityConverterDescription"
+                        FontWeight="Light"
+                        Margin="0,6,0,0"/>
+                    <controls:PropertySet
+                        Source="{Binding}"
+                        Property="StringVisibilityValue"
+                        Value="{Binding StringVisibilityValue, Mode=TwoWay}"
+                        Margin="0,6,0,0"/>
+                    <Grid
+                        Width="300"
+                        Height="300"
+                        HorizontalAlignment="Left"
+                        Margin="0,12,0,0">
+                        <Line
+                            Stroke="Black"
+                            X1="0"
+                            X2="300"
+                            Y1="50"
+                            Y2="50"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="0"
+                            X2="300"
+                            Y1="250"
+                            Y2="250"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="50"
+                            X2="50"
+                            Y1="0"
+                            Y2="300"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Line
+                            Stroke="Black"
+                            X1="250"
+                            X2="250"
+                            Y1="0"
+                            Y2="300"
+                            StrokeThickness="2"
+                            StrokeDashArray="3,5"
+                            StrokeDashCap="Flat"/>
+                        <Image
+                            Margin="51"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Stretch="UniformToFill"
+                            Source="http://www.bing.com/az/hprichbg/rb/IcelandAurora_EN-US5456362533_1366x768.jpg"
+                            Visibility="{Binding StringVisibilityValue, Converter={StaticResource StringVisibilityConverter}}"/>
                     </Grid>
                 </StackPanel>
             </StackPanel>

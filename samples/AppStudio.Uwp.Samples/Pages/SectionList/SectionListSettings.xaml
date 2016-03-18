@@ -10,11 +10,16 @@
 
     <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
         <Grid.Background>
-            <SolidColorBrush Color="White" Opacity="0.85"/>
+            <SolidColorBrush
+                Color="White"
+                Opacity="0.85"/>
         </Grid.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
-                <controls:PropertySet Source="{Binding}" Property="HeaderLinkText" Value="{Binding HeaderLinkText, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    Source="{Binding}"
+                    Property="HeaderLinkText"
+                    Value="{Binding HeaderLinkText, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

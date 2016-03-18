@@ -14,17 +14,24 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
+        <controls:VisualBreakpoints
+            x:Name="vbp"
+            ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
                     <controls:VariableSizedGrid
                         ItemsSource="{Binding Items}"
-                        Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}" AspectRatio="1"
-                        HorizontalAlignment="Left" VerticalAlignment="Top">
+                        Orientation="Horizontal"
+                        MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}"
+                        AspectRatio="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
                         <controls:VariableSizedGrid.ItemTemplate>
                             <DataTemplate>
-                                <Grid BorderBrush="Black" BorderThickness="1">
+                                <Grid
+                                    BorderBrush="Black"
+                                    BorderThickness="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="0.8*"></RowDefinition>
                                         <RowDefinition Height="0.2*"></RowDefinition>
@@ -33,15 +40,41 @@
                                         <ColumnDefinition Width="0.8*"></ColumnDefinition>
                                         <ColumnDefinition Width="0.2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <controls:ImageEx Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                    <Image  Grid.Column="1" Grid.Row="1" Source="ms-appx:///Assets/Images/FlickrIcon.png" VerticalAlignment="Bottom" HorizontalAlignment="Right" Stretch="Uniform" Margin="6"/>
+                                    <controls:ImageEx
+                                        Grid.ColumnSpan="2"
+                                        Grid.RowSpan="2"
+                                        Source="{Binding ImageUrl}"
+                                        Stretch="UniformToFill"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                                    <Image
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Source="ms-appx:///Assets/Images/FlickrIcon.png"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Right"
+                                        Stretch="Uniform"
+                                        Margin="6"/>
                                 </Grid>
                             </DataTemplate>
                         </controls:VariableSizedGrid.ItemTemplate>
                     </controls:VariableSizedGrid>
-                    <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
-                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <ProgressRing
+                        Foreground="Black"
+                        Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Width="100"
+                        Height="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsActive="True"/>
+                    <TextBlock
+                        x:Uid="DataProvidersErrorMessage"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock
+                        x:Uid="DataProvidersNoItems"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="DataProviderRawData">

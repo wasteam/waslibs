@@ -20,24 +20,43 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1" Grid.Column="1" Background="#333">
-            <controls:Relativebox x:Name="control" AspectRatio="1.5" MinHeight="200" MaxHeight="600">
-                <Grid Margin="0">
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Background="#333">
+            <controls:Relativebox
+                x:Name="control"
+                AspectRatio="1.5"
+                MinHeight="200"
+                MaxHeight="600">
+                <Grid>
                     <Grid.Background>
-                        <ImageBrush ImageSource="/Assets/Images/HeroImage.png" Stretch="UniformToFill" />
+                        <ImageBrush
+                            ImageSource="/Assets/Images/HeroImage.png"
+                            Stretch="UniformToFill"/>
                     </Grid.Background>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="1.25*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="1" Background="#eee">
-                        <TextBlock Margin="12" Text="{Binding Text}" Style="{StaticResource SubtitleStyle}"/>
+                    <Grid
+                        Grid.Row="1"
+                        Background="#eee">
+                        <TextBlock
+                            Margin="12"
+                            Text="{Binding Text}"
+                            Style="{StaticResource SubtitleStyle}"/>
                     </Grid>
                 </Grid>
             </controls:Relativebox>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="1">
-            <TextBlock Margin="12" Text="{Binding Text}" Style="{StaticResource TitleStyle}"/>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1">
+            <TextBlock
+                Margin="12"
+                Text="{Binding Text}"
+                Style="{StaticResource TitleStyle}"/>
         </Grid>
     </Grid>
 </local:SamplePage>
