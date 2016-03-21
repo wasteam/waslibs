@@ -121,6 +121,9 @@
     <Content Include="Assets\Images\VirtualBox.png" />
     <Content Include="Assets\Images\WordPress.png" />
     <Content Include="Assets\Images\YouTubePlay.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\VBPDevices.json" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
@@ -448,8 +451,6 @@
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
