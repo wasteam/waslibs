@@ -8,8 +8,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:PrettifyControl">
                     <Grid>
-                        <ProgressRing Name="progress" Width="100" Height="100" Foreground="{TemplateBinding Foreground}" IsActive="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <WebView Name="webView" Visibility="Collapsed" />
+                        <ProgressRing
+                            Name="progress"
+                            Width="100"
+                            Height="100"
+                            Foreground="{TemplateBinding Foreground}"
+                            IsActive="True"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                        <WebView
+                            Name="webView"
+                            Visibility="Collapsed"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -31,7 +31,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Items = new ObservableCollection<object>(new DevicesDataSource().GetGroupedItems());
+            Items = new ObservableCollection<object>(new PhotosDataSource().GetGroupedItems());
 
             base.OnNavigatedTo(e);
         }

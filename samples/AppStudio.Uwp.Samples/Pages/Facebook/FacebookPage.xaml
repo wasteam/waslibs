@@ -18,7 +18,10 @@
         <Pivot>
             <PivotItem x:Uid="DataProviderParsedItems">
                 <Grid>
-                    <controls:ResponsiveGridView ItemsSource="{Binding Items}" ItemHeight="300" DesiredWidth="230">
+                    <controls:ResponsiveGridView
+                        ItemsSource="{Binding Items}"
+                        ItemHeight="300"
+                        DesiredWidth="230">
                         <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="8">
@@ -28,26 +31,64 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}"  Margin="0,0,0,6">
-                                        <controls:ImageEx Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" Height="140" VerticalAlignment="Center"/>
+                                    <Grid
+                                        MaxHeight="{Binding ImageUrl, Converter={StaticResource StringToSizeConverter}}"
+                                        Margin="0,0,0,6">
+                                        <controls:ImageEx
+                                            Source="{Binding ImageUrl}"
+                                            Stretch="UniformToFill"
+                                            HorizontalAlignment="Center"
+                                            Height="140"
+                                            VerticalAlignment="Center"/>
                                     </Grid>
-                                    <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" VerticalAlignment="Top"/>
-                                    <Grid Grid.Row="2" Height="1" Margin="0,0,0,4" Background="LightGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource LayoutTitleStyle}"
+                                        VerticalAlignment="Top"/>
+                                    <Grid
+                                        Grid.Row="2"
+                                        Height="1"
+                                        Margin="0,0,0,4"
+                                        Background="LightGray"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"/>
                                     <Grid Grid.Row="3">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="ms-appx:///Assets/Images/FacebookIcon.png" Width="20" VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding Author}" Style="{StaticResource LayoutHighlightStyle}" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                        <Image
+                                            Source="ms-appx:///Assets/Images/FacebookIcon.png"
+                                            Width="20"
+                                            VerticalAlignment="Center"/>
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Text="{Binding Author}"
+                                            Style="{StaticResource LayoutHighlightStyle}"
+                                            VerticalAlignment="Center"
+                                            Margin="8,0,0,0"/>
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
                         </controls:ResponsiveGridView.ItemTemplate>
                     </controls:ResponsiveGridView>
-                    <ProgressRing Foreground="Black" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True"></ProgressRing>
-                    <TextBlock x:Uid="DataProvidersErrorMessage" TextWrapping="Wrap" Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                    <TextBlock x:Uid="DataProvidersNoItems" TextWrapping="Wrap" Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <ProgressRing
+                        Foreground="Black"
+                        Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                        Width="100"
+                        Height="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsActive="True"/>
+                    <TextBlock
+                        x:Uid="DataProvidersErrorMessage"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding HasErrors, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <TextBlock
+                        x:Uid="DataProvidersNoItems"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding NoItems, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="DataProviderRawData">

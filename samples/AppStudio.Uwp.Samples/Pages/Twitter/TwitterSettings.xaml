@@ -1,29 +1,71 @@
 ﻿<UserControl
     x:Class="AppStudio.Uwp.Samples.TwitterSettings"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:controls="using:AppStudio.Uwp.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300">
 
-    <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
+    <Grid
+        BorderBrush="LightGray"
+        BorderThickness="1,0,0,0">
         <Grid.Background>
-            <SolidColorBrush Color="White" Opacity="0.85"/>
+            <SolidColorBrush
+                Color="White"
+                Opacity="0.85"/>
         </Grid.Background>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Padding="24">
-                <controls:PropertySet x:Uid="propConsumerKey" Source="{Binding}" Property="ConsumerKey" Value="{Binding ConsumerKey, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propConsumerSecret" Source="{Binding}" Property="ConsumerSecret" Value="{Binding ConsumerSecret, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propAccessToken" Source="{Binding}" Property="AccessToken" Value="{Binding AccessToken, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propAccessTokenSecret" Source="{Binding}" Property="AccessTokenSecret" Value="{Binding AccessTokenSecret, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propQueryType" Source="{Binding}" Property="TwitterQueryTypeSelectedItem" Value="{Binding TwitterQueryTypeSelectedItem, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propQueryParam" Source="{Binding}" Property="TwitterQueryParam" Value="{Binding TwitterQueryParam, Mode=TwoWay}" />
-                <controls:PropertySet x:Uid="propMaxRecords" Source="{Binding}" Property="MaxRecordsParam" Value="{Binding MaxRecordsParam, Mode=TwoWay}" Minimun="1" Maximun="200" SmallChange="1" />
+        <ScrollViewer
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel
+                Padding="24">
+                <controls:PropertySet
+                    x:Uid="propConsumerKey"
+                    Source="{Binding}"
+                    Property="ConsumerKey"
+                    Value="{Binding ConsumerKey, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propConsumerSecret"
+                    Source="{Binding}"
+                    Property="ConsumerSecret"
+                    Value="{Binding ConsumerSecret, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propAccessToken"
+                    Source="{Binding}"
+                    Property="AccessToken"
+                    Value="{Binding AccessToken, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propAccessTokenSecret"
+                    Source="{Binding}"
+                    Property="AccessTokenSecret"
+                    Value="{Binding AccessTokenSecret, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propQueryType"
+                    Source="{Binding}"
+                    Property="TwitterQueryTypeSelectedItem"
+                    Value="{Binding TwitterQueryTypeSelectedItem, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propQueryParam"
+                    Source="{Binding}"
+                    Property="TwitterQueryParam"
+                    Value="{Binding TwitterQueryParam, Mode=TwoWay}"/>
+                <controls:PropertySet
+                    x:Uid="propMaxRecords"
+                    Source="{Binding}"
+                    Property="MaxRecordsParam"
+                    Value="{Binding MaxRecordsParam, Mode=TwoWay}"
+                    Minimun="1"
+                    Maximun="200"
+                    SmallChange="1" />
                 <StackPanel Margin="0,30,0,0">
-                    <Button x:Uid="DataProviderRefreshButton" Command="{Binding RefreshDataCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
-                    <Button x:Uid="DataProviderRestoreConfigButton" Command="{Binding RestoreConfigCommand}" Style="{StaticResource SettingsButtonStyle}"></Button>
+                    <Button
+                        x:Uid="DataProviderRefreshButton"
+                        Command="{Binding RefreshDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        x:Uid="DataProviderRestoreConfigButton"
+                        Command="{Binding RestoreConfigCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

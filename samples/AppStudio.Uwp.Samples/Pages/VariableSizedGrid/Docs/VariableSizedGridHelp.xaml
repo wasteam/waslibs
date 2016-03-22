@@ -7,11 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource AppBackground}">
-        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+    <Grid
+        Background="{StaticResource AppBackground}">
+        <ScrollViewer
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock
+                Margin="24"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="VariableSizedGrid Help" />
+                    <Run
+                        FontSize="32"
+                        Text="VariableSizedGrid Help"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -22,7 +29,10 @@
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/VariableSizedGrid
+                    </Hyperlink>
                 </Paragraph>
                 <Paragraph />
             </RichTextBlock>

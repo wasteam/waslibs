@@ -29,7 +29,7 @@ namespace AppStudio.Uwp.Samples
             ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
             await BitmapCache.ClearCacheAsync(TimeSpan.FromHours(24));
             await BingDataSource.Load();
-            await DevicesDataSource.Load();
+            await PhotosDataSource.Load();
             await FeaturedControlsDataSource.Load();
 
             var shell = Window.Current.Content as AppShell;

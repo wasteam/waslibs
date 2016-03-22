@@ -95,7 +95,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-            this.ItemTemplate = Resources["DeviceItemTemplate"] as DataTemplate;
+            this.ItemTemplate = Resources["PhotoItemTemplate"] as DataTemplate;
             LoadData();
             base.OnNavigatedTo(e);
         }
@@ -105,7 +105,7 @@ namespace AppStudio.Uwp.Samples
             try
             {
                 ErrorVisibility = Visibility.Collapsed;
-                this.Items = new ObservableCollection<object>(new DevicesDataSource().GetItems());
+                this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
                 if (ForceCrash)
                 {
                     throw new Exception("Simulate exception");

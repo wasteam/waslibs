@@ -20,44 +20,44 @@ namespace AppStudio.Uwp.Samples
             get { return "SectionList Control"; }
         }
 
-        #region TabletPCItems
-        public ObservableCollection<object> TabletPCItems
+        #region NatureItems
+        public ObservableCollection<object> NatureItems
         {
-            get { return (ObservableCollection<object>)GetValue(TabletPCItemsProperty); }
-            set { SetValue(TabletPCItemsProperty, value); }
+            get { return (ObservableCollection<object>)GetValue(NatureItemsProperty); }
+            set { SetValue(NatureItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty TabletPCItemsProperty = DependencyProperty.Register("TabletPCItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty NatureItemsProperty = DependencyProperty.Register("NatureItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
         #endregion
 
-        #region AccessoryItems        
-        public ObservableCollection<object> AccessoryItems
+        #region MotorItems        
+        public ObservableCollection<object> MotorItems
         {
-            get { return (ObservableCollection<object>)GetValue(AccessoryItemsProperty); }
-            set { SetValue(AccessoryItemsProperty, value); }
+            get { return (ObservableCollection<object>)GetValue(MotorItemsProperty); }
+            set { SetValue(MotorItemsProperty, value); }
         }        
 
-        public static readonly DependencyProperty AccessoryItemsProperty = DependencyProperty.Register("AccessoryItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty MotorItemsProperty = DependencyProperty.Register("MotorItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
         #endregion
 
-        #region PhoneItems        
-        public ObservableCollection<object> PhoneItems
+        #region CityItems        
+        public ObservableCollection<object> CityItems
         {
-            get { return (ObservableCollection<object>)GetValue(PhoneItemsProperty); }
-            set { SetValue(PhoneItemsProperty, value); }
+            get { return (ObservableCollection<object>)GetValue(CityItemsProperty); }
+            set { SetValue(CityItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty PhoneItemsProperty = DependencyProperty.Register("PhoneItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty CityItemsProperty = DependencyProperty.Register("CityItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
         #endregion
 
-        #region ConsoleItems        
-        public ObservableCollection<object> ConsoleItems
+        #region AnimalItems        
+        public ObservableCollection<object> AnimalItems
         {
-            get { return (ObservableCollection<object>)GetValue(ConsoleItemsProperty); }
-            set { SetValue(ConsoleItemsProperty, value); }
+            get { return (ObservableCollection<object>)GetValue(AnimalItemsProperty); }
+            set { SetValue(AnimalItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ConsoleItemsProperty = DependencyProperty.Register("ConsoleItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty AnimalItemsProperty = DependencyProperty.Register("AnimalItems", typeof(ObservableCollection<object>), typeof(SectionListPage), new PropertyMetadata(null));
         #endregion
 
         #region ItemTemplate
@@ -72,13 +72,13 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var items = new DevicesDataSource().GetItems();
+            var items = new PhotosDataSource().GetItems();
 
-            this.TabletPCItems = new ObservableCollection<object>(items.Where(x => x.Category == "Tablet/PC"));
-            this.AccessoryItems = new ObservableCollection<object>(items.Where(x => x.Category == "Accessory"));
-            this.PhoneItems = new ObservableCollection<object>(items.Where(x => x.Category == "Phone"));
-            this.ConsoleItems = new ObservableCollection<object>(items.Where(x => x.Category == "Console"));
-            this.ItemTemplate = Resources["DeviceItemTemplate"] as DataTemplate;
+            this.NatureItems = new ObservableCollection<object>(items.Where(x => x.Category == "Nature"));
+            this.AnimalItems = new ObservableCollection<object>(items.Where(x => x.Category == "Animal"));
+            this.CityItems = new ObservableCollection<object>(items.Where(x => x.Category == "City"));
+            this.MotorItems = new ObservableCollection<object>(items.Where(x => x.Category == "Motor"));
+            this.ItemTemplate = Resources["PhotoItemTemplate"] as DataTemplate;
 
             base.OnNavigatedTo(e);
         }

@@ -7,17 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource AppBackground}">
-        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+    <Grid
+        Background="{StaticResource AppBackground}">
+        <ScrollViewer
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock
+                Margin="24"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="Rss Data Provider Help" />
+                    <Run
+                        FontSize="32"
+                        Text="Rss Data Provider Help"/>
                 </Paragraph>
-                <Paragraph />
+                <Paragraph/>
                 <Paragraph>
                     <Run x:Uid="HelpDataProvidersInfo"/>
                 </Paragraph>
-                <Paragraph />
+                <Paragraph/>
                 <Paragraph>
                     <Run x:Uid="HelpRss1"/>
                 </Paragraph>
@@ -25,9 +32,12 @@
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Rss
+                    </Hyperlink>
                 </Paragraph>
-                <Paragraph />
+                <Paragraph/>
             </RichTextBlock>
         </ScrollViewer>
     </Grid>
