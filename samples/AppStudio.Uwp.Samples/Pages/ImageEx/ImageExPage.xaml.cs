@@ -42,7 +42,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Refresh();
-            this.ItemTemplate = Resources["BingTemplate"] as DataTemplate;
+            this.ItemTemplate = Resources["PhotoTemplate"] as DataTemplate;
 
             base.OnNavigatedTo(e);
         }
@@ -54,7 +54,7 @@ namespace AppStudio.Uwp.Samples
 
         public void Refresh()
         {
-            this.Items = new ObservableCollection<object>(new BingDataSource().GetItems());
+            this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
         }
 
         protected override void OnSettings()

@@ -182,7 +182,6 @@
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Controls\IndexTemplateSelector.cs" />
     <Compile Include="Controls\PrettifyControl.cs" />
-    <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\PhotosDataSource.cs" />

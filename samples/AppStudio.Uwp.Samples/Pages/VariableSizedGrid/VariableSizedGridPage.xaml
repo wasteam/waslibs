@@ -9,12 +9,12 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="BingTemplate">
+        <DataTemplate x:Key="PhotoTemplate">
             <Grid
                 BorderBrush="Black"
                 BorderThickness="1">
                 <Image
-                    Source="{Binding ImageUrl}"
+                    Source="{Binding Thumbnail}"
                     Stretch="UniformToFill"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
