@@ -37,5 +37,10 @@ namespace AppStudio.Uwp
             }
             return d;
         }
+
+        public static string ToInvariantString(this double value)
+        {
+            return value.ToString("0.00", CultureInfo.InvariantCulture);
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace AppStudio.DataProviders.Twitter
     public class TwitterDataProvider : DataProviderBase<TwitterDataConfig, TwitterSchema>
     {
         private TwitterOAuthTokens _tokens;
+        private const string BaseUrl = "https://api.twitter.com/1.1";
 
         public TwitterDataProvider(TwitterOAuthTokens tokens)
         {
@@ -37,7 +38,7 @@ namespace AppStudio.DataProviders.Twitter
                     break;
                 case TwitterQueryType.Home:
                 default:
-                    items = await GetHomeTimeLineAsync(parser);
+                    items = await GetHomeTimeLineAsync(maxRecords, parser);
                     break;
             }
 
@@ -66,7 +67,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}", screenName));
+                var uri = new Uri($"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1");
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
@@ -107,7 +108,7 @@ namespace AppStudio.DataProviders.Twitter
         {
             try
             {
-                var uri = new Uri(string.Format("https://api.twitter.com/1.1/search/tweets.json?q={0}", Uri.EscapeDataString(hashTag)));
+                var uri = new Uri($"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}");
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
@@ -162,11 +163,11 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri("https://api.twitter.com/1.1/statuses/home_timeline.json");
+                var uri = new Uri($"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}");
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);

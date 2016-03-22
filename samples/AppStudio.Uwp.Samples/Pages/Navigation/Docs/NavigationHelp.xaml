@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="AppStudio.Uwp.Samples.NavigationHelp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource AppBackground}">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+                <Paragraph>
+                    <Run FontSize="32" Text="Navigation Service Help" />
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpNavigation1"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpNavigation2"/>
+                </Paragraph>
+                <Paragraph />
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Navigation">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Navigation</Hyperlink>
+                </Paragraph>
+                <Paragraph />
+            </RichTextBlock>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

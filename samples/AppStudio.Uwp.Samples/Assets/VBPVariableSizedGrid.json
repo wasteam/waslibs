@@ -1,0 +1,22 @@
+﻿{
+  "breakpoints": [
+    {
+      "maxwidth": "700",
+      "properties": {
+        "maximumRowsOrColumns": "2"
+      }
+    },
+    {
+      "maxwidth": "1000",
+      "properties": {
+        "maximumRowsOrColumns": "4"
+      }
+    },
+    {
+      "maxwidth": "*",
+      "properties": {
+        "maximumRowsOrColumns": "6"
+      }
+    }
+  ]
+}

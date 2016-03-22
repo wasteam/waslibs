@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{002E48F7-CB04-4540-B570-2C4DEBB39D12}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppStudio.Uwp.Samples</RootNamespace>
+    <AssemblyName>AppStudio.Uwp.Samples</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>AppStudio.Uwp.Samples_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Devices.json" />
+    <Content Include="Assets\Html\Json.html" />
+    <Content Include="Assets\Html\Xml.html" />
+    <Content Include="Assets\Icons\about.png" />
+    <Content Include="Assets\Icons\IconAppServices.png" />
+    <Content Include="Assets\Icons\IconFoundation.png" />
+    <Content Include="Assets\Icons\IconDataProviders.png" />
+    <Content Include="Assets\Icons\IconLayouts.png" />
+    <Content Include="Assets\Icons\IconUtilities.png" />
+    <Content Include="Assets\Icons\Json.png" />
+    <Content Include="Assets\Icons\Misc.png" />
+    <Content Include="Assets\Icons\Pivorama.png" />
+    <Content Include="Assets\Images\Animation.png" />
+    <Content Include="Assets\Images\BingIcon.png" />
+    <Content Include="Assets\Images\AppCache.png" />
+    <Content Include="Assets\Images\Carousel.png" />
+    <Content Include="Assets\Images\Facebook.png" />
+    <Content Include="Assets\Images\FacebookIcon.png" />
+    <Content Include="Assets\Images\FlickrIcon.png" />
+    <Content Include="Assets\Images\HomeLogo.png" />
+    <Content Include="Assets\Images\HomeLogo2.png" />
+    <Content Include="Assets\Images\ImageEx.png" />
+    <Content Include="Assets\Images\InstagramIcon.png" />
+    <Content Include="Assets\Images\Navigation.png" />
+    <Content Include="Assets\Images\Pivorama.png" />
+    <Content Include="Assets\Images\PrivacyTerms.png" />
+    <Content Include="Assets\Images\ResponsiveGridView.png" />
+    <Content Include="Assets\Images\Twitter.png" />
+    <Content Include="Assets\Images\VariableSizedGrid.png" />
+    <Content Include="Assets\Images\VirtualBox.png" />
+    <Content Include="Assets\Images\WordPress.png" />
+    <Content Include="Assets\Images\YouTubePlay.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
+    <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
+    <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
+    <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
+    <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
+    <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
+    <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
+    <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
+    <Content Include="Assets\LocalStorageSamples.json" />
+    <Content Include="Assets\FeaturedControls.json" />
+    <Content Include="Assets\VBPVariableSizedGrid.json" />
+    <None Include="project.json" />
+    <PRIResource Include="Strings\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AboutViewModel.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Providers\RawParser.cs" />
+    <Compile Include="Common\Providers\RawSchema.cs" />
+    <Compile Include="Common\SamplePage.cs" />
+    <Compile Include="Common\SamplePageAttribute.cs" />
+    <Compile Include="Controls\IndexTemplateSelector.cs" />
+    <Compile Include="Controls\PrettifyControl.cs" />
+    <Compile Include="Data\BingDataSource.cs" />
+    <Compile Include="Data\ColorsDataSource.cs" />
+    <Compile Include="Data\FeaturedControlsDataSource.cs" />
+    <Compile Include="Data\DevicesDataSource.cs" />
+    <Compile Include="Data\SymbolsDataSource.cs" />
+    <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml.cs">
+      <DependentUpon>ActionsCommandBarPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Navigation\Docs\NavigationCSharp.cs" />
+    <Compile Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.xaml.cs">
+      <DependentUpon>ActionsCommandBarHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AnimationExtensions\Docs\AnimationExtensionsHelp.xaml.cs">
+      <DependentUpon>AnimationExtensionsHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppCache\Docs\AppCacheHelp.xaml.cs">
+      <DependentUpon>AppCacheHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bing\Docs\BingHelp.xaml.cs">
+      <DependentUpon>BingHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Carousel\Docs\CarouselHelp.xaml.cs">
+      <DependentUpon>CarouselHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Converters\Docs\ConvertersHelp.xaml.cs">
+      <DependentUpon>ConvertersHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.xaml.cs">
+      <DependentUpon>ErrorNotificationControlHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Facebook\Docs\FacebookHelp.xaml.cs">
+      <DependentUpon>FacebookHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Flickr\Docs\FlickrHelp.xaml.cs">
+      <DependentUpon>FlickrHelp.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
+      <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageDataSchema.cs" />
+    <Compile Include="Pages\LocalStorage\LocalStoragePage.xaml.cs">
+      <DependentUpon>LocalStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LocalStorage\LocalStorageSettings.xaml.cs">
+      <DependentUpon>LocalStorageSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\Docs\NavigationHelp.xaml.cs">
+      <DependentUpon>NavigationHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationPage.xaml.cs">
+      <DependentUpon>NavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationSample1Page.xaml.cs">
+      <DependentUpon>NavigationSample1Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pivorama\Docs\PivoramaHelp.xaml.cs">
+      <DependentUpon>PivoramaHelp.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarCSharp.cs" />
+    <Compile Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml.cs">
+      <DependentUpon>AnimationExtensionsPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsCSharp.cs" />
+    <Compile Include="Pages\Converters\ConvertersPage.xaml.cs">
+      <DependentUpon>ConvertersPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Bing\Docs\BingCSharp.cs" />
+    <Compile Include="Pages\Bing\BingPage.xaml.cs">
+      <DependentUpon>BingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bing\BingSettings.xaml.cs">
+      <DependentUpon>BingSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxHelp.xaml.cs">
+      <DependentUpon>RelativeAndVirtualBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeAndVirtualBox\RelativeAndVirtualBoxPage.xaml.cs">
+      <DependentUpon>RelativeAndVirtualBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeAndVirtualBox\RelativeAndVirtualBoxSettings.xaml.cs">
+      <DependentUpon>RelativeAndVirtualBoxSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\Docs\RelativeBoxHelp.xaml.cs">
+      <DependentUpon>RelativeBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
+      <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
+      <DependentUpon>RssHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml.cs">
+      <DependentUpon>SearchBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SectionList\Docs\SectionListHelp.xaml.cs">
+      <DependentUpon>SectionListHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml.cs">
+      <DependentUpon>SplitterCardHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twitter\Docs\TwitterHelp.xaml.cs">
+      <DependentUpon>TwitterHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\Docs\ImageExHelp.xaml.cs">
+      <DependentUpon>ImageExHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\ImageExPage.xaml.cs">
+      <DependentUpon>ImageExPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ImageEx\ImageExSettings.xaml.cs">
+      <DependentUpon>ImageExSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.xaml.cs">
+      <DependentUpon>VariableSizedGridHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\Docs\VirtualBoxHelp.xaml.cs">
+      <DependentUpon>VirtualBoxHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\VirtualBoxPage.xaml.cs">
+      <DependentUpon>VirtualBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VirtualBox\VirtualBoxSettings.xaml.cs">
+      <DependentUpon>VirtualBoxSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\RelativeBoxPage.xaml.cs">
+      <DependentUpon>RelativeBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RelativeBox\RelativeBoxSettings.xaml.cs">
+      <DependentUpon>RelativeBoxSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Assets\Icons\CSharp.png" />
+    <Content Include="Assets\Icons\Xaml.png" />
+    <Content Include="Assets\Images\Band2.png" />
+    <Content Include="Assets\Images\DellInspiron.png" />
+    <Content Include="Assets\Images\DellXPS.png" />
+    <Content Include="Assets\Images\Desktop.png" />
+    <Content Include="Assets\Images\HeroImage.png" />
+    <Content Include="Assets\Images\HPSpectreX2.png" />
+    <Content Include="Assets\Images\LenovoYoga3.png" />
+    <Content Include="Assets\Images\LifeCamCinema.png" />
+    <Content Include="Assets\Images\LifeChat.png" />
+    <Content Include="Assets\Images\Lumia550.png" />
+    <Content Include="Assets\Images\Lumia650.png" />
+    <Content Include="Assets\Images\Lumia950.png" />
+    <Content Include="Assets\Images\Phone.png" />
+    <Content Include="Assets\Images\SculptComfortMouse.png" />
+    <Content Include="Assets\Images\Surface3DockingStation.png" />
+    <Content Include="Assets\Images\SurfaceBook.png" />
+    <Content Include="Assets\Images\SurfacePro4.png" />
+    <Content Include="Assets\Images\Tablet.png" />
+    <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
+    <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
+    <Content Include="Assets\Images\Xbox360.png" />
+    <Content Include="Assets\Images\XboxOne.png" />
+    <Content Include="Assets\Prettify\prettify.css" />
+    <Content Include="Assets\Prettify\prettify.js" />
+    <Content Include="Assets\Prettify\run_prettify.js" />
+    <Content Include="Pages\Carousel\Docs\CarouselXaml.xml" />
+    <Content Include="Pages\Pivorama\Docs\PivoramaXaml.xml" />
+    <Content Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
+    <Content Include="Pages\SearchBox\Docs\SearchBoxXaml.xml" />
+    <Content Include="Pages\SectionList\Docs\SectionListXaml.xml" />
+    <Compile Include="Pages\AppCache\AppCachePage.xaml.cs">
+      <DependentUpon>AppCachePage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\AppCache\Docs\AppCacheCSharp.cs" />
+    <Compile Include="Pages\Carousel\CarouselPage.xaml.cs">
+      <DependentUpon>CarouselPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Carousel\CarouselSettings.xaml.cs">
+      <DependentUpon>CarouselSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml.cs">
+      <DependentUpon>ErrorNotificationControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml.cs">
+      <DependentUpon>ErrorNotificationControlSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pivorama\PivoramaSettings.xaml.cs">
+      <DependentUpon>PivoramaSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pivorama\PivoramaPage.xaml.cs">
+      <DependentUpon>PivoramaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
+      <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
+      <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\SearchBoxPage.xaml.cs">
+      <DependentUpon>SearchBoxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchBox\SearchBoxSettings.xaml.cs">
+      <DependentUpon>SearchBoxSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SectionList\SectionListSettings.xaml.cs">
+      <DependentUpon>SectionListSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SectionList\SectionListPage.xaml.cs">
+      <DependentUpon>SectionListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardPage.xaml.cs">
+      <DependentUpon>SplitterCardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SplitterCard\SplitterCardSettings.xaml.cs">
+      <DependentUpon>SplitterCardSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml.cs">
+      <DependentUpon>VariableSizedGridPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VariableSizedGrid\VariableSizedGridSettings.xaml.cs">
+      <DependentUpon>VariableSizedGridSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsXaml.xml" />
+    <Content Include="Pages\YouTube\Docs\YouTubeCSharp.cs" />
+    <Compile Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml.cs">
+      <DependentUpon>VisualBreakpointsHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml.cs">
+      <DependentUpon>VisualBreakpointsPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Rss\Docs\RssCSharp.cs" />
+    <Compile Include="Pages\Rss\RssPage.xaml.cs">
+      <DependentUpon>RssPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Rss\RssSettings.xaml.cs">
+      <DependentUpon>RssSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Twitter\Docs\TwitterCSharp.cs" />
+    <Compile Include="Pages\Twitter\TwitterPage.xaml.cs">
+      <DependentUpon>TwitterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Twitter\TwitterSettings.xaml.cs">
+      <DependentUpon>TwitterSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
+    <Compile Include="Pages\WordPress\Docs\WordPressHelp.xaml.cs">
+      <DependentUpon>WordPressHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WordPress\WordPressPage.xaml.cs">
+      <DependentUpon>WordPressPage.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Flickr\Docs\FlickrCSharp.cs" />
+    <Compile Include="Pages\Flickr\FlickrPage.xaml.cs">
+      <DependentUpon>FlickrPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Flickr\FlickrSettings.xaml.cs">
+      <DependentUpon>FlickrSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WordPress\WordPressSettings.xaml.cs">
+      <DependentUpon>WordPressSettings.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Facebook\Docs\FacebookCSharp.cs" />
+    <Compile Include="Pages\Facebook\FacebookPage.xaml.cs">
+      <DependentUpon>FacebookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Facebook\FacebookSettings.xaml.cs">
+      <DependentUpon>FacebookSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YouTube\Docs\YouTubeHelp.xaml.cs">
+      <DependentUpon>YouTubeHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YouTube\YouTubePage.xaml.cs">
+      <DependentUpon>YouTubePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\YouTube\YouTubeSettings.xaml.cs">
+      <DependentUpon>YouTubeSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\StorageExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Properties\Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Html\CSharp.html" />
+    <Content Include="Assets\Html\Xaml.html" />
+    <Content Include="Pages\VariableSizedGrid\Docs\VariableSizedGridXaml.xml" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ActionsCommandBar\ActionsCommandBarPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AnimationExtensions\AnimationExtensionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AnimationExtensions\Docs\AnimationExtensionsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AppCache\AppCachePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AppCache\Docs\AppCacheHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\Docs\BingHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Carousel\CarouselPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Carousel\CarouselSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Carousel\Docs\CarouselHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Converters\ConvertersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Converters\Docs\ConvertersHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ErrorNotificationControl\ErrorNotificationControlSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Facebook\Docs\FacebookHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStoragePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LocalStorage\LocalStorageSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\Docs\NavigationHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\NavigationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Navigation\NavigationSample1Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Pivorama\Docs\PivoramaHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Pivorama\PivoramaSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Pivorama\PivoramaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeAndVirtualBox\RelativeAndVirtualBoxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeAndVirtualBox\RelativeAndVirtualBoxSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeBox\Docs\RelativeBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bing\BingSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\Docs\RssHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SectionList\Docs\SectionListHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\Docs\TwitterHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\Docs\ImageExHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\ImageExPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ImageEx\ImageExSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VariableSizedGrid\Docs\VariableSizedGridHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VirtualBox\Docs\VirtualBoxHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\Docs\WordPressHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\WordPressPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\WordPress\WordPressSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\SearchBoxPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SearchBox\SearchBoxSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SectionList\SectionListSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SectionList\SectionListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SplitterCard\SplitterCardSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VariableSizedGrid\VariableSizedGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VariableSizedGrid\VariableSizedGridSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VisualBreakpoints\VisualBreakpointsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\RssPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Rss\RssSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\TwitterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Twitter\TwitterSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\FlickrPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Flickr\FlickrSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Facebook\FacebookPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Facebook\FacebookSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\YouTube\Docs\YouTubeHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\YouTube\YouTubePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\YouTube\YouTubeSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RelativeBox\RelativeBoxPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RelativeBox\RelativeBoxSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\AppBarButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\AppColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Templates\HeaderTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\AppTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Pages\VirtualBox\VirtualBoxPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VirtualBox\VirtualBoxSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AppStudio.DataProviders\AppStudio.DataProviders.csproj">
+      <Project>{7189a42d-6f1a-4fa3-8e00-e2c14fdf167a}</Project>
+      <Name>AppStudio.DataProviders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\AppStudio.Uwp\AppStudio.Uwp.csproj">
+      <Project>{ecedcde9-e70e-4673-a4e9-ffb437b32c0e}</Project>
+      <Name>AppStudio.Uwp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

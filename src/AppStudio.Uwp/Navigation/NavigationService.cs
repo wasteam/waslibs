@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using AppStudio.Uwp.Commands;
+
 using Windows.System;
 using Windows.UI.Xaml.Controls;
+
+using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Navigation
 {
@@ -15,32 +17,52 @@ namespace AppStudio.Uwp.Navigation
 
         private static Assembly _appAssembly;
         private static Frame _rootFrame;
+        private static Type _rootPage;
 
-        public static void Initialize(Type app, Frame rootFrame)
+        public static void Initialize(Type app, Frame rootFrame, Type rootPage = null)
         {
             _appAssembly = app.GetTypeInfo().Assembly;
             _rootFrame = rootFrame;
+            _rootPage = rootPage;
+        }
+
+        public static Frame RootFrame
+        {
+            get { return _rootFrame; }
+        }
+
+        public static void NavigateToRoot()
+        {
+            if (_rootPage == null)
+            {
+                while (_rootFrame.BackStackDepth > 1)
+                {
+                    _rootFrame.BackStack.RemoveAt(_rootFrame.BackStackDepth - 1);
+                }
+
+                GoBack();
+            }
+            else
+            {
+                _rootFrame.BackStack.Clear();
+
+                NavigateToPage(_rootPage);
+            }
+        }
+
+        public static void NavigateToPage<T>()
+        {
+            NavigateToPage<T>(null);
+        }
+
+        public static void NavigateToPage<T>(object parameter)
+        {
+            NavigateToPage(typeof(T), parameter);
         }
 
         public static void NavigateToPage(Type page)
         {
             NavigateToPage(page, null);
-        }
-
-        public static void NavigateToPage(Type page, object parameter)
-        {
-            CheckIsInitialized();
-
-            if (page != null)
-            {
-                _rootFrame.Navigate(page, parameter);
-
-                var navigatedToPage = NavigatedToPage;
-                if (navigatedToPage != null)
-                {
-                    NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
-                }
-            }
         }
 
         public static void NavigateToPage(string page)
@@ -58,6 +80,31 @@ namespace AppStudio.Uwp.Navigation
             {
                 NavigateToPage(targetPage.AsType(), parameter);
             }
+        }
+
+        public static void NavigateToPage(Type page, object parameter)
+        {
+            CheckIsInitialized();
+
+            if (page != null && !IsSamePage(page))
+            {
+                _rootFrame.Navigate(page, parameter);
+
+                var navigatedToPage = NavigatedToPage;
+                if (navigatedToPage != null)
+                {
+                    NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
+                }
+            }
+        }
+
+        private static bool IsSamePage(Type page)
+        {
+            if (_rootFrame.Content != null)
+            {
+                return _rootFrame.Content.GetType() == page;
+            }
+            return false;
         }
 
         public static async Task NavigateTo(Uri uri)

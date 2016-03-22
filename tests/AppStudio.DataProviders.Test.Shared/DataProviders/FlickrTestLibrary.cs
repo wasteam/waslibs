@@ -73,5 +73,69 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<FlickrSchema>(new FlickrDataConfig(), 20, null));
         }
+
+        [TestMethod]
+        public async Task TestMaxRecordsUser_Min()
+        {
+            int maxRecords = 1;
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsTags_Min()
+        {
+            int maxRecords = 1;
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsUser()
+        {
+            int maxRecords = 20;
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsTags()
+        {
+            int maxRecords = 20;
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, data.Count());
+        }
     }
 }

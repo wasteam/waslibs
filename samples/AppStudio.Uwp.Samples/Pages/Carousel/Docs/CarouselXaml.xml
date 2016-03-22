@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="AppStudio.Uwp.Samples.CarouselSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="Hero">
+            <Grid Background="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Grid Grid.Row="1">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.25" />
+                    </Grid.Background>
+                    <controls:Virtualbox VirtualWidth="640" VirtualHeight="64">
+                        <TextBlock Margin="12,6" Text="{Binding Copyright}" Style="{StaticResource LayoutTitleStyle}" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Foreground="#eee"/>
+                    </controls:Virtualbox>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource AppBackground}" Margin="0,30">
+        <StackPanel>
+            <controls:Carousel Name="control" ItemsSource="{Binding Items}" ContentTemplate="{Binding ItemTemplate}"
+                               MaxItems="3" AspectRatio="1.5" AlignmentX="Center" MinHeight="240" MaxHeight="480" GradientOpacity="0.3"/>
+            <controls:Indicator ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"
+                                Height="40" SelectedForeground="{ThemeResource SystemColorHighlightColor}">
+                <controls:Indicator.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="12" Height="8" Background="Transparent" BorderBrush="{ThemeResource SystemChromeHighColor}" BorderThickness="1" />
+                    </DataTemplate>
+                </controls:Indicator.ItemTemplate>
+            </controls:Indicator>
+        </StackPanel>
+    </Grid>
+</Page>

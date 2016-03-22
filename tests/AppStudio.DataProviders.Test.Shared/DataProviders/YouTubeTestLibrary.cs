@@ -131,5 +131,97 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<YouTubeSchema>(new YouTubeDataConfig(), 20, null));
         }
+
+
+        [TestMethod]
+        public async Task TestMaxRecordsVideos()
+        {
+            int maxRecords = 50;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = @"Microsoft"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+              
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsPlaylist()
+        {
+            int maxRecords = 50;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Playlist,
+                Query = @"PLB9EA94DACBEC74A9"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsChannels()
+        {
+            int maxRecords = 50;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Channels,
+                Query = @"elrubiusOMG"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsVideos_Min()
+        {
+            int maxRecords = 1;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = @"Microsoft"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsPlaylist_Min()
+        {
+            int maxRecords = 1;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Playlist,
+                Query = @"PLB9EA94DACBEC74A9"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsChannels_Min()
+        {
+            int maxRecords = 1;
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Channels,
+                Query = @"elrubiusOMG"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
     }
 }

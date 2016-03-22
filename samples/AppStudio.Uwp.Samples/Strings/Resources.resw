@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionsCommandBarDescription.Text" xml:space="preserve">
+    <value>Bind ActionsCommandBar to List&lt;ActionInfo&gt; to read AppBarButtons from C# or add them into Xaml Code.</value>
+  </data>
+  <data name="ActionsCommandBarTitle.Text" xml:space="preserve">
+    <value>Add AppBarButtons from XAML, Add AppBarButtons from C#.</value>
+  </data>
+  <data name="AnimationExtensionsDescription.Text" xml:space="preserve">
+    <value>Animations invoked from C# using ExtensionMethods</value>
+  </data>
+  <data name="AnimationExtensionsTitle.Text" xml:space="preserve">
+    <value>Animations from C#</value>
+  </data>
+  <data name="AppBarButtonHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="AppBarButtonJsonData" xml:space="preserve">
+    <value>Json Data</value>
+  </data>
+  <data name="AppBarButtonSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AppBarButtonSourceCode" xml:space="preserve">
+    <value>Source Code</value>
+  </data>
+  <data name="AppBarButtonXamlCode" xml:space="preserve">
+    <value>Xaml Code</value>
+  </data>
+  <data name="AppCacheAddItem" xml:space="preserve">
+    <value>Add new item to memory</value>
+  </data>
+  <data name="AppCacheCleanCache" xml:space="preserve">
+    <value>Clean cache</value>
+  </data>
+  <data name="AppCacheCleanMemory" xml:space="preserve">
+    <value>Clean memory</value>
+  </data>
+  <data name="AppCacheItemsInCache.Text" xml:space="preserve">
+    <value>Items in cache</value>
+  </data>
+  <data name="AppCacheItemsInMemory.Text" xml:space="preserve">
+    <value>Items in memory</value>
+  </data>
+  <data name="AppCacheLastAction.Text" xml:space="preserve">
+    <value>Last action</value>
+  </data>
+  <data name="AppCacheLoadFromCache" xml:space="preserve">
+    <value>Load memory from cache</value>
+  </data>
+  <data name="AppCacheOptions.Text" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="AppCacheSaveToCache" xml:space="preserve">
+    <value>Save memory to cache</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if True and Collapsed if False. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOffContent" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="ConvertersBoolToVisibilityConverterToggle.ToggleOnContent" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDefault" xml:space="preserve">
+    <value>Remove this text to hide de image below.</value>
+  </data>
+  <data name="ConvertersStringVisibilityConverterDescription.Text" xml:space="preserve">
+    <value>This converter return Visible if value is null or empty and Collapsed if not. If ConverterParameter is True the result would be the opposite.</value>
+  </data>
+  <data name="DataProviderParsedItems.Header" xml:space="preserve">
+    <value>Parsed Items</value>
+  </data>
+  <data name="DataProviderRawData.Header" xml:space="preserve">
+    <value>Raw Data</value>
+  </data>
+  <data name="DataProviderRefreshButton.Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="DataProviderRestoreConfigButton.Content" xml:space="preserve">
+    <value>Restore Config</value>
+  </data>
+  <data name="DataProvidersErrorMessage.Text" xml:space="preserve">
+    <value>There was an error. More information in Raw Data Tab.</value>
+  </data>
+  <data name="DataProvidersNoItems.Text" xml:space="preserve">
+    <value>0 Items found. Try changing request configuration on Settings pane.</value>
+  </data>
+  <data name="HelpActionsCommandBar1.Text" xml:space="preserve">
+    <value>The ActionsCommandBar control extends the system Windows.UI.Xaml.Controls.CommandBar allowing to dynamically load the AppBarButtons through binding the control to a List of ActionInfo items created from C#. The control can define the AppBarButtons in XAML as well.</value>
+  </data>
+  <data name="HelpAnimationExtensions1.Text" xml:space="preserve">
+    <value>The Animation Extensions are a set of extension Methods on the FrameworkElement control which allows to execute animations from C# code. The animations can be invoked asynchronously.</value>
+  </data>
+  <data name="HelpAppCache1.Text" xml:space="preserve">
+    <value>The AppCache is a service class which use local storage to maintain persisten information among App executions hiding the complexity of saving to and load from the local storage the elements added to memory.</value>
+  </data>
+  <data name="HelpBing1.Text" xml:space="preserve">
+    <value>The Bing DataProvider allows you to retreive Microsoft Bing web search engine results direct to your App.</value>
+  </data>
+  <data name="HelpCarousel1.Text" xml:space="preserve">
+    <value>The Carousel offer an alternative to image visualization adding horizontal scroll to a set of items. The Carousel control is responsive by design, optimizing the image visualization in the different form factors. You can control properties like the AspectRatio, MaxItems, MinHeight, MaxHeight, GradientOpacity and AlignmentX to properly behave depending on the resolution and space available.</value>
+  </data>
+  <data name="HelpConverters1.Text" xml:space="preserve">
+    <value>Converters allow you to transform a certain value from a data type in other different value. Using Converters leads to have a cleaner XAML code. In the samples shown, the first converter is used to change the Visibility of an image based in the value a Toggle control. If the Toggle is True (Boolean value), the converter returns 'Visible' for the Visibility property of the image control. When the Toggle is False, it returns 'Collapsed' for the Visibility property.</value>
+  </data>
+  <data name="HelpDataProvidersInfo.Text" xml:space="preserve">
+    <value>Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers.  All Data Providers take advantage of the AppCache service to improve the App performance.</value>
+  </data>
+  <data name="HelpErrorNotificationControl1.Text" xml:space="preserve">
+    <value>The ErrorNotificationControl allows to show a message when an exception occurs. You can configure the message background color and the user can close it once read.</value>
+  </data>
+  <data name="HelpFacebook1.Text" xml:space="preserve">
+    <value>The FacebookDataProvider allow retrieve Facebook data through its API. You have to be registered in Facebook Apps to be able to interact with the Facebook API and you must obtain an AppId and AppSecret to configure the data access. Finally, you must use the Page ID from what you want to get the information.</value>
+  </data>
+  <data name="HelpFlickr1.Text" xml:space="preserve">
+    <value>The FlickrDataProvider gets images using the Flickr API. You can retrieve content based on tags or you can access the images from a Flickr account by using the UserID. To resolve which UserID is assigned to a certain Flickr account use http://idgettr.com/</value>
+  </data>
+  <data name="HelpImageEx1.Text" xml:space="preserve">
+    <value>The ImageEx control extends the default Image platform control improving the performance and responsiveness of your Apps. Source images are downloaded asynchronously showing a load indicator while in progress. Once downloaded, the source image is stored in the App local cache to preserve resources and load time next time the image needs to be displayed.</value>
+  </data>
+  <data name="HelpLocalStorage1.Text" xml:space="preserve">
+    <value>This Data Provider access data from the LocalStorage. You can configure which file will be used as content source. The information, stored in JSON format, is transformed to the specified data type.</value>
+  </data>
+  <data name="HelpNavigation1.Text" xml:space="preserve">
+    <value>The NavigationService service handles the complexity of navigating among App pages. It can be used in the main rootFrame as well as in other internal frames, like a ShellControl with Hamburger button.</value>
+  </data>
+  <data name="HelpNavigation2.Text" xml:space="preserve">
+    <value>The navigation can be implemented in multiple ways: using the .NET Type of the page we want to navigate to; using a string with the page name as target page; or through an element which implements the INavigable interface. We can use the NavigationService to open the web browser as well.</value>
+  </data>
+  <data name="HelpPivorama1.Text" xml:space="preserve">
+    <value>The Pivorama control allows to visualize a set of elements optimizing the available space to display them. The Pivorama behaves differently based on the screen size: in big screens, it maximizes the number of items displayed using a table kind layout, with the ability to slide horizontally; in small screens, it behaves more like a Pivot control, showing the items in groups, with a heading inviting to slide horizontally. The Pivorama control is ideal to display big number of items in the best way depending on the device form factor.</value>
+  </data>
+  <data name="HelpRelativeBox1.Text" xml:space="preserve">
+    <value>The RelativeBox control uses XAML to apply a responsive behavior to the DataTemplate configured.</value>
+  </data>
+  <data name="HelpRelativeAndVirtualBox1.Text" xml:space="preserve">
+    <value>The RelativeBox control can be used together with the VirtualBox control to apply a better responsive behavior to the DataTemplate configured.</value>
+  </data>
+  <data name="HelpResponsiveGridView1.Text" xml:space="preserve">
+    <value>The ResponsiveGridView control allows to present information within a Grid View perfectly adjusting the total display available space. It reacts to changes in the layout as well as the content so it can adapt to different form factors automatically. The number and the width of items are calculated based on the screen resolution in order to fully leverage the available screen space. The property ItemsHeight define the items fixed height and the property DesiredWidth sets the minimum width for the elements to add a new column.</value>
+  </data>
+  <data name="HelpRss1.Text" xml:space="preserve">
+    <value>The RssDataProvider retrieve information from the configured RSS Url, the data is read form the source in XML format and transformed to a RssSchema entity.</value>
+  </data>
+  <data name="HelpSearchBox1.Text" xml:space="preserve">
+    <value>The SearchBox control allows to handle the App search feature. You can decide how the control will be displayed using properties Foreground, Background, PlaceHolderText, FontSize, etc. The SearchCommand property establish the command to execute when the user press enter or click the magnifier.</value>
+  </data>
+  <data name="HelpSectionList1.Text" xml:space="preserve">
+    <value>The SectionList control enables the horizontal item visualization adjusting the number of items shown to the available space. A SectionList is composed by one or more SectionListItem which can contain any XAML code. Each SectionListItem may have a Header and a ViewAll button to navigate to the list of items shown. The control shows a progress indicator while loading. If an exception occurs during the load, an error message is shown.</value>
+  </data>
+  <data name="HelpSplitterCard1.Text" xml:space="preserve">
+    <value>The SplitterCard control applies a specific design to strings. For any given string, the controls split the text by spaces. The first two words in the text are displayed one over the other using a specific style and highlighting the first one.</value>
+  </data>
+  <data name="HelpTwitter1.Text" xml:space="preserve">
+    <value>The TwitterDataProvider retrieve data using the Twitter API. To be able to request Twitter data, the user must be registered in Twitter Apps and obtain a ConsumerSecret, an AccessToken and an AccessTokenSecret. This Data Provider can retrieve the user TimeLine or gather data by Twitter User Name or Hashtag.</value>
+  </data>
+  <data name="HelpVariableSizedGrid1.Text" xml:space="preserve">
+    <value>The VariableSizedGrid control allows to display items from a list using different values for Width and Height item properties. You can control the number of rows and columns to be displayed as well as the items orientation in the panel. Finally, the AspectRatio property allow us to control the relation between Width and Height.</value>
+  </data>
+  <data name="HelpViewCode.Text" xml:space="preserve">
+    <value>View code</value>
+  </data>
+  <data name="HelpVirtualBox1.Text" xml:space="preserve">
+    <value>The VirtualBox control allows to redimension any XAML DataTemplate proportionaly. The control works directly with the underlying ContentPresenter to have a smooth behavior and high optimized performance.</value>
+  </data>
+  <data name="HelpVisualBreakpoints1.Text" xml:space="preserve">
+    <value>Enables the definition of different visual breakpoints for a certain layout as well as modifies the properties of child controls based on the breakpoints defined. In other words, adds the ability to change the layout and property values of controls based on the defined 'breakpoint values'. There are two main advantages over the platform VisualStateManager control: 1) all the visual breakpoints are defined in a centralized JSON file, which can reference other JSON files; 2) allows the modification of properties inside controls that belongs to DataTemplates.</value>
+  </data>
+  <data name="HelpWordPress1.Text" xml:space="preserve">
+    <value>The WordPress Data Provider retrieve data from the Word Press blog configured in the property WordPressQuery. You can configure the search in the Data Provider by using one of the following options: Posts, Categories or Tags. The information is read in JSON format and transformed to the WordPressSchema entity. This Data Provider relies on the REST API to access the source content. If the target blog is self-hosted (not in Wordpress.com) it must have the JetPack plug-in installed and the JSON API enabled.</value>
+  </data>
+  <data name="HelpYouTube1.Text" xml:space="preserve">
+    <value>The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key.</value>
+  </data>
+  <data name="MessageCommandFromCode" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from C#.</value>
+  </data>
+  <data name="MessageCommandFromXaml.CommandParameter" xml:space="preserve">
+    <value>This CommandAppBar Button has been created from XAML.</value>
+  </data>
+  <data name="NavigationSampleButton1.Content" xml:space="preserve">
+    <value>Navigate</value>
+  </data>
+  <data name="NavigationSampleButton2.Content" xml:space="preserve">
+    <value>Click here to go back</value>
+  </data>
+  <data name="NavigationSampleText1.Text" xml:space="preserve">
+    <value>Manage page navigation with NavigationService</value>
+  </data>
+  <data name="NavigationSampleText10.Text" xml:space="preserve">
+    <value>Navigate to another page using a button.</value>
+  </data>
+  <data name="NavigationSampleText11.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample2Page");</value>
+  </data>
+  <data name="NavigationSampleText12.Text" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
+  <data name="NavigationSampleText13.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoBack()</value>
+  </data>
+  <data name="NavigationSampleText14.Text" xml:space="preserve">
+    <value>Check NavigationService.CanGoForward()</value>
+  </data>
+  <data name="NavigationSampleText15.Text" xml:space="preserve">
+    <value>NavigationService.GoBack();</value>
+  </data>
+  <data name="NavigationSampleText2.Text" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
+  <data name="NavigationSampleText3.Text" xml:space="preserve">
+    <value>Initialize NavigationService registering the Frame.</value>
+  </data>
+  <data name="NavigationSampleText4.Text" xml:space="preserve">
+    <value>NavigationService.Initialize(typeof(App), navigationSampleFrame);</value>
+  </data>
+  <data name="NavigationSampleText5.Text" xml:space="preserve">
+    <value>Step 2</value>
+  </data>
+  <data name="NavigationSampleText6.Text" xml:space="preserve">
+    <value>Navigate to your MainPage.</value>
+  </data>
+  <data name="NavigationSampleText7.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage(typeof(NavigationSample1Page));</value>
+  </data>
+  <data name="NavigationSampleText8.Text" xml:space="preserve">
+    <value>You can also navigate using the page name as string.</value>
+  </data>
+  <data name="NavigationSampleText9.Text" xml:space="preserve">
+    <value>NavigationService.NavigateToPage("NavigationSample1Page");</value>
+  </data>
+  <data name="SearchBoxSearchingText.Text" xml:space="preserve">
+    <value>Your are searching:</value>
+  </data>
+  <data name="ShellMenuAppServices" xml:space="preserve">
+    <value>App Services</value>
+  </data>
+  <data name="ShellMenuDataProviders" xml:space="preserve">
+    <value>Data Providers</value>
+  </data>
+  <data name="ShellMenuEnterFullScreen" xml:space="preserve">
+    <value>Enter Full Screen</value>
+  </data>
+  <data name="ShellMenuFoundationControls" xml:space="preserve">
+    <value>Foundation Controls</value>
+  </data>
+  <data name="ShellMenuHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ShellMenuLayoutControls" xml:space="preserve">
+    <value>Layout Controls</value>
+  </data>
+  <data name="ShellMenuUtilities" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="propAccessToken.Label" xml:space="preserve">
+    <value>Access token</value>
+  </data>
+  <data name="propAccessTokenSecret.Label" xml:space="preserve">
+    <value>Access token secret</value>
+  </data>
+  <data name="propApiKey.Label" xml:space="preserve">
+    <value>API Key</value>
+  </data>
+  <data name="propAppId.Label" xml:space="preserve">
+    <value>App Id</value>
+  </data>
+  <data name="propAppSecret.Label" xml:space="preserve">
+    <value>App secret</value>
+  </data>
+  <data name="propConsumerKey.Label" xml:space="preserve">
+    <value>Consumer key</value>
+  </data>
+  <data name="propConsumerSecret.Label" xml:space="preserve">
+    <value>Consumer secret</value>
+  </data>
+  <data name="propCountry.Label" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="propMaxRecords.Label" xml:space="preserve">
+    <value>Maximun records</value>
+  </data>
+  <data name="propQuery.Label" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="propQueryFilter.Label" xml:space="preserve">
+    <value>Query filter</value>
+  </data>
+  <data name="propQueryParam.Label" xml:space="preserve">
+    <value>Query parameter</value>
+  </data>
+  <data name="propQueryType.Label" xml:space="preserve">
+    <value>Query type</value>
+  </data>
+  <data name="About_AppCode.Text" xml:space="preserve">
+    <value>App Code</value>
+  </data>
+  <data name="About_Dependencies.Text" xml:space="preserve">
+    <value>Dependencies</value>
+  </data>
+  <data name="About_GitHubRepository.Text" xml:space="preserve">
+    <value>GitHub Repository</value>
+  </data>
+  <data name="About_Info.Text" xml:space="preserve">
+    <value>This App is a showcase for the UWP Controls and Classes available from Windows App Studio for the community. You can find the source code in our GitHub repo (wasteam). Our Controls and Classes are also available as NuGet packages.</value>
+  </data>
+  <data name="About_Url.Text" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="About_PrivacyTerms.Text" xml:space="preserve">
+    <value>Privacy terms</value>
+  </data>
+</root>

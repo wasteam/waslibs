@@ -1,0 +1,153 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Uwp.Controls">
+
+    <DataTemplate x:Key="NavigationItemTemplate">
+        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ContentControl Margin="12,10" Content="{Binding Icon}" />
+            <TextBlock Grid.Column="1" Margin="16,10" Text="{Binding Caption}" />
+        </Grid>
+    </DataTemplate>
+
+    <Style x:Key="NavigationSeparatorStyle" TargetType="ContentControl">
+        <Setter Property="Margin" Value="8,0" />
+        <Setter Property="MinHeight" Value="7"/>
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Line X1="0" X2="1" Stretch="UniformToFill" Stroke="LightGray" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="NavigationSubItemTemplate">
+        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+            <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="NavigationSubItemTemplateWithIcons">
+        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ContentControl Margin="6,10" Content="{Binding Icon}" />
+            <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="NavigationHeaderTemplate">
+        <TextBlock Margin="14,8" Text="{Binding}" TextTrimming="CharacterEllipsis" FontSize="22" />
+    </DataTemplate>
+
+    <Style TargetType="controls:ShellControl">
+        <Setter Property="NavigationBackground" Value="#eee" />
+        <Setter Property="NavigationForeground" Value="#222" />
+        <Setter Property="HeaderTemplate" Value="{StaticResource NavigationHeaderTemplate}" />
+        <Setter Property="NavigationItemTemplate" Value="{StaticResource NavigationItemTemplate}" />
+        <Setter Property="NavigationSubItemTemplate" Value="{StaticResource NavigationSubItemTemplate}" />
+        <Setter Property="SeparatorStyle" Value="{StaticResource NavigationSeparatorStyle}" />
+        <Setter Property="HamburgerBackground" Value="LightGray" />
+        <Setter Property="HamburgerForeground" Value="#333333" />
+        <Setter Property="HamburgerBorderBrush" Value="LightGray" />
+        <Setter Property="CommandBarBackground" Value="#e0e0e0" />
+        <Setter Property="CommandBarForeground" Value="#333333" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ShellControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <SplitView Name="splitView" IsPaneOpen="False" DisplayMode="{TemplateBinding DisplayMode}" CompactPaneLength="48" PaneBackground="{TemplateBinding NavigationBackground}">
+                            <SplitView.Pane>
+                                <Grid Name="paneContent" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="48"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Margin="48,0,0,0">
+                                        <ContentControl Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Margin="0,0,1,0">
+                                        <ListView Name="lview" ItemsSource="{TemplateBinding NavigationItems}" ItemTemplate="{TemplateBinding NavigationItemTemplate}" IsItemClickEnabled="True"
+                                              Width="48" HorizontalAlignment="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="Padding" Value="2,0" />
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                        </ListView>
+
+                                        <Grid Name="container" Margin="48,0,0,0" Visibility="Collapsed">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="48"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Padding="15,8">
+                                                <Grid.Background>
+                                                    <SolidColorBrush Opacity="0.25" Color="Black" />
+                                                </Grid.Background>
+                                                <TextBlock Text="{Binding SelectedItem.Caption, ElementName=lview}" FontSize="20" Foreground="{TemplateBinding NavigationForeground}" />
+                                            </Grid>
+                                            <Grid Grid.Row="1" Name="content">
+                                                <Grid.ChildrenTransitions>
+                                                    <TransitionCollection>
+                                                        <EntranceThemeTransition />
+                                                    </TransitionCollection>
+                                                </Grid.ChildrenTransitions>
+                                            </Grid>
+                                            <ListView Name="lviewSub" Grid.Row="1" ItemTemplate="{TemplateBinding NavigationSubItemTemplate}" IsItemClickEnabled="True"
+                                                  HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                <ListView.ItemContainerStyle>
+                                                    <Style TargetType="ListViewItem">
+                                                        <Setter Property="Padding" Value="2,0" />
+                                                    </Style>
+                                                </ListView.ItemContainerStyle>
+                                            </ListView>
+                                        </Grid>
+
+                                        <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="{TemplateBinding BorderBrush}" Stretch="UniformToFill" HorizontalAlignment="Left" />
+                                    </Grid>
+                                </Grid>
+                            </SplitView.Pane>
+                            <SplitView.Content>
+                                <Grid Name="panes" Margin="0,48,0,0">
+                                    <ContentPresenter Name="presenter" />
+                                    <ContentControl Name="topPane" Height="{TemplateBinding TopPaneHeight}" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" />
+                                    <ContentControl Name="rightPane" Width="{TemplateBinding RightPaneWidth}" HorizontalAlignment="Right" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Visibility="Collapsed" />
+                                </Grid>
+                            </SplitView.Content>
+                        </SplitView>
+
+                        <Button Name="toggle" Padding="0" Width="48" Height="48" Background="{TemplateBinding HamburgerBackground}" BorderBrush="{TemplateBinding HamburgerBorderBrush}" BorderThickness="1" VerticalAlignment="Top">
+                            <FontIcon Margin="12,12,11,12" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" Foreground="{TemplateBinding HamburgerForeground}" />
+                        </Button>
+                        <Button Name="exitFS" Padding="0" Width="48" Height="48" VerticalAlignment="Top" Visibility="Collapsed">
+                            <SymbolIcon Symbol="BackToWindow" Foreground="White" />
+                        </Button>
+
+                        <CommandBar Name="commandBarT" Margin="48,0,0,0" VerticalAlignment="Top" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" Background="{TemplateBinding CommandBarBackground}" Foreground="{TemplateBinding CommandBarForeground}" />
+                        <CommandBar Name="commandBarB" Grid.Row="1" VerticalAlignment="Bottom" Visibility="Collapsed" Background="{TemplateBinding CommandBarBackground}" Foreground="{TemplateBinding CommandBarForeground}" />
+
+                        <Grid.Clip>
+                            <RectangleGeometry x:Name="clip" />
+                        </Grid.Clip>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

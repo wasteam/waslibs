@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataTemplate x:Key="HomeHeaderTemplate">
+        <Grid Background="Transparent">
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultHeaderTemplate">
+        <Grid Background="Transparent">
+            <TextBlock Margin="14,8" Text="{Binding}" TextTrimming="CharacterEllipsis" FontSize="22" Foreground="White" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

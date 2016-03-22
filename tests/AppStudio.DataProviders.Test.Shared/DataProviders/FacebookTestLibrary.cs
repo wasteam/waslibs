@@ -112,5 +112,34 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<FacebookSchema>(new FacebookDataConfig(), 20, null));
         }
+
+        [TestMethod]
+        public async Task TestMaxRecords_Min()
+        {
+            int maxRecords = 1;
+            var config = new FacebookDataConfig
+            {
+                UserId = "8195378771",
+            };
+            var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
+            IEnumerable<FacebookSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecords()
+        {
+            int maxRecords = 70;
+            var config = new FacebookDataConfig
+            {
+                UserId = "150135720497",
+            };
+            var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
+            IEnumerable<FacebookSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords - 1, result.Count());
+        }
     }
 }

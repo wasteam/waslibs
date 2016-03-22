@@ -57,7 +57,7 @@ namespace AppStudio.Uwp.Controls
                 }
             }
         }
-        private void OnTapped(object sender, TappedRoutedEventArgs e)
+        private async void OnTapped(object sender, TappedRoutedEventArgs e)
         {
             if (IsTextVisible)
             {
@@ -68,7 +68,7 @@ namespace AppStudio.Uwp.Controls
             }
             else
             {
-                ShowSearchText();
+                await ShowSearchText();
                 _textBox.Focus(FocusState.Keyboard);
             }
         }

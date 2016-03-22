@@ -76,7 +76,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_isHtmlLoaded)
             {
-                await _webView.InvokeScriptAsync("setFontSize", this.FontSize + "px");
+                await _webView.InvokeScriptAsync("setFontSize", this.FontSize.ToInvariantString() + "px");
             }
         }
 
