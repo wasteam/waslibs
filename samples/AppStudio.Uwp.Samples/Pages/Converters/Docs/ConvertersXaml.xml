@@ -76,7 +76,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Stretch="UniformToFill"
-                Source="http://www.bing.com/az/hprichbg/rb/LaPedrera_EN-US9374830496_1366x768.jpg"
+                Source="/Assets/Images/BisonBadlandsChillin.png"
                 Visibility="{Binding IsImageVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
           </Grid>
         </StackPanel>
@@ -140,7 +140,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Stretch="UniformToFill"
-                Source="http://www.bing.com/az/hprichbg/rb/IcelandAurora_EN-US5456362533_1366x768.jpg"
+                Source="/Assets/Images/BisonBadlandsChillin.png"
                 Visibility="{Binding StringVisibilityValue, Converter={StaticResource StringVisibilityConverter}}"/>
           </Grid>
         </StackPanel>

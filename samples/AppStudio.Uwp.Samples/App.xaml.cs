@@ -27,8 +27,7 @@ namespace AppStudio.Uwp.Samples
         {
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchViewSize = new Size { Width = 1056, Height = 790 };
-            await BitmapCache.ClearCacheAsync(TimeSpan.FromHours(24));
-            await BingDataSource.Load();
+            await BitmapCache.ClearCacheAsync(TimeSpan.FromHours(24));            
             await PhotosDataSource.Load();
             await FeaturedControlsDataSource.Load();
 

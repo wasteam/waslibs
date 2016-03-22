@@ -17,7 +17,7 @@
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.RowSpan="2"
-                    Source="{Binding ImageUrl}"
+                    Source="{Binding Thumbnail}"
                     Stretch="UniformToFill"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"/>
@@ -32,7 +32,7 @@
                         VirtualHeight="64">
                         <TextBlock
                             Margin="12,6"
-                            Text="{Binding Copyright}"
+                            Text="{Binding Title}"
                             Style="{StaticResource LayoutTitleStyle}"
                             VerticalAlignment="Center"
                             TextAlignment="Center"

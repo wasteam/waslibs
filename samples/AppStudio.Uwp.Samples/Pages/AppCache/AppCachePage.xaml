@@ -14,10 +14,9 @@
         <DataTemplate x:Key="PhotoItemTemplate">
             <Grid
                 Margin="5"
-                Width="200"
-                Height="180">
+                Width="200">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="150"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Image

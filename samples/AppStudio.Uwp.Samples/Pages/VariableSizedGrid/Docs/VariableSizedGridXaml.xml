@@ -8,62 +8,62 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-  <Page.Resources>
-    <DataTemplate x:Key="BingTemplate">
-      <Grid
-          BorderBrush="Black"
-          BorderThickness="1">
-        <Image
-            Source="{Binding ImageUrl}"
-            Stretch="UniformToFill"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
-      </Grid>
-    </DataTemplate>
+    <Page.Resources>
+        <DataTemplate x:Key="PhotoTemplate">
+            <Grid
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Image
+                    Source="{Binding Thumbnail}"
+                    Stretch="UniformToFill"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
 
-    <DataTemplate x:Key="ColorsTemplate">
-      <Grid
-          Background="{Binding}"
-          BorderBrush="Black"
-          BorderThickness="1">
-        <Viewbox
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-          <TextBlock
-              Margin="8"
-              Text="{Binding}" />
-        </Viewbox>
-      </Grid>
-    </DataTemplate>
+        <DataTemplate x:Key="ColorsTemplate">
+            <Grid
+                Background="{Binding}"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Viewbox
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        Margin="8"
+                        Text="{Binding}" />
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
 
-    <DataTemplate x:Key="SymbolsTemplate">
-      <Grid
-          Background="{Binding}"
-          BorderBrush="Black"
-          BorderThickness="1">
-        <Viewbox
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-          <StackPanel Margin="12">
-            <SymbolIcon Symbol="{Binding}" />
-            <TextBlock Text="{Binding}" />
-          </StackPanel>
-        </Viewbox>
-      </Grid>
-    </DataTemplate>
-  </Page.Resources>
+        <DataTemplate x:Key="SymbolsTemplate">
+            <Grid
+                Background="{Binding}"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Viewbox
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <StackPanel Margin="12">
+                        <SymbolIcon Symbol="{Binding}" />
+                        <TextBlock Text="{Binding}" />
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
-  <Grid
-      Background="{StaticResource AppBackground}">
-    <controls:VariableSizedGrid
-        Name="control"
-        Margin="0"
-        AspectRatio="1"
-        ItemsSource="{Binding Items}"
-        ItemTemplate="{Binding ItemTemplate}"
-        Orientation="Horizontal"
-        MaximumRowsOrColumns="4"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Top" />
-  </Grid>
+    <Grid
+        Background="{StaticResource AppBackground}">
+        <controls:VariableSizedGrid
+            Name="control"
+            Margin="0"
+            AspectRatio="1"
+            ItemsSource="{Binding Items}"
+            ItemTemplate="{Binding ItemTemplate}"
+            Orientation="Horizontal"
+            MaximumRowsOrColumns="4"            
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
+    </Grid>
 </Page>
