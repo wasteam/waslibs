@@ -37,13 +37,13 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Items
-        public ObservableCollection<DeviceDataItem> Items
+        public ObservableCollection<PhotoDataItem> Items
         {
-            get { return (ObservableCollection<DeviceDataItem>)GetValue(ItemsProperty); }
+            get { return (ObservableCollection<PhotoDataItem>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<DeviceDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<PhotoDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
         #endregion
 
 
@@ -58,13 +58,13 @@ namespace AppStudio.Uwp.Samples
         #endregion
 
         #region MemoryItems
-        public ObservableCollection<DeviceDataItem> MemoryItems
+        public ObservableCollection<PhotoDataItem> MemoryItems
         {
-            get { return (ObservableCollection<DeviceDataItem>)GetValue(MemoryItemsProperty); }
+            get { return (ObservableCollection<PhotoDataItem>)GetValue(MemoryItemsProperty); }
             set { SetValue(MemoryItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty MemoryItemsProperty = DependencyProperty.Register("MemoryItems", typeof(ObservableCollection<DeviceDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
+        public static readonly DependencyProperty MemoryItemsProperty = DependencyProperty.Register("MemoryItems", typeof(ObservableCollection<PhotoDataItem>), typeof(AppCachePage), new PropertyMetadata(null));
         #endregion
 
         #region ItemsInMemory
@@ -146,12 +146,12 @@ namespace AppStudio.Uwp.Samples
             {
                 return new RelayCommand(async () =>
                 {
-                    var cacheData = await AppCache.GetItemsAsync<DeviceDataItem>("AppCacheSample");
+                    var cacheData = await AppCache.GetItemsAsync<PhotoDataItem>("AppCacheSample");
                     if (cacheData != null && cacheData.Items != null)
                     {
                         _isBusy = true;
                         await MemoryItems.ClearAsync();
-                        await MemoryItems.CloneAsync(new ObservableCollection<DeviceDataItem>(cacheData.Items));
+                        await MemoryItems.CloneAsync(new ObservableCollection<PhotoDataItem>(cacheData.Items));
                         ItemsInMemory = MemoryItems.Count;
                         LastAction = "Memory loaded from cache";
                         _isBusy = false;
@@ -166,7 +166,7 @@ namespace AppStudio.Uwp.Samples
             {
                 return new RelayCommand(async () =>
                 {
-                    await AppCache.AddItemsAsync<DeviceDataItem>("AppCacheSample", new CachedContent<DeviceDataItem>() { Items = new ObservableCollection<DeviceDataItem>() });
+                    await AppCache.AddItemsAsync<PhotoDataItem>("AppCacheSample", new CachedContent<PhotoDataItem>() { Items = new ObservableCollection<PhotoDataItem>() });
                     ItemsInCache = 0;
                     LastAction = "Cache cleaned";
                 });
@@ -179,7 +179,7 @@ namespace AppStudio.Uwp.Samples
             {
                 return new RelayCommand(async () =>
                 {
-                    await AppCache.AddItemsAsync<DeviceDataItem>("AppCacheSample", new CachedContent<DeviceDataItem>() { Items = MemoryItems });
+                    await AppCache.AddItemsAsync<PhotoDataItem>("AppCacheSample", new CachedContent<PhotoDataItem>() { Items = MemoryItems });
                     ItemsInCache = MemoryItems.Count;
                     LastAction = "Memory saved to cache";
                 });
@@ -189,10 +189,10 @@ namespace AppStudio.Uwp.Samples
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Items = new ObservableCollection<DeviceDataItem>(new DevicesDataSource().GetItems());
-            this.MemoryItems = new ObservableCollection<DeviceDataItem>();
+            this.Items = new ObservableCollection<PhotoDataItem>(new PhotosDataSource().GetItems());
+            this.MemoryItems = new ObservableCollection<PhotoDataItem>();
             this.ItemsInMemory = MemoryItems.Count;
-            var cacheData = await AppCache.GetItemsAsync<DeviceDataItem>("AppCacheSample");
+            var cacheData = await AppCache.GetItemsAsync<PhotoDataItem>("AppCacheSample");
             if (cacheData == null || cacheData.Items == null)
             {
                 this.ItemsInCache = 0;
@@ -215,7 +215,7 @@ namespace AppStudio.Uwp.Samples
 
     public static class CollectionExtensions
     {
-        public static async Task ClearAsync(this ObservableCollection<DeviceDataItem> items, int millisecondsDelay = 100)
+        public static async Task ClearAsync(this ObservableCollection<PhotoDataItem> items, int millisecondsDelay = 100)
         {
             if (items != null && items.Count > 0)
             {
@@ -226,7 +226,7 @@ namespace AppStudio.Uwp.Samples
                 }
             }
         }
-        public static async Task CloneAsync(this ObservableCollection<DeviceDataItem> items, ObservableCollection<DeviceDataItem> sourceItems, int millisecondsDelay = 100)
+        public static async Task CloneAsync(this ObservableCollection<PhotoDataItem> items, ObservableCollection<PhotoDataItem> sourceItems, int millisecondsDelay = 100)
         {
             if (sourceItems != null && sourceItems.Count > 0)
             {

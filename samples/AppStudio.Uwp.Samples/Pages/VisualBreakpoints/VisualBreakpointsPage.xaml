@@ -46,7 +46,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid Background="White" BorderBrush="{Binding Active.borderBrush, ElementName=vbp}" BorderThickness="2" Width="250" Height="220" Margin="1">
-                                <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Source="{Binding Thumbnail}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

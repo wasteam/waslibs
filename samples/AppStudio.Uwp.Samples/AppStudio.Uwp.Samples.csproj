@@ -89,7 +89,29 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="Assets\Devices.json" />
+    <Content Include="Assets\Images\BigFourSummerHeat.png" />
+    <Content Include="Assets\Images\BisonBadlandsChillin.png" />
+    <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
+    <Content Include="Assets\Images\GiantSlabInOregon.png" />
+    <Content Include="Assets\Images\GrandTetons.png" />
+    <Content Include="Assets\Images\LakeAnnMushroom.png" />
+    <Content Include="Assets\Images\LunchBreak.png" />
+    <Content Include="Assets\Images\MilkyWayStHelensHikePurple.png" />
+    <Content Include="Assets\Images\MitchellButtes.png" />
+    <Content Include="Assets\Images\MultnomahFalls.png" />
+    <Content Include="Assets\Images\NorthernCascadesReflection.png" />
+    <Content Include="Assets\Images\NovemberHikeWaterfall.png" />
+    <Content Include="Assets\Images\OregonWineryNamaste.png" />
+    <Content Include="Assets\Images\Owl.png" />
+    <Content Include="Assets\Images\PaintedHillsPathway.png" />
+    <Content Include="Assets\Images\RunningDogPacificCity.png" />
+    <Content Include="Assets\Images\ShootingOnAutoOnTheDrone.png" />
+    <Content Include="Assets\Images\SmithnRockDownTheRiverView.png" />
+    <Content Include="Assets\Images\SnowyInterbayt.png" />
+    <Content Include="Assets\Images\SpeedTripleAtristsPoint.png" />
+    <Content Include="Assets\Images\Van.png" />
+    <Content Include="Assets\Images\WestSeattleView.png" />
+    <Content Include="Assets\Photos.json" />
     <Content Include="Assets\Html\Json.html" />
     <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Icons\about.png" />
@@ -163,7 +185,7 @@
     <Compile Include="Data\BingDataSource.cs" />
     <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
-    <Compile Include="Data\DevicesDataSource.cs" />
+    <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -297,28 +319,10 @@
     </Compile>
     <Content Include="Assets\Icons\CSharp.png" />
     <Content Include="Assets\Icons\Xaml.png" />
-    <Content Include="Assets\Images\Band2.png" />
-    <Content Include="Assets\Images\DellInspiron.png" />
-    <Content Include="Assets\Images\DellXPS.png" />
     <Content Include="Assets\Images\Desktop.png" />
     <Content Include="Assets\Images\HeroImage.png" />
-    <Content Include="Assets\Images\HPSpectreX2.png" />
-    <Content Include="Assets\Images\LenovoYoga3.png" />
-    <Content Include="Assets\Images\LifeCamCinema.png" />
-    <Content Include="Assets\Images\LifeChat.png" />
-    <Content Include="Assets\Images\Lumia550.png" />
-    <Content Include="Assets\Images\Lumia650.png" />
-    <Content Include="Assets\Images\Lumia950.png" />
     <Content Include="Assets\Images\Phone.png" />
-    <Content Include="Assets\Images\SculptComfortMouse.png" />
-    <Content Include="Assets\Images\Surface3DockingStation.png" />
-    <Content Include="Assets\Images\SurfaceBook.png" />
-    <Content Include="Assets\Images\SurfacePro4.png" />
     <Content Include="Assets\Images\Tablet.png" />
-    <Content Include="Assets\Images\UniversalFoldableKeyboard.png" />
-    <Content Include="Assets\Images\WirelessDisplayAdapter.png" />
-    <Content Include="Assets\Images\Xbox360.png" />
-    <Content Include="Assets\Images\XboxOne.png" />
     <Content Include="Assets\Prettify\prettify.css" />
     <Content Include="Assets\Prettify\prettify.js" />
     <Content Include="Assets\Prettify\run_prettify.js" />
