@@ -42,7 +42,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
-            this.ItemTemplate = Resources["DeviceDataTemplate"] as DataTemplate;
+            this.ItemTemplate = Resources["PhotoDataTemplate"] as DataTemplate;
             base.OnNavigatedTo(e);
         }
 

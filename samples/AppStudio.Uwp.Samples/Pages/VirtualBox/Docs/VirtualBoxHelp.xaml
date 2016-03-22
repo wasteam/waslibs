@@ -8,10 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource AppBackground}">
-        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+        <ScrollViewer
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <RichTextBlock
+                Margin="24"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="VirtualBox Help" />
+                    <Run
+                        FontSize="32"
+                        Text="VirtualBox Help" />
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -22,7 +28,10 @@
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Virtualbox
+                    </Hyperlink>
                 </Paragraph>
                 <Paragraph />
             </RichTextBlock>

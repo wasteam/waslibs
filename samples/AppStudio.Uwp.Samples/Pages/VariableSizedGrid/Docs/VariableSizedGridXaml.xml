@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="AppStudio.Uwp.Samples.VariableSizedGridSample"
+    x:Class="AppStudio.Uwp.Samples.VariableSizedGridPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Uwp.Samples"
@@ -10,15 +10,60 @@
 
   <Page.Resources>
     <DataTemplate x:Key="BingTemplate">
-      <Grid Background="{Binding}" BorderBrush="Black" BorderThickness="1">
-        <Image Source="{Binding}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+      <Grid
+          BorderBrush="Black"
+          BorderThickness="1">
+        <Image
+            Source="{Binding ImageUrl}"
+            Stretch="UniformToFill"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ColorsTemplate">
+      <Grid
+          Background="{Binding}"
+          BorderBrush="Black"
+          BorderThickness="1">
+        <Viewbox
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+          <TextBlock
+              Margin="8"
+              Text="{Binding}" />
+        </Viewbox>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SymbolsTemplate">
+      <Grid
+          Background="{Binding}"
+          BorderBrush="Black"
+          BorderThickness="1">
+        <Viewbox
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+          <StackPanel Margin="12">
+            <SymbolIcon Symbol="{Binding}" />
+            <TextBlock Text="{Binding}" />
+          </StackPanel>
+        </Viewbox>
       </Grid>
     </DataTemplate>
   </Page.Resources>
 
-  <Grid Background="{StaticResource AppBackground}">
-    <controls:VariableSizedGrid Name="control" Margin="24" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
-                                Orientation="Horizontal" MaximumRowsOrColumns="4" AspectRatio="1"
-                                HorizontalAlignment="Left" VerticalAlignment="Top" />
+  <Grid
+      Background="{StaticResource AppBackground}">
+    <controls:VariableSizedGrid
+        Name="control"
+        Margin="0"
+        AspectRatio="1"
+        ItemsSource="{Binding Items}"
+        ItemTemplate="{Binding ItemTemplate}"
+        Orientation="Horizontal"
+        MaximumRowsOrColumns="4"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top" />
   </Grid>
 </Page>

@@ -9,9 +9,14 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <RichTextBlock Margin="24" TextWrapping="Wrap" Foreground="{StaticResource AppForeground}">
+            <RichTextBlock
+                Margin="24"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource AppForeground}">
                 <Paragraph>
-                    <Run FontSize="32" Text="Facebook Data Provider Help" />
+                    <Run
+                        FontSize="32"
+                        Text="Facebook Data Provider Help"/>
                 </Paragraph>
                 <Paragraph />
                 <Paragraph>
@@ -23,17 +28,26 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://developers.facebook.com/apps/">
+                        https://developers.facebook.com/apps/
+                    </Hyperlink>
                 </Paragraph>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://developers.facebook.com/docs/graph-api/using-graph-api">https://developers.facebook.com/docs/graph-api/using-graph-api</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://developers.facebook.com/docs/graph-api/using-graph-api">
+                        https://developers.facebook.com/docs/graph-api/using-graph-api
+                    </Hyperlink>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>
                 <Paragraph>
-                    <Hyperlink NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook">https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook</Hyperlink>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/Facebook
+                    </Hyperlink>
                 </Paragraph>
                 <Paragraph />
             </RichTextBlock>

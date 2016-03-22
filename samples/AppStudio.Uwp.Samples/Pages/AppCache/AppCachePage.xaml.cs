@@ -201,7 +201,7 @@ namespace AppStudio.Uwp.Samples
             {
                 this.ItemsInCache = cacheData.Items.Count();
             }
-            this.ItemTemplate = Resources["DeviceItemTemplate"] as DataTemplate;
+            this.ItemTemplate = Resources["PhotoItemTemplate"] as DataTemplate;
             base.OnNavigatedTo(e);
         }
     }

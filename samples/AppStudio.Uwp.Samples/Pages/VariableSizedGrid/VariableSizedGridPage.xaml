@@ -10,22 +10,40 @@
 
     <Page.Resources>
         <DataTemplate x:Key="BingTemplate">
-            <Grid BorderBrush="Black" BorderThickness="1">
-                <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Grid
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Image
+                    Source="{Binding ImageUrl}"
+                    Stretch="UniformToFill"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="ColorsTemplate">
-            <Grid Background="{Binding}" BorderBrush="Black" BorderThickness="1">
-                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Margin="8" Text="{Binding}" />
+            <Grid
+                Background="{Binding}"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Viewbox
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        Margin="8"
+                        Text="{Binding}" />
                 </Viewbox>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="SymbolsTemplate">
-            <Grid Background="{Binding}" BorderBrush="Black" BorderThickness="1">
-                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid
+                Background="{Binding}"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <Viewbox
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
                     <StackPanel Margin="12">
                         <SymbolIcon Symbol="{Binding}" />
                         <TextBlock Text="{Binding}" />
@@ -35,9 +53,17 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{StaticResource AppBackground}">
-        <controls:VariableSizedGrid Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
-                                    Orientation="Horizontal" MaximumRowsOrColumns="4" AspectRatio="1"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top" />
+    <Grid
+        Background="{StaticResource AppBackground}">
+        <controls:VariableSizedGrid
+            Name="control"
+            Margin="0"
+            AspectRatio="1"
+            ItemsSource="{Binding Items}"
+            ItemTemplate="{Binding ItemTemplate}"
+            Orientation="Horizontal"
+            MaximumRowsOrColumns="4"            
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top" />
     </Grid>
 </local:SamplePage>

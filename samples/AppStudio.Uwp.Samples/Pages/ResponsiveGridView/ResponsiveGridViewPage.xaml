@@ -9,15 +9,28 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="DeviceDataTemplate">
-            <Grid Margin="2" Background="White" BorderBrush="LightGray" BorderThickness="1">
-                <Image Source="{Binding Thumbnail}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <DataTemplate x:Key="PhotoDataTemplate">
+            <Grid
+                Margin="2"
+                Background="White"
+                BorderBrush="LightGray"
+                BorderThickness="1">
+                <Image
+                    Source="{Binding Thumbnail}"
+                    Stretch="UniformToFill"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:ResponsiveGridView Name="control" Margin="12,12,6,12" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
-                                     ItemHeight="200" DesiredWidth="300" />
+        <controls:ResponsiveGridView
+            Name="control"
+            Margin="12,12,6,12"
+            ItemsSource="{Binding Items}"
+            ItemTemplate="{Binding ItemTemplate}"
+            ItemHeight="200"
+            DesiredWidth="300"/>
     </Grid>
 </local:SamplePage>

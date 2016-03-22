@@ -95,7 +95,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 
-            this.ItemTemplate = Resources["DeviceItemTemplate"] as DataTemplate;
+            this.ItemTemplate = Resources["PhotoItemTemplate"] as DataTemplate;
             LoadData();
             base.OnNavigatedTo(e);
         }

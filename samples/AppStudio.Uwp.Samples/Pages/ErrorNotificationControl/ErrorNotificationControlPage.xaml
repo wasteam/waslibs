@@ -9,14 +9,22 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <DataTemplate x:Key="DeviceItemTemplate">
+        <DataTemplate x:Key="PhotoItemTemplate">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Stretch="Uniform" Source="{Binding Thumbnail}"/>
-                <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource LayoutTitleStyle}" HorizontalAlignment="Center"/>
+                <Image
+                    Stretch="UniformToFill"
+                    Source="{Binding Thumbnail}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+                <TextBlock
+                    Grid.Row="1"
+                    Text="{Binding Title}"
+                    Style="{StaticResource LayoutTitleStyle}"
+                    HorizontalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -35,7 +43,8 @@
         <controls:ResponsiveGridView
             Grid.Row="1"
             ItemsSource="{Binding Items}"
-            ItemHeight="200" DesiredWidth="300"
+            ItemHeight="200"
+            DesiredWidth="300"
             ItemTemplate="{Binding ItemTemplate}"/>
     </Grid>
 </local:SamplePage>

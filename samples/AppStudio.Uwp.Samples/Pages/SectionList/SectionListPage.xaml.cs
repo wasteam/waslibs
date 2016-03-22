@@ -77,7 +77,7 @@ namespace AppStudio.Uwp.Samples
             this.NatureItems = new ObservableCollection<object>(items.Where(x => x.Category == "Nature"));
             this.AnimalItems = new ObservableCollection<object>(items.Where(x => x.Category == "Animal"));
             this.CityItems = new ObservableCollection<object>(items.Where(x => x.Category == "City"));
-            this.MotorItems = new ObservableCollection<object>(items.Where(x => x.Category == "Motor"));            
+            this.MotorItems = new ObservableCollection<object>(items.Where(x => x.Category == "Motor"));
             this.ItemTemplate = Resources["PhotoItemTemplate"] as DataTemplate;
 
             base.OnNavigatedTo(e);

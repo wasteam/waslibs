@@ -35,33 +35,104 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Margin="12" MaxWidth="1000" HorizontalAlignment="Left">
-                    <TextBlock x:Uid="AnimationExtensionsTitle" Style="{StaticResource TitleStyle}"/>
-                    <TextBlock x:Uid="AnimationExtensionsDescription" Style="{StaticResource SubtitleStyle}" Margin="0,6,0,0"/>
-                    <StackPanel Margin="0,12,0,12" x:Name="commandsPanel" Orientation="Horizontal">
+                <StackPanel
+                    Margin="12"
+                    MaxWidth="1000"
+                    HorizontalAlignment="Left">
+                    <TextBlock
+                        x:Uid="AnimationExtensionsTitle"
+                        Style="{StaticResource TitleStyle}"/>
+                    <TextBlock
+                        x:Uid="AnimationExtensionsDescription"
+                        Style="{StaticResource SubtitleStyle}"
+                        Margin="0,6,0,0"/>
+                    <StackPanel
+                        x:Name="commandsPanel"
+                        Margin="0,12,0,12"                        
+                        Orientation="Horizontal">
                         <StackPanel Margin="0,0,12,0">
-                            <Button Content="Fade In" Command="{Binding FadeInCommand}" Style="{StaticResource SettingsButtonStyle}"/>
-                            <Button Content="Animate Width" Command="{Binding AnimateWidthCommand}" Style="{StaticResource SettingsButtonStyle}"/>
-                            <Button Content="Animate Height" Command="{Binding AnimateHeightCommand}" Style="{StaticResource SettingsButtonStyle}"/>
-                            <Button Content="Grow" Command="{Binding GrowCommand}" Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Fade In"
+                                Command="{Binding FadeInCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Animate Width"
+                                Command="{Binding AnimateWidthCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Animate Height"
+                                Command="{Binding AnimateHeightCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Grow"
+                                Command="{Binding GrowCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
                         </StackPanel>
                         <StackPanel>
-                            <Button Content="Rotate" Command="{Binding RotateCommand}" Style="{StaticResource SettingsButtonStyle}"/>
-                            <Button Content="Translate" Command="{Binding TranslateCommand}" Style="{StaticResource SettingsButtonStyle}"/>
-                            <Button Content="Skew" Command="{Binding SkewCommand}" Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Rotate"
+                                Command="{Binding RotateCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Translate"
+                                Command="{Binding TranslateCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
+                            <Button
+                                Content="Skew"
+                                Command="{Binding SkewCommand}"
+                                Style="{StaticResource SettingsButtonStyle}"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-                <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="12" VerticalAlignment="Top">
-                    <Line Stroke="Black" X1="0" X2="300" Y1="50" Y2="50" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                    <Line Stroke="Black" X1="0" X2="300" Y1="250" Y2="250" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                    <Line Stroke="Black" X1="50" X2="50" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
-                    <Line Stroke="Black" X1="250" X2="250" Y1="0" Y2="300" StrokeThickness="2" StrokeDashArray="3,5" StrokeDashCap="Flat"/>
+                <Grid
+                    Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    Margin="12"
+                    VerticalAlignment="Top">
+                    <Line
+                        Stroke="Black"
+                        X1="0"
+                        X2="300"
+                        Y1="50"
+                        Y2="50"
+                        StrokeThickness="2"
+                        StrokeDashArray="3,5"
+                        StrokeDashCap="Flat"/>
+                    <Line
+                        Stroke="Black"
+                        X1="0"
+                        X2="300"
+                        Y1="250"
+                        Y2="250"
+                        StrokeThickness="2"
+                        StrokeDashArray="3,5"
+                        StrokeDashCap="Flat"/>
+                    <Line
+                        Stroke="Black"
+                        X1="50"
+                        X2="50"
+                        Y1="0"
+                        Y2="300"
+                        StrokeThickness="2"
+                        StrokeDashArray="3,5"
+                        StrokeDashCap="Flat"/>
+                    <Line
+                        Stroke="Black"
+                        X1="250"
+                        X2="250"
+                        Y1="0"
+                        Y2="300"
+                        StrokeThickness="2"
+                        StrokeDashArray="3,5"
+                        StrokeDashCap="Flat"/>
                     <Grid
-                        Name="sampleGrid" Background="Red"
-                        Width="200" Height="200"
+                        Name="sampleGrid"
+                        Background="Red"
+                        Width="200"
+                        Height="200"
                         Margin="50,50,0,0"
-                        HorizontalAlignment="Left" VerticalAlignment="Top">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
                     </Grid>
                 </Grid>
             </Grid>
