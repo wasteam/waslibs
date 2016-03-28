@@ -139,7 +139,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
             IEnumerable<FacebookSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.AreEqual(maxRecords - 1, result.Count());
+            Assert.IsTrue(result.Count() > 25);
         }
     }
 }
