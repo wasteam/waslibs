@@ -1,8 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:was_commands="using:AppStudio.Uwp.Commands"
-    xmlns:converters="using:AppStudio.Uwp.Converters">
+    xmlns:controls="using:AppStudio.Uwp.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Carousel/Carousel.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SplitterCard/SplitterCard.xaml"/>
@@ -19,5 +18,6 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ShellControl/ShellControl.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/PropertySet/PropertySet.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/VariableSizedGrid/VariableSizedGrid.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlBlock/HtmlBlock.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

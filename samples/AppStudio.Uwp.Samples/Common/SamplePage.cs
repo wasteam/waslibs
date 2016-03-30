@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media;
 using Windows.Storage;
+using System.IO;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -323,16 +324,28 @@ namespace AppStudio.Uwp.Samples
         private async Task<bool> ContentFileExists(string path, string fileName)
         {
             var InstallationFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            var docsFolder = await InstallationFolder.GetFolderAsync(path);
-            return await docsFolder.TryGetItemAsync(fileName) != null;
+            var docsFolderItem = await InstallationFolder.TryGetItemAsync(path);
+            if (docsFolderItem != null)
+            {
+                var docsFolder = await InstallationFolder.GetFolderAsync(docsFolderItem.Path);
+                return await docsFolder.TryGetItemAsync(fileName) != null;
+            }
+            return false;
         }
         #endregion
 
         #region ReadContent
         private async Task<string> ReadContent(Uri uri)
         {
-            var docFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
-            return await docFile.ReadTextAsync();
+            try
+            {
+                var docFile = await StorageFile.GetFileFromApplicationUriAsync(uri);
+                return await docFile.ReadTextAsync();
+            }
+            catch (FileNotFoundException)
+            {
+                return string.Empty;
+            }
         }
         #endregion
 

@@ -112,6 +112,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -183,6 +184,12 @@
     <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Html\HtmlDocument.cs" />
+    <Compile Include="Html\HtmlFragment.cs" />
+    <Compile Include="Html\HtmlNode.cs" />
+    <Compile Include="Html\HtmlTag.cs" />
+    <Compile Include="Html\HtmlText.cs" />
+    <Compile Include="Html\TagReader.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
@@ -212,6 +219,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ErrorNotificationControl\ErrorNotificationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HtmlBlock\HtmlBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

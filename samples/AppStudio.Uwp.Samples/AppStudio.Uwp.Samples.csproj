@@ -222,6 +222,9 @@
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
+      <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
       <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
     </Compile>
@@ -540,6 +543,10 @@
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
