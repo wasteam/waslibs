@@ -59,7 +59,7 @@ namespace AppStudio.Uwp.Html
             {
                 for (int i = 0; i < attrName.Captures.Count; i++)
                 {
-                    tag.Attributes.Add(attrName.Captures[i].Value, attrValue.Captures[i].Value);
+                    tag.Attributes.Add(attrName.Captures[i].Value.ToLowerInvariant(), attrValue.Captures[i].Value);
                 }
             }
 

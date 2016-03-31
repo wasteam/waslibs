@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -58,31 +59,96 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void WriteFragment(HtmlFragment fragment, InlineCollection inlines)
+        private void WriteFragment(HtmlFragment fragment, InlineCollection inlines, Run run = null)
         {
             foreach (var childFragment in fragment.Fragments)
             {
-                //TODO: DON'T DO THIS IF PARENT IS A BLOCK ELEMENT TO
-                if (childFragment.Name.ToLower() == "p" || childFragment.Name.ToLower() == "div")
+                switch (childFragment.Name.ToLower())
                 {
-                    var p = new Paragraph();
-                    _container.Blocks.Add(p);
+                    case "p":
+                    case "div":
+                        WriteContainer(childFragment);
+                        break;
+                    case "text":
+                        WriteText(childFragment.AsText(), inlines, run);
+                        break;
+                    case "span":
+                        WriteSpan(childFragment, inlines);
+                        break;
+                    case "strong":
+                    case "b":
+                        WriteStrong(childFragment, inlines);
+                        break;
+                    case "a":
+                        WriteAnchor(childFragment.AsNode(), inlines);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
-                    WriteFragment(childFragment, p.Inlines);
-                }
-                else if (childFragment.Name.ToLower() == "text")
+        private void WriteAnchor(HtmlNode node, InlineCollection inlines)
+        {
+            if (node != null && node.Attributes.ContainsKey("href"))
+            {
+                Hyperlink a = new Hyperlink
                 {
-                    //TODO: CHECK IF INLINES IS NOT NULL
-                    //TODO: CHECK IF IS HtmlText
-                    var text = ((HtmlText)childFragment).Content;
-                    if (!string.IsNullOrEmpty(text))
-                    {
-                        inlines.Add(new Run
-                        {
-                            Text = text
-                        }); 
-                    }
+                    NavigateUri = new Uri(node.Attributes["href"]),
+                };
+
+                WriteFragment(node, a.Inlines);
+
+                inlines?.Add(a); 
+            }
+        }
+
+        private void WriteStrong(HtmlFragment childFragment, InlineCollection inlines)
+        {
+            var r = new Run();
+            r.FontWeight = Windows.UI.Text.FontWeights.SemiBold;
+
+            WriteFragment(childFragment, inlines, r);
+        }
+
+        private void WriteSpan(HtmlFragment childFragment, InlineCollection inlines)
+        {
+            var r = new Run();
+            r.Foreground = new SolidColorBrush(Colors.Lime);
+
+            WriteFragment(childFragment, inlines, r);
+        }
+
+        private static void WriteText(HtmlText text, InlineCollection inlines, Run run)
+        {
+            if (text != null && !string.IsNullOrEmpty(text.Content))
+            {
+                //TODO: REVIEW THIS
+                if (run == null)
+                {
+                    var r = new Run();
+                    r.Text = text.Content;
+
+                    inlines?.Add(r);
                 }
+
+                else
+                {
+                    run.Text = text.Content;
+
+                    inlines?.Add(run);
+                }
+
+            }
+        }
+
+        private void WriteContainer(HtmlFragment childFragment)
+        {
+            var p = new Paragraph();
+            WriteFragment(childFragment, p.Inlines);
+            if (p.Inlines.Count > 0)
+            {
+                _container.Blocks.Add(p);
             }
         }
 

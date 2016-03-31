@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:HtmlBlock Source="{Binding}"></controls:HtmlBlock>
+        <controls:HtmlBlock Source="{Binding Html}"></controls:HtmlBlock>
     </Grid>
 </local:SamplePage>

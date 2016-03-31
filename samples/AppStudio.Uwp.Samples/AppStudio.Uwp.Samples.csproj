@@ -89,6 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\HtmlBlock\Sample.html" />
     <Content Include="Assets\Images\BigFourSummerHeat.png" />
     <Content Include="Assets\Images\BisonBadlandsChillin.png" />
     <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
@@ -225,6 +226,7 @@
     <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
       <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockViewModel.cs" />
     <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
       <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
     </Compile>

@@ -11,6 +11,16 @@ namespace AppStudio.Uwp.Html
         public string Name { get; set; }
         public List<HtmlFragment> Fragments { get; } = new List<HtmlFragment>();
 
+        public HtmlNode AsNode()
+        {
+            return this as HtmlNode;
+        }
+
+        public HtmlText AsText()
+        {
+            return this as HtmlText;
+        }
+
         internal HtmlNode AddNode(HtmlTag tag)
         {
             var node = new HtmlNode(tag);
