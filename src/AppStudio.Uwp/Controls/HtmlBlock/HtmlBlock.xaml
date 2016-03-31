@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:HtmlBlock">
-                    <RichTextBlock Name="_container"></RichTextBlock>
+                    <Grid x:Name="_container"></Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

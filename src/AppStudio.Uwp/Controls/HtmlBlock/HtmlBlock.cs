@@ -10,20 +10,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace AppStudio.Uwp.Controls
 {
     public sealed class HtmlBlock : Control
     {
-        private RichTextBlock _container;
-
-        private RichTextBlock Container
-        {
-            get
-            {
-                return base.GetTemplateChild("_container") as RichTextBlock;
-            }
-        }
+        private Grid _container;
 
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(HtmlBlock), new PropertyMetadata(null, SourcePropertyChanged));
 
@@ -40,7 +33,7 @@ namespace AppStudio.Uwp.Controls
 
         protected override void OnApplyTemplate()
         {
-            _container = base.GetTemplateChild("_container") as RichTextBlock;
+            _container = base.GetTemplateChild("_container") as Grid;
 
             UpdateContent();
 
@@ -51,7 +44,8 @@ namespace AppStudio.Uwp.Controls
         {
             if (_container != null && !string.IsNullOrEmpty(Source))
             {
-                _container.Blocks.Clear();
+                _container.RowDefinitions.Clear();
+                _container.Children.Clear();
 
                 var doc = HtmlDocument.Load(Source);
 
@@ -82,6 +76,9 @@ namespace AppStudio.Uwp.Controls
                     case "a":
                         WriteAnchor(childFragment.AsNode(), inlines);
                         break;
+                    case "img":
+                        WriteImage(childFragment.AsNode());
+                        break;
                     default:
                         break;
                 }
@@ -92,27 +89,34 @@ namespace AppStudio.Uwp.Controls
         {
             if (node != null && node.Attributes.ContainsKey("href"))
             {
-                Hyperlink a = new Hyperlink
+                Hyperlink a = new Hyperlink();
+
+                Uri uri;
+
+                if (Uri.TryCreate(node.Attributes["href"], UriKind.Absolute, out uri))
                 {
-                    NavigateUri = new Uri(node.Attributes["href"]),
-                };
+                    a.NavigateUri = uri;
+                }
 
                 WriteFragment(node, a.Inlines);
 
-                inlines?.Add(a); 
+                inlines?.Add(a);
             }
         }
 
         private void WriteStrong(HtmlFragment childFragment, InlineCollection inlines)
         {
-            var r = new Run();
-            r.FontWeight = Windows.UI.Text.FontWeights.SemiBold;
+            var b = new Bold();
+            inlines.Add(b);
 
-            WriteFragment(childFragment, inlines, r);
+            var r = new Run();
+
+            WriteFragment(childFragment, b.Inlines, r);
         }
 
         private void WriteSpan(HtmlFragment childFragment, InlineCollection inlines)
         {
+            //TODO: WHAT SPAN CONTROL DOES?
             var r = new Run();
             r.Foreground = new SolidColorBrush(Colors.Lime);
 
@@ -138,17 +142,52 @@ namespace AppStudio.Uwp.Controls
 
                     inlines?.Add(run);
                 }
+            }
+        }
 
+        private void WriteImage(HtmlNode node)
+        {
+            if (node != null && node.Attributes.ContainsKey("src"))
+            {
+                _container.RowDefinitions.Add(new RowDefinition
+                {
+                    Height = GridLength.Auto
+                });
+
+                var currentRow = _container.RowDefinitions.Count - 1;
+
+                var image = new ImageEx
+                {
+                    Source = new BitmapImage(new Uri(node.Attributes["src"], UriKind.Absolute)),
+                    Stretch = Stretch.Uniform
+                };
+
+                Grid.SetRow(image, currentRow);
+                _container.Children.Add(image);
             }
         }
 
         private void WriteContainer(HtmlFragment childFragment)
         {
+            _container.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto
+            });
+
+            var currentRow = _container.RowDefinitions.Count - 1;
+
+            var textBlock = new RichTextBlock();
+
             var p = new Paragraph();
+
             WriteFragment(childFragment, p.Inlines);
+
             if (p.Inlines.Count > 0)
             {
-                _container.Blocks.Add(p);
+                textBlock.Blocks.Add(p);
+
+                Grid.SetRow(textBlock, currentRow);
+                _container.Children.Add(textBlock);
             }
         }
 

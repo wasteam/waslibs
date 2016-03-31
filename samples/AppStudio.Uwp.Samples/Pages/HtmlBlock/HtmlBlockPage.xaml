@@ -8,7 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource AppBackground}">
-        <controls:HtmlBlock Source="{Binding Html}"></controls:HtmlBlock>
+    <Grid Background="{StaticResource AppBackground}" Padding="10">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <controls:HtmlBlock Source="{Binding Html}"></controls:HtmlBlock>
+        </ScrollViewer>
     </Grid>
 </local:SamplePage>

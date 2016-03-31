@@ -51,8 +51,9 @@ namespace AppStudio.Uwp.Html
         private static string Clean(string doc)
         {
             //TODO: REMOVE ROOT, HEAD & BODY
-            doc = Regex.Replace(doc, "\r\n|\n", string.Empty);
-            doc = Regex.Replace(doc, @">\s+", ">");
+            //TODO: REMOVE SPACES WHEN IDENTED
+            doc = Regex.Replace(doc, @"^\r\n|\r\n\s+|\n|\n\s+|\r$", string.Empty, RegexOptions.Multiline);
+            //doc = Regex.Replace(doc, @">\s+", ">");
 
             return doc;
         }
