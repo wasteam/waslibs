@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -31,23 +33,23 @@ namespace AppStudio.Uwp.Controls
             this.DefaultStyleKey = typeof(HtmlBlock);
         }
 
-        protected override void OnApplyTemplate()
+        protected override async void OnApplyTemplate()
         {
             _container = base.GetTemplateChild("_container") as Grid;
 
-            UpdateContent();
+            await UpdateContentAsync();
 
             base.OnApplyTemplate();
         }
 
-        private void UpdateContent()
+        private async Task UpdateContentAsync()
         {
             if (_container != null && !string.IsNullOrEmpty(Source))
             {
                 _container.RowDefinitions.Clear();
                 _container.Children.Clear();
 
-                var doc = HtmlDocument.Load(Source);
+                var doc = await HtmlDocument.LoadAsync(Source);
 
                 WriteFragment(doc, null);
             }
@@ -79,9 +81,118 @@ namespace AppStudio.Uwp.Controls
                     case "img":
                         WriteImage(childFragment.AsNode());
                         break;
+                    case "h1":
+                        WriteH1(childFragment);
+                        break;
+                    case "h2":
+                        WriteH2(childFragment);
+                        break;
+                    case "h3":
+                        WriteH3(childFragment);
+                        break;
+                    case "h4":
+                        WriteH4(childFragment);
+                        break;
+                    case "h5":
+                        WriteH5(childFragment);
+                        break;
+                    case "h6":
+                        WriteH6(childFragment);
+                        break;
+                    case "code":
+                        WriteCode(childFragment, inlines);
+                        break;
+                    case "blockquote":
+                        WriteBlockQuote(childFragment);
+                        break;
                     default:
+                        //TODO: DEFAULT WRITTER
                         break;
                 }
+            }
+        }
+
+        private void WriteH1(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 2);
+        }
+
+        private void WriteH2(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 1.5f);
+        }
+
+        private void WriteH3(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 1.17f);
+        }
+
+        private void WriteH4(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 1);
+        }
+
+        private void WriteH5(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 0.83f);
+        }
+
+        private void WriteH6(HtmlFragment fragment)
+        {
+            WriteHeader(fragment, 0.67f);
+        }
+
+        private void WriteHeader(HtmlFragment fragment, float fontSizeWeight)
+        {
+            _container.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto
+            });
+
+            var currentRow = _container.RowDefinitions.Count - 1;
+
+            var textBlock = new RichTextBlock();
+
+            var p = new Paragraph();
+            p.FontSize *= fontSizeWeight;
+            p.FontWeight = FontWeights.SemiBold;
+
+            WriteFragment(fragment, p.Inlines);
+
+            if (p.Inlines.Count > 0)
+            {
+                textBlock.Blocks.Add(p);
+
+                Grid.SetRow(textBlock, currentRow);
+                _container.Children.Add(textBlock);
+            }
+        }
+
+        //TODO: REVIEW IF THIS HAS CONTAINER NESTED, LOST THE FORMAT
+        private void WriteBlockQuote(HtmlFragment fragment)
+        {
+            _container.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto
+            });
+
+            var currentRow = _container.RowDefinitions.Count - 1;
+
+            var textBlock = new RichTextBlock();
+
+            textBlock.Margin = new Thickness(20, 0, 0, 0);
+
+            var p = new Paragraph();
+            //p.FontStyle = FontStyle.Italic;
+
+            WriteFragment(fragment, p.Inlines);
+
+            if (p.Inlines.Count > 0)
+            {
+                textBlock.Blocks.Add(p);
+
+                Grid.SetRow(textBlock, currentRow);
+                _container.Children.Add(textBlock);
             }
         }
 
@@ -104,23 +215,31 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void WriteStrong(HtmlFragment childFragment, InlineCollection inlines)
+        private void WriteCode(HtmlFragment fragment, InlineCollection inlines)
+        {
+            var r = new Run();
+            r.FontFamily = new FontFamily("Courier New");
+
+            WriteFragment(fragment, inlines, r);
+        }
+
+        private void WriteStrong(HtmlFragment fragment, InlineCollection inlines)
         {
             var b = new Bold();
             inlines.Add(b);
 
             var r = new Run();
 
-            WriteFragment(childFragment, b.Inlines, r);
+            WriteFragment(fragment, b.Inlines, r);
         }
 
-        private void WriteSpan(HtmlFragment childFragment, InlineCollection inlines)
+        private void WriteSpan(HtmlFragment fragment, InlineCollection inlines)
         {
             //TODO: WHAT SPAN CONTROL DOES?
             var r = new Run();
             r.Foreground = new SolidColorBrush(Colors.Lime);
 
-            WriteFragment(childFragment, inlines, r);
+            WriteFragment(fragment, inlines, r);
         }
 
         private static void WriteText(HtmlText text, InlineCollection inlines, Run run)
@@ -149,25 +268,30 @@ namespace AppStudio.Uwp.Controls
         {
             if (node != null && node.Attributes.ContainsKey("src"))
             {
-                _container.RowDefinitions.Add(new RowDefinition
+                Uri uri;
+
+                if (Uri.TryCreate(node.Attributes["src"], UriKind.Absolute, out uri))
                 {
-                    Height = GridLength.Auto
-                });
+                    _container.RowDefinitions.Add(new RowDefinition
+                    {
+                        Height = GridLength.Auto
+                    });
 
-                var currentRow = _container.RowDefinitions.Count - 1;
+                    var currentRow = _container.RowDefinitions.Count - 1;
 
-                var image = new ImageEx
-                {
-                    Source = new BitmapImage(new Uri(node.Attributes["src"], UriKind.Absolute)),
-                    Stretch = Stretch.Uniform
-                };
+                    var image = new ImageEx
+                    {
+                        Source = new BitmapImage(uri),
+                        Stretch = Stretch.Uniform
+                    };
 
-                Grid.SetRow(image, currentRow);
-                _container.Children.Add(image);
+                    Grid.SetRow(image, currentRow);
+                    _container.Children.Add(image);
+                }
             }
         }
 
-        private void WriteContainer(HtmlFragment childFragment)
+        private void WriteContainer(HtmlFragment fragment)
         {
             _container.RowDefinitions.Add(new RowDefinition
             {
@@ -180,7 +304,7 @@ namespace AppStudio.Uwp.Controls
 
             var p = new Paragraph();
 
-            WriteFragment(childFragment, p.Inlines);
+            WriteFragment(fragment, p.Inlines);
 
             if (p.Inlines.Count > 0)
             {
@@ -191,10 +315,10 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private static void SourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private async static void SourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var self = d as HtmlBlock;
-            self.UpdateContent();
+            await self.UpdateContentAsync();
         }
     }
 }

@@ -15,7 +15,15 @@ namespace AppStudio.Uwp.Html
             Name = "doc";
         }
 
-        public static HtmlDocument Load(string document)
+        public static async Task<HtmlDocument> LoadAsync(string document)
+        {
+            return await Task.Run<HtmlDocument>(() =>
+            {
+                return Load(document);
+            });
+        }
+
+        private static HtmlDocument Load(string document)
         {
             var root = new HtmlDocument();
 
