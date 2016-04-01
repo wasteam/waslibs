@@ -6,7 +6,7 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.DynamicStorage
 {
-    public class DynamicStorageDataProvider<T> : DataProviderBase<DynamicStorageDataConfig, T> where T : SchemaBase
+    public class DynamicStorageDataProvider<T> : DataProviderBase_Old<DynamicStorageDataConfig, T> where T : SchemaBase
     {
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(DynamicStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {

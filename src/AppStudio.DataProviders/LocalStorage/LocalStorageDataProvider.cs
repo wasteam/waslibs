@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 
 namespace AppStudio.DataProviders.LocalStorage
 {
-    public class LocalStorageDataProvider<T> : DataProviderBase<LocalStorageDataConfig, T> where T : SchemaBase
+    public class LocalStorageDataProvider<T> : DataProviderBase_Old<LocalStorageDataConfig, T> where T : SchemaBase
     {
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {

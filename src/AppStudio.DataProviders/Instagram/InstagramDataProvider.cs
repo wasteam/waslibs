@@ -7,7 +7,7 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.Instagram
 {
-    public class InstagramDataProvider : DataProviderBase<InstagramDataConfig, InstagramSchema>
+    public class InstagramDataProvider : DataProviderBase_Old<InstagramDataConfig, InstagramSchema>
     {
         private const string BaseUrl = "https://api.instagram.com/v1";
 

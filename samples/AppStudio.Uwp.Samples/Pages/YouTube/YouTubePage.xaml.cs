@@ -18,6 +18,7 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
         private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
         private const int DefaultMaxRecordsParam = 20;
+        YouTubeDataProvider youTubeDataProvider;
 
         public YouTubePage()
         {
@@ -130,6 +131,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -157,6 +169,11 @@ namespace AppStudio.Uwp.Samples
             AppShell.Current.Shell.ShowRightPane(new YouTubeSettings() { DataContext = this });
         }
 
+        private void InitializeDataProvider()
+        {
+            youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
+        }
+
         private async void Request()
         {
             try
@@ -167,18 +184,62 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
+                InitializeDataProvider();
                 var config = new YouTubeDataConfig
                 {
                     Query = YouTubeQueryParam,
                     QueryType = YouTubeQueryTypeSelectedItem
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //TODO:implement rawdata
+                //var rawParser = new RawParser();
+                //var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                // DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+
+                var config = new YouTubeDataConfig
+                {
+                    Query = YouTubeQueryParam,
+                    QueryType = YouTubeQueryTypeSelectedItem
+                };
+
+                //TODO: Implement rawdata
+                //var rawParser = new RawParser();
+                //var rawData = await youTubeDataProvider.LoadMoreDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+
+                var items = await youTubeDataProvider.LoadMoreDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 

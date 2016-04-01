@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.DataProviders.Facebook;
 using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -19,10 +20,15 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultFacebookQueryParam = "8195378771";
         private const int DefaultMaxRecordsParam = 20;
 
+        FacebookDataProvider facebookDataProvider;
+
         public FacebookPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
+
+            facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+           
         }
 
         public override string Caption
@@ -128,6 +134,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -165,17 +182,64 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+                facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
                 var config = new FacebookDataConfig
                 {
                     UserId = FacebookQueryParam
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //TODO: Implement rawdata
+                //var rawParser = new RawFacebookParser();
+                //var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);               
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                //DataProviderRawData = facebookDataProvider.Json;
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+
+                var config = new FacebookDataConfig
+                {
+                    UserId = FacebookQueryParam
+                };
+
+                //TODO: Implement rawdata
+                //var rawParser = new RawFacebookParser();
+                //var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);               
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+
+                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                //DataProviderRawData = facebookDataProvider.Json;
 
                 NoItems = !items.Any();
 

@@ -22,6 +22,8 @@ namespace AppStudio.Uwp.Samples
         private const TwitterQueryType DefaultQueryType = TwitterQueryType.Search;
         private const int DefaultMaxRecordsParam = 20;
 
+        TwitterDataProvider twitterDataProvider;
+
         public TwitterPage()
         {
             this.InitializeComponent();
@@ -157,6 +159,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -194,7 +207,7 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+                twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
                 {
                     AccessToken = AccessToken,
                     AccessTokenSecret = AccessTokenSecret,
@@ -208,11 +221,57 @@ namespace AppStudio.Uwp.Samples
                     QueryType = TwitterQueryTypeSelectedItem
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //TODO: Implement rawdata
+                //var rawParser = new RawParser();
+                //var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+
+               
+                var config = new TwitterDataConfig
+                {
+                    Query = TwitterQueryParam,
+                    QueryType = TwitterQueryTypeSelectedItem
+                };
+
+
+                //TODO: Implement rawdata
+                //var rawParser = new RawParser();
+                //var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+
+                var items = await twitterDataProvider.LoadMoreDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 

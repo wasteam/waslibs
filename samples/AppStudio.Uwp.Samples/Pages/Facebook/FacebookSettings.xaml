@@ -49,6 +49,10 @@
                         x:Uid="DataProviderRestoreConfigButton"
                         Command="{Binding RestoreConfigCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        Content="More Items (Test)"
+                        Command="{Binding MoreDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

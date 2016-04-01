@@ -1,21 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AppStudio.DataProviders.Rss;
 
 namespace AppStudio.DataProviders.Bing
 {
-    public class BingParser : IParser<BingSchema>
+    public class BingParser : IParserIncremental<RssSchema, BingSchema>, IPaginationParser<BingSchema>
     {
-        public IEnumerable<BingSchema> Parse(string data)
+        public IResponseBase<BingSchema> Parse(string data)
         {
+            var result = new GenericResponse<BingSchema>();
             if (string.IsNullOrEmpty(data))
             {
-                return null;
+                return result;
             }
 
             RssParser rssParser = new RssParser();
-            IEnumerable<RssSchema> syndicationItems = rssParser.Parse(data);
-            return (from r in syndicationItems
+            IEnumerable<RssSchema> syndicationItems = rssParser.Parse(data).GetData();
+                       
+            var items =  (from r in syndicationItems
                     select new BingSchema()
                     {
                         _id = r._id,
@@ -24,6 +27,32 @@ namespace AppStudio.DataProviders.Bing
                         Link = r.FeedUrl,
                         Published = r.PublishDate
                     });
+                      
+            foreach (var item in items)
+            {
+                result.Add(item);
+            }
+
+            return result;
+            
         }
+
+        public BingSchema Parse(RssSchema data)
+        {
+            if (data == null)
+            {
+                return null;
+            }
+
+            return new BingSchema()
+            {
+                _id = data._id,
+                Title = data.Title,
+                Summary = data.Summary,
+                Link = data.FeedUrl,
+                Published = data.PublishDate
+            };
+        }
+        
     }
 }

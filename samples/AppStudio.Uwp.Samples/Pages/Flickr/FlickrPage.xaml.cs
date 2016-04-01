@@ -165,9 +165,9 @@ namespace AppStudio.Uwp.Samples
                     QueryType = FlickrQueryTypeSelectedItem
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //var rawParser = new RawParser();
+                //var rawData = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

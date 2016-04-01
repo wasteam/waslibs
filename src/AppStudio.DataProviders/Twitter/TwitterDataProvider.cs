@@ -19,13 +19,21 @@ namespace AppStudio.DataProviders.Twitter
     {
         private TwitterOAuthTokens _tokens;
         private const string BaseUrl = "https://api.twitter.com/1.1";
+        private string _maxId;
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(_maxId);
+            }
+        }
 
         public TwitterDataProvider(TwitterOAuthTokens tokens)
         {
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TwitterDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TwitterDataConfig config, int maxRecords, IPaginationParser<TSchema> parser)
         {
             IEnumerable<TSchema> items;
             switch (config.QueryType)
@@ -45,7 +53,7 @@ namespace AppStudio.DataProviders.Twitter
             return items;
         }
 
-        protected override IParser<TwitterSchema> GetDefaultParserInternal(TwitterDataConfig config)
+        protected override IPaginationParser<TwitterSchema> GetDefaultParserInternal(TwitterDataConfig config)
         {
             switch (config.QueryType)
             {
@@ -63,19 +71,24 @@ namespace AppStudio.DataProviders.Twitter
             return await GetUserTimeLineAsync(screenName, maxRecords, new TwitterTimelineParser());
         }
 
-        public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri($"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1");
+                var url = $"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1";
+                if (HasMoreItems)
+                {
+                    url += $"&max_id={_maxId}";
+                }
+                var uri = new Uri(url);
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
                 var result = parser.Parse(rawResult);
-                return result
-                        .Take(maxRecords)
-                        .ToList();
+                var resultItems = result.GetData();
+                _maxId = result.NextPageToken;
+                return resultItems;
             }
             catch (WebException wex)
             {
@@ -104,18 +117,24 @@ namespace AppStudio.DataProviders.Twitter
             return await SearchAsync(hashTag, maxRecords, new TwitterSearchParser());
         }
 
-        public async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri($"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}");
+                var url = $"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}";
+                if (HasMoreItems)
+                {
+                    url += $"&max_id={_maxId}";
+                }
+                var uri = new Uri(url);              
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
+
                 var result = parser.Parse(rawResult);
-                return result
-                        .Take(maxRecords)
-                        .ToList();
+                var resultItems = result.GetData();
+                _maxId = result.NextPageToken;
+                return resultItems;
             }
             catch (WebException wex)
             {
@@ -163,16 +182,25 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri($"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}");
+                var url = $"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}";
+                if (HasMoreItems)
+                {
+                    url += $"&max_id={_maxId}";
+                }
+
+                var uri = new Uri(url);
 
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
-                return parser.Parse(rawResult);
+                var result = parser.Parse(rawResult);
+                var resultItems = result.GetData();
+                _maxId = result.NextPageToken;
+                return resultItems;
             }
             catch (WebException wex)
             {

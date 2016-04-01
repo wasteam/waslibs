@@ -147,9 +147,9 @@ namespace AppStudio.Uwp.Samples
                 var rssDataProvider = new RssDataProvider();
                 var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
 
-                var rawParser = new RawParser();
-                var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //var rawParser = new RawParser();
+                //var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

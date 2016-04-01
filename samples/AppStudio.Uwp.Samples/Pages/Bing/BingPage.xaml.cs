@@ -158,9 +158,9 @@ namespace AppStudio.Uwp.Samples
                 var bingDataProvider = new BingDataProvider();
                 var config = new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem };
 
-                var rawParser = new RawParser();
-                var rawData = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //var rawParser = new RawParser();
+                //var rawData = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

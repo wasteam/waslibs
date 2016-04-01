@@ -13,13 +13,22 @@ namespace AppStudio.DataProviders.YouTube
     {
         private const string BaseUrl = @"https://www.googleapis.com/youtube/v3";
         private YouTubeOAuthTokens _tokens;
+        private string _pageToken;
+
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(_pageToken);
+            }
+        }
 
         public YouTubeDataProvider(YouTubeOAuthTokens tokens)
         {
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(YouTubeDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(YouTubeDataConfig config, int maxRecords, IPaginationParser<TSchema> parser)
         {
             IEnumerable<TSchema> result;
 
@@ -40,7 +49,7 @@ namespace AppStudio.DataProviders.YouTube
             return result;
         }
 
-        protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
+        protected override IPaginationParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
         {
             switch (config.QueryType)
             {
@@ -58,7 +67,7 @@ namespace AppStudio.DataProviders.YouTube
             return await LoadChannelAsync(channel, maxRecords, new YouTubePlaylistParser());
         }
 
-        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             var listId = await GetUploadVideosListId(channel, maxRecords);
             if (!string.IsNullOrEmpty(listId))
@@ -84,7 +93,7 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
-        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings
             {
@@ -94,7 +103,9 @@ namespace AppStudio.DataProviders.YouTube
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result);
+                var r = parser.Parse(result.Result);
+                _pageToken = r.NextPageToken;
+                return r.GetData();
             }
 
             if (result.StatusCode == HttpStatusCode.Forbidden)
@@ -105,7 +116,7 @@ namespace AppStudio.DataProviders.YouTube
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase
         {
             HttpRequestSettings settings = new HttpRequestSettings
             {
@@ -115,8 +126,10 @@ namespace AppStudio.DataProviders.YouTube
             var requestResult = await HttpRequest.DownloadAsync(settings);
             if (requestResult.Success)
             {
-                return parser.Parse(requestResult.Result);
-            }
+                var r = parser.Parse(requestResult.Result);
+                _pageToken = r.NextPageToken;
+                return r.GetData();
+            }              
 
             if (requestResult.StatusCode == HttpStatusCode.Forbidden)
             {
@@ -157,17 +170,32 @@ namespace AppStudio.DataProviders.YouTube
 
         private Uri GetChannelUrl(string channel, int maxRecords)
         {
-            return new Uri($"{BaseUrl}/channels?forUsername={channel}&part=contentDetails&maxResults={maxRecords}&key={_tokens.ApiKey}", UriKind.Absolute);
+            var url = $"{BaseUrl}/channels?forUsername={channel}&part=contentDetails&maxResults={maxRecords}&key={_tokens.ApiKey}";
+            url = BuildPaginationUrl(url);
+            return new Uri(url, UriKind.Absolute);
         }
 
         private Uri GetPlaylistUrl(string playlistId, int maxRecords)
         {
-            return new Uri($"{BaseUrl}/playlistItems?playlistId={playlistId}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}", UriKind.Absolute);
+            var url = $"{BaseUrl}/playlistItems?playlistId={playlistId}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}";
+            url = BuildPaginationUrl(url);
+            return new Uri(url, UriKind.Absolute);
         }
 
         private Uri GetSearchUrl(string query, int maxRecords)
         {
-            return new Uri($"{BaseUrl}/search?q={query}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}&type=video", UriKind.Absolute);
+            var url = $"{BaseUrl}/search?q={query}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}&type=video";
+            url = BuildPaginationUrl(url);
+            return new Uri(url, UriKind.Absolute);
+        }
+
+        private string BuildPaginationUrl(string url)
+        {
+            if (HasMoreItems)
+            {
+                url += $"&pageToken={_pageToken}";
+            }
+            return url;
         }
     }
 }
