@@ -63,6 +63,8 @@ namespace AppStudio.Uwp.Controls
                 {
                     case "p":
                     case "div":
+                    case "ul":
+                    case "ol":
                         WriteContainer(childFragment);
                         break;
                     case "text":
@@ -104,6 +106,9 @@ namespace AppStudio.Uwp.Controls
                         break;
                     case "blockquote":
                         WriteBlockQuote(childFragment);
+                        break;
+                    case "li":
+                        WriteListItem(childFragment);
                         break;
                     default:
                         //TODO: DEFAULT WRITTER
@@ -288,6 +293,34 @@ namespace AppStudio.Uwp.Controls
                     Grid.SetRow(image, currentRow);
                     _container.Children.Add(image);
                 }
+            }
+        }
+
+        private void WriteListItem(HtmlFragment fragment)
+        {
+            _container.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto
+            });
+
+            var currentRow = _container.RowDefinitions.Count - 1;
+
+            var textBlock = new RichTextBlock();
+
+            var p = new Paragraph();
+            p.Inlines.Add(new Run
+            {
+                Text = "\u25CF  ",
+            });
+
+            WriteFragment(fragment, p.Inlines);
+
+            if (p.Inlines.Count > 0)
+            {
+                textBlock.Blocks.Add(p);
+
+                Grid.SetRow(textBlock, currentRow);
+                _container.Children.Add(textBlock);
             }
         }
 

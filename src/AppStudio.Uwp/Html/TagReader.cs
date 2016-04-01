@@ -9,6 +9,7 @@ namespace AppStudio.Uwp.Html
 {
     internal sealed class TagReader
     {
+        //TODO: COMPILE THIS?
         private const string RegexPattern = "</?(?<tag>\\w+)((\\s+(?<attrName>\\w+)(\\s*=\\s*(?:\"(?<attrValue>.*?)\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)/?>";
 
         private Regex _regex;
