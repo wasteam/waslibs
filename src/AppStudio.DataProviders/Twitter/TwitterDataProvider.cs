@@ -7,11 +7,14 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using AppStudio.DataProviders.Exceptions;
+using System.IO.Compression;
+
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
-using System.IO.Compression;
+
+using AppStudio.DataProviders.Exceptions;
+
 
 namespace AppStudio.DataProviders.Twitter
 {
@@ -19,12 +22,12 @@ namespace AppStudio.DataProviders.Twitter
     {
         private TwitterOAuthTokens _tokens;
         private const string BaseUrl = "https://api.twitter.com/1.1";
-        private string _maxId;
+        private string _continuationToken;
         public override bool HasMoreItems
         {
             get
             {
-                return !string.IsNullOrEmpty(_maxId);
+                return !string.IsNullOrEmpty(_continuationToken);
             }
         }
 
@@ -78,7 +81,7 @@ namespace AppStudio.DataProviders.Twitter
                 var url = $"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1";
                 if (HasMoreItems)
                 {
-                    url += $"&max_id={_maxId}";
+                    url += $"&max_id={_continuationToken}";
                 }
                 var uri = new Uri(url);
 
@@ -87,7 +90,7 @@ namespace AppStudio.DataProviders.Twitter
 
                 var result = parser.Parse(rawResult);
                 var resultItems = result.GetData();
-                _maxId = result.NextPageToken;
+                _continuationToken = result.NextPageToken;
                 return resultItems;
             }
             catch (WebException wex)
@@ -124,7 +127,7 @@ namespace AppStudio.DataProviders.Twitter
                 var url = $"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}";
                 if (HasMoreItems)
                 {
-                    url += $"&max_id={_maxId}";
+                    url += $"&max_id={_continuationToken}";
                 }
                 var uri = new Uri(url);              
                 OAuthRequest request = new OAuthRequest();
@@ -133,7 +136,7 @@ namespace AppStudio.DataProviders.Twitter
 
                 var result = parser.Parse(rawResult);
                 var resultItems = result.GetData();
-                _maxId = result.NextPageToken;
+                _continuationToken = result.NextPageToken;
                 return resultItems;
             }
             catch (WebException wex)
@@ -189,7 +192,7 @@ namespace AppStudio.DataProviders.Twitter
                 var url = $"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}";
                 if (HasMoreItems)
                 {
-                    url += $"&max_id={_maxId}";
+                    url += $"&max_id={_continuationToken}";
                 }
 
                 var uri = new Uri(url);
@@ -199,7 +202,7 @@ namespace AppStudio.DataProviders.Twitter
 
                 var result = parser.Parse(rawResult);
                 var resultItems = result.GetData();
-                _maxId = result.NextPageToken;
+                _continuationToken = result.NextPageToken;
                 return resultItems;
             }
             catch (WebException wex)

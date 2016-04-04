@@ -19,6 +19,8 @@ namespace AppStudio.Uwp.Samples
         private const WordPressQueryType DefaultQueryType = WordPressQueryType.Posts;
         private const int DefaultMaxRecordsParam = 20;
 
+        WordPressDataProvider wordPressDataProvider;
+
         public WordPressPage()
         {
             this.InitializeComponent();
@@ -127,6 +129,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -163,7 +176,7 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                var wordPressDataProvider = new WordPressDataProvider();
+                wordPressDataProvider = new WordPressDataProvider();
                 var config = new WordPressDataConfig()
                 {
                     Query = WordPressQuery,
@@ -171,11 +184,53 @@ namespace AppStudio.Uwp.Samples
                     FilterBy = WordPressQueryFilterBy
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                //var rawParser = new RawParser();
+                //var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+               
+                var config = new WordPressDataConfig()
+                {
+                    Query = WordPressQuery,
+                    QueryType = WordPressQueryTypeSelectedItem,
+                    FilterBy = WordPressQueryFilterBy
+                };
+
+                //var rawParser = new RawParser();
+                //var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+
+                var items = await wordPressDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 

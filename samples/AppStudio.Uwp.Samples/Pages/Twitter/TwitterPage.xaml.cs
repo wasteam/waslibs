@@ -271,7 +271,7 @@ namespace AppStudio.Uwp.Samples
                 //var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await twitterDataProvider.LoadMoreDataAsync(config, MaxRecordsParam);
+                var items = await twitterDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 

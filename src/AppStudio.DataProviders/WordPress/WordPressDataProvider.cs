@@ -8,12 +8,22 @@ using System.Linq;
 
 namespace AppStudio.DataProviders.WordPress
 {
-    public class WordPressDataProvider : DataProviderBase_Old<WordPressDataConfig, WordPressSchema>
+    public class WordPressDataProvider : DataProviderBase<WordPressDataConfig, WordPressSchema>
     {
-        private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";     
+        private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";
+        private string _continuationToken = "1";
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int maxRecords, IParser<TSchema> parser)
-        {      
+        bool _hasMoreItems;
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return _hasMoreItems;
+            }           
+        }
+
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int maxRecords, IPaginationParser<TSchema> parser)
+        {
             var wordPressUrlRequest = string.Empty;
             switch (config.QueryType)
             {
@@ -29,6 +39,11 @@ namespace AppStudio.DataProviders.WordPress
 
             }
 
+            if (HasMoreItems)
+            {
+                wordPressUrlRequest += $"&page={_continuationToken}";
+            }
+
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = new Uri(wordPressUrlRequest)
@@ -37,7 +52,11 @@ namespace AppStudio.DataProviders.WordPress
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result);
+                var responseResult = parser.Parse(result.Result);
+                var itemsResult = responseResult.GetData();
+                _hasMoreItems = itemsResult.Any();
+                _continuationToken = (Convert.ToInt16(_continuationToken) + 1).ToString();                
+                return itemsResult;
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
@@ -76,7 +95,7 @@ namespace AppStudio.DataProviders.WordPress
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        protected override IParser<WordPressSchema> GetDefaultParserInternal(WordPressDataConfig config)
+        protected override IPaginationParser<WordPressSchema> GetDefaultParserInternal(WordPressDataConfig config)
         {
             return new WordPressParser();
         }

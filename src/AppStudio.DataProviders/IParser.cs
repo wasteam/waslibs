@@ -1,12 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace AppStudio.DataProviders
-{  
-    public interface IPaginationParser<TSchema>
-        where TSchema : SchemaBase
-    {
-        IResponseBase<TSchema> Parse(string data);
-    }
+{
 
     public interface IParser<TSchema>
         where TSchema : SchemaBase
@@ -14,10 +9,9 @@ namespace AppStudio.DataProviders
         IEnumerable<TSchema> Parse(string data);
     }
 
-    public interface IParserIncremental<TSource, TSchema>
-        where TSource : class
+    public interface IPaginationParser<TSchema>
         where TSchema : SchemaBase
     {
-        TSchema Parse(TSource data);
+        IResponseBase<TSchema> Parse(string data);
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Web.Http;
+
+using Newtonsoft.Json;
+
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using Newtonsoft.Json;
-using Windows.Web.Http;
+
 
 namespace AppStudio.DataProviders.YouTube
 {
@@ -13,13 +15,13 @@ namespace AppStudio.DataProviders.YouTube
     {
         private const string BaseUrl = @"https://www.googleapis.com/youtube/v3";
         private YouTubeOAuthTokens _tokens;
-        private string _pageToken;
+        private string _continuationToken;
 
         public override bool HasMoreItems
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(_pageToken);
+                return !string.IsNullOrWhiteSpace(_continuationToken);
             }
         }
 
@@ -103,9 +105,9 @@ namespace AppStudio.DataProviders.YouTube
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                var r = parser.Parse(result.Result);
-                _pageToken = r.NextPageToken;
-                return r.GetData();
+                var responseResult = parser.Parse(result.Result);
+                _continuationToken = responseResult.NextPageToken;
+                return responseResult.GetData();
             }
 
             if (result.StatusCode == HttpStatusCode.Forbidden)
@@ -126,9 +128,9 @@ namespace AppStudio.DataProviders.YouTube
             var requestResult = await HttpRequest.DownloadAsync(settings);
             if (requestResult.Success)
             {
-                var r = parser.Parse(requestResult.Result);
-                _pageToken = r.NextPageToken;
-                return r.GetData();
+                var responseResult = parser.Parse(requestResult.Result);
+                _continuationToken = responseResult.NextPageToken;
+                return responseResult.GetData();
             }              
 
             if (requestResult.StatusCode == HttpStatusCode.Forbidden)
@@ -193,7 +195,7 @@ namespace AppStudio.DataProviders.YouTube
         {
             if (HasMoreItems)
             {
-                url += $"&pageToken={_pageToken}";
+                url += $"&pageToken={_continuationToken}";
             }
             return url;
         }

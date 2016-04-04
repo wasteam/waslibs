@@ -13,11 +13,34 @@ using AppStudio.DataProviders.Core;
 namespace AppStudio.DataProviders.Rss
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rss")]
-    public class RssParser: IParserIncremental<RssSchema, RssSchema>, IPaginationParser<RssSchema>
+    public class RssParser : IParser<RssSchema>, IPaginationParser<RssSchema>
     {
-        public IResponseBase<RssSchema> Parse(string data)
+        public IEnumerable<RssSchema> Parse(string data)
         {
-            var result = new RssResult();
+            if (string.IsNullOrEmpty(data))
+            {
+                return null;
+            }
+
+            var doc = XDocument.Parse(data);
+            var type = BaseRssParser.GetFeedType(doc);
+
+            BaseRssParser rssParser;
+            if (type == RssType.Rss)
+            {
+                rssParser = new Rss2Parser();
+            }
+            else
+            {
+                rssParser = new AtomParser();
+            }
+
+            return rssParser.LoadFeed(doc);
+        }
+
+        IResponseBase<RssSchema> IPaginationParser<RssSchema>.Parse(string data)
+        {
+            var result = new GenericResponse<RssSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return null;
@@ -43,52 +66,6 @@ namespace AppStudio.DataProviders.Rss
                 result.Add(item);
             }
             return result;
-        }
-
-        //public IEnumerable<RssSchema> Parse(string data)
-        //{
-        //    if (string.IsNullOrEmpty(data))
-        //    {
-        //        return null;
-        //    }
-
-        //    var doc = XDocument.Parse(data);
-        //    var type = BaseRssParser.GetFeedType(doc);
-
-        //    BaseRssParser rssParser;
-        //    if (type == RssType.Rss)
-        //    {
-        //        rssParser = new Rss2Parser();
-        //    }
-        //    else
-        //    {
-        //        rssParser = new AtomParser();
-        //    }
-
-        //    return rssParser.LoadFeed(doc);
-        //}
-        public RssSchema Parse(RssSchema data)
-        {
-            return data;
-            //if (data == null)
-            //{
-            //    return null;
-            //}
-
-            //var doc = XDocument.Parse(data);
-            //var type = BaseRssParser.GetFeedType(doc);
-
-            //BaseRssParser rssParser;
-            //if (type == RssType.Rss)
-            //{
-            //    rssParser = new Rss2Parser();
-            //}
-            //else
-            //{
-            //    rssParser = new AtomParser();
-            //}
-
-            //return rssParser.LoadFeed(doc);
         }
     }
 
@@ -132,36 +109,7 @@ namespace AppStudio.DataProviders.Rss
         {
             return htmlContent.DecodeHtml().Trim().Truncate(500).SanitizeString();
         }
-    }
-
-
-    public class RssResult : Collection<RssSchema>, IResponseBase<RssSchema>
-    {
-        public RssResult()
-        {
-
-        }
-        public RssResult(IList<RssSchema> items)
-        {
-            foreach (var item in items)
-            {
-                this.Items.Add(item);
-            }
-        }
-
-        public string NextPageToken
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public IEnumerable<RssSchema> GetData()
-        {
-            return Items;
-        }
-    }
+    }   
 
     /// <summary>
     /// Rss reader implementation to parse Rss content.
@@ -180,7 +128,7 @@ namespace AppStudio.DataProviders.Rss
         public override IEnumerable<RssSchema> LoadFeed(XDocument doc)
         {
             bool isRDF = false;
-            var feed = new RssResult();
+            Collection<RssSchema> feed = new Collection<RssSchema>();
             XNamespace defaultNamespace = string.Empty;
 
             if (doc.Root != null)
@@ -348,7 +296,7 @@ namespace AppStudio.DataProviders.Rss
         /// <returns></returns>
         public override IEnumerable<RssSchema> LoadFeed(XDocument doc)
         {
-            RssResult feed = new RssResult();
+            Collection<RssSchema> feed = new Collection<RssSchema>();
 
             if (doc.Root == null)
             {
@@ -357,7 +305,7 @@ namespace AppStudio.DataProviders.Rss
 
             var items = doc.Root.Elements(doc.Root.GetDefaultNamespace() + "entry").Select(item => GetRssSchema(item)).ToList<RssSchema>();
 
-            feed = new RssResult(items);
+            feed = new Collection<RssSchema>(items);
 
             return feed;
         }

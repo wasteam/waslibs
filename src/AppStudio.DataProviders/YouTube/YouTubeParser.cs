@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Newtonsoft.Json;
 using System.Linq;
+
+using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.YouTube
 {
@@ -65,7 +66,6 @@ namespace AppStudio.DataProviders.YouTube
            
             result.nextPageToken = playlist.nextPageToken;
             result.items = resultToReturn.ToList();
-
             return result;           
         }
     }
@@ -125,14 +125,13 @@ namespace AppStudio.DataProviders.YouTube
                     });
                 }
             }
-
            
             result.nextPageToken = searchList.nextPageToken;
             result.items = resultToReturn.ToList();
-
             return result;
         }
     }
+
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "This class is used in serialization.")]
     internal class YouTubeResult<T>: IResponseBase<T>

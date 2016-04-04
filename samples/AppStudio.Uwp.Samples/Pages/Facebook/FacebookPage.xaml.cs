@@ -237,7 +237,7 @@ namespace AppStudio.Uwp.Samples
                 //var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);               
                 //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                var items = await facebookDataProvider.LoadMoreDataAsync();
 
                 //DataProviderRawData = facebookDataProvider.Json;
 

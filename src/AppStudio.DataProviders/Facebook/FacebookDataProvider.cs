@@ -13,13 +13,13 @@ namespace AppStudio.DataProviders.Facebook
     public class FacebookDataProvider : DataProviderBase<FacebookDataConfig, FacebookSchema>
     {
         private const string BaseUrl = @"https://graph.facebook.com/v2.5";
-        private string _nextPageUrl;
+        private string _continuationToken;
 
         public override bool HasMoreItems
         {
             get
             {
-                return !string.IsNullOrEmpty(_nextPageUrl);
+                return !string.IsNullOrEmpty(_continuationToken);
             }
         }
 
@@ -43,7 +43,7 @@ namespace AppStudio.DataProviders.Facebook
             if (result.Success)
             {
                 var r = parser.Parse(result.Result);
-                _nextPageUrl = r.NextPageToken;
+                _continuationToken = r.NextPageToken;
                 return r.GetData();
             }
 
@@ -70,7 +70,7 @@ namespace AppStudio.DataProviders.Facebook
         {
             if (HasMoreItems)
             {
-                return new Uri(_nextPageUrl);
+                return new Uri(_continuationToken);
             }
             else
             {

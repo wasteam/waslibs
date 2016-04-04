@@ -239,7 +239,7 @@ namespace AppStudio.Uwp.Samples
                 //var rawData = await youTubeDataProvider.LoadMoreDataAsync(config, MaxRecordsParam, rawParser);
                 //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await youTubeDataProvider.LoadMoreDataAsync(config, MaxRecordsParam);
+                var items = await youTubeDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 
