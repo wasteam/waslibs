@@ -112,6 +112,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Commands\EndOfScrollCommand.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
+    <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="Controls\ResponsiveGridView\ResponsiveGridView.cs" />
     <Compile Include="Controls\SectionList\SectionList.cs" />
     <Compile Include="Controls\SectionList\SectionListItem.cs" />
+    <Compile Include="Services\BindingListenerService.cs" />
     <Compile Include="Services\InternetConnection.cs" />
     <Compile Include="Controls\VisualBreakpoints\BreakpointsConfig.cs" />
     <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />
