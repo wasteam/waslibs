@@ -11,7 +11,7 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.YouTube
 {
-    public class YouTubeDataProvider : DataProviderBase<YouTubeDataConfig, YouTubeSchema>
+    public class YouTubeDataProvider : DataProviderBasePagination<YouTubeDataConfig, YouTubeSchema>
     {
         private const string BaseUrl = @"https://www.googleapis.com/youtube/v3";
         private YouTubeOAuthTokens _tokens;

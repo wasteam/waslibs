@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace AppStudio.DataProviders.Bing
 {
-    public class BingDataProvider : DataProviderBase<BingDataConfig, BingSchema>
+    public class BingDataProvider : DataProviderBasePagination<BingDataConfig, BingSchema>
     {
         private const string BaseUrl = "http://www.bing.com";
 

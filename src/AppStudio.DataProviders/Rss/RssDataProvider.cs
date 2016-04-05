@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 namespace AppStudio.DataProviders.Rss
 {
 
-    public class RssDataProvider : DataProviderBase<RssDataConfig, RssSchema>
+    public class RssDataProvider : DataProviderBasePagination<RssDataConfig, RssSchema>
     {
         public override bool HasMoreItems
         {

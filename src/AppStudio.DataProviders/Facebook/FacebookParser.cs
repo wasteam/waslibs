@@ -8,14 +8,12 @@ using Newtonsoft.Json;
 
 using AppStudio.DataProviders.Core;
 
-
 namespace AppStudio.DataProviders.Facebook
 {
-    public class FacebookParser : IPaginationParser<FacebookSchema>
+    public class FacebookParser : IParser<FacebookSchema>
     {
-        public IParserResponse<FacebookSchema> Parse(string data)
+        public IEnumerable<FacebookSchema> Parse(string data)
         {
-            var result = new FacebookResponse<FacebookSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return null;
@@ -39,12 +37,8 @@ namespace AppStudio.DataProviders.Facebook
                 resultToReturn.Add(item);
             }
 
-            result.data = resultToReturn.ToArray();
-            result.ContinuationToken = searchList?.paging?.next;
-
-            return result;
+            return resultToReturn;
         }
-
 
         private static string ConvertImageUrlFromParameter(string imageUrl)
         {
@@ -88,20 +82,6 @@ namespace AppStudio.DataProviders.Facebook
             }
 
             return $"{baseUrl}/{authorId}";
-        }
-
-    }
-
-
-    public class FacebookResponse<T> : IParserResponse<T>
-    {
-        public T[] data { get; set; }
-
-        public string ContinuationToken { get; set; }
-
-        public IEnumerable<T> GetItems()
-        {
-            return data;
         }
     }
 

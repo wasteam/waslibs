@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace AppStudio.DataProviders.WordPress
 {
-    public class WordPressDataProvider : DataProviderBase<WordPressDataConfig, WordPressSchema>
+    public class WordPressDataProvider : DataProviderBasePagination<WordPressDataConfig, WordPressSchema>
     {
         private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";
         private string _continuationToken = "1";

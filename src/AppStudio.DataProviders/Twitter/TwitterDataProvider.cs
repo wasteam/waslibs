@@ -18,7 +18,7 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.Twitter
 {
-    public class TwitterDataProvider : DataProviderBase<TwitterDataConfig, TwitterSchema>
+    public class TwitterDataProvider : DataProviderBasePagination<TwitterDataConfig, TwitterSchema>
     {
         private TwitterOAuthTokens _tokens;
         private const string BaseUrl = "https://api.twitter.com/1.1";

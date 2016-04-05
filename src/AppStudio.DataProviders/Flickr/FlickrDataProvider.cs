@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace AppStudio.DataProviders.Flickr
 {
-    public class FlickrDataProvider :DataProviderBase<FlickrDataConfig,  FlickrSchema>
+    public class FlickrDataProvider :DataProviderBasePagination<FlickrDataConfig,  FlickrSchema>
     {
         public override bool HasMoreItems
         {

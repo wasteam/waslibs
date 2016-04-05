@@ -13,73 +13,44 @@ namespace AppStudio.DataProviders.Facebook
     public class FacebookDataProvider : DataProviderBase<FacebookDataConfig, FacebookSchema>
     {
         private const string BaseUrl = @"https://graph.facebook.com/v2.5";
-        private string _continuationToken;
+        private FacebookOAuthTokens _tokens;
+
+        public string ContinuationToken { get; set; }
 
         public override bool HasMoreItems
         {
             get
             {
-                return !string.IsNullOrEmpty(_continuationToken);
+                return !string.IsNullOrEmpty(ContinuationToken);
             }
         }
-
-        private FacebookOAuthTokens _tokens;
-
-        //public string Json { get; set; }
 
         public FacebookDataProvider(FacebookOAuthTokens tokens)
         {
             _tokens = tokens;
         }
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IPaginationParser<TSchema> parser)
+
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
             {
                 RequestedUri = GetUri(config, maxRecords)
             };
 
-            HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
-           
-            if (result.Success)
-            {
-                var r = parser.Parse(result.Result);
-                _continuationToken = r.ContinuationToken;
-                return r.GetItems();
-            }
-
-            if (result.StatusCode == HttpStatusCode.BadRequest)
-            {
-                throw new OAuthKeysRevokedException($"Request failed with status code {(int)HttpStatusCode.BadRequest} and reason '{result.Result}'");
-            }
-
-            throw new RequestFailedException(result.StatusCode, result.Result);
+            return await GetDataInternal(parser, settings);
         }
 
-
-        private FacebookGraphResponse InternalParse(string data)
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
-            if (string.IsNullOrEmpty(data))
+            var settings = new HttpRequestSettings
             {
-                return default(FacebookGraphResponse);
-            }
-            FacebookGraphResponse response = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
-            return response;
-        }
+                RequestedUri = GetContinuationUri()
+            };
 
-        private Uri GetUri(FacebookDataConfig config, int maxRecords)
-        {
-            if (HasMoreItems)
-            {
-                return new Uri(_continuationToken);
-            }
-            else
-            {
-                return new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute);
-            }
-        }
+            return await GetDataInternal(parser, settings);
+        } 
 
-
-        protected override IPaginationParser<FacebookSchema> GetDefaultParserInternal(FacebookDataConfig config)
+        protected override IParser<FacebookSchema> GetDefaultParserInternal(FacebookDataConfig config)
         {
             return new FacebookParser();
         }
@@ -102,121 +73,40 @@ namespace AppStudio.DataProviders.Facebook
             {
                 throw new OAuthKeysNotPresentException("AppSecret");
             }
+        }       
+
+        private Uri GetUri(FacebookDataConfig config, int maxRecords)
+        {
+            return new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute);
         }
 
+        private Uri GetContinuationUri()
+        {
+            return new Uri(ContinuationToken);
+        }
 
+        private string GetContinuationToken(string data)
+        {
+            var facebookResponse = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
+            return facebookResponse?.paging?.next;
+        }
+
+        private async Task<IEnumerable<TSchema>> GetDataInternal<TSchema>(IParser<TSchema> parser, HttpRequestSettings settings) where TSchema : SchemaBase
+        {
+            HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
+
+            if (result.Success)
+            {
+                ContinuationToken = GetContinuationToken(result.Result);
+                return parser.Parse(result.Result);
+            }
+
+            if (result.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new OAuthKeysRevokedException($"Request failed with status code {(int)HttpStatusCode.BadRequest} and reason '{result.Result}'");
+            }
+
+            throw new RequestFailedException(result.StatusCode, result.Result);
+        }
     }
-
-
-    #region Poc
-    //public class FacebookDataProvider : IncrementalDataProviderBase<FacebookDataConfig, GraphData, FacebookSchema>
-    //{
-    //    private const string BaseUrl = @"https://graph.facebook.com/v2.5";
-    //    private string _nextPageUrl;
-    //    public bool HasMoreElements
-    //    {
-    //        get
-    //        {
-    //            return !string.IsNullOrEmpty(_nextPageUrl);
-    //        }
-    //    }
-
-    //    private FacebookOAuthTokens _tokens;
-    //    public string Json { get; set; }
-
-    //    public FacebookDataProvider(FacebookOAuthTokens tokens)
-    //    {
-    //        _tokens = tokens;
-    //    }
-
-    //    protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParserIncremental<GraphData, TSchema> parser)
-    //    {
-    //        var settings = new HttpRequestSettings
-    //        {
-    //            RequestedUri = GetUri(config, maxRecords)
-    //        };
-
-    //        HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
-    //        Json = result.Result;
-    //        if (result.Success)
-    //        {
-    //            FacebookGraphResponse response = InternalParse(result.Result);
-    //            _nextPageUrl = response?.paging?.next;
-    //            Collection<TSchema> resultToReturn = new Collection<TSchema>();
-
-    //            foreach (var item in response.data)
-    //            {
-    //                resultToReturn.Add(parser.Parse(item));
-    //            }
-    //            return resultToReturn;
-    //        }
-
-    //        if (result.StatusCode == HttpStatusCode.BadRequest)
-    //        {
-    //            throw new OAuthKeysRevokedException($"Request failed with status code {(int)HttpStatusCode.BadRequest} and reason '{result.Result}'");
-    //        }
-
-    //        throw new RequestFailedException(result.StatusCode, result.Result);
-    //    }
-
-    //    private FacebookGraphResponse InternalParse(string data)
-    //    {
-    //        if (string.IsNullOrEmpty(data))
-    //        {
-    //            return default(FacebookGraphResponse);
-    //        }
-    //        FacebookGraphResponse response = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
-    //        return response;
-    //    }
-
-    //    private Uri GetUri(FacebookDataConfig config, int maxRecords)
-    //    {
-    //        if (HasMoreElements)
-    //        {
-    //            return new Uri(_nextPageUrl);
-    //        }
-    //        else
-    //        {
-    //            return new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute);
-    //        }
-    //    }
-
-    //    //public override T InternalParse<T>(string data)
-    //    //{
-    //    //    if (string.IsNullOrEmpty(data))
-    //    //    {
-    //    //        return default(T);
-    //    //    }
-    //    //    T response = JsonConvert.DeserializeObject<T>(data);
-    //    //    return response;
-    //    //}
-
-    //    protected override IParserIncremental<GraphData, FacebookSchema> GetDefaultParserInternal(FacebookDataConfig config)
-    //    {
-    //        return new FacebookParser();
-    //    }
-
-    //    protected override void ValidateConfig(FacebookDataConfig config)
-    //    {
-    //        if (config.UserId == null)
-    //        {
-    //            throw new ConfigParameterNullException("UserId");
-    //        }
-    //        if (_tokens == null)
-    //        {
-    //            throw new ConfigParameterNullException("Tokens");
-    //        }
-    //        if (string.IsNullOrEmpty(_tokens.AppId))
-    //        {
-    //            throw new OAuthKeysNotPresentException("AppId");
-    //        }
-    //        if (string.IsNullOrEmpty(_tokens.AppSecret))
-    //        {
-    //            throw new OAuthKeysNotPresentException("AppSecret");
-    //        }
-    //    }
-
-    //}
-
-    #endregion
 }

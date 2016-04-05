@@ -181,21 +181,17 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-
-                facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+              
                 var config = new FacebookDataConfig
                 {
                     UserId = FacebookQueryParam
                 };
 
-                //TODO: Implement rawdata
-                //var rawParser = new RawFacebookParser();
-                //var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);               
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                var rawParser = new RawParser();
+                var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
-                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
-
-                //DataProviderRawData = facebookDataProvider.Json;
+                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);                
 
                 NoItems = !items.Any();
 
@@ -232,14 +228,9 @@ namespace AppStudio.Uwp.Samples
                     UserId = FacebookQueryParam
                 };
 
-                //TODO: Implement rawdata
-                //var rawParser = new RawFacebookParser();
-                //var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);               
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                DataProviderRawData = string.Empty;
 
-                var items = await facebookDataProvider.LoadMoreDataAsync();
-
-                //DataProviderRawData = facebookDataProvider.Json;
+               var items = await facebookDataProvider.LoadMoreDataAsync();              
 
                 NoItems = !items.Any();
 
