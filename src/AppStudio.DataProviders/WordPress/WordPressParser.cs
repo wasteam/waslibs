@@ -31,9 +31,9 @@ namespace AppStudio.DataProviders.WordPress
                     });
         }
 
-        IResponseBase<WordPressSchema> IPaginationParser<WordPressSchema>.Parse(string data)
+        IParserResponse<WordPressSchema> IPaginationParser<WordPressSchema>.Parse(string data)
         {
-            var result = new GenericResponse<WordPressSchema>();
+            var result = new ParserResponseCollection<WordPressSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return result;
@@ -59,7 +59,7 @@ namespace AppStudio.DataProviders.WordPress
                 result.Add(item);               
             }
 
-            result.NextPageToken = wordPressItems?.meta?.next_page;
+            result.ContinuationToken = wordPressItems?.meta?.next_page;
             return result;
         }
     }

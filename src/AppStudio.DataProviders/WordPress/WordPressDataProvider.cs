@@ -53,7 +53,7 @@ namespace AppStudio.DataProviders.WordPress
             if (result.Success)
             {
                 var responseResult = parser.Parse(result.Result);
-                var itemsResult = responseResult.GetData();
+                var itemsResult = responseResult.GetItems();
                 _hasMoreItems = itemsResult.Any();
                 _continuationToken = (Convert.ToInt16(_continuationToken) + 1).ToString();                
                 return itemsResult;

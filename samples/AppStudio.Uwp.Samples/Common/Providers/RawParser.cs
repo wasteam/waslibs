@@ -13,7 +13,7 @@ namespace AppStudio.Uwp.Samples
             return result;
         }
      
-        IResponseBase<RawSchema> IPaginationParser<RawSchema>.Parse(string data)
+        IParserResponse<RawSchema> IPaginationParser<RawSchema>.Parse(string data)
         {
             var response = new RawRespose();
             response.Data = data;
@@ -21,11 +21,11 @@ namespace AppStudio.Uwp.Samples
         }
     }
 
-    class RawRespose : IResponseBase<RawSchema>
+    class RawRespose : IParserResponse<RawSchema>
     {
         public string Data { get; set; }
 
-        public string NextPageToken
+        public string ContinuationToken
         {
             get
             {
@@ -33,7 +33,7 @@ namespace AppStudio.Uwp.Samples
             }           
         }
 
-        IEnumerable<RawSchema> IResponseBase<RawSchema>.GetData()
+        IEnumerable<RawSchema> IParserResponse<RawSchema>.GetItems()
         {
             var result = new RawSchema[] { new RawSchema { _id = "", Raw = Data } };
             return result;

@@ -27,9 +27,9 @@ namespace AppStudio.DataProviders.Bing
                     });
         }
 
-        public IResponseBase<BingSchema> Parse(string data)
+        public IParserResponse<BingSchema> Parse(string data)
         {
-            var result = new GenericResponse<BingSchema>();
+            var result = new ParserResponseCollection<BingSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return result;

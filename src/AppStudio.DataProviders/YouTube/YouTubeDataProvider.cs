@@ -106,8 +106,8 @@ namespace AppStudio.DataProviders.YouTube
             if (result.Success)
             {
                 var responseResult = parser.Parse(result.Result);
-                _continuationToken = responseResult.NextPageToken;
-                return responseResult.GetData();
+                _continuationToken = responseResult.ContinuationToken;
+                return responseResult.GetItems();
             }
 
             if (result.StatusCode == HttpStatusCode.Forbidden)
@@ -129,8 +129,8 @@ namespace AppStudio.DataProviders.YouTube
             if (requestResult.Success)
             {
                 var responseResult = parser.Parse(requestResult.Result);
-                _continuationToken = responseResult.NextPageToken;
-                return responseResult.GetData();
+                _continuationToken = responseResult.ContinuationToken;
+                return responseResult.GetItems();
             }              
 
             if (requestResult.StatusCode == HttpStatusCode.Forbidden)

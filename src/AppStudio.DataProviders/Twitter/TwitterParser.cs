@@ -22,9 +22,9 @@ namespace AppStudio.DataProviders.Twitter
             return result.statuses.Select(r => r.Parse()).ToList();
         }
 
-        IResponseBase<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
+        IParserResponse<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
         {
-            TwitterResult result = new TwitterResult();
+            TwitterResultCollection result = new TwitterResultCollection();
             if (string.IsNullOrEmpty(data))
             {
                 return result;
@@ -33,7 +33,7 @@ namespace AppStudio.DataProviders.Twitter
             var jsonResult = JsonConvert.DeserializeObject<TwitterSearchResult>(data);
             if (jsonResult.statuses.Any())
             {
-                result = new TwitterResult(jsonResult.statuses.Select(r => r.Parse()).ToList());
+                result = new TwitterResultCollection(jsonResult.statuses.Select(r => r.Parse()).ToList());
             }
             return result;
         }
@@ -100,9 +100,9 @@ namespace AppStudio.DataProviders.Twitter
             return result.Select(r => r.Parse()).ToList();
         }
 
-        IResponseBase<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
+        IParserResponse<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
         {
-            TwitterResult result = new TwitterResult();
+            TwitterResultCollection result = new TwitterResultCollection();
             if (string.IsNullOrEmpty(data))
             {
                 return result;
@@ -111,7 +111,7 @@ namespace AppStudio.DataProviders.Twitter
             var jsonResult = JsonConvert.DeserializeObject<TwitterTimelineItem[]>(data);
             if (jsonResult.Any())
             {
-                result = new TwitterResult(jsonResult.Select(r => r.Parse()).ToList());
+                result = new TwitterResultCollection(jsonResult.Select(r => r.Parse()).ToList());
             }
             return result;
         }
@@ -120,13 +120,13 @@ namespace AppStudio.DataProviders.Twitter
     }
 
 
-    public class TwitterResult : Collection<TwitterSchema>, IResponseBase<TwitterSchema>
+    public class TwitterResultCollection : Collection<TwitterSchema>, IParserResponse<TwitterSchema>
     {
-        public TwitterResult()
+        public TwitterResultCollection()
         {
 
         }
-        public TwitterResult(IEnumerable<TwitterSchema> data)
+        public TwitterResultCollection(IEnumerable<TwitterSchema> data)
         {
             if (data != null)
             {
@@ -135,10 +135,10 @@ namespace AppStudio.DataProviders.Twitter
                     Items.Add(item);
                 }
 
-                NextPageToken = GetMaxId(Items.LastOrDefault()._id);
+                ContinuationToken = GetMaxId(Items.LastOrDefault()._id);
             }
         }
-        public string NextPageToken { get; set; }
+        public string ContinuationToken { get; set; }
 
         private static string GetMaxId(string id_str)
         {
@@ -151,7 +151,7 @@ namespace AppStudio.DataProviders.Twitter
             return string.Empty;
         }
 
-        public IEnumerable<TwitterSchema> GetData()
+        public IEnumerable<TwitterSchema> GetItems()
         {
             return Items;
         }

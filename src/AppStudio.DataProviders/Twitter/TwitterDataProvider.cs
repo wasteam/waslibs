@@ -89,8 +89,8 @@ namespace AppStudio.DataProviders.Twitter
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
                 var result = parser.Parse(rawResult);
-                var resultItems = result.GetData();
-                _continuationToken = result.NextPageToken;
+                var resultItems = result.GetItems();
+                _continuationToken = result.ContinuationToken;
                 return resultItems;
             }
             catch (WebException wex)
@@ -135,8 +135,8 @@ namespace AppStudio.DataProviders.Twitter
 
 
                 var result = parser.Parse(rawResult);
-                var resultItems = result.GetData();
-                _continuationToken = result.NextPageToken;
+                var resultItems = result.GetItems();
+                _continuationToken = result.ContinuationToken;
                 return resultItems;
             }
             catch (WebException wex)
@@ -201,8 +201,8 @@ namespace AppStudio.DataProviders.Twitter
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
                 var result = parser.Parse(rawResult);
-                var resultItems = result.GetData();
-                _continuationToken = result.NextPageToken;
+                var resultItems = result.GetItems();
+                _continuationToken = result.ContinuationToken;
                 return resultItems;
             }
             catch (WebException wex)

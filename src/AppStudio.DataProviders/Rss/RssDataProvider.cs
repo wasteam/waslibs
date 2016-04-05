@@ -29,33 +29,10 @@ namespace AppStudio.DataProviders.Rss
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {               
-                return parser.Parse(result.Result).GetData();
+                return parser.Parse(result.Result).GetItems();
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
-        }
-
-        private IEnumerable<RssSchema> InternalParse(string data)
-        {
-            if (string.IsNullOrEmpty(data))
-            {
-                return null;
-            }
-
-            var doc = XDocument.Parse(data);
-            var type = BaseRssParser.GetFeedType(doc);
-
-            BaseRssParser rssParser;
-            if (type == RssType.Rss)
-            {
-                rssParser = new Rss2Parser();
-            }
-            else
-            {
-                rssParser = new AtomParser();
-            }
-
-            return rssParser.LoadFeed(doc);
         }
 
         protected override IPaginationParser<RssSchema> GetDefaultParserInternal(RssDataConfig config)

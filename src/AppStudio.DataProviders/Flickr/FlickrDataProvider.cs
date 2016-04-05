@@ -30,7 +30,7 @@ namespace AppStudio.DataProviders.Flickr
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result)?.GetData();
+                return parser.Parse(result.Result)?.GetItems();
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);

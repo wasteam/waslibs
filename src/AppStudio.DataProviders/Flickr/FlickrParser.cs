@@ -29,9 +29,9 @@ namespace AppStudio.DataProviders.Flickr
                     });
         }
 
-        public IResponseBase<FlickrSchema> Parse(string data)
+        public IParserResponse<FlickrSchema> Parse(string data)
         {
-            var result = new GenericResponse<FlickrSchema>();
+            var result = new ParserResponseCollection<FlickrSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return null;

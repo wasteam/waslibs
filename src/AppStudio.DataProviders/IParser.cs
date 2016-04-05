@@ -2,7 +2,6 @@
 
 namespace AppStudio.DataProviders
 {
-
     public interface IParser<TSchema>
         where TSchema : SchemaBase
     {
@@ -12,6 +11,6 @@ namespace AppStudio.DataProviders
     public interface IPaginationParser<TSchema>
         where TSchema : SchemaBase
     {
-        IResponseBase<TSchema> Parse(string data);
+        IParserResponse<TSchema> Parse(string data);
     }
 }

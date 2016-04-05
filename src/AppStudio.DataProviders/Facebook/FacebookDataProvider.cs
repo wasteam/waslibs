@@ -43,8 +43,8 @@ namespace AppStudio.DataProviders.Facebook
             if (result.Success)
             {
                 var r = parser.Parse(result.Result);
-                _continuationToken = r.NextPageToken;
-                return r.GetData();
+                _continuationToken = r.ContinuationToken;
+                return r.GetItems();
             }
 
             if (result.StatusCode == HttpStatusCode.BadRequest)

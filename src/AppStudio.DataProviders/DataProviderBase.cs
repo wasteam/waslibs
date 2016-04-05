@@ -48,7 +48,7 @@ namespace AppStudio.DataProviders
         protected abstract Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TConfig config, int maxRecords, IPaginationParser<TSchema> parser) where TSchema : SchemaBase;
 
         public virtual async Task<IEnumerable<TSchema>> LoadMoreDataAsync<TSchema>() where TSchema : SchemaBase
-        {           
+        {
             if (HasMoreItems)
             {
                 var parser = _parser as IPaginationParser<TSchema>;
@@ -65,7 +65,7 @@ namespace AppStudio.DataProviders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int maxRecords = 20)
-        {           
+        {
             return await LoadDataAsync(config, maxRecords, GetDefaultParser(config));
         }
 
@@ -88,17 +88,17 @@ namespace AppStudio.DataProviders
         protected abstract IPaginationParser<TSchema> GetDefaultParserInternal(TConfig config);
     }
 
-    public interface IResponseBase<T>
+    public interface IParserResponse<T>
     {
-        string NextPageToken { get; }
-        IEnumerable<T> GetData();
+        string ContinuationToken { get; }
+        IEnumerable<T> GetItems();
     }
 
-    public class GenericResponse<T> : Collection<T>, IResponseBase<T>
+    public class ParserResponseCollection<T> : Collection<T>, IParserResponse<T>
     {
-        public string NextPageToken { get; set; }
+        public string ContinuationToken { get; set; }
 
-        public IEnumerable<T> GetData()
+        public IEnumerable<T> GetItems()
         {
             return Items;
         }
@@ -122,7 +122,10 @@ namespace AppStudio.DataProviders
 
 
 
-    public abstract class DataProviderBase_Old<TConfig, TSchema> : DataProviderBase_Old<TConfig> where TSchema : SchemaBase
+
+
+    #region Old DataProvider
+    public abstract class DataProviderBaseOld<TConfig, TSchema> : DataProviderBaseOld<TConfig> where TSchema : SchemaBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int maxRecords = 20)
@@ -143,7 +146,7 @@ namespace AppStudio.DataProviders
         protected abstract IParser<TSchema> GetDefaultParserInternal(TConfig config);
     }
 
-    public abstract class DataProviderBase_Old<TConfig>
+    public abstract class DataProviderBaseOld<TConfig>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public async Task<IEnumerable<TSchema>> LoadDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
@@ -171,7 +174,7 @@ namespace AppStudio.DataProviders
         protected abstract Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase;
         protected abstract void ValidateConfig(TConfig config);
     }
-
+    #endregion
 
     #region Poc
     //public abstract class IncrementalDataProviderBase<TConfig, TSource>

@@ -38,7 +38,7 @@ namespace AppStudio.DataProviders.YouTube
 
         }
 
-        IResponseBase<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
+        IParserResponse<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
         {
             var result = new YouTubeResult<YouTubeSchema>();
             if (string.IsNullOrEmpty(data))
@@ -100,7 +100,7 @@ namespace AppStudio.DataProviders.YouTube
             return resultToReturn;
         }
 
-        IResponseBase<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
+        IParserResponse<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
         {
             var result = new YouTubeResult<YouTubeSchema>();
             if (string.IsNullOrEmpty(data))
@@ -134,13 +134,13 @@ namespace AppStudio.DataProviders.YouTube
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "This class is used in serialization.")]
-    internal class YouTubeResult<T>: IResponseBase<T>
+    internal class YouTubeResult<T>: IParserResponse<T>
     {
         public string error { get; set; }
         public string nextPageToken { get; set; }
         public List<T> items { get; set; }
 
-        public string NextPageToken
+        public string ContinuationToken
         {
             get
             {
@@ -148,7 +148,7 @@ namespace AppStudio.DataProviders.YouTube
             }          
         }
 
-        public IEnumerable<T> GetData()
+        public IEnumerable<T> GetItems()
         {
             return items;
         }

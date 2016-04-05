@@ -38,9 +38,9 @@ namespace AppStudio.DataProviders.Rss
             return rssParser.LoadFeed(doc);
         }
 
-        IResponseBase<RssSchema> IPaginationParser<RssSchema>.Parse(string data)
+        IParserResponse<RssSchema> IPaginationParser<RssSchema>.Parse(string data)
         {
-            var result = new GenericResponse<RssSchema>();
+            var result = new ParserResponseCollection<RssSchema>();
             if (string.IsNullOrEmpty(data))
             {
                 return null;
@@ -92,13 +92,7 @@ namespace AppStudio.DataProviders.Rss
         /// </summary>
         /// <param name="doc"></param>
         /// <returns></returns>
-        public abstract IEnumerable<RssSchema> LoadFeed(XDocument doc);
-
-        public T LoadFeed<T>(XDocument doc) where T : IResponseBase<RssSchema>
-        {
-            var result = LoadFeed(doc);
-            return (T)result;
-        }
+        public abstract IEnumerable<RssSchema> LoadFeed(XDocument doc);        
 
         internal protected static string ProcessHtmlContent(string htmlContent)
         {
