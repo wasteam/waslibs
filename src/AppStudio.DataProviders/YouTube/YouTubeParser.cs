@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.YouTube
 {
-    public class YouTubePlaylistParser : IParser<YouTubeSchema>, IPaginationParser<YouTubeSchema>
+    public class YouTubePlaylistParser : IParser<YouTubeSchema>
     {
         public IEnumerable<YouTubeSchema> Parse(string data)
         {
@@ -36,41 +35,10 @@ namespace AppStudio.DataProviders.YouTube
 
             return resultToReturn;
 
-        }
-
-        IParserResponse<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
-        {
-            var result = new YouTubeResult<YouTubeSchema>();
-            if (string.IsNullOrEmpty(data))
-            {
-                return result;
-            }
-
-            Collection<YouTubeSchema> resultToReturn = new Collection<YouTubeSchema>();
-            var playlist = JsonConvert.DeserializeObject<YouTubeResult<YouTubePlaylistResult>>(data);
-            if (playlist != null && playlist.items != null)
-            {
-                foreach (var item in playlist.items)
-                {
-                    resultToReturn.Add(new YouTubeSchema()
-                    {
-                        _id = item.id,
-                        Title = item.snippet.title,
-                        ImageUrl = item.snippet.thumbnails != null ? item.snippet.thumbnails.high.url : string.Empty,
-                        Summary = item.snippet.description,
-                        Published = item.snippet.publishedAt,
-                        VideoId = item.snippet.resourceId.videoId
-                    });
-                }
-            }
-           
-            result.nextPageToken = playlist.nextPageToken;
-            result.items = resultToReturn.ToList();
-            return result;           
         }
     }
 
-    public class YouTubeSearchParser : IParser<YouTubeSchema>, IPaginationParser<YouTubeSchema>
+    public class YouTubeSearchParser : IParser<YouTubeSchema>
     {
         public IEnumerable<YouTubeSchema> Parse(string data)
         {
@@ -98,60 +66,16 @@ namespace AppStudio.DataProviders.YouTube
             }
 
             return resultToReturn;
-        }
-
-        IParserResponse<YouTubeSchema> IPaginationParser<YouTubeSchema>.Parse(string data)
-        {
-            var result = new YouTubeResult<YouTubeSchema>();
-            if (string.IsNullOrEmpty(data))
-            {
-                return result;
-            }
-
-            Collection<YouTubeSchema> resultToReturn = new Collection<YouTubeSchema>();
-            var searchList = JsonConvert.DeserializeObject<YouTubeResult<YouTubeSearchResult>>(data);
-            if (searchList != null && searchList.items != null)
-            {
-                foreach (var item in searchList.items)
-                {
-                    resultToReturn.Add(new YouTubeSchema
-                    {
-                        _id = item.id.videoId,
-                        Title = item.snippet.title,
-                        ImageUrl = item.snippet.thumbnails != null ? item.snippet.thumbnails.high.url : string.Empty,
-                        Summary = item.snippet.description,
-                        Published = item.snippet.publishedAt,
-                        VideoId = item.id.videoId
-                    });
-                }
-            }
-           
-            result.nextPageToken = searchList.nextPageToken;
-            result.items = resultToReturn.ToList();
-            return result;
         }
     }
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "This class is used in serialization.")]
-    internal class YouTubeResult<T>: IParserResponse<T>
+    internal class YouTubeResult<T>
     {
         public string error { get; set; }
         public string nextPageToken { get; set; }
         public List<T> items { get; set; }
-
-        public string ContinuationToken
-        {
-            get
-            {
-                return nextPageToken;
-            }          
-        }
-
-        public IEnumerable<T> GetItems()
-        {
-            return items;
-        }
     }
 
     internal class YouTubeSearchResult

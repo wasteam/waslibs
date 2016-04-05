@@ -16,7 +16,9 @@ namespace AppStudio.DataProviders
 
         object _parser;
 
-        public abstract bool HasMoreItems { get; }
+        protected string ContinuationToken { get; set; }
+
+        protected abstract bool HasMoreItems { get; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public async Task<IEnumerable<TSchema>> LoadDataAsync<TSchema>(TConfig config, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase

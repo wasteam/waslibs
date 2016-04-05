@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Windows.Web.Http;
 using System.Threading.Tasks;
+using Windows.Web.Http;
+
+using Newtonsoft.Json;
+
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace AppStudio.DataProviders.Facebook
 {
@@ -15,9 +15,7 @@ namespace AppStudio.DataProviders.Facebook
         private const string BaseUrl = @"https://graph.facebook.com/v2.5";
         private FacebookOAuthTokens _tokens;
 
-        public string ContinuationToken { get; set; }
-
-        public override bool HasMoreItems
+        protected override bool HasMoreItems
         {
             get
             {

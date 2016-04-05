@@ -24,6 +24,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+
+            youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
         }
 
         public override string Caption
@@ -168,11 +170,7 @@ namespace AppStudio.Uwp.Samples
         {
             AppShell.Current.Shell.ShowRightPane(new YouTubeSettings() { DataContext = this });
         }
-
-        private void InitializeDataProvider()
-        {
-            youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
-        }
+        
 
         private async void Request()
         {
@@ -183,18 +181,16 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-
-                InitializeDataProvider();
+               
                 var config = new YouTubeDataConfig
                 {
                     Query = YouTubeQueryParam,
                     QueryType = YouTubeQueryTypeSelectedItem
                 };
 
-                //TODO:implement rawdata
-                //var rawParser = new RawParser();
-                //var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                // DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                var rawParser = new RawParser();
+                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -233,11 +229,8 @@ namespace AppStudio.Uwp.Samples
                     Query = YouTubeQueryParam,
                     QueryType = YouTubeQueryTypeSelectedItem
                 };
-
-                //TODO: Implement rawdata
-                //var rawParser = new RawParser();
-                //var rawData = await youTubeDataProvider.LoadMoreDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+            
+                DataProviderRawData = string.Empty;
 
                 var items = await youTubeDataProvider.LoadMoreDataAsync();
 
