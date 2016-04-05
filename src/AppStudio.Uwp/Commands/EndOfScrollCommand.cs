@@ -7,7 +7,6 @@
 
 namespace AppStudio.Uwp.Commands
 {
-    using System;
     using System.Windows.Input;
 
     using Windows.UI.Xaml;
@@ -83,23 +82,26 @@ namespace AppStudio.Uwp.Commands
         private static void ElementLoaded(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = sender as FrameworkElement;
-            element.Loaded -= ElementLoaded;            
+            element.Loaded -= ElementLoaded;
             ScrollViewer scrollViewer = element.FindChildOfType<ScrollViewer>();
             if (scrollViewer != null)
             {
                 var listener = new BindingListenerService();
                 listener.Changed += delegate
                 {
-                    bool isAtBottom = scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight;
-
-                    if (isAtBottom)
+                    if (scrollViewer.ScrollableHeight > 0)
                     {
-                        var command = GetCommand(element);
-                        if (command != null)
+                        bool isAtBottom = scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight;
+
+                        if (isAtBottom)
                         {
-                            command.Execute(null);
+                            var command = GetCommand(element);
+                            if (command != null)
+                            {
+                                command.Execute(null);
+                            }
                         }
-                    }
+                    }                    
                 };
                 Binding binding = new Binding() { Source = scrollViewer, Path = new PropertyPath("VerticalOffset") };
                 listener.Attach(scrollViewer, binding);
