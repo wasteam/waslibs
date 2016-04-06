@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace AppStudio.DataProviders.Twitter
 {
-    public class TwitterSearchParser : IParser<TwitterSchema>, IPaginationParser<TwitterSchema>
+    public class TwitterSearchParser : IParser<TwitterSchema>
     {
         public IEnumerable<TwitterSchema> Parse(string data)
         {
@@ -20,23 +20,7 @@ namespace AppStudio.DataProviders.Twitter
             var result = JsonConvert.DeserializeObject<TwitterSearchResult>(data);
 
             return result.statuses.Select(r => r.Parse()).ToList();
-        }
-
-        IParserResponse<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
-        {
-            TwitterResultCollection result = new TwitterResultCollection();
-            if (string.IsNullOrEmpty(data))
-            {
-                return result;
-            }
-
-            var jsonResult = JsonConvert.DeserializeObject<TwitterSearchResult>(data);
-            if (jsonResult.statuses.Any())
-            {
-                result = new TwitterResultCollection(jsonResult.statuses.Select(r => r.Parse()).ToList());
-            }
-            return result;
-        }
+        }        
     }
 
     internal static class TwitterParser
@@ -86,7 +70,7 @@ namespace AppStudio.DataProviders.Twitter
         }
     }
 
-    public class TwitterTimelineParser : IParser<TwitterSchema>, IPaginationParser<TwitterSchema>
+    public class TwitterTimelineParser : IParser<TwitterSchema>
     {
         public IEnumerable<TwitterSchema> Parse(string data)
         {
@@ -98,65 +82,9 @@ namespace AppStudio.DataProviders.Twitter
             var result = JsonConvert.DeserializeObject<TwitterTimelineItem[]>(data);
 
             return result.Select(r => r.Parse()).ToList();
-        }
-
-        IParserResponse<TwitterSchema> IPaginationParser<TwitterSchema>.Parse(string data)
-        {
-            TwitterResultCollection result = new TwitterResultCollection();
-            if (string.IsNullOrEmpty(data))
-            {
-                return result;
-            }
-
-            var jsonResult = JsonConvert.DeserializeObject<TwitterTimelineItem[]>(data);
-            if (jsonResult.Any())
-            {
-                result = new TwitterResultCollection(jsonResult.Select(r => r.Parse()).ToList());
-            }
-            return result;
-        }
-
-
+        }        
     }
-
-
-    public class TwitterResultCollection : Collection<TwitterSchema>, IParserResponse<TwitterSchema>
-    {
-        public TwitterResultCollection()
-        {
-
-        }
-        public TwitterResultCollection(IEnumerable<TwitterSchema> data)
-        {
-            if (data != null)
-            {
-                foreach (var item in data)
-                {
-                    Items.Add(item);
-                }
-
-                ContinuationToken = GetMaxId(Items.LastOrDefault()._id);
-            }
-        }
-        public string ContinuationToken { get; set; }
-
-        private static string GetMaxId(string id_str)
-        {
-            long id;
-            if (long.TryParse(id_str, out id))
-            {
-                var result = id - 1;
-                return result.ToString();
-            }
-            return string.Empty;
-        }
-
-        public IEnumerable<TwitterSchema> GetItems()
-        {
-            return Items;
-        }
-    }
-
+    
     public class TwitterTimelineItem
     {
         [JsonProperty("created_at")]

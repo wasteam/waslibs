@@ -7,10 +7,4 @@ namespace AppStudio.DataProviders
     {
         IEnumerable<TSchema> Parse(string data);
     }
-
-    public interface IPaginationParser<TSchema>
-        where TSchema : SchemaBase
-    {
-        IParserResponse<TSchema> Parse(string data);
-    }
 }

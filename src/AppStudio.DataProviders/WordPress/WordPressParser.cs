@@ -6,7 +6,7 @@ using System;
 
 namespace AppStudio.DataProviders.WordPress
 {
-    public class WordPressParser : IParser<WordPressSchema>, IPaginationParser<WordPressSchema>
+    public class WordPressParser : IParser<WordPressSchema>
     {
         public IEnumerable<WordPressSchema> Parse(string data)
         {
@@ -29,38 +29,6 @@ namespace AppStudio.DataProviders.WordPress
                         PublishDate = r.date,
                         FeedUrl = r.url
                     });
-        }
-
-        IParserResponse<WordPressSchema> IPaginationParser<WordPressSchema>.Parse(string data)
-        {
-            var result = new ParserResponseCollection<WordPressSchema>();
-            if (string.IsNullOrEmpty(data))
-            {
-                return result;
-            }
-
-            var wordPressItems = JsonConvert.DeserializeObject<WordPressResponse>(data);
-
-            var items = (from r in wordPressItems.posts
-                         select new WordPressSchema()
-                         {
-                             _id = r.id,
-                             Title = r.title.DecodeHtml(),
-                             Summary = r.excerpt.DecodeHtml(),
-                             Content = r.content,
-                             Author = r.author.name.DecodeHtml(),
-                             ImageUrl = r.featured_image,
-                             PublishDate = r.date,
-                             FeedUrl = r.url
-                         });
-
-            foreach (var item in items)
-            {
-                result.Add(item);               
-            }
-
-            result.ContinuationToken = wordPressItems?.meta?.next_page;
-            return result;
         }
     }
 }

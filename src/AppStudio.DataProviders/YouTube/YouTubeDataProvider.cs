@@ -29,62 +29,62 @@ namespace AppStudio.DataProviders.YouTube
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(YouTubeDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(YouTubeDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             IEnumerable<TSchema> result;
 
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Channels:
-                    result = await LoadChannelAsync(config.Query, maxRecords, parser);
+                    result = await LoadChannelAsync(config.Query, pageSize, parser);
                     break;
                 case YouTubeQueryType.Videos:
-                    result = await SearchAsync(config.Query, maxRecords, parser);
+                    result = await SearchAsync(config.Query, pageSize, parser);
                     break;
                 case YouTubeQueryType.Playlist:
                 default:
-                    result = await LoadPlaylistAsync(config.Query, maxRecords, parser);
+                    result = await LoadPlaylistAsync(config.Query, pageSize, parser);
                     break;
             }
 
             return result;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(YouTubeDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(YouTubeDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             IEnumerable<TSchema> result;
 
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Channels:
-                    result = await LoadMoreDataPlaylistAsync(_listId, maxRecords, parser);
+                    result = await LoadMoreDataPlaylistAsync(_listId, pageSize, parser);
                     break;
                 case YouTubeQueryType.Videos:
-                    result = await LoadMoreDataSearchAsync(config.Query, maxRecords, parser);
+                    result = await LoadMoreDataSearchAsync(config.Query, pageSize, parser);
                     break;
                 case YouTubeQueryType.Playlist:
                 default:
-                    result = await LoadMoreDataPlaylistAsync(config.Query, maxRecords, parser);
+                    result = await LoadMoreDataPlaylistAsync(config.Query, pageSize, parser);
                     break;
             }
 
             return result;
         }
 
-        public async Task<IEnumerable<YouTubeSchema>> LoadChannelAsync(string channel, int maxRecords)
-        {           
-            return await LoadChannelAsync(channel, maxRecords, new YouTubePlaylistParser());
+        public async Task<IEnumerable<YouTubeSchema>> LoadChannelAsync(string channel, int pageSize)
+        {
+            return await LoadChannelAsync(channel, pageSize, new YouTubePlaylistParser());
         }
 
-        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> LoadChannelAsync<TSchema>(string channel, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            _listId = await GetUploadVideosListId(channel, maxRecords);
+            _listId = await GetUploadVideosListId(channel, pageSize);
             if (!string.IsNullOrEmpty(_listId))
             {
-                return await LoadPlaylistAsync(_listId, maxRecords, parser);
+                return await LoadPlaylistAsync(_listId, pageSize, parser);
             }
             return new TSchema[0];
-        }      
+        }
 
         protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
         {
@@ -115,51 +115,51 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
-        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = GetSearchUrl(query, maxRecords)
+                RequestedUri = new Uri(GetSearchUrl(query, pageSize), UriKind.Absolute)
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         }
 
-        private async Task<IEnumerable<TSchema>> LoadMoreDataSearchAsync<TSchema>(string query, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> LoadMoreDataSearchAsync<TSchema>(string query, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var requestUri = GetSearchUrl(query, maxRecords);
-            var continuacionUrl = GetContinuationUrl(requestUri.AbsoluteUri);
+            var requestUrl = GetSearchUrl(query, pageSize);
+            var continuacionUrl = GetContinuationUrl(requestUrl);
             var settings = new HttpRequestSettings
             {
                 RequestedUri = new Uri(continuacionUrl)
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         }
 
-        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> LoadPlaylistAsync<TSchema>(string playlistId, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             HttpRequestSettings settings = new HttpRequestSettings
             {
-                RequestedUri = GetPlaylistUrl(playlistId, maxRecords)
+                RequestedUri = new Uri(GetPlaylistUrl(playlistId, pageSize), UriKind.Absolute)
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         }
 
-        private async Task<IEnumerable<TSchema>> LoadMoreDataPlaylistAsync<TSchema>(string playlistId, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> LoadMoreDataPlaylistAsync<TSchema>(string playlistId, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var requestUri = GetPlaylistUrl(playlistId, maxRecords);
-            var continuacionUrl = GetContinuationUrl(requestUri.AbsoluteUri);
+            var requestUrl = GetPlaylistUrl(playlistId, pageSize);
+            var continuacionUrl = GetContinuationUrl(requestUrl);
             HttpRequestSettings settings = new HttpRequestSettings
             {
                 RequestedUri = new Uri(continuacionUrl)
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         }
 
-        private async Task<IEnumerable<TSchema>> GetDataInternal<TSchema>(IParser<TSchema> parser, HttpRequestSettings settings) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(IParser<TSchema> parser, HttpRequestSettings settings) where TSchema : SchemaBase
         {
             var requestResult = await HttpRequest.DownloadAsync(settings);
             if (requestResult.Success)
@@ -176,11 +176,11 @@ namespace AppStudio.DataProviders.YouTube
             throw new RequestFailedException(requestResult.StatusCode, requestResult.Result);
         }
 
-        private async Task<string> GetUploadVideosListId(string channel, int maxRecords)
+        private async Task<string> GetUploadVideosListId(string channel, int pageSize)
         {
             HttpRequestSettings settings = new HttpRequestSettings
             {
-                RequestedUri = GetChannelUrl(channel, maxRecords)
+                RequestedUri = new Uri(GetChannelUrl(channel, pageSize), UriKind.Absolute)
             };
 
             var requestResult = await HttpRequest.DownloadAsync(settings);
@@ -205,22 +205,22 @@ namespace AppStudio.DataProviders.YouTube
             throw new RequestFailedException(requestResult.StatusCode, requestResult.Result);
         }
 
-        private Uri GetChannelUrl(string channel, int maxRecords)
+        private string GetChannelUrl(string channel, int pageSize)
         {
-            var url = $"{BaseUrl}/channels?forUsername={channel}&part=contentDetails&maxResults={maxRecords}&key={_tokens.ApiKey}";            
-            return new Uri(url, UriKind.Absolute);
+            var url = $"{BaseUrl}/channels?forUsername={channel}&part=contentDetails&maxResults={pageSize}&key={_tokens.ApiKey}";
+            return url;
         }
 
-        private Uri GetPlaylistUrl(string playlistId, int maxRecords)
+        private string GetPlaylistUrl(string playlistId, int pageSize)
         {
-            var url = $"{BaseUrl}/playlistItems?playlistId={playlistId}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}";         
-            return new Uri(url, UriKind.Absolute);
+            var url = $"{BaseUrl}/playlistItems?playlistId={playlistId}&part=snippet&maxResults={pageSize}&key={_tokens.ApiKey}";
+            return url;
         }
 
-        private Uri GetSearchUrl(string query, int maxRecords)
+        private string GetSearchUrl(string query, int pageSize)
         {
-            var url = $"{BaseUrl}/search?q={query}&part=snippet&maxResults={maxRecords}&key={_tokens.ApiKey}&type=video";          
-            return new Uri(url, UriKind.Absolute);
+            var url = $"{BaseUrl}/search?q={query}&part=snippet&maxResults={pageSize}&key={_tokens.ApiKey}&type=video";
+            return url;
         }
 
         private string GetContinuationUrl(string url)

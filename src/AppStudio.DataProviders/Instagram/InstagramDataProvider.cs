@@ -7,7 +7,7 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.Instagram
 {
-    public class InstagramDataProvider : DataProviderBaseOld<InstagramDataConfig, InstagramSchema>
+    public class InstagramDataProvider : DataProviderBase<InstagramDataConfig, InstagramSchema>
     {
         private const string BaseUrl = "https://api.instagram.com/v1";
 
@@ -16,6 +16,14 @@ namespace AppStudio.DataProviders.Instagram
         public InstagramDataProvider(InstagramOAuthTokens tokens)
         {
             _tokens = tokens;
+        }
+
+        protected override bool HasMoreItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int maxRecords, IParser<TSchema> parser)
@@ -42,6 +50,11 @@ namespace AppStudio.DataProviders.Instagram
         protected override IParser<InstagramSchema> GetDefaultParserInternal(InstagramDataConfig config)
         {
             return new InstagramParser();
+        }
+
+        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(InstagramDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void ValidateConfig(InstagramDataConfig config)

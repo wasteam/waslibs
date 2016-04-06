@@ -20,8 +20,8 @@ namespace AppStudio.DataProviders.Test.Parsers
             var data = Parser.Parse(plainContent);
 
             Assert.IsNotNull(data);
-            Assert.AreEqual(20, data.GetItems().Count());
-            var item = data.GetItems().First();
+            Assert.AreEqual(20, data.Count());
+            var item = data.First();
             Assert.AreEqual("tag:flickr.com,2005:/photo/19458239284", item._id);
             Assert.AreEqual("http://farm4.staticflickr.com/3793/19458239284_bdf3d72136_b.jpg", item.ImageUrl);
             Assert.AreEqual(DateTime.Parse("2015-07-28T09:35:10Z"), item.Published);
@@ -37,8 +37,8 @@ namespace AppStudio.DataProviders.Test.Parsers
             var data = Parser.Parse(plainContent);
 
             Assert.IsNotNull(data);
-            Assert.AreEqual(20, data.GetItems().Count());
-            var item = data.GetItems().First();
+            Assert.AreEqual(20, data.Count());
+            var item = data.First();
             Assert.AreEqual("tag:flickr.com,2005:/photo/19458112614", item._id);
             Assert.AreEqual("http://farm1.staticflickr.com/520/19458112614_619869f6c4_b.jpg", item.ImageUrl);
             Assert.AreEqual(DateTime.Parse("2015-07-28T09:28:31Z"), item.Published);

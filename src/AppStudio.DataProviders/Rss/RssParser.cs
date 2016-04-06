@@ -13,7 +13,7 @@ using AppStudio.DataProviders.Core;
 namespace AppStudio.DataProviders.Rss
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rss")]
-    public class RssParser : IParser<RssSchema>, IPaginationParser<RssSchema>
+    public class RssParser : IParser<RssSchema>
     {
         public IEnumerable<RssSchema> Parse(string data)
         {
@@ -36,36 +36,6 @@ namespace AppStudio.DataProviders.Rss
             }
 
             return rssParser.LoadFeed(doc);
-        }
-
-        IParserResponse<RssSchema> IPaginationParser<RssSchema>.Parse(string data)
-        {
-            var result = new ParserResponseCollection<RssSchema>();
-            if (string.IsNullOrEmpty(data))
-            {
-                return null;
-            }
-
-            var doc = XDocument.Parse(data);
-            var type = BaseRssParser.GetFeedType(doc);
-
-            BaseRssParser rssParser;
-            if (type == RssType.Rss)
-            {
-                rssParser = new Rss2Parser();
-            }
-            else
-            {
-                rssParser = new AtomParser();
-            }
-
-            var feeds = rssParser.LoadFeed(doc);
-
-            foreach (var item in feeds)
-            {
-                result.Add(item);
-            }
-            return result;
         }
     }
 

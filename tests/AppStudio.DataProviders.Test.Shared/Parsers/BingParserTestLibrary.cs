@@ -20,8 +20,8 @@ namespace AppStudio.DataProviders.Test.Parsers
             var data = Parser.Parse(plainContent);
 
             Assert.IsNotNull(data);
-            Assert.AreEqual(10, data.GetItems().Count());
-            var item = data.GetItems().First();
+            Assert.AreEqual(10, data.Count());
+            var item = data.First();
             Assert.AreEqual("http://appstudio.windows.com/", item._id);
             Assert.AreEqual("http://appstudio.windows.com/", item.Link);
             Assert.AreEqual(DateTime.Parse("Sun, 26 Jul 2015 17:25:00 GMT"), item.Published);
@@ -37,8 +37,8 @@ namespace AppStudio.DataProviders.Test.Parsers
             var data = Parser.Parse(plainContent);
 
             Assert.IsNotNull(data);
-            Assert.AreEqual(10, data.GetItems().Count());
-            var item = data.GetItems().First();
+            Assert.AreEqual(10, data.Count());
+            var item = data.First();
             Assert.AreEqual("https://www.mixcloud.com/tag/dj-nano/", item._id);
             Assert.AreEqual("https://www.mixcloud.com/tag/dj-nano/", item.Link);
             Assert.AreEqual(DateTime.Parse("Sun, 21 Jun 2015 15:43:00 GMT"), item.Published);

@@ -55,5 +55,19 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<RssSchema>(new RssDataConfig(), 20, null));
         }
+
+        [TestMethod]
+        public async Task TestMaxRecords_Min()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx")
+            };
+            var maxRecords = 1;
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, rssItems.Count());
+        }      
     }
 }

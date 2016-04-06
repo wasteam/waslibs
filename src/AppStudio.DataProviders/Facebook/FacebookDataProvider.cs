@@ -28,24 +28,24 @@ namespace AppStudio.DataProviders.Facebook
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FacebookDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = GetUri(config, maxRecords)
+                RequestedUri = GetUri(config, pageSize)
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(FacebookDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(FacebookDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
             {
                 RequestedUri = GetContinuationUri()
             };
 
-            return await GetDataInternal(parser, settings);
+            return await GetDataFromProvider(parser, settings);
         } 
 
         protected override IParser<FacebookSchema> GetDefaultParserInternal(FacebookDataConfig config)
@@ -71,11 +71,11 @@ namespace AppStudio.DataProviders.Facebook
             {
                 throw new OAuthKeysNotPresentException("AppSecret");
             }
-        }       
+        }
 
-        private Uri GetUri(FacebookDataConfig config, int maxRecords)
+        private Uri GetUri(FacebookDataConfig config, int pageSize)
         {
-            return new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={maxRecords}", UriKind.Absolute);
+            return new Uri($"{BaseUrl}/{config.UserId}/posts?&access_token={_tokens.AppId}|{ _tokens.AppSecret}&fields=id,message,from,created_time,link,full_picture&limit={pageSize}", UriKind.Absolute);
         }
 
         private Uri GetContinuationUri()
@@ -89,7 +89,7 @@ namespace AppStudio.DataProviders.Facebook
             return facebookResponse?.paging?.next;
         }
 
-        private async Task<IEnumerable<TSchema>> GetDataInternal<TSchema>(IParser<TSchema> parser, HttpRequestSettings settings) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(IParser<TSchema> parser, HttpRequestSettings settings) where TSchema : SchemaBase
         {
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
 

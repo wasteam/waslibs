@@ -9,8 +9,16 @@ using Windows.Storage.Streams;
 
 namespace AppStudio.DataProviders.Html
 {
-    public class HtmlDataProvider : DataProviderBaseOld<LocalStorageDataConfig, HtmlSchema>
+    public class HtmlDataProvider : DataProviderBase<LocalStorageDataConfig, HtmlSchema>
     {
+        protected override bool HasMoreItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
@@ -27,6 +35,11 @@ namespace AppStudio.DataProviders.Html
         protected override IParser<HtmlSchema> GetDefaultParserInternal(LocalStorageDataConfig config)
         {
             return new HtmlParser();
+        }
+
+        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void ValidateConfig(LocalStorageDataConfig config)

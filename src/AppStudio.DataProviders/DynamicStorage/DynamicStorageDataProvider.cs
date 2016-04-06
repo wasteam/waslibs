@@ -6,8 +6,16 @@ using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.DynamicStorage
 {
-    public class DynamicStorageDataProvider<T> : DataProviderBaseOld<DynamicStorageDataConfig, T> where T : SchemaBase
+    public class DynamicStorageDataProvider<T> : DataProviderBase<DynamicStorageDataConfig, T> where T : SchemaBase
     {
+        protected override bool HasMoreItems
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(DynamicStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
@@ -33,6 +41,11 @@ namespace AppStudio.DataProviders.DynamicStorage
         protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
         {
             return new JsonParser<T>();
+        }
+
+        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(DynamicStorageDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void ValidateConfig(DynamicStorageDataConfig config)
