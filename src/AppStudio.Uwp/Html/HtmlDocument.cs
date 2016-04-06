@@ -37,6 +37,7 @@ namespace AppStudio.Uwp.Html
 
         private static void AddFragments(TagReader reader, HtmlFragment parentFragment)
         {
+            //TODO: REVIEW COMMENTS
             while (reader.Read())
             {
                 parentFragment.TryToAddText(HtmlText.Create(reader.Document, reader.PreviousTag, reader.CurrentTag));
@@ -58,6 +59,7 @@ namespace AppStudio.Uwp.Html
 
         private static string Clean(string doc)
         {
+            //TODO: VERIFY NOT NULL OR EMPTY
             //TODO: REMOVE ROOT, HEAD & BODY
             //TODO: REMOVE SPACES WHEN IDENTED
             doc = Regex.Replace(doc, @"^\r\n|\r\n\s+|\n|\n\s+|\r$", string.Empty, RegexOptions.Multiline);

@@ -112,7 +112,23 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
+    <Compile Include="Controls\HtmlBlock\Containers\DocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\ParagraphDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\SpanDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HtmlWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ListItemWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ImageWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ContainerWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\CodeWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\SpanWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TextWriter.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
