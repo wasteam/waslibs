@@ -151,6 +151,7 @@
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\InfiniteScroll\Docs\InfiniteScrollXaml.xml" />
     <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
@@ -222,6 +223,12 @@
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\InfiniteScroll\Docs\InfiniteScrollHelp.xaml.cs">
+      <DependentUpon>InfiniteScrollHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InfiniteScroll\InfiniteScrollPage.xaml.cs">
+      <DependentUpon>InfiniteScrollPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
       <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
     </Compile>
@@ -538,6 +545,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\InfiniteScroll\Docs\InfiniteScrollHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\InfiniteScroll\InfiniteScrollPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
