@@ -55,9 +55,24 @@ namespace AppStudio.DataProviders.Twitter
             return items;
         }
 
-        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(TwitterDataConfig config, int pageSize, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(TwitterDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            IEnumerable<TSchema> items;
+            switch (config.QueryType)
+            {
+                case TwitterQueryType.User:
+                    items = await GetMoreUserTimeLineAsync(config.Query, pageSize, parser);
+                    break;
+                case TwitterQueryType.Search:
+                    items = await SearchMoreAsync(config.Query, pageSize, parser);
+                    break;
+                case TwitterQueryType.Home:
+                default:
+                    items = await GetMoreHomeTimeLineAsync(pageSize, parser);
+                    break;
+            }
+
+            return items;
         }
 
         public async Task<IEnumerable<TwitterSchema>> GetUserTimeLineAsync(string screenName, int pageSize)
@@ -67,7 +82,20 @@ namespace AppStudio.DataProviders.Twitter
 
         public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var url = $"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={pageSize}&include_rts=1";
+            var url = GetUserTimeLineUrl(screenName, pageSize);         
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> GetMoreUserTimeLineAsync(string screenName, int pageSize)
+        {
+            return await GetMoreUserTimeLineAsync(screenName, pageSize, new TwitterTimelineParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetMoreUserTimeLineAsync<TSchema>(string screenName, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetUserTimeLineUrl(screenName, pageSize);
             if (HasMoreItems)
             {
                 url += $"&max_id={ContinuationToken}";
@@ -217,7 +245,7 @@ namespace AppStudio.DataProviders.Twitter
 
         private string GetContinuationToken<TSchema>(IEnumerable<TSchema> items) where TSchema : SchemaBase
         {
-            var id_str = items.LastOrDefault()._id;
+            var id_str = items?.LastOrDefault()?._id;
             long id;
             if (long.TryParse(id_str, out id))
             {
