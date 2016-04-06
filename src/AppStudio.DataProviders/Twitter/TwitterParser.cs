@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using AppStudio.DataProviders.Core;
+
 using Newtonsoft.Json;
-using System.Collections.ObjectModel;
+
+using AppStudio.DataProviders.Core;
 
 namespace AppStudio.DataProviders.Twitter
 {
