@@ -14,7 +14,7 @@ namespace AppStudio.DataProviders.Bing
     {
         private const string BaseUrl = "http://www.bing.com";
 
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

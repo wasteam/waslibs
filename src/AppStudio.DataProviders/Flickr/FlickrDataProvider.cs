@@ -12,7 +12,7 @@ namespace AppStudio.DataProviders.Flickr
 {
     public class FlickrDataProvider :DataProviderBase<FlickrDataConfig,  FlickrSchema>
     {
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

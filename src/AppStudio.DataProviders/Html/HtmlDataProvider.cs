@@ -11,11 +11,11 @@ namespace AppStudio.DataProviders.Html
 {
     public class HtmlDataProvider : DataProviderBase<LocalStorageDataConfig, HtmlSchema>
     {
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 

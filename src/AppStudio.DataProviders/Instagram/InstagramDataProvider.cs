@@ -18,11 +18,11 @@ namespace AppStudio.DataProviders.Instagram
             _tokens = tokens;
         }
 
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 

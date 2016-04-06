@@ -14,7 +14,7 @@ namespace AppStudio.DataProviders.WordPress
         private string _continuationToken = "1";
 
         bool _hasMoreItems;
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

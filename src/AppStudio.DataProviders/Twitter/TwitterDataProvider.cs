@@ -22,7 +22,7 @@ namespace AppStudio.DataProviders.Twitter
         private TwitterOAuthTokens _tokens;
         private const string BaseUrl = "https://api.twitter.com/1.1";
 
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

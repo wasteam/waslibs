@@ -11,7 +11,7 @@ namespace AppStudio.DataProviders.Rss
 
     public class RssDataProvider : DataProviderBase<RssDataConfig, RssSchema>
     {
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

@@ -11,11 +11,11 @@ namespace AppStudio.DataProviders.LocalStorage
 {
     public class LocalStorageDataProvider<T> : DataProviderBase<LocalStorageDataConfig, T> where T : SchemaBase
     {
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 

@@ -16,7 +16,7 @@ namespace AppStudio.DataProviders.YouTube
         private YouTubeOAuthTokens _tokens;
         private string _listId;
 
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

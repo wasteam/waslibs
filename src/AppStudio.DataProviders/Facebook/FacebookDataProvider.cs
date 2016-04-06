@@ -15,7 +15,7 @@ namespace AppStudio.DataProviders.Facebook
         private const string BaseUrl = @"https://graph.facebook.com/v2.5";
         private FacebookOAuthTokens _tokens;
 
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {

@@ -8,11 +8,11 @@ namespace AppStudio.DataProviders.DynamicStorage
 {
     public class DynamicStorageDataProvider<T> : DataProviderBase<DynamicStorageDataConfig, T> where T : SchemaBase
     {
-        protected override bool HasMoreItems
+        public override bool HasMoreItems
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 
