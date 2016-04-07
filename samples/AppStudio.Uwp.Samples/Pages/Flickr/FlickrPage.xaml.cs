@@ -17,11 +17,13 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultFlickrQueryParam = "Abstract";
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
         private const int DefaultMaxRecordsParam = 12;
+        FlickrDataProvider flickrDataProvider;
 
         public FlickrPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
+            flickrDataProvider = new FlickrDataProvider();
         }
 
         public override string Caption
@@ -121,6 +123,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -158,7 +171,7 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var flickrDataProvider = new FlickrDataProvider();
+                flickrDataProvider = new FlickrDataProvider();
                 var config = new FlickrDataConfig
                 {
                     Query = FlickrQueryParam,
@@ -170,6 +183,48 @@ namespace AppStudio.Uwp.Samples
                 //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+
+                var config = new FlickrDataConfig
+                {
+                    Query = FlickrQueryParam,
+                    QueryType = FlickrQueryTypeSelectedItem
+                };
+
+                //var rawParser = new RawParser();
+                //var rawData = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+
+                var items = await flickrDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 

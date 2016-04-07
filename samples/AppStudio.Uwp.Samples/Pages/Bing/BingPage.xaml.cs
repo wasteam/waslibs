@@ -17,11 +17,16 @@ namespace AppStudio.Uwp.Samples
         private const BingCountry DefaultBingCountry = BingCountry.UnitedStates;
         private const int DefaultMaxRecordsParam = 20;
         private const string DefaultBingQueryParam = "Windows App Studio";
+        BingDataProvider bingDataProvider;
+        BingDataProvider rawDataProvider;
 
         public BingPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
+
+            bingDataProvider = new BingDataProvider();
+            rawDataProvider = new BingDataProvider();
         }
 
         public override string Caption
@@ -119,6 +124,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -155,13 +171,9 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                var bingDataProvider = new BingDataProvider();
+
                 var config = new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem };
-
-                //var rawParser = new RawParser();
-                //var rawData = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
-
+                bingDataProvider = new BingDataProvider();
                 var items = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
@@ -170,6 +182,45 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+
+                rawDataProvider = new BingDataProvider();
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();
+
+                var items = await bingDataProvider.LoadMoreDataAsync();
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {

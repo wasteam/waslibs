@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AppStudio.DataProviders.Bing;
 using AppStudio.DataProviders.Exceptions;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 
 namespace AppStudio.DataProviders.Test.DataProviders
 {
@@ -87,6 +88,39 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<BingSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.IsTrue(data.Count() > 20);
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationBing()
+        {
+            var config = new BingDataConfig
+            {
+                Query = "Windows App Studio",
+                Country = BingCountry.UnitedStates
+            };
+
+            var dataProvider = new BingDataProvider();
+            await dataProvider.LoadDataAsync(config, 20);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<BingSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationBing()
+        {
+            var config = new BingDataConfig
+            {
+                Query = "Windows App Studio",
+                Country = BingCountry.UnitedStates
+            };
+
+            var dataProvider = new BingDataProvider();          
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
         }
     }
 }

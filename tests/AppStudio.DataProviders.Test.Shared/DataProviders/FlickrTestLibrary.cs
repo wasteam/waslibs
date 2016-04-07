@@ -137,5 +137,73 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.AreEqual(maxRecords, data.Count());
         }
+
+        [TestMethod]
+        public async Task LoadPaginationFlickrTags()
+        {
+
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            await dataProvider.LoadDataAsync(config, 2);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<FlickrSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationFlickrTags()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationFlickrUser()
+        {
+
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            await dataProvider.LoadDataAsync(config, 2);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<FlickrSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationFlickrUser()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
     }
 }
