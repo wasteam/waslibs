@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.Foundation.Metadata;
@@ -19,11 +20,11 @@ namespace AppStudio.Uwp.Samples
 
         public AppShell()
         {
+            Current = this;
             this.InitializeComponent();
             this.SetupNavigation();
             this.DataContext = this;
-            Current = this;
-            
+            this.SizeChanged += OnSizeChanged;
         }
 
         static public AppShell Current { get; private set; }
@@ -109,5 +110,11 @@ namespace AppStudio.Uwp.Samples
             }
         }
         #endregion
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.shell.DisplayMode = e.NewSize.Width > 640 ? SplitViewDisplayMode.CompactOverlay : SplitViewDisplayMode.Overlay;
+            this.Shell.CommandBarVerticalAlignment = e.NewSize.Width > 640 ? VerticalAlignment.Top : VerticalAlignment.Bottom;
+        }
     }
 }

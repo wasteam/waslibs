@@ -14,6 +14,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
             this.SearchCommand = new RelayCommand<string>((searchTerm) => { this.SearchText = searchTerm; }, (searchTerm) => { return (!string.IsNullOrEmpty(searchTerm) && searchTerm.Length >= 3); });
         }
 

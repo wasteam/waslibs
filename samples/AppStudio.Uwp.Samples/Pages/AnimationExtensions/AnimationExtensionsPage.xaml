@@ -7,7 +7,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
+    <controls:ShellControl.CommandBar>
+        <controls:CommandBarEx x:Name="commandBar" PrimaryCommandItems="{Binding PrimaryCommands}" />
+    </controls:ShellControl.CommandBar>
+
+    <controls:ShellControl.PaneHeader>
+        <Grid Name="paneHeader" Background="{Binding CommandBarBackground}" />
+    </controls:ShellControl.PaneHeader>
+
     <Grid Background="{StaticResource AppBackground}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

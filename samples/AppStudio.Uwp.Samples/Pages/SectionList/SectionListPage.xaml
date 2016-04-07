@@ -30,6 +30,14 @@
         </DataTemplate>
     </Page.Resources>
 
+    <controls:ShellControl.CommandBar>
+        <controls:CommandBarEx x:Name="commandBar" PrimaryCommandItems="{Binding PrimaryCommands}" />
+    </controls:ShellControl.CommandBar>
+
+    <controls:ShellControl.PaneHeader>
+        <Grid Name="paneHeader" Background="{Binding CommandBarBackground}" />
+    </controls:ShellControl.PaneHeader>
+
     <Grid
         Background="{StaticResource AppBackground}">
         <controls:SectionList
