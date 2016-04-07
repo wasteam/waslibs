@@ -17,10 +17,13 @@ namespace AppStudio.Uwp.Samples
         private const int DefaultMaxRecordsParam = 10;
         private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
 
+        RssDataProvider rssDataProvider;
+
         public RssPage()
         {
             this.InitializeComponent();
             this.DataContext = this;
+            rssDataProvider = new RssDataProvider();
         }
 
         public override string Caption
@@ -107,6 +110,16 @@ namespace AppStudio.Uwp.Samples
                 });
             }
         }
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
 
         public ICommand RestoreConfigCommand
         {
@@ -144,14 +157,45 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                var rssDataProvider = new RssDataProvider();
+                rssDataProvider = new RssDataProvider();
                 var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
 
-                //var rawParser = new RawParser();
-                //var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                var rawParser = new RawParser();
+                var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();               
+
+                var items = await rssDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 

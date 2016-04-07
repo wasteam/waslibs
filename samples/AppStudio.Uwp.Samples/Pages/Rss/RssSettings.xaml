@@ -36,6 +36,10 @@
                         Content="Refresh"
                         Command="{Binding RefreshDataCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
+                      <Button
+                        Content="More Items (Test)"
+                        Command="{Binding MoreDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
                     <Button
                         Content="Restore Config"
                         Command="{Binding RestoreConfigCommand}"
