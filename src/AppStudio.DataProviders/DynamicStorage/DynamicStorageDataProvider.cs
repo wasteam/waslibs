@@ -45,7 +45,7 @@ namespace AppStudio.DataProviders.DynamicStorage
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(DynamicStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override void ValidateConfig(DynamicStorageDataConfig config)

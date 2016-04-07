@@ -46,6 +46,41 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
+        public async Task TestMaxRecordsLocalStaticCollection_Min()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+            var maxRecords = 1;
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.IsNotNull(data);
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsLocalDynamicCollection_Min()
+        {
+
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6db1e7d0-5216-4519-8978-d51f1452f9f2&appId=7c181582-15d0-42f7-b3eb-ab5d2e7d2c8a")
+            };
+
+            var maxRecords = 1;
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.IsNotNull(data);          
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+        [TestMethod]
         public async Task TestDynamicNullUrlConfig()
         {
             var config = new DynamicStorageDataConfig

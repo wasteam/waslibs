@@ -49,7 +49,7 @@ namespace AppStudio.DataProviders
         {
             if (_config == null || _parser == null)
             {
-                throw new InvalidOperationException("LoadMoreDataAsync can not be called. Call LoadDataAsync.");
+                throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
 
             if (HasMoreItems)

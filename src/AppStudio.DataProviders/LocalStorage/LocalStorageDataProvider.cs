@@ -6,6 +6,7 @@ using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using System.Linq;
 
 namespace AppStudio.DataProviders.LocalStorage
 {
@@ -28,7 +29,8 @@ namespace AppStudio.DataProviders.LocalStorage
 
             using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
             {
-                return parser.Parse(await r.ReadToEndAsync());
+                var items = parser.Parse(await r.ReadToEndAsync());
+                return items.Take(maxRecords).ToList();
             }
         }
 
@@ -39,7 +41,7 @@ namespace AppStudio.DataProviders.LocalStorage
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override void ValidateConfig(LocalStorageDataConfig config)

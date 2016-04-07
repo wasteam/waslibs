@@ -39,7 +39,7 @@ namespace AppStudio.DataProviders.Html
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override void ValidateConfig(LocalStorageDataConfig config)

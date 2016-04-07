@@ -5,6 +5,7 @@ using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
 using System.Xml.Linq;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AppStudio.DataProviders.Rss
 {
@@ -28,8 +29,9 @@ namespace AppStudio.DataProviders.Rss
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
-            {               
-                return parser.Parse(result.Result);
+            {         
+                var items = parser.Parse(result.Result); 
+                return items.Take(maxRecords).ToList();              
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
@@ -42,7 +44,7 @@ namespace AppStudio.DataProviders.Rss
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(RssDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override void ValidateConfig(RssDataConfig config)

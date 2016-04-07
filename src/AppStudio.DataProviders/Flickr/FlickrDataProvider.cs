@@ -7,6 +7,7 @@ using AppStudio.DataProviders.Exceptions;
 using AppStudio.DataProviders.Rss;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace AppStudio.DataProviders.Flickr
 {
@@ -30,7 +31,8 @@ namespace AppStudio.DataProviders.Flickr
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result);
+                var items = parser.Parse(result.Result);
+                return items.Take(maxRecords).ToList();
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);

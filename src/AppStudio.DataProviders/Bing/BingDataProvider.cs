@@ -47,7 +47,7 @@ namespace AppStudio.DataProviders.Bing
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(BingDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override void ValidateConfig(BingDataConfig config)
