@@ -69,6 +69,38 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.AreEqual(maxRecords, rssItems.Count());
         }
-       
+
+        [TestMethod]
+        public async Task LoadPaginationRss()
+        {
+
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx")
+            };
+
+            var dataProvider = new RssDataProvider();
+           await dataProvider.LoadDataAsync(config, 2);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<RssSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationRss()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx")
+            };
+
+            var dataProvider = new RssDataProvider();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
     }
 }
