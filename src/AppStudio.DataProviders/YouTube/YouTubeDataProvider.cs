@@ -57,7 +57,7 @@ namespace AppStudio.DataProviders.YouTube
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Channels:
-                    result = await LoadMoreDataPlaylistAsync(_listId, pageSize, parser);
+                    result = await LoadMoreChannelAsync(_listId, pageSize, parser);
                     break;
                 case YouTubeQueryType.Videos:
                     result = await LoadMoreDataSearchAsync(config.Query, pageSize, parser);
@@ -84,6 +84,20 @@ namespace AppStudio.DataProviders.YouTube
                 return await LoadPlaylistAsync(_listId, pageSize, parser);
             }
             return new TSchema[0];
+        }
+
+        public async Task<IEnumerable<YouTubeSchema>> LoadMoreChannelAsync(string channel, int pageSize)
+        {
+            return await LoadMoreChannelAsync(channel, pageSize, new YouTubePlaylistParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> LoadMoreChannelAsync<TSchema>(string channel, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            if (string.IsNullOrWhiteSpace(_listId))
+            {
+                throw new InvalidOperationException("LoadMoreChannelAsync can not be called. You must call the LoadChannelAsync method prior to calling this method");
+            }
+            return await LoadMoreDataPlaylistAsync(_listId, pageSize, parser);
         }
 
         protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)

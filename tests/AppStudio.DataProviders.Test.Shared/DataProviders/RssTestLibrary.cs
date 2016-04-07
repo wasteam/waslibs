@@ -68,6 +68,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.AreEqual(maxRecords, rssItems.Count());
-        }      
+        }
+       
     }
 }

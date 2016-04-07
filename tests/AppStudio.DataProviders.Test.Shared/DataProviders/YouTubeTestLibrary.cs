@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AppStudio.DataProviders.Exceptions;
 using AppStudio.DataProviders.YouTube;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 
 namespace AppStudio.DataProviders.Test.DataProviders
 {
@@ -144,7 +145,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
-            
+
             Assert.IsTrue(result.Count() > 20);
         }
 
@@ -159,7 +160,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
-            
+
             Assert.IsTrue(result.Count() > 20);
         }
 
@@ -221,6 +222,135 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestPaginationPlaylist()
+        {
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Playlist,
+                Query = @"PLB9EA94DACBEC74A9"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            await dataProvider.LoadDataAsync(config, 2);
+
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationPlaylist()
+        {
+
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Playlist,
+                Query = @"PLB9EA94DACBEC74A9"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task TestPaginationVideos()
+        {
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = @"windows app studio"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            await dataProvider.LoadDataAsync(config, 2);
+
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadMoreDataAsync();
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationVideos()
+        {
+
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = @"windows app studio"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task TestPaginationChannel()
+        {
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Channels,
+                Query = @"elrubiusOMG"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            await dataProvider.LoadDataAsync(config, 2);
+
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationChannel()
+        {
+
+            var config = new YouTubeDataConfig
+            {
+
+                QueryType = YouTubeQueryType.Channels,
+                Query = @"elrubiusOMG"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task TestLoadChannel()
+        {          
+            var channel = @"elrubiusOMG";
+            var page = 1;
+
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadChannelAsync(channel, page);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task TestPaginationLoadChannel()
+        {
+            var channel = @"elrubiusOMG";
+            var page = 1;
+
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            await dataProvider.LoadChannelAsync(channel, page);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadMoreChannelAsync(channel, page);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task TestInvalidOperationLoadChannel()
+        {
+            var channel = @"elrubiusOMG";
+            var pageSize = 1;
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreChannelAsync(channel, pageSize));
         }
 
     }

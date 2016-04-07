@@ -54,6 +54,11 @@ namespace AppStudio.DataProviders.WordPress
             return await GetCommentsFromProvider(site, postId, pageSize, parser);
         }
 
+        public async Task<IEnumerable<WordPressCommentSchema>> GetMoreComments(string site, string postId, int pageSize)
+        {
+            return await GetMoreComments(site, postId, pageSize, new WordPressCommentParser());
+        }
+
         public async Task<IEnumerable<TSchema>> GetMoreComments<TSchema>(string site, string postId, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             if (HasMoreComments)

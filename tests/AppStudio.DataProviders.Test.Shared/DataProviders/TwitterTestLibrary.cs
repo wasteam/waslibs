@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AppStudio.DataProviders.Exceptions;
 using AppStudio.DataProviders.Twitter;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 
 namespace AppStudio.DataProviders.Test.DataProviders
 {
@@ -144,6 +145,192 @@ namespace AppStudio.DataProviders.Test.DataProviders
             TwitterDataProvider dataProvider = new TwitterDataProvider(new TwitterOAuthTokens());
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<TwitterSchema>(new TwitterDataConfig(), 20, null));
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsHomeTimeLine_Min()
+        {
+            int maxRecords = 1;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Home
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsHomeTimeLine()
+        {
+            int maxRecords = 70;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Home
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+
+            Assert.IsTrue(result.Count() > 25);
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsUserTimeLine_Min()
+        {
+            int maxRecords = 1;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.User,
+                Query = "lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsUserTimeLine()
+        {
+            int maxRecords = 70;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.User,
+                Query = "lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+
+            Assert.IsTrue(result.Count() > 25);
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsSearch_Min()
+        {
+            int maxRecords = 1;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Search,
+                Query = "#lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
+
+            Assert.AreEqual(maxRecords, result.Count());
+        }
+
+        [TestMethod]
+        public async Task TestMaxRecordsSearchLine()
+        {
+            int maxRecords = 70;
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Search,
+                Query = "#lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);           
+
+            Assert.IsTrue(result.Count() > 25);
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationTwitterHomeTimeLine()
+        {
+
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Home
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationTwitterHomeTimeLine()
+        {
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Home
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys); 
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationTwitterUserTimeLine()
+        {
+
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.User,
+                Query = "lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationTwitterUserTimeLine()
+        {
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.User,
+                Query = "lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationTwitterSearch()
+        {
+
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Search,
+                Query = "#lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationTwitterSearch()
+        {
+            var config = new TwitterDataConfig
+            {
+                QueryType = TwitterQueryType.Search,
+                Query = "#lumia"
+            };
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
         }
     }
 }
