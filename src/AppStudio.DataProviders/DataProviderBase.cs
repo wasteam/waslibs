@@ -47,6 +47,11 @@ namespace AppStudio.DataProviders
 
         public async Task<IEnumerable<TSchema>> LoadMoreDataAsync<TSchema>() where TSchema : SchemaBase
         {
+            if (_config == null || _parser == null)
+            {
+                throw new InvalidOperationException("LoadMoreDataAsync can not be called. Call LoadDataAsync.");
+            }
+
             if (HasMoreItems)
             {
                 var parser = _parser as IParser<TSchema>;
