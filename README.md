@@ -147,13 +147,13 @@ The ActionsCommandBar control extends the system Windows.UI.Xaml.Controls.Comman
 *View code*  
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Actions
 
-#Animation Extensions <a name="animation-extensions"></a>
+###Animation Extensions <a name="animation-extensions"></a>
 The Animation Extensions are a set of extension Methods on the FrameworkElement control which allows to execute animations from C# code. The animations can be invoked asynchronously.
 
 *View code*
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Extensions
 
-##Converters <a name="converters"></a>
+###Converters <a name="converters"></a>
 Converters allow you to transform a certain value from a data type in other different value. Using Converters leads to have a cleaner XAML code. In the samples shown, the first converter is used to change the Visibility of an image based in the value a Toggle control. If the Toggle is True (Boolean value), the converter returns 'Visible' for the Visibility property of the image control. When the Toggle is False, it returns 'Collapsed' for the Visibility property.
 
 *View code*
