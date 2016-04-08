@@ -20,11 +20,12 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            //TODO: GET FROM STYLES
-            return new Span
-            {
-                Foreground = new SolidColorBrush(Colors.Lime)
-            };
+            return new Span();
+        }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyTextStyles(ctrl as Span, style.Span);
         }
     }
 }

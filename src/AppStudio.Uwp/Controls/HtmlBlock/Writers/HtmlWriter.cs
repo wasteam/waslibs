@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -14,24 +17,66 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public abstract DependencyObject GetControl(HtmlFragment fragment);
 
+        public virtual void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+
+        }
+
         public virtual bool Match(HtmlFragment fragment)
         {
             return fragment != null && !string.IsNullOrEmpty(fragment.Name) && TargetTags.Any(t => t.Equals(fragment.Name, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public static IEnumerable<HtmlWriter> GetWriters()
+        protected static void ApplyContainerStyles(Grid container, ContainerStyle style)
         {
-            yield return Singleton<ContainerWriter>.Instance;
-            yield return Singleton<SpanWriter>.Instance;
-            yield return Singleton<TextWriter>.Instance;
-            yield return Singleton<HeaderWriter>.Instance;
-            yield return Singleton<StrongWriter>.Instance;
-            yield return Singleton<ImageWriter>.Instance;
-            yield return Singleton<ListItemWriter>.Instance;
-            yield return Singleton<CodeWriter>.Instance;
-            yield return Singleton<BlockQuoteWriter>.Instance;
-            yield return Singleton<AnchorWriter>.Instance;
-            yield return Singleton<BrWriter>.Instance;
+            if (style != null)
+            {
+                if (!double.IsNaN(style.Margin.Top))
+                {
+                    container.Margin = style.Margin;
+                }
+                if (!double.IsNaN(style.Padding.Top))
+                {
+                    container.Padding = style.Padding;
+                }
+            }
+        }
+
+        protected static void ApplyParagraphStyles(Paragraph paragraph, ParagraphStyle style)
+        {
+            if (style != null)
+            {
+                if (!double.IsNaN(style.Margin.Top))
+                {
+                    paragraph.Margin = style.Margin;
+                }
+                ApplyTextStyles(paragraph, style);
+            }
+        }
+
+        protected static void ApplyTextStyles(TextElement textElement, TextStyle style)
+        {
+            if (style != null)
+            {
+                textElement.FontSize *= style.GetFontSizeRatio();
+
+                if (style.FontFamily != null)
+                {
+                    textElement.FontFamily = style.FontFamily;
+                }
+
+                textElement.FontStyle = style.FontStyle;
+
+                if (style.FontWeight.Weight > 0)
+                {
+                    textElement.FontWeight = style.FontWeight;
+                }
+
+                if (style.Foreground != null)
+                {
+                    textElement.Foreground = style.Foreground;
+                }
+            }
         }
     }
 }

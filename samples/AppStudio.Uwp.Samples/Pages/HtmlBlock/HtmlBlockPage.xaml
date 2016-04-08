@@ -3,14 +3,35 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AppStudio.Uwp.Samples"
-    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:c="using:AppStudio.Uwp.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:f="using:Windows.UI.Text"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <c:ParagraphStyle x:Key="H1" Foreground="Lime" FontStyle="Italic"/>
+        <c:TextStyle x:Key="Span" Foreground="Pink" />
+        <c:ListStyle x:Key="Li" Bullet="&#x25CC;" Foreground="Red" />
+        <c:ContainerStyle x:Key="P" Margin="30" />
+
+        <Style TargetType="c:HtmlBlock">
+            <Setter Property="Foreground" Value="Green" />
+            <Setter Property="DocumentStyle">
+                <Setter.Value>
+                    <c:DocumentStyle H1="{StaticResource H1}" Span="{StaticResource Span}" Li="{StaticResource Li}" P="{StaticResource P}">
+                        <c:DocumentStyle.H2>
+                            <c:ParagraphStyle FontSizeRatio="3"></c:ParagraphStyle>
+                        </c:DocumentStyle.H2>
+                    </c:DocumentStyle>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid Background="{StaticResource AppBackground}" Padding="10">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <controls:HtmlBlock Source="{Binding Html}"></controls:HtmlBlock>
+        <ScrollViewer>
+            <c:HtmlBlock Source="{Binding Html}" />
         </ScrollViewer>
     </Grid>
 </local:SamplePage>

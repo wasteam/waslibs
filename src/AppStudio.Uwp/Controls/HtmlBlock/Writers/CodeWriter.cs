@@ -20,11 +20,12 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            return new Span
-            {
-                //TODO: GET FRON STYLES
-                FontFamily = new FontFamily("Courier New")
-            };
+            return new Span();
+        }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyTextStyles(ctrl as Span, style.Code);
         }
     }
 }

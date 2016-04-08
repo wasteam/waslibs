@@ -19,14 +19,26 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            var p = new Paragraph();
-            p.Inlines.Add(new Run
-            {
-                //TODO: THIS COULD BE CONFIGURED IN STYLES
-                Text = "\u25CF  ",
-            });
+            return new Paragraph();
+        }
 
-            return p;
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            var li = ctrl as Paragraph;
+            var currentStyle = style.Li;
+
+            if (!string.IsNullOrEmpty(currentStyle?.Bullet))
+            {
+                li.Inlines.Insert(0, new Run
+                {
+                    Text = currentStyle.Bullet
+                });
+                li.Inlines.Insert(1, new Run
+                {
+                    Text = " "
+                });
+            }
+            ApplyParagraphStyles(li, currentStyle);
         }
     }
 }

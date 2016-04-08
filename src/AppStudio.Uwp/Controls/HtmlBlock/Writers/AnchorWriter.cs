@@ -34,5 +34,10 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
             return null;
         }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyTextStyles(ctrl as Span, style.A);
+        }
     }
 }

@@ -11,68 +11,61 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 {
     class GridDocumentContainer : DocumentContainer<Grid>
     {
-        //TODO: REVIEW THEESE FLAGS
+        //TODO: REVIEW THESE FLAGS
         private bool _createTextBlock;
-        private bool _createBlock;
+        private bool _createParagraph;
 
         public GridDocumentContainer(Grid ctrl) : base(ctrl)
         {
         }
 
-        public override void Add(DependencyObject ctrl)
+        public override bool CanContain(DependencyObject ctrl)
+        {
+            return true;
+        }
+
+        protected override void Add(DependencyObject ctrl)
         {
             if (ctrl is FrameworkElement)
             {
-                var element = ctrl as FrameworkElement;
-
-                Control.RowDefinitions.Add(new RowDefinition
-                {
-                    Height = GridLength.Auto
-                });
-
-                var currentRow = Control.RowDefinitions.Count - 1;
-
-
-                //TODO: WHAT IF ELEMENTS HAS NOT TEXT CHILDREN??
-                Grid.SetRow(element, currentRow);
-                Control.Children.Add(element);
+                AddChild(ctrl as FrameworkElement);
 
                 _createTextBlock = true;
-
             }
             else if (ctrl is Block)
             {
-                //TODO: VERIFY CONTAINER IS NOT NULL
-
                 var textBlock = FindOrCreateTextBlock();
 
-                var block = ctrl as Block;
-                textBlock.Blocks.Add(block);
+                textBlock.Blocks.Add(ctrl as Block);
 
-                _createBlock = true;
+                _createParagraph = true;
             }
             else if (ctrl is Inline)
             {
-                //TODO: VERIFY CONTAINER IS NOT NULL
                 var textBlock = FindOrCreateTextBlock();
+                var p = FindOrCreateParagraph(textBlock);
 
-                var p = textBlock.Blocks
-                                    .OfType<Paragraph>()
-                                    .LastOrDefault();
-
-                if (_createBlock || p == null)
-                {
-                    p = new Paragraph();
-                    textBlock.Blocks.Add(p);
-
-                    _createBlock = false;
-
-                    //TODO: TRIM START
-                }
-
-                var inline = ctrl as Inline;
-                p.Inlines.Add(inline);
+                p.Inlines.Add(ctrl as Inline);
             }
+        }
+
+        private Paragraph FindOrCreateParagraph(RichTextBlock textBlock)
+        {
+            var p = textBlock.Blocks
+                                .OfType<Paragraph>()
+                                .LastOrDefault();
+
+            if (_createParagraph || p == null)
+            {
+                p = new Paragraph();
+                textBlock.Blocks.Add(p);
+
+                _createParagraph = false;
+
+                //TODO: TRIM START
+            }
+
+            return p;
         }
 
         private RichTextBlock FindOrCreateTextBlock()
@@ -85,29 +78,24 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             {
                 textBlock = new RichTextBlock();
 
-                Control.RowDefinitions.Add(new RowDefinition
-                {
-                    Height = GridLength.Auto
-                });
-
-                var currentRow = Control.RowDefinitions.Count - 1;
-
-
-                //TODO: WHAT IF ELEMENTS HAS NOT TEXT CHILDREN??
-                Grid.SetRow(textBlock, currentRow);
-                Control.Children.Add(textBlock);
+                AddChild(textBlock);
 
                 _createTextBlock = false;
             }
 
-
             return textBlock;
-
         }
 
-        public override bool CanAdd(DependencyObject ctrl)
+        private void AddChild(FrameworkElement element)
         {
-            return true;
+            Control.RowDefinitions.Add(new RowDefinition
+            {
+                Height = GridLength.Auto
+            });
+
+            //TODO: WHAT IF ELEMENTS HAS NOT TEXT CHILDREN??
+            Grid.SetRow(element, Control.RowDefinitions.Count - 1);
+            Control.Children.Add(element);
         }
     }
 }

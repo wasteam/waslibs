@@ -16,9 +16,15 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             get { return new string[] { "strong", "b" }; }
         }
 
+
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            return new Bold();
+            return new Span();
+        }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyTextStyles(ctrl as Span, style.Strong);
         }
     }
 }

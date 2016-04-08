@@ -116,10 +116,12 @@
     <Compile Include="Controls\HtmlBlock\Containers\GridDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\ParagraphDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\SpanDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\DocumentStyle.cs" />
     <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HtmlWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HtmlWriterFactory.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ListItemWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ImageWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
@@ -199,6 +201,7 @@
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
+    <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Html\HtmlDocument.cs" />
     <Compile Include="Html\HtmlFragment.cs" />

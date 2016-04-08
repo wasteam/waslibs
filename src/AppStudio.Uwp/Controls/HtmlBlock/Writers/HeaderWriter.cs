@@ -15,38 +15,42 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "h1", "h2", "h3", "h4", "h5", "h6", }; }
+            get { return new string[] { "h1", "h2", "h3", "h4", "h5", "h6" }; }
         }
+
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            var p = new Paragraph();
-
-            p.FontSize *= GetFontSizeWeight(fragment);
-            p.FontWeight = FontWeights.SemiBold;
-
-            return p;
+            return new Paragraph();
         }
 
-        private float GetFontSizeWeight(HtmlFragment fragment)
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            //TODO: GET IT FROM STYLES
+            ApplyParagraphStyles(ctrl as Paragraph, GetDocumentStyle(fragment, style));
+        }
+
+        private ParagraphStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
+        {
+            if (style == null)
+            {
+                return null;
+            }
             switch (fragment.Name.ToLowerInvariant())
             {
                 case "h1":
-                    return 2;
+                    return style.H1;
                 case "h2":
-                    return 1.5f;
+                    return style.H2;
                 case "h3":
-                    return 1.17f;
+                    return style.H3;
                 case "h4":
-                    return 1;
+                    return style.H4;
                 case "h5":
-                    return 0.83f;
+                    return style.H5;
                 case "h6":
-                    return 0.67f;
+                    return style.H6;
                 default:
-                    return 1;
+                    return null;
             }
         }
     }

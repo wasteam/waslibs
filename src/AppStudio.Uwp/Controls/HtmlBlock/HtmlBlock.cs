@@ -36,6 +36,22 @@ namespace AppStudio.Uwp.Controls
             await self.UpdateContentAsync();
         }
 
+        internal static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle()));
+
+        internal DocumentStyle DocumentStyle
+        {
+            get { return (DocumentStyle)GetValue(DocumentStyleProperty); }
+            set { SetValue(DocumentStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultDocumentStyleProperty = DependencyProperty.Register("DefaultDocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle()));
+
+        public DocumentStyle DefaultDocumentStyle
+        {
+            get { return (DocumentStyle)GetValue(DefaultDocumentStyleProperty); }
+            set { SetValue(DefaultDocumentStyleProperty, value); }
+        }
+
         public HtmlBlock()
         {
             this.DefaultStyleKey = typeof(HtmlBlock);
@@ -43,11 +59,11 @@ namespace AppStudio.Uwp.Controls
 
         protected override async void OnApplyTemplate()
         {
+            base.OnApplyTemplate();
+
             _container = base.GetTemplateChild("_container") as Grid;
 
             await UpdateContentAsync();
-
-            base.OnApplyTemplate();
         }
 
         private async Task UpdateContentAsync()
@@ -57,40 +73,46 @@ namespace AppStudio.Uwp.Controls
                 _container.RowDefinitions.Clear();
                 _container.Children.Clear();
 
+                DocumentStyle?.Merge(DefaultDocumentStyle);
+
                 var doc = await HtmlDocument.LoadAsync(Source);
 
                 WriteFragments(doc, new GridDocumentContainer(_container));
             }
         }
 
-        private void WriteFragments(HtmlFragment fragment, DocumentContainer container)
+        private void WriteFragments(HtmlFragment fragment, DocumentContainer parentContainer)
         {
-            foreach (var childFragment in fragment.Fragments)
+            if (parentContainer != null)
             {
-                var writer = HtmlWriter
-                                .GetWriters()
-                                .FirstOrDefault(w => w.Match(childFragment));
-
-                var ctrl = writer?.GetControl(childFragment);
-
-                if (ctrl == null)
+                foreach (var childFragment in fragment.Fragments)
                 {
-                    continue;
-                }
+                    var writer = HtmlWriterFactory.Find(childFragment);
 
-                if (!container.CanAdd(ctrl))
-                {
-                    container = container.Find(ctrl);
-                }
+                    var ctrl = writer?.GetControl(childFragment);
 
-                container.Add(ctrl);
+                    if (ctrl == null)
+                    {
+                        continue;
+                    }
 
-                var currentContainer = container.Create(ctrl);
+                    if (!parentContainer.CanContain(ctrl))
+                    {
+                        parentContainer = parentContainer.Find(ctrl);
+                    }
 
-                WriteFragments(childFragment, currentContainer);
+                    var currentContainer = parentContainer.Append(ctrl);
 
-                ////TODO: VERIFY IF IS EMPTY AND THE NOT ADD
-                //container.Add(ctrl);
+                    if (DocumentStyle != null)
+                    {
+                        writer?.ApplyStyles(DocumentStyle, ctrl, childFragment); 
+                    }
+
+                    WriteFragments(childFragment, currentContainer);
+
+                    ////TODO: VERIFY IF IS EMPTY AND THE NOT ADD
+                    //container.Add(ctrl);
+                } 
             }
         }
     }

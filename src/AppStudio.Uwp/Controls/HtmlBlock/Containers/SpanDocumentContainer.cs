@@ -14,15 +14,15 @@ namespace AppStudio.Uwp.Controls.Html.Containers
         {
         }
 
-        public override void Add(DependencyObject ctrl)
+        public override bool CanContain(DependencyObject ctrl)
+        {
+            return ctrl is Inline;
+        }
+
+        protected override void Add(DependencyObject ctrl)
         {
             var inline = ctrl as Inline;
             Control.Inlines.Add(inline);
-        }
-
-        public override bool CanAdd(DependencyObject ctrl)
-        {
-            return ctrl is Inline;
         }
     }
 }

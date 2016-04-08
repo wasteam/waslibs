@@ -13,8 +13,15 @@ namespace AppStudio.Uwp.Controls.Html.Containers
     {
         public DocumentContainer Parent { get; private set; }
 
-        public abstract void Add(DependencyObject ctrl);
-        public abstract bool CanAdd(DependencyObject ctrl);
+        public abstract bool CanContain(DependencyObject ctrl);
+
+        protected abstract void Add(DependencyObject ctrl);
+
+        public DocumentContainer Append(DependencyObject ctrl)
+        {
+            Add(ctrl);
+            return Create(ctrl);
+        }
 
         public DocumentContainer Create(DependencyObject ctrl)
         {
@@ -45,7 +52,7 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 
             while (c.Parent != null)
             {
-                if (c.CanAdd(ctrl))
+                if (c.CanContain(ctrl))
                 {
                     return c;
                 }
@@ -61,6 +68,10 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 
         public DocumentContainer(T ctrl)
         {
+            if (ctrl == null)
+            {
+                throw new ArgumentNullException("ctrl");
+            }
             Control = ctrl;
         }
     }

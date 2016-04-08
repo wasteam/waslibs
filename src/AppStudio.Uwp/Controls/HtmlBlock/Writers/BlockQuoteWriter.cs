@@ -17,14 +17,14 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             get { return new string[] { "blockquote" }; }
         }
 
-        //TODO: SHOULD RETURN A GRID?
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            //TODO: GET FROM STYLES
-            return new Paragraph
-            {
-                Margin = new Thickness(20, 0, 0, 0)
-            };
+            return new Paragraph();
+        }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyParagraphStyles(ctrl as Paragraph, style.BlockQuote);
         }
     }
 }

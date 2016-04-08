@@ -21,5 +21,31 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             return new Grid();
         }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            ApplyContainerStyles(ctrl as Grid, GetDocumentStyle(fragment, style));
+        }
+
+        private ContainerStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
+        {
+            if (style == null)
+            {
+                return null;
+            }
+            switch (fragment.Name.ToLowerInvariant())
+            {
+                case "p":
+                    return style.P;
+                case "div":
+                    return style.Div;
+                case "ul":
+                    return style.Ul;
+                case "ol":
+                    return style.Ol;
+                default:
+                    return null;
+            }
+        }
     }
 }
