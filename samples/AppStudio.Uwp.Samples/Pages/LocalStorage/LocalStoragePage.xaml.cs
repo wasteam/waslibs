@@ -15,7 +15,7 @@ namespace AppStudio.Uwp.Samples
     public sealed partial class LocalStoragePage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;
-        private const string DefaultLocalStorageQuery = "/Assets/LocalStorageSamples.json";
+        private const string DefaultLocalStorageQuery = "/Assets/Photos.json";
 
         LocalStorageDataProvider<LocalStorageDataSchema> localStorageDataProvider;
         LocalStorageDataProvider<RawSchema> rawDataProvider;

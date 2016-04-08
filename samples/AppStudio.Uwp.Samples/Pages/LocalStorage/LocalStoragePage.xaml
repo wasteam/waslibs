@@ -28,15 +28,14 @@
                 <Grid>
                     <controls:ResponsiveGridView
                         ItemsSource="{Binding Items}"
-                        ItemHeight="350"
-                        DesiredWidth="350">
+                        ItemHeight="300"
+                        DesiredWidth="300">
                         <controls:ResponsiveGridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="8">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>                                       
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
@@ -45,7 +44,7 @@
                                         Height="200"
                                         Margin="0,0,0,6">
                                         <Image
-                                            Source="{Binding ImageUrl}"
+                                            Source="{Binding Thumbnail}"
                                             Stretch="UniformToFill"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"/>
@@ -53,20 +52,16 @@
                                     <TextBlock
                                         Grid.Row="1"
                                         Text="{Binding Title}"
-                                        Style="{StaticResource LayoutTitleStyle}"/>
-                                    <TextBlock
-                                        Grid.Row="2"
-                                        Text="{Binding Description}"
-                                        Style="{StaticResource LayoutSubtitleStyle}"/>
+                                        Style="{StaticResource LayoutTitleStyle}"/>                                  
                                     <Grid
-                                        Grid.Row="3"
+                                        Grid.Row="2"
                                         Height="1"
                                         Margin="0,8,0,2"
                                         Background="LightGray"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"/>
                                     <TextBlock
-                                        Grid.Row="4"
+                                        Grid.Row="3"
                                         Text="{Binding Category}"
                                         Style="{StaticResource LayoutHighlightStyle}"
                                         MaxLines="1"/>

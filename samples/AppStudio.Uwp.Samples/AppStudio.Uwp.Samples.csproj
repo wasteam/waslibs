@@ -158,7 +158,6 @@
     <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
-    <Content Include="Assets\LocalStorageSamples.json" />
     <Content Include="Assets\FeaturedControls.json" />
     <Content Include="Assets\VBPVariableSizedGrid.json" />
     <None Include="project.json" />
