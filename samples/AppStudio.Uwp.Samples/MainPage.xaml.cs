@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
+using AppStudio.Uwp.Controls;
 using AppStudio.Uwp.Commands;
 using AppStudio.Uwp.Navigation;
 
@@ -20,6 +21,7 @@ namespace AppStudio.Uwp.Samples
             this.TopContentTemplate = this.Resources["WideTopTemplate"] as DataTemplate;
             this.DataContext = this;
             SizeChanged += OnSizeChanged;
+            ShellControl.ClearCommandBar();
         }
 
         public string Caption

@@ -29,6 +29,8 @@ namespace AppStudio.Uwp.Samples
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanCache"), Symbol = Symbol.Clear, Command = CleanCacheCommand });
 
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption

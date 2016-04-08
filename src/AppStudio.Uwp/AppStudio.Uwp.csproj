@@ -113,6 +113,7 @@
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
     <Compile Include="Commands\EndOfScrollCommand.cs" />
+    <Compile Include="Controls\CommandBarEx\CommandBarEx.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Controls\ShellControl\ShellControl.Items.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Members.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Selection.cs" />
+    <Compile Include="Controls\ShellControl\ShellControl.Static.cs" />
     <Compile Include="Controls\SplitterCard\SplitterCard.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />

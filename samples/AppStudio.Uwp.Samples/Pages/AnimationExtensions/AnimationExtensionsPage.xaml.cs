@@ -16,6 +16,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         private bool _isBusy = false;

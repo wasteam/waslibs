@@ -24,6 +24,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
 
             bingDataProvider = new BingDataProvider();
             rawDataProvider = new BingDataProvider();

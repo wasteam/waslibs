@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Linq;
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 
@@ -24,6 +27,109 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty HeaderTemplateProperty = DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region HeaderBackground
+        public Brush HeaderBackground
+        {
+            get { return (Brush)GetValue(HeaderBackgroundProperty); }
+            set { SetValue(HeaderBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeaderBackgroundProperty = DependencyProperty.Register("HeaderBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region HeaderForeground
+        public Brush HeaderForeground
+        {
+            get { return (Brush)GetValue(HeaderForegroundProperty); }
+            set { SetValue(HeaderForegroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeaderForegroundProperty = DependencyProperty.Register("HeaderForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
+        #region DisplayMode
+        public SplitViewDisplayMode DisplayMode
+        {
+            get { return (SplitViewDisplayMode)GetValue(DisplayModeProperty); }
+            set { SetValue(DisplayModeProperty, value); }
+        }
+
+        private static void DisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ShellControl;
+            control.SetDisplayMode((SplitViewDisplayMode)e.NewValue);
+        }
+
+        private void SetDisplayMode(SplitViewDisplayMode mode)
+        {
+            if (_isInitialized)
+            {
+                switch (mode)
+                {
+                    case SplitViewDisplayMode.CompactOverlay:
+                    case SplitViewDisplayMode.CompactInline:
+                        _headerContainer.Margin = new Thickness(0);
+                        break;
+                    case SplitViewDisplayMode.Overlay:
+                    case SplitViewDisplayMode.Inline:
+                        _headerContainer.Margin = new Thickness(48, 0, 0, 0);
+                        break;
+                }
+            }
+        }
+
+        public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register("DisplayMode", typeof(SplitViewDisplayMode), typeof(ShellControl), new PropertyMetadata(null, DisplayModeChanged));
+        #endregion
+
+        #region CommandBarVerticalAlignment
+        public VerticalAlignment CommandBarVerticalAlignment
+        {
+            get { return (VerticalAlignment)GetValue(CommandBarVerticalAlignmentProperty); }
+            set { SetValue(CommandBarVerticalAlignmentProperty, value); }
+        }
+
+        private static void CommandBarVerticalAlignmentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ShellControl;
+            control.SetCommandBarVerticalAlignment((VerticalAlignment)e.NewValue);
+        }
+
+        private void SetCommandBarVerticalAlignment(VerticalAlignment alignment)
+        {
+            if (_isInitialized)
+            {
+                if (_commandBar != null)
+                {
+                    _headerContainer.Visibility = Visibility.Visible;
+                    if (alignment == VerticalAlignment.Top)
+                    {
+                        _headerContainer.Opacity = 0.0;
+                        _commandBar.Margin = new Thickness(48, 0, 0, 0);
+                        _commandBar.SetBinding(CommandBar.ContentProperty, new Binding { Source = this, Path = new PropertyPath("Header") });
+                        _commandBar.SetBinding(CommandBar.ContentTemplateProperty, new Binding { Source = this, Path = new PropertyPath("HeaderTemplate") });
+                        _commandBar.SetBinding(CommandBar.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderBackground") });
+                        _commandBar.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderForeground") });
+                        _splitView.Margin = new Thickness(0);
+                    }
+                    else
+                    {
+                        _headerContainer.Opacity = 1.0;
+                        _commandBar.Margin = new Thickness(0);
+                        _commandBar.Content = null;
+                        _commandBar.ContentTemplate = null;
+                        _splitView.Margin = new Thickness(0, 0, 0, 48);
+                    }
+                }
+                else
+                {
+                    _headerContainer.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        public static readonly DependencyProperty CommandBarVerticalAlignmentProperty = DependencyProperty.Register("CommandBarVerticalAlignment", typeof(VerticalAlignment), typeof(ShellControl), new PropertyMetadata(VerticalAlignment.Bottom, CommandBarVerticalAlignmentChanged));
         #endregion
 
         #region NavigationItemTemplate
@@ -56,24 +162,24 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
-        #region CommandBarBackground
-        public Brush CommandBarBackground
+        #region NavigationBackground
+        public Brush NavigationBackground
         {
-            get { return (Brush)GetValue(CommandBarBackgroundProperty); }
-            set { SetValue(CommandBarBackgroundProperty, value); }
+            get { return (Brush)GetValue(NavigationBackgroundProperty); }
+            set { SetValue(NavigationBackgroundProperty, value); }
         }
 
-        public static readonly DependencyProperty CommandBarBackgroundProperty = DependencyProperty.Register("CommandBarBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty NavigationBackgroundProperty = DependencyProperty.Register("NavigationBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
-        #region CommandBarForeground
-        public Brush CommandBarForeground
+        #region NavigationForeground
+        public Brush NavigationForeground
         {
-            get { return (Brush)GetValue(CommandBarForegroundProperty); }
-            set { SetValue(CommandBarForegroundProperty, value); }
+            get { return (Brush)GetValue(NavigationForegroundProperty); }
+            set { SetValue(NavigationForegroundProperty, value); }
         }
 
-        public static readonly DependencyProperty CommandBarForegroundProperty = DependencyProperty.Register("CommandBarForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty NavigationForegroundProperty = DependencyProperty.Register("NavigationForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
         #region HamburgerBackground
@@ -106,36 +212,6 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty HamburgerBorderBrushProperty = DependencyProperty.Register("HamburgerBorderBrush", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
-        #region NavigationBackground
-        public Brush NavigationBackground
-        {
-            get { return (Brush)GetValue(NavigationBackgroundProperty); }
-            set { SetValue(NavigationBackgroundProperty, value); }
-        }
-
-        public static readonly DependencyProperty NavigationBackgroundProperty = DependencyProperty.Register("NavigationBackground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
-        #endregion
-
-        #region NavigationForeground
-        public Brush NavigationForeground
-        {
-            get { return (Brush)GetValue(NavigationForegroundProperty); }
-            set { SetValue(NavigationForegroundProperty, value); }
-        }
-
-        public static readonly DependencyProperty NavigationForegroundProperty = DependencyProperty.Register("NavigationForeground", typeof(Brush), typeof(ShellControl), new PropertyMetadata(null));
-        #endregion
-
-        #region DisplayMode
-        public SplitViewDisplayMode DisplayMode
-        {
-            get { return (SplitViewDisplayMode)GetValue(DisplayModeProperty); }
-            set { SetValue(DisplayModeProperty, value); }
-        }
-
-        public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register("DisplayMode", typeof(SplitViewDisplayMode), typeof(ShellControl), new PropertyMetadata(SplitViewDisplayMode.CompactOverlay));
-        #endregion
-
         #region TopPaneHeight
         public double TopPaneHeight
         {
@@ -153,7 +229,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_topPane.GetTranslateX() < 0)
             {
-                _topPane.TranslateY(-this.TopPaneHeight);
+                _topPane.TranslateY(-this.TopPaneHeight - _headerContainer.ActualHeight);
             }
         }
 
@@ -200,7 +276,7 @@ namespace AppStudio.Uwp.Controls
             _splitView.IsPaneOpen = false;
             if (_isInitialized && _topPane.Visibility == Visibility.Collapsed)
             {
-                _topPane.TranslateY(-this.TopPaneHeight);
+                _topPane.TranslateY(-this.TopPaneHeight - _headerContainer.ActualHeight);
                 _topPane.Content = content;
                 _topPane.Visibility = Visibility.Visible;
                 _topPane.AnimateY(0, 350);
@@ -210,7 +286,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_isInitialized && _topPane.Visibility == Visibility.Visible)
             {
-                await _topPane.AnimateYAsync(-_topPane.ActualHeight, 350);
+                await _topPane.AnimateYAsync(-_topPane.ActualHeight - _headerContainer.ActualHeight, 350);
                 _topPane.Content = null;
                 _topPane.Visibility = Visibility.Collapsed;
             }
@@ -234,6 +310,17 @@ namespace AppStudio.Uwp.Controls
                 await _rightPane.AnimateXAsync(_rightPane.ActualWidth, 350);
                 _rightPane.Content = null;
                 _rightPane.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ReleaseCommands()
+        {
+            if (_commandBar != null && _commandBar.PrimaryCommands != null)
+            {
+                foreach (var item in _commandBar.PrimaryCommands.Where(r => r.GetType() == typeof(AppBarToggleButton)).Cast<AppBarToggleButton>())
+                {
+                    item.IsChecked = false;
+                }
             }
         }
     }
