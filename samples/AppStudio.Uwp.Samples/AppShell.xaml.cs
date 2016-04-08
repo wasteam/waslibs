@@ -72,7 +72,7 @@ namespace AppStudio.Uwp.Samples
                 }
                 else if (attr.IconPath != null)
                 {
-                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType()), this.GetCategoryBackground(category)));
+                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType())), this.GetCategoryBackground(category), this.GetCategoryBackground(category));
                 }
                 else
                 {
