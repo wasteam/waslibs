@@ -36,5 +36,16 @@ namespace AppStudio.Uwp
             }
             return foundChild;
         }
+        public static object Resource(this string self)
+        {
+            if (Application.Current.Resources.ContainsKey(self))
+            {
+                return Application.Current.Resources[self];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
