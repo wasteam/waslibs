@@ -216,7 +216,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new TwitterDataConfig
             {
                 QueryType = TwitterQueryType.Search,
-                Query = "#lumia"
+                Query = "#microsoft"
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
@@ -231,7 +231,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new TwitterDataConfig
             {
                 QueryType = TwitterQueryType.Search,
-                Query = "#lumia"
+                Query = "#microsoft"
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);           
@@ -308,7 +308,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new TwitterDataConfig
             {
                 QueryType = TwitterQueryType.Search,
-                Query = "#lumia"
+                Query = "#microsoft"
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             await dataProvider.LoadDataAsync(config, 5);
