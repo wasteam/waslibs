@@ -51,11 +51,6 @@ namespace AppStudio.DataProviders.Rss
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
-        protected override IParser<RssSchema> GetDefaultParserInternal(RssDataConfig config)
-        {
-            return new RssParser();
-        }
-
         protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(RssDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             int page = Convert.ToInt32(ContinuationToken);
@@ -64,6 +59,19 @@ namespace AppStudio.DataProviders.Rss
             _hasMoreItems = items.Any();
             ContinuationToken = GetContinuationToken(ContinuationToken);
             return items;
+        }
+
+        protected override IParser<RssSchema> GetDefaultParserInternal(RssDataConfig config)
+        {
+            return new RssParser();
+        }
+
+        protected override void ValidateConfig(RssDataConfig config)
+        {
+            if (config.Url == null)
+            {
+                throw new ConfigParameterNullException("Url");
+            }
         }
 
         private string GetContinuationToken(string currentToken)
@@ -81,14 +89,6 @@ namespace AppStudio.DataProviders.Rss
             var total = (TotalItems as IEnumerable<TSchema>);
             var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
-        }
-
-        protected override void ValidateConfig(RssDataConfig config)
-        {
-            if (config.Url == null)
-            {
-                throw new ConfigParameterNullException("Url");
-            }
-        }
+        }      
     }
 }

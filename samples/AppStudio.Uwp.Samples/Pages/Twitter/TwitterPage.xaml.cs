@@ -18,11 +18,12 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultConsumerSecret = "7cp8HDzES42iAFGgE5yxJ3wAxsrDdu5uEHwhoOKPlN6Q2P8k6s";
         private const string DefaultAccessToken = "275442106-OdbhPuGr8biRdQsHbtzNSMVvHRrX9acsLbiyYgCF";
         private const string DefaultAccessTokenSecret = "GA4Uw2sMgvSayjWTw9qdejB8LzNfNS2cAaQPimVDVhdIP";
-        private const string DefaultTwitterQueryParam = "WindowsAppStudio";
+        private const string DefaultTwitterQueryParam = "Windows";
         private const TwitterQueryType DefaultQueryType = TwitterQueryType.Search;
         private const int DefaultMaxRecordsParam = 20;
 
         TwitterDataProvider twitterDataProvider;
+        TwitterDataProvider rawDataProvider;
 
         public TwitterPage()
         {
@@ -30,8 +31,10 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
-        }
 
+            InitializeDataProvider();
+        }
+        
         public override string Caption
         {
             get { return "Twitter Data Provider"; }
@@ -179,6 +182,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -209,24 +213,11 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
-                {
-                    AccessToken = AccessToken,
-                    AccessTokenSecret = AccessTokenSecret,
-                    ConsumerKey = ConsumerKey,
-                    ConsumerSecret = ConsumerSecret
-                });
-
                 var config = new TwitterDataConfig
                 {
                     Query = TwitterQueryParam,
                     QueryType = TwitterQueryTypeSelectedItem
-                };
-
-                //TODO: Implement rawdata
-                //var rawParser = new RawParser();
-                //var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                };                
 
                 var items = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -236,7 +227,10 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
-
+               
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -260,19 +254,6 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-               
-                var config = new TwitterDataConfig
-                {
-                    Query = TwitterQueryParam,
-                    QueryType = TwitterQueryTypeSelectedItem
-                };
-
-
-                //TODO: Implement rawdata
-                //var rawParser = new RawParser();
-                //var rawData = await twitterDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
-
                 var items = await twitterDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
@@ -282,6 +263,8 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -303,7 +286,27 @@ namespace AppStudio.Uwp.Samples
             AccessTokenSecret = DefaultAccessTokenSecret;
             TwitterQueryParam = DefaultTwitterQueryParam;
             TwitterQueryTypeSelectedItem = DefaultQueryType;
-            MaxRecordsParam = DefaultMaxRecordsParam;
+            MaxRecordsParam = DefaultMaxRecordsParam;           
         }
+
+        private void InitializeDataProvider()
+        {
+            twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+            {
+                AccessToken = AccessToken,
+                AccessTokenSecret = AccessTokenSecret,
+                ConsumerKey = ConsumerKey,
+                ConsumerSecret = ConsumerSecret
+            });
+
+            rawDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+            {
+                AccessToken = AccessToken,
+                AccessTokenSecret = AccessTokenSecret,
+                ConsumerKey = ConsumerKey,
+                ConsumerSecret = ConsumerSecret
+            });
+        }
+
     }
 }

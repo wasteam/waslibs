@@ -17,6 +17,7 @@ namespace AppStudio.Uwp.Samples
         private const BingCountry DefaultBingCountry = BingCountry.UnitedStates;
         private const int DefaultMaxRecordsParam = 20;
         private const string DefaultBingQueryParam = "Windows App Studio";
+
         BingDataProvider bingDataProvider;
         BingDataProvider rawDataProvider;
 
@@ -25,10 +26,9 @@ namespace AppStudio.Uwp.Samples
             this.InitializeComponent();
             this.DataContext = this;
             commandBar.DataContext = this;
-            paneHeader.DataContext = this;
-
-            bingDataProvider = new BingDataProvider();
-            rawDataProvider = new BingDataProvider();
+            paneHeader.DataContext = this;   
+            
+            InitializeDataProvider();         
         }
 
         public override string Caption
@@ -144,6 +144,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -173,9 +174,9 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-
+                
                 var config = new BingDataConfig() { Query = BingQueryParam, Country = BingCountrySelectedItem };
-                bingDataProvider = new BingDataProvider();
+               
                 var items = await bingDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
@@ -184,8 +185,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
-
-                rawDataProvider = new BingDataProvider();
+                
                 var rawParser = new RawParser();
                 var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
@@ -237,10 +237,16 @@ namespace AppStudio.Uwp.Samples
         }
 
         private void RestoreConfig()
-        {
+        {           
             BingQueryParam = DefaultBingQueryParam;
             BingCountrySelectedItem = DefaultBingCountry;
             MaxRecordsParam = DefaultMaxRecordsParam;
+        }
+
+        private void InitializeDataProvider()
+        {
+            bingDataProvider = new BingDataProvider();
+            rawDataProvider = new BingDataProvider();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace AppStudio.Uwp.Samples
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
         private const int DefaultMaxRecordsParam = 12;
         FlickrDataProvider flickrDataProvider;
+        FlickrDataProvider rawDataProvider;
 
         public FlickrPage()
         {
@@ -25,7 +26,8 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
-            flickrDataProvider = new FlickrDataProvider();
+
+            InitializeDataProvider();
         }
 
         public override string Caption
@@ -143,6 +145,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -172,17 +175,12 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-
-                flickrDataProvider = new FlickrDataProvider();
+             
                 var config = new FlickrDataConfig
                 {
                     Query = FlickrQueryParam,
                     QueryType = FlickrQueryTypeSelectedItem
-                };
-
-                //var rawParser = new RawParser();
-                //var rawData = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                };              
 
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -193,6 +191,9 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -214,18 +215,8 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();
-
-                var config = new FlickrDataConfig
-                {
-                    Query = FlickrQueryParam,
-                    QueryType = FlickrQueryTypeSelectedItem
-                };
-
-                //var rawParser = new RawParser();
-                //var rawData = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
-
+                Items.Clear();  
+            
                 var items = await flickrDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
@@ -235,6 +226,8 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -252,7 +245,13 @@ namespace AppStudio.Uwp.Samples
         {
             FlickrQueryParam = DefaultFlickrQueryParam;
             FlickrQueryTypeSelectedItem = DefaultQueryType;
-            MaxRecordsParam = DefaultMaxRecordsParam;
+            MaxRecordsParam = DefaultMaxRecordsParam;           
+        }
+
+        private void InitializeDataProvider()
+        {
+            flickrDataProvider = new FlickrDataProvider();
+            rawDataProvider = new FlickrDataProvider();
         }
     }
 }

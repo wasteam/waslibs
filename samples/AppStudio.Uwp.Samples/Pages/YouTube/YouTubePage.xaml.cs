@@ -19,6 +19,7 @@ namespace AppStudio.Uwp.Samples
         private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
         private const int DefaultMaxRecordsParam = 20;
         YouTubeDataProvider youTubeDataProvider;
+        YouTubeDataProvider rawDataProvider;
 
         public YouTubePage()
         {
@@ -27,8 +28,8 @@ namespace AppStudio.Uwp.Samples
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
 
-            youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
-        }
+            InitializeDataProvider();
+        }       
 
         public override string Caption
         {
@@ -153,6 +154,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -188,11 +190,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Query = YouTubeQueryParam,
                     QueryType = YouTubeQueryTypeSelectedItem
-                };
-
-                var rawParser = new RawParser();
-                var rawData = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                };              
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -203,6 +201,9 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -224,15 +225,7 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();
-
-                var config = new YouTubeDataConfig
-                {
-                    Query = YouTubeQueryParam,
-                    QueryType = YouTubeQueryTypeSelectedItem
-                };
-            
-                DataProviderRawData = string.Empty;
+                Items.Clear();      
 
                 var items = await youTubeDataProvider.LoadMoreDataAsync();
 
@@ -243,6 +236,8 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -262,6 +257,12 @@ namespace AppStudio.Uwp.Samples
             YouTubeQueryParam = DefaultYouTubeQueryParam;
             YouTubeQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
+        }
+
+        private void InitializeDataProvider()
+        {
+            youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
+            rawDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
         }
     }
 }

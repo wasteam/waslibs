@@ -397,7 +397,7 @@
     <value>Country</value>
   </data>
   <data name="propMaxRecords.Label" xml:space="preserve">
-    <value>Maximun records</value>
+    <value>Page Size</value>
   </data>
   <data name="propQuery.Label" xml:space="preserve">
     <value>Query</value>
@@ -428,5 +428,8 @@
   </data>
   <data name="About_PrivacyTerms.Text" xml:space="preserve">
     <value>Privacy terms</value>
+  </data>
+  <data name="DataProviderMoreItemsButton.Content" xml:space="preserve">
+    <value>More Items</value>
   </data>
 </root>
