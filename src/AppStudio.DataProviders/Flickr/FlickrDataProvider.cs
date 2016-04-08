@@ -40,7 +40,7 @@ namespace AppStudio.DataProviders.Flickr
                 var items = parser.Parse(result.Result);
                 if (items != null && items.Any())
                 {
-                    TotalItems = parser.Parse(result.Result).ToList();
+                    TotalItems = items.ToList();
                     var total = (TotalItems as IEnumerable<TSchema>);
                     var resultToReturn = total.Take(pageSize).ToList();
                     _hasMoreItems = total.Count() > pageSize;

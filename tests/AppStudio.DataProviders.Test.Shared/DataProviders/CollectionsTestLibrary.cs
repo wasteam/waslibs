@@ -139,7 +139,38 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<CollectionSchema>(new LocalStorageDataConfig(), 20, null));
         }
-    }
+
+        [TestMethod]
+        public async Task LoadPaginationStaticCollection()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            await dataProvider.LoadDataAsync(config, 2);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationStaticCollection()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
+    }   
 
     // This is a Windows App Studio template schema from Generic Layout page.
     public class CollectionSchema : SchemaBase

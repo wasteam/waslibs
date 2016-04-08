@@ -17,12 +17,17 @@ namespace AppStudio.Uwp.Samples
         private const int DefaultMaxRecordsParam = 10;
         private const string DefaultLocalStorageQuery = "/Assets/LocalStorageSamples.json";
 
+        LocalStorageDataProvider<LocalStorageDataSchema> localStorageDataProvider;
+        LocalStorageDataProvider<RawSchema> rawDataProvider;
+
         public LocalStoragePage()
         {
             this.InitializeComponent();
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
+
+            InitializeDataProvider();
         }
 
         public override string Caption
@@ -110,6 +115,17 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+        public ICommand MoreDataCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MoreItemsRequest();
+                });
+            }
+        }
+
         public ICommand RestoreConfigCommand
         {
             get
@@ -117,6 +133,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -146,12 +163,8 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                var localStorageDataProvider = new LocalStorageDataProvider<LocalStorageDataSchema>();
-                var config = new LocalStorageDataConfig { FilePath = LocalStorageQuery };
-
-                var rawParser = new RawParser();
-                var rawData = await localStorageDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+               
+                var config = new LocalStorageDataConfig { FilePath = LocalStorageQuery };               
 
                 var items = await localStorageDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -161,6 +174,45 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+            }
+            catch (Exception ex)
+            {
+                DataProviderRawData += ex.Message;
+                DataProviderRawData += ex.StackTrace;
+                HasErrors = true;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void MoreItemsRequest()
+        {
+            try
+            {
+                IsBusy = true;
+                HasErrors = false;
+                NoItems = false;
+                DataProviderRawData = string.Empty;
+                Items.Clear();                
+
+                var items = await localStorageDataProvider.LoadMoreDataAsync();
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadMoreDataAsync();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -178,6 +230,13 @@ namespace AppStudio.Uwp.Samples
         {
             LocalStorageQuery = DefaultLocalStorageQuery;
             MaxRecordsParam = DefaultMaxRecordsParam;
+        }
+
+
+        private void InitializeDataProvider()
+        {
+            localStorageDataProvider = new LocalStorageDataProvider<LocalStorageDataSchema>();
+            rawDataProvider = new LocalStorageDataProvider<RawSchema>();
         }
     }
 }

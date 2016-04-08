@@ -26,6 +26,7 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
+
             InitializeDataProvider();
         }
 
