@@ -14,10 +14,11 @@ namespace AppStudio.Uwp.Samples
     [SamplePage(Category = "DataProviders", Name = "Rss", Order = 60)]
     public sealed partial class RssPage : SamplePage
     {
-        private const int DefaultMaxRecordsParam = 10;
+        private const int DefaultMaxRecordsParam = 5;
         private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
 
         RssDataProvider rssDataProvider;
+        RssDataProvider rawDataProvider;
 
         public RssPage()
         {
@@ -25,7 +26,7 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
-            rssDataProvider = new RssDataProvider();
+            InitializeDataProvider();
         }
 
         public override string Caption
@@ -130,6 +131,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -159,12 +161,8 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-                rssDataProvider = new RssDataProvider();
-                var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
-
-                var rawParser = new RawParser();
-                var rawData = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+              
+                var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };                
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -174,6 +172,10 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -205,6 +207,9 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -221,7 +226,13 @@ namespace AppStudio.Uwp.Samples
         private void RestoreConfig()
         {
             RssQuery = DefaultRssQuery;
-            MaxRecordsParam = DefaultMaxRecordsParam;
+            MaxRecordsParam = DefaultMaxRecordsParam;            
+        }
+
+        private void InitializeDataProvider()
+        {
+            rssDataProvider = new RssDataProvider();
+            rawDataProvider = new RssDataProvider();
         }
     }
 }

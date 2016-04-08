@@ -21,6 +21,7 @@ namespace AppStudio.Uwp.Samples
         private const int DefaultMaxRecordsParam = 20;
 
         FacebookDataProvider facebookDataProvider;
+        FacebookDataProvider rawDataProvider;
 
         public FacebookPage()
         {
@@ -29,7 +30,7 @@ namespace AppStudio.Uwp.Samples
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
 
-            facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+            InitializeDataProvider();
         }
 
         public override string Caption
@@ -153,6 +154,7 @@ namespace AppStudio.Uwp.Samples
                 return new RelayCommand(() =>
                 {
                     RestoreConfig();
+                    Request();
                 });
             }
         }
@@ -182,17 +184,13 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-              
+               
                 var config = new FacebookDataConfig
                 {
                     UserId = FacebookQueryParam
                 };
 
-                var rawParser = new RawParser();
-                var rawData = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
-
-                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);                
+                var items = await facebookDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 
@@ -201,6 +199,9 @@ namespace AppStudio.Uwp.Samples
                     Items.Add(item);
                 }
 
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -222,16 +223,11 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();
-
-                var config = new FacebookDataConfig
-                {
-                    UserId = FacebookQueryParam
-                };
+                Items.Clear();                
 
                 DataProviderRawData = string.Empty;
 
-               var items = await facebookDataProvider.LoadMoreDataAsync();              
+                var items = await facebookDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
 
@@ -239,6 +235,9 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+              
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
 
             }
             catch (Exception ex)
@@ -254,11 +253,17 @@ namespace AppStudio.Uwp.Samples
         }
 
         private void RestoreConfig()
-        {
+        {           
             AppId = DefaultAppId;
             AppSecret = DefaultAppSecret;
             FacebookQueryParam = DefaultFacebookQueryParam;
             MaxRecordsParam = DefaultMaxRecordsParam;
+        }
+
+        private void InitializeDataProvider()
+        {
+            facebookDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
+            rawDataProvider = new FacebookDataProvider(new FacebookOAuthTokens { AppId = AppId, AppSecret = AppSecret });
         }
     }
 }

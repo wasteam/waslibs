@@ -184,6 +184,7 @@
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\SizeExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />

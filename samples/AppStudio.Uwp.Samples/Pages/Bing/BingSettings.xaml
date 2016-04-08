@@ -37,15 +37,15 @@
                     SmallChange="1"/>
                 <StackPanel Margin="0,30,0,0">
                     <Button
-                        Content="Refresh"
+                        x:Uid="DataProviderRefreshButton"
                         Command="{Binding RefreshDataCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
-                      <Button
-                        Content="More Items (Test)"
+                    <Button
+                        x:Uid="DataProviderMoreItemsButton"
                         Command="{Binding MoreDataCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
                     <Button
-                        Content="Restore Config"
+                        x:Uid="DataProviderRestoreConfigButton"
                         Command="{Binding RestoreConfigCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
                 </StackPanel>

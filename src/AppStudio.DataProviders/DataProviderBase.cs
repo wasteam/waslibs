@@ -10,7 +10,7 @@ namespace AppStudio.DataProviders
 {
     public abstract class DataProviderBase<TConfig>
     {
-        TConfig _config;
+        protected TConfig config;
 
         int _pageSize;
 
@@ -34,7 +34,7 @@ namespace AppStudio.DataProviders
             ValidateConfig(config);
 
             _parser = parser;
-            _config = config;
+            this.config = config;
             _pageSize = pageSize;
 
             var result = await GetDataAsync(config, pageSize, parser);
@@ -47,7 +47,7 @@ namespace AppStudio.DataProviders
 
         public async Task<IEnumerable<TSchema>> LoadMoreDataAsync<TSchema>() where TSchema : SchemaBase
         {
-            if (_config == null || _parser == null)
+            if (config == null || _parser == null)
             {
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
@@ -55,7 +55,7 @@ namespace AppStudio.DataProviders
             if (HasMoreItems)
             {
                 var parser = _parser as IParser<TSchema>;
-                var result = await GetMoreDataAsync(_config, _pageSize, parser);
+                var result = await GetMoreDataAsync(config, _pageSize, parser);
                 if (result != null)
                 {
                     return result;

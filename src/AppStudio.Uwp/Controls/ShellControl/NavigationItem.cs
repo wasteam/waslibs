@@ -18,19 +18,33 @@ namespace AppStudio.Uwp.Controls
         {
             this.Caption = caption;
         }
-        public NavigationItem(Symbol symbol, string caption)
+        public NavigationItem(Symbol symbol, string caption, Brush color = null)
         {
-            this.Icon = new SymbolIcon(symbol);
+            if (color == null)
+            {
+                this.Icon = new SymbolIcon(symbol);
+            }
+            else
+            {
+                this.Icon = new SymbolIcon(symbol) { Foreground = color };
+            }            
             this.Caption = caption;
         }
-        public NavigationItem(string glyph, string caption)
+        public NavigationItem(string glyph, string caption, Brush color = null)
         {
-            this.Icon = CreateIcon(glyph);
+            this.Icon = CreateIcon(glyph, color);
             this.Caption = caption;
         }
-        public NavigationItem(Uri uriSource, string caption)
+        public NavigationItem(Uri uriSource, string caption, Brush color = null)
         {
-            this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20 };
+            if (color == null)
+            {
+                this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20 };
+            }
+            else
+            {
+                this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20, Foreground = color };
+            }
             this.Caption = caption;
         }
 
@@ -64,11 +78,11 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        public NavigationItem(Symbol symbol, string caption, Control control) : this(symbol, caption)
+        public NavigationItem(Symbol symbol, string caption, Control control, Brush color = null) : this(symbol, caption, color)
         {
             this.Control = control;
         }
-        public NavigationItem(Symbol symbol, string caption, Action<NavigationItem> onClick = null, Brush background = null) : this(symbol, caption)
+        public NavigationItem(Symbol symbol, string caption, Action<NavigationItem> onClick = null, Brush color = null,  Brush background = null) : this(symbol, caption, color)
         {
             this.OnClick = onClick;
             if (background != null)
@@ -76,7 +90,7 @@ namespace AppStudio.Uwp.Controls
                 this.Background = background;
             }
         }
-        public NavigationItem(Symbol symbol, string caption, IEnumerable<NavigationItem> subItems, Brush background = null) : this(symbol, caption)
+        public NavigationItem(Symbol symbol, string caption, IEnumerable<NavigationItem> subItems, Brush color = null, Brush background = null) : this(symbol, caption, color)
         {
             this.SubItems = subItems;
             if (background != null)
@@ -85,11 +99,11 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        public NavigationItem(Uri uriSource, string caption, Control control) : this(uriSource, caption)
+        public NavigationItem(Uri uriSource, string caption, Control control, Brush color = null) : this(uriSource, caption, color)
         {
             this.Control = control;
         }
-        public NavigationItem(Uri uriSource, string caption, Action<NavigationItem> onClick = null, Brush background = null) : this(uriSource, caption)
+        public NavigationItem(Uri uriSource, string caption, Action<NavigationItem> onClick = null, Brush color = null, Brush background = null) : this(uriSource, caption, color)
         {
             this.OnClick = onClick;
             if (background != null)
@@ -97,7 +111,7 @@ namespace AppStudio.Uwp.Controls
                 this.Background = background;
             }
         }
-        public NavigationItem(Uri uriSource, string caption, IEnumerable<NavigationItem> subItems, Brush background = null) : this(uriSource, caption)
+        public NavigationItem(Uri uriSource, string caption, IEnumerable<NavigationItem> subItems, Brush color = null, Brush background = null) : this(uriSource, caption, color)
         {
             this.SubItems = subItems;
             if (background != null)
@@ -178,18 +192,38 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty OnClickProperty = DependencyProperty.Register("OnClick", typeof(Action<NavigationItem>), typeof(NavigationItem), new PropertyMetadata(null));
         #endregion
 
-        private static FontIcon CreateIcon(string glyph)
+        public static FontIcon CreateIcon(string glyph, Brush color = null)
         {
             string[] parts = glyph.Split(':');
             if (parts.Length == 1)
             {
-                return new FontIcon { Glyph = System.Net.WebUtility.HtmlDecode(glyph) };
+                if (color == null)
+                {
+                    return new FontIcon { Glyph = System.Net.WebUtility.HtmlDecode(glyph) };
+                }
+                else
+                {
+                    return new FontIcon { Glyph = System.Net.WebUtility.HtmlDecode(glyph), Foreground = color };
+                }
             }
-            return new FontIcon
+            if (color == null)
             {
-                Glyph = System.Net.WebUtility.HtmlDecode(parts[1]),
-                FontFamily = new FontFamily(parts[0])
-            };
+                return new FontIcon
+                {
+                    Glyph = System.Net.WebUtility.HtmlDecode(parts[1]),
+                    FontFamily = new FontFamily(parts[0])
+                };
+            }
+            else
+            {
+                return new FontIcon
+                {
+                    Glyph = System.Net.WebUtility.HtmlDecode(parts[1]),
+                    FontFamily = new FontFamily(parts[0]),
+                    Foreground = color
+                };
+            }
+                   
         }
     }
 }

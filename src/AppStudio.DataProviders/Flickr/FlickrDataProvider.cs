@@ -28,6 +28,7 @@ namespace AppStudio.DataProviders.Flickr
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(FlickrDataConfig config, int pageSize, IParser<TSchema> parser)
         {
+            ContinuationToken = "1";
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = new Uri($"{BaseUrl}/photos_public.gne?{config.QueryType.ToString().ToLower()}={WebUtility.UrlEncode(config.Query)}")
@@ -51,12 +52,7 @@ namespace AppStudio.DataProviders.Flickr
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
-        }
-
-        protected override IParser<FlickrSchema> GetDefaultParserInternal(FlickrDataConfig config)
-        {
-            return new FlickrParser();
-        }
+        }      
 
         protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(FlickrDataConfig config, int pageSize, IParser<TSchema> parser)
         {
@@ -66,6 +62,19 @@ namespace AppStudio.DataProviders.Flickr
             _hasMoreItems = items.Any();
             ContinuationToken = GetContinuationToken(ContinuationToken);
             return items;
+        }
+
+        protected override IParser<FlickrSchema> GetDefaultParserInternal(FlickrDataConfig config)
+        {
+            return new FlickrParser();
+        }
+
+        protected override void ValidateConfig(FlickrDataConfig config)
+        {
+            if (config.Query == null)
+            {
+                throw new ConfigParameterNullException("Query");
+            }
         }
 
         private string GetContinuationToken(string currentToken)
@@ -85,13 +94,6 @@ namespace AppStudio.DataProviders.Flickr
             return resultToReturn;
         }
 
-        protected override void ValidateConfig(FlickrDataConfig config)
-        {
-            if (config.Query == null)
-            {
-                throw new ConfigParameterNullException("Query");
-            }
-        }
     }
 
 }
