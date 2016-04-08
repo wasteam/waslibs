@@ -41,17 +41,17 @@
                     Maximun="100"
                     SmallChange="1"/>
                 <StackPanel Margin="0,30,0,0">
-                    <Button
+                   <Button
                         x:Uid="DataProviderRefreshButton"
                         Command="{Binding RefreshDataCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
                     <Button
-                        x:Uid="DataProviderRestoreConfigButton"
-                        Command="{Binding RestoreConfigCommand}"
+                        x:Uid="DataProviderMoreItemsButton"
+                        Command="{Binding MoreDataCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
                     <Button
-                        Content="More Items (Test)"
-                        Command="{Binding MoreDataCommand}"
+                        x:Uid="DataProviderRestoreConfigButton"
+                        Command="{Binding RestoreConfigCommand}"
                         Style="{StaticResource SettingsButtonStyle}"/>
                 </StackPanel>
             </StackPanel>

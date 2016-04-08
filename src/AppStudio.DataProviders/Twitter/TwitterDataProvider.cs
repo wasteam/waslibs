@@ -14,13 +14,14 @@ using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
 
 using AppStudio.DataProviders.Exceptions;
+using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.Twitter
 {
     public class TwitterDataProvider : DataProviderBase<TwitterDataConfig, TwitterSchema>
     {
         private TwitterOAuthTokens _tokens;
-        private const string BaseUrl = "https://api.twitter.com/1.1";
+        private const string BaseUrl = "https://api.twitter.com/1.1";       
 
         public override bool HasMoreItems
         {
@@ -82,7 +83,7 @@ namespace AppStudio.DataProviders.Twitter
 
         public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var url = GetUserTimeLineUrl(screenName, pageSize);         
+            var url = GetUserTimeLineUrl(screenName, pageSize);
             var uri = new Uri(url);
 
             return await GetDataFromProvider(parser, uri);
@@ -204,7 +205,7 @@ namespace AppStudio.DataProviders.Twitter
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
                 var items = parser.Parse(rawResult);
-                ContinuationToken = GetContinuationToken(items);
+                ContinuationToken = GetContinuationToken(rawResult);
                 return items;
             }
             catch (WebException wex)
@@ -241,10 +242,12 @@ namespace AppStudio.DataProviders.Twitter
         {
             var url = $"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={pageSize}";
             return url;
-        }
+        }       
 
-        private string GetContinuationToken<TSchema>(IEnumerable<TSchema> items) where TSchema : SchemaBase
+        private string GetContinuationToken(string data)
         {
+            var defaultParser = GetDefaultParser(config);
+            var items = defaultParser.Parse(data);
             var id_str = items?.LastOrDefault()?._id;
             long id;
             if (long.TryParse(id_str, out id))
