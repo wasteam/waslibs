@@ -46,11 +46,11 @@ namespace AppStudio.Uwp.Samples
                 yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot()) { ClearSelection = true };
                 yield return NavigationItem.Separator;
 
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconFoundation.png"), this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"), this.GetCategoryBackground("FoundationControls"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconAppServices.png"), this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"), this.GetCategoryBackground("AppServices"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconUtilities.png"), this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"), this.GetCategoryBackground("Utilities"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconFoundation.png"), this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"), this.GetCategoryBackground("FoundationControls"), this.GetCategoryBackground("FoundationControls"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconAppServices.png"), this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"), this.GetCategoryBackground("AppServices"), this.GetCategoryBackground("AppServices"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconUtilities.png"), this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"), this.GetCategoryBackground("Utilities"), this.GetCategoryBackground("Utilities"));
+                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"), this.GetCategoryBackground("DataProviders"));
 
                 yield return NavigationItem.Separator;
                 yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About()) { ClearSelection = true };
