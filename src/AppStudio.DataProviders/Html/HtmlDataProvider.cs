@@ -19,7 +19,7 @@ namespace AppStudio.DataProviders.Html
             }
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
 

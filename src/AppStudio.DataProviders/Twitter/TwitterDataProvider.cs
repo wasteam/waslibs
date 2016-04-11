@@ -226,19 +226,19 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private string GetUserTimeLineUrl(string screenName, int pageSize)
+        private static string GetUserTimeLineUrl(string screenName, int pageSize)
         {
             var url = $"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={pageSize}&include_rts=1";
             return url;
         }
 
-        private string GetHomeTimeLineUrl(int pageSize)
+        private static string GetHomeTimeLineUrl(int pageSize)
         {
             var url = $"{BaseUrl}/statuses/home_timeline.json?count={pageSize}";
             return url;
         }
 
-        private string GetSearchUrl(string hashTag, int pageSize)
+        private static string GetSearchUrl(string hashTag, int pageSize)
         {
             var url = $"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={pageSize}";
             return url;
@@ -246,7 +246,7 @@ namespace AppStudio.DataProviders.Twitter
 
         private string GetContinuationToken(string data)
         {
-            var defaultParser = GetDefaultParser(config);
+            var defaultParser = GetDefaultParser(Config);
             var items = defaultParser.Parse(data);
             var id_str = items?.LastOrDefault()?._id;
             long id;

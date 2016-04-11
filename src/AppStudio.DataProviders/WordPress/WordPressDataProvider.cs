@@ -81,7 +81,7 @@ namespace AppStudio.DataProviders.WordPress
             }
         }
 
-        private string GetContinuationToken(string currentToken)
+        private static string GetContinuationToken(string currentToken)
         {
             var token = (Convert.ToInt32(currentToken) + 1).ToString();
             return token;
@@ -149,6 +149,5 @@ namespace AppStudio.DataProviders.WordPress
 
             throw new RequestFailedException(result.StatusCode, result.Result);
         }
-
     }
 }

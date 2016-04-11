@@ -77,7 +77,7 @@ namespace AppStudio.DataProviders.Flickr
             }
         }
 
-        private string GetContinuationToken(string currentToken)
+        private static string GetContinuationToken(string currentToken)
         {
             var token = (Convert.ToInt32(currentToken) + 1).ToString();
             return token;
@@ -93,8 +93,6 @@ namespace AppStudio.DataProviders.Flickr
             var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }
-
     }
-
 }
 

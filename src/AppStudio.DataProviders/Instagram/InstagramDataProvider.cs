@@ -26,11 +26,11 @@ namespace AppStudio.DataProviders.Instagram
             }
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = this.GetApiUrl(config, maxRecords)
+                RequestedUri = this.GetApiUrl(config, pageSize)
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
