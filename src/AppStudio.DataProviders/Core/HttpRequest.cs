@@ -58,5 +58,5 @@ namespace AppStudio.DataProviders.Core
                 }
             }
         }
-    }
+    }    
 }

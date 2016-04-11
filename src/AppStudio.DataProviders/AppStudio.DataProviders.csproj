@@ -78,6 +78,10 @@
     <Compile Include="Facebook\FacebookSchema.cs" />
     <Compile Include="Flickr\FlickrSchema.cs" />
     <Compile Include="Core\HttpRequest.cs" />
+    <Compile Include="RestApi\RestApiDataConfig.cs" />
+    <Compile Include="RestApi\RestApiDataProvider.cs" />
+    <Compile Include="RestApi\RestApiParser.cs" />
+    <Compile Include="RestApi\RestApiSchema.cs" />
     <Compile Include="Rss\RssDataConfig.cs" />
     <Compile Include="Rss\RssDataProvider.cs" />
     <Compile Include="Html\HtmlSchema.cs" />
@@ -128,6 +132,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
