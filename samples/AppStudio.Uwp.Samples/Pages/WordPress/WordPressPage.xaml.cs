@@ -20,6 +20,7 @@ namespace AppStudio.Uwp.Samples
         private const int DefaultMaxRecordsParam = 20;
 
         WordPressDataProvider wordPressDataProvider;
+        WordPressDataProvider rawDataProvider;
 
         public WordPressPage()
         {
@@ -27,6 +28,8 @@ namespace AppStudio.Uwp.Samples
             this.DataContext = this;
             commandBar.DataContext = this;
             paneHeader.DataContext = this;
+
+            InitializeDataProvider();
         }
 
         public override string Caption
@@ -177,19 +180,13 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();
-                wordPressDataProvider = new WordPressDataProvider();
+                Items.Clear();               
                 var config = new WordPressDataConfig()
                 {
                     Query = WordPressQuery,
                     QueryType = WordPressQueryTypeSelectedItem,
                     FilterBy = WordPressQueryFilterBy
-                };
-
-                //var rawParser = new RawParser();
-                //var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
-
+                };  
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
@@ -198,6 +195,10 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+
+                var rawParser = new RawParser();
+                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -226,11 +227,7 @@ namespace AppStudio.Uwp.Samples
                     Query = WordPressQuery,
                     QueryType = WordPressQueryTypeSelectedItem,
                     FilterBy = WordPressQueryFilterBy
-                };
-
-                //var rawParser = new RawParser();
-                //var rawData = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
-                //DataProviderRawData = rawData.FirstOrDefault()?.Raw;
+                };             
 
                 var items = await wordPressDataProvider.LoadMoreDataAsync();
 
@@ -240,6 +237,9 @@ namespace AppStudio.Uwp.Samples
                 {
                     Items.Add(item);
                 }
+                               
+                var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
+                DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
             {
@@ -259,6 +259,12 @@ namespace AppStudio.Uwp.Samples
             WordPressQueryFilterBy = DefaultWordPressQueryFilterBy;
             WordPressQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
+        }
+
+        private void InitializeDataProvider()
+        {
+            wordPressDataProvider = new WordPressDataProvider();
+            rawDataProvider = new WordPressDataProvider();
         }
     }
 }

@@ -4,6 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.ViewManagement;
+using System.Threading.Tasks;
+using System;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -258,6 +261,48 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty RightPaneWidthProperty = DependencyProperty.Register("RightPaneWidth", typeof(double), typeof(ShellControl), new PropertyMetadata(360.0, RightPaneWidthChanged));
+        #endregion
+
+        #region FullScreen
+        public event EventHandler OnEnterFullScreen;
+        public event EventHandler OnExitFullScreen;
+
+        public async Task<bool> TryEnterFullScreenAsync()
+        {
+            await Task.Delay(100);
+            if (ApplicationView.GetForCurrentView().TryEnterFullScreenMode())
+            {
+                if (OnEnterFullScreen != null)
+                {
+                    OnEnterFullScreen(this, EventArgs.Empty);
+                }
+                _splitView.AnimateDoubleProperty("CompactPaneLength", 48, 0, 250);
+                _commandBarContainer.Visibility = Visibility.Collapsed;
+                _headerContainer.Visibility = Visibility.Collapsed;
+                _toggle.Visibility = Visibility.Collapsed;
+                _exitFS.Visibility = Visibility.Visible;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ExitFullScreen()
+        {
+            ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            if (OnExitFullScreen != null)
+            {
+                OnExitFullScreen(this, EventArgs.Empty);
+            }
+            _splitView.AnimateDoubleProperty("CompactPaneLength", 0, 48, 250);
+            _lview.AnimateDoubleProperty("Width", 0, 48, 250);
+            _commandBarContainer.Visibility = Visibility.Visible;
+            _headerContainer.Visibility = Visibility.Visible;
+            _toggle.Visibility = Visibility.Visible;
+            _exitFS.Visibility = Visibility.Collapsed;
+        }
         #endregion
 
         public void OpenLeftPane()
