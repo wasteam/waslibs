@@ -170,9 +170,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = TwitterQueryType.Home
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
-            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
-
-            Assert.AreEqual(maxRecords, result.Count());
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);         
 
             Assert.IsTrue(result.Count() > 25);
         }

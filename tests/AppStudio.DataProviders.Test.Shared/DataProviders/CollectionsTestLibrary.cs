@@ -170,6 +170,45 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
         }
+
+
+        [TestMethod]
+        public async Task LoadPaginationDynamicCollection()
+        {
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6db1e7d0-5216-4519-8978-d51f1452f9f2&appId=7c181582-15d0-42f7-b3eb-ab5d2e7d2c8a")
+            };
+
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
+            await dataProvider.LoadDataAsync(config, 2);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationDynamicCollection()
+        {
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6db1e7d0-5216-4519-8978-d51f1452f9f2&appId=7c181582-15d0-42f7-b3eb-ab5d2e7d2c8a")
+            };
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
     }   
 
     // This is a Windows App Studio template schema from Generic Layout page.
