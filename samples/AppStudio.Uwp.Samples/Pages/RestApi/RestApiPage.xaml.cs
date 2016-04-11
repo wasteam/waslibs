@@ -15,9 +15,9 @@ namespace AppStudio.Uwp.Samples
     public sealed partial class RestApiPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 5;
-        private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
+        private const string DefaultRestApiQuery = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=UUZPiiUjDlrBv4jiiRqk5dSA&part=snippet&key=AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
 
-        RestApiDataProvider rssDataProvider;
+        RestApiDataProvider restApiDataProvider;
         RestApiDataProvider rawDataProvider;
 
         public RestApiPage()
@@ -45,13 +45,13 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(RestApiPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
 
-        public string RssQuery
+        public string RestApiQuery
         {
-            get { return (string)GetValue(RssQueryProperty); }
-            set { SetValue(RssQueryProperty, value); }
+            get { return (string)GetValue(RestApiQueryProperty); }
+            set { SetValue(RestApiQueryProperty, value); }
         }
 
-        public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register("RssQuery", typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultRssQuery));
+        public static readonly DependencyProperty RestApiQueryProperty = DependencyProperty.Register("RestApiQuery", typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultRestApiQuery));
 
         #endregion
 
@@ -163,9 +163,9 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
               
-                var config = new RestApiDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };
+                var config = new RestApiDataConfig { Url = new Uri(RestApiQuery, UriKind.Absolute) };
 
-                var items = new RestApiSchema[0];// await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                var items = new RestApiSchema[0];
 
                 NoItems = !items.Any();
 
@@ -198,16 +198,7 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();               
-
-                var items = await rssDataProvider.LoadMoreDataAsync();
-
-                NoItems = !items.Any();
-
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                Items.Clear();   
 
                 var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
@@ -226,13 +217,13 @@ namespace AppStudio.Uwp.Samples
 
         private void RestoreConfig()
         {
-            RssQuery = DefaultRssQuery;
+            RestApiQuery = DefaultRestApiQuery;
             MaxRecordsParam = DefaultMaxRecordsParam;            
         }
 
         private void InitializeDataProvider()
         {
-            rssDataProvider = new RestApiDataProvider();
+            restApiDataProvider = new RestApiDataProvider();
             rawDataProvider = new RestApiDataProvider();
         }
     }

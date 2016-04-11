@@ -3,7 +3,7 @@ using Windows.Web.Http;
 
 namespace AppStudio.DataProviders.Core
 {
-    internal class HttpRequestResult
+    public class HttpRequestResult
     {
         public HttpRequestResult()
         {
@@ -18,20 +18,14 @@ namespace AppStudio.DataProviders.Core
         public bool Success { get { return (this.StatusCode == HttpStatusCode.Ok && !string.IsNullOrEmpty(this.Result)); } }
     }
 
-    public class HttpRequestResult<TSchema> where TSchema : SchemaBase
+    public class HttpRequestResult<TSchema> : HttpRequestResult where TSchema : SchemaBase
     {
         internal HttpRequestResult(HttpRequestResult result)
         {
-            StatusCode = (int)result.StatusCode;
-            Content = result.Result;
-        }
-
-        public int StatusCode { get; set; }
-
-        public string Content { get; set; }
+            StatusCode = result.StatusCode;
+            Result = result.Result;
+        }   
 
         public IEnumerable<TSchema> Items { get; set; }
-
-        public bool Success { get { return (this.StatusCode == 200 && !string.IsNullOrEmpty(this.Content)); } }
     }
 }

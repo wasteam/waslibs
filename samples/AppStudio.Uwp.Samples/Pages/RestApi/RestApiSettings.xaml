@@ -20,8 +20,8 @@
                 <controls:PropertySet
                     x:Uid="propQuery"
                     Source="{Binding}"
-                    Property="RssQuery"
-                    Value="{Binding RssQuery, Mode=TwoWay}"/>
+                    Property="RestApiQuery"
+                    Value="{Binding RestApiQuery, Mode=TwoWay}"/>
                 <controls:PropertySet
                     x:Uid="propMaxRecords"
                     Source="{Binding}"

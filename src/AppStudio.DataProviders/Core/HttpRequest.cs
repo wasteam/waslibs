@@ -7,6 +7,25 @@ namespace AppStudio.DataProviders.Core
 {
     internal static class HttpRequest
     {
+        internal static async Task<HttpRequestResult<TSchema>> ExecuteGetAsync<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var settings = new HttpRequestSettings()
+            {
+                RequestedUri = uri
+            };
+
+            HttpRequestResult httpResult = await DownloadAsync(settings);           
+            HttpRequestResult<TSchema> result;
+            result = new HttpRequestResult<TSchema>(httpResult);
+            if (httpResult.Success)
+            {
+                var items = parser.Parse(httpResult.Result);
+                result.Items = items;
+            }
+
+            return result;
+        }
+
         internal static async Task<HttpRequestResult> DownloadAsync(HttpRequestSettings settings)
         {
             var result = new HttpRequestResult();
@@ -47,7 +66,7 @@ namespace AppStudio.DataProviders.Core
 
         private static void FixInvalidCharset(HttpResponseMessage response)
         {
-            if (response != null && response.Content != null && response.Content.Headers != null 
+            if (response != null && response.Content != null && response.Content.Headers != null
                 && response.Content.Headers.ContentType != null && response.Content.Headers.ContentType.CharSet != null)
             {
                 // Fix invalid charset returned by some web sites.
@@ -58,5 +77,5 @@ namespace AppStudio.DataProviders.Core
                 }
             }
         }
-    }    
+    }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppStudio.DataProviders.RestApi
 {
-    public class RestApiDataProvider : DataProviderBase<RestApiDataConfig, RestApiSchema>
+    public class RestApiDataProvider : DataProviderBase<RestApiDataConfig>
     {
         public override bool HasMoreItems
         {
@@ -28,10 +28,6 @@ namespace AppStudio.DataProviders.RestApi
 
             return new TSchema[0];      
         }
-        protected override IParser<RestApiSchema> GetDefaultParserInternal(RestApiDataConfig config)
-        {
-            return new RestApiParser();
-        }
 
         protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser)
         {
@@ -47,22 +43,26 @@ namespace AppStudio.DataProviders.RestApi
         }
 
         public async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {         
+            var result = await HttpRequest.ExecuteGetAsync(config.Url, parser);
+            return result;        
+        }
+
+        public async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var settings = new HttpRequestSettings()
-            {
-                RequestedUri = config.Url
-            };
-
-            HttpRequestResult httpResult = await HttpRequest.DownloadAsync(settings);
-            HttpRequestResult<TSchema> result;
-            result = new HttpRequestResult<TSchema>(httpResult);
-            if (httpResult.Success)
-            {
-                var items = parser.Parse(httpResult.Result);
-                result.Items = items;
-            }
-
+            var url = GetContinuationUrl(config.Url);
+            var result = await HttpRequest.ExecuteGetAsync(new Uri(url), parser);
             return result;
+        }
+
+        private string GetContinuationUrl(Uri url)
+        {
+            return url.AbsolutePath;
+        }
+
+        private string GetContinuationToken(string data)
+        {
+            return string.Empty;
         }
     }
 }
