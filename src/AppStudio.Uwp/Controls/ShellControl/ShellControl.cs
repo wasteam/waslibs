@@ -7,6 +7,7 @@ namespace AppStudio.Uwp.Controls
     public partial class ShellControl : ContentControl
     {
         private SplitView _splitView = null;
+        private Button _exitFS = null;
         private Button _toggle = null;
         private Panel _headerContainer = null;
         private ContentControl _commandBarContainer = null;
@@ -42,6 +43,7 @@ namespace AppStudio.Uwp.Controls
         {
             _splitView = base.GetTemplateChild("splitView") as SplitView;
             _toggle = base.GetTemplateChild("toggle") as Button;
+            _exitFS = base.GetTemplateChild("exitFS") as Button;
             _headerContainer = base.GetTemplateChild("headerContainer") as Panel;
             _commandBarContainer = base.GetTemplateChild("commandBarContainer") as ContentControl;
             _paneHeaderContainer = base.GetTemplateChild("paneHeaderContainer") as ContentControl;
@@ -59,6 +61,7 @@ namespace AppStudio.Uwp.Controls
             _lviewSub.ItemContainerStyle = null;
 
             _toggle.Click += OnToggleClick;
+            _exitFS.Click += OnExitFSClick;
             _splitView.PaneClosed += OnPaneClosed;
             _lview.ItemClick += OnItemClick;
             _lviewSub.ItemClick += OnItemClick;
@@ -88,6 +91,11 @@ namespace AppStudio.Uwp.Controls
                 _lview.Width = _splitView.OpenPaneLength;
                 this.ReleaseCommands();
             }
+        }
+
+        private void OnExitFSClick(object sender, RoutedEventArgs e)
+        {
+            this.ExitFullScreen();
         }
 
         private void OnPaneClosed(SplitView sender, object args)

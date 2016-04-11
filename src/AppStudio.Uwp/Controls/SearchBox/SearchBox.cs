@@ -81,7 +81,7 @@ namespace AppStudio.Uwp.Controls
                 Text = txt.Text;
                 UpdatePlaceholderTextVisibility(Text);
             }
-            if (!SearchCommand.CanExecute(Text))
+            if (SearchCommand != null && !SearchCommand.CanExecute(Text))
             {
                 HideSearchText();
             }
