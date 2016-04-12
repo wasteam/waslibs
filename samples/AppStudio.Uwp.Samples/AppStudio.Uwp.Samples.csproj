@@ -188,6 +188,9 @@
     <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
+      <DependentUpon>GifControlSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -479,6 +482,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GifControl\GifControlSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

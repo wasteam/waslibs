@@ -121,10 +121,11 @@ namespace AppStudio.Uwp.Controls
             _timer.Stop();
         }
 
-        public void Stop()
+        public async void Stop()
         {
             _timer.Stop();
             _index = 0;
+            await PlayFrameAsync();
         }
     }
 }

@@ -17,7 +17,14 @@
     </controls:ShellControl.PaneHeader>
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:GifControl Source="http://mspoweruser.com/wp-content/uploads/2016/02/createapp.gif"
+        <StackPanel>
+            <controls:GifControl x:Name="control" Source="http://mspoweruser.com/wp-content/uploads/2016/02/createapp.gif"
                              AutoPlay="True" IsLooping="True" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <AppBarButton Name="abbStop" Icon="Stop" Label="Stop" Click="OnStop" />
+                <AppBarButton Name="abbPlay" Icon="Play" Label="Play" Click="OnPlay" />
+                <AppBarButton Name="abbPause" Icon="Pause" Label="Pause" Click="OnPause" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </local:SamplePage>
