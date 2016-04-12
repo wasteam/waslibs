@@ -11,7 +11,13 @@ namespace AppStudio.DataProviders
     public abstract class DataProviderBase<TConfig>
     {
         TConfig _config;
-        protected TConfig Config { get; set; }
+        protected TConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+        }
 
         int _pageSize;
 
@@ -62,7 +68,7 @@ namespace AppStudio.DataProviders
                     return result;
                 }
             }
-           
+
             return new TSchema[0];
         }
 
@@ -95,5 +101,5 @@ namespace AppStudio.DataProviders
             return GetDefaultParserInternal(config);
         }
         protected abstract IParser<TSchema> GetDefaultParserInternal(TConfig config);
-    }   
+    }
 }
