@@ -114,6 +114,9 @@
     <None Include="AppStudio.Uwp.nuspec" />
     <Compile Include="Commands\EndOfScrollCommand.cs" />
     <Compile Include="Controls\CommandBarEx\CommandBarEx.cs" />
+    <Compile Include="Controls\GifControl\GifControl.cs" />
+    <Compile Include="Controls\GifControl\GifControl.Play.cs" />
+    <Compile Include="Controls\GifControl\GifControl.Tools.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -218,6 +221,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ErrorNotificationControl\ErrorNotificationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GifControl\GifControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
