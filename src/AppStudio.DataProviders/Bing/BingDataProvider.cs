@@ -49,7 +49,7 @@ namespace AppStudio.DataProviders.Bing
             }
         }
 
-        private string GetSearchUrl(BingDataConfig config, int pageSize)
+        private static string GetSearchUrl(BingDataConfig config, int pageSize)
         {
             var countryValue = config.Country.GetStringValue();
             var locParameter = string.IsNullOrEmpty(countryValue) ? string.Empty : $"loc:{countryValue}+";
@@ -57,7 +57,7 @@ namespace AppStudio.DataProviders.Bing
             return url;
         }
 
-        private string GetContinuationToken(string currentToken, int pageSize)
+        private static string GetContinuationToken(string currentToken, int pageSize)
         {
             var token = (Convert.ToInt32(currentToken) + pageSize).ToString();
             return token;

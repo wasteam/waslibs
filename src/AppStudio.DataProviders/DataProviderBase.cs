@@ -10,7 +10,14 @@ namespace AppStudio.DataProviders
 {
     public abstract class DataProviderBase<TConfig>
     {
-        protected TConfig config;
+        TConfig _config;
+        protected TConfig Config
+        {
+            get
+            {
+                return _config;
+            }
+        }
 
         int _pageSize;
 
@@ -34,7 +41,7 @@ namespace AppStudio.DataProviders
             ValidateConfig(config);
 
             _parser = parser;
-            this.config = config;
+            this._config = config;
             _pageSize = pageSize;
 
             var result = await GetDataAsync(config, pageSize, parser);
@@ -47,7 +54,7 @@ namespace AppStudio.DataProviders
 
         public async Task<IEnumerable<TSchema>> LoadMoreDataAsync<TSchema>() where TSchema : SchemaBase
         {
-            if (config == null || _parser == null)
+            if (_config == null || _parser == null)
             {
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
@@ -55,13 +62,13 @@ namespace AppStudio.DataProviders
             if (HasMoreItems)
             {
                 var parser = _parser as IParser<TSchema>;
-                var result = await GetMoreDataAsync(config, _pageSize, parser);
+                var result = await GetMoreDataAsync(_config, _pageSize, parser);
                 if (result != null)
                 {
                     return result;
                 }
             }
-           
+
             return new TSchema[0];
         }
 
@@ -73,9 +80,9 @@ namespace AppStudio.DataProviders
     public abstract class DataProviderBase<TConfig, TSchema> : DataProviderBase<TConfig> where TSchema : SchemaBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
-        public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int maxRecords = 20)
+        public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int pageSize = 20)
         {
-            return await LoadDataAsync(config, maxRecords, GetDefaultParser(config));
+            return await LoadDataAsync(config, pageSize, GetDefaultParser(config));
         }
 
         public async Task<IEnumerable<TSchema>> LoadMoreDataAsync()
@@ -94,5 +101,5 @@ namespace AppStudio.DataProviders
             return GetDefaultParserInternal(config);
         }
         protected abstract IParser<TSchema> GetDefaultParserInternal(TConfig config);
-    }   
+    }
 }

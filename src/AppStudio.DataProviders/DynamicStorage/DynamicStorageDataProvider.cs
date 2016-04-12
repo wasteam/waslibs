@@ -42,7 +42,7 @@ namespace AppStudio.DataProviders.DynamicStorage
             }
         }
 
-        private string GetContinuationToken(string currentToken)
+        private static string GetContinuationToken(string currentToken)
         {
             var token = (Convert.ToInt32(currentToken) + 1).ToString();
             return token;

@@ -83,7 +83,7 @@ namespace AppStudio.DataProviders.Facebook
             return new Uri(ContinuationToken);
         }
 
-        private string GetContinuationToken(string data)
+        private static string GetContinuationToken(string data)
         {
             var facebookResponse = JsonConvert.DeserializeObject<FacebookGraphResponse>(data);
             return facebookResponse?.paging?.next;

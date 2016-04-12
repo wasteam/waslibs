@@ -243,7 +243,7 @@ namespace AppStudio.DataProviders.YouTube
             return url;
         }
 
-        private string GetContinuationToken(string data)
+        private static string GetContinuationToken(string data)
         {
             var youTubeResponse = JsonConvert.DeserializeObject<YouTubeResult<dynamic>>(data);
             return youTubeResponse?.nextPageToken;
