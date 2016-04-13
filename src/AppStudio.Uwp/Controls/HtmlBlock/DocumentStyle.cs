@@ -22,12 +22,13 @@ namespace AppStudio.Uwp.Controls
         public TextStyle Span { get; set; }
         public ParagraphStyle BlockQuote { get; set; }
         public TextStyle Code { get; set; }
-        public ContainerStyle P { get; set; }
+        public ParagraphStyle P { get; set; }
         public ContainerStyle Div { get; set; }
         public ContainerStyle Ul { get; set; }
         public ContainerStyle Ol { get; set; }
         public ListStyle Li { get; set; }
         public TextStyle Strong { get; set; }
+        public ImageStyle Img { get; set; }
 
         public DocumentStyle()
         {
@@ -53,6 +54,7 @@ namespace AppStudio.Uwp.Controls
                 Ol = Merge(Ol, style.Ol);
                 Li = Merge(Li, style.Li);
                 Strong = Merge(Strong, style.Strong);
+                Img = Merge(Img, style.Img);
             }
         }
 
@@ -106,6 +108,43 @@ namespace AppStudio.Uwp.Controls
                 source.Merge(target);
             }
             return source;
+        }
+
+        private ImageStyle Merge(ImageStyle source, ImageStyle target)
+        {
+            if (target != null)
+            {
+                if (source == null)
+                {
+                    source = new ImageStyle();
+                }
+                source.Merge(target);
+            }
+            return source;
+        }
+    }
+
+    public class ImageStyle
+    {
+        public Thickness Margin { get; set; }
+        public HorizontalAlignment HorizontalAlignment { get; set; }
+
+        public ImageStyle()
+        {
+            Margin = new Thickness(double.NaN);
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+        }
+
+        public void Merge(ImageStyle style)
+        {
+            if (double.IsNaN(Margin.Top) && !double.IsNaN(style.Margin.Top))
+            {
+                Margin = style.Margin;
+            }
+            if (HorizontalAlignment != HorizontalAlignment.Stretch && style.HorizontalAlignment != HorizontalAlignment.Stretch)
+            {
+                HorizontalAlignment = style.HorizontalAlignment;
+            }
         }
     }
 

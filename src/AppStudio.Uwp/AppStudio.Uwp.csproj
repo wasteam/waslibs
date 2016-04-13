@@ -127,6 +127,7 @@
     <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ContainerWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\CodeWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ParagraphWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\SpanWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />

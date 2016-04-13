@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
@@ -22,21 +24,31 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            //TODO: SET STYLES (MAX WIDTH) & HIDE IMAGES LESS THAN X WIDTH
+            //TODO: HIDE IMAGES LESS THAN CERTAIN WIDTH?
+
             var node = fragment as HtmlNode;
-            if (node != null && node.Attributes.ContainsKey("src"))
+            var src = GetImageSrc(node);
+            if (node != null && !string.IsNullOrEmpty(src))
             {
                 Uri uri;
 
-                if (Uri.TryCreate(node.Attributes["src"], UriKind.Absolute, out uri))
+                if (Uri.TryCreate(src, UriKind.Absolute, out uri))
                 {
                     try
                     {
-                        return new ImageEx
+                        var viewbox = new Viewbox
+                        {
+                            StretchDirection = StretchDirection.DownOnly
+                        };
+                        viewbox.Child = new ImageEx
                         {
                             Source = new BitmapImage(uri),
-                            Stretch = Stretch.Uniform
+                            Stretch = Stretch.Uniform,
+                            Background = new SolidColorBrush(Colors.Transparent),
                         };
+
+                        return viewbox;
+
                     }
                     catch (Exception ex)
                     {
@@ -44,6 +56,44 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                     }
                 }
             }
+            return null;
+        }
+
+        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        {
+            var viewbox = ctrl as Viewbox;
+
+            if (style.Img != null && viewbox != null)
+            {
+                if (!double.IsNaN(style.Img.Margin.Top))
+                {
+                    viewbox.Margin = style.Img.Margin;
+                }
+                if (style.Img.HorizontalAlignment != HorizontalAlignment.Stretch)
+                {
+                    viewbox.HorizontalAlignment = style.Img.HorizontalAlignment;
+                }
+            }
+        }
+
+        private static string GetImageSrc(HtmlNode img)
+        {
+            if (img.Attributes.ContainsKey("src"))
+            {
+                return img.Attributes["src"];
+            }
+            else if (img.Attributes.ContainsKey("srcset"))
+            {
+                var regex = new Regex(@"(?:(?<src>[^\""'\s,]+)\s*(?:\s+\d+[wx])(?:,\s*)?)");
+                var matches = regex.Matches(img.Attributes["srcset"]);
+
+                if (matches.Count > 0)
+                {
+                    var m = matches[matches.Count - 1];
+                    return m?.Groups["src"].Value;
+                }
+            }
+
             return null;
         }
     }
