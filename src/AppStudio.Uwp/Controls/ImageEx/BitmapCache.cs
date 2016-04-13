@@ -87,6 +87,44 @@ namespace AppStudio.Uwp.Controls
             return CreateBitmapImage(BuildFileName(uri, maxWidth, maxHeight));
         }
 
+        public static async Task<Uri> LoadGifFromCacheAsync(Uri uri)
+        {
+            Task busy = null;
+            string key = BuildKey(uri);
+
+            lock (_lock)
+            {
+                if (_concurrentTasks.ContainsKey(key))
+                {
+                    busy = _concurrentTasks[key];
+                }
+                else
+                {
+                    busy = EnsureFilesAsync(uri);
+                    _concurrentTasks.Add(key, busy);
+                }
+            }
+
+            try
+            {
+                await busy;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+
+            lock (_lock)
+            {
+                if (_concurrentTasks.ContainsKey(key))
+                {
+                    _concurrentTasks.Remove(key);
+                }
+            }
+
+            return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{BuildFileName(uri, MAX_RESOLUTION, MAX_RESOLUTION)}");
+        }
+
         private static BitmapImage CreateBitmapImage(string fileName)
         {
             return new BitmapImage(new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}"));

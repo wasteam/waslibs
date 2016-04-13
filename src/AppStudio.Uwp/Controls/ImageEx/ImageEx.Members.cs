@@ -32,11 +32,12 @@ namespace AppStudio.Uwp.Controls
             control.SetNineGrid((Thickness)e.NewValue);
         }
 
-        private void SetNineGrid(Thickness newValue)
+        private void SetNineGrid(Thickness nineGrid)
         {
             if (_isInitialized)
             {
-                _image.NineGrid = newValue;
+                _image.NineGrid = nineGrid;
+                _imageGif.NineGrid = nineGrid;
             }
         }
 
@@ -47,7 +48,14 @@ namespace AppStudio.Uwp.Controls
         {
             if (_isInitialized)
             {
-                return _image.GetAsCastingSource();
+                if (_image.Visibility == Visibility.Visible)
+                {
+                    return _image.GetAsCastingSource();
+                }
+                else if (_imageGif.Visibility == Visibility.Visible)
+                {
+                    return _imageGif.GetAsCastingSource();
+                }
             }
             return null;
         }

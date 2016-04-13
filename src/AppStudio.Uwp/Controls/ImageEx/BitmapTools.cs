@@ -44,6 +44,12 @@ namespace AppStudio.Uwp.Controls
             {
                 var decoder = await BitmapDecoder.CreateAsync(stream);
 
+                if (IsGifImage(decoder))
+                {
+                    await targetFile.DeleteAsync();
+                    return;
+                }
+
                 maxWidth = Math.Min(maxWidth, (int)decoder.OrientedPixelWidth);
                 maxHeight = Math.Min(maxHeight, (int)decoder.OrientedPixelHeight);
                 var imageSize = new Size(decoder.OrientedPixelWidth, decoder.OrientedPixelHeight);
@@ -84,6 +90,18 @@ namespace AppStudio.Uwp.Controls
 
                 _semaphore.Release();
             }
+        }
+
+        private static bool IsGifImage(BitmapDecoder decoder)
+        {
+            foreach (var mimeType in decoder.DecoderInformation.MimeTypes)
+            {
+                if (mimeType.Equals("image/gif", StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static async Task ResizeImageUniformToFillAsync(StorageFile sourceFile, StorageFile targetFile, int maxWidth = Int32.MaxValue, int maxHeight = Int32.MaxValue)

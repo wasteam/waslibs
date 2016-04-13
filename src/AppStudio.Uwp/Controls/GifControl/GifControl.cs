@@ -3,19 +3,42 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.Media.Casting;
 
 namespace AppStudio.Uwp.Controls
 {
     public partial class GifControl : Control
     {
+        public event ExceptionRoutedEventHandler ImageFailed;
+        public event RoutedEventHandler ImageOpened;
+
         private Image _image = null;
 
         private bool _isInitialized = false;
+        private bool _isPlaying = false;
 
         public GifControl()
         {
             this.DefaultStyleKey = typeof(GifControl);
+            this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
             this.InitializeTimer();
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_isPlaying)
+            {
+                _timer.Start();
+            }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (_isPlaying)
+            {
+                _timer.Stop();
+            }
         }
 
         #region Source
@@ -46,6 +69,13 @@ namespace AppStudio.Uwp.Controls
                     {
                         await PlayFrameAsync();
                     }
+                }
+                else
+                {
+                    _timer.Stop();
+                    _isPlaying = false;
+                    _frames = null;
+                    _pixels = null;
                 }
             }
         }
@@ -100,6 +130,30 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(GifControl), new PropertyMetadata(Stretch.Uniform));
         #endregion
 
+        #region NineGrid
+        public Thickness NineGrid
+        {
+            get { return (Thickness)GetValue(NineGridProperty); }
+            set { SetValue(NineGridProperty, value); }
+        }
+
+        private static void NineGridChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as GifControl;
+            control.SetNineGrid((Thickness)e.NewValue);
+        }
+
+        private void SetNineGrid(Thickness newValue)
+        {
+            if (_isInitialized)
+            {
+                _image.NineGrid = newValue;
+            }
+        }
+
+        public static readonly DependencyProperty NineGridProperty = DependencyProperty.Register("NineGrid", typeof(Thickness), typeof(GifControl), new PropertyMetadata(new Thickness(), NineGridChanged));
+        #endregion
+
         protected override void OnApplyTemplate()
         {
             _image = base.GetTemplateChild("image") as Image;
@@ -107,6 +161,7 @@ namespace AppStudio.Uwp.Controls
             _isInitialized = true;
 
             this.SetSource(this.Source);
+            this.SetNineGrid(this.NineGrid);
 
             base.OnApplyTemplate();
         }
@@ -115,11 +170,13 @@ namespace AppStudio.Uwp.Controls
         {
             _timer.Interval = TimeSpan.FromMilliseconds(100);
             _timer.Start();
+            _isPlaying = true;
         }
 
         public void Pause()
         {
             _timer.Stop();
+            _isPlaying = false;
         }
 
         public async void Stop()
@@ -127,6 +184,16 @@ namespace AppStudio.Uwp.Controls
             _timer.Stop();
             _index = 0;
             await PlayFrameAsync();
+            _isPlaying = false;
+        }
+
+        public CastingSource GetAsCastingSource()
+        {
+            if (_isInitialized)
+            {
+                return _image.GetAsCastingSource();
+            }
+            return null;
         }
     }
 }

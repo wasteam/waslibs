@@ -97,9 +97,19 @@ namespace AppStudio.Uwp.Controls
                         _frames = await LoadFramesAsync(stream);
                     }
                 }
+
+                if (this.ImageOpened != null)
+                {
+                    this.ImageOpened(this, new RoutedEventArgs());
+                }
             }
             catch (Exception ex)
             {
+                // TODO: 
+                //if (this.ImageFailed != null)
+                //{
+                //    this.ImageFailed(this, new ExceptionRoutedEventArgs(ex.Message));
+                //}
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
