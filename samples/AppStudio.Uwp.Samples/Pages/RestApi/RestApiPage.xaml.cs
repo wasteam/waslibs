@@ -16,7 +16,7 @@ namespace AppStudio.Uwp.Samples
     [SamplePage(Category = "DataProviders", Name = "RestApi", Order = 60)]
     public sealed partial class RestApiPage : SamplePage
     {
-        private const int DefaultMaxRecordsParam = 5;
+        private const int DefaultMaxRecordsParam = 10;
         private const string DefaultRestApiQuery = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=UUZPiiUjDlrBv4jiiRqk5dSA&part=snippet&key=AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
 
         RestApiDataProvider<YouTubeSchema> restApiDataProvider;
@@ -186,10 +186,11 @@ namespace AppStudio.Uwp.Samples
                 {
                     Url = new Uri(RestApiQuery, UriKind.Absolute),
                     ElementsRootPath = "items",
-                    ItemParser = itemParser
-                };              
+                    ItemParser = itemParser,
+                    ItemsPerPageParameterName = "maxResults"
+                };
 
-                var items = await restApiDataProvider.LoadDataAsync(config, 10);
+                var items = await restApiDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
                 NoItems = !items.Any();
 
@@ -223,6 +224,15 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
+
+                var items = await restApiDataProvider.LoadMoreDataAsync();
+
+                NoItems = !items.Any();
+
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
 
                 var rawData = await rawDataProvider.LoadMoreDataAsync<RawSchema>();
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;

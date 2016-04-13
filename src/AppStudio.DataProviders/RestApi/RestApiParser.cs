@@ -52,8 +52,7 @@ namespace AppStudio.DataProviders.RestApi
             catch (Exception)
             {
                 return new TSchema();
-            }      
-            
+            }     
         }
     }
 }

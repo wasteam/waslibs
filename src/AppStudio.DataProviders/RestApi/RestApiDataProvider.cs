@@ -13,7 +13,7 @@ namespace AppStudio.DataProviders.RestApi
         {
             get
             {
-                return false;
+                return ContinuationToken != Config?.Paginator?.ContinuationTokenInitialValue;
             }
         }        
 
@@ -23,7 +23,7 @@ namespace AppStudio.DataProviders.RestApi
             var result = await GetAsync(config, pageSize, parser);
             if (result.Success)
             {
-                var a = GetContinuationToken(result.Result);
+                ContinuationToken = GetContinuationToken(result.Result);
                 return result.Items;
             }
             return new TSchema[0];
@@ -34,6 +34,7 @@ namespace AppStudio.DataProviders.RestApi
             var result = await GetMoreAsync(config, pageSize, parser);
             if (result.Success)
             {
+                ContinuationToken = GetContinuationToken(result.Result);
                 return result.Items;
             }
 
@@ -62,7 +63,6 @@ namespace AppStudio.DataProviders.RestApi
             return result;
         }
 
-
         public async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             ContinuationToken = config?.Paginator?.ContinuationTokenInitialValue;
@@ -73,23 +73,30 @@ namespace AppStudio.DataProviders.RestApi
 
         public async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var url = GetContinuationUrl(config.Url);
-            var result = await HttpRequest.ExecuteGetAsync(new Uri(url), parser);
+            var url = GetUrl(config, pageSize);
+            var continuationUrl = GetContinuationUrl(url);
+            var result = await HttpRequest.ExecuteGetAsync(new Uri(continuationUrl), parser);
             return result;
         }
 
         private string GetUrl<TSchema>(RestApiDataConfig<TSchema> config, int pageSize) where TSchema : SchemaBase
         {
+            Uri uri = config.Url;
+            var absoluteUri = uri.AbsoluteUri;
             if (!string.IsNullOrEmpty(config?.ItemsPerPageParameterName))
             {
-                return $"{config.Url.AbsoluteUri}?{config.ItemsPerPageParameterName}={pageSize}";
+                if (string.IsNullOrEmpty(uri.Query))
+                {
+                    return $"{absoluteUri}?{config.ItemsPerPageParameterName}={pageSize}";
+                }
+                return $"{absoluteUri}&{config.ItemsPerPageParameterName}={pageSize}";
             }
-            return $"{config.Url.AbsoluteUri}";
+            return absoluteUri;
         }
 
-        private string GetContinuationUrl(Uri url)
+        private string GetContinuationUrl(string url)
         {
-            return Config.Paginator.GetContinuationUrl(url.AbsoluteUri, ContinuationToken);
+            return Config.Paginator.GetContinuationUrl(url, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)

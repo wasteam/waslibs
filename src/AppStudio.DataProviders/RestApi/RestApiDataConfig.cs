@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 namespace AppStudio.DataProviders.RestApi
 
 {
-    public class RestApiDataConfig<TSchema> where TSchema: SchemaBase
+    public class RestApiDataConfig<TSchema> where TSchema : SchemaBase
     {
         public Uri Url { get; set; }
 
@@ -25,9 +26,9 @@ namespace AppStudio.DataProviders.RestApi
             {
                 throw new ArgumentNullException(nameof(paginator));
             }
-            Paginator = paginator;           
+            Paginator = paginator;
         }
-    }  
+    }
 
     public interface IPaginator
     {
@@ -47,7 +48,15 @@ namespace AppStudio.DataProviders.RestApi
 
         public string GetContinuationUrl(string dataProviderUrl, string currentContinuationToken)
         {
-            dataProviderUrl += $"&{PaginationUrlParameter}={currentContinuationToken}";
+            var uri = new Uri(dataProviderUrl);
+            if (string.IsNullOrEmpty(uri.Query))
+            {
+                dataProviderUrl += $"?{PaginationUrlParameter}={currentContinuationToken}";
+            }
+            else
+            {
+                dataProviderUrl += $"&{PaginationUrlParameter}={currentContinuationToken}";
+            }
             return dataProviderUrl;
         }
 
@@ -86,8 +95,17 @@ namespace AppStudio.DataProviders.RestApi
             {
                 return currentContinuationToken;
             }
-            else {
-                dataProviderUrl += $"&{PaginationUrlParameter}={currentContinuationToken}";
+            else
+            {
+                var uri = new Uri(dataProviderUrl);
+                if (string.IsNullOrEmpty(uri.Query))
+                {
+                    dataProviderUrl += $"?{PaginationUrlParameter}={WebUtility.UrlEncode(currentContinuationToken)}";
+                }
+                else
+                {
+                    dataProviderUrl += $"&{PaginationUrlParameter}={WebUtility.UrlEncode(currentContinuationToken)}";
+                }
                 return dataProviderUrl;
             }
         }
