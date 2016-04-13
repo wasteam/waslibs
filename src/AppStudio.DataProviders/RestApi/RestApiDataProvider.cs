@@ -1,14 +1,13 @@
 ﻿using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AppStudio.DataProviders.RestApi
 {
-    public class RestApiDataProvider : DataProviderBase<RestApiDataConfig>
+    public class RestApiDataProvider<TSchema0> : DataProviderBase<RestApiDataConfig<TSchema0>, TSchema0> where TSchema0 : SchemaBase, new()
     {
         public override bool HasMoreItems
         {
@@ -16,53 +15,86 @@ namespace AppStudio.DataProviders.RestApi
             {
                 return false;
             }
+        }        
+
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser)
+        {
+            ContinuationToken = config?.Paginator?.ContinuationTokenInitialValue;
+            var result = await GetAsync(config, pageSize, parser);
+            if (result.Success)
+            {
+                var a = GetContinuationToken(result.Result);
+                return result.Items;
+            }
+            return new TSchema[0];
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser)
         {
-            var result = await GetAsync<TSchema>(config, pageSize, parser);   
+            var result = await GetMoreAsync(config, pageSize, parser);
             if (result.Success)
             {
                 return result.Items;
             }
 
-            return new TSchema[0];      
+            return new TSchema[0];
         }
 
-        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void ValidateConfig(RestApiDataConfig config)
+        protected override void ValidateConfig(RestApiDataConfig<TSchema0> config)
         {
             if (config.Url == null)
             {
-                throw new ConfigParameterNullException("Url");
+                throw new ConfigParameterNullException(nameof(config.Url));
+            }
+            if (config.ItemParser == null)
+            {
+                throw new ConfigParameterNullException(nameof(config.ItemParser));
+            }
+            if (config.Paginator == null)
+            {
+                throw new ConfigParameterNullException(nameof(config.Paginator));
             }
         }
 
-        public async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
-        {         
-            var result = await HttpRequest.ExecuteGetAsync(config.Url, parser);
-            return result;        
+        protected override IParser<TSchema0> GetDefaultParserInternal(RestApiDataConfig<TSchema0> config)
+        {
+            RestApiParser<TSchema0> result = new RestApiParser<TSchema0>(config.ElementsRootPath, config.ItemParser);           
+            return result;
         }
 
-        public async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+
+        public async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            ContinuationToken = config?.Paginator?.ContinuationTokenInitialValue;
+            var url = GetUrl(config, pageSize);
+            var result = await HttpRequest.ExecuteGetAsync(new Uri(url), parser);
+            return result;
+        }
+
+        public async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig<TSchema0> config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var url = GetContinuationUrl(config.Url);
             var result = await HttpRequest.ExecuteGetAsync(new Uri(url), parser);
             return result;
         }
 
+        private string GetUrl<TSchema>(RestApiDataConfig<TSchema> config, int pageSize) where TSchema : SchemaBase
+        {
+            if (!string.IsNullOrEmpty(config?.ItemsPerPageParameterName))
+            {
+                return $"{config.Url.AbsoluteUri}?{config.ItemsPerPageParameterName}={pageSize}";
+            }
+            return $"{config.Url.AbsoluteUri}";
+        }
+
         private string GetContinuationUrl(Uri url)
         {
-            return url.AbsolutePath;
+            return Config.Paginator.GetContinuationUrl(url.AbsoluteUri, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)
         {
-            return string.Empty;
-        }
+            return Config.Paginator.GetNextContinuationToken(data, ContinuationToken);
+        }        
     }
 }
