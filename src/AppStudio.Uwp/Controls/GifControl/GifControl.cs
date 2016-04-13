@@ -113,6 +113,7 @@ namespace AppStudio.Uwp.Controls
 
         public void Play()
         {
+            _timer.Interval = TimeSpan.FromMilliseconds(100);
             _timer.Start();
         }
 
