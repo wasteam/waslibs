@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml;
+using System.Diagnostics;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -27,7 +28,14 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
                 if (Uri.TryCreate(node.Attributes["href"], UriKind.Absolute, out uri))
                 {
-                    a.NavigateUri = uri;
+                    try
+                    {
+                        a.NavigateUri = uri;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Error loading a@href '{uri?.ToString()}': {ex.Message}");
+                    }
                 }
 
                 return a;

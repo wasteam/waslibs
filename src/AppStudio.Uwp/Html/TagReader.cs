@@ -9,10 +9,13 @@ namespace AppStudio.Uwp.Html
 {
     internal sealed class TagReader
     {
-        //TODO: COMPILE THIS?
-        private const string RegexPattern = "</?(?<tag>\\w+)((\\s+(?<attrName>\\w+)(\\s*=\\s*(?:\"(?<attrValue>.*?)\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)/?>";
+        private static readonly string[] AutoclosedTags = new string[] { "br" };
 
-        private Regex _regex;
+        private const string RegexPatternTag = @"</?(?<tag>\w+)\s*?(?<attr>[^>]*)*?/?>";
+        private const string RegexPatternAttributes = "(?<attrName>[^\"'=]*)=?(\"|')?(?<attrValue>[^\"']*)(\"|')?";
+
+        private Regex _regexTag;
+        private Regex _regexAttributes;
         private Match _match;
 
         public string Document { get; }
@@ -22,7 +25,8 @@ namespace AppStudio.Uwp.Html
         private TagReader(string document)
         {
             Document = document;
-            _regex = new Regex(RegexPattern);
+            _regexTag = new Regex(RegexPatternTag, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            _regexAttributes = new Regex(RegexPatternAttributes, RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }
 
         public static TagReader Create(string document)
@@ -34,7 +38,7 @@ namespace AppStudio.Uwp.Html
         {
             if (_match == null)
             {
-                _match = _regex.Match(Document);
+                _match = _regexTag.Match(Document);
             }
             else
             {
@@ -44,39 +48,48 @@ namespace AppStudio.Uwp.Html
             {
                 return false;
             }
-            var tag = new HtmlTag
+            try
             {
-                Name = _match.Groups["tag"].Value,
-                TagType = GetTagType(_match.Value),
-                StartIndex = _match.Index,
-                Length = _match.Length
-            };
-
-            //TODO: ASUMMING THE SAME NUMBER OF
-            var attrName = _match.Groups["attrName"];
-            var attrValue = _match.Groups["attrValue"];
-
-            if (attrName.Success)
-            {
-                for (int i = 0; i < attrName.Captures.Count; i++)
+                var tag = new HtmlTag
                 {
-                    tag.Attributes.Add(attrName.Captures[i].Value.ToLowerInvariant(), attrValue.Captures[i].Value);
-                }
-            }
+                    Name = _match.Groups["tag"].Value,
+                    TagType = GetTagType(_match.Value, _match.Groups["tag"].Value),
+                    StartIndex = _match.Index,
+                    Length = _match.Length
+                };
 
-            PreviousTag = CurrentTag;
-            CurrentTag = tag;
+                var attributes = _match.Groups["attr"];
+                if (attributes.Success)
+                {
+                    var attrMatches = _regexAttributes.Matches(attributes.Value);
+                    for (int i = 0; i < attrMatches.Count; i++)
+                    {
+                        var attrMatch = attrMatches[i];
+                        if (attrMatch.Success && !string.IsNullOrWhiteSpace(attrMatch.Value))
+                        {
+                            tag.Attributes.Add(FormatAttribute(attrMatch.Groups["attrName"].Value).ToLowerInvariant(), FormatAttribute(attrMatch.Groups["attrValue"].Value));
+                        }
+                    }
+                }
+
+                PreviousTag = CurrentTag;
+                CurrentTag = tag;
+            }
+            catch (Exception ex)
+            {
+                throw new HtmlException($"Error reading tag {_match.Groups["tag"].Value} at index {_match.Index}", ex);
+            }
 
             return true;
         }
 
-        private static TagType GetTagType(string value)
+        private static TagType GetTagType(string tag, string tagName)
         {
-            if (value.StartsWith("</"))
+            if (tag.StartsWith("</"))
             {
                 return TagType.Close;
             }
-            else if (value.EndsWith("/>"))
+            else if (tag.EndsWith("/>") || AutoclosedTags.Contains(tagName.ToLowerInvariant()))
             {
                 return TagType.AutoClose;
             }
@@ -84,6 +97,17 @@ namespace AppStudio.Uwp.Html
             {
                 return TagType.Open;
             }
+        }
+
+        private static string FormatAttribute(string attrValue)
+        {
+            if (!string.IsNullOrWhiteSpace(attrValue))
+            {
+                return attrValue
+                            .Trim()
+                            .ToLowerInvariant();
+            }
+            return string.Empty;
         }
     }
 }

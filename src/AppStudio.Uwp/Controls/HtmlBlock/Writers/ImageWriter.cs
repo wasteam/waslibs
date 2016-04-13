@@ -1,6 +1,7 @@
 ﻿using AppStudio.Uwp.Html;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,11 +30,18 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
                 if (Uri.TryCreate(node.Attributes["src"], UriKind.Absolute, out uri))
                 {
-                    return new ImageEx
+                    try
                     {
-                        Source = new BitmapImage(uri),
-                        Stretch = Stretch.Uniform
-                    };
+                        return new ImageEx
+                        {
+                            Source = new BitmapImage(uri),
+                            Stretch = Stretch.Uniform
+                        };
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Error loading img@src '{uri?.ToString()}': {ex.Message}");
+                    }
                 }
             }
             return null;

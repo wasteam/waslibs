@@ -7,9 +7,17 @@ using System.Threading.Tasks;
 
 namespace AppStudio.Uwp.Html
 {
-    //TODO: CHANGE NAME?
     public sealed class HtmlDocument : HtmlFragment
     {
+        public HtmlNode Body
+        {
+            get
+            {
+                return Descendants()
+                            .FirstOrDefault(d => d.Name == "body")?.AsNode();
+            }
+        }
+
         public HtmlDocument()
         {
             Name = "doc";
@@ -23,49 +31,75 @@ namespace AppStudio.Uwp.Html
             });
         }
 
-        private static HtmlDocument Load(string document)
+        public static HtmlDocument Load(string document)
         {
             var root = new HtmlDocument();
+            var openTagStack = new Stack<string>();
 
             document = Clean(document);
-            var reader = TagReader.Create(document);
 
-            AddFragments(reader, root);
+            if (!string.IsNullOrWhiteSpace(document))
+            {
+                if (IsMarkup(document))
+                {
+                    var reader = TagReader.Create(document);
+                    AddFragments(reader, root, openTagStack);
+                }
+                else
+                {
+                    root.TryToAddText(new HtmlText
+                    {
+                        Content = document
+                    });
+                }
+            }
 
             return root;
         }
 
-        private static void AddFragments(TagReader reader, HtmlFragment parentFragment)
+        private static string AddFragments(TagReader reader, HtmlFragment parentFragment, Stack<string> openTagStack)
         {
-            //TODO: REVIEW COMMENTS
             while (reader.Read())
             {
                 parentFragment.TryToAddText(HtmlText.Create(reader.Document, reader.PreviousTag, reader.CurrentTag));
 
-                if (reader.CurrentTag.TagType == TagType.Close)
+                if (reader.CurrentTag.TagType == TagType.Close && openTagStack.Any(t => t.Equals(reader.CurrentTag.Name, StringComparison.CurrentCultureIgnoreCase)))
                 {
-                    return;
+                    return reader.CurrentTag.Name;
                 }
 
                 var node = parentFragment.AddNode(reader.CurrentTag);
 
                 if (reader.CurrentTag.TagType == TagType.Open)
                 {
-                    AddFragments(reader, node);
+                    openTagStack.Push(reader.CurrentTag.Name);
+
+                    var lastClosed = AddFragments(reader, node, openTagStack);
+                    if (lastClosed != openTagStack.Pop())
+                    {
+                        return lastClosed;
+                    }
                 }
             }
-
+            return null;
         }
 
         private static string Clean(string doc)
         {
-            //TODO: VERIFY NOT NULL OR EMPTY
-            //TODO: REMOVE ROOT, HEAD & BODY
-            //TODO: REMOVE SPACES WHEN IDENTED
             doc = Regex.Replace(doc, @"^\r\n|\r\n\s+|\n|\n\s+|\r$", string.Empty, RegexOptions.Multiline);
-            //doc = Regex.Replace(doc, @">\s+", ">");
+            doc = Regex.Replace(doc, "<!--.*?-->", string.Empty);
 
             return doc;
+        }
+
+        private static bool IsMarkup(string doc)
+        {
+            if (!string.IsNullOrWhiteSpace(doc))
+            {
+                doc = doc.Trim();
+                return doc.StartsWith("<") && doc.EndsWith(">");
+            }
+            return false;
         }
     }
 }

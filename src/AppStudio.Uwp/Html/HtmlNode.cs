@@ -12,8 +12,7 @@ namespace AppStudio.Uwp.Html
 
         internal HtmlNode(HtmlTag openTag)
         {
-            //TODO: CHECK IF IS OPEN
-            Name = openTag.Name;
+            Name = openTag.Name.ToLowerInvariant();
             Attributes = openTag.Attributes;
         }
     }

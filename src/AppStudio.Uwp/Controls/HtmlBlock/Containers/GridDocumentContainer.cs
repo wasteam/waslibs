@@ -11,7 +11,6 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 {
     class GridDocumentContainer : DocumentContainer<Grid>
     {
-        //TODO: REVIEW THESE FLAGS
         private bool _createTextBlock;
         private bool _createParagraph;
 
@@ -61,8 +60,6 @@ namespace AppStudio.Uwp.Controls.Html.Containers
                 textBlock.Blocks.Add(p);
 
                 _createParagraph = false;
-
-                //TODO: TRIM START
             }
 
             return p;
@@ -93,7 +90,6 @@ namespace AppStudio.Uwp.Controls.Html.Containers
                 Height = GridLength.Auto
             });
 
-            //TODO: WHAT IF ELEMENTS HAS NOT TEXT CHILDREN??
             Grid.SetRow(element, Control.RowDefinitions.Count - 1);
             Control.Children.Add(element);
         }

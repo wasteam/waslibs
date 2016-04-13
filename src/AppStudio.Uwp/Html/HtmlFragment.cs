@@ -21,6 +21,18 @@ namespace AppStudio.Uwp.Html
             return this as HtmlText;
         }
 
+        public IEnumerable<HtmlFragment> Descendants()
+        {
+            foreach (var descendant in Fragments)
+            {
+                yield return descendant;
+                foreach (var innerDescendant in descendant.Descendants())
+                {
+                    yield return innerDescendant;
+                }
+            }
+        }
+
         internal HtmlNode AddNode(HtmlTag tag)
         {
             var node = new HtmlNode(tag);

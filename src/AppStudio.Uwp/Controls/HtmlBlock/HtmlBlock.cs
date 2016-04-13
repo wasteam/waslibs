@@ -3,8 +3,8 @@ using AppStudio.Uwp.Controls.Html.Writers;
 using AppStudio.Uwp.Html;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Text;
@@ -75,9 +75,22 @@ namespace AppStudio.Uwp.Controls
 
                 DocumentStyle?.Merge(DefaultDocumentStyle);
 
-                var doc = await HtmlDocument.LoadAsync(Source);
+                try
+                {
+                    var doc = await HtmlDocument.LoadAsync(Source);
 
-                WriteFragments(doc, new GridDocumentContainer(_container));
+                    HtmlFragment body = doc?.Body;
+                    if (body == null)
+                    {
+                        body = doc;
+                    }
+
+                    WriteFragments(body, new GridDocumentContainer(_container));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"HtmlBlock: Error rendering document. Ex: {ex.ToString()}");
+                }
             }
         }
 
@@ -109,9 +122,6 @@ namespace AppStudio.Uwp.Controls
                     }
 
                     WriteFragments(childFragment, currentContainer);
-
-                    ////TODO: VERIFY IF IS EMPTY AND THE NOT ADD
-                    //container.Add(ctrl);
                 } 
             }
         }

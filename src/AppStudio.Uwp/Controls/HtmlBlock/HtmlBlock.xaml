@@ -4,7 +4,7 @@
     xmlns:c="using:AppStudio.Uwp.Controls">
 
     <c:ContainerStyle x:Key="P" Margin="0,0,0,10" />
-    <c:ContainerStyle x:Key="Div" Margin="0,0,0,10" />
+    <c:ContainerStyle x:Key="Div" Margin="0" />
     <c:ContainerStyle x:Key="Ul" Margin="0,0,0,10" />
     <c:ContainerStyle x:Key="Ol" Margin="0,0,0,10" />
     
@@ -15,7 +15,7 @@
     <c:ParagraphStyle x:Key="H5" FontSizeRatio="0.90" FontWeight="SemiBold" />
     <c:ParagraphStyle x:Key="H6" FontSizeRatio="0.80" FontWeight="SemiBold" />
     <c:ParagraphStyle x:Key="BlockQuote" Margin="0,0,0,5" />
-    <c:ListStyle x:Key="Li" Margin="0,0,0,5" Bullet="&#x25CF;" />
+    <c:ListStyle x:Key="Li" Margin="5,0,0,5" Bullet="&#x25CF;" />
     <c:TextStyle x:Key="Span" />
     <c:TextStyle x:Key="Strong" FontWeight="SemiBold" />
     <c:TextStyle x:Key="A" />
