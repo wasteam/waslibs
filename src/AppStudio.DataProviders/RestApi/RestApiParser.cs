@@ -15,7 +15,7 @@ namespace AppStudio.DataProviders.RestApi
         private Func<string, TSchema> _itemParser = (x) => DefaultItemParser(x);
 
         public RestApiParser(string rootPath, Func<string, TSchema> parserItems)
-        {                   
+        {
             if (parserItems == null)
             {
                 throw new ArgumentNullException(nameof(parserItems));
@@ -33,12 +33,14 @@ namespace AppStudio.DataProviders.RestApi
 
             var result = new Collection<TSchema>();
             JObject o = JObject.Parse(data);
-            IEnumerable<string> elements = o.SelectToken(_rootPath).Select(s => s.ToString());
-
-            foreach (string item in elements)
+            IEnumerable<string> elements = o.SelectToken(_rootPath)?.Select(s => s.ToString());
+            if (elements != null)
             {
-                var itemResult = _itemParser(item);
-                result.Add(itemResult);
+                foreach (string item in elements)
+                {
+                    var itemResult = _itemParser(item);
+                    result.Add(itemResult);
+                }
             }
             return result;
         }
@@ -52,7 +54,7 @@ namespace AppStudio.DataProviders.RestApi
             catch (Exception)
             {
                 return new TSchema();
-            }     
+            }
         }
     }
 }

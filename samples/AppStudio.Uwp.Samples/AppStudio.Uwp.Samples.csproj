@@ -287,6 +287,7 @@
     <Compile Include="Pages\RestApi\RestApiPage.xaml.cs">
       <DependentUpon>RestApiPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RestApi\RestApiSchema.cs" />
     <Compile Include="Pages\RestApi\RestApiSettings.xaml.cs">
       <DependentUpon>RestApiSettings.xaml</DependentUpon>
     </Compile>

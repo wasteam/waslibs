@@ -13,14 +13,14 @@ using Newtonsoft.Json.Linq;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "RestApi", Order = 60)]
+   [SamplePage(Category = "DataProviders", Name = "RestApi", Order = 60)]
     public sealed partial class RestApiPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;
         private const string DefaultRestApiQuery = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=UUZPiiUjDlrBv4jiiRqk5dSA&part=snippet&key=AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
 
-        RestApiDataProvider<YouTubeSchema> restApiDataProvider;
-        RestApiDataProvider<YouTubeSchema> rawDataProvider;
+        RestApiDataProvider<RestApiSchema> restApiDataProvider;
+        RestApiDataProvider<RestApiSchema> rawDataProvider;
 
         public RestApiPage()
         {
@@ -116,6 +116,7 @@ namespace AppStudio.Uwp.Samples
                 });
             }
         }
+
         public ICommand MoreDataCommand
         {
             get
@@ -165,32 +166,99 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var paginator = new ContinuationTokenPaginator()
+                #region YT  
+                var paginatorYT = new TokenPaginator()
                 {
                     ContinuationTokenIsUrl = false,
                     ContinuationTokenPath = "nextPageToken",
-                    PaginationUrlParameter = "pageToken"
+                    PaginationParameterName = "pageToken"
                 };
 
-                Func<string, YouTubeSchema> itemParser = (x) =>
+                Func<string, RestApiSchema> itemYTParser = (x) =>
                    {
                        JObject o = JObject.Parse(x);
-                       var result = new YouTubeSchema();
-                       result._id = (string)o.SelectToken("id");
+                       var result = new RestApiSchema();
+                       result._id = (string)o.SelectToken("id.videoId");
                        result.Title = (string)o.SelectToken("snippet.title");
-                       result.Summary = (string)o.SelectToken("snippet.description");
+                       result.Description = (string)o.SelectToken("snippet.description");
+                       result.ImageUrl= (string)o.SelectToken("snippet.thumbnails.default.url");
                        return result;
                    };
 
-                var config = new RestApiDataConfig<YouTubeSchema>(paginator)
+                var configYT = new RestApiDataConfig<RestApiSchema>()
                 {
                     Url = new Uri(RestApiQuery, UriKind.Absolute),
                     ElementsRootPath = "items",
-                    ItemParser = itemParser,
-                    ItemsPerPageParameterName = "maxResults"
+                    ItemParser = itemYTParser,
+                    PageSizeParameterName = "maxResults",
+                    Paginator = paginatorYT
                 };
 
-                var items = await restApiDataProvider.LoadDataAsync(config, MaxRecordsParam);
+                #endregion
+
+                #region WP  
+                var paginatorWP = new TokenPaginator()
+                {
+                    ContinuationTokenIsUrl = false,
+                    ContinuationTokenPath = "meta.next_page",
+                    PaginationParameterName = "page_handle"
+                };
+
+                Func<string, RestApiSchema> itemWPParser = (x) =>
+                  {
+                      JObject o = JObject.Parse(x);
+                      var result = new RestApiSchema();
+                      result._id = (string)o.SelectToken("ID");
+                      result.Title = (string)o.SelectToken("title");
+                      result.Description = (string)o.SelectToken("content");
+                      result.ImageUrl = (string)o.SelectToken("post_thumbnail.URL");
+                      return result;
+                  };
+
+                var configWP = new RestApiDataConfig<RestApiSchema>()
+                {
+                    Url = new Uri(RestApiQuery, UriKind.Absolute),
+                    ElementsRootPath = "posts",
+                    ItemParser = itemWPParser,
+                    PageSizeParameterName = "number",
+                    Paginator = paginatorWP
+                };
+
+                #endregion
+
+                #region Spotify
+
+                var paginatorSF = new TokenPaginator()
+                {
+                    ContinuationTokenIsUrl = true,
+                    ContinuationTokenPath = "artists.next"
+                    //PaginationParameterName = "page_handle"
+                };
+
+                Func<string, RestApiSchema> itemSFParser = (x) =>
+                  {
+                      JObject o = JObject.Parse(x);
+                      var result = new RestApiSchema();
+                      result._id = (string)o.SelectToken("id");
+                      result.Title = (string)o.SelectToken("name");
+                     // result.Description = (string)o.SelectToken("content");
+                      result.ImageUrl = (string)o.SelectToken("images.[0].url");
+                      return result;
+                  };
+
+                var configSF = new RestApiDataConfig<RestApiSchema>()
+                {
+                    Url = new Uri(RestApiQuery, UriKind.Absolute),
+                    ElementsRootPath = "artists.items",
+                    ItemParser = itemSFParser,
+                    PageSizeParameterName = "limit",
+                    Paginator = paginatorSF
+                };
+
+                #endregion
+
+
+                var items = await restApiDataProvider.LoadDataAsync(configYT, MaxRecordsParam);
 
                 NoItems = !items.Any();
 
@@ -200,7 +268,7 @@ namespace AppStudio.Uwp.Samples
                 }
 
                 var rawParser = new RawParser();
-                var rawData = await rawDataProvider.LoadDataAsync(config, MaxRecordsParam, rawParser);
+                var rawData = await rawDataProvider.LoadDataAsync(configYT, MaxRecordsParam, rawParser);
                 DataProviderRawData = rawData.FirstOrDefault()?.Raw;
             }
             catch (Exception ex)
@@ -257,8 +325,8 @@ namespace AppStudio.Uwp.Samples
 
         private void InitializeDataProvider()
         {
-            restApiDataProvider = new RestApiDataProvider<YouTubeSchema>();
-            rawDataProvider = new RestApiDataProvider<YouTubeSchema>();
+            restApiDataProvider = new RestApiDataProvider<RestApiSchema>();
+            rawDataProvider = new RestApiDataProvider<RestApiSchema>();
         }
     }
 }
