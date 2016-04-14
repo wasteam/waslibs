@@ -74,8 +74,6 @@ namespace AppStudio.Uwp.Controls
                 {
                     _timer.Stop();
                     _isPlaying = false;
-                    _frames = null;
-                    _pixels = null;
                 }
             }
         }

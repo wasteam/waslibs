@@ -44,6 +44,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty NineGridProperty = DependencyProperty.Register("NineGrid", typeof(Thickness), typeof(ImageEx), new PropertyMetadata(new Thickness(), NineGridChanged));
         #endregion
 
+        #region AnimateGif
+        public bool AnimateGif
+        {
+            get { return (bool)GetValue(AnimateGifProperty); }
+            set { SetValue(AnimateGifProperty, value); }
+        }
+
+        public static readonly DependencyProperty AnimateGifProperty = DependencyProperty.Register("AnimateGif", typeof(bool), typeof(ImageEx), new PropertyMetadata(false));
+        #endregion
+
         public CastingSource GetAsCastingSource()
         {
             if (_isInitialized)
