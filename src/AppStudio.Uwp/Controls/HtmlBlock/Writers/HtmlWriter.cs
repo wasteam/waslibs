@@ -78,5 +78,20 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                 }
             }
         }
+
+        protected static void ApplyImageStyles(FrameworkElement element, ImageStyle style)
+        {
+            if (style != null && element != null)
+            {
+                if (!double.IsNaN(style.Margin.Top))
+                {
+                    element.Margin = style.Margin;
+                }
+                if (style.HorizontalAlignment != HorizontalAlignment.Stretch)
+                {
+                    element.HorizontalAlignment = style.HorizontalAlignment;
+                }
+            }
+        }
     }
 }

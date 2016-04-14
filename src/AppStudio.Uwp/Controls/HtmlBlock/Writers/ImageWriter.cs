@@ -42,9 +42,10 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                         };
                         viewbox.Child = new ImageEx
                         {
-                            Source = new BitmapImage(uri),
+                            Source = src,
                             Stretch = Stretch.Uniform,
                             Background = new SolidColorBrush(Colors.Transparent),
+                            Foreground = new SolidColorBrush(Colors.Transparent)
                         };
 
                         return viewbox;
@@ -61,19 +62,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            var viewbox = ctrl as Viewbox;
-
-            if (style.Img != null && viewbox != null)
-            {
-                if (!double.IsNaN(style.Img.Margin.Top))
-                {
-                    viewbox.Margin = style.Img.Margin;
-                }
-                if (style.Img.HorizontalAlignment != HorizontalAlignment.Stretch)
-                {
-                    viewbox.HorizontalAlignment = style.Img.HorizontalAlignment;
-                }
-            }
+            ApplyImageStyles(ctrl as Viewbox, style.Img);
         }
 
         private static string GetImageSrc(HtmlNode img)

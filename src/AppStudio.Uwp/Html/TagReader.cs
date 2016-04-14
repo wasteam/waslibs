@@ -11,8 +11,8 @@ namespace AppStudio.Uwp.Html
     {
         private static readonly string[] AutoclosedTags = new string[] { "br" };
 
-        private const string RegexPatternTag = @"</?(?<tag>\w+)\s*?(?<attr>[^>]*)*?/?>";
-        private const string RegexPatternAttributes = "(?<attrName>[^\"'=]*)=?(\"|')?(?<attrValue>[^\"']*)(\"|')?";
+        private const string RegexPatternTag = @"<\s*(?:\/?)(?<tag>\w+)(?<attr>(?:\s+[\w-:]+(?:\s*=\s*(?:(?:\""[^\""]*\"")|(?:'[^']*')|[^>\s]+))?)*)\s*(?:\/?)>";
+        private const string RegexPatternAttributes = @"\s*(?<attrName>[\w-:]+)(?:\s*=\s*(?<attrValue>(?:\""[^\""]*\"")|(?:'[^']*')|[^>\s]+))?";
 
         private Regex _regexTag;
         private Regex _regexAttributes;
@@ -67,7 +67,7 @@ namespace AppStudio.Uwp.Html
                         var attrMatch = attrMatches[i];
                         if (attrMatch.Success && !string.IsNullOrWhiteSpace(attrMatch.Value))
                         {
-                            tag.Attributes.Add(FormatAttribute(attrMatch.Groups["attrName"].Value).ToLowerInvariant(), FormatAttribute(attrMatch.Groups["attrValue"].Value));
+                            tag.Attributes.Add(FormatAttribute(attrMatch.Groups["attrName"].Value).ToLowerInvariant(), FormatAttributeValue(attrMatch.Groups["attrValue"].Value));
                         }
                     }
                 }
@@ -99,15 +99,28 @@ namespace AppStudio.Uwp.Html
             }
         }
 
-        private static string FormatAttribute(string attrValue)
+        private static string FormatAttribute(string attr)
+        {
+            if (!string.IsNullOrWhiteSpace(attr))
+            {
+                return attr
+                        .Trim()
+                        .ToLowerInvariant();
+            }
+            return string.Empty;
+        }
+
+        private static string FormatAttributeValue(string attrValue)
         {
             if (!string.IsNullOrWhiteSpace(attrValue))
             {
-                return attrValue
-                            .Trim()
-                            .ToLowerInvariant();
+                attrValue = attrValue
+                                .Replace("\"", string.Empty)
+                                .Replace("'", string.Empty)
+                                .Trim();
             }
-            return string.Empty;
+
+            return attrValue;
         }
     }
 }

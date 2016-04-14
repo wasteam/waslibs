@@ -50,7 +50,7 @@ namespace AppStudio.Uwp.Controls.Html.Containers
         {
             var c = this;
 
-            while (c.Parent != null)
+            while (c != null)
             {
                 if (c.CanContain(ctrl))
                 {

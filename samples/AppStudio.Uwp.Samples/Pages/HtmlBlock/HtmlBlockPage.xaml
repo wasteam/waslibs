@@ -30,9 +30,9 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="{StaticResource AppBackground}" Padding="10">
+    <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
-            <was:HtmlBlock Source="{Binding Html}" />
+            <was:HtmlBlock Source="{Binding Html}" Margin="20" />
         </ScrollViewer>
     </Grid>
 </local:SamplePage>

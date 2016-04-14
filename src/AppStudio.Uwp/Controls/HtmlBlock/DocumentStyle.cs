@@ -29,6 +29,7 @@ namespace AppStudio.Uwp.Controls
         public ListStyle Li { get; set; }
         public TextStyle Strong { get; set; }
         public ImageStyle Img { get; set; }
+        public ImageStyle YouTube { get; set; }
 
         public DocumentStyle()
         {
@@ -55,6 +56,7 @@ namespace AppStudio.Uwp.Controls
                 Li = Merge(Li, style.Li);
                 Strong = Merge(Strong, style.Strong);
                 Img = Merge(Img, style.Img);
+                YouTube = Merge(YouTube, style.YouTube);
             }
         }
 

@@ -89,6 +89,7 @@ namespace AppStudio.Uwp.Controls
                 }
                 catch (Exception ex)
                 {
+                    //TODO: RENDER ERROR?
                     Debug.WriteLine($"HtmlBlock: Error rendering document. Ex: {ex.ToString()}");
                 }
             }
@@ -113,7 +114,7 @@ namespace AppStudio.Uwp.Controls
                     {
                         parentContainer = parentContainer.Find(ctrl);
                     }
-
+                    //TODO: VERIFY PARENTCONTAINER IS NOT NULL
                     var currentContainer = parentContainer.Append(ctrl);
 
                     if (DocumentStyle != null)

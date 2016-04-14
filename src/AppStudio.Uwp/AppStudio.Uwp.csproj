@@ -132,6 +132,7 @@
     <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\TextWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\YouTubeWriter.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
+    <EmbeddedResource Include="Controls\HtmlBlock\YouTubePlay.png" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
