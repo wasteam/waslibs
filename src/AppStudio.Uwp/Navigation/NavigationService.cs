@@ -46,31 +46,31 @@ namespace AppStudio.Uwp.Navigation
             {
                 _rootFrame.BackStack.Clear();
 
-                NavigateToPage(_rootPage);
+                NavigateToPage(_rootPage, true);
             }
         }
 
-        public static void NavigateToPage<T>()
+        public static void NavigateToPage<T>(bool force)
         {
-            NavigateToPage<T>(null);
+            NavigateToPage<T>(null, force);
         }
 
-        public static void NavigateToPage<T>(object parameter)
+        public static void NavigateToPage<T>(object parameter, bool force = false)
         {
-            NavigateToPage(typeof(T), parameter);
+            NavigateToPage(typeof(T), parameter, force);
         }
 
-        public static void NavigateToPage(Type page)
+        public static void NavigateToPage(Type page, bool force = false)
         {
-            NavigateToPage(page, null);
+            NavigateToPage(page, null, force);
         }
 
-        public static void NavigateToPage(string page)
+        public static void NavigateToPage(string page, bool force = false)
         {
-            NavigateToPage(page, null);
+            NavigateToPage(page, null, force);
         }
 
-        public static void NavigateToPage(string page, object parameter)
+        public static void NavigateToPage(string page, object parameter, bool force = false)
         {
             CheckIsInitialized();
 
@@ -78,15 +78,16 @@ namespace AppStudio.Uwp.Navigation
 
             if (targetPage != null)
             {
-                NavigateToPage(targetPage.AsType(), parameter);
+                NavigateToPage(targetPage.AsType(), parameter, force);
             }
         }
 
-        public static void NavigateToPage(Type page, object parameter)
+        public static void NavigateToPage(Type page, object parameter, bool force = false)
         {
             CheckIsInitialized();
+            if (page == null) return;
 
-            if (page != null && !IsSamePage(page))
+            if (!IsSamePage(page) || force)
             {
                 _rootFrame.Navigate(page, parameter);
 
@@ -115,7 +116,7 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
-        public static void NavigateTo(INavigable item)
+        public static void NavigateTo(INavigable item, bool force = false)
         {
             if (item != null && item.NavigationInfo != null)
             {
@@ -123,7 +124,7 @@ namespace AppStudio.Uwp.Navigation
                 {
                     var navParam = item.NavigationInfo.IncludeState ? item : null;
 
-                    NavigationService.NavigateToPage(item.NavigationInfo.TargetPage, navParam);
+                    NavigationService.NavigateToPage(item.NavigationInfo.TargetPage, navParam, force);
                 }
                 else if (item.NavigationInfo.NavigationType == NavigationType.DeepLink)
                 {
