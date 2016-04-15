@@ -19,6 +19,8 @@ namespace AppStudio.Uwp.Controls
             get { return 16; }
         }
 
+        public bool ItemsFitContent { get; private set; }
+
         private void BuildPanes()
         {
             for (int n = 0; n < MaxItems; n++)
@@ -71,6 +73,8 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
             }
+
+            ItemsFitContent = x - itemWidth < availableSize.Width;
 
             return new Size(x, maxHeight);
         }
