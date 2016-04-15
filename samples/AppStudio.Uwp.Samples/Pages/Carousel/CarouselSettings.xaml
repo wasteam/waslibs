@@ -49,10 +49,6 @@
                     Minimun="0.0"
                     Maximun="1.0"
                     SmallChange="0.1"/>
-                <controls:PropertySet
-                    Source="{Binding}"
-                    Property="AlignmentX"
-                    Value="{Binding AlignmentX, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
