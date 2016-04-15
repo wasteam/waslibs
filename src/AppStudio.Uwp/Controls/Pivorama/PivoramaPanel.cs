@@ -57,7 +57,8 @@ namespace AppStudio.Uwp.Controls
                         pane.Tag = inx;
 
                         pane.Measure(new Size(itemWidth, availableSize.Height));
-                        if (n > 0 && x < availableSize.Width + itemWidth)
+                        // TODO: Review. Uncomment to always show items.
+                        //if (n > 0 && x < availableSize.Width + itemWidth)
                         {
                             maxHeight = Math.Max(maxHeight, pane.DesiredSize.Height);
                         }
