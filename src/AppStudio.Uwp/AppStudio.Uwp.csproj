@@ -128,6 +128,8 @@
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.Members.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.Source.cs" />
+    <Compile Include="Controls\Indicator\Indicator.cs" />
+    <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
     <Compile Include="Controls\ShellControl\NavigationItem.cs" />
     <Compile Include="Controls\ShellControl\NavigationStyleSelector.cs" />
@@ -165,9 +167,6 @@
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Members.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Navigation.cs" />
     <Compile Include="Controls\HtmlViewer\HtmlViewer.Resize.cs" />
-    <Compile Include="Controls\Indicator\Indicator.cs" />
-    <Compile Include="Controls\Indicator\Indicator.Items.cs" />
-    <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\Relativebox\Relativebox.cs" />
     <Compile Include="Controls\SearchBox\SearchBox.cs" />
     <Compile Include="Controls\VariableSizedGrid\VariableSizedGrid.cs" />
