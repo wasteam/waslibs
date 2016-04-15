@@ -9,11 +9,11 @@ using Windows.UI.Xaml.Documents;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
-    class ParagraphWriter : HtmlWriter
+    class PreWriter : HtmlWriter
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "p" }; }
+            get { return new string[] { "pre" }; }
         }
 
         public override DependencyObject GetControl(HtmlFragment fragment)
@@ -23,7 +23,8 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            ApplyParagraphStyles(ctrl as Paragraph, style.P);
+            var p = ctrl as Paragraph;
+            ApplyParagraphStyles(ctrl as Paragraph, style.Pre);
         }
     }
 }

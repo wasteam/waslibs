@@ -20,12 +20,32 @@ namespace AppStudio.Uwp.Controls
         public ParagraphStyle H6 { get; set; }
         public TextStyle A { get; set; }
         public TextStyle Span { get; set; }
+        public TextStyle Label { get; set; }
+        public TextStyle Q { get; set; }
+        public TextStyle Cite { get; set; }
+        public TextStyle I { get; set; }
+        public TextStyle Em { get; set; }
+        public TextStyle Mark { get; set; }
+        public TextStyle Time { get; set; }
         public ParagraphStyle BlockQuote { get; set; }
         public TextStyle Code { get; set; }
         public ParagraphStyle P { get; set; }
+        public ParagraphStyle Pre { get; set; }
+        public ParagraphStyle FigCaption { get; set; }
+        public ContainerStyle Section { get; set; }
+        public ContainerStyle Article { get; set; }
+        public ContainerStyle Header { get; set; }
+        public ContainerStyle Footer { get; set; }
+        public ContainerStyle Main { get; set; }
+        public ContainerStyle Figure { get; set; }
+        public ContainerStyle Details { get; set; }
+        public ContainerStyle Summary { get; set; }
         public ContainerStyle Div { get; set; }
         public ContainerStyle Ul { get; set; }
         public ContainerStyle Ol { get; set; }
+        public ContainerStyle Dl { get; set; }
+        public ParagraphStyle Dt { get; set; }
+        public ParagraphStyle Dd { get; set; }
         public ListStyle Li { get; set; }
         public TextStyle Strong { get; set; }
         public ImageStyle Img { get; set; }
@@ -47,12 +67,32 @@ namespace AppStudio.Uwp.Controls
                 H6 = Merge(H6, style.H6);
                 A = Merge(A, style.A);
                 Span = Merge(Span, style.Span);
+                Label = Merge(Label, style.Label);
+                Q = Merge(Q, style.Q);
+                Cite = Merge(Cite, style.Cite);
+                I = Merge(I, style.I);
+                Em = Merge(Em, style.Em);
+                Mark = Merge(Mark, style.Mark);
+                Time = Merge(Time, style.Time);
                 BlockQuote = Merge(BlockQuote, style.BlockQuote);
                 Code = Merge(Code, style.Code);
                 P = Merge(P, style.P);
+                FigCaption = Merge(FigCaption, style.FigCaption);
+                Pre = Merge(Pre, style.Pre);
+                Section = Merge(Section, style.Section);
+                Article = Merge(Article, style.Article);
+                Header = Merge(Header, style.Header);
+                Footer = Merge(Footer, style.Footer);
+                Main = Merge(Main, style.Main);
+                Figure = Merge(Figure, style.Figure);
+                Details = Merge(Details, style.Details);
+                Summary = Merge(Figure, style.Summary);
                 Div = Merge(Div, style.Div);
                 Ul = Merge(Ul, style.Ul);
                 Ol = Merge(Ol, style.Ol);
+                Dl = Merge(Dl, style.Dl);
+                Dt = Merge(Dt, style.Dt);
+                Dd = Merge(Dd, style.Dd);
                 Li = Merge(Li, style.Li);
                 Strong = Merge(Strong, style.Strong);
                 Img = Merge(Img, style.Img);

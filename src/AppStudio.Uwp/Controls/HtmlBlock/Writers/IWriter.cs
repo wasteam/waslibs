@@ -1,29 +1,31 @@
-﻿using System;
+﻿using AppStudio.Uwp.Html;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppStudio.Uwp.Html;
-using Windows.UI.Xaml;
+using Windows.UI;
 using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
-    class ParagraphWriter : HtmlWriter
+    class IWriter : HtmlWriter
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "p" }; }
+            get { return new string[] { "i" }; }
         }
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            return new Paragraph();
+            return new Span();
         }
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            ApplyParagraphStyles(ctrl as Paragraph, style.P);
+            ApplyTextStyles(ctrl as Span, style.Q);
         }
     }
 }

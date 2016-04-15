@@ -28,6 +28,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="was:HtmlBlock">
+            <Setter Property="DocumentStyle">
+                <Setter.Value>
+                    <was:DocumentStyle Img="{StaticResource Img}">
+                    </was:DocumentStyle>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="{StaticResource AppBackground}">

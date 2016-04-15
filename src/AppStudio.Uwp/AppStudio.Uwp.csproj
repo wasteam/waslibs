@@ -120,6 +120,8 @@
     <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\DescriptionDetailWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\DescriptionTermWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HtmlWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HtmlWriterFactory.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ListItemWriter.cs" />
@@ -127,7 +129,16 @@
     <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ContainerWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\CodeWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\FigCaptionWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\PreWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ParagraphWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\IWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\QuoteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\CiteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\EmWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\LabelWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\MarkWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TimeWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\SpanWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />

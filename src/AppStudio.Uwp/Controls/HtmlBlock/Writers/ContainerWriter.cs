@@ -14,7 +14,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "div", "ul", "ol" };  }
+            get { return new string[] { "div", "ul", "ol", "dl", "section", "article", "header", "footer", "main", "figure", "details", "summary" };  }
         }
 
         public override DependencyObject GetControl(HtmlFragment fragment)
@@ -41,6 +41,24 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                     return style.Ul;
                 case "ol":
                     return style.Ol;
+                case "dl":
+                    return style.Dl;
+                case "section":
+                    return style.Section;
+                case "article":
+                    return style.Article;
+                case "header":
+                    return style.Header;
+                case "footer":
+                    return style.Footer;
+                case "main":
+                    return style.Main;
+                case "figure":
+                    return style.Figure;
+                case "details":
+                    return style.Details;
+                case "summary":
+                    return style.Summary;
                 default:
                     return null;
             }
