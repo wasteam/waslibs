@@ -315,9 +315,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var maxId = 5;
             await dataProvider.GetComments(site, postId, maxId);
 
-            Assert.IsTrue(dataProvider.HasMoreComments);
+            Assert.IsTrue(dataProvider.HasMoreItems);
 
-            var result = await dataProvider.GetMoreComments(site, postId, maxId);
+            var result = await dataProvider.GetMoreComments();
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
