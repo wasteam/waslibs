@@ -13,14 +13,14 @@ using Newtonsoft.Json.Linq;
 
 namespace AppStudio.Uwp.Samples
 {
-   [SamplePage(Category = "DataProviders", Name = "RestApi", Order = 60)]
+    [SamplePage(Category = "DataProviders", Name = "RestApi", Order = 60)]
     public sealed partial class RestApiPage : SamplePage
     {
         private const int DefaultMaxRecordsParam = 10;
         private const string DefaultRestApiQuery = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId=UUZPiiUjDlrBv4jiiRqk5dSA&part=snippet&key=AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
 
-        RestApiDataProvider<RestApiSchema> restApiDataProvider;
-        RestApiDataProvider<RestApiSchema> rawDataProvider;
+        RestApiDataProvider restApiDataProvider;
+        RestApiDataProvider rawDataProvider;
 
         public RestApiPage()
         {
@@ -167,12 +167,14 @@ namespace AppStudio.Uwp.Samples
                 Items.Clear();
 
                 #region YT  
-                var paginatorYT = new TokenPaginator()
+                var paginatorYT = new TokenPager()
                 {
                     ContinuationTokenIsUrl = false,
                     ContinuationTokenPath = "nextPageToken",
                     PaginationParameterName = "pageToken"
                 };
+
+                var pager = new NumericPager { ContinuationTokenInitialValue = "1", IncrementalValue = 1, PaginationParameterName = "" };
 
                 Func<string, RestApiSchema> itemYTParser = (x) =>
                    {
@@ -181,28 +183,24 @@ namespace AppStudio.Uwp.Samples
                        result._id = (string)o.SelectToken("id.videoId");
                        result.Title = (string)o.SelectToken("snippet.title");
                        result.Description = (string)o.SelectToken("snippet.description");
-                       result.ImageUrl= (string)o.SelectToken("snippet.thumbnails.default.url");
+                       result.ImageUrl = (string)o.SelectToken("snippet.thumbnails.default.url");
                        return result;
-                   };
+                   };               
 
-                var configYT = new RestApiDataConfig<RestApiSchema>()
+                var configYT = new RestApiDataConfig()
                 {
                     Url = new Uri(RestApiQuery, UriKind.Absolute),
-                    ElementsRootPath = "items",
-                    ItemParser = itemYTParser,
+                    //ElementsRootPath = "items",                   
                     PageSizeParameterName = "maxResults",
-                    Paginator = paginatorYT
+                    Pager = paginatorYT
                 };
 
                 #endregion
 
                 #region WP  
-                var paginatorWP = new TokenPaginator()
-                {
-                    ContinuationTokenIsUrl = false,
-                    ContinuationTokenPath = "meta.next_page",
-                    PaginationParameterName = "page_handle"
-                };
+                var paginatorWP = new TokenPager() { ContinuationTokenIsUrl = false, ContinuationTokenPath = "meta.next_page", PaginationParameterName = "page_handle" };
+
+                
 
                 Func<string, RestApiSchema> itemWPParser = (x) =>
                   {
@@ -215,20 +213,18 @@ namespace AppStudio.Uwp.Samples
                       return result;
                   };
 
-                var configWP = new RestApiDataConfig<RestApiSchema>()
+                var configWP = new RestApiDataConfig()
                 {
                     Url = new Uri(RestApiQuery, UriKind.Absolute),
-                    ElementsRootPath = "posts",
-                    ItemParser = itemWPParser,
                     PageSizeParameterName = "number",
-                    Paginator = paginatorWP
+                    Pager = paginatorWP
                 };
 
                 #endregion
 
                 #region Spotify
 
-                var paginatorSF = new TokenPaginator()
+                var paginatorSF = new TokenPager()
                 {
                     ContinuationTokenIsUrl = true,
                     ContinuationTokenPath = "artists.next"
@@ -241,24 +237,22 @@ namespace AppStudio.Uwp.Samples
                       var result = new RestApiSchema();
                       result._id = (string)o.SelectToken("id");
                       result.Title = (string)o.SelectToken("name");
-                     // result.Description = (string)o.SelectToken("content");
+                      // result.Description = (string)o.SelectToken("content");
                       result.ImageUrl = (string)o.SelectToken("images.[0].url");
                       return result;
                   };
 
-                var configSF = new RestApiDataConfig<RestApiSchema>()
+                var configSF = new RestApiDataConfig()
                 {
                     Url = new Uri(RestApiQuery, UriKind.Absolute),
-                    ElementsRootPath = "artists.items",
-                    ItemParser = itemSFParser,
                     PageSizeParameterName = "limit",
-                    Paginator = paginatorSF
+                    Pager = paginatorSF
                 };
 
                 #endregion
 
 
-                var items = await restApiDataProvider.LoadDataAsync(configYT, MaxRecordsParam);
+                var items = await restApiDataProvider.LoadDataAsync(configYT, MaxRecordsParam, new RestApiParser("items"));
 
                 NoItems = !items.Any();
 
@@ -293,7 +287,7 @@ namespace AppStudio.Uwp.Samples
                 DataProviderRawData = string.Empty;
                 Items.Clear();
 
-                var items = await restApiDataProvider.LoadMoreDataAsync();
+                var items = await restApiDataProvider.LoadMoreDataAsync<RestApiSchema>();
 
                 NoItems = !items.Any();
 
@@ -325,8 +319,8 @@ namespace AppStudio.Uwp.Samples
 
         private void InitializeDataProvider()
         {
-            restApiDataProvider = new RestApiDataProvider<RestApiSchema>();
-            rawDataProvider = new RestApiDataProvider<RestApiSchema>();
+            restApiDataProvider = new RestApiDataProvider();
+            rawDataProvider = new RestApiDataProvider();
         }
     }
 }

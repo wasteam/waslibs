@@ -1,36 +1,23 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-namespace AppStudio.DataProviders.RestApi
 
-{
-    public class RestApiDataConfig<TSchema> where TSchema : SchemaBase
+using Newtonsoft.Json.Linq;
+
+namespace AppStudio.DataProviders.RestApi
+{  
+    public class RestApiDataConfig
     {
         public Uri Url { get; set; }
 
-        public IPaginator Paginator { get; set; }
+        public IPager Pager { get; set; }
 
-        public string ElementsRootPath { get; set; }
+        //public string ElementsRootPath { get; set; }
 
         public string PageSizeParameterName { get; set; }
-
-        public Func<string, TSchema> ItemParser { get; set; }
-
-        //public RestApiDataConfig(IPaginator paginator)
-        //{
-        //    if (paginator == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(paginator));
-        //    }
-        //    Paginator = paginator;
-        //}
+      
     }
 
-    public interface IPaginator
+    public interface IPager
     {
         string ContinuationTokenInitialValue { get; set; }
 
@@ -41,7 +28,7 @@ namespace AppStudio.DataProviders.RestApi
         string GetContinuationUrl(string dataProviderUrl, string currentContinuationToken);
     }
 
-    public class NumericPaginator : IPaginator
+    public class NumericPager : IPager
     {
         public string ContinuationTokenInitialValue { get; set; } = "1";
 
@@ -70,7 +57,7 @@ namespace AppStudio.DataProviders.RestApi
         }
     }
 
-    public class TokenPaginator : IPaginator
+    public class TokenPager : IPager
     {
         public string ContinuationTokenInitialValue { get; set; }
 

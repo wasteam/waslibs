@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using System.Xml.Linq;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace AppStudio.DataProviders.Rss
 {
-
     public class RssDataProvider : DataProviderBase<RssDataConfig, RssSchema>
     {
         object TotalItems { get; set; }

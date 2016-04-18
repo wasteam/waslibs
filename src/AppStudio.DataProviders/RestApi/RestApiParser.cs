@@ -5,6 +5,7 @@ using System.Linq;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Dynamic;
 
 namespace AppStudio.DataProviders.RestApi
 {
@@ -31,7 +32,7 @@ namespace AppStudio.DataProviders.RestApi
                 return null;
             }
 
-            var result = new Collection<TSchema>();
+            var result = new Collection<TSchema>();      
             JObject o = JObject.Parse(data);
             IEnumerable<string> elements = o.SelectToken(_rootPath)?.Select(s => s.ToString());
             if (elements != null)
