@@ -43,6 +43,11 @@ namespace AppStudio.Uwp.Controls
                 return;
             }
 
+            if (_panel.ItemsFitContent)
+            {
+                return;
+            }
+
             var point = e.GetCurrentPoint(this);
             int sign = Math.Sign(point.Properties.MouseWheelDelta);
             if (sign > 0)
@@ -69,6 +74,11 @@ namespace AppStudio.Uwp.Controls
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+            if (_panel.ItemsFitContent)
+            {
+                return;
+            }
+
             double deltaX = e.Delta.Translation.X;
 
             if (e.IsInertial)
@@ -100,6 +110,11 @@ namespace AppStudio.Uwp.Controls
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
+            if (_panel.ItemsFitContent)
+            {
+                return;
+            }
+
             if (e.IsInertial)
             {
                 if (Math.Sign(e.Cumulative.Translation.X) < 0)

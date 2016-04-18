@@ -1,117 +1,167 @@
-﻿using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using Windows.UI;
+using Windows.UI.Xaml.Controls;
+using Windows.Foundation.Metadata;
 
 namespace AppStudio.Uwp.Controls
 {
-    public sealed partial class Indicator : Control
+    #region ShapeMode
+    public enum ShapeMode
     {
-        private StackPanel _stack = null;
+        Rectangle,
+        Ellipse
+    }
+    #endregion
 
-        private bool _isInitialized = false;
-
+    public sealed class Indicator : ListViewBase
+    {
         public Indicator()
         {
             this.DefaultStyleKey = typeof(Indicator);
+            this.HorizontalAlignment = HorizontalAlignment.Center;
+            this.VerticalAlignment = VerticalAlignment.Center;
+            this.SizeChanged += OnSizeChanged;
         }
 
-        #region ItemContainerStyle
-        public Style ItemContainerStyle
+        #region ShapeMode
+        public ShapeMode ShapeMode
         {
-            get { return (Style)GetValue(ItemContainerStyleProperty); }
-            set { SetValue(ItemContainerStyleProperty, value); }
+            get { return (ShapeMode)GetValue(ShapeModeProperty); }
+            set { SetValue(ShapeModeProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemContainerStyleProperty = DependencyProperty.Register("ItemContainerStyle", typeof(Style), typeof(Indicator), new PropertyMetadata(null));
-        #endregion
-
-        #region ItemTemplate
-        public DataTemplate ItemTemplate
-        {
-            get { return (DataTemplate)GetValue(ItemTemplateProperty); }
-            set { SetValue(ItemTemplateProperty, value); }
-        }
-
-        public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(Indicator), new PropertyMetadata(null));
-        #endregion
-
-        #region SelectedIndex
-        public int SelectedIndex
-        {
-            get { return (int)GetValue(SelectedIndexProperty); }
-            set { SetValue(SelectedIndexProperty, value); }
-        }
-
-        private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ShapeModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Indicator;
-            control.SelectedIndexChanged((int)e.NewValue);
+            control.SetShapeMode((ShapeMode)e.NewValue);
         }
 
-        public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Indicator), new PropertyMetadata(-1, SelectedIndexChanged));
+        private void SetShapeMode(ShapeMode shapeMode)
+        {
+            if (shapeMode == ShapeMode.Rectangle)
+            {
+                this.ItemTemplate = this.RectangleIndicatorTemplate;
+            }
+            else
+            {
+                this.ItemTemplate = this.EllipseIndicatorTemplate;
+            }
+        }
+
+        public static readonly DependencyProperty ShapeModeProperty = DependencyProperty.Register("ShapeMode", typeof(ShapeMode), typeof(Indicator), new PropertyMetadata(ShapeMode.Ellipse, ShapeModeChanged));
+        #endregion
+
+
+        #region RectangleIndicatorTemplate
+        public DataTemplate RectangleIndicatorTemplate
+        {
+            get { return (DataTemplate)GetValue(RectangleIndicatorTemplateProperty); }
+            set { SetValue(RectangleIndicatorTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty RectangleIndicatorTemplateProperty = DependencyProperty.Register("RectangleIndicatorTemplate", typeof(DataTemplate), typeof(Indicator), new PropertyMetadata(null));
+        #endregion
+
+        #region EllipseIndicatorTemplate
+        public DataTemplate EllipseIndicatorTemplate
+        {
+            get { return (DataTemplate)GetValue(EllipseIndicatorTemplateProperty); }
+            set { SetValue(EllipseIndicatorTemplateProperty, value); }
+        }
+
+        public static readonly DependencyProperty EllipseIndicatorTemplateProperty = DependencyProperty.Register("EllipseIndicatorTemplate", typeof(DataTemplate), typeof(Indicator), new PropertyMetadata(null));
+        #endregion
+
+        #region RectangleIndicatorItemStyle
+        public Style RectangleIndicatorItemStyle
+        {
+            get { return (Style)GetValue(RectangleIndicatorItemStyleProperty); }
+            set { SetValue(RectangleIndicatorItemStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty RectangleIndicatorItemStyleProperty = DependencyProperty.Register("RectangleIndicatorItemStyle", typeof(Style), typeof(Indicator), new PropertyMetadata(null));
+        #endregion
+
+        #region EllipseIndicatorItemStyle
+        public Style EllipseIndicatorItemStyle
+        {
+            get { return (Style)GetValue(EllipseIndicatorItemStyleProperty); }
+            set { SetValue(EllipseIndicatorItemStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty EllipseIndicatorItemStyleProperty = DependencyProperty.Register("EllipseIndicatorItemStyle", typeof(Style), typeof(Indicator), new PropertyMetadata(null));
+        #endregion
+
+
+        #region PressedBackground
+        public Brush PressedBackground
+        {
+            get { return (Brush)GetValue(PressedBackgroundProperty); }
+            set { SetValue(PressedBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty PressedBackgroundProperty = DependencyProperty.Register("PressedBackground", typeof(Brush), typeof(Indicator), new PropertyMetadata(null));
+        #endregion
+
+        #region SelectedBackground
+        public Brush SelectedBackground
+        {
+            get { return (Brush)GetValue(SelectedBackgroundProperty); }
+            set { SetValue(SelectedBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedBackgroundProperty = DependencyProperty.Register("SelectedBackground", typeof(Brush), typeof(Indicator), new PropertyMetadata(null));
         #endregion
 
         protected override void OnApplyTemplate()
         {
-            _stack = base.GetTemplateChild("stack") as StackPanel;
-
-            _isInitialized = true;
-
-            ItemsSourceChanged(this.ItemsSource as IEnumerable);
-            SelectedIndexChanged(this.SelectedIndex);
+            this.SetShapeMode(this.ShapeMode);
 
             base.OnApplyTemplate();
         }
 
-        private void OnSelectedItemChanged(object sender, EventArgs e)
+        protected override DependencyObject GetContainerForItemOverride()
         {
-            if (_isInitialized)
+            return new IndicatorItem
             {
-                var item = sender as IndicatorItem;
-                if (item.IsSelected)
-                {
-                    UnselectItems(_stack.Children.Cast<IndicatorItem>().Where(r => r != item));
-                    this.SelectedIndex = _stack.Children.IndexOf(item);
-                }
+                Style = this.ShapeMode == ShapeMode.Rectangle ? this.RectangleIndicatorItemStyle : this.EllipseIndicatorItemStyle
+            };
+        }
+
+        protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
+        {
+            var container = element as IndicatorItem;
+            container.SetBinding(IndicatorItem.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("Background") });
+            container.SetBinding(IndicatorItem.PressedBackgroundProperty, new Binding { Source = this, Path = new PropertyPath("PressedBackground") });
+            container.SetBinding(IndicatorItem.SelectedBackgroundProperty, new Binding { Source = this, Path = new PropertyPath("SelectedBackground") });
+            base.PrepareContainerForItemOverride(element, item);
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.SelectedIndex == -1)
+            {
+                this.SelectedIndex = base.Items.Count > 0 ? 0 : -1;
             }
         }
 
-        private void SelectedIndexChanged(int newValue)
-        {
-            if (_isInitialized)
-            {
-                UnselectItems(_stack.Children.Cast<IndicatorItem>());
-                if (newValue > -1 && newValue < _stack.Children.Count)
-                {
-                    var control = _stack.Children[newValue] as IndicatorItem;
-                    control.IsSelected = true;
-                }
-            }
-        }
-
-        #region UnselectItems
-        private void UnselectItems(IEnumerable<IndicatorItem> items)
-        {
-            foreach (var control in items.Where(r => r.IsSelected == true))
-            {
-                control.IsSelected = false;
-            }
-        }
-        #endregion
-
+        // Obsolete
         #region SelectedForeground
+        [Deprecated("SelectedForeground property will be removed in future versions.", DeprecationType.Deprecate, 65536, "Windows.Foundation.UniversalApiContract")]
         public Brush SelectedForeground
         {
             get { return (Brush)GetValue(SelectedForegroundProperty); }
             set { SetValue(SelectedForegroundProperty, value); }
         }
-        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register("SelectedForeground", typeof(Brush), typeof(Indicator), new PropertyMetadata(new SolidColorBrush(Colors.Red)));
+
+        private static void SelectedForegroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Indicator;
+            control.SelectedBackground = e.NewValue as Brush;
+        }
+
+        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register("SelectedForeground", typeof(Brush), typeof(Indicator), new PropertyMetadata(null, SelectedForegroundChanged));
         #endregion
     }
 }
