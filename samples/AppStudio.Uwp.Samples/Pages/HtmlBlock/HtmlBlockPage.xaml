@@ -40,7 +40,7 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
-            <was:HtmlBlock Source="{Binding Html}" Margin="20" />
+            <was:HtmlBlock Name="control" Source="{Binding Html}" Margin="20" FontSize="40" />
         </ScrollViewer>
     </Grid>
 </local:SamplePage>

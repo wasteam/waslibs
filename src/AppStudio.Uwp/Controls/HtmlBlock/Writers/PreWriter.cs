@@ -23,7 +23,6 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            var p = ctrl as Paragraph;
             ApplyParagraphStyles(ctrl as Paragraph, style.Pre);
         }
     }

@@ -31,11 +31,18 @@ namespace AppStudio.Uwp.Samples.Pages.HtmlBlock
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             await ViewModel.LoadStateAsync();
+
+            base.OnNavigatedTo(e);
         }
 
         public override string Caption
         {
             get { return "HtmlBlock Sample"; }
+        }
+
+        protected override void OnSettings()
+        {
+            AppShell.Current.Shell.ShowRightPane(new HtmlBlockSettings() { DataContext = control });
         }
     }
 }

@@ -226,6 +226,9 @@
     <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
       <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockSettings.xaml.cs">
+      <DependentUpon>HtmlBlockSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HtmlBlock\HtmlBlockViewModel.cs" />
     <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
       <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
@@ -547,6 +550,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\HtmlBlock\HtmlBlockPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

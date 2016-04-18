@@ -55,6 +55,7 @@ namespace AppStudio.Uwp.Controls
         public HtmlBlock()
         {
             this.DefaultStyleKey = typeof(HtmlBlock);
+            HtmlWriterFactory.Host = this;
         }
 
         protected override async void OnApplyTemplate()

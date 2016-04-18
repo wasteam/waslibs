@@ -12,6 +12,8 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         private static List<HtmlWriter> _writers;
 
+        public static HtmlBlock Host { get; set; }
+
         public static HtmlWriter Find(HtmlFragment fragment)
         {
             if (_writers == null)
@@ -24,12 +26,20 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         private static IEnumerable<HtmlWriter> ScanWriters()
         {
-            return typeof(HtmlWriter)
-                            .GetTypeInfo()
-                            .Assembly.DefinedTypes
-                                        .Where(t => t.BaseType == typeof(HtmlWriter))
-                                        .Select(t => Activator.CreateInstance(t.AsType()))
-                                        .Cast<HtmlWriter>();
+            var writters = typeof(HtmlWriter)
+                                .GetTypeInfo()
+                                .Assembly.DefinedTypes
+                                            .Where(t => t.BaseType == typeof(HtmlWriter))
+                                            .Select(t => Activator.CreateInstance(t.AsType()))
+                                            .Cast<HtmlWriter>()
+                                            .ToList();
+
+            foreach (var w in writters)
+            {
+                w.Host = Host;
+            }
+
+            return writters;
         }
     }
 }

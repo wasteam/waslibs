@@ -327,7 +327,7 @@ namespace AppStudio.Uwp.Samples
             var docsFolderItem = await InstallationFolder.TryGetItemAsync(path);
             if (docsFolderItem != null)
             {
-                var docsFolder = await InstallationFolder.GetFolderAsync(docsFolderItem.Path);
+                var docsFolder = await InstallationFolder.GetFolderAsync(path);
                 return await docsFolder.TryGetItemAsync(fileName) != null;
             }
             return false;

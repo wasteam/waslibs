@@ -17,6 +17,11 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public abstract DependencyObject GetControl(HtmlFragment fragment);
 
+
+        public HtmlBlock Host { get; set; }
+
+
+
         public virtual void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
 
@@ -27,7 +32,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             return fragment != null && !string.IsNullOrEmpty(fragment.Name) && TargetTags.Any(t => t.Equals(fragment.Name, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        protected static void ApplyContainerStyles(Grid container, ContainerStyle style)
+        protected void ApplyContainerStyles(Grid container, ContainerStyle style)
         {
             if (style != null)
             {
@@ -42,7 +47,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected static void ApplyParagraphStyles(Paragraph paragraph, ParagraphStyle style)
+        protected void ApplyParagraphStyles(Paragraph paragraph, ParagraphStyle style)
         {
             if (style != null)
             {
@@ -54,11 +59,11 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected static void ApplyTextStyles(TextElement textElement, TextStyle style)
+        protected void ApplyTextStyles(TextElement textElement, TextStyle style)
         {
             if (style != null)
             {
-                textElement.FontSize *= style.GetFontSizeRatio();
+                SetBindingFontSize(textElement, size => { return size * style.GetFontSizeRatio(); });
 
                 if (style.FontFamily != null)
                 {
@@ -79,7 +84,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected static void ApplyImageStyles(FrameworkElement element, ImageStyle style)
+        protected void ApplyImageStyles(FrameworkElement element, ImageStyle style)
         {
             if (style != null && element != null)
             {
@@ -91,6 +96,19 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                 {
                     element.HorizontalAlignment = style.HorizontalAlignment;
                 }
+            }
+        }
+
+        private void SetBindingFontSize(TextElement element, Func<double, double> calculateFontSize)
+        {
+            if (Host != null)
+            {
+                element.FontSize = calculateFontSize(Host.FontSize);
+
+                Host.RegisterPropertyChangedCallback(HtmlBlock.FontSizeProperty, (sender, dp) =>
+                {
+                    element.FontSize = calculateFontSize(Host.FontSize);
+                });
             }
         }
     }
