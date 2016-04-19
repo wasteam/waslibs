@@ -72,6 +72,26 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
+        public async Task LoadDataTokenPagination_QueryString()
+        {
+            var pager = new TokenPager() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
+                Pager = pager
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
         public async Task LoadDataTokenPagination_TokenIsUrl()
         {
             var pager = new TokenPager() { ContinuationTokenPath = "paging.next", ContinuationTokenIsUrl = true };
@@ -135,7 +155,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var config = new RestApiDataConfig
             {
-                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")              
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")
             };
             var dataProvider = new RestApiDataProvider();
             ParserNullException exception = await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<WordPress.WordPressSchema>(config, 20, null));
@@ -188,43 +208,57 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")
             };
-            var dataProvider = new RestApiDataProvider();       
+            var dataProvider = new RestApiDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.GetMoreApiDataAsync<WordPress.WordPressSchema>());
         }
-           
-        //[TestMethod]
-        //public async Task TestMaxRecordsWordPressTag_Min()
-        //{
-        //    int maxRecords = 1;
-        //    var config = new WordPressDataConfig
-        //    {
-        //        Query = "en.blog.wordpress.com",
-        //        QueryType = WordPressQueryType.Tag,
-        //        FilterBy = "apps"
-        //    };
 
-        //    var dataProvider = new WordPressDataProvider();
-        //    IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+        [TestMethod]
+        public async Task TestMaxRecordsRestApiDataProvider()
+        {
+            int maxRecords = 50;
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PageSizeParameterName = "number"
+            };
 
-        //    Assert.AreEqual(maxRecords, data.Count());
-        //}
-        
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords, new WordPress.WordPressParser());
 
-        //[TestMethod]
-        //public async Task TestMaxRecordsWordPressCategory()
-        //{
-        //    int maxRecords = 70;
-        //    var config = new WordPressDataConfig
-        //    {
-        //        Query = "en.blog.wordpress.com",
-        //        QueryType = WordPressQueryType.Category,
-        //        FilterBy = "themes"
-        //    };
+            Assert.IsTrue(data.Count() > 20);
+        }
 
-        //    var dataProvider = new WordPressDataProvider();
-        //    IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
+        [TestMethod]
+        public async Task TestMaxRecordsRestApiDataProvider_Min()
+        {
+            int maxRecords = 1;
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PageSizeParameterName = "number"
+            };
 
-        //    Assert.IsTrue(data.Count() > 25);
-        //}   
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords, new WordPress.WordPressParser());
+
+            Assert.AreEqual(maxRecords, data.Count());
+        }
+
+
+        [TestMethod]
+        public async Task TestMaxRecordsRestApiDataProvider_QueryString()
+        {
+            int maxRecords = 50;
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
+                PageSizeParameterName = "number"
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords, new WordPress.WordPressParser());
+
+            Assert.IsTrue(data.Count() > 20);
+        }
     }
 }
