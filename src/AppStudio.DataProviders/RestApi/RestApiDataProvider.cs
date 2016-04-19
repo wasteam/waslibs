@@ -1,9 +1,9 @@
-﻿using AppStudio.DataProviders.Core;
-using AppStudio.DataProviders.Exceptions;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+using AppStudio.DataProviders.Core;
+using AppStudio.DataProviders.Exceptions;
 
 namespace AppStudio.DataProviders.RestApi
 {  
@@ -60,12 +60,12 @@ namespace AppStudio.DataProviders.RestApi
         public async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var url = GetUrl(config, pageSize);
-            var continuationUrl = GetContinuationUrl(url);
-            var result = await HttpRequest.ExecuteGetAsync(new Uri(continuationUrl), parser);
+            var uri = GetContinuationUrl(url);
+            var result = await HttpRequest.ExecuteGetAsync(uri, parser);
             return result;
         }
 
-        private string GetUrl(RestApiDataConfig config, int pageSize)
+        private static string GetUrl(RestApiDataConfig config, int pageSize)
         {
             Uri uri = config.Url;
             var absoluteUri = uri.AbsoluteUri;
@@ -80,9 +80,10 @@ namespace AppStudio.DataProviders.RestApi
             return absoluteUri;
         }
 
-        private string GetContinuationUrl(string url)
+        private Uri GetContinuationUrl(string url)
         {
-            return Config.Pager?.GetContinuationUrl(url, ContinuationToken);
+            var uri = new Uri(url);
+            return Config.Pager?.GetContinuationUrl(uri, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)

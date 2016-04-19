@@ -80,7 +80,6 @@
     <Compile Include="Core\HttpRequest.cs" />
     <Compile Include="RestApi\RestApiDataConfig.cs" />
     <Compile Include="RestApi\RestApiDataProvider.cs" />
-    <Compile Include="RestApi\RestApiParser.cs" />
     <Compile Include="Rss\RssDataConfig.cs" />
     <Compile Include="Rss\RssDataProvider.cs" />
     <Compile Include="Html\HtmlSchema.cs" />

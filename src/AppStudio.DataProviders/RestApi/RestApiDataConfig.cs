@@ -9,9 +9,7 @@ namespace AppStudio.DataProviders.RestApi
     {
         public Uri Url { get; set; }
 
-        public IPager Pager { get; set; }
-
-        //public string ElementsRootPath { get; set; }
+        public IPager Pager { get; set; }       
 
         public string PageSizeParameterName { get; set; }
       
@@ -25,7 +23,7 @@ namespace AppStudio.DataProviders.RestApi
 
         string GetContinuationToken(string data, string currentContinuationToken);
 
-        string GetContinuationUrl(string dataProviderUrl, string currentContinuationToken);
+        Uri GetContinuationUrl(Uri dataProviderUrl, string currentContinuationToken);
     }
 
     public class NumericPager : IPager
@@ -34,26 +32,31 @@ namespace AppStudio.DataProviders.RestApi
 
         public int IncrementalValue { get; set; } = 1;
 
-        public string PaginationParameterName { get; set; }
-
-        public string GetContinuationUrl(string dataProviderUrl, string currentContinuationToken)
-        {
-            var uri = new Uri(dataProviderUrl);
-            if (string.IsNullOrEmpty(uri.Query))
-            {
-                dataProviderUrl += $"?{PaginationParameterName}={currentContinuationToken}";
-            }
-            else
-            {
-                dataProviderUrl += $"&{PaginationParameterName}={currentContinuationToken}";
-            }
-            return dataProviderUrl;
-        }
+        public string PaginationParameterName { get; set; }        
 
         public string GetContinuationToken(string data, string currentContinuationToken)
         {
             var result = (Convert.ToInt32(currentContinuationToken) + IncrementalValue).ToString();
             return result;
+        }
+
+        public Uri GetContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
+        {
+            if (dataProviderUrl == null)
+            {
+                throw new ArgumentNullException(nameof(dataProviderUrl));
+            } 
+                   
+            var url = dataProviderUrl.AbsoluteUri;
+            if (string.IsNullOrEmpty(dataProviderUrl.Query))
+            {
+                url += $"?{PaginationParameterName}={currentContinuationToken}";
+            }
+            else
+            {
+                url += $"&{PaginationParameterName}={currentContinuationToken}";
+            }
+            return new Uri(url);
         }
     }
 
@@ -79,24 +82,29 @@ namespace AppStudio.DataProviders.RestApi
             return result;
         }
 
-        public string GetContinuationUrl(string dataProviderUrl, string currentContinuationToken)
+        public Uri GetContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
         {
+            if (dataProviderUrl == null)
+            {
+                throw new ArgumentNullException(nameof(dataProviderUrl));
+            }
+
             if (ContinuationTokenIsUrl)
             {
-                return currentContinuationToken;
+                return new Uri(currentContinuationToken);
             }
             else
-            {
-                var uri = new Uri(dataProviderUrl);
-                if (string.IsNullOrEmpty(uri.Query))
+            {               
+                var url = dataProviderUrl.AbsoluteUri;
+                if (string.IsNullOrEmpty(dataProviderUrl.Query))
                 {
-                    dataProviderUrl += $"?{PaginationParameterName}={WebUtility.UrlEncode(currentContinuationToken)}";
+                    url += $"?{PaginationParameterName}={WebUtility.UrlEncode(currentContinuationToken)}";
                 }
                 else
                 {
-                    dataProviderUrl += $"&{PaginationParameterName}={WebUtility.UrlEncode(currentContinuationToken)}";
+                    url += $"&{PaginationParameterName}={WebUtility.UrlEncode(currentContinuationToken)}";
                 }
-                return dataProviderUrl;
+                return new Uri(url);
             }
         }
     }
