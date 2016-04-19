@@ -71,19 +71,19 @@ namespace AppStudio.DataProviders.RestApi
         {
             ContinuationToken = config?.Pager?.ContinuationTokenInitialValue;
             var url = GetUrl(config, pageSize);
-            return await GetDataFromProvider(url, parser);
+            return await GetDataFromProvider(new Uri(url), parser);
         }
 
         private async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var url = GetUrl(Config, PageSize);
             var uri = GetContinuationUrl(url);
-            return await GetDataFromProvider(url, parser);
+            return await GetDataFromProvider(uri, parser);
         }
 
-        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(string url, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var result = await HttpRequest.ExecuteGetAsync(new Uri(url), parser);
+            var result = await HttpRequest.ExecuteGetAsync(uri, parser);
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
