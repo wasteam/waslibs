@@ -1,5 +1,10 @@
 ﻿[
   {
+    "Title": "Sample Gif",
+    "Category": "Gif",
+    "Thumbnail": "/Assets/Images/CreateApp.gif"
+  },
+  {
     "Title": "Big four summer heat",
     "Category": "Nature",
     "Thumbnail": "/Assets/Images/BigFourSummerHeat.png"
@@ -8,6 +13,11 @@
     "Title": "Bison badlands Chillin",
     "Category": "Animal",
     "Thumbnail": "/Assets/Images/BisonBadlandsChillin.png"
+  },
+  {
+    "Title": "Sample Gif",
+    "Category": "Gif",
+    "Thumbnail": "http://mspoweruser.com/wp-content/uploads/2016/02/createapp.gif"
   },
   {
     "Title": "Giant slab in Oregon",

@@ -72,6 +72,11 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSelectedIndexChanged(object sender, int index)
         {
+            if (_panel.ItemsFitContent)
+            {
+                return;
+            }
+
             if (this.Index != index)
             {
                 this.Index = index - 1;

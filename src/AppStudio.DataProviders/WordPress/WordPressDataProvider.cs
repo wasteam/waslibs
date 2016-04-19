@@ -13,6 +13,12 @@ namespace AppStudio.DataProviders.WordPress
         private const string BaseUrl = "https://public-api.wordpress.com/rest/v1.1";
         private string _commentsContinuationToken = "1";
 
+        private string _postId;
+        private string _site;
+        int _commentsPageSize;
+        object _commentsParser;
+
+
         bool _hasMoreItems;
         public override bool HasMoreItems
         {
@@ -21,6 +27,7 @@ namespace AppStudio.DataProviders.WordPress
                 return _hasMoreItems;
             }
         }
+
 
         bool _hasMoreComments;
         public bool HasMoreComments
@@ -50,20 +57,29 @@ namespace AppStudio.DataProviders.WordPress
 
         public async Task<IEnumerable<TSchema>> GetComments<TSchema>(string site, string postId, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
+            if (parser == null)
+            {
+                throw new ParserNullException();
+            }
             _commentsContinuationToken = "1";
+            _commentsParser = parser;
+            _commentsPageSize = pageSize;
+            _site = site;
+            _postId = postId;
             return await GetCommentsFromProvider(site, postId, pageSize, parser);
         }
 
-        public async Task<IEnumerable<WordPressCommentSchema>> GetMoreComments(string site, string postId, int pageSize)
+        public async Task<IEnumerable<WordPressCommentSchema>> GetMoreComments()
         {
-            return await GetMoreComments(site, postId, pageSize, new WordPressCommentParser());
+            return await GetMoreComments<WordPressCommentSchema>();
         }
 
-        public async Task<IEnumerable<TSchema>> GetMoreComments<TSchema>(string site, string postId, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        public async Task<IEnumerable<TSchema>> GetMoreComments<TSchema>() where TSchema : SchemaBase
         {
             if (HasMoreComments)
             {
-                return await GetCommentsFromProvider(site, postId, pageSize, parser);
+                var parser = _commentsParser as IParser<TSchema>;                
+                return await GetCommentsFromProvider(_site, _postId, _commentsPageSize, parser);
             }
             return new TSchema[0];            
         }

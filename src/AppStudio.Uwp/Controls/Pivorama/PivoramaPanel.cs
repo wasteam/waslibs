@@ -19,6 +19,8 @@ namespace AppStudio.Uwp.Controls
             get { return 16; }
         }
 
+        public bool ItemsFitContent { get; private set; }
+
         private void BuildPanes()
         {
             for (int n = 0; n < MaxItems; n++)
@@ -55,7 +57,8 @@ namespace AppStudio.Uwp.Controls
                         pane.Tag = inx;
 
                         pane.Measure(new Size(itemWidth, availableSize.Height));
-                        if (n > 0 && x < availableSize.Width + itemWidth)
+                        // TODO: Review. Uncomment to always show items.
+                        //if (n > 0 && x < availableSize.Width + itemWidth)
                         {
                             maxHeight = Math.Max(maxHeight, pane.DesiredSize.Height);
                         }
@@ -71,6 +74,8 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
             }
+
+            ItemsFitContent = x - itemWidth < availableSize.Width;
 
             return new Size(x, maxHeight);
         }

@@ -66,22 +66,10 @@
                 MinHeight="240"
                 MaxHeight="480"
                 GradientOpacity="0.3"/>
-            <controls:Indicator
-                ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}"
-                SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"
-                Height="40"
-                SelectedForeground="{ThemeResource SystemColorHighlightColor}">
-                <controls:Indicator.ItemTemplate>
-                    <DataTemplate>
-                        <Border
-                            Width="12"
-                            Height="8"
-                            Background="Transparent"
-                            BorderBrush="{ThemeResource SystemChromeHighColor}"
-                            BorderThickness="1"/>
-                    </DataTemplate>
-                </controls:Indicator.ItemTemplate>
-            </controls:Indicator>
+            <controls:Indicator x:Name="indicator" Margin="0,9"
+                                ItemsSource="{Binding ItemsSource, ElementName=control, Mode=TwoWay}"
+                                SelectedIndex="{Binding SelectedIndex, ElementName=control, Mode=TwoWay}"
+                                ShapeMode="Ellipse" Background="WhiteSmoke" SelectedBackground="DimGray" PressedBackground="Gray" />
         </StackPanel>
     </Grid>
 </local:SamplePage>

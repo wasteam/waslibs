@@ -18,34 +18,17 @@ namespace AppStudio.Uwp.Controls
         {
             this.Caption = caption;
         }
-        public NavigationItem(Symbol symbol, string caption, Brush color = null)
+        public NavigationItem(Symbol symbol, string caption, Brush color = null) : this(caption)
         {
-            if (color == null)
-            {
-                this.Icon = new SymbolIcon(symbol);
-            }
-            else
-            {
-                this.Icon = new SymbolIcon(symbol) { Foreground = color };
-            }            
-            this.Caption = caption;
+            this.Icon = CreateIcon(symbol, color);
         }
-        public NavigationItem(string glyph, string caption, Brush color = null)
+        public NavigationItem(string glyph, string caption, Brush color = null) : this(caption)
         {
             this.Icon = CreateIcon(glyph, color);
-            this.Caption = caption;
         }
-        public NavigationItem(Uri uriSource, string caption, Brush color = null)
+        public NavigationItem(Uri uriSource, string caption, Brush color = null) : this(caption)
         {
-            if (color == null)
-            {
-                this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20 };
-            }
-            else
-            {
-                this.Icon = new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20, Foreground = color };
-            }
-            this.Caption = caption;
+            this.Icon = CreateIcon(uriSource, color);
         }
 
         public NavigationItem(string caption, Control control) : this(caption)
@@ -224,6 +207,28 @@ namespace AppStudio.Uwp.Controls
                 };
             }
                    
+        }
+        public static BitmapIcon CreateIcon(Uri uriSource, Brush color = null)
+        {
+            if (color == null)
+            {
+                return new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20 };
+            }
+            else
+            {
+                return new BitmapIcon { UriSource = uriSource, Width = 20, Height = 20, Foreground = color };
+            }
+        }
+        public static SymbolIcon CreateIcon(Symbol symbol, Brush color = null)
+        {
+            if (color == null)
+            {
+                return new SymbolIcon(symbol);
+            }
+            else
+            {
+                return new SymbolIcon(symbol) { Foreground = color };
+            }
         }
     }
 }

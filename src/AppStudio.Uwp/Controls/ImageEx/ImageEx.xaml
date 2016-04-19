@@ -10,7 +10,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ImageEx">
                     <Grid Background="{TemplateBinding Background}">
-                        <Image Name="image" Opacity="0.0" Stretch="{TemplateBinding Stretch}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                        <Image Name="image" Stretch="{TemplateBinding Stretch}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                               Opacity="0.0" Visibility="Collapsed" />
+                        <controls:GifControl x:Name="imageGif" Stretch="{TemplateBinding Stretch}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                             Opacity="0.0" Visibility="Collapsed" AutoPlay="{TemplateBinding AnimateGif}" />
                         <ProgressRing Name="progress" Margin="16" IsActive="True" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Grid>
                 </ControlTemplate>

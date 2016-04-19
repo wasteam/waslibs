@@ -3,6 +3,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
+using AppStudio.Uwp.Controls;
+
 namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "LayoutControls", Name = "Carousel", Order = 40)]
@@ -41,6 +43,16 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(CarouselPage), new PropertyMetadata(null));
         #endregion
 
+        public Carousel Carousel
+        {
+            get { return control; }
+        }
+
+        public Indicator Indicator
+        {
+            get { return indicator; }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
@@ -51,7 +63,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnSettings()
         {
-            AppShell.Current.Shell.ShowRightPane(new CarouselSettings() { DataContext = control });
+            AppShell.Current.Shell.ShowRightPane(new CarouselSettings() { DataContext = this });
         }
     }
 }

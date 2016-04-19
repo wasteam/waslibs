@@ -32,22 +32,40 @@ namespace AppStudio.Uwp.Controls
             control.SetNineGrid((Thickness)e.NewValue);
         }
 
-        private void SetNineGrid(Thickness newValue)
+        private void SetNineGrid(Thickness nineGrid)
         {
             if (_isInitialized)
             {
-                _image.NineGrid = newValue;
+                _image.NineGrid = nineGrid;
+                _imageGif.NineGrid = nineGrid;
             }
         }
 
         public static readonly DependencyProperty NineGridProperty = DependencyProperty.Register("NineGrid", typeof(Thickness), typeof(ImageEx), new PropertyMetadata(new Thickness(), NineGridChanged));
         #endregion
 
+        #region AnimateGif
+        public bool AnimateGif
+        {
+            get { return (bool)GetValue(AnimateGifProperty); }
+            set { SetValue(AnimateGifProperty, value); }
+        }
+
+        public static readonly DependencyProperty AnimateGifProperty = DependencyProperty.Register("AnimateGif", typeof(bool), typeof(ImageEx), new PropertyMetadata(false));
+        #endregion
+
         public CastingSource GetAsCastingSource()
         {
             if (_isInitialized)
             {
-                return _image.GetAsCastingSource();
+                if (_image.Visibility == Visibility.Visible)
+                {
+                    return _image.GetAsCastingSource();
+                }
+                else if (_imageGif.Visibility == Visibility.Visible)
+                {
+                    return _imageGif.GetAsCastingSource();
+                }
             }
             return null;
         }

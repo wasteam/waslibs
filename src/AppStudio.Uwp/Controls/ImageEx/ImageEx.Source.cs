@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
@@ -33,6 +34,7 @@ namespace AppStudio.Uwp.Controls
             if (_isInitialized)
             {
                 _image.Source = null;
+                _imageGif.Source = null;
                 if (source != null)
                 {
                     if (source.GetType() == typeof(string))
@@ -44,6 +46,7 @@ namespace AppStudio.Uwp.Controls
                             if (_isHttpSource)
                             {
                                 _image.Opacity = 0.0;
+                                _imageGif.Opacity = 0.0;
                                 _progress.IsActive = true;
                             }
                             else
@@ -61,7 +64,14 @@ namespace AppStudio.Uwp.Controls
                         _image.Source = source as ImageSource;
                     }
                     _progress.IsActive = false;
-                    _image.FadeIn();
+                    if (_image.Source != null)
+                    {
+                        _image.FadeIn();
+                    }
+                    else
+                    {
+                        _imageGif.FadeIn();
+                    }
                 }
             }
         }
@@ -75,11 +85,33 @@ namespace AppStudio.Uwp.Controls
                 _isLoadingImage = true;
                 if (_isHttpSource)
                 {
-                    _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                    if (Path.GetExtension(_uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                    {
+                        _imageGif.Source = await BitmapCache.LoadGifFromCacheAsync(_uri);
+                        _image.Visibility = Visibility.Collapsed;
+                        _imageGif.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                        _image.Visibility = Visibility.Visible;
+                        _imageGif.Visibility = Visibility.Collapsed;
+                    }
                 }
                 else
                 {
-                    _image.Source = new BitmapImage(_uri);
+                    if (Path.GetExtension(_uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                    {
+                        _imageGif.Source = _uri;
+                        _image.Visibility = Visibility.Collapsed;
+                        _imageGif.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        _image.Source = new BitmapImage(_uri);
+                        _image.Visibility = Visibility.Visible;
+                        _imageGif.Visibility = Visibility.Collapsed;
+                    }
                 }
                 _isLoadingImage = false;
             }
