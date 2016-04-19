@@ -10,8 +10,7 @@ namespace AppStudio.DataProviders.Core
             this.StatusCode = HttpStatusCode.Ok;
             this.Result = string.Empty;
         }
-
-        public HttpStatusCode StatusCode { get; set; }
+        internal HttpStatusCode StatusCode { get; set; }
 
         public string Result { get; set; }
 
@@ -24,8 +23,16 @@ namespace AppStudio.DataProviders.Core
         {
             StatusCode = result.StatusCode;
             Result = result.Result;
-        }   
+        }
 
         public IEnumerable<TSchema> Items { get; set; }
+
+        public int HttpStatusCode
+        {
+            get
+            {
+                return (int)StatusCode;
+            }
+        }
     }
 }

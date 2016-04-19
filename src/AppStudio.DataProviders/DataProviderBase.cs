@@ -13,15 +13,23 @@ namespace AppStudio.DataProviders
         TConfig _config;
         protected TConfig Config
         {
-            get
-            {
-                return _config;
-            }
+            get { return _config; }
+            set { _config = value; }
         }
 
         int _pageSize;
+        protected int PageSize
+        {
+            get { return _pageSize; }
+            set { _pageSize = value; }
+        }
 
         object _parser;
+        protected object Parser
+        {
+            get { return _parser; }
+            set { _parser = value; }
+        }
 
         protected string ContinuationToken { get; set; }
 
@@ -41,7 +49,7 @@ namespace AppStudio.DataProviders
             ValidateConfig(config);
 
             _parser = parser;
-            this._config = config;
+            _config = config;
             _pageSize = pageSize;
 
             var result = await GetDataAsync(config, pageSize, parser);

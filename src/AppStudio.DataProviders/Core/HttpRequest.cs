@@ -20,6 +20,10 @@ namespace AppStudio.DataProviders.Core
             if (httpResult.Success)
             {
                 var items = parser.Parse(httpResult.Result);
+                if (items == null)
+                {
+                    items = new TSchema[0];
+                }
                 result.Items = items;
             }
 

@@ -76,6 +76,11 @@ namespace AppStudio.DataProviders.WordPress
 
         public async Task<IEnumerable<TSchema>> GetMoreComments<TSchema>() where TSchema : SchemaBase
         {
+            if (_commentsParser == null)
+            {
+                throw new InvalidOperationException("GetMoreComments can not be called. You must call the GetComments method prior to calling this method");
+            }
+
             if (HasMoreComments)
             {
                 var parser = _commentsParser as IParser<TSchema>;                

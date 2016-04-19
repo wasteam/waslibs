@@ -321,6 +321,20 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result, $"{nameof(result)} is not null");
             Assert.IsTrue(result.Any());
-        }        
+        }
+
+        [TestMethod]
+        public async Task LoadMoreCommentsPagination_InvalidOperationWordPress()
+        {
+            var config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Category,
+                FilterBy = "themes"
+            };
+
+            var dataProvider = new WordPressDataProvider();
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+        }
     }
 }
