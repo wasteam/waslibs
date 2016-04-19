@@ -315,11 +315,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var maxId = 5;
             await dataProvider.GetComments(site, postId, maxId);
 
-            Assert.IsTrue(dataProvider.HasMoreItems);
+            Assert.IsTrue(dataProvider.HasMoreComments, nameof(dataProvider.HasMoreComments));
 
             var result = await dataProvider.GetMoreComments();
 
-            Assert.IsNotNull(result);
+            Assert.IsNotNull(result, $"{nameof(result)} is not null");
             Assert.IsTrue(result.Any());
         }        
     }
