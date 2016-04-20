@@ -113,7 +113,7 @@
                                             </ListView>
                                         </Grid>
 
-                                        <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="{TemplateBinding BorderBrush}" Stretch="UniformToFill" HorizontalAlignment="Left" />
+                                        <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="{TemplateBinding NavigationForeground}" Stretch="UniformToFill" HorizontalAlignment="Left" />
                                     </Grid>
                                 </Grid>
                             </SplitView.Pane>
