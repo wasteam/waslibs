@@ -9,6 +9,7 @@ namespace AppStudio.Uwp.Html
     public abstract class HtmlFragment
     {
         public string Name { get; set; }
+        public HtmlFragment Parent { get; set; }
         public List<HtmlFragment> Fragments { get; } = new List<HtmlFragment>();
 
         public HtmlNode AsNode()
@@ -30,6 +31,21 @@ namespace AppStudio.Uwp.Html
                 {
                     yield return innerDescendant;
                 }
+            }
+        }
+
+        public HtmlFragment Ascendant(string name)
+        {
+            return Ascendants().FirstOrDefault(a => a.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public IEnumerable<HtmlFragment> Ascendants()
+        {
+            var parent = this.Parent;
+            while (parent != null)
+            {
+                yield return parent;
+                parent = parent.Parent;
             }
         }
 

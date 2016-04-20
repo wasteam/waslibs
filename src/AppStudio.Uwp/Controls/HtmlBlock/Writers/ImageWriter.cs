@@ -24,8 +24,6 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            //TODO: HIDE IMAGES LESS THAN CERTAIN WIDTH?
-
             var node = fragment as HtmlNode;
             var src = GetImageSrc(node);
             if (node != null && !string.IsNullOrEmpty(src))
@@ -47,9 +45,10 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                             Background = new SolidColorBrush(Colors.Transparent),
                             Foreground = new SolidColorBrush(Colors.Transparent)
                         };
-
-                        return viewbox;
-
+                        return new InlineUIContainer
+                        {
+                            Child = viewbox
+                        };
                     }
                     catch (Exception ex)
                     {

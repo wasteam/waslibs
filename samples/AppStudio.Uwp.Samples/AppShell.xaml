@@ -59,7 +59,7 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <controls:ShellControl
-            Name="shell"
+            x:Name="shell"
             NavigationItems="{Binding NavigationItems}"
             HideCommandBar="{Binding AppFrame.Content.HideCommandBar}"
             Header="{Binding AppFrame.Content.Caption}"

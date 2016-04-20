@@ -9,7 +9,7 @@ namespace AppStudio.Uwp.Html
 {
     internal sealed class TagReader
     {
-        private static readonly string[] AutoclosedTags = new string[] { "br" };
+        private static readonly string[] AutoclosedTags = new string[] { "br", "input" };
 
         private const string RegexPatternTag = @"<\s*(?:\/?)(?<tag>\w+)(?<attr>(?:\s+[\w-:]+(?:\s*=\s*(?:(?:\""[^\""]*\"")|(?:'[^']*')|[^>\s]+))?)*)\s*(?:\/?)>";
         private const string RegexPatternAttributes = @"\s*(?<attrName>[\w-:]+)(?:\s*=\s*(?<attrValue>(?:\""[^\""]*\"")|(?:'[^']*')|[^>\s]+))?";

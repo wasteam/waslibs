@@ -50,6 +50,8 @@ namespace AppStudio.Uwp.Controls
         public TextStyle Strong { get; set; }
         public ImageStyle Img { get; set; }
         public ImageStyle YouTube { get; set; }
+        public TableStyle Table { get; set; }
+        public ContainerStyle Td { get; set; }
 
         public DocumentStyle()
         {
@@ -97,7 +99,22 @@ namespace AppStudio.Uwp.Controls
                 Strong = Merge(Strong, style.Strong);
                 Img = Merge(Img, style.Img);
                 YouTube = Merge(YouTube, style.YouTube);
+                Table = Merge(Table, style.Table);
+                Td = Merge(Td, style.Td);
             }
+        }
+
+        private TableStyle Merge(TableStyle source, TableStyle target)
+        {
+            if (target != null)
+            {
+                if (source == null)
+                {
+                    source = new TableStyle();
+                }
+                source.Merge(target);
+            }
+            return source;
         }
 
         private ListStyle Merge(ListStyle source, ListStyle target)
@@ -166,6 +183,55 @@ namespace AppStudio.Uwp.Controls
         }
     }
 
+    //TODO: REVIEW XBF DESERIALIZATION ERROR INHERITING FROM CONTAINERSTYLE
+    public class TableStyle
+    {
+        public Thickness Border { get; set; }
+        public Brush BorderForeground { get; set; }
+
+        public Thickness Margin { get; set; }
+        public Thickness Padding { get; set; }
+
+        public GridLength ColumnWidth { get; set; }
+        public HorizontalAlignment HorizontalAlignment { get; set; }
+
+        public TableStyle()
+        {
+            Border = new Thickness(double.NaN);
+            Margin = new Thickness(double.NaN);
+            Padding = new Thickness(double.NaN);
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+        }
+
+        public void Merge(TableStyle style)
+        {
+            if (double.IsNaN(Border.Top) && !double.IsNaN(style.Border.Top))
+            {
+                Border = style.Border;
+            }
+            if (BorderForeground == null && style.BorderForeground != null)
+            {
+                BorderForeground = style.BorderForeground;
+            }
+            if (double.IsNaN(Margin.Top) && !double.IsNaN(style.Margin.Top))
+            {
+                Margin = style.Margin;
+            }
+            if (double.IsNaN(Padding.Top) && !double.IsNaN(style.Padding.Top))
+            {
+                Padding = style.Padding;
+            }
+            if (ColumnWidth == GridLength.Auto && style.ColumnWidth != GridLength.Auto)
+            {
+                ColumnWidth = style.ColumnWidth;
+            }
+            if (HorizontalAlignment == HorizontalAlignment.Stretch && style.HorizontalAlignment != HorizontalAlignment.Stretch)
+            {
+                HorizontalAlignment = style.HorizontalAlignment;
+            }
+        }
+    }
+
     public class ImageStyle
     {
         public Thickness Margin { get; set; }
@@ -183,7 +249,7 @@ namespace AppStudio.Uwp.Controls
             {
                 Margin = style.Margin;
             }
-            if (HorizontalAlignment != HorizontalAlignment.Stretch && style.HorizontalAlignment != HorizontalAlignment.Stretch)
+            if (HorizontalAlignment == HorizontalAlignment.Stretch && style.HorizontalAlignment != HorizontalAlignment.Stretch)
             {
                 HorizontalAlignment = style.HorizontalAlignment;
             }
@@ -228,6 +294,12 @@ namespace AppStudio.Uwp.Controls
         public Thickness Margin { get; set; }
         public Thickness Padding { get; set; }
 
+        public ContainerStyle()
+        {
+            Margin = new Thickness(double.NaN);
+            Padding = new Thickness(double.NaN);
+        }
+
         public void Merge(ContainerStyle style)
         {
             if (double.IsNaN(Margin.Top) && !double.IsNaN(style.Margin.Top))
@@ -238,12 +310,6 @@ namespace AppStudio.Uwp.Controls
             {
                 Padding = style.Padding;
             }
-        }
-
-        public ContainerStyle()
-        {
-            Margin = new Thickness(double.NaN);
-            Padding = new Thickness(double.NaN);
         }
     }
 

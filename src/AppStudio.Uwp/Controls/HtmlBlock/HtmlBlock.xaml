@@ -45,6 +45,9 @@
     <was:TextStyle x:Key="Em" FontStyle="Italic" />
     <was:TextStyle x:Key="Mark" FontWeight="SemiBold" />
 
+    <was:TableStyle x:Key="Table" Border="0" Margin="0,5,0,5" HorizontalAlignment="Center" />
+    <was:ContainerStyle x:Key="Td" Margin="0" Padding="5"></was:ContainerStyle>
+
     <Style TargetType="was:HtmlBlock">
         <Setter Property="Template">
             <Setter.Value>
@@ -61,10 +64,11 @@
                                  Figure="{StaticResource Figure}" Details="{StaticResource Details}" Summary="{StaticResource Summary}"  
                                  Ul="{StaticResource Ul}" Ol="{StaticResource Ol}" Dl="{StaticResource Dl}" 
                                  P="{StaticResource P}" BlockQuote="{StaticResource BlockQuote}" FigCaption="{StaticResource FigCaption}" 
-                                   Dt="{StaticResource Dt}" Dd="{StaticResource Dd}" Li="{StaticResource Li}" 
+                                 Dt="{StaticResource Dt}" Dd="{StaticResource Dd}" Li="{StaticResource Li}" 
                                  Img="{StaticResource Img}" YouTube="{StaticResource YouTube}"
                                  Span="{StaticResource Span}" Label="{StaticResource Label}" Strong="{StaticResource Strong}" A="{StaticResource A}" Code="{StaticResource Code}" Time="{StaticResource Time}"
-                                 Q="{StaticResource Q}" Cite="{StaticResource Cite}" I="{StaticResource I}" Em="{StaticResource Em}" Mark="{StaticResource Mark}" 
+                                 Q="{StaticResource Q}" Cite="{StaticResource Cite}" I="{StaticResource I}" Em="{StaticResource Em}" Mark="{StaticResource Mark}"
+                                 Table="{StaticResource Table}" Td="{StaticResource Td}"
                         />
             </Setter.Value>
         </Setter>

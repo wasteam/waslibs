@@ -72,6 +72,8 @@ namespace AppStudio.Uwp.Controls
             if (_container != null && !string.IsNullOrEmpty(Source))
             {
                 _container.RowDefinitions.Clear();
+                _container.ColumnDefinitions.Clear();
+
                 _container.Children.Clear();
 
                 DocumentStyle?.Merge(DefaultDocumentStyle);
@@ -106,24 +108,31 @@ namespace AppStudio.Uwp.Controls
 
                     var ctrl = writer?.GetControl(childFragment);
 
-                    if (ctrl == null)
+                    if (ctrl != null)
                     {
-                        continue;
-                    }
+                        if (!parentContainer.CanContain(ctrl))
+                        {
+                            var antecesorContainer = parentContainer.Find(ctrl);
 
-                    if (!parentContainer.CanContain(ctrl))
-                    {
-                        parentContainer = parentContainer.Find(ctrl);
-                    }
-                    //TODO: VERIFY PARENTCONTAINER IS NOT NULL
-                    var currentContainer = parentContainer.Append(ctrl);
+                            if (antecesorContainer == null)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                parentContainer = antecesorContainer;
+                            }
+                        }
 
-                    if (DocumentStyle != null)
-                    {
-                        writer?.ApplyStyles(DocumentStyle, ctrl, childFragment); 
-                    }
+                        var currentContainer = parentContainer.Append(ctrl);
 
-                    WriteFragments(childFragment, currentContainer);
+                        WriteFragments(childFragment, currentContainer);
+
+                        if (DocumentStyle != null)
+                        {
+                            writer?.ApplyStyles(DocumentStyle, ctrl, childFragment);
+                        }
+                    }
                 } 
             }
         }

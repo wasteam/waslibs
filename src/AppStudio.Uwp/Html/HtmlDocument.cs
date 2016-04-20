@@ -69,6 +69,7 @@ namespace AppStudio.Uwp.Html
                 }
 
                 var node = parentFragment.AddNode(reader.CurrentTag);
+                node.Parent = parentFragment;
 
                 if (reader.CurrentTag.TagType == TagType.Open)
                 {

@@ -15,6 +15,7 @@
         <was:ListStyle x:Key="Li" Bullet="&#x25CC;" Foreground="Red" />
         <was:ParagraphStyle x:Key="P" Margin="30" />
         <was:ImageStyle x:Key="Img" HorizontalAlignment="Left" />
+        <was:TableStyle x:Key="Table" ColumnWidth="*" />
 
         <Style x:Key="circo" TargetType="was:HtmlBlock">
             <Setter Property="Foreground" Value="Green" />
@@ -22,16 +23,16 @@
                 <Setter.Value>
                     <was:DocumentStyle H1="{StaticResource H1}" Span="{StaticResource Span}" Li="{StaticResource Li}" P="{StaticResource P}" Img="{StaticResource Img}">
                         <was:DocumentStyle.H2>
-                                <was:ParagraphStyle FontSizeRatio="3"></was:ParagraphStyle>
-                            </was:DocumentStyle.H2>
-                        </was:DocumentStyle>
+                            <was:ParagraphStyle FontSizeRatio="3"></was:ParagraphStyle>
+                        </was:DocumentStyle.H2>
+                    </was:DocumentStyle>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style TargetType="was:HtmlBlock">
             <Setter Property="DocumentStyle">
                 <Setter.Value>
-                    <was:DocumentStyle Img="{StaticResource Img}">
+                    <was:DocumentStyle Img="{StaticResource Img}" Table="{StaticResource Table}">
                     </was:DocumentStyle>
                 </Setter.Value>
             </Setter>
@@ -40,7 +41,7 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
-            <was:HtmlBlock Name="control" Source="{Binding Html}" Margin="20" FontSize="40" />
+            <was:HtmlBlock x:Name="control" Source="{Binding Html}" Margin="20" />
         </ScrollViewer>
     </Grid>
 </local:SamplePage>

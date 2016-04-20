@@ -12,7 +12,6 @@ namespace AppStudio.Uwp.Controls.Html.Containers
     abstract class DocumentContainer
     {
         public DocumentContainer Parent { get; private set; }
-
         public abstract bool CanContain(DependencyObject ctrl);
 
         protected abstract void Add(DependencyObject ctrl);
@@ -30,6 +29,10 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             {
                 container = new GridDocumentContainer(ctrl as Grid);
             }
+            else if (ctrl is RowDefinition || ctrl is ColumnDefinition)
+            {
+                container = this;
+            }
             else if (ctrl is Paragraph)
             {
                 container = new ParagraphDocumentContainer(ctrl as Paragraph);
@@ -38,6 +41,15 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             {
                 container = new SpanDocumentContainer(ctrl as Span);
             }
+            else if (ctrl is GridRow)
+            {
+                container = new GridRowContainer(ctrl as GridRow);
+            }
+            else if (ctrl is GridColumn)
+            {
+                container = new GridColumnContainer(ctrl as GridColumn);
+            }
+
             if (container != null)
             {
                 container.Parent = this;

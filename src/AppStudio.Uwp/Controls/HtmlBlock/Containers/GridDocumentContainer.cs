@@ -11,16 +11,13 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 {
     class GridDocumentContainer : DocumentContainer<Grid>
     {
-        private bool _createTextBlock;
-        private bool _createParagraph;
-
         public GridDocumentContainer(Grid ctrl) : base(ctrl)
         {
         }
 
         public override bool CanContain(DependencyObject ctrl)
         {
-            return true;
+            return !(ctrl is GridColumn);
         }
 
         protected override void Add(DependencyObject ctrl)
@@ -28,16 +25,12 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             if (ctrl is FrameworkElement)
             {
                 AddChild(ctrl as FrameworkElement);
-
-                _createTextBlock = true;
             }
             else if (ctrl is Block)
             {
                 var textBlock = FindOrCreateTextBlock();
 
                 textBlock.Blocks.Add(ctrl as Block);
-
-                _createParagraph = true;
             }
             else if (ctrl is Inline)
             {
@@ -45,6 +38,17 @@ namespace AppStudio.Uwp.Controls.Html.Containers
                 var p = FindOrCreateParagraph(textBlock);
 
                 p.Inlines.Add(ctrl as Inline);
+            }
+            else if (ctrl is GridRow)
+            {
+                Control.RowDefinitions.Add(new RowDefinition
+                {
+                    Height = GridLength.Auto
+                });
+                var row = ctrl as GridRow;
+
+                row.Index = Control.RowDefinitions.Count - 1;
+                row.Container = Control;
             }
         }
 
@@ -54,12 +58,10 @@ namespace AppStudio.Uwp.Controls.Html.Containers
                                 .OfType<Paragraph>()
                                 .LastOrDefault();
 
-            if (_createParagraph || p == null)
+            if (p == null)
             {
                 p = new Paragraph();
                 textBlock.Blocks.Add(p);
-
-                _createParagraph = false;
             }
 
             return p;
@@ -67,19 +69,13 @@ namespace AppStudio.Uwp.Controls.Html.Containers
 
         private RichTextBlock FindOrCreateTextBlock()
         {
-            var textBlock = Control.Children
-                                        .OfType<RichTextBlock>()
-                                        .LastOrDefault();
+            var textBlock = Control.GetChild<RichTextBlock>(0, Control.RowDefinitions.Count - 1);
 
-            if (_createTextBlock || textBlock == null)
+            if (textBlock == null)
             {
                 textBlock = new RichTextBlock();
-
                 AddChild(textBlock);
-
-                _createTextBlock = false;
             }
-
             return textBlock;
         }
 
@@ -89,8 +85,8 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             {
                 Height = GridLength.Auto
             });
-
             Grid.SetRow(element, Control.RowDefinitions.Count - 1);
+
             Control.Children.Add(element);
         }
     }

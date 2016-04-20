@@ -15,7 +15,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "span" }; }
+            get { return new string[] { "mark" }; }
         }
 
         public override DependencyObject GetControl(HtmlFragment fragment)

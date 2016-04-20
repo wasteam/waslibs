@@ -49,7 +49,7 @@
         Margin="0,30">
         <StackPanel>
             <controls:Carousel
-                Name="control"
+                x:Name="control"
                 ItemsSource="{Binding Items}"
                 ContentTemplate="{Binding ItemTemplate}"
                 MaxItems="3"

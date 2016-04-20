@@ -113,10 +113,14 @@
     <None Include="AppStudio.Uwp.symbols.nuspec" />
     <None Include="AppStudio.Uwp.nuspec" />
     <Compile Include="Controls\HtmlBlock\Containers\DocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridColumnContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\GridDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridRowContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\ParagraphDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\SpanDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\DocumentStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\GridColumn.cs" />
+    <Compile Include="Controls\HtmlBlock\GridRow.cs" />
     <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
@@ -138,6 +142,9 @@
     <Compile Include="Controls\HtmlBlock\Writers\EmWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\LabelWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\MarkWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableDataWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableRowWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\TimeWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\SpanWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
@@ -211,6 +218,7 @@
     <Compile Include="Controls\ErrorNotificationControl\ErrorNotificationControl.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
