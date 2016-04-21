@@ -311,13 +311,13 @@ namespace AppStudio.DataProviders.Test.DataProviders
         {
             var dataProvider = new WordPressDataProvider();
             var site = "en.blog.wordpress.com";
-            var postId = "32497";
-            var maxId = 5;
+            var postId = "35160";
+            var maxId = 20;
             await dataProvider.GetComments(site, postId, maxId);
-
             Assert.IsTrue(dataProvider.HasMoreComments, nameof(dataProvider.HasMoreComments));
 
             var result = await dataProvider.GetMoreComments();
+            Assert.IsFalse(dataProvider.HasMoreComments, nameof(dataProvider.HasMoreComments));
 
             Assert.IsNotNull(result, $"{nameof(result)} is not null");
             Assert.IsTrue(result.Any());

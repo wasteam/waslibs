@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace AppStudio.DataProviders.WordPress
 {
@@ -17,17 +19,14 @@ namespace AppStudio.DataProviders.WordPress
         private string _site;
         int _commentsPageSize;
         object _commentsParser;
-
-
-        bool _hasMoreItems;
+      
         public override bool HasMoreItems
         {
             get
             {
-                return _hasMoreItems;
+                return !string.IsNullOrWhiteSpace(ContinuationToken);
             }
         }
-
 
         bool _hasMoreComments;
         public bool HasMoreComments
@@ -40,14 +39,15 @@ namespace AppStudio.DataProviders.WordPress
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            ContinuationToken = "1";
-            return await GetDataFromProvider(config, pageSize, parser);
-
+            var url = GetUrl(config, pageSize);    
+            return await GetDataFromProvider(url, parser);
         }
 
         protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(WordPressDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            return await GetDataFromProvider(config, pageSize, parser);
+            var url = GetUrl(config, pageSize);
+            var continuationUrl = GetContinuationUrl(url, ContinuationToken);
+            return await GetDataFromProvider(continuationUrl, parser);
         }
 
         public async Task<IEnumerable<WordPressCommentSchema>> GetComments(string site, string postId, int pageSize)
@@ -102,41 +102,54 @@ namespace AppStudio.DataProviders.WordPress
             }
         }
 
-        private static string GetContinuationToken(string currentToken)
+        private string GetUrl(WordPressDataConfig config, int pageSize)
+        {
+            var url = string.Empty;
+            switch (config.QueryType)
+            {
+                case WordPressQueryType.Tag:
+                    url = $"{BaseUrl}/sites/{config.Query}/posts/?tag={config.FilterBy}&number={pageSize}";
+                    break;
+                case WordPressQueryType.Category:
+                    url = $"{BaseUrl}/sites/{config.Query}/posts/?category={config.FilterBy}&number={pageSize}";
+                    break;
+                default:
+                    url = $"{BaseUrl}/sites/{config.Query}/posts/?number={pageSize}";
+                    break;
+            }
+            return url;
+        }
+
+        private string GetContinuationUrl(string url, string currentContinuationToken)
+        {
+            url += $"&page_handle={WebUtility.UrlEncode(currentContinuationToken)}";
+            return url;
+        }
+
+        private static string GetContinuationToken(string data)
+        {
+            var wordPressResponse = JsonConvert.DeserializeObject<WordPressResponse>(data);
+            return wordPressResponse?.meta?.next_page;
+        }
+
+        private static string GetCommentsContinuationToken(string currentToken)
         {
             var token = (Convert.ToInt32(currentToken) + 1).ToString();
             return token;
         }
 
-
-        private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(WordPressDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
-        {
-            var wordPressUrlRequest = string.Empty;
-            switch (config.QueryType)
-            {
-                case WordPressQueryType.Tag:
-                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?tag={config.FilterBy}&number={pageSize}&page={ContinuationToken}";
-                    break;
-                case WordPressQueryType.Category:
-                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?category={config.FilterBy}&number={pageSize}&page={ContinuationToken}";
-                    break;
-                default:
-                    wordPressUrlRequest = $"{BaseUrl}/sites/{config.Query}/posts/?number={pageSize}&page={ContinuationToken}";
-                    break;
-            }
-
+        private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(string url, IParser<TSchema> parser) where TSchema : SchemaBase
+        {    
             var settings = new HttpRequestSettings()
             {
-                RequestedUri = new Uri(wordPressUrlRequest)
+                RequestedUri = new Uri(url)
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                var items = parser.Parse(result.Result);
-                _hasMoreItems = items.Any();
-                ContinuationToken = GetContinuationToken(ContinuationToken);
-                return items;
+                ContinuationToken = GetContinuationToken(result.Result);
+                return parser.Parse(result.Result);              
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
@@ -157,8 +170,8 @@ namespace AppStudio.DataProviders.WordPress
                 var comments = parser.Parse(result.Result);
                 if (comments != null)
                 {
-                    _hasMoreComments = comments.Any();
-                    _commentsContinuationToken = GetContinuationToken(_commentsContinuationToken);
+                    _hasMoreComments = comments.Count() >= pageSize;
+                    _commentsContinuationToken = GetCommentsContinuationToken(_commentsContinuationToken);
                     return comments.ToList();
                 }
                 else
