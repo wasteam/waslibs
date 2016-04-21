@@ -22,8 +22,8 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             return new GridColumn()
             {
-                ColSpan = GetColSpan(fragment.AsNode()),
-                RowSpan = GetRowSpan(fragment.AsNode()),
+                ColSpan = GetSpan(fragment.AsNode(), "colspan"),
+                RowSpan = GetSpan(fragment.AsNode(), "rowspan"),
             };
         }
 
@@ -59,43 +59,22 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        private static int GetColSpan(HtmlNode node)
-        {
-            return GetSpan(node, "colspan");
-        }
-
-        private static int GetRowSpan(HtmlNode node)
-        {
-            return GetSpan(node, "rowspan");
-        }
-
         private static int GetSpan(HtmlNode node, string name)
         {
-            int span;
-            if (node != null && node.Attributes.ContainsKey(name))
+            if (node != null)
             {
-                //TODO: CREATE METHOD TO GET ATT TYPED
-                if (int.TryParse(node.Attributes[name], out span))
-                {
-                    return span;
-                }
+                return node.Attributes.GetValueInt(name);
             }
             return 0;
         }
 
         private static int? GetTableBorder(HtmlNode node)
         {
-            if (node != null)
+            var table = node?.Ascendant("table") as HtmlNode;
+
+            if (table != null && !string.IsNullOrEmpty(table.Attributes.GetValue("border")))
             {
-                var table = node.Ascendant("table") as HtmlNode;
-                if (table != null && table.Attributes.ContainsKey("border"))
-                {
-                    int border;
-                    if (int.TryParse(table.Attributes["border"], out border))
-                    {
-                        return border;
-                    }
-                }
+                return table.Attributes.GetValueInt("border");
             }
 
             return null;

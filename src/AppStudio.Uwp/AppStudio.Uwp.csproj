@@ -224,6 +224,7 @@
     <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Html\DictionaryExtensions.cs" />
     <Compile Include="Html\HtmlDocument.cs" />
     <Compile Include="Html\HtmlException.cs" />
     <Compile Include="Html\HtmlFragment.cs" />

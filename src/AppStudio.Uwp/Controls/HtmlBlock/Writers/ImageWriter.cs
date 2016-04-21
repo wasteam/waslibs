@@ -34,21 +34,19 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                 {
                     try
                     {
-                        var viewbox = new Viewbox
+                        var viewbox = CreateImage(node, src);
+
+                        if (IsInline(fragment))
                         {
-                            StretchDirection = StretchDirection.DownOnly
-                        };
-                        viewbox.Child = new ImageEx
+                            return new InlineUIContainer
+                            {
+                                Child = viewbox
+                            };
+                        }
+                        else
                         {
-                            Source = src,
-                            Stretch = Stretch.Uniform,
-                            Background = new SolidColorBrush(Colors.Transparent),
-                            Foreground = new SolidColorBrush(Colors.Transparent)
-                        };
-                        return new InlineUIContainer
-                        {
-                            Child = viewbox
-                        };
+                            return viewbox;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -59,21 +57,58 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             return null;
         }
 
+        private static bool IsInline(HtmlFragment fragment)
+        {
+            return fragment.Parent != null && fragment.Parent.Name == "p";
+        }
+
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            ApplyImageStyles(ctrl as Viewbox, style.Img);
+            if (!IsInline(fragment))
+            {
+                ApplyImageStyles(ctrl as Viewbox, style.Img);
+            }
+        }
+
+        private static Viewbox CreateImage(HtmlNode node, string src)
+        {
+            var viewbox = new Viewbox
+            {
+                StretchDirection = StretchDirection.DownOnly
+            };
+
+            var imgHeight = node.Attributes.GetValueInt("height");
+            var width = node.Attributes.GetValueInt("width");
+
+            if (imgHeight > 0)
+            {
+                viewbox.MaxHeight = imgHeight;
+            }
+            if (width > 0)
+            {
+                viewbox.MaxWidth = width;
+            }
+
+            viewbox.Child = new ImageEx
+            {
+                Source = src,
+                Stretch = Stretch.Uniform,
+                Background = new SolidColorBrush(Colors.Transparent),
+                Foreground = new SolidColorBrush(Colors.Transparent)
+            };
+            return viewbox;
         }
 
         private static string GetImageSrc(HtmlNode img)
         {
-            if (img.Attributes.ContainsKey("src"))
+            if (!string.IsNullOrEmpty(img.Attributes.GetValue("src")))
             {
-                return img.Attributes["src"];
+                return img.Attributes.GetValue("src");
             }
-            else if (img.Attributes.ContainsKey("srcset"))
+            else if (!string.IsNullOrEmpty(img.Attributes.GetValue("srcset")))
             {
                 var regex = new Regex(@"(?:(?<src>[^\""'\s,]+)\s*(?:\s+\d+[wx])(?:,\s*)?)");
-                var matches = regex.Matches(img.Attributes["srcset"]);
+                var matches = regex.Matches(img.Attributes.GetValue("srcset"));
 
                 if (matches.Count > 0)
                 {

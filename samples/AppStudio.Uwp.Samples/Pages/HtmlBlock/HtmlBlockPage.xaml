@@ -14,7 +14,7 @@
         <was:TextStyle x:Key="Span" Foreground="Pink" />
         <was:ListStyle x:Key="Li" Bullet="&#x25CC;" Foreground="Red" />
         <was:ParagraphStyle x:Key="P" Margin="30" />
-        <was:ImageStyle x:Key="Img" HorizontalAlignment="Left" />
+        <was:ImageStyle x:Key="Img" HorizontalAlignment="Center" />
         <was:TableStyle x:Key="Table" ColumnWidth="*" />
 
         <Style x:Key="circo" TargetType="was:HtmlBlock">
