@@ -31,7 +31,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void SetCommandBar(CommandBar commandBar)
+        public void SetCommandBar(CommandBar commandBar)
         {
             _commandBar = commandBar;
             if (_isInitialized)
