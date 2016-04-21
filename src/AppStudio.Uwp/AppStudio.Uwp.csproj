@@ -131,6 +131,8 @@
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
+    <Compile Include="Controls\ResponsiveGridViewEx\ResponsiveGridViewEx.cs" />
+    <Compile Include="Controls\ResponsiveGridViewEx\ResponsiveGridViewPanelEx.cs" />
     <Compile Include="Controls\ShellControl\NavigationItem.cs" />
     <Compile Include="Controls\ShellControl\NavigationStyleSelector.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.cs" />
@@ -248,6 +250,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Relativebox\Relativebox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ResponsiveGridViewEx\ResponsiveGridViewEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

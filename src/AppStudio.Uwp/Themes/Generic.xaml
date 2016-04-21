@@ -14,6 +14,7 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Pivorama/Pivorama.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Relativebox/Relativebox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ResponsiveGridView/ResponsiveGridView.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ResponsiveGridViewEx/ResponsiveGridViewEx.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SearchBox/SearchBox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SectionList/SectionList.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Virtualbox/Virtualbox.xaml"/>
