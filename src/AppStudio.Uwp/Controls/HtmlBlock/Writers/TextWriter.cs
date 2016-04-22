@@ -18,7 +18,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            var text = fragment as HtmlText;
+            var text = fragment?.AsText();
             if (text != null && !string.IsNullOrEmpty(text.Content))
             {
                 return new Run

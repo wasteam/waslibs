@@ -29,10 +29,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="was:HtmlBlock">
+        <Style x:Key="style1" TargetType="was:HtmlBlock">
             <Setter Property="DocumentStyle">
                 <Setter.Value>
-                    <was:DocumentStyle Img="{StaticResource Img}" Table="{StaticResource Table}">
+                    <was:DocumentStyle>
                     </was:DocumentStyle>
                 </Setter.Value>
             </Setter>

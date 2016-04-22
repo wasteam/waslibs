@@ -1,4 +1,5 @@
-﻿using AppStudio.Uwp.Samples.Pages.HtmlBlock;
+﻿using AppStudio.Uwp.Controls;
+using AppStudio.Uwp.Samples.Pages.HtmlBlock;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,13 @@ namespace AppStudio.Uwp.Samples
         public HtmlBlockSettings()
         {
             this.InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var htmlBlock = DataContext as HtmlBlock;
+            var r = this.Resources["style2"];
+            htmlBlock.Style = r as Style;
         }
     }
 }

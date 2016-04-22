@@ -32,18 +32,21 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             return fragment != null && !string.IsNullOrEmpty(fragment.Name) && TargetTags.Any(t => t.Equals(fragment.Name, StringComparison.CurrentCultureIgnoreCase));
         }
 
+        protected static Binding CreateBinding(object source, string path)
+        {
+            return new Binding
+            {
+                Path = new PropertyPath(path),
+                Source = source
+            };
+        }
+
         protected void ApplyContainerStyles(Grid container, ContainerStyle style)
         {
             if (style != null)
             {
-                if (!double.IsNaN(style.Margin.Top))
-                {
-                    container.Margin = style.Margin;
-                }
-                if (!double.IsNaN(style.Padding.Top))
-                {
-                    container.Padding = style.Padding;
-                }
+                BindingOperations.SetBinding(container, Grid.MarginProperty, CreateBinding(style, "Margin"));
+                BindingOperations.SetBinding(container, Grid.PaddingProperty, CreateBinding(style, "Padding"));
             }
         }
 
@@ -51,10 +54,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             if (style != null)
             {
-                if (!double.IsNaN(style.Margin.Top))
-                {
-                    paragraph.Margin = style.Margin;
-                }
+                BindingOperations.SetBinding(paragraph, Paragraph.MarginProperty, CreateBinding(style, "Margin"));
                 ApplyTextStyles(paragraph, style);
             }
         }
@@ -63,49 +63,35 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             if (style != null)
             {
-                SetBindingFontSize(textElement, size => { return size * style.GetFontSizeRatio(); });
+                SetBindingFontSize(textElement, style, size => { return size * style.GetFontSizeRatio(); });
 
-                if (style.FontFamily != null)
-                {
-                    textElement.FontFamily = style.FontFamily;
-                }
-
-                textElement.FontStyle = style.FontStyle;
-
-                if (style.FontWeight.Weight > 0)
-                {
-                    textElement.FontWeight = style.FontWeight;
-                }
-
-                if (style.Foreground != null)
-                {
-                    textElement.Foreground = style.Foreground;
-                }
+                BindingOperations.SetBinding(textElement, TextElement.FontFamilyProperty, CreateBinding(style, "FontFamily"));
+                BindingOperations.SetBinding(textElement, TextElement.FontStyleProperty, CreateBinding(style, "FontStyle"));
+                BindingOperations.SetBinding(textElement, TextElement.FontWeightProperty, CreateBinding(style, "FontWeight"));
+                BindingOperations.SetBinding(textElement, TextElement.ForegroundProperty, CreateBinding(style, "Foreground"));
             }
         }
 
         protected void ApplyImageStyles(FrameworkElement element, ImageStyle style)
         {
-            if (style != null && element != null)
+            if (style != null)
             {
-                if (!double.IsNaN(style.Margin.Top))
-                {
-                    element.Margin = style.Margin;
-                }
-                if (style.HorizontalAlignment != HorizontalAlignment.Stretch)
-                {
-                    element.HorizontalAlignment = style.HorizontalAlignment;
-                }
+                BindingOperations.SetBinding(element, FrameworkElement.MarginProperty, CreateBinding(style, "Margin"));
+                BindingOperations.SetBinding(element, FrameworkElement.HorizontalAlignmentProperty, CreateBinding(style, "HorizontalAlignment"));
             }
         }
 
-        private void SetBindingFontSize(TextElement element, Func<double, double> calculateFontSize)
+        private void SetBindingFontSize(TextElement element, TextStyle style, Func<double, double> calculateFontSize)
         {
             if (Host != null)
             {
                 element.FontSize = calculateFontSize(Host.FontSize);
 
                 Host.RegisterPropertyChangedCallback(HtmlBlock.FontSizeProperty, (sender, dp) =>
+                {
+                    element.FontSize = calculateFontSize(Host.FontSize);
+                });
+                style.RegisterPropertyChangedCallback(TextStyle.FontSizeRatioProperty, (sender, dp) =>
                 {
                     element.FontSize = calculateFontSize(Host.FontSize);
                 });

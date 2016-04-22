@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.Xaml.Data;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -41,20 +42,14 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                 }
                 else if (style.Table != null && !double.IsNaN(style.Table.Border.Top))
                 {
-                    border.BorderThickness = style.Table.Border;
-                    border.BorderBrush = style.Table.BorderForeground ?? new SolidColorBrush(Colors.Black);
+                    BindingOperations.SetBinding(border, Border.BorderThicknessProperty, CreateBinding(style.Table, "Border"));
+                    BindingOperations.SetBinding(border, Border.BorderBrushProperty, CreateBinding(style.Table, "BorderForeground"));
                 }
 
                 if (style.Table != null)
                 {
-                    if (!double.IsNaN(style.Td.Margin.Top))
-                    {
-                        border.Margin = style.Td.Margin;
-                    }
-                    if (!double.IsNaN(style.Td.Padding.Top))
-                    {
-                        border.Padding = style.Td.Padding;
-                    }
+                    BindingOperations.SetBinding(border, Border.MarginProperty, CreateBinding(style.Td, "Margin"));
+                    BindingOperations.SetBinding(border, Border.PaddingProperty, CreateBinding(style.Td, "Padding"));
                 }
             }
         }

@@ -10,6 +10,24 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <was:TextStyle x:Key="Span" Foreground="Lime" FontFamily="Courier New" FontStyle="Italic" FontWeight="Bold" />
+        <was:ContainerStyle x:Key="Div" Margin="10" Padding="10" />
+        <was:ImageStyle x:Key="Img" Margin="20" HorizontalAlignment="Center" />
+        <was:ParagraphStyle x:Key="H1" Foreground="Lime" FontFamily="Courier New" FontStyle="Italic" FontWeight="Bold" Margin="10" FontSizeRatio="3" />
+        <was:ListStyle x:Key="Li" Margin="0" Bullet="&#x25CC;" />
+        <was:TableStyle x:Key="Table" ColumnWidth="1*" />
+
+        <Style x:Key="style2" TargetType="was:HtmlBlock">
+            <Setter Property="DocumentStyle">
+                <Setter.Value>
+                    <was:DocumentStyle Span="{StaticResource Span}" Div="{StaticResource Div}" Img="{StaticResource Img}" H1="{StaticResource H1}" Li="{StaticResource Li}" Table="{StaticResource Table}">
+                    </was:DocumentStyle>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid
         BorderBrush="LightGray"
         BorderThickness="1,0,0,0">
@@ -29,6 +47,7 @@
                     Minimun="10"
                     Maximun="60"
                     SmallChange="1"/>
+                <Button Content="Change Style" Click="Button_Click"></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

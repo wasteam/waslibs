@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using AppStudio.Uwp.Html;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -26,21 +29,15 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             if (style?.Table != null)
             {
                 var grid = ctrl as Grid;
-                grid.HorizontalAlignment = style.Table.HorizontalAlignment;
+
+                BindingOperations.SetBinding(grid, Grid.HorizontalAlignmentProperty, CreateBinding(style.Table, "HorizontalAlignment"));
 
                 foreach (var columnDefinition in grid.ColumnDefinitions)
                 {
-                    columnDefinition.Width = style.Table.ColumnWidth;
+                    BindingOperations.SetBinding(columnDefinition, ColumnDefinition.WidthProperty, CreateBinding(style.Table, "ColumnWidth"));
                 }
 
-                if (!double.IsNaN(style.Table.Margin.Top))
-                {
-                    grid.Margin = style.Table.Margin;
-                }
-                if (!double.IsNaN(style.Table.Padding.Top))
-                {
-                    grid.Padding = style.Table.Padding;
-                }
+                ApplyContainerStyles(grid, style.Table);
             }
         }
     }

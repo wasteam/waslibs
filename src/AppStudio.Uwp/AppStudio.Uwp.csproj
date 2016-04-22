@@ -118,10 +118,16 @@
     <Compile Include="Controls\HtmlBlock\Containers\GridRowContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\ParagraphDocumentContainer.cs" />
     <Compile Include="Controls\HtmlBlock\Containers\SpanDocumentContainer.cs" />
-    <Compile Include="Controls\HtmlBlock\DocumentStyle.cs" />
     <Compile Include="Controls\HtmlBlock\GridColumn.cs" />
     <Compile Include="Controls\HtmlBlock\GridRow.cs" />
     <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ContainerStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\DocumentStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ImageStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ListStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ParagraphStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\TableStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\TextStyle.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\DescriptionDetailWriter.cs" />

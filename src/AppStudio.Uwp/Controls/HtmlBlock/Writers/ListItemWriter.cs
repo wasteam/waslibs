@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Documents;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
@@ -29,6 +30,15 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
             if (!string.IsNullOrEmpty(currentStyle?.Bullet))
             {
+                currentStyle.RegisterPropertyChangedCallback(ListStyle.BulletProperty, (sender, dp) =>
+                {
+                    var r = li.Inlines[0] as Run;
+                    if (r != null)
+                    {
+                        r.Text = currentStyle?.Bullet;
+                    }
+                });
+
                 li.Inlines.Insert(0, new Run
                 {
                     Text = currentStyle.Bullet

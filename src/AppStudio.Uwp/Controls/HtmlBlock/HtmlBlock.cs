@@ -21,6 +21,7 @@ namespace AppStudio.Uwp.Controls
     public sealed class HtmlBlock : Control
     {
         private Grid _container;
+        private DocumentStyle _docStyles;
 
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(string), typeof(HtmlBlock), new PropertyMetadata(null, SourcePropertyChanged));
 
@@ -36,26 +37,34 @@ namespace AppStudio.Uwp.Controls
             await self.UpdateContentAsync();
         }
 
-        internal static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle()));
+        public static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle(), DocumentStylesChanged));
 
-        internal DocumentStyle DocumentStyle
+        public DocumentStyle DocumentStyle
         {
             get { return (DocumentStyle)GetValue(DocumentStyleProperty); }
             set { SetValue(DocumentStyleProperty, value); }
         }
 
-        public static readonly DependencyProperty DefaultDocumentStyleProperty = DependencyProperty.Register("DefaultDocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle()));
+        internal static readonly DependencyProperty DefaultDocumentStyleProperty = DependencyProperty.Register("DefaultDocumentStyle", typeof(DocumentStyle), typeof(HtmlBlock), new PropertyMetadata(new DocumentStyle(), DocumentStylesChanged));
 
-        public DocumentStyle DefaultDocumentStyle
+        internal DocumentStyle DefaultDocumentStyle
         {
             get { return (DocumentStyle)GetValue(DefaultDocumentStyleProperty); }
             set { SetValue(DefaultDocumentStyleProperty, value); }
         }
 
+        private static void DocumentStylesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var self = d as HtmlBlock;
+            self._docStyles.Merge(self.DefaultDocumentStyle, self.DocumentStyle);
+        }
+
         public HtmlBlock()
         {
             this.DefaultStyleKey = typeof(HtmlBlock);
+
             HtmlWriterFactory.Host = this;
+            _docStyles = new DocumentStyle();
         }
 
         protected override async void OnApplyTemplate()
@@ -73,10 +82,7 @@ namespace AppStudio.Uwp.Controls
             {
                 _container.RowDefinitions.Clear();
                 _container.ColumnDefinitions.Clear();
-
                 _container.Children.Clear();
-
-                DocumentStyle?.Merge(DefaultDocumentStyle);
 
                 try
                 {
@@ -130,10 +136,10 @@ namespace AppStudio.Uwp.Controls
 
                         if (DocumentStyle != null)
                         {
-                            writer?.ApplyStyles(DocumentStyle, ctrl, childFragment);
+                            writer?.ApplyStyles(_docStyles, ctrl, childFragment);
                         }
                     }
-                } 
+                }
             }
         }
     }
