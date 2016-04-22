@@ -10,7 +10,7 @@ namespace AppStudio.DataProviders.Rss
 {
     public class RssDataProvider : DataProviderBase<RssDataConfig, RssSchema>
     {
-        object TotalItems { get; set; }
+        object _totalItems;
 
         bool _hasMoreItems = false;
         public override bool HasMoreItems
@@ -35,8 +35,8 @@ namespace AppStudio.DataProviders.Rss
                 var items = parser.Parse(result.Result);
                 if (items != null && items.Any())
                 {
-                    TotalItems = items.ToList();
-                    var total = (TotalItems as IEnumerable<TSchema>);
+                    _totalItems = items.ToList();
+                    var total = (_totalItems as IEnumerable<TSchema>);
                     var resultToReturn = total.Take(pageSize).ToList();
                     _hasMoreItems = total.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
@@ -80,11 +80,11 @@ namespace AppStudio.DataProviders.Rss
 
         private IEnumerable<TSchema> GetMoreData<TSchema>(int pageSize, int page)
         {
-            if (TotalItems == null)
+            if (_totalItems == null)
             {
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
-            var total = (TotalItems as IEnumerable<TSchema>);
+            var total = (_totalItems as IEnumerable<TSchema>);
             var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }      

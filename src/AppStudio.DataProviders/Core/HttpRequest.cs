@@ -14,7 +14,7 @@ namespace AppStudio.DataProviders.Core
                 RequestedUri = uri
             };
 
-            HttpRequestResult httpResult = await DownloadAsync(settings);           
+            HttpRequestResult httpResult = await DownloadAsync(settings);
             HttpRequestResult<TSchema> result;
             result = new HttpRequestResult<TSchema>(httpResult);
             if (httpResult.Success)
@@ -41,7 +41,8 @@ namespace AppStudio.DataProviders.Core
 
             AddRequestHeaders(httpClient, settings);
 
-            HttpResponseMessage response = await httpClient.GetAsync(settings.RequestedUri);
+            HttpResponseMessage response = await httpClient.GetAsync(settings.RequestedUri);           
+
             result.StatusCode = response.StatusCode;
             FixInvalidCharset(response);
             result.Result = await response.Content.ReadAsStringAsync();

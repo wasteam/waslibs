@@ -25,6 +25,11 @@ namespace AppStudio.DataProviders.Core
             Result = result.Result;
         }
 
+        public HttpRequestResult():base()
+        {
+           
+        }
+
         public IEnumerable<TSchema> Items { get; set; }
 
         public int HttpStatusCode

@@ -12,7 +12,7 @@ namespace AppStudio.DataProviders.LocalStorage
 {
     public class LocalStorageDataProvider<T> : DataProviderBase<LocalStorageDataConfig, T> where T : SchemaBase
     {
-        object TotalItems { get; set; }
+        object _totalItems;
 
 
         bool _hasMoreItems = false;
@@ -37,8 +37,8 @@ namespace AppStudio.DataProviders.LocalStorage
                 var items = parser.Parse(await r.ReadToEndAsync());
                 if (items != null && items.Any())
                 {
-                    TotalItems = items.ToList();
-                    var total = (TotalItems as IEnumerable<TSchema>);
+                    _totalItems = items.ToList();
+                    var total = (_totalItems as IEnumerable<TSchema>);
                     var resultToReturn = total.Take(pageSize).ToList();
                     _hasMoreItems = total.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
@@ -80,11 +80,11 @@ namespace AppStudio.DataProviders.LocalStorage
 
         private IEnumerable<TSchema> GetMoreData<TSchema>(int pageSize, int page)
         {
-            if (TotalItems == null)
+            if (_totalItems == null)
             {
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
-            var total = (TotalItems as IEnumerable<TSchema>);
+            var total = (_totalItems as IEnumerable<TSchema>);
             var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }

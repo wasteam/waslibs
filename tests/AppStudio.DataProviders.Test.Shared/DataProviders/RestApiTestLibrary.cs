@@ -34,11 +34,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadDataNumericPagination()
         {
-            var pager = new NumericPager() { IncrementalValue = 1, PaginationParameterName = "page" };
+            var pagination = new NumericPagination() { IncrementalValue = 1, PaginationParameterName = "page" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                Pager = pager
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -54,11 +54,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadDataTokenPagination()
         {
-            var pager = new TokenPager() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                Pager = pager
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -72,13 +72,31 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
+        public async Task LoadDataMemoryPagination()
+        {
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 5, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
         public async Task LoadDataTokenPagination_QueryString()
         {
-            var pager = new TokenPager() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
-                Pager = pager
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -94,11 +112,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadDataTokenPagination_TokenIsUrl()
         {
-            var pager = new TokenPager() { ContinuationTokenPath = "paging.next", ContinuationTokenIsUrl = true };
+            var pagination = new TokenPagination() { ContinuationTokenPath = "paging.next", ContinuationTokenIsUrl = true };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://graph.facebook.com/v2.5/8195378771/posts?&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&fields=id,message,from,created_time,link,full_picture"),
-                Pager = pager
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -114,11 +132,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadMoreDataInvalidOperation()
         {
-            var pager = new TokenPager() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                Pager = pager
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -187,11 +205,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task TestGetMoreApiDataAsync()
         {
-            var pager = new TokenPager() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                Pager = pager
+                PaginationConfig = pagination
             };
             var dataProvider = new RestApiDataProvider();
             var data = await dataProvider.GetApiDataAsync(config, 20, new WordPress.WordPressParser());
@@ -216,10 +234,11 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestMaxRecordsRestApiDataProvider()
         {
             int maxRecords = 50;
+            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                PageSizeParameterName = "number"
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -232,10 +251,10 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestMaxRecordsRestApiDataProvider_Min()
         {
             int maxRecords = 1;
+            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
             var config = new RestApiDataConfig
             {
-                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
-                PageSizeParameterName = "number"
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")
             };
 
             var dataProvider = new RestApiDataProvider();
@@ -244,15 +263,15 @@ namespace AppStudio.DataProviders.Test.DataProviders
             Assert.AreEqual(maxRecords, data.Count());
         }
 
-
         [TestMethod]
         public async Task TestMaxRecordsRestApiDataProvider_QueryString()
         {
             int maxRecords = 50;
+            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
-                PageSizeParameterName = "number"
+                PaginationConfig = pagination
             };
 
             var dataProvider = new RestApiDataProvider();

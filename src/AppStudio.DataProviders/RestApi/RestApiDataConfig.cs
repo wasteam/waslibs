@@ -4,35 +4,38 @@ using System.Net;
 using Newtonsoft.Json.Linq;
 
 namespace AppStudio.DataProviders.RestApi
-{  
+{
     public class RestApiDataConfig
     {
         public Uri Url { get; set; }
 
-        public IPager Pager { get; set; }       
-
-        public string PageSizeParameterName { get; set; }
-      
+        public IPaginationConfig PaginationConfig { get; set; } = new MemoryPagination();
     }
 
-    public interface IPager
+    public interface IPaginationConfig
     {
+        bool IsInMemory { get; }
+
         string ContinuationTokenInitialValue { get; set; }
 
-        string PaginationParameterName { get; set; }
+        string PageSizeParameterName { get; set; }
 
         string GetContinuationToken(string data, string currentContinuationToken);
 
         Uri GetContinuationUrl(Uri dataProviderUrl, string currentContinuationToken);
     }
 
-    public class NumericPager : IPager
+    public class NumericPagination : IPaginationConfig
     {
+        public bool IsInMemory { get; } = false;
+
         public string ContinuationTokenInitialValue { get; set; } = "1";
 
-        public int IncrementalValue { get; set; } = 1;
+        public string PageSizeParameterName { get; set; } = string.Empty;
 
-        public string PaginationParameterName { get; set; }        
+        public string PaginationParameterName { get; set; } = string.Empty;
+
+        public int IncrementalValue { get; set; } = 1;
 
         public string GetContinuationToken(string data, string currentContinuationToken)
         {
@@ -45,8 +48,8 @@ namespace AppStudio.DataProviders.RestApi
             if (dataProviderUrl == null)
             {
                 throw new ArgumentNullException(nameof(dataProviderUrl));
-            } 
-                   
+            }
+
             var url = dataProviderUrl.AbsoluteUri;
             if (string.IsNullOrEmpty(dataProviderUrl.Query))
             {
@@ -60,9 +63,13 @@ namespace AppStudio.DataProviders.RestApi
         }
     }
 
-    public class TokenPager : IPager
+    public class TokenPagination : IPaginationConfig
     {
+        public bool IsInMemory { get; } = false;
+
         public string ContinuationTokenInitialValue { get; set; }
+
+        public string PageSizeParameterName { get; set; }
 
         public string PaginationParameterName { get; set; }
 
@@ -72,6 +79,10 @@ namespace AppStudio.DataProviders.RestApi
 
         public string GetContinuationToken(string data, string currentContinuationToken)
         {
+            if (string.IsNullOrEmpty(data) || string.IsNullOrEmpty( ContinuationTokenPath))
+            {
+                return null;
+            }
             var result = string.Empty;
             JObject jsonObj = JObject.Parse(data);
             var token = jsonObj.SelectToken(ContinuationTokenPath);
@@ -94,7 +105,7 @@ namespace AppStudio.DataProviders.RestApi
                 return new Uri(currentContinuationToken);
             }
             else
-            {               
+            {
                 var url = dataProviderUrl.AbsoluteUri;
                 if (string.IsNullOrEmpty(dataProviderUrl.Query))
                 {
@@ -106,6 +117,26 @@ namespace AppStudio.DataProviders.RestApi
                 }
                 return new Uri(url);
             }
+        }
+    }
+
+    public class MemoryPagination : IPaginationConfig
+    {
+        public bool IsInMemory { get; } = true;
+
+        public string PageSizeParameterName { get; set; } = string.Empty;
+
+        public string ContinuationTokenInitialValue { get; set; } = "1";
+
+        public string GetContinuationToken(string data, string currentContinuationToken)
+        {
+            var token = (Convert.ToInt32(currentContinuationToken) + 1).ToString();
+            return token;
+        }
+
+        public Uri GetContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
+        {
+            return dataProviderUrl;
         }
     }
 }

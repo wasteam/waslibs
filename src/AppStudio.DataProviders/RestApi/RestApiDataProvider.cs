@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,11 +10,19 @@ namespace AppStudio.DataProviders.RestApi
 {
     public class RestApiDataProvider : DataProviderBase<RestApiDataConfig>
     {
+        object _totalItems;
+
+        bool _hasMoreItems;
+
         public override bool HasMoreItems
         {
             get
             {
-                return ContinuationToken != Config?.Pager?.ContinuationTokenInitialValue;
+                if (Config?.PaginationConfig?.IsInMemory == true)
+                {
+                    return _hasMoreItems;
+                }
+                return ContinuationToken != Config?.PaginationConfig?.ContinuationTokenInitialValue;
             }
         }
 
@@ -34,6 +43,11 @@ namespace AppStudio.DataProviders.RestApi
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException(nameof(config.Url));
+            }
+
+            if (config.PaginationConfig == null)
+            {
+                throw new ConfigParameterNullException(nameof(config.PaginationConfig));
             }
         }
 
@@ -69,16 +83,39 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            ContinuationToken = config?.Pager?.ContinuationTokenInitialValue;
+            ContinuationToken = config?.PaginationConfig?.ContinuationTokenInitialValue;
             var url = GetUrl(config, pageSize);
-            return await GetDataFromProvider(new Uri(url), parser);
+            var result = await GetDataFromProvider(new Uri(url), parser);
+
+            if (Config?.PaginationConfig?.IsInMemory == true)
+            {
+                _totalItems = result.Items;
+                var total = (_totalItems as IEnumerable<TSchema>);
+                _hasMoreItems = total.Count() > pageSize;
+                var items = total.Take(pageSize).ToList();
+                result.Items = items;
+            }
+            return result;
         }
 
         private async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var url = GetUrl(Config, PageSize);
-            var uri = GetContinuationUrl(url);
-            return await GetDataFromProvider(uri, parser);
+            if (Config?.PaginationConfig.IsInMemory == true)
+            {
+                int page = Convert.ToInt32(ContinuationToken);
+                var total = (_totalItems as IEnumerable<TSchema>);
+                var nextItems = total.Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+                ContinuationToken = GetContinuationToken(string.Empty);
+                var result = new HttpRequestResult<TSchema>();
+                result.Items = nextItems;
+                return result;
+            }
+            else
+            {
+                var url = GetUrl(config, PageSize);
+                var uri = GetContinuationUrl(url);
+                return await GetDataFromProvider(uri, parser);
+            }
         }
 
         private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
@@ -95,13 +132,14 @@ namespace AppStudio.DataProviders.RestApi
         {
             Uri uri = config.Url;
             var absoluteUri = uri.AbsoluteUri;
-            if (!string.IsNullOrEmpty(config?.PageSizeParameterName))
+            var pageSizeParameterName = config?.PaginationConfig?.PageSizeParameterName;
+            if (!string.IsNullOrEmpty(pageSizeParameterName))
             {
                 if (string.IsNullOrEmpty(uri.Query))
                 {
-                    return $"{absoluteUri}?{config.PageSizeParameterName}={pageSize}";
+                    return $"{absoluteUri}?{pageSizeParameterName}={pageSize}";
                 }
-                return $"{absoluteUri}&{config.PageSizeParameterName}={pageSize}";
+                return $"{absoluteUri}&{pageSizeParameterName}={pageSize}";
             }
             return absoluteUri;
         }
@@ -109,12 +147,12 @@ namespace AppStudio.DataProviders.RestApi
         private Uri GetContinuationUrl(string url)
         {
             var uri = new Uri(url);
-            return Config.Pager?.GetContinuationUrl(uri, ContinuationToken);
+            return Config.PaginationConfig?.GetContinuationUrl(uri, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)
         {
-            return Config.Pager?.GetContinuationToken(data, ContinuationToken);
+            return Config.PaginationConfig?.GetContinuationToken(data, ContinuationToken);
         }
     }
 }
