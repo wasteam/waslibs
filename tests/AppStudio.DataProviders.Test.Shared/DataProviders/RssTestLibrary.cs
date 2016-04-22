@@ -102,5 +102,20 @@ namespace AppStudio.DataProviders.Test.DataProviders
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
         }
 
+        [TestMethod]
+        public async Task LoadRss_RequestFailedException_Apache403()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://www.brunswickcps.org/apps/news/news_rss.jsp?id=0")
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config);
+
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+        }
+
     }
 }
