@@ -84,6 +84,8 @@ namespace AppStudio.Uwp.Controls
                 _container.ColumnDefinitions.Clear();
                 _container.Children.Clear();
 
+                var container = new GridDocumentContainer(_container);
+
                 try
                 {
                     var doc = await HtmlDocument.LoadAsync(Source);
@@ -94,12 +96,11 @@ namespace AppStudio.Uwp.Controls
                         body = doc;
                     }
 
-                    WriteFragments(body, new GridDocumentContainer(_container));
+                    WriteFragments(body, container);
                 }
                 catch (Exception ex)
                 {
-                    //TODO: RENDER ERROR?
-                    Debug.WriteLine($"HtmlBlock: Error rendering document. Ex: {ex.ToString()}");
+                    ShowError(ex, container);
                 }
             }
         }
@@ -141,6 +142,20 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
             }
+        }
+
+        private void ShowError(Exception ex, GridDocumentContainer gridContainer)
+        {
+            var p = new Paragraph();
+            p.FontFamily = new FontFamily("Courier New");
+
+            p.Inlines.Add(new Run
+            {
+                Text = $"Error rendering document: {ex.Message}"
+            });
+            gridContainer.Append(p);
+
+            Debug.WriteLine($"HtmlBlock: Error rendering document. Ex: {ex.ToString()}");
         }
     }
 }

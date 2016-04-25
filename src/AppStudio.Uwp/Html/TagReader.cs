@@ -77,7 +77,7 @@ namespace AppStudio.Uwp.Html
             }
             catch (Exception ex)
             {
-                throw new HtmlException($"Error reading tag {_match.Groups["tag"].Value} at index {_match.Index}", ex);
+                throw new HtmlException($"Error reading tag {_match.Groups["tag"].Value} at index {_match.Index}: {ex.Message}", ex);
             }
 
             return true;

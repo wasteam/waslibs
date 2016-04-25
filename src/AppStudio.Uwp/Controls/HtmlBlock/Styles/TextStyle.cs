@@ -43,7 +43,6 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(FontStyleProperty, value); }
         }
 
-        //TODO: INITIALIZE FROM PARENT OR CONTROL
         public static readonly DependencyProperty FontWeightProperty = DependencyProperty.Register("FontWeight", typeof(FontWeight), typeof(TextStyle), new PropertyMetadata(FontWeights.Normal));
 
         public FontWeight FontWeight

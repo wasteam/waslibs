@@ -13,7 +13,6 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 {
     class QuoteWriter : HtmlWriter
     {
-        //TODO: ADD QUOTES TO INNER TEXT
         public override string[] TargetTags
         {
             get { return new string[] { "q" }; }
