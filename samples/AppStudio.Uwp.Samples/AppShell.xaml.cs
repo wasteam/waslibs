@@ -43,17 +43,17 @@ namespace AppStudio.Uwp.Samples
         {
             get
             {
-                yield return new NavigationItem(Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot()) { ClearSelection = true };
+                yield return new NavigationItem("Home", Symbol.Home, this.GetResourceString("ShellMenuHome"), (ni) => NavigationService.NavigateToRoot());
                 yield return NavigationItem.Separator;
 
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconFoundation.png"), this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"), this.GetCategoryBackground("FoundationControls"), this.GetCategoryBackground("FoundationControls"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconAppServices.png"), this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"), this.GetCategoryBackground("AppServices"), this.GetCategoryBackground("AppServices"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconUtilities.png"), this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"), this.GetCategoryBackground("Utilities"), this.GetCategoryBackground("Utilities"));
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"), this.GetCategoryBackground("DataProviders"));
+                yield return new NavigationItem("LayoutControls", new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLayoutControls"), GetControlsByCategory("LayoutControls"), this.GetCategoryBackground("LayoutControls"), this.GetCategoryBackground("LayoutControls"));
+                yield return new NavigationItem("FoundationControls", new Uri("ms-appx:///Assets/Icons/IconFoundation.png"), this.GetResourceString("ShellMenuFoundationControls"), GetControlsByCategory("FoundationControls"), this.GetCategoryBackground("FoundationControls"), this.GetCategoryBackground("FoundationControls"));
+                yield return new NavigationItem("AppServices", new Uri("ms-appx:///Assets/Icons/IconAppServices.png"), this.GetResourceString("ShellMenuAppServices"), GetControlsByCategory("AppServices"), this.GetCategoryBackground("AppServices"), this.GetCategoryBackground("AppServices"));
+                yield return new NavigationItem("Utilities", new Uri("ms-appx:///Assets/Icons/IconUtilities.png"), this.GetResourceString("ShellMenuUtilities"), GetControlsByCategory("Utilities"), this.GetCategoryBackground("Utilities"), this.GetCategoryBackground("Utilities"));
+                yield return new NavigationItem("DataProviders", new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"), this.GetCategoryBackground("DataProviders"));
 
                 yield return NavigationItem.Separator;
-                yield return new NavigationItem(new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About()) { ClearSelection = true };
+                yield return new NavigationItem("About", new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About()) { ClearSelection = true };
             }
         }
 
@@ -68,15 +68,15 @@ namespace AppStudio.Uwp.Samples
 
                 if (attr.Glyph != null)
                 {
-                    yield return new NavigationItem(attr.Glyph, attr.Name, (ni) => NavigationService.NavigateToPage(page.AsType()), this.GetCategoryBackground(category));
+                    yield return new NavigationItem(attr.Name, attr.Glyph, attr.Name, (ni) => NavigationService.NavigateToPage(page.AsType()), this.GetCategoryBackground(category));
                 }
                 else if (attr.IconPath != null)
                 {
-                    yield return new NavigationItem(new Uri(attr.IconPath), attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType())), this.GetCategoryBackground(category), this.GetCategoryBackground(category));
+                    yield return new NavigationItem(attr.Name, new Uri(attr.IconPath), attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType())), this.GetCategoryBackground(category), this.GetCategoryBackground(category));
                 }
                 else
                 {
-                    yield return new NavigationItem(attr.Symbol, attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType()), this.GetCategoryBackground(category)));
+                    yield return new NavigationItem(attr.Name, attr.Symbol, attr.Name, (ni) => NavigationService.NavigateToPage((page.AsType()), this.GetCategoryBackground(category)));
                 }
             }
         }
@@ -104,9 +104,9 @@ namespace AppStudio.Uwp.Samples
         {
             if (AppFrame.CanGoBack)
             {
-                e.Handled = true;
-                AppFrame.GoBack();
                 shell.ClearSelection();
+                AppFrame.GoBack();
+                e.Handled = true;
             }
         }
         #endregion

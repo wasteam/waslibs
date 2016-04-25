@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -69,6 +71,8 @@ namespace AppStudio.Uwp.Controls
 
             _isInitialized = true;
 
+            this.SelectFirstNavigationItem();
+
             SetDisplayMode(this.DisplayMode);
             SetCommandBar(_commandBar);
             SetPaneHeader(_paneHeader);
@@ -98,7 +102,7 @@ namespace AppStudio.Uwp.Controls
             this.ExitFullScreen();
         }
 
-        private void OnPaneClosed(SplitView sender, object args)
+        private async void OnPaneClosed(SplitView sender, object args)
         {
             _lview.Width = _splitView.CompactPaneLength;
             var navItem = _lview.SelectedItem as NavigationItem;
@@ -110,9 +114,16 @@ namespace AppStudio.Uwp.Controls
                 }
                 _lviewSub.SelectedItem = null;
             }
-            _currentItem = null;
+            // TODOX: 
+            //_currentItem = null;
             _content.Children.Clear();
             _container.Visibility = Visibility.Collapsed;
+
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            {
+                await Task.Delay(100);
+                _lview.SelectedIndex = _selectedIndex;
+            });
         }
     }
 }

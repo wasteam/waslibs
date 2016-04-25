@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -7,6 +9,31 @@ namespace AppStudio.Uwp.Controls
     partial class ShellControl
     {
         private NavigationItem _currentItem = null;
+        private int _selectedIndex = 0;
+
+        public void SelectItem(string id)
+        {
+            if (_isInitialized)
+            {
+                if (id != null)
+                {
+                    int index = 0;
+                    var selected = _lview.Items.Cast<NavigationItem>().Select(r => new { Index = index++, Item = r }).Where(r => r.Item.ID != null && r.Item.ID.Equals(id, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                    if (selected != null)
+                    {
+                        _currentItem = selected.Item;
+                        _selectedIndex = selected.Index;
+                        _lview.SelectedIndex = selected.Index;
+                    }
+                }
+                else
+                {
+                    _currentItem = null;
+                    _selectedIndex = -1;
+                    _lview.SelectedIndex = -1;
+                }
+            }
+        }
 
         private void OnItemClick(object sender, ItemClickEventArgs e)
         {
