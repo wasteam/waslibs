@@ -41,7 +41,7 @@
     <Grid
         Background="{StaticResource AppBackground}">
         <controls:SectionList
-            Name="control"
+            x:Name="control"
             HeaderLinkText="View all">
             <controls:SectionList.TitleStyle>
                 <Style TargetType="TextBlock">

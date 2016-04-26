@@ -29,7 +29,7 @@
         Margin="0,30">
         <StackPanel>
             <controls:SliderView Height="200" Background="White"
-                Name="control"
+                x:Name="control"
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{Binding ItemTemplate}"
                 ItemWidth="300" />

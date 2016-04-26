@@ -9,7 +9,7 @@
 
   <Grid Background="{StaticResource AppBackground}">
     <controls:SplitterCard
-        Name="control"
+        x:Name="control"
         Foreground="Black"
         Background="LightGray"
         Text="24 SEP"/>

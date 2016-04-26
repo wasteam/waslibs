@@ -34,7 +34,7 @@
 
     <Grid Background="{StaticResource AppBackground}">
         <controls:ResponsiveGridView
-            Name="control"
+            x:Name="control"
             Margin="12,12,6,12"
             ItemsSource="{Binding Items}"
             ItemTemplate="{Binding ItemTemplate}"

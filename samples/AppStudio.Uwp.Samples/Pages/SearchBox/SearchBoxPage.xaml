@@ -37,7 +37,7 @@
         </StackPanel>
         <controls:SearchBox
             Grid.Row="1"
-            Name="control"
+            x:Name="control"
             SearchCommand="{Binding SearchCommand}"
             Background="White"
             Foreground="Black"/>

@@ -64,7 +64,7 @@
     <Grid
         Background="{StaticResource AppBackground}">
         <controls:VariableSizedGrid
-            Name="control"
+            x:Name="control"
             Margin="0"
             AspectRatio="1"
             ItemsSource="{Binding Items}"

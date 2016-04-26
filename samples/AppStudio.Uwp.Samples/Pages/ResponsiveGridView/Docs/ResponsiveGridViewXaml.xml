@@ -24,7 +24,7 @@
 
   <Grid Background="{StaticResource AppBackground}">
       <controls:ResponsiveGridView
-          Name="control"
+          x:Name="control"
           ItemsSource="{Binding Items}"
           ItemHeight="200"
           DesiredWidth="300"
