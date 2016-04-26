@@ -62,6 +62,8 @@ namespace AppStudio.Uwp.Controls
                     else
                     {
                         _image.Source = source as ImageSource;
+                        _image.Visibility = Visibility.Visible;
+                        _imageGif.Visibility = Visibility.Collapsed;
                     }
                     _progress.IsActive = false;
                     if (_image.Source != null)
