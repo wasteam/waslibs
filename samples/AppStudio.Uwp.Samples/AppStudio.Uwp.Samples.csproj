@@ -95,6 +95,7 @@
     <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
     <Content Include="Assets\Images\GiantSlabInOregon.png" />
     <Content Include="Assets\Images\GrandTetons.png" />
+    <Content Include="Assets\Images\html-block.png" />
     <Content Include="Assets\Images\LakeAnnMushroom.png" />
     <Content Include="Assets\Images\LunchBreak.png" />
     <Content Include="Assets\Images\MilkyWayStHelensHikePurple.png" />
@@ -152,6 +153,7 @@
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\HtmlBlock\Docs\HtmlBlockXaml.xml" />
     <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
@@ -223,6 +225,9 @@
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml.cs">
+      <DependentUpon>HtmlBlockHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
       <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
     </Compile>
@@ -546,6 +551,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

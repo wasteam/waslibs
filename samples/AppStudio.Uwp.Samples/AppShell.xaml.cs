@@ -10,6 +10,8 @@ using Windows.Foundation.Metadata;
 
 using AppStudio.Uwp.Navigation;
 using AppStudio.Uwp.Controls;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -19,6 +21,10 @@ namespace AppStudio.Uwp.Samples
 
         public AppShell()
         {
+#if DEBUG
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
+#endif
+
             this.InitializeComponent();
             this.SetupNavigation();
             this.DataContext = this;

@@ -9,39 +9,68 @@
     xmlns:f="using:Windows.UI.Text"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <was:ParagraphStyle x:Key="H1" Foreground="Lime" FontStyle="Italic"/>
-        <was:TextStyle x:Key="Span" Foreground="Pink" />
-        <was:ListStyle x:Key="Li" Bullet="&#x25CC;" Foreground="Red" />
-        <was:ParagraphStyle x:Key="P" Margin="30" />
-        <was:ImageStyle x:Key="Img" HorizontalAlignment="Center" />
-        <was:TableStyle x:Key="Table" ColumnWidth="*" />
-
-        <Style x:Key="circo" TargetType="was:HtmlBlock">
-            <Setter Property="Foreground" Value="Green" />
-            <Setter Property="DocumentStyle">
-                <Setter.Value>
-                    <was:DocumentStyle H1="{StaticResource H1}" Span="{StaticResource Span}" Li="{StaticResource Li}" P="{StaticResource P}" Img="{StaticResource Img}">
-                        <was:DocumentStyle.H2>
-                            <was:ParagraphStyle FontSizeRatio="3"></was:ParagraphStyle>
-                        </was:DocumentStyle.H2>
-                    </was:DocumentStyle>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="style1" TargetType="was:HtmlBlock">
-            <Setter Property="DocumentStyle">
-                <Setter.Value>
-                    <was:DocumentStyle>
-                    </was:DocumentStyle>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
     <Grid Background="{StaticResource AppBackground}">
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="control.Margin" Value="50"/>
+                        <Setter Target="container.ColumnDefinitions[0].Width" Value="30" />
+                        <Setter Target="container.ColumnDefinitions[2].Width" Value="30" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="control.Margin" Value="24"/>
+                        <Setter Target="container.ColumnDefinitions[0].Width" Value="0" />
+                        <Setter Target="container.ColumnDefinitions[2].Width" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        
         <ScrollViewer>
-            <was:HtmlBlock x:Name="control" Source="{Binding Html}" Margin="20" />
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.1" />
+                </Grid.Background>
+                <Grid x:Name="container" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition MaxWidth="964" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" VerticalAlignment="Stretch">
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5" Opacity="0.1">
+                                <GradientStop Color="Transparent" Offset="0" />
+                                <GradientStop Color="Black" Offset="1" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                    </Grid>
+                    <Grid Grid.Column="1" Background="{StaticResource AppBackground}">
+                        <!--TODO: REVIEW THIS-->
+                        <Grid Width="964"></Grid>
+                        <was:HtmlBlock x:Name="control" Source="{Binding Html}" />
+                    </Grid>
+                    <Grid Grid.Column="2" VerticalAlignment="Stretch">
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5" Opacity="0.1">
+                                <GradientStop Color="Black" Offset="0" />
+                                <GradientStop Color="Transparent" Offset="1" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </local:SamplePage>

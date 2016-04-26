@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AppStudio.Uwp.Samples.Pages.HtmlBlock
 {
-    [SamplePage(Category = "FoundationControls", Name = "HtmlBlock", Order = 30)]
+    [SamplePage(Category = "FoundationControls", Name = "HtmlBlock", Order = 1)]
     sealed partial class HtmlBlockPage : SamplePage
     {
         public HtmlBlockViewModel ViewModel { get; set; } = new HtmlBlockViewModel();

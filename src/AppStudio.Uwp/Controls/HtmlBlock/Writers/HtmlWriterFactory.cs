@@ -12,34 +12,41 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         private static List<HtmlWriter> _writers;
 
-        public static HtmlBlock Host { get; set; }
+        public static void Init(HtmlBlock host)
+        {
+            EnsureWriters();
+
+            foreach (var w in _writers)
+            {
+                w.Host = host;
+            }
+        }
 
         public static HtmlWriter Find(HtmlFragment fragment)
+        {
+            EnsureWriters();
+
+            return _writers.FirstOrDefault(w => w.Match(fragment)); ;
+        }
+
+        private static void EnsureWriters()
         {
             if (_writers == null)
             {
                 _writers = new List<HtmlWriter>();
                 _writers.AddRange(ScanWriters());
             }
-            return _writers.FirstOrDefault(w => w.Match(fragment)); ;
         }
 
         private static IEnumerable<HtmlWriter> ScanWriters()
         {
-            var writters = typeof(HtmlWriter)
-                                .GetTypeInfo()
-                                .Assembly.DefinedTypes
-                                            .Where(t => t.BaseType == typeof(HtmlWriter))
-                                            .Select(t => Activator.CreateInstance(t.AsType()))
-                                            .Cast<HtmlWriter>()
-                                            .ToList();
-
-            foreach (var w in writters)
-            {
-                w.Host = Host;
-            }
-
-            return writters;
+            return typeof(HtmlWriter)
+                        .GetTypeInfo()
+                        .Assembly.DefinedTypes
+                                    .Where(t => typeof(HtmlWriter).GetTypeInfo().IsAssignableFrom(t) && !t.IsAbstract)
+                                    .Select(t => Activator.CreateInstance(t.AsType()))
+                                    .Cast<HtmlWriter>()
+                                    .ToList();
         }
     }
 }

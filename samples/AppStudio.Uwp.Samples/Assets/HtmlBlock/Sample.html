@@ -1,12 +1,52 @@
-﻿<table>
-    <tr>
-        <td>
-            <h1>Header 1</h1>
-            <img src="http://images4.fanpop.com/image/photos/24000000/Xbox-xbox-24059151-640-640.jpg" />
-        </td>
-        <td>
-            <h1>Header 2</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dui ex, mollis vitae finibus ultricies, fermentum in ligula. Integer aliquam leo sed libero fermentum, eget feugiat quam accumsan. Quisque volutpat sem in consequat varius. Aliquam dictum purus et lectus congue ultrices. Nullam tempus fermentum mauris, vel finibus velit mollis pretium. Morbi mattis sit amet dolor sed ornare. Pellentesque ultrices, justo et iaculis ornare, ipsum arcu faucibus mi, sit amet mattis dolor sapien eget erat. Sed consequat lorem ac urna ullamcorper gravida. Maecenas non ornare arcu. </p>
-        </td>
-    </tr>
-</table>
+﻿
+<article class="post-29463 post type-post status-publish format-standard hentry category-mobile category-pc category-tablet tag-hosted-web-app tag-hwa tag-template tag-walkthrough tag-windows-app-studio" role="article">
+    <header class="post-header">
+        <time class="date">March 8, 2016 10:00 am</time>
+        <h1 class="post-title">Building Hosted Web Apps with Windows App Studio</h1>
+
+        <h4>
+            By <a title="Posts by Windows Apps Team" class="url fn" href="https://blogs.windows.com/buildingapps/author/windowsappsteam/" rel="author">Windows Apps Team</a>
+        </h4>
+
+    </header>
+    <p>If you have a web app that’s currently available publicly via URL, you can easily bring it to Windows 10 using Windows App Studio’s Hosted Web App template. <a href="https://appstudio.windows.com">Windows App Studio</a> is an online service that makes it easy to build an app for Windows with no coding required. &nbsp;This blog post will walk you through how to create your own Hosted Web App.</p>
+    <p>With Windows App Studio, you create a native Windows 10 app in a browser by starting with a template or a blank canvas, then add information, data, services, and styling.&nbsp; Once you’re finished, you generate the app as a Visual Studio solution, a sideloading package, or a publishing package that lets you reach the users of 200+ million Windows 10 devices in the Windows Store.</p>
+    <p>One of these templates is the Hosted Web App (HWA) template, which brings publicly accessible websites and web apps to Windows. It will ask you to enter the URL of your web app, add an app icon, enter settings, and get it ready to publish on the Windows Store. The process takes an absurdly short amount of time.</p>
+    <p>Things that take more time than building a Hosted Web App with Windows App Studio:</p>
+    <ul>
+        <li>Checking the mail</li>
+        <li>Microwaving a bag of popcorn</li>
+        <li>Checking out at a grocery</li>
+        <li>Brushing your teeth (hopefully)</li>
+        <li>Watching an ad break during a TV show (perfect time for to make a HWA!)</li>
+    </ul>
+    <p>So if you have 3 minutes to learn, let’s get started!</p>
+    <p>The process of creating a Hosted Web App using Windows App Studio can be broken down into four steps.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/1_foursteps.png"><img width="1024" height="201" class="aligncenter size-large wp-image-29473" alt="1_foursteps" src="http://az648995.vo.msecnd.net/win/2016/03/1_foursteps-1024x201.png"></a></p>
+    <h2>Step One: Creating the project</h2>
+    <p>If you haven’t already, sign up for Windows App Studio using your Microsoft account. It’s a completely free service. Once you’re signed up, navigate to the <a href="https://appstudio.windows.com/projects/create">Start New Page</a>, where you will see the option to create a Hosted Web App.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/2_createyourHWA.png"><img width="1024" height="674" class="aligncenter size-large wp-image-29633" alt="2_createyourHWA" src="http://az648995.vo.msecnd.net/win/2016/03/2_createyourHWA-1024x674.png"></a></p>
+    <p>Once you click <strong>Hosted Web App</strong>, a pop-out will appear. Enter the name you want to use for your Windows app and click <strong>Start with this one!</strong>&nbsp; The device previews are simply to show approximately how the app might look on different screens.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/3_nametheapp.png"><img width="1024" height="557" class="aligncenter size-large wp-image-29634" alt="3_nametheapp" src="http://az648995.vo.msecnd.net/win/2016/03/3_nametheapp-1024x557.png"></a></p>
+    <h2>Step Two: Configuring the app</h2>
+    <p>Once you have created the project, you’ll be taken to the Content Editing screen. On this page you will enter the URL for the site you’re converting. And that’s all you really need to do.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/4_themanifest.png"><img width="1024" height="693" class="aligncenter size-large wp-image-29644" alt="4_themanifest" src="http://az648995.vo.msecnd.net/win/2016/03/4_themanifest-1024x693.png"></a></p>
+    <p>You then have the option to upload a Manifest, which is a JSON document containing information like application defaults and start-up parameters. You can also define additional URI rules and the rotation preference, but those are optional.</p>
+    <p>The preview on the right hand side of the screen shows what your Hosted Web App looks like on that type of device. If your preview doesn’t work, don’t worry. It usually just means the site doesn’t allow embedding in an iframe but should work when you generate the app.</p>
+    <p>After you enter in the URL and other information, you’re likely going to want to update the app’s icon from the default, &nbsp;which is merely a placeholder. To do this, click the app icon on the navigation bar (to the right of the Content tab, highlighted below in green) to open the icon editor.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/5_iconeditor.png"><img width="1024" height="678" class="aligncenter size-large wp-image-29573" alt="5_iconeditor" src="http://az648995.vo.msecnd.net/win/2016/03/5_iconeditor-1024x678.png"></a></p>
+    <p>On the screen shown above, click the logo under the <strong>App logo</strong> heading (highlighted in purple above). That will open a file picker where you can select the icon you want to use. The tool will automatically generate the various icon sizes you need.</p>
+    <p>After you’ve done that, there is only one more configuration step. Click the <strong>Settings</strong> tab to edit your Store listing details such as your app’s description, language, Store association details, privacy policy, and other similar information. To publish to the Store, you must fill out the Store Association info here. For detailed instructions on publishing, please see the <a href="http://appstudio.windows.com/en-us/home/howto#publish">documentation</a>.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/6_publishtostore1.png"><img width="1024" height="666" class="aligncenter size-large wp-image-29583" alt="6_publishtostore" src="http://az648995.vo.msecnd.net/win/2016/03/6_publishtostore1-1024x666.png"></a></p>
+    <p>Once you enter the information, click <strong>Save</strong>. Then you’re ready to finish and generate the app.</p>
+    <h2>Step Three: Generating the app</h2>
+    <p>When you’ve finished configuring settings, click the gray <strong>Finish</strong> button at the top. You’ll then be taken to a page where you can preview the app on different device form factors. The only thing you need to do on this page is click the big <strong>Generate</strong> button at the top. That will open a pop-out where you select the type of packages you want to generate. (The Visual Studio solution is always generated by default).</p>
+    <p>Note that in order to generate Publish packages, you’ll need to enter the Store Association details in the previous screen.</p>
+    <p><a href="http://az648995.vo.msecnd.net/win/2016/03/7_generatepublishpackages.png"><img width="1024" height="724" class="aligncenter size-large wp-image-29593" alt="7_generatepublishpackages" src="http://az648995.vo.msecnd.net/win/2016/03/7_generatepublishpackages-1024x724.png"></a></p>
+    <p>After everything is ready to go, click <strong>Generate</strong>. It should take under a minute to run the generation. After that, you will have the app ready to go with the package type(s) you selected.</p>
+    <h2>Conclusion</h2>
+    <p>That’s everything you need to do to create a Hosted Web App in Windows App Studio.</p>
+    <p>We’d love to hear your feedback as you use the tool, so please let us know your thoughts on our <a href="https://wpdev.uservoice.com/forums/216486">User Voice</a> and the <a href="http://social.msdn.microsoft.com/Forums/wpapps/en-US/home?forum=wpappstudio">Windows App Studio forums</a>. Happy app building!</p>
+
+    <iframe src="https://channel9.msdn.com/Events/Build/2016/P417/player#autoplay" width="960" height="540" allowFullScreen frameBorder="0"></iframe>
+</article>

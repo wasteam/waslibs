@@ -10,7 +10,7 @@ namespace AppStudio.Uwp.Controls
 {
     public class TableStyle : ContainerStyle
     {
-        public static readonly DependencyProperty BorderProperty = DependencyProperty.Register("Border", typeof(Thickness), typeof(TableStyle), new PropertyMetadata(new Thickness(0)));
+        public static readonly DependencyProperty BorderProperty = DependencyProperty.Register("Border", typeof(Thickness), typeof(TableStyle), new PropertyMetadata(new Thickness(double.NaN)));
 
         public Thickness Border
         {
@@ -46,10 +46,8 @@ namespace AppStudio.Uwp.Controls
         {
             if (style != null)
             {
-                if (Border != style.Border)
-                {
-                    Border = style.Border;
-                }
+                Border = Border.Merge(style.Border);
+
                 if (ColumnWidth != style.ColumnWidth)
                 {
                     ColumnWidth = style.ColumnWidth;

@@ -9,30 +9,30 @@
     <was:ContainerStyle x:Key="Header" Margin="0" />
     <was:ContainerStyle x:Key="Footer" Margin="0" />
     <was:ContainerStyle x:Key="Main" Margin="0" />
-    <was:ContainerStyle x:Key="Figure" Margin="0,10,0,10" />
+    <was:ContainerStyle x:Key="Figure" Margin="0,12,0,12" />
     <was:ContainerStyle x:Key="Details" Margin="0" />
     <was:ContainerStyle x:Key="Summary" Margin="0" />
-    <was:ContainerStyle x:Key="Ul" Margin="0,0,0,10" />
-    <was:ContainerStyle x:Key="Ol" Margin="0,0,0,10" />
-    <was:ContainerStyle x:Key="Dl" Margin="0,0,0,10" />
+    <was:ContainerStyle x:Key="Ul" Margin="0,12,0,12" Padding="12,0,0,0" />
+    <was:ContainerStyle x:Key="Ol" Margin="0,12,0,12" />
+    <was:ContainerStyle x:Key="Dl" Margin="0,12,0,12" />
 
-    <was:ParagraphStyle x:Key="P" Margin="0,0,0,10" />
-    <was:ParagraphStyle x:Key="FigCaption" Margin="0" FontSizeRatio="0.95" />
-    <was:ParagraphStyle x:Key="Pre" Margin="0,0,0,10" />
-    <was:ParagraphStyle x:Key="H1" FontSizeRatio="1.5" FontWeight="SemiBold" Margin="0,0,0,10"/>
-    <was:ParagraphStyle x:Key="H2" FontSizeRatio="1.25" FontWeight="SemiBold" Margin="0,0,0,10"/>
-    <was:ParagraphStyle x:Key="H3" FontSizeRatio="1.1" FontWeight="SemiBold" Margin="0,0,0,5"/>
+    <was:ParagraphStyle x:Key="P" Margin="0,12,0,12" />
+    <was:ParagraphStyle x:Key="FigCaption" Margin="0" FontSizeRatio="0.95" FontStyle="Italic" />
+    <was:ParagraphStyle x:Key="Pre" Margin="0,12,0,12" />
+    <was:ParagraphStyle x:Key="H1" FontSizeRatio="1.5" FontWeight="SemiBold" Margin="0,12,0,12"/>
+    <was:ParagraphStyle x:Key="H2" FontSizeRatio="1.25" FontWeight="SemiBold" Margin="0,12,0,12"/>
+    <was:ParagraphStyle x:Key="H3" FontSizeRatio="1.1" FontWeight="SemiBold" Margin="0,6,0,6"/>
     <was:ParagraphStyle x:Key="H4" FontSizeRatio="1" FontWeight="SemiBold" />
     <was:ParagraphStyle x:Key="H5" FontSizeRatio="0.90" FontWeight="SemiBold" />
     <was:ParagraphStyle x:Key="H6" FontSizeRatio="0.80" FontWeight="SemiBold" />
 
     <was:ParagraphStyle x:Key="Dt" FontWeight="SemiBold" />
-    <was:ParagraphStyle x:Key="Dd" Margin="5,0,0,5" />
+    <was:ParagraphStyle x:Key="Dd" Margin="6,0,0,6" />
 
-    <was:ParagraphStyle x:Key="BlockQuote" Margin="0,0,0,5" />
-    <was:ImageStyle x:Key="Img" Margin="0,0,0,10" />
-    <was:ImageStyle x:Key="YouTube" Margin="0,0,0,10" />
-    <was:ListStyle x:Key="Li" Margin="5,0,0,5" Bullet="&#x25CF;" />
+    <was:ParagraphStyle x:Key="BlockQuote" Margin="12" FontStyle="Italic" FontSizeRatio="1.05" />
+    <was:ImageStyle x:Key="Img" Margin="0,12,0,12" />
+    <was:ImageStyle x:Key="YouTube" Margin="0,12,0,12" />
+    <was:ListStyle x:Key="Li" Bullet="&#x25CF;" />
     <was:TextStyle x:Key="Span" />
     <was:TextStyle x:Key="Label" />
     <was:TextStyle x:Key="Time" />
@@ -45,8 +45,8 @@
     <was:TextStyle x:Key="Em" FontStyle="Italic" />
     <was:TextStyle x:Key="Mark" FontWeight="SemiBold" />
 
-    <was:TableStyle x:Key="Table" Border="0" Margin="0,5,0,5" HorizontalAlignment="Center" />
-    <was:ContainerStyle x:Key="Td" Margin="0" Padding="5"></was:ContainerStyle>
+    <was:TableStyle x:Key="Table" Border="0" Margin="0,12,0,12" HorizontalAlignment="Center" />
+    <was:ContainerStyle x:Key="Td" Margin="0" Padding="6"></was:ContainerStyle>
 
     <Style TargetType="was:HtmlBlock">
         <Setter Property="Template">

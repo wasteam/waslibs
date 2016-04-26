@@ -96,7 +96,7 @@ namespace AppStudio.Uwp.Controls
                     Li.Merge(style.Li);
 
                     A.Merge(style.A);
-                    Span.Merge(style?.Span);
+                    Span.Merge(style.Span);
                     Label.Merge(style.Label);
                     Q.Merge(style.Q);
                     Cite.Merge(style.Cite);

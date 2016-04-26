@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Text;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -17,14 +18,10 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public abstract DependencyObject GetControl(HtmlFragment fragment);
 
-
         public HtmlBlock Host { get; set; }
-
-
 
         public virtual void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-
         }
 
         public virtual bool Match(HtmlFragment fragment)
@@ -63,12 +60,55 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             if (style != null)
             {
-                SetBindingFontSize(textElement, style, size => { return size * style.GetFontSizeRatio(); });
+                SetBinding(Host, HtmlBlock.FontSizeProperty, () =>
+                {
+                    var fontSize = Host.FontSize * style.GetFontSizeRatio();
+                    if (fontSize > 0)
+                    {
+                        textElement.FontSize = fontSize;
+                    }
+                });
 
-                BindingOperations.SetBinding(textElement, TextElement.FontFamilyProperty, CreateBinding(style, "FontFamily"));
-                BindingOperations.SetBinding(textElement, TextElement.FontStyleProperty, CreateBinding(style, "FontStyle"));
-                BindingOperations.SetBinding(textElement, TextElement.FontWeightProperty, CreateBinding(style, "FontWeight"));
-                BindingOperations.SetBinding(textElement, TextElement.ForegroundProperty, CreateBinding(style, "Foreground"));
+                SetBinding(style, TextStyle.FontSizeRatioProperty, () =>
+                {
+                    var fontSize = Host.FontSize * style.GetFontSizeRatio();
+                    if (fontSize > 0)
+                    {
+                        textElement.FontSize = fontSize;
+                    }
+                });
+
+                SetBinding(style, TextStyle.FontFamilyProperty, () =>
+                {
+                    if (style.FontFamily != null)
+                    {
+                        textElement.FontFamily = style.FontFamily;
+                    }
+                });
+
+                SetBinding(style, TextStyle.FontStyleProperty, () =>
+                {
+                    if (style.FontStyle != FontStyle.Normal)
+                    {
+                        textElement.FontStyle = style.FontStyle;
+                    }
+                });
+
+                SetBinding(style, TextStyle.FontWeightProperty, () =>
+                {
+                    if (style.FontWeight.Weight != FontWeights.Normal.Weight)
+                    {
+                        textElement.FontWeight = style.FontWeight;
+                    }
+                });
+
+                SetBinding(style, TextStyle.ForegroundProperty, () =>
+                {
+                    if (style.Foreground != null)
+                    {
+                        textElement.Foreground = style.Foreground;
+                    }
+                });
             }
         }
 
@@ -81,19 +121,15 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        private void SetBindingFontSize(TextElement element, TextStyle style, Func<double, double> calculateFontSize)
+        private void SetBinding(DependencyObject source, DependencyProperty property, Action applyChange)
         {
-            if (Host != null)
+            if (source != null)
             {
-                element.FontSize = calculateFontSize(Host.FontSize);
+                applyChange();
 
-                Host.RegisterPropertyChangedCallback(HtmlBlock.FontSizeProperty, (sender, dp) =>
+                source.RegisterPropertyChangedCallback(property, (sender, dp) =>
                 {
-                    element.FontSize = calculateFontSize(Host.FontSize);
-                });
-                style.RegisterPropertyChangedCallback(TextStyle.FontSizeRatioProperty, (sender, dp) =>
-                {
-                    element.FontSize = calculateFontSize(Host.FontSize);
+                    applyChange();
                 });
             }
         }

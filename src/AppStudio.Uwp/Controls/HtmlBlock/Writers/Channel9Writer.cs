@@ -17,7 +17,7 @@ using System.IO;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
-    class YouTubeWriter : IFrameVideoWriter
+    class Channel9Writer : IFrameVideoWriter
     {
         public override string[] TargetTags
         {
@@ -27,7 +27,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         public override bool Match(HtmlFragment fragment)
         {
             var src = GetIframeSrc(fragment);
-            return !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("www.youtube.com");
+            return !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("channel9.msdn.com");
         }
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
@@ -37,22 +37,8 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         protected override void SetScreenshot(ImageEx img, HtmlNode node)
         {
-            img.Source = GetImageSrc(node);
-        }
-
-        private static string GetImageSrc(HtmlNode node)
-        {
-            var regex = new Regex(@"(?:http(?:s?)://www\.youtube\.com/embed/)(?<videoid>[\w_-]*)(?:\??)(?:/?)(?:\.*)");
-            var src = GetIframeSrc(node);
-            if (!string.IsNullOrEmpty(src))
-            {
-                var match = regex.Match(src);
-                if (match.Success)
-                {
-                    return $"https://i.ytimg.com/vi/{match.Groups["videoid"].Value}/maxresdefault.jpg";
-                }
-            }
-            return null;
+            img.Source = GetEmbebedImage("AppStudio.Uwp.Controls.HtmlBlock.channel9-screen.png");
+            img.Background = new SolidColorBrush(Color.FromArgb(255, 249, 203, 66));
         }
     }
 }

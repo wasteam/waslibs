@@ -429,4 +429,7 @@
   <data name="About_PrivacyTerms.Text" xml:space="preserve">
     <value>Privacy terms</value>
   </data>
+  <data name="HelpHtmlBlock.Text" xml:space="preserve">
+    <value>The HtmlBlock renders a Html formatted document into native Xaml. </value>
+  </data>
 </root>

@@ -63,7 +63,7 @@ namespace AppStudio.Uwp.Controls
         {
             this.DefaultStyleKey = typeof(HtmlBlock);
 
-            HtmlWriterFactory.Host = this;
+            HtmlWriterFactory.Init(this);
             _docStyles = new DocumentStyle();
         }
 
@@ -135,10 +135,7 @@ namespace AppStudio.Uwp.Controls
 
                         WriteFragments(childFragment, currentContainer);
 
-                        if (DocumentStyle != null)
-                        {
-                            writer?.ApplyStyles(_docStyles, ctrl, childFragment);
-                        }
+                        writer?.ApplyStyles(_docStyles, ctrl, childFragment);
                     }
                 }
             }

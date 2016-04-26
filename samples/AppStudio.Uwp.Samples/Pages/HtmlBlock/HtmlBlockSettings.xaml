@@ -11,17 +11,35 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
-        <was:TextStyle x:Key="Span" Foreground="Lime" FontFamily="Courier New" FontStyle="Italic" FontWeight="Bold" />
-        <was:ContainerStyle x:Key="Div" Margin="10" Padding="10" />
-        <was:ImageStyle x:Key="Img" Margin="20" HorizontalAlignment="Center" />
-        <was:ParagraphStyle x:Key="H1" Foreground="Lime" FontFamily="Courier New" FontStyle="Italic" FontWeight="Bold" Margin="10" FontSizeRatio="3" />
-        <was:ListStyle x:Key="Li" Margin="0" Bullet="&#x25CC;" />
-        <was:TableStyle x:Key="Table" ColumnWidth="1*" />
-
-        <Style x:Key="style2" TargetType="was:HtmlBlock">
+        <Style x:Key="sampleStyle" TargetType="was:HtmlBlock">
+            <Setter Property="Foreground" Value="#666" />
             <Setter Property="DocumentStyle">
                 <Setter.Value>
-                    <was:DocumentStyle Span="{StaticResource Span}" Div="{StaticResource Div}" Img="{StaticResource Img}" H1="{StaticResource H1}" Li="{StaticResource Li}" Table="{StaticResource Table}">
+                    <was:DocumentStyle>
+                        <was:DocumentStyle.P>
+                            <was:ParagraphStyle Margin="0,24,0,24" />
+                        </was:DocumentStyle.P>
+                        <was:DocumentStyle.Ul>
+                            <was:ContainerStyle Margin="0,24,0,24" />
+                        </was:DocumentStyle.Ul>
+                        <was:DocumentStyle.H1>
+                            <was:ParagraphStyle Foreground="#fa9419" FontFamily="Times New Roman" FontSizeRatio="2" />
+                        </was:DocumentStyle.H1>
+                        <was:DocumentStyle.H2>
+                            <was:ParagraphStyle FontFamily="Times New Roman" />
+                        </was:DocumentStyle.H2>
+                        <was:DocumentStyle.Li>
+                            <was:ListStyle Bullet="&#x02D7;" />
+                        </was:DocumentStyle.Li>
+                        <was:DocumentStyle.A>
+                            <was:TextStyle Foreground="#0645AD" />
+                        </was:DocumentStyle.A>
+                        <was:DocumentStyle.Strong>
+                            <was:TextStyle Foreground="#fa9419" />
+                        </was:DocumentStyle.Strong>
+                        <was:DocumentStyle.Time>
+                            <was:TextStyle Foreground="#bbbbbb" FontSizeRatio="0.9" FontStyle="Italic" />
+                        </was:DocumentStyle.Time>
                     </was:DocumentStyle>
                 </Setter.Value>
             </Setter>
@@ -47,7 +65,8 @@
                     Minimun="10"
                     Maximun="60"
                     SmallChange="1"/>
-                <Button Content="Change Style" Click="Button_Click"></Button>
+                <TextBlock Text="Document styles" Margin="0,12,0,0"></TextBlock>
+                <ComboBox x:Name="stylesCombo" SelectionChanged="stylesCombo_SelectionChanged" Margin="0,12,0,0"></ComboBox>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -128,12 +128,14 @@
     <Compile Include="Controls\HtmlBlock\Styles\ParagraphStyle.cs" />
     <Compile Include="Controls\HtmlBlock\Styles\TableStyle.cs" />
     <Compile Include="Controls\HtmlBlock\Styles\TextStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ThicknessExtensions.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\DescriptionDetailWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\DescriptionTermWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HtmlWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HtmlWriterFactory.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\IFrameVideoWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ListItemWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\ImageWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\TextWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\Channel9Writer.cs" />
     <Compile Include="Controls\HtmlBlock\Writers\YouTubeWriter.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
@@ -256,7 +259,9 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
-    <EmbeddedResource Include="Controls\HtmlBlock\YouTubePlay.png" />
+    <EmbeddedResource Include="Controls\HtmlBlock\Play.png" />
+    <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
+    <EmbeddedResource Include="Controls\HtmlBlock\PlayButton.png" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />

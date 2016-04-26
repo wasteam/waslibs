@@ -9,7 +9,7 @@ namespace AppStudio.Uwp.Controls
 {
     public class ContainerStyle : DependencyObject
     {
-        public static readonly DependencyProperty MarginProperty = DependencyProperty.Register("Margin", typeof(Thickness), typeof(ContainerStyle), new PropertyMetadata(new Thickness(0)));
+        public static readonly DependencyProperty MarginProperty = DependencyProperty.Register("Margin", typeof(Thickness), typeof(ContainerStyle), new PropertyMetadata(new Thickness(double.NaN)));
 
         public Thickness Margin
         {
@@ -17,7 +17,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(MarginProperty, value); }
         }
 
-        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register("Padding", typeof(Thickness), typeof(ContainerStyle), new PropertyMetadata(new Thickness(0)));
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register("Padding", typeof(Thickness), typeof(ContainerStyle), new PropertyMetadata(new Thickness(double.NaN)));
 
         public Thickness Padding
         {
@@ -29,14 +29,8 @@ namespace AppStudio.Uwp.Controls
         {
             if (style != null)
             {
-                if (Margin != style.Margin)
-                {
-                    Margin = style.Margin;
-                }
-                if (Padding != style.Padding)
-                {
-                    Padding = style.Padding;
-                } 
+                Margin = Margin.Merge(style.Margin);
+                Padding = Padding.Merge(style.Padding);
             }
         }
     }

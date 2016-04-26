@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
-
 namespace AppStudio.Uwp.Samples
 {
     sealed partial class HtmlBlockSettings : UserControl
@@ -24,6 +22,14 @@ namespace AppStudio.Uwp.Samples
         public HtmlBlockSettings()
         {
             this.InitializeComponent();
+            Loaded += HtmlBlockSettings_Loaded;
+        }
+
+        private void HtmlBlockSettings_Loaded(object sender, RoutedEventArgs e)
+        {
+            stylesCombo.Items.Add("None");
+            stylesCombo.Items.Add("Sample style");
+            stylesCombo.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -31,6 +37,21 @@ namespace AppStudio.Uwp.Samples
             var htmlBlock = DataContext as HtmlBlock;
             var r = this.Resources["style2"];
             htmlBlock.Style = r as Style;
+        }
+
+        private void stylesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var htmlBlock = DataContext as HtmlBlock;
+
+            if (stylesCombo.SelectedIndex == 0)
+            {
+                htmlBlock.Style = null;
+            }
+            else if(stylesCombo.SelectedIndex == 1)
+            {
+                var r = this.Resources["sampleStyle"];
+                htmlBlock.Style = r as Style;
+            }
         }
     }
 }

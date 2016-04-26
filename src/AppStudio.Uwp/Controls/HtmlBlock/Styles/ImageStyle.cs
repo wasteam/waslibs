@@ -9,7 +9,7 @@ namespace AppStudio.Uwp.Controls
 {
     public class ImageStyle : DependencyObject
     {
-        public static readonly DependencyProperty MarginProperty = DependencyProperty.Register("Margin", typeof(Thickness), typeof(ImageStyle), new PropertyMetadata(new Thickness(0)));
+        public static readonly DependencyProperty MarginProperty = DependencyProperty.Register("Margin", typeof(Thickness), typeof(ImageStyle), new PropertyMetadata(new Thickness(double.NaN)));
 
         public Thickness Margin
         {
@@ -29,10 +29,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (style != null)
             {
-                if (Margin != style.Margin)
-                {
-                    Margin = style.Margin;
-                }
+                Margin = Margin.Merge(style.Margin);
                 if (HorizontalAlignment != style.HorizontalAlignment)
                 {
                     HorizontalAlignment = style.HorizontalAlignment;

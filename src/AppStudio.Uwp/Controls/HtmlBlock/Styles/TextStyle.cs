@@ -53,25 +53,28 @@ namespace AppStudio.Uwp.Controls
 
         public void Merge(TextStyle style)
         {
-            if (style?.FontFamily != null && FontFamily != style.FontFamily)
+            if (style != null)
             {
-                FontFamily = style.FontFamily;
-            }
-            if (!string.IsNullOrEmpty(style?.FontSizeRatio) && FontSizeRatio != style.FontSizeRatio)
-            {
-                FontSizeRatio = style.FontSizeRatio;
-            }
-            if (style?.FontStyle != FontStyle.Normal && FontStyle != style.FontStyle)
-            {
-                FontStyle = style.FontStyle;
-            }
-            if (style?.FontWeight.Weight > 0 && FontWeight.Weight != style.FontWeight.Weight)
-            {
-                FontWeight = style.FontWeight;
-            }
-            if (style?.Foreground != null && Foreground != style.Foreground)
-            {
-                Foreground = style.Foreground;
+                if (style.FontFamily != null && FontFamily != style.FontFamily)
+                {
+                    FontFamily = style.FontFamily;
+                }
+                if (!string.IsNullOrEmpty(style.FontSizeRatio) && FontSizeRatio != style.FontSizeRatio)
+                {
+                    FontSizeRatio = style.FontSizeRatio;
+                }
+                if (style.FontStyle != FontStyle.Normal && FontStyle != style.FontStyle)
+                {
+                    FontStyle = style.FontStyle;
+                }
+                if (style.FontWeight.Weight != FontWeights.Normal.Weight && FontWeight.Weight != style.FontWeight.Weight)
+                {
+                    FontWeight = style.FontWeight;
+                }
+                if (style.Foreground != null && Foreground != style.Foreground)
+                {
+                    Foreground = style.Foreground;
+                } 
             }
         }
 
@@ -84,7 +87,7 @@ namespace AppStudio.Uwp.Controls
             }
             else
             {
-                return 1;
+                return 0;
             }
         }
     }
