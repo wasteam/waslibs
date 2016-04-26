@@ -80,7 +80,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new RssDataProvider();
-           await dataProvider.LoadDataAsync(config, 2);
+            await dataProvider.LoadDataAsync(config, 2);
 
             Assert.IsTrue(dataProvider.HasMoreItems);
 
@@ -105,9 +105,88 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadRss_RequestFailedException_Apache403()
         {
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = null;
             var config = new RssDataConfig()
             {
                 Url = new Uri("http://www.brunswickcps.org/apps/news/news_rss.jsp?id=0")
+            };
+            rssItems = await dataProvider.LoadDataAsync(config);
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+
+            config = new RssDataConfig()
+            {
+                Url = new Uri("http://www.vicoteka.mk/tvitoteka/feed/")
+            };
+            rssItems = await dataProvider.LoadDataAsync(config);
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+
+            config = new RssDataConfig()
+            {
+                Url = new Uri("http://www.vicoteka.mk/vicovi/vic-na-denot/feed")
+            };
+            rssItems = await dataProvider.LoadDataAsync(config);
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadRss_GermanSpecialCharacters()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://www.inforadio.de/nachrichten/index.xml/feed=rss.xml")
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config);
+
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+            Assert.IsFalse(rssItems.Any(x => x.Content.Contains("Ã")));
+        }
+
+
+        [TestMethod]
+        public async Task LoadRss_GreekSpecialCharacters()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("https://www.tuc.gr/754.html?&tx_mmforum_pi1%5Bfid%5D=27")
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config);
+
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+            Assert.IsFalse(rssItems.Any(x => x.Title.Contains("Î")));
+        }
+
+        [TestMethod]
+        public async Task LoadRss_CatalanSpecialCharacters()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://www.hacesfalta.org/oportunidades/presencial/buscador/rss.aspx?c=oportunidadesPresenciales_hf&&idPais=60&enfamilia=0&engrupo=0")
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config);
+
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+            Assert.IsFalse(rssItems.Any(x => x.Content.Contains("Ã")));
+        }
+
+        [TestMethod]
+        public async Task LoadRss_Encoding_ISO88591()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://feeds.folha.uol.com.br/colunas/jaimespitzcovsky/rss091.xml")
             };
 
             var dataProvider = new RssDataProvider();
@@ -116,6 +195,5 @@ namespace AppStudio.DataProviders.Test.DataProviders
             Assert.IsNotNull(rssItems);
             Assert.AreNotEqual(rssItems.Count(), 0);
         }
-
     }
 }

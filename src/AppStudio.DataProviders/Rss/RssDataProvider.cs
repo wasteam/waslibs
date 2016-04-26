@@ -29,7 +29,7 @@ namespace AppStudio.DataProviders.Rss
                 RequestedUri = config.Url
             };
 
-            HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
+            HttpRequestResult result = await HttpRequest.DownloadRssAsync(settings);
             if (result.Success)
             {
                 var items = parser.Parse(result.Result);
