@@ -148,7 +148,7 @@ namespace AppStudio.Uwp.Controls
 
         // Obsolete
         #region SelectedForeground
-        [Deprecated("SelectedForeground property will be removed in future versions.", DeprecationType.Deprecate, 65536, "Windows.Foundation.UniversalApiContract")]
+        [Deprecated("SelectedForeground property will be removed in future versions.", DeprecationType.Deprecate, 65536)]
         public Brush SelectedForeground
         {
             get { return (Brush)GetValue(SelectedForegroundProperty); }

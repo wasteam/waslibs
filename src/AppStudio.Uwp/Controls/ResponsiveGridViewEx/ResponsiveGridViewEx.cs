@@ -121,7 +121,7 @@ namespace AppStudio.Uwp.Controls
 
         // Obsolete
         #region ItemWidth
-        [Deprecated("ItemWidth property will be removed in future versions.", DeprecationType.Deprecate, 65536, "Windows.Foundation.UniversalApiContract")]
+        [Deprecated("ItemWidth property will be removed in future versions.", DeprecationType.Deprecate, 65536)]
         public double ItemWidth
         {
             get { return (double)GetValue(ItemWidthProperty); }
@@ -132,7 +132,7 @@ namespace AppStudio.Uwp.Controls
         #endregion
 
         #region ItemHeight
-        [Deprecated("ItemHeight property will be removed in future versions.", DeprecationType.Deprecate, 65536, "Windows.Foundation.UniversalApiContract")]
+        [Deprecated("ItemHeight property will be removed in future versions.", DeprecationType.Deprecate, 65536)]
         public double ItemHeight
         {
             get { return (double)GetValue(ItemHeightProperty); }
