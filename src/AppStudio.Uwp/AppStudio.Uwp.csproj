@@ -140,6 +140,12 @@
     <Compile Include="Controls\ShellControl\ShellControl.Members.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Selection.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Static.cs" />
+    <Compile Include="Controls\SliderView\SliderView.cs" />
+    <Compile Include="Controls\SliderView\SliderView.Manipulation.cs" />
+    <Compile Include="Controls\SliderView\SliderView.Members.cs" />
+    <Compile Include="Controls\SliderView\SliderViewPanel.cs" />
+    <Compile Include="Controls\SliderView\SliderViewPanel.Items.cs" />
+    <Compile Include="Controls\SliderView\SliderViewPanel.Members.cs" />
     <Compile Include="Controls\SplitterCard\SplitterCard.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.cs" />
     <Compile Include="Controls\Pivorama\Pivorama.Manipulation.cs" />
@@ -262,6 +268,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\ShellControl\ShellControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SliderView\SliderView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

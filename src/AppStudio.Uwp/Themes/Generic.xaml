@@ -19,6 +19,7 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SectionList/SectionList.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Virtualbox/Virtualbox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ShellControl/ShellControl.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SliderView/SliderView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/PropertySet/PropertySet.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/VariableSizedGrid/VariableSizedGrid.xaml"/>
     </ResourceDictionary.MergedDictionaries>

@@ -90,6 +90,7 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Items = new ObservableCollection<object>(new FeaturedControlsDataSource().GetItems());
+            AppShell.Current.Shell.SelectItem("Home");
             base.OnNavigatedTo(e);
         }
 

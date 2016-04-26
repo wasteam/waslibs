@@ -144,7 +144,7 @@ namespace AppStudio.Uwp.Controls
 
         // Obsolete
         #region AlignmentX
-        [Deprecated("AligmentX property will be removed in future versions.", DeprecationType.Deprecate, 65536, "Windows.Foundation.UniversalApiContract")]
+        [Deprecated("AligmentX property will be removed in future versions.", DeprecationType.Deprecate, 65536)]
         public AlignmentX AlignmentX
         {
             get { return (AlignmentX)GetValue(AlignmentXProperty); }

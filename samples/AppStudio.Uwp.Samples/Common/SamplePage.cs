@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Reflection;
 
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -84,6 +85,9 @@ namespace AppStudio.Uwp.Samples
 
             this.PrimaryCommands = CreatePrimaryCommands().ToArray();
             this.SecondaryCommands = CreateSecondaryCommands().ToArray();
+
+            var attr = this.GetType().GetTypeInfo().GetCustomAttribute<SamplePageAttribute>();
+            AppShell.Current.Shell.SelectItem(attr.Category);
 
             base.OnNavigatedTo(e);
         }
