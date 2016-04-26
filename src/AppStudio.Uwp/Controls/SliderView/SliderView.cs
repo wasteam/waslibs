@@ -28,7 +28,6 @@ namespace AppStudio.Uwp.Controls
             _nextArrow = base.GetTemplateChild("nextArrow") as Button;
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
-            _frame.ManipulationInertiaStarting += OnManipulationInertiaStarting;
             _frame.ManipulationDelta += OnManipulationDelta;
             _frame.ManipulationCompleted += OnManipulationCompleted;
             _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;

@@ -32,12 +32,6 @@ namespace AppStudio.Uwp.Controls
         }
         #endregion
 
-        private void OnManipulationInertiaStarting(object sender, ManipulationInertiaStartingRoutedEventArgs e)
-        {
-            //int itemsPerThird = (int)((this.ActualWidth - Math.Abs(e.Cumulative.Translation.X)) / this.ItemWidth);
-            //e.TranslationBehavior.DesiredDisplacement = this.ItemWidth * itemsPerThird;
-        }
-
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             double deltaX = e.Delta.Translation.X;
