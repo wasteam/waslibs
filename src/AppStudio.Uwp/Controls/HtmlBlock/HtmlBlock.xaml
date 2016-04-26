@@ -30,8 +30,11 @@
     <was:ParagraphStyle x:Key="Dd" Margin="6,0,0,6" />
 
     <was:ParagraphStyle x:Key="BlockQuote" Margin="12" FontStyle="Italic" FontSizeRatio="1.05" />
+    
     <was:ImageStyle x:Key="Img" Margin="0,12,0,12" />
     <was:ImageStyle x:Key="YouTube" Margin="0,12,0,12" />
+    <was:ImageStyle x:Key="Channel9" Margin="0,12,0,12" />
+    
     <was:ListStyle x:Key="Li" Bullet="&#x25CF;" />
     <was:TextStyle x:Key="Span" />
     <was:TextStyle x:Key="Label" />
@@ -65,7 +68,7 @@
                                  Ul="{StaticResource Ul}" Ol="{StaticResource Ol}" Dl="{StaticResource Dl}" 
                                  P="{StaticResource P}" BlockQuote="{StaticResource BlockQuote}" FigCaption="{StaticResource FigCaption}" 
                                  Dt="{StaticResource Dt}" Dd="{StaticResource Dd}" Li="{StaticResource Li}" 
-                                 Img="{StaticResource Img}" YouTube="{StaticResource YouTube}"
+                                 Img="{StaticResource Img}" YouTube="{StaticResource YouTube}" Channel9="{StaticResource Channel9}"
                                  Span="{StaticResource Span}" Label="{StaticResource Label}" Strong="{StaticResource Strong}" A="{StaticResource A}" Code="{StaticResource Code}" Time="{StaticResource Time}"
                                  Q="{StaticResource Q}" Cite="{StaticResource Cite}" I="{StaticResource I}" Em="{StaticResource Em}" Mark="{StaticResource Mark}"
                                  Table="{StaticResource Table}" Td="{StaticResource Td}"

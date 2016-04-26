@@ -259,7 +259,6 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
-    <EmbeddedResource Include="Controls\HtmlBlock\Play.png" />
     <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
     <EmbeddedResource Include="Controls\HtmlBlock\PlayButton.png" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />

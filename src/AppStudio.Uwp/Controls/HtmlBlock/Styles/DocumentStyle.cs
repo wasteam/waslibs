@@ -27,6 +27,7 @@ namespace AppStudio.Uwp.Controls
 
         public ImageStyle Img { get; set; } = new ImageStyle();
         public ImageStyle YouTube { get; set; } = new ImageStyle();
+        public ImageStyle Channel9 { get; set; } = new ImageStyle();
 
         public ParagraphStyle H1 { get; set; } = new ParagraphStyle();
         public ParagraphStyle H2 { get; set; } = new ParagraphStyle();
@@ -79,6 +80,7 @@ namespace AppStudio.Uwp.Controls
 
                     Img.Merge(style.Img);
                     YouTube.Merge(style.YouTube);
+                    Channel9.Merge(style.Channel9);
 
                     H1.Merge(style.H1);
                     H2.Merge(style.H2);

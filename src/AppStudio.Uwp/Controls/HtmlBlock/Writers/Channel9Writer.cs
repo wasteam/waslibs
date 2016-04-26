@@ -32,7 +32,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
-            ApplyImageStyles(ctrl as Grid, style.YouTube);
+            ApplyImageStyles(ctrl as Grid, style.Channel9);
         }
 
         protected override void SetScreenshot(ImageEx img, HtmlNode node)
