@@ -155,6 +155,7 @@
     <Content Include="Pages\GifControl\Docs\GifControlXaml.xml" />
     <Content Include="Pages\InfiniteScroll\Docs\InfiniteScrollXaml.xml" />
     <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
+    <Content Include="Pages\SliderView\Docs\SliderViewXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
     <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
@@ -299,6 +300,15 @@
     </Compile>
     <Compile Include="Pages\SectionList\Docs\SectionListHelp.xaml.cs">
       <DependentUpon>SectionListHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\Docs\SliderViewHelp.xaml.cs">
+      <DependentUpon>SliderViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\SliderViewPage.xaml.cs">
+      <DependentUpon>SliderViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\SliderViewSettings.xaml.cs">
+      <DependentUpon>SliderViewSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml.cs">
       <DependentUpon>SplitterCardHelp.xaml</DependentUpon>
@@ -661,6 +671,18 @@
     <Page Include="Pages\SectionList\Docs\SectionListHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SliderView\Docs\SliderViewHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SliderView\SliderViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SliderView\SliderViewSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml">
       <Generator>MSBuild:Compile</Generator>

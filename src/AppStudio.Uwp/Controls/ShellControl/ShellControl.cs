@@ -114,8 +114,6 @@ namespace AppStudio.Uwp.Controls
                 }
                 _lviewSub.SelectedItem = null;
             }
-            // TODOX: 
-            //_currentItem = null;
             _content.Children.Clear();
             _container.Visibility = Visibility.Collapsed;
 
