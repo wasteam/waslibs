@@ -89,12 +89,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\HtmlBlock\Sample.html" />
     <Content Include="Assets\Images\BigFourSummerHeat.png" />
     <Content Include="Assets\Images\BisonBadlandsChillin.png" />
     <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
     <Content Include="Assets\Images\CreateApp.gif" />
     <Content Include="Assets\Images\GiantSlabInOregon.png" />
     <Content Include="Assets\Images\GrandTetons.png" />
+    <Content Include="Assets\Images\html-block.png" />
     <Content Include="Assets\Images\LakeAnnMushroom.png" />
     <Content Include="Assets\Images\LunchBreak.png" />
     <Content Include="Assets\Images\MilkyWayStHelensHikePurple.png" />
@@ -152,6 +154,7 @@
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\HtmlBlock\Docs\HtmlBlockXaml.xml" />
     <Content Include="Pages\GifControl\Docs\GifControlXaml.xml" />
     <Content Include="Pages\InfiniteScroll\Docs\InfiniteScrollXaml.xml" />
     <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
@@ -228,6 +231,16 @@
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml.cs">
+      <DependentUpon>HtmlBlockHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
+      <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockSettings.xaml.cs">
+      <DependentUpon>HtmlBlockSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockViewModel.cs" />
     <Compile Include="Pages\GifControl\Docs\GifControlHelp.xaml.cs">
       <DependentUpon>GifControlHelp.xaml</DependentUpon>
     </Compile>
@@ -571,6 +584,18 @@
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\GifControl\Docs\GifControlHelp.xaml">
       <Generator>MSBuild:Compile</Generator>

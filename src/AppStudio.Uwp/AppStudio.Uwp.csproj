@@ -123,6 +123,54 @@
     <Compile Include="Controls\GifControl\GifControl.cs" />
     <Compile Include="Controls\GifControl\GifControl.Play.cs" />
     <Compile Include="Controls\GifControl\GifControl.Tools.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\DocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridColumnContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\GridRowContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\ParagraphDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\Containers\SpanDocumentContainer.cs" />
+    <Compile Include="Controls\HtmlBlock\GridColumn.cs" />
+    <Compile Include="Controls\HtmlBlock\GridRow.cs" />
+    <Compile Include="Controls\HtmlBlock\HtmlBlock.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ContainerStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\DocumentStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ImageStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ListStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ParagraphStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\TableStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\TextStyle.cs" />
+    <Compile Include="Controls\HtmlBlock\Styles\ThicknessExtensions.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\AnchorWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\BlockQuoteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\BrWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\Channel9Writer.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\CiteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\CodeWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ContainerWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\DescriptionDetailWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\DescriptionTermWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\EmWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\FigCaptionWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HeaderWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HtmlWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\HtmlWriterFactory.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\IFrameVideoWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ImageWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\IWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\LabelWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ListItemWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\MarkWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\ParagraphWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\PreWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\QuoteWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\SpanWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\StrongWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableDataWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableRowWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TableWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TextWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\TimeWriter.cs" />
+    <Compile Include="Controls\HtmlBlock\Writers\YouTubeWriter.cs" />
     <Compile Include="Controls\ImageEx\BitmapTools.cs" />
     <Compile Include="Controls\ImageEx\BitmapCache.cs" />
     <Compile Include="Controls\ImageEx\ImageEx.cs" />
@@ -192,12 +240,21 @@
     <Compile Include="Controls\ErrorNotificationControl\ErrorNotificationControl.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\SizeExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\WebViewExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Html\DictionaryExtensions.cs" />
+    <Compile Include="Html\HtmlDocument.cs" />
+    <Compile Include="Html\HtmlException.cs" />
+    <Compile Include="Html\HtmlFragment.cs" />
+    <Compile Include="Html\HtmlNode.cs" />
+    <Compile Include="Html\HtmlTag.cs" />
+    <Compile Include="Html\HtmlText.cs" />
+    <Compile Include="Html\TagReader.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
@@ -217,6 +274,8 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
+    <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
+    <EmbeddedResource Include="Controls\HtmlBlock\PlayButton.png" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
@@ -232,6 +291,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\GifControl\GifControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HtmlBlock\HtmlBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

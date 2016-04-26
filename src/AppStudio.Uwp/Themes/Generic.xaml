@@ -22,5 +22,6 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SliderView/SliderView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/PropertySet/PropertySet.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/VariableSizedGrid/VariableSizedGrid.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlBlock/HtmlBlock.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

@@ -9,19 +9,19 @@
   },
   {
     "Index": 1,
-    "Title": "Facebook",
-    "Category": "Data provider",
-    "Thumbnail": "/Assets/Images/Facebook.png",
-    "Color": "#238c7f",
-    "DetailPageName": "FacebookPage"
+    "Title": "Navigation",
+    "Category": "App Services",
+    "Thumbnail": "/Assets/Images/Navigation.png",
+    "Color": "#5270c1",
+    "DetailPageName": "NavigationPage"
   },
   {
     "Index": 2,
-    "Title": "Pivorama",
-    "Category": "Layout",
-    "Thumbnail": "/Assets/Images/Pivorama.png",
-    "Color": "#9d5192",
-    "DetailPageName": "PivoramaPage"
+    "Title": "HtmlBlock",
+    "Category": "Foundation",
+    "Thumbnail": "/Assets/Images/html-block.png",
+    "Color": "#fa9419",
+    "DetailPageName": "HtmlBlockPage"
   },
   {
     "Index": 3,
@@ -39,13 +39,13 @@
     "Color": "#fa9419",
     "DetailPageName": "ImageExPage"
   },
-  {
+    {
     "Index": 5,
-    "Title": "VirtualBox",
-    "Category": "Foundation",
-    "Thumbnail": "/Assets/Images/VirtualBox.png",
-    "Color": "#fa9419",
-    "DetailPageName": "VirtualBoxPage"
+    "Title": "Pivorama",
+    "Category": "Layout",
+    "Thumbnail": "/Assets/Images/Pivorama.png",
+    "Color": "#9d5192",
+    "DetailPageName": "PivoramaPage"
   },
   {
     "Index": 6,
@@ -55,13 +55,13 @@
     "Color": "#fec631",
     "DetailPageName": "AnimationExtensionsPage"
   },
-  {
+    {
     "Index": 7,
-    "Title": "Navigation",
-    "Category": "App Services",
-    "Thumbnail": "/Assets/Images/Navigation.png",
-    "Color": "#5270c1",
-    "DetailPageName": "NavigationPage"
+    "Title": "VirtualBox",
+    "Category": "Foundation",
+    "Thumbnail": "/Assets/Images/VirtualBox.png",
+    "Color": "#fa9419",
+    "DetailPageName": "VirtualBoxPage"
   },
   {
     "Index": 8,

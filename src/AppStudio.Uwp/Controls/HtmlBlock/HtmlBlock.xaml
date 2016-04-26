@@ -1,0 +1,79 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:was="using:AppStudio.Uwp.Controls">
+
+    <was:ContainerStyle x:Key="Div" Margin="0" />
+    <was:ContainerStyle x:Key="Section" Margin="0" />
+    <was:ContainerStyle x:Key="Article" Margin="0" />
+    <was:ContainerStyle x:Key="Header" Margin="0" />
+    <was:ContainerStyle x:Key="Footer" Margin="0" />
+    <was:ContainerStyle x:Key="Main" Margin="0" />
+    <was:ContainerStyle x:Key="Figure" Margin="0,12,0,12" />
+    <was:ContainerStyle x:Key="Details" Margin="0" />
+    <was:ContainerStyle x:Key="Summary" Margin="0" />
+    <was:ContainerStyle x:Key="Ul" Margin="0,12,0,12" Padding="12,0,0,0" />
+    <was:ContainerStyle x:Key="Ol" Margin="0,12,0,12" />
+    <was:ContainerStyle x:Key="Dl" Margin="0,12,0,12" />
+
+    <was:ParagraphStyle x:Key="P" Margin="0,12,0,12" />
+    <was:ParagraphStyle x:Key="FigCaption" Margin="0" FontSizeRatio="0.95" FontStyle="Italic" />
+    <was:ParagraphStyle x:Key="Pre" Margin="0,12,0,12" />
+    <was:ParagraphStyle x:Key="H1" FontSizeRatio="1.5" FontWeight="SemiBold" Margin="0,12,0,12"/>
+    <was:ParagraphStyle x:Key="H2" FontSizeRatio="1.25" FontWeight="SemiBold" Margin="0,12,0,12"/>
+    <was:ParagraphStyle x:Key="H3" FontSizeRatio="1.1" FontWeight="SemiBold" Margin="0,6,0,6"/>
+    <was:ParagraphStyle x:Key="H4" FontSizeRatio="1" FontWeight="SemiBold" />
+    <was:ParagraphStyle x:Key="H5" FontSizeRatio="0.90" FontWeight="SemiBold" />
+    <was:ParagraphStyle x:Key="H6" FontSizeRatio="0.80" FontWeight="SemiBold" />
+
+    <was:ParagraphStyle x:Key="Dt" FontWeight="SemiBold" />
+    <was:ParagraphStyle x:Key="Dd" Margin="6,0,0,6" />
+
+    <was:ParagraphStyle x:Key="BlockQuote" Margin="12" FontStyle="Italic" FontSizeRatio="1.05" />
+    
+    <was:ImageStyle x:Key="Img" Margin="0,12,0,12" />
+    <was:ImageStyle x:Key="YouTube" Margin="0,12,0,12" />
+    <was:ImageStyle x:Key="Channel9" Margin="0,12,0,12" />
+    
+    <was:ListStyle x:Key="Li" Bullet="&#x25CF;" />
+    <was:TextStyle x:Key="Span" />
+    <was:TextStyle x:Key="Label" />
+    <was:TextStyle x:Key="Time" />
+    <was:TextStyle x:Key="Strong" FontWeight="SemiBold" />
+    <was:TextStyle x:Key="A" />
+    <was:TextStyle x:Key="Code" FontFamily="Courier New" />
+    <was:TextStyle x:Key="Q" FontStyle="Italic" />
+    <was:TextStyle x:Key="Cite" FontStyle="Oblique" />
+    <was:TextStyle x:Key="I" FontStyle="Italic" />
+    <was:TextStyle x:Key="Em" FontStyle="Italic" />
+    <was:TextStyle x:Key="Mark" FontWeight="SemiBold" />
+
+    <was:TableStyle x:Key="Table" Border="0" Margin="0,12,0,12" HorizontalAlignment="Center" />
+    <was:ContainerStyle x:Key="Td" Margin="0" Padding="6"></was:ContainerStyle>
+
+    <Style TargetType="was:HtmlBlock">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="was:HtmlBlock">
+                    <Grid x:Name="_container"></Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="DefaultDocumentStyle">
+            <Setter.Value>
+                <was:DocumentStyle H1="{StaticResource H1}" H2="{StaticResource H2}" H3="{StaticResource H3}" H4="{StaticResource H4}" H5="{StaticResource H5}" H6="{StaticResource H6}" 
+                                 Div="{StaticResource Div}" Section="{StaticResource Section}" Article="{StaticResource Article}" Header="{StaticResource Header}" Footer="{StaticResource Footer}" Main="{StaticResource Main}" 
+                                 Figure="{StaticResource Figure}" Details="{StaticResource Details}" Summary="{StaticResource Summary}"  
+                                 Ul="{StaticResource Ul}" Ol="{StaticResource Ol}" Dl="{StaticResource Dl}" 
+                                 P="{StaticResource P}" BlockQuote="{StaticResource BlockQuote}" FigCaption="{StaticResource FigCaption}" 
+                                 Dt="{StaticResource Dt}" Dd="{StaticResource Dd}" Li="{StaticResource Li}" 
+                                 Img="{StaticResource Img}" YouTube="{StaticResource YouTube}" Channel9="{StaticResource Channel9}"
+                                 Span="{StaticResource Span}" Label="{StaticResource Label}" Strong="{StaticResource Strong}" A="{StaticResource A}" Code="{StaticResource Code}" Time="{StaticResource Time}"
+                                 Q="{StaticResource Q}" Cite="{StaticResource Cite}" I="{StaticResource I}" Em="{StaticResource Em}" Mark="{StaticResource Mark}"
+                                 Table="{StaticResource Table}" Td="{StaticResource Td}"
+                        />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
