@@ -94,7 +94,8 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                 Source = src,
                 Stretch = Stretch.Uniform,
                 Background = new SolidColorBrush(Colors.Transparent),
-                Foreground = new SolidColorBrush(Colors.Transparent)
+                Foreground = new SolidColorBrush(Colors.Transparent),
+                AnimateGif = true
             };
             return viewbox;
         }
