@@ -121,7 +121,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task TestMaxRecordsWordPressPost()
         {
-            int maxRecords = 70;
+            int maxRecords = 25;
             var config = new WordPressDataConfig
             {
                 Query = "en.blog.wordpress.com",
@@ -131,7 +131,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new WordPressDataProvider();
             IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsTrue(data.Count() > 25);
+            Assert.IsTrue(data.Count() > 20);
         }
 
         [TestMethod]
@@ -154,7 +154,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task TestMaxRecordsWordPressTag()
         {
-            int maxRecords = 70;
+            int maxRecords = 25;
             var config = new WordPressDataConfig
             {
                 Query = "en.blog.wordpress.com",
@@ -165,7 +165,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new WordPressDataProvider();
             IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsTrue(data.Count() > 25);
+            Assert.IsTrue(data.Count() > 20);
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task TestMaxRecordsWordPressCategory()
         {
-            int maxRecords = 70;
+            int maxRecords = 25;
             var config = new WordPressDataConfig
             {
                 Query = "en.blog.wordpress.com",
@@ -199,7 +199,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new WordPressDataProvider();
             IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsTrue(data.Count() > 25);
+            Assert.IsTrue(data.Count() > 20);
         }
 
         [TestMethod]
