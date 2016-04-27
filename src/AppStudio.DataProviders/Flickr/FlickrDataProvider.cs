@@ -31,7 +31,7 @@ namespace AppStudio.DataProviders.Flickr
             ContinuationToken = "1";
             var settings = new HttpRequestSettings()
             {
-                RequestedUri = new Uri($"{BaseUrl}/photos_public.gne?{config.QueryType.ToString().ToLower()}={WebUtility.UrlEncode(config.Query)}")
+                RequestedUri = new Uri(GetUrl(config))
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
@@ -83,6 +83,16 @@ namespace AppStudio.DataProviders.Flickr
             return token;
         }
 
+        private string GetUrl(FlickrDataConfig config)
+        {
+            var result = $"{BaseUrl}/photos_public.gne?{config.QueryType.ToString().ToLower()}={WebUtility.UrlEncode(config.Query)}";
+            if (config.QueryType == FlickrQueryType.Tags)
+            {
+                result += "&tagmode=any";
+            }
+            return result;
+        }
+
         private IEnumerable<TSchema> GetMoreData<TSchema>(int pageSize, int page)
         {
             if (_totalItems == null)
@@ -93,6 +103,8 @@ namespace AppStudio.DataProviders.Flickr
             var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }
+
+        
     }
 }
 
