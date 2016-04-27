@@ -26,6 +26,8 @@ namespace AppStudio.Uwp.Samples.Pages.HtmlBlock
             this.InitializeComponent();
 
             DataContext = ViewModel;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
