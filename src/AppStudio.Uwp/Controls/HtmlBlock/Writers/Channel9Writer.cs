@@ -30,9 +30,9 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             return !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("channel9.msdn.com");
         }
 
-        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        protected override ImageStyle GetStyle(DocumentStyle style)
         {
-            ApplyImageStyles(ctrl as Grid, style.Channel9);
+            return style.Channel9;
         }
 
         protected override void SetScreenshot(ImageEx img, HtmlNode node)
