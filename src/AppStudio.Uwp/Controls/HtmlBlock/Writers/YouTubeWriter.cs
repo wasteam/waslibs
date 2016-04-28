@@ -30,9 +30,9 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             return !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("www.youtube.com");
         }
 
-        public override void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
+        protected override ImageStyle GetStyle(DocumentStyle style)
         {
-            ApplyImageStyles(ctrl as Grid, style.YouTube);
+            return style.YouTube;
         }
 
         protected override void SetScreenshot(ImageEx img, HtmlNode node)
