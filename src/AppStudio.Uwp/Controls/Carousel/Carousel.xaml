@@ -14,8 +14,8 @@
                             <Grid.Background>
                                 <LinearGradientBrush x:Name="gradient" StartPoint="0,0" EndPoint="1,0">
                                     <GradientStop Color="Black" Offset="0"/>
-                                    <GradientStop Color="Transparent" Offset="0"/>
-                                    <GradientStop Color="Transparent" Offset="1"/>
+                                    <GradientStop Color="#00000000" Offset="0"/>
+                                    <GradientStop Color="#00000000" Offset="1"/>
                                     <GradientStop Color="Black" Offset="1"/>
                                 </LinearGradientBrush>
                             </Grid.Background>
