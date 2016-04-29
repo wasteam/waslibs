@@ -1,5 +1,6 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using System.Windows.Input;
+
+using Windows.UI.Xaml;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -43,6 +44,16 @@ namespace AppStudio.Uwp.Controls
         }
 
         public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(SliderView), new PropertyMetadata(200.0));
+        #endregion
+
+        #region ItemClickCommand
+        public ICommand ItemClickCommand
+        {
+            get { return (ICommand)GetValue(ItemClickCommandProperty); }
+            set { SetValue(ItemClickCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(SliderView), new PropertyMetadata(null));
         #endregion
     }
 }

@@ -71,7 +71,8 @@
                             </ControlTemplate>
                         </Grid.Resources>
                         <controls:SliderViewPanel x:Name="panel" ItemsSource="{TemplateBinding ItemsSource}" Index="{TemplateBinding Index}"
-                                                ItemTemplate="{TemplateBinding ItemTemplate}" ItemWidth="{TemplateBinding ItemWidth}" />
+                                                  ItemTemplate="{TemplateBinding ItemTemplate}" ItemWidth="{TemplateBinding ItemWidth}"
+                                                  ItemClickCommand="{TemplateBinding ItemClickCommand}"/>
                         <Button Name="prevArrow" Width="20" IsTabStop="False" Template="{StaticResource HorizontalPrevTemplate}" UseSystemFocusVisuals="False" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.0" />
                         <Button Name="nextArrow" Width="20" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" UseSystemFocusVisuals="False" HorizontalAlignment="Right" VerticalAlignment="Top" Opacity="0.0" />
                         <Grid.Clip>
