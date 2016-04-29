@@ -36,6 +36,13 @@ namespace AppStudio.Uwp.Controls
         {
             double deltaX = e.Delta.Translation.X;
 
+            if (this.ActualWidth > this.ItemWidth * _panel.ItemsCount)
+            {
+                e.Complete();
+                e.Handled = true;
+                return;
+            }
+
             if (this.Position + deltaX > this.ItemWidth / 2.5)
             {
                 e.Complete();
@@ -65,6 +72,12 @@ namespace AppStudio.Uwp.Controls
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
+            if (this.ActualWidth > this.ItemWidth * _panel.ItemsCount)
+            {
+                e.Handled = true;
+                return;
+            }
+
             if (this.Position > 0)
             {
                 AnimateNext();
