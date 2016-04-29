@@ -105,11 +105,10 @@ namespace AppStudio.Uwp.Controls
             }
             catch (Exception ex)
             {
-                // TODO: 
-                //if (this.ImageFailed != null)
-                //{
-                //    this.ImageFailed(this, new ExceptionRoutedEventArgs(ex.Message));
-                //}
+                if (this.ImageFailed != null)
+                {
+                    this.ImageFailed(this, ex);
+                }
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
