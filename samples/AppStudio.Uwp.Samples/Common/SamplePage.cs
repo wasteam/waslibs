@@ -18,8 +18,13 @@ namespace AppStudio.Uwp.Samples
         private bool _restoreContent = true;
         private UIElement _content = null;
 
-        public SamplePage()
+        private string _path = null;
+        private string _nmspc = null;
+
+        public SamplePage(bool isLabs = false)
         {
+            _path = isLabs ? "Labs" : "Pages";
+            _nmspc = isLabs ? "AppStudio.Uwp.Samples.Labs" : "AppStudio.Uwp.Samples";
             this.Loaded += OnLoaded;
         }
 
@@ -77,11 +82,11 @@ namespace AppStudio.Uwp.Samples
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.ShowSettings = IsTypePresent($"AppStudio.Uwp.Samples.{SampleName}Settings");
+            this.ShowSettings = IsTypePresent($"{_nmspc}.{SampleName}Settings");
 
-            this.ShowXaml = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Xaml.xml");
-            this.ShowCode = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}CSharp.cs");
-            this.ShowJson = await ContentFileExists($"Pages\\{SampleName}\\Docs", $"{SampleName}Json.json");
+            this.ShowXaml = await ContentFileExists($"{_path}\\{SampleName}\\Docs", $"{SampleName}Xaml.xml");
+            this.ShowCode = await ContentFileExists($"{_path}\\{SampleName}\\Docs", $"{SampleName}CSharp.cs");
+            this.ShowJson = await ContentFileExists($"{_path}\\{SampleName}\\Docs", $"{SampleName}Json.json");
 
             this.PrimaryCommands = CreatePrimaryCommands().ToArray();
             this.SecondaryCommands = CreateSecondaryCommands().ToArray();
@@ -139,7 +144,7 @@ namespace AppStudio.Uwp.Samples
         }
         protected virtual async void OnHelp()
         {
-            string typeName = $"AppStudio.Uwp.Samples.{SampleName}Help";
+            string typeName = $"{_nmspc}.{SampleName}Help";
             if (IsTypePresent(typeName))
             {
                 var border = new Border
@@ -156,7 +161,7 @@ namespace AppStudio.Uwp.Samples
             {
                 var control = new PrettifyControl();
                 AppShell.Current.Shell.ShowTopPane(control);
-                control.HtmlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Help.html"));
+                control.HtmlSource = await ReadContent(new Uri($"ms-appx:///{_path}/{SampleName}/Docs/{SampleName}Help.html"));
             }
         }
 
@@ -199,7 +204,7 @@ namespace AppStudio.Uwp.Samples
             await this.Content.FadeOutAsync(100);
 
             var control = new PrettifyControl();
-            control.CSharpSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}CSharp.cs"));
+            control.CSharpSource = await ReadContent(new Uri($"ms-appx:///{_path}/{SampleName}/Docs/{SampleName}CSharp.cs"));
             this.Content = control;
         }
 
@@ -227,7 +232,7 @@ namespace AppStudio.Uwp.Samples
             await this.Content.FadeOutAsync(100);
 
             var control = new PrettifyControl();
-            control.XamlSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Xaml.xml"));
+            control.XamlSource = await ReadContent(new Uri($"ms-appx:///{_path}/{SampleName}/Docs/{SampleName}Xaml.xml"));
             this.Content = control;
         }
 
@@ -255,7 +260,7 @@ namespace AppStudio.Uwp.Samples
             await this.Content.FadeOutAsync(100);
 
             var control = new PrettifyControl();
-            control.JsonSource = await ReadContent(new Uri($"ms-appx:///Pages/{SampleName}/Docs/{SampleName}Json.json"));
+            control.JsonSource = await ReadContent(new Uri($"ms-appx:///{_path}/{SampleName}/Docs/{SampleName}Json.json"));
             this.Content = control;
         }
 

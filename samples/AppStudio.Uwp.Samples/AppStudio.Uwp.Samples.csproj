@@ -150,6 +150,7 @@
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
@@ -193,6 +194,15 @@
     <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
+      <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
+      <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
+      <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
       <DependentUpon>GifControlSettings.xaml</DependentUpon>
     </Compile>
@@ -508,6 +518,18 @@
     <Page Include="AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\GifControl\GifControlSettings.xaml">
       <SubType>Designer</SubType>
