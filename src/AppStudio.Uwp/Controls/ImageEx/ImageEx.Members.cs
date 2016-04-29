@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.Media.Casting;
 
@@ -6,8 +8,9 @@ namespace AppStudio.Uwp.Controls
 {
     partial class ImageEx
     {
-        public event ExceptionRoutedEventHandler ImageFailed;
         public event RoutedEventHandler ImageOpened;
+        public event ExceptionRoutedEventHandler ImageFailed;
+        public event EventHandler<Exception> ImageGifFailed;
 
         #region Stretch
         public Stretch Stretch

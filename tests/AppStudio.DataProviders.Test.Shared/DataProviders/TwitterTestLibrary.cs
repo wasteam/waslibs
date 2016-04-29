@@ -158,7 +158,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.AreEqual(maxRecords, result.Count());
+            Assert.IsTrue(result.Count() <= maxRecords);
         }
 
         [TestMethod]
@@ -170,7 +170,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = TwitterQueryType.Home
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
-            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);         
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.IsTrue(result.Count() > 25);
         }
@@ -187,7 +187,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.AreEqual(maxRecords, result.Count());
+            Assert.IsTrue(result.Count() <= maxRecords);
         }
 
         [TestMethod]
@@ -219,7 +219,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.AreEqual(maxRecords, result.Count());
+            Assert.IsTrue(result.Count() <= maxRecords);
         }
 
         [TestMethod]
@@ -232,7 +232,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "#microsoft"
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
-            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);           
+            IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.IsTrue(result.Count() > 25);
         }
@@ -263,7 +263,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 QueryType = TwitterQueryType.Home
             };
-            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys); 
+            var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
         }
 

@@ -1,20 +1,20 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:AppStudio.Uwp.Controls">
+    xmlns:controls="using:AppStudio.Uwp.Labs">
 
-    <Style TargetType="controls:ResponsiveGridViewEx">
+    <Style TargetType="controls:ResponsiveGridView">
         <Setter Property="ItemContainerStyle" Value="{StaticResource ResponsiveGridViewItemEx}"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <controls:ResponsiveGridViewPanelEx />
+                    <controls:ResponsiveGridViewPanel />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:ResponsiveGridViewEx">
+                <ControlTemplate TargetType="controls:ResponsiveGridView">
                     <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ItemsPresenter VerticalAlignment="Top" />
                     </ScrollViewer>

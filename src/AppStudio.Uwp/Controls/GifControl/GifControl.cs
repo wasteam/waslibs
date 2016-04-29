@@ -9,8 +9,8 @@ namespace AppStudio.Uwp.Controls
 {
     public partial class GifControl : Control
     {
-        public event ExceptionRoutedEventHandler ImageFailed;
         public event RoutedEventHandler ImageOpened;
+        public event EventHandler<Exception> ImageFailed;
 
         private Image _image = null;
 

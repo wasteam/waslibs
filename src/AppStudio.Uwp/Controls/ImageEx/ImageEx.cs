@@ -32,7 +32,7 @@ namespace AppStudio.Uwp.Controls
             _image.ImageOpened += OnImageOpened;
             _image.ImageFailed += OnImageFailed;
             _imageGif.ImageOpened += OnImageOpened;
-            _imageGif.ImageFailed += OnImageFailed;
+            _imageGif.ImageFailed += OnImageGifFailed;
 
             this.SetSource(this.Source);
             this.SetNineGrid(this.NineGrid);
@@ -55,6 +55,14 @@ namespace AppStudio.Uwp.Controls
             if (this.ImageFailed != null)
             {
                 this.ImageFailed(sender, e);
+            }
+        }
+
+        private void OnImageGifFailed(object sender, Exception e)
+        {
+            if (this.ImageFailed != null)
+            {
+                this.ImageGifFailed(sender, e);
             }
         }
 

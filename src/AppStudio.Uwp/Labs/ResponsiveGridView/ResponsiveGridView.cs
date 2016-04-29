@@ -5,15 +5,15 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation.Metadata;
 
-namespace AppStudio.Uwp.Controls
+namespace AppStudio.Uwp.Labs
 {
-    public sealed class ResponsiveGridViewEx : ListViewBase
+    public sealed class ResponsiveGridView : ListViewBase
     {
-        private ResponsiveGridViewPanelEx _panel = null;
+        private ResponsiveGridViewPanel _panel = null;
 
-        public ResponsiveGridViewEx()
+        public ResponsiveGridView()
         {
-            this.DefaultStyleKey = typeof(ResponsiveGridViewEx);
+            this.DefaultStyleKey = typeof(ResponsiveGridView);
             this.LayoutUpdated += OnLayoutUpdated;
             this.IsItemClickEnabled = true;
             this.ItemClick += OnItemClick;
@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(DesiredWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty DesiredWidthProperty = DependencyProperty.Register("DesiredWidth", typeof(double), typeof(ResponsiveGridViewEx), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty DesiredWidthProperty = DependencyProperty.Register("DesiredWidth", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0.0));
         #endregion
 
         #region DesiredHeight
@@ -36,7 +36,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(DesiredHeightProperty, value); }
         }
 
-        public static readonly DependencyProperty DesiredHeightProperty = DependencyProperty.Register("DesiredHeight", typeof(double), typeof(ResponsiveGridViewEx), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty DesiredHeightProperty = DependencyProperty.Register("DesiredHeight", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0.0));
         #endregion
 
         #region ItemMargin
@@ -46,7 +46,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemMarginProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemMarginProperty = DependencyProperty.Register("ItemMargin", typeof(Thickness), typeof(ResponsiveGridViewEx), new PropertyMetadata(new Thickness(2)));
+        public static readonly DependencyProperty ItemMarginProperty = DependencyProperty.Register("ItemMargin", typeof(Thickness), typeof(ResponsiveGridView), new PropertyMetadata(new Thickness(2)));
         #endregion
 
         #region ItemPadding
@@ -56,7 +56,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemPaddingProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemPaddingProperty = DependencyProperty.Register("ItemPadding", typeof(Thickness), typeof(ResponsiveGridViewEx), new PropertyMetadata(new Thickness(2)));
+        public static readonly DependencyProperty ItemPaddingProperty = DependencyProperty.Register("ItemPadding", typeof(Thickness), typeof(ResponsiveGridView), new PropertyMetadata(new Thickness(2)));
         #endregion
 
         #region OneRowModeEnabled
@@ -66,7 +66,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(OneRowModeEnabledProperty, value); }
         }
 
-        public static readonly DependencyProperty OneRowModeEnabledProperty = DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridViewEx), new PropertyMetadata(false));
+        public static readonly DependencyProperty OneRowModeEnabledProperty = DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridView), new PropertyMetadata(false));
         #endregion
 
         #region ItemClickCommand
@@ -76,7 +76,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemClickCommandProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(ResponsiveGridViewEx), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(ResponsiveGridView), new PropertyMetadata(null));
         #endregion
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -96,13 +96,13 @@ namespace AppStudio.Uwp.Controls
         {
             if (_panel == null)
             {
-                _panel = base.ItemsPanelRoot as ResponsiveGridViewPanelEx;
+                _panel = base.ItemsPanelRoot as ResponsiveGridViewPanel;
                 if (_panel != null)
                 {
                     _panel.IsReady = true;
-                    _panel.SetBinding(ResponsiveGridViewPanelEx.DesiredItemWidthProperty, new Binding { Source = this, Path = new PropertyPath("DesiredWidth") });
-                    _panel.SetBinding(ResponsiveGridViewPanelEx.DesiredItemHeightProperty, new Binding { Source = this, Path = new PropertyPath("DesiredHeight") });
-                    _panel.SetBinding(ResponsiveGridViewPanelEx.OneRowModeEnabledProperty, new Binding { Source = this, Path = new PropertyPath("OneRowModeEnabled") });
+                    _panel.SetBinding(ResponsiveGridViewPanel.DesiredItemWidthProperty, new Binding { Source = this, Path = new PropertyPath("DesiredWidth") });
+                    _panel.SetBinding(ResponsiveGridViewPanel.DesiredItemHeightProperty, new Binding { Source = this, Path = new PropertyPath("DesiredHeight") });
+                    _panel.SetBinding(ResponsiveGridViewPanel.OneRowModeEnabledProperty, new Binding { Source = this, Path = new PropertyPath("OneRowModeEnabled") });
                     _panel.InvalidateMeasure();
                 }
             }
@@ -128,7 +128,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(ResponsiveGridViewEx), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0.0));
         #endregion
 
         #region ItemHeight
@@ -141,11 +141,11 @@ namespace AppStudio.Uwp.Controls
 
         private static void ItemHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as ResponsiveGridViewEx;
+            var control = d as ResponsiveGridView;
             control.DesiredHeight = (double)e.NewValue;
         }
 
-        public static readonly DependencyProperty ItemHeightProperty = DependencyProperty.Register("ItemHeight", typeof(double), typeof(ResponsiveGridViewEx), new PropertyMetadata(0.0, ItemHeightChanged));
+        public static readonly DependencyProperty ItemHeightProperty = DependencyProperty.Register("ItemHeight", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0.0, ItemHeightChanged));
         #endregion
     }
 }

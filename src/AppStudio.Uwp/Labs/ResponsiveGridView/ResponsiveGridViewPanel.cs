@@ -4,9 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 
-namespace AppStudio.Uwp.Controls
+namespace AppStudio.Uwp.Labs
 {
-    public sealed class ResponsiveGridViewPanelEx : Panel
+    public sealed class ResponsiveGridViewPanel : Panel
     {
         internal bool IsReady { get; set; } = false;
 
@@ -17,7 +17,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(DesiredItemWidthProperty, value); }
         }
 
-        public static readonly DependencyProperty DesiredItemWidthProperty = DependencyProperty.Register("DesiredItemWidth", typeof(double), typeof(ResponsiveGridViewPanelEx), new PropertyMetadata(0.0, DesiredSizeChanged));
+        public static readonly DependencyProperty DesiredItemWidthProperty = DependencyProperty.Register("DesiredItemWidth", typeof(double), typeof(ResponsiveGridViewPanel), new PropertyMetadata(0.0, DesiredSizeChanged));
         #endregion
 
         #region DesiredItemHeight
@@ -27,7 +27,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(DesiredItemHeightProperty, value); }
         }
 
-        public static readonly DependencyProperty DesiredItemHeightProperty = DependencyProperty.Register("DesiredItemHeight", typeof(double), typeof(ResponsiveGridViewPanelEx), new PropertyMetadata(0.0, DesiredSizeChanged));
+        public static readonly DependencyProperty DesiredItemHeightProperty = DependencyProperty.Register("DesiredItemHeight", typeof(double), typeof(ResponsiveGridViewPanel), new PropertyMetadata(0.0, DesiredSizeChanged));
         #endregion
 
         #region OneRowModeEnabled
@@ -37,12 +37,12 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(OneRowModeEnabledProperty, value); }
         }
 
-        public static readonly DependencyProperty OneRowModeEnabledProperty = DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridViewPanelEx), new PropertyMetadata(false, DesiredSizeChanged));
+        public static readonly DependencyProperty OneRowModeEnabledProperty = DependencyProperty.Register("OneRowModeEnabled", typeof(bool), typeof(ResponsiveGridViewPanel), new PropertyMetadata(false, DesiredSizeChanged));
         #endregion
 
         private static void DesiredSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as ResponsiveGridViewPanelEx;
+            var control = d as ResponsiveGridViewPanel;
             control.InvalidateMeasure();
         }
 

@@ -369,6 +369,9 @@
   <data name="ShellMenuLayoutControls" xml:space="preserve">
     <value>Layout Controls</value>
   </data>
+  <data name="ShellMenuLabsControls" xml:space="preserve">
+    <value>Labs Controls</value>
+  </data>
   <data name="ShellMenuUtilities" xml:space="preserve">
     <value>Utilities</value>
   </data>
