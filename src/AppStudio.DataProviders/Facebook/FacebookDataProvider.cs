@@ -96,7 +96,7 @@ namespace AppStudio.DataProviders.Facebook
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
-                return parser.Parse(result.Result);
+                return await parser.ParseAsync(result.Result);
             }
 
             if (result.StatusCode == HttpStatusCode.BadRequest)

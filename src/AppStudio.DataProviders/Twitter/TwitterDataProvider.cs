@@ -204,8 +204,8 @@ namespace AppStudio.DataProviders.Twitter
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
-                var items = parser.Parse(rawResult);
-                ContinuationToken = GetContinuationToken(rawResult);
+                var items = await parser.ParseAsync(rawResult);
+                ContinuationToken = await GetContinuationTokenAsync(rawResult);
                 return items;
             }
             catch (WebException wex)
@@ -244,10 +244,10 @@ namespace AppStudio.DataProviders.Twitter
             return url;
         }       
 
-        private string GetContinuationToken(string data)
+        private async Task<string> GetContinuationTokenAsync(string data)
         {
             var defaultParser = GetDefaultParser(Config);
-            var items = defaultParser.Parse(data);
+            var items = await defaultParser.ParseAsync(data);
             var id_str = items?.LastOrDefault()?._id;
             long id;
             if (long.TryParse(id_str, out id))

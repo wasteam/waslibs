@@ -149,7 +149,7 @@ namespace AppStudio.DataProviders.WordPress
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
-                return parser.Parse(result.Result);              
+                return await parser.ParseAsync(result.Result);              
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
@@ -167,7 +167,7 @@ namespace AppStudio.DataProviders.WordPress
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                var comments = parser.Parse(result.Result);
+                var comments = await parser.ParseAsync(result.Result);
                 if (comments != null)
                 {
                     _hasMoreComments = comments.Count() >= pageSize;

@@ -79,7 +79,7 @@ namespace AppStudio.DataProviders.Bing
             HttpRequestResult requestResult = await HttpRequest.DownloadAsync(settings);
             if (requestResult.Success)
             {
-                var items = parser.Parse(requestResult.Result);
+                var items = await parser.ParseAsync(requestResult.Result);
                 ContinuationToken = GetContinuationToken(ContinuationToken, pageSize);
                 _hasMoreItems = items.Any();
                 return items;

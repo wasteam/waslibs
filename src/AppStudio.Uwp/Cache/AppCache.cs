@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Net.NetworkInformation;
-
 namespace AppStudio.Uwp.Cache
 {
     public static class AppCache
@@ -60,7 +59,7 @@ namespace AppStudio.Uwp.Cache
             {
                 try
                 {
-                    CachedContent<T> records = JsonConvert.DeserializeObject<CachedContent<T>>(json);
+                    CachedContent<T> records = await Json.ToObjectAsync<CachedContent<T>>(json);
                     return records;
                 }
                 catch (Exception ex)
@@ -87,7 +86,7 @@ namespace AppStudio.Uwp.Cache
             {
                 try
                 {
-                    T data = JsonConvert.DeserializeObject<T>(json);
+                    T data = await Json.ToObjectAsync<T>(json);
                     return data;
                 }
                 catch (Exception ex)
@@ -124,7 +123,7 @@ namespace AppStudio.Uwp.Cache
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data);
+                string json = await Json.StringifyAsync(data);
 
                 if (useStorageCache)
                 {
@@ -156,7 +155,7 @@ namespace AppStudio.Uwp.Cache
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data);
+                string json = await Json.StringifyAsync(data);
 
                 if (useStorageCache)
                 {
