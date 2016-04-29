@@ -88,7 +88,6 @@
     <Compile Include="Menu\MenuSchema.cs" />
     <Compile Include="Rss\RssParser.cs" />
     <Compile Include="Rss\RssSchema.cs" />
-    <Compile Include="TSchema.cs" />
     <Compile Include="Twitter\TwitterParser.cs" />
     <Compile Include="Twitter\TwitterDataConfig.cs" />
     <Compile Include="Twitter\TwitterDataProvider.cs" />
@@ -129,6 +128,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Users\ljsanche.EUROPE\Downloads\Build.Source-v1.0.6.0\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
