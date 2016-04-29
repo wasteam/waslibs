@@ -55,5 +55,15 @@ namespace AppStudio.Uwp.Controls
 
         public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(SliderView), new PropertyMetadata(null));
         #endregion
+
+        #region ArrowsVisibility
+        public Visibility ArrowsVisibility
+        {
+            get { return (Visibility)GetValue(ArrowsVisibilityProperty); }
+            set { SetValue(ArrowsVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty ArrowsVisibilityProperty = DependencyProperty.Register("ArrowsVisibility", typeof(Visibility), typeof(SliderView), new PropertyMetadata(Visibility.Collapsed));
+        #endregion
     }
 }

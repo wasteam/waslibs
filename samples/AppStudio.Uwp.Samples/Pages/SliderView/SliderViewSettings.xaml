@@ -29,6 +29,10 @@
                     Value="{Binding SliderView.Height, Mode=TwoWay}"
                     Minimun="200"
                     Maximun="800"/>
+                <controls:PropertySet
+                    Source="{Binding SliderView}"
+                    Property="ArrowsVisibility"
+                    Value="{Binding SliderView.ArrowsVisibility, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
