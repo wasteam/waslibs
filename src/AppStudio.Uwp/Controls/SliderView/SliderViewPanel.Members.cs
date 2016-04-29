@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,14 +43,35 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register("ItemWidth", typeof(double), typeof(SliderViewPanel), new PropertyMetadata(440.0, ItemWidthChanged));
         #endregion
 
+        #region ItemClickCommand
+        public ICommand ItemClickCommand
+        {
+            get { return (ICommand)GetValue(ItemClickCommandProperty); }
+            set { SetValue(ItemClickCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(SliderViewPanel), new PropertyMetadata(null));
+        #endregion
+
         private void OnItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (SelectedIndexChanged != null)
+            var contentControl = sender as ContentControl;
+            if (contentControl != null)
             {
-                var contentControl = sender as ContentControl;
-                if (contentControl.Tag != null)
+                if (SelectedIndexChanged != null)
                 {
-                    SelectedIndexChanged(this, (int)contentControl.Tag);
+                    if (contentControl.Tag != null)
+                    {
+                        SelectedIndexChanged(this, (int)contentControl.Tag);
+                    }
+                }
+
+                if (ItemClickCommand != null)
+                {
+                    if (ItemClickCommand.CanExecute(contentControl.Content))
+                    {
+                        ItemClickCommand.Execute(contentControl.Content);
+                    }
                 }
             }
         }
