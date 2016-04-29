@@ -272,6 +272,7 @@
     <Compile Include="Controls\VisualBreakpoints\BreakpointsDictionary.cs" />
     <Compile Include="Controls\VisualBreakpoints\Extensions.cs" />
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
+    <Compile Include="Json.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="TasksExtensions.cs" />
     <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
@@ -280,7 +281,6 @@
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
     <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Controls\Carousel\Carousel.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -18,7 +18,7 @@
       <reference file="AppStudio.Common.dll" />
     </references>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="6.0.8" />
+      <dependency id="Newtonsoft.Json" version="8.0.3" />
       <dependency id="HtmlAgilityPack" version="1.4.9" />
     </dependencies>
   </metadata>

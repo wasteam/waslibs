@@ -179,7 +179,7 @@ namespace AppStudio.DataProviders.YouTube
             if (requestResult.Success)
             {
                 ContinuationToken = GetContinuationToken(requestResult.Result);
-                return parser.Parse(requestResult.Result);
+                return await parser.ParseAsync(requestResult.Result);
             }
 
             if (requestResult.StatusCode == HttpStatusCode.Forbidden)

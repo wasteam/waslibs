@@ -21,7 +21,7 @@ namespace AppStudio.DataProviders.Core
             result = new HttpRequestResult<TSchema>(httpResult);
             if (httpResult.Success)
             {
-                var items = parser.Parse(httpResult.Result);
+                var items = await parser.ParseAsync(httpResult.Result);
                 if (items == null)
                 {
                     items = new TSchema[0];

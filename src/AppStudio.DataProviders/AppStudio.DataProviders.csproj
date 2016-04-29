@@ -72,6 +72,7 @@
     <Compile Include="Core\HttpRequestResult.cs" />
     <Compile Include="Core\HttpRequestSettings.cs" />
     <Compile Include="IParser.cs" />
+    <Compile Include="IParserExtensions.cs" />
     <Compile Include="LocalStorage\LocalStorageDataConfig.cs" />
     <Compile Include="LocalStorage\LocalStorageDataProvider.cs" />
     <Compile Include="Bing\BingSchema.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Menu\MenuSchema.cs" />
     <Compile Include="Rss\RssParser.cs" />
     <Compile Include="Rss\RssSchema.cs" />
+    <Compile Include="TSchema.cs" />
     <Compile Include="Twitter\TwitterParser.cs" />
     <Compile Include="Twitter\TwitterDataConfig.cs" />
     <Compile Include="Twitter\TwitterDataProvider.cs" />
@@ -125,12 +127,11 @@
     <CodeAnalysisDictionary Include="Dictionary.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Users\ljsanche.EUROPE\Downloads\Build.Source-v1.0.6.0\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

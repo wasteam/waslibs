@@ -28,7 +28,7 @@ namespace AppStudio.DataProviders.Html
 
             using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
             {
-                return parser.Parse(await r.ReadToEndAsync());
+                return await parser.ParseAsync(await r.ReadToEndAsync());
             }
         }
 

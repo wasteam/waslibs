@@ -32,7 +32,7 @@ namespace AppStudio.DataProviders.Rss
             HttpRequestResult result = await HttpRequest.DownloadRssAsync(settings);
             if (result.Success)
             {
-                var items = parser.Parse(result.Result);
+                var items = await parser.ParseAsync(result.Result);
                 if (items != null && items.Any())
                 {
                     _totalItems = items.ToList();

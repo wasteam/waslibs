@@ -36,7 +36,7 @@ namespace AppStudio.DataProviders.Instagram
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result);
+                return await parser.ParseAsync(result.Result);
             }
 
             if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && (result.Result.Contains("OAuthParameterException") || result.Result.Contains("OAuthAccessTokenException")))

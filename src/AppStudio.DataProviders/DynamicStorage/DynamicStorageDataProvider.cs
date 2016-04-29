@@ -64,7 +64,7 @@ namespace AppStudio.DataProviders.DynamicStorage
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                var items = parser.Parse(result.Result);
+                var items = await parser.ParseAsync(result.Result);
                 _hasMoreItems = items.Any();
                 ContinuationToken = GetContinuationToken(ContinuationToken);
                 return items;            

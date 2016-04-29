@@ -37,7 +37,7 @@ namespace AppStudio.DataProviders.Flickr
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                var items = parser.Parse(result.Result);
+                var items = await parser.ParseAsync(result.Result);
                 if (items != null && items.Any())
                 {
                     _totalItems = items.ToList();

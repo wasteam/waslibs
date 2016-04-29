@@ -34,7 +34,7 @@ namespace AppStudio.DataProviders.LocalStorage
 
             using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
             {
-                var items = parser.Parse(await r.ReadToEndAsync());
+                var items = await parser.ParseAsync(await r.ReadToEndAsync());
                 if (items != null && items.Any())
                 {
                     _totalItems = items.ToList();
