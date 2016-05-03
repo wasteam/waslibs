@@ -11,19 +11,16 @@ namespace AppStudio.Uwp.Cache
 {
     public static class UserStorage
     {
-        public static async Task<string> ReadTextFromFile(string fileName)
+        public static async Task<string> ReadTextFromFileAsync(string fileName)
         {
             try
             {
                 var folder = ApplicationData.Current.LocalFolder;
-                var file = await folder.GetFileAsync(fileName);
+                var file = await folder.TryGetFileAsync(fileName);
                 if (file != null)
                 {
                     return await FileIO.ReadTextAsync(file);
                 }
-            }
-            catch (FileNotFoundException)
-            {
             }
             catch (Exception ex)
             {
@@ -60,7 +57,7 @@ namespace AppStudio.Uwp.Cache
             return null;
         }
 
-        public static async Task WriteText(string fileName, string content)
+        public static async Task WriteTextAsync(string fileName, string content)
         {
             try
             {
@@ -74,19 +71,16 @@ namespace AppStudio.Uwp.Cache
             }
         }
 
-        public static async Task DeleteFileIfExists(string fileName)
+        public static async Task DeleteFileIfExistsAsync(string fileName)
         {
             try
             {
                 var folder = ApplicationData.Current.LocalFolder;
-                var file = await folder.GetFileAsync(fileName);
+                var file = await folder.TryGetFileAsync(fileName);
                 if (file != null)
                 {
                     await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 }
-            }
-            catch (FileNotFoundException)
-            {
             }
             catch (Exception ex)
             {
@@ -94,7 +88,7 @@ namespace AppStudio.Uwp.Cache
             }
         }
 
-        public static async Task AppendLineToFile(string fileName, string line)
+        public static async Task AppendLineToFileAsync(string fileName, string line)
         {
             try
             {

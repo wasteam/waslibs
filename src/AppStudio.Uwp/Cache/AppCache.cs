@@ -52,7 +52,7 @@ namespace AppStudio.Uwp.Cache
             }
             else
             {
-                json = await UserStorage.ReadTextFromFile(key);
+                json = await UserStorage.ReadTextFromFileAsync(key);
                 _memoryCache[key] = json;
             }
             if (!String.IsNullOrEmpty(json))
@@ -79,7 +79,7 @@ namespace AppStudio.Uwp.Cache
             }
             else
             {
-                json = await UserStorage.ReadTextFromFile(key);
+                json = await UserStorage.ReadTextFromFileAsync(key);
                 _memoryCache[key] = json;
             }
             if (!String.IsNullOrEmpty(json))
@@ -127,7 +127,7 @@ namespace AppStudio.Uwp.Cache
 
                 if (useStorageCache)
                 {
-                    await UserStorage.WriteText(key, json);
+                    await UserStorage.WriteTextAsync(key, json);
                 }
 
                 if (_memoryCache.ContainsKey(key))
@@ -159,7 +159,7 @@ namespace AppStudio.Uwp.Cache
 
                 if (useStorageCache)
                 {
-                    await UserStorage.WriteText(key, json);
+                    await UserStorage.WriteTextAsync(key, json);
                 }
 
                 if (_memoryCache.ContainsKey(key))
