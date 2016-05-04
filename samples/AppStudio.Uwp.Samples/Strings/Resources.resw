@@ -436,6 +436,6 @@
     <value>More Items</value>
   </data>
   <data name="HelpHtmlBlock.Text" xml:space="preserve">
-    <value>The HtmlBlock renders a Html formatted document into native Xaml. </value>
+    <value>The HtmlBlock renders Html formatted content using a native Xaml representation. The control is optimized to friendly visualize Html content within your Apps creating a Xaml reading view for your content. It applies a set of default styles to represent each Html tag, the default styles can be overriden as your preference. It supports most common Html tags as well as videos from YouTube and Channel9 embedded using an iframe tag. Following are the currently supported Html tags: a, article, blockQuote, cite, code, dd, details, div, dl, dt, em, figCaption, figure, footer, h1, h2, h3, h4, h5, h6, header, i, img, label, li, main, mark, ol, p, pre, q, section, span, strong, summary, table, td, th, time, tr, ul. Finally, the control does not interpret or parse JavaScript code as is not thought download content from Internet (use the WebView control instead).</value>
   </data>
 </root>
