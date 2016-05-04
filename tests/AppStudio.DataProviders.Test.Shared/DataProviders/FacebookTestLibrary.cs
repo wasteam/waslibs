@@ -23,6 +23,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -168,7 +169,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 UserId = "8195378771",
             };
             var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
-            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());   
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
     }
 }

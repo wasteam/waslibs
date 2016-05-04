@@ -33,6 +33,11 @@ namespace AppStudio.DataProviders
 
         protected string ContinuationToken { get; set; }
 
+        public bool IsInitialized
+        {
+            get { return (_config != null && _parser != null); }
+        }
+
         public abstract bool HasMoreItems { get; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]

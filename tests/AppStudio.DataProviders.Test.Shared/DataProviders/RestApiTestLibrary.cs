@@ -29,6 +29,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -141,6 +142,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new RestApiDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -228,6 +230,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new RestApiDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.GetMoreApiDataAsync<WordPress.WordPressSchema>());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
