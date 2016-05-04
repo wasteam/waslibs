@@ -24,6 +24,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -39,6 +40,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -54,6 +56,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -252,6 +255,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -281,6 +285,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -312,6 +317,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -351,6 +357,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var pageSize = 1;
             var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreChannelAsync(channel, pageSize));
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
     }

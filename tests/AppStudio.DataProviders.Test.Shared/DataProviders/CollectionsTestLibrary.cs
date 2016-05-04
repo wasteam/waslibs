@@ -28,6 +28,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -43,6 +44,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -169,6 +171,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
 
@@ -208,6 +211,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
     }   
 
