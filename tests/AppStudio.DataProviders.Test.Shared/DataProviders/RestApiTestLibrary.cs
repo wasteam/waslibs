@@ -281,6 +281,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords, new WordPress.WordPressParser());
 
             Assert.IsTrue(data.Count() > 20);
-        }
+        }       
     }
 }

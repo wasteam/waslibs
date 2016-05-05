@@ -124,8 +124,9 @@ namespace AppStudio.DataProviders.RestApi
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
+                return result;
             }
-            return result;
+            throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
         private static string GetUrl(RestApiDataConfig config, int pageSize)
