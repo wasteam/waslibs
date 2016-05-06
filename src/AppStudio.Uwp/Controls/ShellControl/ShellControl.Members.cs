@@ -165,6 +165,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
 
+        #region ListViewItemContainerStyle
+        public Style ListViewItemContainerStyle
+        {
+            get { return (Style)GetValue(ListViewItemContainerStyleProperty); }
+            set { SetValue(ListViewItemContainerStyleProperty, value); }
+        }        
+
+        public static readonly DependencyProperty ListViewItemContainerStyleProperty = DependencyProperty.Register("ListViewItemContainerStyle", typeof(Style), typeof(ShellControl), new PropertyMetadata(null));
+        #endregion
+
         #region NavigationBackground
         public Brush NavigationBackground
         {
