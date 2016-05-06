@@ -15,8 +15,8 @@
         <DataTemplate x:Key="NumberTemplate">
             <Grid
                 Margin="15"
-                Width="100"
-                Height="100">
+                Width="120"
+                Height="120">
                 <Ellipse
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
