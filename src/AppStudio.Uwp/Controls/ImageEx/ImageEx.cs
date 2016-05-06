@@ -3,6 +3,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -58,7 +59,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void OnImageGifFailed(object sender, Exception e)
+        private void OnImageGifFailed(object sender, ExceptionEventArgs e)
         {
             if (this.ImageFailed != null)
             {

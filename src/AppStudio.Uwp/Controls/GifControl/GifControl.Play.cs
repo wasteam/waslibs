@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.Web.Http;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -64,7 +65,7 @@ namespace AppStudio.Uwp.Controls
                 else
                 {
                     var pixels = await GetPixelsAsync(frame);
-                    MergePixels(_pixels, _width, _height, pixels, props.Rect);
+                    MergePixels(_pixels, _width, pixels, props.Rect);
                 }
 
                 _image.Source = LoadImage(_pixels, _width, _height);
@@ -107,7 +108,7 @@ namespace AppStudio.Uwp.Controls
             {
                 if (this.ImageFailed != null)
                 {
-                    this.ImageFailed(this, ex);
+                    this.ImageFailed(this, new ExceptionEventArgs(ex));
                 }
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }

@@ -3,6 +3,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.Media.Casting;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -10,7 +11,7 @@ namespace AppStudio.Uwp.Controls
     {
         public event RoutedEventHandler ImageOpened;
         public event ExceptionRoutedEventHandler ImageFailed;
-        public event EventHandler<Exception> ImageGifFailed;
+        public event EventHandler<ExceptionEventArgs> ImageGifFailed;
 
         #region Stretch
         public Stretch Stretch

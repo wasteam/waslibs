@@ -9,7 +9,11 @@ namespace AppStudio.Uwp.Controls
 {
     partial class PivoramaPanel
     {
-        protected List<object> _items = new List<object>();
+        private List<object> _items = new List<object>();
+        protected List<object> Items
+        {
+            get { return _items; }
+        }
 
         #region Index
         public int Index

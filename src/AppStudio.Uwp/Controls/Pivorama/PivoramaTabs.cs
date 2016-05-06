@@ -29,7 +29,7 @@ namespace AppStudio.Uwp.Controls
         protected override Size MeasureOverride(Size availableSize)
         {
             int index = this.Index;
-            int count = _items.Count;
+            int count = this.Items.Count;
 
             double x = 0;
             double maxHeight = 0;
@@ -43,7 +43,7 @@ namespace AppStudio.Uwp.Controls
                     {
                         int inx = (index + n - 1).Mod(count);
                         pane.ContentTemplate = n == 1 ? ItemTemplate : SelectedItemTemplate;
-                        pane.Content = _items[inx];
+                        pane.Content = this.Items[inx];
                         pane.Tag = inx;
 
                         pane.Measure(availableSize);
@@ -75,7 +75,7 @@ namespace AppStudio.Uwp.Controls
         protected override Size ArrangeOverride(Size finalSize)
         {
             int inx = this.Index;
-            int count = _items.Count;
+            int count = this.Items.Count;
 
             double x = 0;
 

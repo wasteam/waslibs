@@ -39,7 +39,7 @@ namespace AppStudio.Uwp.Controls
             return bitmap;
         }
 
-        private static void MergePixels(byte[] pixels1, int width, int height, byte[] pixels2, Rect rect)
+        private static void MergePixels(byte[] pixels1, int width, byte[] pixels2, Rect rect)
         {
             int x0 = (int)rect.X;
             int y0 = (int)rect.Y;

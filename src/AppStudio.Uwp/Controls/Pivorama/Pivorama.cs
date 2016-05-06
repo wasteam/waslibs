@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -70,16 +71,16 @@ namespace AppStudio.Uwp.Controls
             base.OnApplyTemplate();
         }
 
-        private void OnSelectedIndexChanged(object sender, int index)
+        private void OnSelectedIndexChanged(object sender, IntEventArgs e)
         {
             if (_panel.ItemsFitContent)
             {
                 return;
             }
-
-            if (this.Index != index)
+            
+            if (this.Index != e.Value)
             {
-                this.Index = index - 1;
+                this.Index = e.Value - 1;
                 this.AnimateNext(100);
             }
         }

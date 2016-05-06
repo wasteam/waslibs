@@ -10,7 +10,11 @@ namespace AppStudio.Uwp.Controls
 {
     partial class SliderViewPanel
     {
-        protected List<object> _items = new List<object>();
+        private List<object> _items = new List<object>();
+        protected List<object> Items
+        {
+            get { return _items; }
+        }
 
         public int ItemsCount
         {
