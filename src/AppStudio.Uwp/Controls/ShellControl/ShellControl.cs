@@ -57,9 +57,17 @@ namespace AppStudio.Uwp.Controls
             _topPane = base.GetTemplateChild("topPane") as ContentControl;
             _rightPane = base.GetTemplateChild("rightPane") as ContentControl;
 
-            _lview.ItemContainerStyleSelector = new NavigationStyleSelector(_lview.ItemContainerStyle, this.SeparatorStyle);
-            _lview.ItemContainerStyle = null;
-            _lviewSub.ItemContainerStyleSelector = new NavigationStyleSelector(_lview.ItemContainerStyle, this.SeparatorStyle);
+            if (ListViewItemContainerStyle != null)
+            {
+                _lview.ItemContainerStyleSelector = new NavigationStyleSelector(ListViewItemContainerStyle, this.SeparatorStyle);
+                _lviewSub.ItemContainerStyleSelector = new NavigationStyleSelector(ListViewItemContainerStyle, this.SeparatorStyle);
+            }
+            else
+            {
+                _lview.ItemContainerStyleSelector = new NavigationStyleSelector(_lview.ItemContainerStyle, this.SeparatorStyle);
+                _lviewSub.ItemContainerStyleSelector = new NavigationStyleSelector(_lview.ItemContainerStyle, this.SeparatorStyle);
+            }            
+            _lview.ItemContainerStyle = null;            
             _lviewSub.ItemContainerStyle = null;
 
             _toggle.Click += OnToggleClick;
@@ -76,6 +84,7 @@ namespace AppStudio.Uwp.Controls
             SetDisplayMode(this.DisplayMode);
             SetCommandBar(_commandBar);
             SetPaneHeader(_paneHeader);
+
 
             base.OnApplyTemplate();
         }

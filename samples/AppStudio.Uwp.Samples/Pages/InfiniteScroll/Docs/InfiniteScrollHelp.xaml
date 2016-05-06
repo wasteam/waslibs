@@ -17,6 +17,10 @@
                         FontSize="32"
                         Text="Infinite Scroll Help"/>
                 </Paragraph>
+                <Paragraph/>
+                <Paragraph>
+                    <Run x:Uid="HelpInfiniteScroll1"/>
+                </Paragraph>
             </RichTextBlock>
         </ScrollViewer>
     </Grid>
