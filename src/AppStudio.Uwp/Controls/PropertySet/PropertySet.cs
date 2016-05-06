@@ -162,7 +162,7 @@ namespace AppStudio.Uwp.Controls
                     if (type.IsAssignableFrom(typeof(Brush)))
                     {
                         _colors.Visibility = Visibility.Visible;
-                        this.ComboItems = GetBrushItems(type);
+                        this.ComboItems = GetBrushItems();
                         _colors.DataContext = this;
                         SetBinding(ComboBox.SelectedValueProperty, _colors);
                         _colors.SelectedIndex = GetColorIndex(this.Value as SolidColorBrush);
@@ -212,12 +212,12 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private IEnumerable<KeyValuePair<string, object>> GetBrushItems(Type type)
+        private IEnumerable<KeyValuePair<string, object>> GetBrushItems()
         {
             return typeof(Colors).GetRuntimeProperties().Select(r => new KeyValuePair<string, object>(Name = r.Name, new SolidColorBrush((Color)r.GetValue(null))));
         }
 
-        private int GetColorIndex(SolidColorBrush brush)
+        private static int GetColorIndex(SolidColorBrush brush)
         {
             if (brush != null)
             {

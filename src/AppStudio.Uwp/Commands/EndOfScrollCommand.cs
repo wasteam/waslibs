@@ -24,7 +24,7 @@ namespace AppStudio.Uwp.Commands
         /// <summary>
         /// Definition for the attached property.
         /// </summary>
-        public static DependencyProperty CommandProperty = DependencyProperty.RegisterAttached(
+        private static DependencyProperty CommandProperty = DependencyProperty.RegisterAttached(
             "Command",
             typeof(ICommand),
             typeof(EndOfScrollCommand),

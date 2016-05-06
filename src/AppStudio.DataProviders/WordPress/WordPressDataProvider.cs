@@ -96,13 +96,17 @@ namespace AppStudio.DataProviders.WordPress
 
         protected override void ValidateConfig(WordPressDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");
             }
         }
 
-        private string GetUrl(WordPressDataConfig config, int pageSize)
+        private static string GetUrl(WordPressDataConfig config, int pageSize)
         {
             var url = string.Empty;
             switch (config.QueryType)
@@ -120,7 +124,7 @@ namespace AppStudio.DataProviders.WordPress
             return url;
         }
 
-        private string GetContinuationUrl(string url, string currentContinuationToken)
+        private static string GetContinuationUrl(string url, string currentContinuationToken)
         {
             url += $"&page_handle={WebUtility.UrlEncode(currentContinuationToken)}";
             return url;

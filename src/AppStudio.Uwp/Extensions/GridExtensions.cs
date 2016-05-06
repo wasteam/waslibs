@@ -12,6 +12,11 @@ namespace AppStudio.Uwp
     {
         public static UIElement GetChild(this Grid grid, int column, int row)
         {
+            if (grid == null)
+            {
+                throw new ArgumentNullException("grid");
+            }
+
             if (grid.Children.Count > 0)
             {
                 return grid.Children

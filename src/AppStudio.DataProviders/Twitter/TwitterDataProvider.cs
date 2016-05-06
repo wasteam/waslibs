@@ -138,6 +138,10 @@ namespace AppStudio.DataProviders.Twitter
 
         protected override IParser<TwitterSchema> GetDefaultParserInternal(TwitterDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             switch (config.QueryType)
             {
                 case TwitterQueryType.Search:
@@ -151,6 +155,10 @@ namespace AppStudio.DataProviders.Twitter
 
         protected override void ValidateConfig(TwitterDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null && config.QueryType != TwitterQueryType.Home)
             {
                 throw new ConfigParameterNullException("Query");

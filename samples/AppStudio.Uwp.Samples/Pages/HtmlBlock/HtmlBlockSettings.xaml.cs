@@ -32,13 +32,6 @@ namespace AppStudio.Uwp.Samples
             stylesCombo.SelectedIndex = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var htmlBlock = DataContext as HtmlBlock;
-            var r = this.Resources["style2"];
-            htmlBlock.Style = r as Style;
-        }
-
         private void stylesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var htmlBlock = DataContext as HtmlBlock;

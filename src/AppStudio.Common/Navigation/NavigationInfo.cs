@@ -26,14 +26,6 @@ namespace AppStudio.Common.Navigation
                 IncludeState = includeState
             };
         }
-
-        private static NavigationType SafeParse(string value)
-        {
-            var type = NavigationType.Page;
-            Enum.TryParse(value, out type);
-
-            return type;
-        }
     }
 
     public enum NavigationType

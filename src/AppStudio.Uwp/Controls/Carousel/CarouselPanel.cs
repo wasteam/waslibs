@@ -50,7 +50,6 @@ namespace AppStudio.Uwp.Controls
             if (_items.Count > 0)
             {
                 int index = this.Index;
-                int itemCount = _items.Count;
                 int paneCount = base.Children.Count;
 
                 double itemWidth = this.ItemWidth;

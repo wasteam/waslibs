@@ -163,7 +163,7 @@ namespace AppStudio.Uwp.Labs
         }
 
         #region NormalizeSize
-        private Size NormalizeSize(Size size)
+        private static Size NormalizeSize(Size size)
         {
             double width = size.Width;
             double height = size.Height;

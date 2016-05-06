@@ -24,7 +24,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Commands
-        public ICommand NavigateCommand
+        public static ICommand NavigateCommand
         {
             get
             {
