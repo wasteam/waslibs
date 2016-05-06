@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WasLibs", "WasLibs", "{6FB428B4-6570-43B1-8319-6B21D904B789}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Common", "src\AppStudio.Common\AppStudio.Common.csproj", "{DB9FFD8A-EAAD-46D7-B68E-C1D003ED40E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Uwp.Samples", "samples\AppStudio.Uwp.Samples\AppStudio.Uwp.Samples.csproj", "{002E48F7-CB04-4540-B570-2C4DEBB39D12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysisRules", "CodeAnalysisRules", "{0A048436-4296-47C0-8360-F709CAA5B1A1}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset = CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset
+		CodeAnalysisRules\MinimumRecommendedRulesAppStudioCustom.ruleset = CodeAnalysisRules\MinimumRecommendedRulesAppStudioCustom.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

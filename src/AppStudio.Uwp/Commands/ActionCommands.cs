@@ -15,9 +15,10 @@ namespace AppStudio.Uwp.Commands
     using Windows.UI.Xaml;    /// <summary>
                               /// This class defines commands used to implement the actions.
                               /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
-    public class ActionCommands
+    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
+    public sealed class ActionCommands
     {
+        private ActionCommands() { }
         /// <summary>
         /// Gets the command used to show an image.
         /// </summary>
@@ -132,11 +133,11 @@ namespace AppStudio.Uwp.Commands
         {
             get
             {
-                return new RelayCommand<Appointment>(appointment =>
+                return new RelayCommand<Appointment>(async appointment =>
                 {
                     if (appointment != null)
                     {
-                        var s = AppointmentManager.ShowEditNewAppointmentAsync(appointment);
+                        await AppointmentManager.ShowEditNewAppointmentAsync(appointment);
                     }
                 });
             }

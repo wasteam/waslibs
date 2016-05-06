@@ -95,6 +95,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -263,7 +265,6 @@
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="ObservableBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\ReadingWebView\ReadingWebView.cs" />
     <Compile Include="Controls\ResponsiveGridView\ResponsiveGridView.cs" />
     <Compile Include="Controls\SectionList\SectionList.cs" />
     <Compile Include="Controls\SectionList\SectionListItem.cs" />
@@ -278,9 +279,9 @@
     <Compile Include="TasksExtensions.cs" />
     <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
     <EmbeddedResource Include="Controls\HtmlBlock\PlayButton.png" />
+    <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Properties\AppStudio.Uwp.rd.xml" />
     <EmbeddedResource Include="Controls\HtmlViewer\HtmlViewerScript.js" />
-    <EmbeddedResource Include="Controls\ReadingWebView\ReadingWebViewContent.htm" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Carousel\Carousel.xaml">

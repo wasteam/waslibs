@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 
 using Windows.ApplicationModel.Resources;
@@ -17,6 +18,10 @@ namespace AppStudio.Uwp.Samples
 
         public static bool IsSamplePageByCategory(this Page self, CustomAttributeData attr, string category)
         {
+            if(attr == null)
+            {
+                throw new ArgumentNullException("attr");
+            }
             return attr.NamedArguments.Any(arg => attr.AttributeType == typeof(SamplePageAttribute) && arg.MemberName == "Category" && arg.TypedValue.Value.ToString() == category);
         }       
 
@@ -36,6 +41,10 @@ namespace AppStudio.Uwp.Samples
 
         public static string GetPageCategory(this SamplePage self)
         {
+            if(self == null)
+            {
+                throw new ArgumentNullException("self");
+            }
             var attr = self.GetType().GetTypeInfo().GetCustomAttribute(typeof(SamplePageAttribute)) as SamplePageAttribute;
             if (attr != null)
             {

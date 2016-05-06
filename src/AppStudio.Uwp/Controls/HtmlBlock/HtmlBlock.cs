@@ -141,7 +141,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private void ShowError(Exception ex, GridDocumentContainer gridContainer)
+        private static void ShowError(Exception ex, GridDocumentContainer gridContainer)
         {
             var p = new Paragraph();
             p.FontFamily = new FontFamily("Courier New");

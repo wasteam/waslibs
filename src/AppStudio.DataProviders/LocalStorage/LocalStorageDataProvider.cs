@@ -66,6 +66,10 @@ namespace AppStudio.DataProviders.LocalStorage
 
         protected override void ValidateConfig(LocalStorageDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.FilePath == null)
             {
                 throw new ConfigParameterNullException("FilePath");

@@ -66,7 +66,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private Rect ParseRect(string value)
+        private static Rect ParseRect(string value)
         {
             string[] parts = value.Substring(1).Split('|');
             return new Rect(parts[0].AsDouble(), parts[1].AsDouble(), parts[2].AsDouble(), parts[3].AsDouble());

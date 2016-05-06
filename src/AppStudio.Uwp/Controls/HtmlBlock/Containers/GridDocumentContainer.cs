@@ -52,7 +52,7 @@ namespace AppStudio.Uwp.Controls.Html.Containers
             }
         }
 
-        private Paragraph FindOrCreateParagraph(RichTextBlock textBlock)
+        private static Paragraph FindOrCreateParagraph(RichTextBlock textBlock)
         {
             var p = textBlock.Blocks
                                 .OfType<Paragraph>()

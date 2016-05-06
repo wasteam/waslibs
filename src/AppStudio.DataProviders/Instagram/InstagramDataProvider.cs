@@ -59,6 +59,10 @@ namespace AppStudio.DataProviders.Instagram
 
         protected override void ValidateConfig(InstagramDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

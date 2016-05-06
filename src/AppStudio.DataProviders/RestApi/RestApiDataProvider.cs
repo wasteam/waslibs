@@ -40,6 +40,10 @@ namespace AppStudio.DataProviders.RestApi
 
         protected override void ValidateConfig(RestApiDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException(nameof(config.Url));
@@ -124,8 +128,9 @@ namespace AppStudio.DataProviders.RestApi
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
+                return result;
             }
-            return result;
+            throw new RequestFailedException(result.StatusCode, result.Result);
         }
 
         private static string GetUrl(RestApiDataConfig config, int pageSize)

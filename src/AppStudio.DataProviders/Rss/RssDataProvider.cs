@@ -66,6 +66,10 @@ namespace AppStudio.DataProviders.Rss
 
         protected override void ValidateConfig(RssDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException("Url");

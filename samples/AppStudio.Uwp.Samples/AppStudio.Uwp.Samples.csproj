@@ -28,6 +28,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -150,6 +152,7 @@
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
@@ -189,11 +192,11 @@
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Controls\IndexTemplateSelector.cs" />
     <Compile Include="Controls\PrettifyControl.cs" />
-    <Compile Include="Data\ColorsDataSource.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>

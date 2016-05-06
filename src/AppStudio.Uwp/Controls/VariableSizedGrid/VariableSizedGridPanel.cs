@@ -99,7 +99,7 @@ namespace AppStudio.Uwp.Controls
                     PrepareItem(n, item, ref colSpan, ref rowSpan);
                     double w = cw * colSpan;
                     double h = ch * rowSpan;
-                    var rect = GetNextPosition(_cells, new Size(cw, ch), new Size(w, h));
+                    GetNextPosition(_cells, new Size(cw, ch), new Size(w, h));
                     item.Measure(new Size(w, h));
                     n++;
                 }
@@ -159,7 +159,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private bool RectFitInCells(Rect rect, List<Rect> cells)
+        private static bool RectFitInCells(Rect rect, List<Rect> cells)
         {
             return !cells.Any(r => !(r.Left >= rect.Right || r.Right <= rect.Left || r.Top >= rect.Bottom || r.Bottom <= rect.Top));
         }
@@ -170,7 +170,7 @@ namespace AppStudio.Uwp.Controls
             rowSpan = index % 3 == 0 ? 2 : 1;
         }
 
-        private Size MeasureSize(List<Rect> cells)
+        private static Size MeasureSize(List<Rect> cells)
         {
             double mx = cells.Max(r => r.Right);
             double my = cells.Max(r => r.Bottom);

@@ -19,6 +19,10 @@ namespace AppStudio.Uwp.Controls
 
         public void Merge(ListStyle style)
         {
+            if(style == null)
+            {
+                throw new ArgumentNullException("style");
+            }
             if (!string.IsNullOrEmpty(style?.Bullet) && Bullet != style.Bullet)
             {
                 Bullet = style.Bullet;

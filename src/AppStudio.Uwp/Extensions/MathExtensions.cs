@@ -29,6 +29,11 @@ namespace AppStudio.Uwp
 
         public static double AsDouble(this string str)
         {
+            if (str == null)
+            {
+                throw new ArgumentNullException("str");
+            }
+
             str = str.Replace(',', '.');
             double d = 0.0;
             if (!String.IsNullOrEmpty(str))

@@ -71,6 +71,10 @@ namespace AppStudio.DataProviders.Flickr
 
         protected override void ValidateConfig(FlickrDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");
@@ -83,7 +87,7 @@ namespace AppStudio.DataProviders.Flickr
             return token;
         }
 
-        private string GetUrl(FlickrDataConfig config)
+        private static string GetUrl(FlickrDataConfig config)
         {
             var result = $"{BaseUrl}/photos_public.gne?{config.QueryType.ToString().ToLower()}={WebUtility.UrlEncode(config.Query)}";
             if (config.QueryType == FlickrQueryType.Tags)
