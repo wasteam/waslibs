@@ -12,13 +12,13 @@ namespace AppStudio.Uwp.Commands
     using AppStudio.Uwp.Navigation;
     using Windows.ApplicationModel.DataTransfer;
     using Windows.ApplicationModel.Appointments;
-    using Windows.UI.Xaml;    /// <summary>
-                              /// This class defines commands used to implement the actions.
-                              /// </summary>
-    //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
+    using Windows.UI.Xaml;    
+    
+    /// <summary>
+    /// This class defines commands used to implement the actions.
+    /// </summary>
     public sealed class ActionCommands
     {
-        private ActionCommands() { }
         /// <summary>
         /// Gets the command used to show an image.
         /// </summary>
