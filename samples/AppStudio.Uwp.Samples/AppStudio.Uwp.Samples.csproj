@@ -194,7 +194,6 @@
     <Compile Include="Controls\PrettifyControl.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\PhotosDataSource.cs" />
-    <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">

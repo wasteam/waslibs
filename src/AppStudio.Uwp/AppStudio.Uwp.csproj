@@ -181,6 +181,8 @@
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
+    <Compile Include="EventArguments\BoolEventArgs.cs" />
+    <Compile Include="EventArguments\IntEventArgs.cs" />
     <Compile Include="Extensions\StorageFolderExtensions.cs" />
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridView.cs" />
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewPanel.cs" />
