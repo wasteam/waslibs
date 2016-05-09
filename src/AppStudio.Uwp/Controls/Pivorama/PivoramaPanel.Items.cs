@@ -89,6 +89,7 @@ namespace AppStudio.Uwp.Controls
                 {
                     _items.Add(item);
                 }
+                base.InvalidateMeasure();
             }
         }
 
