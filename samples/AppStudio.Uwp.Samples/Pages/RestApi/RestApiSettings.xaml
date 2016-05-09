@@ -1,0 +1,116 @@
+﻿<UserControl
+    x:Class="AppStudio.Uwp.Samples.RestApiSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:converters="using:AppStudio.Uwp.Samples.Pages.RestApi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300">
+    <UserControl.Resources>      
+        <converters:CompareStringVisibiltyConverter x:Name="CompareStringVisibiltyConverter"/>
+    </UserControl.Resources>
+
+    <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.85"/>
+        </Grid.Background>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">
+                <controls:PropertySet
+                    Label="Url"
+                    Source="{Binding}"
+                    Property="RestApiUrl"
+                    Value="{Binding RestApiUrl, Mode=TwoWay}"/>                      
+                 <controls:PropertySet                   
+                    Label="Pagination parameter type"
+                    Source="{Binding}"
+                    Property="PaginationParameterType"
+                    Value="{Binding PaginationParameterType, Mode=TwoWay}"/>        
+                 <controls:PropertySet
+                    Label="Pagination parameter Name"
+                    Source="{Binding}"                    
+                    Property="PaginationParameterName"
+                    Value="{Binding PaginationParameterName, Mode=TwoWay}"/>    
+                 <controls:PropertySet
+                    Label="Response Token Path"
+                    Source="{Binding}"                    
+                    Property="ResponseTokenName"
+                    Value="{Binding ResponseTokenName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
+                 <controls:PropertySet
+                    Label="Token is Url"
+                    Source="{Binding}"                    
+                    Property="TokenIsUrl"
+                    Value="{Binding TokenIsUrl, Mode=TwoWay}"
+                    ToggleOnContent="True"
+                    ToggleOffContent="False"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
+                  <controls:PropertySet
+                    Label="Initial value"
+                    Source="{Binding}"
+                    Property="InitialValue"
+                    Value="{Binding InitialValue, Mode=TwoWay}"
+                    Minimun="0"
+                    Maximun="1"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>   
+                  <controls:PropertySet
+                    Label="Incremental value"
+                    Source="{Binding}"
+                    Property="IncrementalValue"
+                    Value="{Binding IncrementalValue, Mode=TwoWay}" 
+                    Minimun="1"
+                    Maximun="50"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>  
+                 <controls:PropertySet
+                    Label="temsPerPage Parameter Name"
+                    Source="{Binding}"
+                    Property="ItemsPerPageParameterName"
+                    Value="{Binding ItemsPerPageParameterName, Mode=TwoWay}"/> 
+                <controls:PropertySet
+                    x:Uid="propMaxRecords"
+                    Source="{Binding}"
+                    Property="MaxRecordsParam"
+                    Value="{Binding MaxRecordsParam, Mode=TwoWay}"
+                    Minimun="1"
+                    Maximun="50"
+                    SmallChange="1"/>  
+                 <controls:PropertySet
+                    Label="Main root"
+                    Source="{Binding}"
+                    Property="RestApiMainRoot"
+                    Value="{Binding RestApiMainRoot, Mode=TwoWay}"/>        
+                 <controls:PropertySet
+                    Label="TextProperty1"
+                    Source="{Binding}"
+                    Property="TextProperty1"
+                    Value="{Binding TextProperty1, Mode=TwoWay}"/>
+                  <controls:PropertySet
+                    Label="TextProperty2"
+                    Source="{Binding}"
+                    Property="TextProperty2"
+                    Value="{Binding TextProperty2, Mode=TwoWay}"/>   
+                 <controls:PropertySet
+                    Label="ImageProperty"
+                    Source="{Binding}"
+                    Property="ImageProperty"
+                    Value="{Binding ImageProperty, Mode=TwoWay}"/>   
+                <StackPanel
+                    Margin="0,30,0,0">
+                     <Button
+                        x:Uid="DataProviderRefreshButton"
+                        Command="{Binding RefreshDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        x:Uid="DataProviderMoreItemsButton"
+                        Command="{Binding MoreDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        x:Uid="DataProviderRestoreConfigButton"
+                        Command="{Binding RestoreConfigCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

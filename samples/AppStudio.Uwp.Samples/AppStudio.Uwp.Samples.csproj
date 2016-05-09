@@ -315,6 +315,8 @@
     <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RestApi\PaginationTypeToVisibiltyConverter.cs" />
+    <Compile Include="Pages\RestApi\RestApiSample.cs" />
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
     </Compile>
@@ -455,6 +457,16 @@
       <DependentUpon>TwitterSettings.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
+    <Content Include="Pages\RestApi\Docs\RestApiCSharp.cs" />
+    <Compile Include="Pages\RestApi\Docs\RestApiHelp.xaml.cs">
+      <DependentUpon>RestApiHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RestApi\RestApiPage.xaml.cs">
+      <DependentUpon>RestApiPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RestApi\RestApiSettings.xaml.cs">
+      <DependentUpon>RestApiSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WordPress\Docs\WordPressHelp.xaml.cs">
       <DependentUpon>WordPressHelp.xaml</DependentUpon>
     </Compile>
@@ -760,6 +772,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\Docs\RestApiHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\RestApiPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\RestApiSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
