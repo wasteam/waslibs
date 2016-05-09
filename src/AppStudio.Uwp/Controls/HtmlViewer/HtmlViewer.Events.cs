@@ -27,7 +27,6 @@ namespace AppStudio.Uwp.Controls
             await _webView.LoadScriptAsync("AppStudio.Uwp.Controls.HtmlViewer.HtmlViewerScript.js");
 
             _currentHeaderHeight = 0;
-            _currentFooterHeight = 0;
 
             await SetFontSize();
             await SetForeground();

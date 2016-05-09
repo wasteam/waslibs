@@ -10,10 +10,13 @@ namespace AppStudio.Uwp.Controls
     partial class PivoramaPanel
     {
         private List<object> _items = new List<object>();
+
+        #region Items
         protected List<object> Items
         {
             get { return _items; }
         }
+        #endregion
 
         #region Index
         public int Index
@@ -86,6 +89,7 @@ namespace AppStudio.Uwp.Controls
                 {
                     _items.Add(item);
                 }
+                base.InvalidateMeasure();
             }
         }
 
