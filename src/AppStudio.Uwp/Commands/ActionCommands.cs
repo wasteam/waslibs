@@ -95,7 +95,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri("bingmaps:?collection=" + System.Net.WebUtility.UrlEncode(p) + "&lvl18", UriKind.Absolute));
+                        await NavigationService.NavigateTo(new Uri("bingmaps:" + p, UriKind.Absolute));
                     }
                 });
             }
