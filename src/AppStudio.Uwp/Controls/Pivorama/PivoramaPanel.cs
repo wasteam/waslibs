@@ -10,7 +10,6 @@ namespace AppStudio.Uwp.Controls
     {
         public PivoramaPanel()
         {
-            this.BuildPanes();
             this.HorizontalAlignment = HorizontalAlignment.Left;
         }
 
@@ -21,22 +20,10 @@ namespace AppStudio.Uwp.Controls
 
         public bool ItemsFitContent { get; private set; }
 
-        private void BuildPanes()
-        {
-            for (int n = 0; n < MaxItems; n++)
-            {
-                var pane = new ContentControl
-                {
-                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                    VerticalContentAlignment = VerticalAlignment.Stretch
-                };
-                pane.Tapped += OnItemTapped;
-                this.Children.Add(pane);
-            }
-        }
-
         protected override Size MeasureOverride(Size availableSize)
         {
+            this.EnsurePanes();
+
             int index = this.Index;
             int count = _items.Count;
 
@@ -48,7 +35,7 @@ namespace AppStudio.Uwp.Controls
             {
                 for (int n = 0; n < MaxItems; n++)
                 {
-                    var pane = this.Children[(index + n).Mod(MaxItems)] as ContentControl;
+                    var pane = base.Children[(index + n).Mod(MaxItems)] as ContentControl;
                     if (x < availableSize.Width + itemWidth * 2 && n <= count)
                     {
                         int inx = (index + n - 1).Mod(count);
@@ -106,6 +93,28 @@ namespace AppStudio.Uwp.Controls
             }
 
             return new Size(0, finalSize.Height);
+        }
+
+        protected void EnsurePanes()
+        {
+            if (base.Children.Count == 0)
+            {
+                this.BuildPanes();
+            }
+        }
+
+        private void BuildPanes()
+        {
+            for (int n = 0; n < MaxItems; n++)
+            {
+                var pane = new ContentControl
+                {
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    VerticalContentAlignment = VerticalAlignment.Stretch
+                };
+                pane.Tapped += OnItemTapped;
+                base.Children.Add(pane);
+            }
         }
     }
 }

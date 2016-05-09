@@ -28,6 +28,8 @@ namespace AppStudio.Uwp.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            this.EnsurePanes();
+
             int index = this.Index;
             int count = this.Items.Count;
 
