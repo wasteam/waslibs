@@ -14,25 +14,9 @@ namespace AppStudio.Uwp.Samples
     [SamplePage(Category = "DataProviders", Name = "REST API", Order = 50)]
     public sealed partial class RestApiPage : SamplePage
     {
-        private const string DefaultRestApiUrl = "https://api.twitch.tv/kraken/games/top";       
 
-        private const PaginationParameterType DefaultParameterType = PaginationParameterType.Token;
-        private const string DefaultPaginationParameterName = "";
-
-        private const int DefaultInitialValue = 1;
-        private const int DefaultIncrementalValue = 1;
-
-
-        private const string DefaultTokenName = "_links.next";
-        private const bool DefaultTokenIsUrl = true;
-
-        private const string DefaultItemsPerPageParameterName = "limit";
+        private const RestApiSampleType DefaultSample = RestApiSampleType.NumericPaginationSample;
         private const int DefaultMaxRecordsParam = 20;
-
-        private const string DefaultRestApiMainRoot = "top";
-        private const string DefaultProperty1 = "game.name";
-        private const string DefaultProperty2 = "viewers";
-        private const string DefaultImageProperty = "game.box.medium";
 
         RestApiDataProvider restApiDataProvider;
         RestApiDataProvider rawDataProvider;
@@ -52,16 +36,16 @@ namespace AppStudio.Uwp.Samples
             get { return "REST API Data Provider"; }
         }
 
-        #region DataProvider Config          
+        #region DataProvider Config   
 
 
-        public string RestApiUrl
+        public string RestApiQuery
         {
             get { return (string)GetValue(RestApiUrlProperty); }
             set { SetValue(RestApiUrlProperty, value); }
         }
 
-        public static readonly DependencyProperty RestApiUrlProperty = DependencyProperty.Register(nameof(RestApiUrl), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultRestApiUrl));
+        public static readonly DependencyProperty RestApiUrlProperty = DependencyProperty.Register(nameof(RestApiQuery), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public string RestApiMainRoot
@@ -70,7 +54,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(RestApiMainRootProperty, value); }
         }
 
-        public static readonly DependencyProperty RestApiMainRootProperty = DependencyProperty.Register(nameof(RestApiMainRoot), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultRestApiMainRoot));
+        public static readonly DependencyProperty RestApiMainRootProperty = DependencyProperty.Register(nameof(RestApiMainRoot), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public PaginationParameterType PaginationParameterType
@@ -79,7 +63,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(PaginationParameterTypeProperty, value); }
         }
 
-        public static readonly DependencyProperty PaginationParameterTypeProperty = DependencyProperty.Register(nameof(PaginationParameterType), typeof(PaginationParameterType), typeof(RestApiPage), new PropertyMetadata(DefaultParameterType));
+        public static readonly DependencyProperty PaginationParameterTypeProperty = DependencyProperty.Register(nameof(PaginationParameterType), typeof(PaginationParameterType), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public string PaginationParameterName
@@ -88,7 +72,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(PaginationParameterNameProperty, value); }
         }
 
-        public static readonly DependencyProperty PaginationParameterNameProperty = DependencyProperty.Register(nameof(PaginationParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultPaginationParameterName));
+        public static readonly DependencyProperty PaginationParameterNameProperty = DependencyProperty.Register(nameof(PaginationParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public string ResponseTokenName
@@ -97,16 +81,16 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ResponseTokenNameProperty, value); }
         }
 
-        public static readonly DependencyProperty ResponseTokenNameProperty = DependencyProperty.Register(nameof(ResponseTokenName), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultTokenName));
+        public static readonly DependencyProperty ResponseTokenNameProperty = DependencyProperty.Register(nameof(ResponseTokenName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
-        public bool TokenIsUrl
+        public RestApiTokenType TokenParameterType
         {
-            get { return (bool)GetValue(TokenIsUrlProperty); }
-            set { SetValue(TokenIsUrlProperty, value); }
+            get { return (RestApiTokenType)GetValue(TokenParameterTypeProperty); }
+            set { SetValue(TokenParameterTypeProperty, value); }
         }
 
-        public static readonly DependencyProperty TokenIsUrlProperty = DependencyProperty.Register(nameof(TokenIsUrl), typeof(bool), typeof(RestApiPage), new PropertyMetadata(DefaultTokenIsUrl));
+        public static readonly DependencyProperty TokenParameterTypeProperty = DependencyProperty.Register(nameof(TokenParameterType), typeof(RestApiTokenType), typeof(RestApiPage), new PropertyMetadata(RestApiTokenType.Parameter));
 
 
         public int InitialValue
@@ -115,7 +99,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(InitialValueProperty, value); }
         }
 
-        public static readonly DependencyProperty InitialValueProperty = DependencyProperty.Register(nameof(InitialValue), typeof(int), typeof(RestApiPage), new PropertyMetadata(DefaultInitialValue));
+        public static readonly DependencyProperty InitialValueProperty = DependencyProperty.Register(nameof(InitialValue), typeof(int), typeof(RestApiPage), new PropertyMetadata(0));
 
 
         public int IncrementalValue
@@ -124,7 +108,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(IncrementalValueProperty, value); }
         }
 
-        public static readonly DependencyProperty IncrementalValueProperty = DependencyProperty.Register(nameof(IncrementalValue), typeof(int), typeof(RestApiPage), new PropertyMetadata(DefaultIncrementalValue));
+        public static readonly DependencyProperty IncrementalValueProperty = DependencyProperty.Register(nameof(IncrementalValue), typeof(int), typeof(RestApiPage), new PropertyMetadata(0));
 
 
         public string ItemsPerPageParameterName
@@ -133,7 +117,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsPerPageParameterNameProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsPerPageParameterNameProperty = DependencyProperty.Register(nameof(ItemsPerPageParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultItemsPerPageParameterName));
+        public static readonly DependencyProperty ItemsPerPageParameterNameProperty = DependencyProperty.Register(nameof(ItemsPerPageParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public int MaxRecordsParam
@@ -151,7 +135,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(Property1Property, value); }
         }
 
-        public static readonly DependencyProperty Property1Property = DependencyProperty.Register(nameof(TextProperty1), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultProperty1));
+        public static readonly DependencyProperty Property1Property = DependencyProperty.Register(nameof(TextProperty1), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public string TextProperty2
@@ -160,7 +144,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(Property2Property, value); }
         }
 
-        public static readonly DependencyProperty Property2Property = DependencyProperty.Register(nameof(TextProperty2), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultProperty2));
+        public static readonly DependencyProperty Property2Property = DependencyProperty.Register(nameof(TextProperty2), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public string ImageProperty
@@ -169,9 +153,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ImagePropertyProperty, value); }
         }
 
-        public static readonly DependencyProperty ImagePropertyProperty = DependencyProperty.Register(nameof(ImageProperty), typeof(string), typeof(RestApiPage), new PropertyMetadata(DefaultImageProperty));
-
-
+        public static readonly DependencyProperty ImagePropertyProperty = DependencyProperty.Register(nameof(ImageProperty), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
         #endregion
 
@@ -257,12 +239,25 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
+
+        public ICommand SampleSelectionChanged
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    SetSampleDataConfig();
+                });
+            }
+        }
         #endregion
+
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Items = new ObservableCollection<object>();
-            RestoreConfig();
+            SetSample1DataConfig();
             Request();
 
             base.OnNavigatedTo(e);
@@ -281,13 +276,11 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();
-                var parser = new RestApiSampleParser();
-                parser.InitializeSample(RestApiMainRoot, TextProperty1, TextProperty2, ImageProperty);
+                Items.Clear();              
 
                 var config = new RestApiDataConfig()
                 {
-                    Url = new Uri(RestApiUrl),                    
+                    Url = new Uri(RestApiQuery),
                 };
 
                 var paginationConfig = GetPaginationConfig();
@@ -295,7 +288,9 @@ namespace AppStudio.Uwp.Samples
                 {
                     config.PaginationConfig = paginationConfig;
                 }
-                
+
+                var parser = new RestApiSampleParser();
+                parser.InitializeSample(RestApiMainRoot, TextProperty1, TextProperty2, ImageProperty);
                 var items = await restApiDataProvider.LoadDataAsync(config, MaxRecordsParam, parser);
 
                 NoItems = !items.Any();
@@ -330,7 +325,7 @@ namespace AppStudio.Uwp.Samples
                     PageSizeParameterName = ItemsPerPageParameterName,
                     PaginationParameterName = PaginationParameterName,
                     ContinuationTokenInitialValue = InitialValue.ToString(),
-                    IncrementalValue = IncrementalValue                
+                    IncrementalValue = IncrementalValue
                 };
             }
             else if (PaginationParameterType == PaginationParameterType.Token)
@@ -339,8 +334,8 @@ namespace AppStudio.Uwp.Samples
                 {
                     PageSizeParameterName = ItemsPerPageParameterName,
                     PaginationParameterName = PaginationParameterName,
-                    ContinuationTokenIsUrl = TokenIsUrl,
-                    ContinuationTokenPath = ResponseTokenName                    
+                    ContinuationTokenIsUrl = TokenParameterType == RestApiTokenType.Url,
+                    ContinuationTokenPath = ResponseTokenName
                 };
             }
             return null;
@@ -354,7 +349,7 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();               
+                Items.Clear();
 
                 var items = await restApiDataProvider.LoadMoreDataAsync<RestApiSampleSchema>();
 
@@ -382,20 +377,107 @@ namespace AppStudio.Uwp.Samples
 
         private void RestoreConfig()
         {
-            RestApiUrl = DefaultRestApiUrl;
-            PaginationParameterType = DefaultParameterType;
-            PaginationParameterName = DefaultPaginationParameterName;
-            InitialValue = DefaultInitialValue;
-            IncrementalValue = DefaultIncrementalValue;
-            ResponseTokenName = DefaultTokenName;
-            TokenIsUrl = DefaultTokenIsUrl;
-            ItemsPerPageParameterName = DefaultItemsPerPageParameterName;          
+            Sample = DefaultSample;
+        }
+
+
+        public RestApiSampleType Sample
+        {
+            get { return (RestApiSampleType)GetValue(SampleProperty); }
+            set { SetValue(SampleProperty, value); }
+        }
+
+        public static readonly DependencyProperty SampleProperty = DependencyProperty.Register(nameof(Sample), typeof(RestApiSampleType), typeof(RestApiPage), new PropertyMetadata(DefaultSample));
+
+        private void SetSampleDataConfig()
+        {
+            switch (Sample)
+            {
+                default:
+                case RestApiSampleType.NumericPaginationSample:
+                    SetSample1DataConfig();
+                    break;
+                case RestApiSampleType.TokenAsParameterPaginationSample:
+                    SetSample2DataConfig();
+                    break;
+                case RestApiSampleType.TokenAsUrlPaginationSample:
+                    SetSample3DataConfig();
+                    break;
+                case RestApiSampleType.Custom:
+                    SetCustomDataConfig();
+                    break;
+            }
+        }
+        private void SetSample1DataConfig()
+        {
+            RestApiQuery = "https://public-api.wordpress.com/rest/v1.1/sites/3584907/posts/";
+            PaginationParameterType = PaginationParameterType.Numeric;
+            PaginationParameterName = "page";
+            InitialValue = 1;
+            IncrementalValue = 1;
+            ResponseTokenName = string.Empty;
+            TokenParameterType = RestApiTokenType.Parameter;
+            ItemsPerPageParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
 
-            RestApiMainRoot = DefaultRestApiMainRoot;
-            TextProperty1 = DefaultProperty1;
-            TextProperty2 = DefaultProperty2;
-            ImageProperty = DefaultImageProperty;
+            RestApiMainRoot = "posts";
+            TextProperty1 = "title";
+            TextProperty2 = "author.name";
+            ImageProperty = "post_thumbnail.URL";
+        }
+
+        private void SetSample2DataConfig()
+        {
+            RestApiQuery = "https://public-api.wordpress.com/rest/v1.1/sites/3584907/posts/";
+            PaginationParameterType = PaginationParameterType.Token;
+            PaginationParameterName = "page_handle";
+            InitialValue = 0;
+            IncrementalValue = 0;
+            ResponseTokenName = "meta.next_page";
+            TokenParameterType = RestApiTokenType.Parameter;
+            ItemsPerPageParameterName = "number";
+            MaxRecordsParam = DefaultMaxRecordsParam;
+
+            RestApiMainRoot = "posts";
+            TextProperty1 = "title";
+            TextProperty2 = "author.name";
+            ImageProperty = "post_thumbnail.URL";
+        }
+
+        private void SetSample3DataConfig()
+        {
+            RestApiQuery = "https://graph.facebook.com/v2.5/8195378771/posts?fields=id,message,from,created_time,link,full_picture&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&";
+            PaginationParameterType = PaginationParameterType.Token;
+            PaginationParameterName = string.Empty;
+            InitialValue = 0;
+            IncrementalValue = 0;
+            ResponseTokenName = "paging.next";
+            TokenParameterType = RestApiTokenType.Url;
+            ItemsPerPageParameterName = "limit";
+            MaxRecordsParam = DefaultMaxRecordsParam;
+
+            RestApiMainRoot = "data";
+            TextProperty1 = "message";
+            TextProperty2 = "from.name";
+            ImageProperty = "full_picture";
+        }
+
+        private void SetCustomDataConfig()
+        {
+            RestApiQuery = string.Empty;
+            PaginationParameterType = PaginationParameterType.None;
+            PaginationParameterName = string.Empty;
+            InitialValue = 0;
+            IncrementalValue = 0;
+            ResponseTokenName = string.Empty;
+            TokenParameterType = RestApiTokenType.Parameter;
+            ItemsPerPageParameterName = string.Empty;
+            MaxRecordsParam = DefaultMaxRecordsParam;
+
+            RestApiMainRoot = string.Empty;
+            TextProperty1 = string.Empty;
+            TextProperty2 = string.Empty;
+            ImageProperty = string.Empty;
         }
 
         private void InitializeDataProvider()

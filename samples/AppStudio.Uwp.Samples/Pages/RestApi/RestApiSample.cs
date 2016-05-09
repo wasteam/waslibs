@@ -66,7 +66,7 @@ namespace AppStudio.Uwp.Samples
         }
     }
 
-    class RestApiSampleSchema : SchemaBase
+    public class RestApiSampleSchema : SchemaBase
     {
         public string TextProperty1 { get; set; }
         public string TextProperty2 { get; set; }
@@ -79,5 +79,18 @@ namespace AppStudio.Uwp.Samples
         None,
         Numeric,
         Token
+    }
+
+    public enum RestApiSampleType
+    {
+        NumericPaginationSample,
+        TokenAsParameterPaginationSample,
+        TokenAsUrlPaginationSample,
+        Custom
+    }
+    public enum RestApiTokenType
+    {
+        Parameter,
+        Url       
     }
 }

@@ -17,8 +17,7 @@ namespace AppStudio.Uwp.Samples.Pages.RestApi
             {
                 visibility = Visibility.Collapsed;
             }
-
-            if (value.ToString().Equals(parameter.ToString()))
+            else if (value.ToString().Equals(parameter.ToString()))
             {
                 visibility = Visibility.Visible;
             }

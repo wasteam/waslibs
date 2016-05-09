@@ -28,6 +28,34 @@
                     <Run x:Uid="HelpRestApi1"/>
                 </Paragraph>
                 <Paragraph />
+                 <Paragraph>
+                    <Run FontSize="25" x:Uid="HelpRestApi2Title"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpRestApi2"/>
+                </Paragraph>
+                 <Paragraph />
+                 <Paragraph>
+                    <Run FontSize="25" x:Uid="HelpRestApi3Title"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpRestApi3"/>
+                </Paragraph>
+                 <Paragraph />
+                 <Paragraph>
+                    <Run FontSize="25" x:Uid="HelpRestApi4Title"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpRestApi4"/>
+                </Paragraph>
+                 <Paragraph />
+                 <Paragraph>
+                    <Run FontSize="25" x:Uid="HelpRestApi5Title"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run x:Uid="HelpRestApi5"/>
+                </Paragraph>
+                 <Paragraph />
                 <Paragraph>
                     <Run x:Uid="HelpViewCode"/>
                 </Paragraph>

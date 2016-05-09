@@ -16,38 +16,42 @@
             <SolidColorBrush Color="White" Opacity="0.85"/>
         </Grid.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Padding="24">
+            <StackPanel Padding="24">                
                 <controls:PropertySet
-                    Label="Url"
+                    Label="Sample"
                     Source="{Binding}"
-                    Property="RestApiUrl"
-                    Value="{Binding RestApiUrl, Mode=TwoWay}"/>                      
-                 <controls:PropertySet                   
-                    Label="Pagination parameter type"
+                    Property="Sample"
+                    Value="{Binding Sample, Mode=TwoWay}" 
+                    ComboSelectionChangedCommand="{Binding SampleSelectionChanged}"/>    
+                <controls:PropertySet
+                    x:Uid="propRestApiUrl"
+                    Source="{Binding}"
+                    Property="RestApiQuery"
+                    Value="{Binding RestApiQuery, Mode=TwoWay}"/>                      
+                 <controls:PropertySet      
+                    x:Uid="propRestApiParameterType"                    
                     Source="{Binding}"
                     Property="PaginationParameterType"
                     Value="{Binding PaginationParameterType, Mode=TwoWay}"/>        
                  <controls:PropertySet
-                    Label="Pagination parameter Name"
+                    x:Uid="propRestApiParameterName"  
                     Source="{Binding}"                    
                     Property="PaginationParameterName"
                     Value="{Binding PaginationParameterName, Mode=TwoWay}"/>    
                  <controls:PropertySet
-                    Label="Response Token Path"
+                    x:Uid="propRestApiTokenName"  
                     Source="{Binding}"                    
                     Property="ResponseTokenName"
                     Value="{Binding ResponseTokenName, Mode=TwoWay}"
                     Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
                  <controls:PropertySet
-                    Label="Token is Url"
+                    x:Uid="propRestApiTokenIsUrl"                    
                     Source="{Binding}"                    
-                    Property="TokenIsUrl"
-                    Value="{Binding TokenIsUrl, Mode=TwoWay}"
-                    ToggleOnContent="True"
-                    ToggleOffContent="False"
+                    Property="TokenParameterType"
+                    Value="{Binding TokenParameterType, Mode=TwoWay}"                    
                     Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
                   <controls:PropertySet
-                    Label="Initial value"
+                    x:Uid="propRestApiInitialValue"   
                     Source="{Binding}"
                     Property="InitialValue"
                     Value="{Binding InitialValue, Mode=TwoWay}"
@@ -55,7 +59,7 @@
                     Maximun="1"
                     Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>   
                   <controls:PropertySet
-                    Label="Incremental value"
+                    x:Uid="propRestApiIncrementalValue" 
                     Source="{Binding}"
                     Property="IncrementalValue"
                     Value="{Binding IncrementalValue, Mode=TwoWay}" 
@@ -63,7 +67,7 @@
                     Maximun="50"
                     Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>  
                  <controls:PropertySet
-                    Label="temsPerPage Parameter Name"
+                    x:Uid="propRestApiItemsPerPageParameterName"   
                     Source="{Binding}"
                     Property="ItemsPerPageParameterName"
                     Value="{Binding ItemsPerPageParameterName, Mode=TwoWay}"/> 
@@ -74,24 +78,33 @@
                     Value="{Binding MaxRecordsParam, Mode=TwoWay}"
                     Minimun="1"
                     Maximun="50"
-                    SmallChange="1"/>  
-                 <controls:PropertySet
-                    Label="Main root"
+                    SmallChange="1"/>
+                <Grid                    
+                    Height="1"
+                    Margin="0,20,0,20"
+                    Background="LightGray"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
+                <TextBlock    
+                    x:Uid="RestApiMapping"                     
+                    Style="{StaticResource LayoutTitleStyle}"/>
+                <controls:PropertySet
+                    x:Uid="propRestApiMainRoot" 
                     Source="{Binding}"
                     Property="RestApiMainRoot"
                     Value="{Binding RestApiMainRoot, Mode=TwoWay}"/>        
                  <controls:PropertySet
-                    Label="TextProperty1"
+                    x:Uid="propRestApiSampleProperty1" 
                     Source="{Binding}"
                     Property="TextProperty1"
                     Value="{Binding TextProperty1, Mode=TwoWay}"/>
                   <controls:PropertySet
-                    Label="TextProperty2"
+                    x:Uid="propRestApiSampleProperty2" 
                     Source="{Binding}"
                     Property="TextProperty2"
                     Value="{Binding TextProperty2, Mode=TwoWay}"/>   
                  <controls:PropertySet
-                    Label="ImageProperty"
+                    x:Uid="propRestApiSampleImage" 
                     Source="{Binding}"
                     Property="ImageProperty"
                     Value="{Binding ImageProperty, Mode=TwoWay}"/>   
