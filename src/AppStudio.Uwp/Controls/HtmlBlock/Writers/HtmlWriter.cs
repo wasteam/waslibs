@@ -38,7 +38,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             };
         }
 
-        protected void ApplyContainerStyles(Grid container, ContainerStyle style)
+        protected static void ApplyContainerStyles(Grid container, ContainerStyle style)
         {
             if (style != null)
             {
@@ -62,7 +62,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             {
                 SetBinding(Host, HtmlBlock.FontSizeProperty, () =>
                 {
-                    var fontSize = Host.FontSize * style.GetFontSizeRatio();
+                    var fontSize = Host.FontSize * style.FontSizeRatioValue();
                     if (fontSize > 0)
                     {
                         textElement.FontSize = fontSize;
@@ -71,7 +71,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
                 SetBinding(style, TextStyle.FontSizeRatioProperty, () =>
                 {
-                    var fontSize = Host.FontSize * style.GetFontSizeRatio();
+                    var fontSize = Host.FontSize * style.FontSizeRatioValue();
                     if (fontSize > 0)
                     {
                         textElement.FontSize = fontSize;
@@ -112,7 +112,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected void ApplyImageStyles(FrameworkElement element, ImageStyle style)
+        protected static void ApplyImageStyles(FrameworkElement element, ImageStyle style)
         {
             if (style != null)
             {
@@ -121,7 +121,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        private void SetBinding(DependencyObject source, DependencyProperty property, Action applyChange)
+        private static void SetBinding(DependencyObject source, DependencyProperty property, Action applyChange)
         {
             if (source != null)
             {

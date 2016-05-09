@@ -43,6 +43,10 @@ namespace AppStudio.DataProviders.Bing
 
         protected override void ValidateConfig(BingDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

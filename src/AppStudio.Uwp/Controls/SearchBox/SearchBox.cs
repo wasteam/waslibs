@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -170,10 +171,7 @@ namespace AppStudio.Uwp.Controls
         }
         private void RaiseIsTextVisibleChanged(bool isTextVisible)
         {
-            if (IsTextVisibleChanged != null)
-            {
-                IsTextVisibleChanged(this, isTextVisible);
-            }
+            IsTextVisibleChanged?.Invoke(this, new BoolEventArgs(isTextVisible));
         }
         #endregion
     }

@@ -29,7 +29,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             ApplyParagraphStyles(ctrl as Paragraph, GetDocumentStyle(fragment, style));
         }
 
-        private ParagraphStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
+        private static ParagraphStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
         {
             if (style == null)
             {

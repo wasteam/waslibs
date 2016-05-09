@@ -11,17 +11,17 @@ using Newtonsoft.Json;
 
 namespace AppStudio.Uwp.Samples
 {
-    class PhotosDataSource
+    static class PhotosDataSource
     {
         static private IEnumerable<PhotoDataItem> _photos = null;
         static private IEnumerable<IEnumerable<PhotoDataItem>> _groupedPhotos = null;
 
-        public IEnumerable<PhotoDataItem> GetItems()
+        public static IEnumerable<PhotoDataItem> GetItems()
         {
             return _photos;
         }
 
-        public IEnumerable<IEnumerable<PhotoDataItem>> GetGroupedItems()
+        public static IEnumerable<IEnumerable<PhotoDataItem>> GetGroupedItems()
         {
             return _groupedPhotos;
         }

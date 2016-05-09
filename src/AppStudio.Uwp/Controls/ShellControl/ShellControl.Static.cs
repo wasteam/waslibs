@@ -14,11 +14,19 @@ namespace AppStudio.Uwp.Controls
         #region CommandBar
         public static CommandBar GetCommandBar(DependencyObject obj)
         {
+            if(obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
             return (CommandBar)obj.GetValue(CommandBarProperty);
         }
 
         public static void SetCommandBar(DependencyObject obj, CommandBar value)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
             obj.SetValue(CommandBarProperty, value);
         }
 
@@ -47,11 +55,19 @@ namespace AppStudio.Uwp.Controls
         #region PaneHeader
         public static UIElement GetPaneHeader(DependencyObject obj)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
             return (UIElement)obj.GetValue(PaneHeaderProperty);
         }
 
         public static void SetPaneHeader(DependencyObject obj, UIElement value)
         {
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
             obj.SetValue(PaneHeaderProperty, value);
         }
 

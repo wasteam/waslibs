@@ -36,6 +36,10 @@ namespace AppStudio.DataProviders.DynamicStorage
 
         protected override void ValidateConfig(DynamicStorageDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException("Url");

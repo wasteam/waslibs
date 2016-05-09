@@ -78,7 +78,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        public float GetFontSizeRatio()
+        public float FontSizeRatioValue()
         {
             float resultRatio;
             if (float.TryParse(FontSizeRatio, out resultRatio))

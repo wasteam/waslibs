@@ -107,7 +107,7 @@ namespace AppStudio.Uwp.Samples
             try
             {
                 ErrorVisibility = Visibility.Collapsed;
-                this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
+                this.Items = new ObservableCollection<object>(PhotosDataSource.GetItems());
                 if (ForceCrash)
                 {
                     throw new Exception("Simulate exception");

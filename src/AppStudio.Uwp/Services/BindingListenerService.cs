@@ -31,6 +31,10 @@ namespace AppStudio.Uwp.Services
 
         public void Attach(FrameworkElement element, Binding binding)
         {
+            if(element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
             if (target != null)
             {
                 throw new Exception("Cannot attach an already attached listener");

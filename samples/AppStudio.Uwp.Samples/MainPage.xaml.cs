@@ -24,33 +24,33 @@ namespace AppStudio.Uwp.Samples
             ShellControl.ClearCommandBar();
         }
 
-        public string Caption
+        public static string Caption
         {
             get { return ""; }
         }
 
-        public bool HideCommandBar
+        public static bool HideCommandBar
         {
             get { return true; }
         }
 
-        public DataTemplate HeaderTemplate
+        public static DataTemplate HeaderTemplate
         {
             get { return App.Current.Resources["HomeHeaderTemplate"] as DataTemplate; }
         }
 
         #region PrimaryCommands, SecondaryCommands, CommandBarBackground
-        public IEnumerable<ICommandBarElement> PrimaryCommands
+        public static IEnumerable<ICommandBarElement> PrimaryCommands
         {
             get { return null; }
         }
 
-        public IEnumerable<ICommandBarElement> SecondaryCommands
+        public static IEnumerable<ICommandBarElement> SecondaryCommands
         {
             get { return null; }
         }
 
-        public Brush CommandBarBackground
+        public static Brush CommandBarBackground
         {
             get { return null; }
         }
@@ -76,7 +76,7 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(MainPage), new PropertyMetadata(null));
         #endregion
         
-        public ICommand ItemClickCommand
+        public static ICommand ItemClickCommand
         {
             get
             {
@@ -89,7 +89,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Items = new ObservableCollection<object>(new FeaturedControlsDataSource().GetItems());
+            this.Items = new ObservableCollection<object>(FeaturedControlsDataSource.GetItems());
             AppShell.Current.Shell.SelectItem("Home");
             base.OnNavigatedTo(e);
         }

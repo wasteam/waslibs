@@ -68,10 +68,10 @@ namespace AppStudio.Uwp.Samples
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
             this.ItemTemplate = Resources["NumberTemplate"] as DataTemplate;
             Items.Clear();
-            await LoadData(80);
-            base.OnNavigatedTo(e);
+            await LoadData(100);            
         }
 
         private async Task LoadData(int dataCount)

@@ -9,7 +9,7 @@ namespace AppStudio.Uwp.Controls
 {
     partial class CarouselPanel
     {
-        protected List<object> _items = new List<object>();
+        private List<object> _items = new List<object>();
 
         #region Index
         public int Index

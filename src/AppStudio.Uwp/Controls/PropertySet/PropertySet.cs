@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Data;
+using System.Windows.Input;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -125,6 +126,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ComboItemsProperty = DependencyProperty.Register("ComboItems", typeof(IEnumerable<KeyValuePair<string, object>>), typeof(PropertySet), new PropertyMetadata(null));
         #endregion
 
+        #region ComboSelectionChangedCommand
+        public ICommand ComboSelectionChangedCommand
+        {
+            get { return (ICommand)GetValue(ComboSelectionChangedCommandProperty); }
+            set { SetValue(ComboSelectionChangedCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ComboSelectionChangedCommandProperty =DependencyProperty.Register("ComboSelectionChangedCommand", typeof(ICommand), typeof(PropertySet), new PropertyMetadata(null));
+        #endregion
+
         protected override void OnApplyTemplate()
         {
             _colors = base.GetTemplateChild("colors") as ComboBox;
@@ -140,7 +151,17 @@ namespace AppStudio.Uwp.Controls
             {
                 Label = Property;
             }
+            _combo.SelectionChanged += ComboSelectionChanged;
             base.OnApplyTemplate();
+        }
+
+        private void ComboSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (ComboSelectionChangedCommand != null && ComboSelectionChangedCommand.CanExecute(cb.SelectedItem))
+            {
+                ComboSelectionChangedCommand.Execute(cb.SelectedItem);
+            }
         }
 
         private static void ExploreProperty(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -162,7 +183,7 @@ namespace AppStudio.Uwp.Controls
                     if (type.IsAssignableFrom(typeof(Brush)))
                     {
                         _colors.Visibility = Visibility.Visible;
-                        this.ComboItems = GetBrushItems(type);
+                        this.ComboItems = GetBrushItems();
                         _colors.DataContext = this;
                         SetBinding(ComboBox.SelectedValueProperty, _colors);
                         _colors.SelectedIndex = GetColorIndex(this.Value as SolidColorBrush);
@@ -212,12 +233,12 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private IEnumerable<KeyValuePair<string, object>> GetBrushItems(Type type)
+        private IEnumerable<KeyValuePair<string, object>> GetBrushItems()
         {
             return typeof(Colors).GetRuntimeProperties().Select(r => new KeyValuePair<string, object>(Name = r.Name, new SolidColorBrush((Color)r.GetValue(null))));
         }
 
-        private int GetColorIndex(SolidColorBrush brush)
+        private static int GetColorIndex(SolidColorBrush brush)
         {
             if (brush != null)
             {

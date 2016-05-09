@@ -16,7 +16,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Commands
-        public ICommand GoBackCommand
+        public static ICommand GoBackCommand
         {
             get
             {

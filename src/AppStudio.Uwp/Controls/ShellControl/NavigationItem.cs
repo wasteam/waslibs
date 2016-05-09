@@ -193,6 +193,10 @@ namespace AppStudio.Uwp.Controls
 
         public static FontIcon CreateIcon(string glyph, Brush color = null)
         {
+            if(glyph == null)
+            {
+                throw new ArgumentNullException("glyph");
+            }
             string[] parts = glyph.Split(':');
             if (parts.Length == 1)
             {

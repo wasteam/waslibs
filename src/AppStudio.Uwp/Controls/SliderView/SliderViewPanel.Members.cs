@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppStudio.Uwp.EventArguments;
+using System;
 using System.Windows.Input;
 
 using Windows.UI.Xaml;
@@ -9,7 +10,7 @@ namespace AppStudio.Uwp.Controls
 {
     partial class SliderViewPanel
     {
-        public event EventHandler<int> SelectedIndexChanged;
+        public event EventHandler<IntEventArgs> SelectedIndexChanged;
 
         #region ItemTemplate
         public DataTemplate ItemTemplate
@@ -62,7 +63,7 @@ namespace AppStudio.Uwp.Controls
                 {
                     if (contentControl.Tag != null)
                     {
-                        SelectedIndexChanged(this, (int)contentControl.Tag);
+                        SelectedIndexChanged(this, new IntEventArgs((int)contentControl.Tag));
                     }
                 }
 

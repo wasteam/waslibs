@@ -40,6 +40,10 @@ namespace AppStudio.DataProviders.RestApi
 
         protected override void ValidateConfig(RestApiDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Url == null)
             {
                 throw new ConfigParameterNullException(nameof(config.Url));

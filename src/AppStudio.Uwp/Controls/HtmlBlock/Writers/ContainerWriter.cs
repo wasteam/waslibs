@@ -27,7 +27,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             ApplyContainerStyles(ctrl as Grid, GetDocumentStyle(fragment, style));
         }
 
-        private ContainerStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
+        private static ContainerStyle GetDocumentStyle(HtmlFragment fragment, DocumentStyle style)
         {
             if (style == null)
             {

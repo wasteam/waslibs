@@ -92,7 +92,6 @@ namespace AppStudio.DataProviders
 
     public abstract class DataProviderBase<TConfig, TSchema> : DataProviderBase<TConfig> where TSchema : SchemaBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "This is an async method, so nesting generic types is necessary.")]
         public async Task<IEnumerable<TSchema>> LoadDataAsync(TConfig config, int pageSize = 20)
         {
             return await LoadDataAsync(config, pageSize, GetDefaultParser(config));

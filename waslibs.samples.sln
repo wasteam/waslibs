@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Common", "src\App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStudio.Uwp.Samples", "samples\AppStudio.Uwp.Samples\AppStudio.Uwp.Samples.csproj", "{002E48F7-CB04-4540-B570-2C4DEBB39D12}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysisRules", "CodeAnalysisRules", "{0A048436-4296-47C0-8360-F709CAA5B1A1}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset = CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset
+		CodeAnalysisRules\MinimumRecommendedRulesAppStudioCustom.ruleset = CodeAnalysisRules\MinimumRecommendedRulesAppStudioCustom.ruleset
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

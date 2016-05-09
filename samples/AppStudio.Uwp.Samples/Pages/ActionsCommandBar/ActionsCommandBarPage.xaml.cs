@@ -50,7 +50,7 @@ namespace AppStudio.Uwp.Samples
         #endregion
 
         #region MessageCommand        
-        public ICommand MessageCommand
+        public static ICommand MessageCommand
         {
             get
             {

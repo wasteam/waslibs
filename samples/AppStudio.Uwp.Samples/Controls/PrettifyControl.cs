@@ -186,7 +186,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Indent Document
-        private string IndentXml(string xml)
+        private static string IndentXml(string xml)
         {
             try
             {
@@ -214,7 +214,7 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
-        private string IndentJson(string json)
+        private static string IndentJson(string json)
         {
             try
             {

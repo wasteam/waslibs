@@ -102,6 +102,10 @@ namespace AppStudio.DataProviders.YouTube
 
         protected override IParser<YouTubeSchema> GetDefaultParserInternal(YouTubeDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             switch (config.QueryType)
             {
                 case YouTubeQueryType.Videos:
@@ -115,6 +119,10 @@ namespace AppStudio.DataProviders.YouTube
 
         protected override void ValidateConfig(YouTubeDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");

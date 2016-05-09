@@ -55,6 +55,10 @@ namespace AppStudio.DataProviders.Facebook
 
         protected override void ValidateConfig(FacebookDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.UserId == null)
             {
                 throw new ConfigParameterNullException("UserId");

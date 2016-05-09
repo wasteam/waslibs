@@ -4,13 +4,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.Media.Casting;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
     public partial class GifControl : Control
     {
         public event RoutedEventHandler ImageOpened;
-        public event EventHandler<Exception> ImageFailed;
+        public event EventHandler<ExceptionEventArgs> ImageFailed;
 
         private Image _image = null;
 

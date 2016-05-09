@@ -56,7 +56,7 @@ namespace AppStudio.Uwp.Samples
 
         public void Refresh()
         {
-            this.Items = new ObservableCollection<object>(new PhotosDataSource().GetItems());
+            this.Items = new ObservableCollection<object>(PhotosDataSource.GetItems());
         }
 
         protected override void OnSettings()

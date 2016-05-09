@@ -62,7 +62,6 @@
                 ContentTemplate="{Binding ItemTemplate}"
                 MaxItems="3"
                 AspectRatio="1.5"
-                AlignmentX="Center"
                 MinHeight="240"
                 MaxHeight="480"
                 GradientOpacity="0.3"/>
