@@ -11,7 +11,7 @@ using AppStudio.Uwp.Commands;
 
 namespace AppStudio.Uwp.Samples
 {
-    [SamplePage(Category = "DataProviders", Name = "REST API", Order = 50)]
+    [SamplePage(Category = "DataProviders", Name = "REST API", Order = 90)]
     public sealed partial class RestApiPage : SamplePage
     {
 
