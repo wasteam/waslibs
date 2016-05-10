@@ -4,7 +4,10 @@
     xmlns:controls="using:AppStudio.Uwp.Controls">
 
     <DataTemplate x:Key="NavigationItemTemplate">
-        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+        <Grid Background="Transparent">
+            <ToolTipService.ToolTip>
+                <TextBlock Text="{Binding Caption}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+            </ToolTipService.ToolTip>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -28,13 +31,19 @@
     </Style>
 
     <DataTemplate x:Key="NavigationSubItemTemplate">
-        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+        <Grid Background="Transparent">
+            <ToolTipService.ToolTip>
+                <TextBlock Text="{Binding Caption}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+            </ToolTipService.ToolTip>
             <TextBlock Grid.Column="1" Margin="12,10" Text="{Binding Caption}" />
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="NavigationSubItemTemplateWithIcons">
-        <Grid ToolTipService.ToolTip="{Binding Caption}" Background="Transparent">
+        <Grid Background="Transparent">
+            <ToolTipService.ToolTip>
+                <TextBlock Text="{Binding Caption}" Foreground="{ThemeResource SystemBaseHighColor}"/>
+            </ToolTipService.ToolTip>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
