@@ -106,23 +106,31 @@ namespace AppStudio.Uwp.Controls
                 if (_commandBar != null)
                 {
                     _headerContainer.Visibility = Visibility.Visible;
-                    if (alignment == VerticalAlignment.Top)
+                    if (_commandBar.Visibility == Visibility.Visible)
                     {
-                        _headerContainer.Opacity = 0.0;
-                        _commandBar.Margin = new Thickness(48, 0, 0, 0);
-                        _commandBar.SetBinding(CommandBar.ContentProperty, new Binding { Source = this, Path = new PropertyPath("Header") });
-                        _commandBar.SetBinding(CommandBar.ContentTemplateProperty, new Binding { Source = this, Path = new PropertyPath("HeaderTemplate") });
-                        _commandBar.SetBinding(CommandBar.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderBackground") });
-                        _commandBar.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderForeground") });
-                        _splitView.Margin = new Thickness(0);
+                        if (alignment == VerticalAlignment.Top)
+                        {
+                            _headerContainer.Opacity = 0.0;
+                            _commandBar.Margin = new Thickness(48, 0, 0, 0);
+                            _commandBar.SetBinding(CommandBar.ContentProperty, new Binding { Source = this, Path = new PropertyPath("Header") });
+                            _commandBar.SetBinding(CommandBar.ContentTemplateProperty, new Binding { Source = this, Path = new PropertyPath("HeaderTemplate") });
+                            _commandBar.SetBinding(CommandBar.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderBackground") });
+                            _commandBar.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("HeaderForeground") });
+                            _splitView.Margin = new Thickness(0);
+                        }
+                        else
+                        {
+                            _headerContainer.Opacity = 1.0;
+                            _commandBar.Margin = new Thickness(0);
+                            _commandBar.Content = null;
+                            _commandBar.ContentTemplate = null;
+                            _splitView.Margin = new Thickness(0, 0, 0, 48);
+                        }
                     }
                     else
                     {
                         _headerContainer.Opacity = 1.0;
-                        _commandBar.Margin = new Thickness(0);
-                        _commandBar.Content = null;
-                        _commandBar.ContentTemplate = null;
-                        _splitView.Margin = new Thickness(0, 0, 0, 48);
+                        _splitView.Margin = new Thickness(0);
                     }
                 }
                 else

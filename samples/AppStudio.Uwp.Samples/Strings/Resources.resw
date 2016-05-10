@@ -441,4 +441,75 @@
   <data name="HelpInfiniteScroll1.Text" xml:space="preserve">
     <value>To create the Infinite Scroll behavior we use the EndOfScrollCommand attached property. Applying the EndOfScrollCommand to a Xaml control (ListView, GridView or ScrollViewer) we look for changes in the VerticalOffset property. When the VerticalOffset reaches the end of the scrollable size it executes a command in C#. In the sample, the command execution results in loading more items and add them at the end of the item collection.</value>
   </data>
+  <data name="HelpRestApi1.Text" xml:space="preserve">
+    <value>The RestApiDataProvider retrieve information from the configured endpoint Url. You can configure de pagination type and items per page.</value>
+  </data>
+  <data name="HelpRestApi2.Text" xml:space="preserve">
+    <value>This is the service endpoint url which is going to serve the information for your REST API data source. Only GET request are allowed. </value>
+  </data>
+  <data name="HelpRestApi2Title.Text" xml:space="preserve">
+    <value>Add url</value>
+  </data>
+  <data name="HelpRestApi3.Text" xml:space="preserve">
+    <value>You can specify the pagination configuration if the target REST API service allows it. We support two types of pagination: Numeric and Token.
+Numeric: a) Specify the query string parameter name to be used for pagination. For example, the WordPress Numeric Pagination parameter name is "page". b) Set the Initial Value: page number or number of items to retrieve. For example, the WordPress REST API supports pagination based on "pages", so the initial value must be "1". c) Set the Incremental Value: given the initial value, this usually represents the amount to increment the initial value to retreive the next page of items. For example, the WordPress REST API use increments of "1" to get the next page.
+Token: a) Specify the query string parameter name to be used for pagination. For example, the WordPress Token Pagination parameter name is "page_handle". b) Select the Response Token name: this is the element in the response which contains the token to be used in the next request. For example, in WordPress the token pagination is "next_page" which belongs to the "meta" element in the response. c) Set if the Token is a parameter to be used in the query string or is the whole "Url" for the next request. Finally, set if the REST API Allows to Configure Items per Page, that is, the number of items to be retrieved each request. In the case it is supported, you have to define the query string parameter to use and the number of items per page.</value>
+  </data>
+  <data name="HelpRestApi3Title.Text" xml:space="preserve">
+    <value>Pagination</value>
+  </data>
+  <data name="HelpRestApi4.Text" xml:space="preserve">
+    <value>This step is only necessary to correctly display the "Parsed Items" in this app. 
+The Root element specify which element from those returned by the REST API service will serve to gather the elements of our data source.
+Usually, a REST API service returns a complex JSON data set, continuing with the WordPress sample, the JSON data returned by the service have three elements: "found", "posts" and "meta". The "found" element is a simple element. The "posts" element is an array of complex elements. The "meta" element is a complex element itsef. Selecting "posts" as Root means that we will use the array of elements as data source.
+Now is time to map the service endpoint data to the REST API data source. We need to choose wich properties of the elements in the source will be used as well as which column data type (for example: text, html, image, datetime...). This will allow us to use the selected properties in the Layout configuration.</value>
+  </data>
+  <data name="HelpRestApi4Title.Text" xml:space="preserve">
+    <value>Mapping</value>
+  </data>
+  <data name="HelpRestApi5.Text" xml:space="preserve">
+    <value>You have to create your own Parser than implements IParser interface that converts from a raw string to a collection of your schema objects. If your schema match the json format, you can use the JsonParser&lt;T&gt; class in the AppStudio.DataProviders.Core</value>
+  </data>
+  <data name="HelpRestApi5Title.Text" xml:space="preserve">
+    <value>Parsing the json data</value>
+  </data>
+  <data name="propRestApiIncrementalValue.Label" xml:space="preserve">
+    <value>Incremental value</value>
+  </data>
+  <data name="propRestApiInitialValue.Label" xml:space="preserve">
+    <value>Initial value</value>
+  </data>
+  <data name="propRestApiItemsPerPageParameterName.Label" xml:space="preserve">
+    <value>ItemsPerPage Parameter Name</value>
+  </data>
+  <data name="propRestApiMainRoot.Label" xml:space="preserve">
+    <value>Main root string path</value>
+  </data>
+  <data name="propRestApiParameterName.Label" xml:space="preserve">
+    <value>Pagination parameter Name</value>
+  </data>
+  <data name="propRestApiParameterType.Label" xml:space="preserve">
+    <value>Pagination parameter type</value>
+  </data>
+  <data name="propRestApiSampleImage.Label" xml:space="preserve">
+    <value>String path to sample image property</value>
+  </data>
+  <data name="propRestApiSampleProperty1.Label" xml:space="preserve">
+    <value>String path to sample text property 1</value>
+  </data>
+  <data name="propRestApiSampleProperty2.Label" xml:space="preserve">
+    <value>String path to sample text property 2</value>
+  </data>
+  <data name="propRestApiTokenIsUrl.Label" xml:space="preserve">
+    <value>How do you want to add this token?</value>
+  </data>
+  <data name="propRestApiTokenName.Label" xml:space="preserve">
+    <value>Response token string path</value>
+  </data>
+  <data name="propRestApiUrl.Label" xml:space="preserve">
+    <value>REST API url</value>
+  </data>
+  <data name="RestApiMapping.Text" xml:space="preserve">
+    <value>Mapping</value>
+  </data>
 </root>

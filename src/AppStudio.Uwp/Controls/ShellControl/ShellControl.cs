@@ -83,8 +83,8 @@ namespace AppStudio.Uwp.Controls
 
             SetDisplayMode(this.DisplayMode);
             SetCommandBar(_commandBar);
+            SetCommandBarVerticalAlignment(this.CommandBarVerticalAlignment);
             SetPaneHeader(_paneHeader);
-
 
             base.OnApplyTemplate();
         }

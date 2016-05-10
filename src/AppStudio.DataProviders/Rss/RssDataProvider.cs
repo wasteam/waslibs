@@ -36,10 +36,11 @@ namespace AppStudio.DataProviders.Rss
                 if (items != null && items.Any())
                 {
                     _totalItems = items.ToList();
-                    var total = (_totalItems as IEnumerable<TSchema>);
-                    var resultToReturn = total.Take(pageSize).ToList();
+                    var total = (_totalItems as IEnumerable<TSchema>);                   
                     _hasMoreItems = total.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
+
+                    var resultToReturn = total.Take(pageSize).ToList();
                     return resultToReturn;
                 }
                 _hasMoreItems = false;
