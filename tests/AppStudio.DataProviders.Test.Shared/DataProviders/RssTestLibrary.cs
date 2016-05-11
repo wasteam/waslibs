@@ -283,8 +283,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var config = new RssDataConfig()
             {
                 Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
-                OrderBy = "InvalidProperty",
-                Direction = SortDirection.Ascending
+                OrderBy = "InvalidProperty"                
             };
 
             var dataProvider = new RssDataProvider();

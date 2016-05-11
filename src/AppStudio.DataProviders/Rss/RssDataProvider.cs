@@ -43,7 +43,7 @@ namespace AppStudio.DataProviders.Rss
                     _hasMoreItems = totalAsTSchema.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
 
-                    IEnumerable<TSchema> resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.Direction).Take(pageSize).ToList();
+                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.Direction).Take(pageSize).ToList();
                     return resultToReturn;
                 }
                 _hasMoreItems = false;
