@@ -211,12 +211,12 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new RssDataProvider();
             IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, 5);
 
-            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
-            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title, "LoadDataAsync: Rss sorting (ascending) is not working");
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title, "LoadDataAsync: Rss sorting (ascending) is not working");
 
             rssItems = await dataProvider.LoadMoreDataAsync();
-            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
-            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title, "LoadMoreDataAsync: Rss sorting (ascending) is not working");
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title, "LoadMoreDataAsync: Rss sorting (ascending) is not working");
 
             config = new RssDataConfig()
             {
@@ -228,13 +228,13 @@ namespace AppStudio.DataProviders.Test.DataProviders
             dataProvider = new RssDataProvider();
             rssItems = await dataProvider.LoadDataAsync(config, 5);
 
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title, "LoadDataAsync: Rss sorting (descending) is not working");
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title, "LoadDataAsync: Rss sorting (descending) is not working");
 
             rssItems = await dataProvider.LoadMoreDataAsync();
 
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title, "LoadMoreDataAsync: Rss sorting (descending) is not working");
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title, "LoadMoreDataAsync: Rss sorting (descending) is not working");
         }
 
         [TestMethod]
@@ -250,13 +250,13 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new RssDataProvider();
             IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, 5);
 
-            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
-            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate, "LoadDataAsync: Rss sorting (ascending) is not working");
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate, "LoadDataAsync: Rss sorting (ascending) is not working");
 
             rssItems = await dataProvider.LoadMoreDataAsync();
 
-            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
-            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate, "LoadMoreDataAsync: Rss sorting (ascending) is not working");
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate, "LoadMoreDataAsync: Rss sorting (ascending) is not working");
 
             config = new RssDataConfig()
             {
@@ -268,13 +268,13 @@ namespace AppStudio.DataProviders.Test.DataProviders
             dataProvider = new RssDataProvider();
             rssItems = await dataProvider.LoadDataAsync(config, 5);
 
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate, "LoadDataAsync: Rss sorting (ascending) is not working");
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate, "LoadDataAsync: Rss sorting (ascending) is not working");
 
             rssItems = await dataProvider.LoadMoreDataAsync();
 
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
-            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate, "LoadMoreDataAsync: Rss sorting (descending) is not working");
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate, "LoadMoreDataAsync: Rss sorting (descending) is not working");
         }
 
         [TestMethod]

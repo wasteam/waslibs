@@ -121,8 +121,15 @@ namespace AppStudio.DataProviders.WordPress
                     url = $"{BaseUrl}/sites/{config.Query}/posts/?number={pageSize}";
                     break;
             }
+            if (config.OrderBy != WordPressOrderBy.None)
+            {
+                var order = config.Direction == SortDirection.Ascending ? "ASC" : "DESC";
+                url += $@"&order_by={config.OrderBy.ToString().ToLower()}&order={order}";
+            }
             return url;
         }
+
+        
 
         private static string GetContinuationUrl(string url, string currentContinuationToken)
         {

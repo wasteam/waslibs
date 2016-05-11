@@ -116,7 +116,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);         
+            IEnumerable<WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.AreEqual(maxRecords, data.Count());
         }
@@ -343,5 +343,142 @@ namespace AppStudio.DataProviders.Test.DataProviders
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
             Assert.IsFalse(dataProvider.IsInitialized);
         }
+
+        [TestMethod]
+        public async Task LoadWordPressPost_Order()
+        {
+            var config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Posts
+            };
+
+            var dataProviderNoSorting = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> data = await dataProviderNoSorting.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreData = await dataProviderNoSorting.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Posts,
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Posts,
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Descending
+            };
+
+            var dataProviderDesc = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+
+            
+            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadWordPressCategory_Order()
+        {
+            var config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Category,
+                FilterBy = "themes"
+            };
+
+            var dataProviderNoSorting = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> data = await dataProviderNoSorting.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreData = await dataProviderNoSorting.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Category,
+                FilterBy = "themes",
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Category,
+                FilterBy = "themes",
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Descending
+            };
+
+            var dataProviderDesc = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+
+
+            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadWordPressTag_Order()
+        {
+            var config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Tag,
+                FilterBy = "wordpress"
+            };
+            var dataProviderNoSorting = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> data = await dataProviderNoSorting.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreData = await dataProviderNoSorting.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Tag,
+                FilterBy = "wordpress",
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+
+            config = new WordPressDataConfig
+            {
+                Query = "en.blog.wordpress.com",
+                QueryType = WordPressQueryType.Tag,
+                FilterBy = "wordpress",
+                OrderBy = WordPressOrderBy.Id,
+                Direction = SortDirection.Descending
+            };
+
+            var dataProviderDesc = new WordPressDataProvider();
+            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+
+
+            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+        }   
     }
 }

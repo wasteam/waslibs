@@ -4,9 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using AppStudio.DataProviders.Rss;
-using System.Collections.ObjectModel;
-using System.Xml.Linq;
 using System.Linq;
 
 namespace AppStudio.DataProviders.Flickr
