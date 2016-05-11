@@ -79,6 +79,7 @@
     <Compile Include="Facebook\FacebookSchema.cs" />
     <Compile Include="Flickr\FlickrSchema.cs" />
     <Compile Include="Core\HttpRequest.cs" />
+    <Compile Include="SortDirection.cs" />
     <Compile Include="RestApi\RestApiDataConfig.cs" />
     <Compile Include="RestApi\RestApiDataProvider.cs" />
     <Compile Include="Rss\RssDataConfig.cs" />

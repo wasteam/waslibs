@@ -197,5 +197,103 @@ namespace AppStudio.DataProviders.Test.DataProviders
             Assert.IsNotNull(rssItems);
             Assert.AreNotEqual(rssItems.Count(), 0);
         }
+
+        [TestMethod]
+        public async Task LoadRss_OrderByTitle()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
+                OrderBy = nameof(RssSchema.Title),
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+
+            rssItems = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
+            Assert.AreEqual(rssItems.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+
+            config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
+                OrderBy = nameof(RssSchema.Title),
+                Direction = SortDirection.Descending
+            };
+
+            dataProvider = new RssDataProvider();
+            rssItems = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+
+            rssItems = await dataProvider.LoadMoreDataAsync();
+
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), rssItems.ToList()[0].Title);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].Title);
+        }
+
+        [TestMethod]
+        public async Task LoadRss_OrderByPublishDate()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
+                OrderBy = nameof(RssSchema.PublishDate),
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+
+            rssItems = await dataProvider.LoadMoreDataAsync();
+
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
+            Assert.AreEqual(rssItems.OrderBy(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+
+            config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
+                OrderBy = nameof(RssSchema.PublishDate),
+                Direction = SortDirection.Descending
+            };
+
+            dataProvider = new RssDataProvider();
+            rssItems = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+
+            rssItems = await dataProvider.LoadMoreDataAsync();
+
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).FirstOrDefault(), rssItems.ToList()[0].PublishDate);
+            Assert.AreEqual(rssItems.OrderByDescending(x => x.PublishDate).Select(x => x.PublishDate).LastOrDefault(), rssItems.ToList()[rssItems.Count() - 1].PublishDate);
+        }
+
+        [TestMethod]
+        public async Task LoadRss_OrderBy_InvalidProperty()
+        {
+            var config = new RssDataConfig()
+            {
+                Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
+                OrderBy = "InvalidProperty",
+                Direction = SortDirection.Ascending
+            };
+
+            var dataProvider = new RssDataProvider();
+            IEnumerable<RssSchema> rssItems = await dataProvider.LoadDataAsync(config, 5);
+
+            rssItems = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(rssItems);
+            Assert.AreNotEqual(rssItems.Count(), 0);
+        }
     }
 }

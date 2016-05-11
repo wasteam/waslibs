@@ -12,7 +12,9 @@ namespace AppStudio.DataProviders.Core
     using System.Reflection;
     using System.Text.RegularExpressions;
     using AppStudio.DataProviders.Bing;
-
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Collections.Generic;
     /// <summary>
     /// This class offers general purpose methods.
     /// </summary>
@@ -121,6 +123,52 @@ namespace AppStudio.DataProviders.Core
             var withoutStyles = RemoveStylesRegex.Replace(withoutScripts, string.Empty);
 
             return withoutStyles;
+        }
+
+        public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName, SortDirection sortDirection)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                return (IOrderedQueryable<T>)source;
+            }
+
+            if (sortDirection == SortDirection.Ascending)
+            {
+                return ApplyOrder(source, propertyName, nameof(Queryable.OrderBy));
+            }
+            else
+            {
+                return ApplyOrder(source, propertyName, nameof(Queryable.OrderByDescending));
+            }
+        }
+        private static IOrderedQueryable<T> ApplyOrder<T>(IQueryable<T> source, string propertyName, string methodName)
+        {
+            try
+            {               
+                Type type = typeof(T);
+                ParameterExpression arg = Expression.Parameter(type, "x");
+                Expression expr = arg;              
+                PropertyInfo pInfo = type.GetRuntimeProperty(propertyName);
+                expr = Expression.Property(expr, pInfo);
+                type = pInfo.PropertyType;
+              
+                Type delegateType = typeof(Func<,>).MakeGenericType(typeof(T), type);
+                LambdaExpression lambda = Expression.Lambda(delegateType, expr, arg);
+
+                var result = typeof(Queryable).GetRuntimeMethods().Single(
+                        method => method.Name == methodName
+                                && method.IsGenericMethodDefinition
+                                && method.GetGenericArguments().Length == 2
+                                && method.GetParameters().Length == 2)
+                            .MakeGenericMethod(typeof(T), type)
+                            .Invoke(source, new object[] { source, lambda });
+
+                return (IOrderedQueryable<T>)result;
+            }
+            catch (Exception)
+            {
+                return (IOrderedQueryable<T>)source;
+            }
         }
     }
 }
