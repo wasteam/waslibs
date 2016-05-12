@@ -322,7 +322,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
         [TestMethod]
         public async Task TestLoadChannel()
-        {          
+        {
             var channel = @"elrubiusOMG";
             var page = 1;
 
@@ -360,5 +360,48 @@ namespace AppStudio.DataProviders.Test.DataProviders
             Assert.IsFalse(dataProvider.IsInitialized);
         }
 
+        [TestMethod]
+        public async Task TestVideos_Order()
+        {
+            var config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = "windows app studio"
+            };
+            var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config);
+            IEnumerable<YouTubeSchema> moreResult = await dataProvider.LoadMoreDataAsync();
+
+            config = new YouTubeDataConfig
+            {
+                QueryType = YouTubeQueryType.Videos,
+                Query = "windows app studio",
+                OrderBy = YouTubeSearchOrderBy.Date
+            };
+            var sortingDataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+            IEnumerable<YouTubeSchema> ordererResult = await sortingDataProvider.LoadDataAsync(config);
+            IEnumerable<YouTubeSchema> moreOrdererResult = await sortingDataProvider.LoadMoreDataAsync();
+
+
+            Assert.AreNotEqual(result.FirstOrDefault().Title, ordererResult.FirstOrDefault().Title, "LoadDataAsync: YouTube sorting is not working");
+            Assert.AreNotEqual(moreResult.FirstOrDefault().Title, moreOrdererResult.FirstOrDefault().Title, "LoadMoreDataAsync: YouTube sorting is not working");
+        }
+
+        [TestMethod]
+        public async Task TestVideos_AllOrderBy()
+        {
+            var enums = Enum.GetValues(typeof(YouTubeSearchOrderBy)).Cast<YouTubeSearchOrderBy>().Where(x => x != YouTubeSearchOrderBy.None);
+            foreach (YouTubeSearchOrderBy orderby in enums)
+            {
+                var config = new YouTubeDataConfig
+                {
+                    QueryType = YouTubeQueryType.Videos,
+                    Query = "windows app studio",
+                    OrderBy = orderby
+                };
+                var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
+                IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, 5);              
+            }
+        }
     }
 }
