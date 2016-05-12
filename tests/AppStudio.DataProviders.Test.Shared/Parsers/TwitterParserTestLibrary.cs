@@ -56,6 +56,27 @@ namespace AppStudio.DataProviders.Test.Parsers
         }
 
         [TestMethod]
+        public async Task LoadRetweetedInTwitterUserTimeline()
+        {
+            string plainContent = await Common.ReadAssetFile("/Assets/Twitter/TwitterUserTimelineQuery.json");
+
+            var data = TimelineParser.Parse(plainContent);
+
+            Assert.IsNotNull(data);
+            Assert.AreEqual(20, data.Count());
+            var item = data.Where(t => t._id == "626294206563254273").FirstOrDefault();
+
+            Assert.AreEqual("626294206563254273", item._id);
+            Assert.AreEqual(DateTime.ParseExact("Wed Jul 29 07:32:29 +0000 2015", "ddd MMM dd HH:mm:ss zzz yyyy", CultureInfo.InvariantCulture), item.CreationDateTime);
+            Assert.AreEqual("The best Windows ever is here. Learn how to upgrade to #Windows10 for free: http://t.co/KY2hJs1mmb http://t.co/COQTtZAu5P", item.Text);
+            Assert.AreEqual("https://twitter.com/Windows/status/626294206563254273", item.Url);
+            Assert.AreEqual("15670515", item.UserId);
+            Assert.AreEqual("Windows (RT @Lumia)", item.UserName);
+            Assert.AreEqual("http://pbs.twimg.com/profile_images/571398080688181248/57UKydQS.png", item.UserProfileImageUrl);
+            Assert.AreEqual("@Windows", item.UserScreenName);
+        }
+
+        [TestMethod]
         public async Task LoadTwitterSearch()
         {
             string plainContent = await Common.ReadAssetFile("/Assets/Twitter/TwitterSearchQuery.json");
