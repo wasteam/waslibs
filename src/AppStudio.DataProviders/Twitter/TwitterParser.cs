@@ -21,42 +21,57 @@ namespace AppStudio.DataProviders.Twitter
             var result = JsonConvert.DeserializeObject<TwitterSearchResult>(data);
 
             return result.statuses.Select(r => r.Parse()).ToList();
-        }        
+        }
     }
 
     internal static class TwitterParser
     {
         public static TwitterSchema Parse(this TwitterTimelineItem item)
         {
-            TwitterSchema tweet = new TwitterSchema
+            TwitterSchema tweet = new TwitterSchema()
             {
-                _id = item.Id,
-                Text = item.Text.DecodeHtml(),
-                CreationDateTime = TryParse(item.CreatedAt)
+                _id = item.Id
             };
+            FillUserData(ref tweet, item);
+            FillTweet(ref tweet, item);
+            return tweet;
+        }
 
-            if (item.User == null)
+        private static void FillUserData(ref TwitterSchema tweet, TwitterTimelineItem item)
+        {
+            TwitterUser user = null;
+            if (item.RetweetedStatus != null)
             {
-                tweet.UserId = string.Empty;
-                tweet.UserName = string.Empty;
-                tweet.UserScreenName = string.Empty;
-                tweet.UserProfileImageUrl = string.Empty;
-                tweet.Url = string.Empty;
+                user = item.RetweetedStatus.User;                
+                tweet.UserName = $"{item.RetweetedStatus.User.Name.DecodeHtml()} (RT @{item.User.ScreenName.DecodeHtml()})";                                
+            }
+            else if (item.User != null)
+            {
+                user = item.User;                
+                tweet.UserName = item.User.Name.DecodeHtml();                
+            }
+
+            tweet.UserId = user.Id;
+            tweet.UserScreenName = string.Concat("@", user.ScreenName.DecodeHtml());
+            tweet.UserProfileImageUrl = user.ProfileImageUrl;
+            tweet.Url = string.Format("https://twitter.com/{0}/status/{1}", user.ScreenName, item.Id);
+            if (!string.IsNullOrEmpty(tweet.UserProfileImageUrl))
+            {
+                tweet.UserProfileImageUrl = tweet.UserProfileImageUrl.Replace("_normal", string.Empty);
+            }
+        }
+
+        private static void FillTweet(ref TwitterSchema tweet, TwitterTimelineItem item)
+        {
+            if (item.RetweetedStatus == null)
+            {
+                tweet.Text = item.Text.DecodeHtml();
             }
             else
             {
-                tweet.UserId = item.User.Id;
-                tweet.UserName = item.User.Name.DecodeHtml();
-                tweet.UserScreenName = string.Concat("@", item.User.ScreenName.DecodeHtml());
-                tweet.UserProfileImageUrl = item.User.ProfileImageUrl;
-                tweet.Url = string.Format("https://twitter.com/{0}/status/{1}", item.User.ScreenName, item.Id);
-                if (!string.IsNullOrEmpty(tweet.UserProfileImageUrl))
-                {
-                    tweet.UserProfileImageUrl = tweet.UserProfileImageUrl.Replace("_normal", string.Empty);
-                }
+                tweet.Text = item.RetweetedStatus.Text.DecodeHtml();                
             }
-
-            return tweet;
+            tweet.CreationDateTime = TryParse(item.CreatedAt);
         }
 
         private static DateTime TryParse(string dateTime)
@@ -83,9 +98,9 @@ namespace AppStudio.DataProviders.Twitter
             var result = JsonConvert.DeserializeObject<TwitterTimelineItem[]>(data);
 
             return result.Select(r => r.Parse()).ToList();
-        }        
+        }
     }
-    
+
     public class TwitterTimelineItem
     {
         [JsonProperty("created_at")]
@@ -99,6 +114,9 @@ namespace AppStudio.DataProviders.Twitter
 
         [JsonProperty("user")]
         public TwitterUser User { get; set; }
+
+        [JsonProperty("retweeted_status")]
+        public TwitterTimelineItem RetweetedStatus { get; set; }
     }
 
     public class TwitterUser
