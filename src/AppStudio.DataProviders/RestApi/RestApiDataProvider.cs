@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
@@ -88,15 +89,17 @@ namespace AppStudio.DataProviders.RestApi
         private async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             ContinuationToken = config?.PaginationConfig?.ContinuationTokenInitialValue;
+
             var url = GetUrl(config, pageSize);
             var result = await GetDataFromProvider(new Uri(url), parser);
 
             if (Config?.PaginationConfig?.IsInMemory == true)
             {
                 _totalItems = result.Items;
-                var total = (_totalItems as IEnumerable<TSchema>);
-                _hasMoreItems = total.Count() > pageSize;
-                var items = total.Take(pageSize).ToList();
+
+                var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);
+                _hasMoreItems = totalAsTSchema.Count() > pageSize;
+                var items = totalAsTSchema.Take(pageSize).ToList();
                 result.Items = items;
             }
             return result;
@@ -159,5 +162,6 @@ namespace AppStudio.DataProviders.RestApi
         {
             return Config.PaginationConfig?.GetContinuationToken(data, ContinuationToken);
         }
+       
     }
 }

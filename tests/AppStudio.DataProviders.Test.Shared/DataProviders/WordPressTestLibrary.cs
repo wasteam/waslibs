@@ -345,7 +345,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task LoadWordPressPost_Order()
+        public async Task LoadWordPressPost_Sorting()
         {
             var config = new WordPressDataConfig
             {
@@ -366,8 +366,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedData = await dataProvider.LoadMoreDataAsync();
 
             config = new WordPressDataConfig
             {
@@ -378,18 +378,18 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProviderDesc = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedDescData = await dataProviderDesc.LoadMoreDataAsync();
 
             
-            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
-            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(data.FirstOrDefault().Title, sortedData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreSortedData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(sortedData.FirstOrDefault().Title, sortedDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreSortedData.FirstOrDefault().Title, moreSortedDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
         }
 
         [TestMethod]
-        public async Task LoadWordPressCategory_Order()
+        public async Task LoadWordPressCategory_Sorting()
         {
             var config = new WordPressDataConfig
             {
@@ -412,8 +412,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedData = await dataProvider.LoadMoreDataAsync();
 
             config = new WordPressDataConfig
             {
@@ -425,18 +425,18 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProviderDesc = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedDescData = await dataProviderDesc.LoadMoreDataAsync();
 
 
-            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
-            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(data.FirstOrDefault().Title, sortedData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreSortedData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(sortedData.FirstOrDefault().Title, sortedDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreSortedData.FirstOrDefault().Title, moreSortedDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
         }
 
         [TestMethod]
-        public async Task LoadWordPressTag_Order()
+        public async Task LoadWordPressTag_Sorting()
         {
             var config = new WordPressDataConfig
             {
@@ -458,8 +458,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererData = await dataProvider.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererData = await dataProvider.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedData = await dataProvider.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedData = await dataProvider.LoadMoreDataAsync();
 
             config = new WordPressDataConfig
             {
@@ -471,14 +471,14 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProviderDesc = new WordPressDataProvider();
-            IEnumerable<WordPressSchema> ordererDescData = await dataProviderDesc.LoadDataAsync(config);
-            IEnumerable<WordPressSchema> moreOrdererDescData = await dataProviderDesc.LoadMoreDataAsync();
+            IEnumerable<WordPressSchema> sortedDescData = await dataProviderDesc.LoadDataAsync(config);
+            IEnumerable<WordPressSchema> moreSortedDescData = await dataProviderDesc.LoadMoreDataAsync();
 
 
-            Assert.AreNotEqual(data.FirstOrDefault().Title, ordererData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreOrdererData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
-            Assert.AreNotEqual(ordererData.FirstOrDefault().Title, ordererDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
-            Assert.AreNotEqual(moreOrdererData.FirstOrDefault().Title, moreOrdererDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(data.FirstOrDefault().Title, sortedData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(moreData.FirstOrDefault().Title, moreSortedData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (ascending) is not working");
+            Assert.AreNotEqual(sortedData.FirstOrDefault().Title, sortedDescData.FirstOrDefault().Title, "LoadDataAsync: WordPress sorting (descending) is not working");
+            Assert.AreNotEqual(moreSortedData.FirstOrDefault().Title, moreSortedDescData.FirstOrDefault().Title, "LoadMoreDataAsync: WordPress sorting (descending) is not working");
         }   
     }
 }

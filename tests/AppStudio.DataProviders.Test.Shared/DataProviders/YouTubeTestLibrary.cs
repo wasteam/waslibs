@@ -361,7 +361,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task TestVideos_Order()
+        public async Task TestVideos_Sorting()
         {
             var config = new YouTubeDataConfig
             {
@@ -379,12 +379,12 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 OrderBy = YouTubeSearchOrderBy.Date
             };
             var sortingDataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
-            IEnumerable<YouTubeSchema> ordererResult = await sortingDataProvider.LoadDataAsync(config);
-            IEnumerable<YouTubeSchema> moreOrdererResult = await sortingDataProvider.LoadMoreDataAsync();
+            IEnumerable<YouTubeSchema> sortedResult = await sortingDataProvider.LoadDataAsync(config);
+            IEnumerable<YouTubeSchema> moreSortedResult = await sortingDataProvider.LoadMoreDataAsync();
 
 
-            Assert.AreNotEqual(result.FirstOrDefault().Title, ordererResult.FirstOrDefault().Title, "LoadDataAsync: YouTube sorting is not working");
-            Assert.AreNotEqual(moreResult.FirstOrDefault().Title, moreOrdererResult.FirstOrDefault().Title, "LoadMoreDataAsync: YouTube sorting is not working");
+            Assert.AreNotEqual(result.FirstOrDefault().Title, sortedResult.FirstOrDefault().Title, "LoadDataAsync: YouTube sorting is not working");
+            Assert.AreNotEqual(moreResult.FirstOrDefault().Title, moreSortedResult.FirstOrDefault().Title, "LoadMoreDataAsync: YouTube sorting is not working");
         }
 
         [TestMethod]
