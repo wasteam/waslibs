@@ -6,7 +6,7 @@
         
         public string Query { get; set; }
 
-        public YouTubeSearchOrderBy OrderBy { get; set; }
+        public YouTubeSearchOrderBy SearchVideosOrderBy { get; set; }
     }
 
     public enum YouTubeQueryType

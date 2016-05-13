@@ -26,30 +26,49 @@ namespace AppStudio.Uwp.Samples
             .Register("Items", typeof(ObservableCollection<object>), typeof(YouTubeSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {           
+        {
             GetItems();
         }
 
-        public async void GetItems()
+        YouTubeDataProvider _youTubeDataProvider;
+
+        private void InitializeDataProvider()
         {
             string apiKey = "YourApiKey";
+            _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
+        }
+
+        public async void GetItems()
+        {            
             string queryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
             YouTubeQueryType queryType = YouTubeQueryType.Playlist;
             int maxRecordsParam = 20;
-
+            YouTubeSearchOrderBy orderBy = YouTubeSearchOrderBy.None;
+            InitializeDataProvider();
             this.Items = new ObservableCollection<object>();
-            var _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
+
             var config = new YouTubeDataConfig
             {
                 Query = queryParam,
-                QueryType = queryType
+                QueryType = queryType,
+                SearchVideosOrderBy = orderBy
             };
-
+            
             var items = await _youTubeDataProvider.LoadDataAsync(config, maxRecordsParam);
             foreach (var item in items)
             {
                 Items.Add(item);
             }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _youTubeDataProvider.LoadMoreDataAsync();         
+
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }          
         }
     }
 }

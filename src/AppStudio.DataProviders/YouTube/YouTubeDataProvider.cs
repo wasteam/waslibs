@@ -242,9 +242,9 @@ namespace AppStudio.DataProviders.YouTube
         private string GetSearchUrl(YouTubeDataConfig config, int pageSize)
         {
             var url = $"{BaseUrl}/search?q={config.Query}&part=snippet&maxResults={pageSize}&key={_tokens.ApiKey}&type=video";
-            if (config.OrderBy != YouTubeSearchOrderBy.None)
+            if (config.SearchVideosOrderBy != YouTubeSearchOrderBy.None)
             {
-                url += $"&order={config.OrderBy.ToString().ToLower()}";
+                url += $"&order={config.SearchVideosOrderBy.ToString().ToLower()}";
             }
             return url;
         }

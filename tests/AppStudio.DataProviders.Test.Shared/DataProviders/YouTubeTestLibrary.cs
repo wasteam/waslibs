@@ -376,7 +376,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 QueryType = YouTubeQueryType.Videos,
                 Query = "windows app studio",
-                OrderBy = YouTubeSearchOrderBy.Date
+                SearchVideosOrderBy = YouTubeSearchOrderBy.Date
             };
             var sortingDataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
             IEnumerable<YouTubeSchema> sortedResult = await sortingDataProvider.LoadDataAsync(config);
@@ -397,7 +397,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 {
                     QueryType = YouTubeQueryType.Videos,
                     Query = "windows app studio",
-                    OrderBy = orderby
+                    SearchVideosOrderBy = orderby
                 };
                 var dataProvider = new YouTubeDataProvider(OAuthKeys.YouTubeValidKeys);
                 IEnumerable<YouTubeSchema> result = await dataProvider.LoadDataAsync(config, 5);              

@@ -196,7 +196,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Query = YouTubeQueryParam,
                     QueryType = YouTubeQueryTypeSelectedItem,
-                    OrderBy = OrderBy
+                    SearchVideosOrderBy = OrderBy
                 };
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
@@ -264,6 +264,7 @@ namespace AppStudio.Uwp.Samples
             YouTubeQueryParam = DefaultYouTubeQueryParam;
             YouTubeQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderBy = DefaultYouTubeSearchOrderBy;
         }
 
         private void InitializeDataProvider()
