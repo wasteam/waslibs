@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace AppStudio.Uwp.Samples.Pages.RestApi
+namespace AppStudio.Uwp.Samples
 {
     public class CompareStringVisibiltyConverter : IValueConverter
     {

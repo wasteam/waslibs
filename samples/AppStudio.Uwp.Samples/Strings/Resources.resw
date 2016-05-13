@@ -512,4 +512,10 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   <data name="RestApiMapping.Text" xml:space="preserve">
     <value>Mapping</value>
   </data>
+  <data name="propOrderBy" xml:space="preserve">
+    <value>Order by</value>
+  </data>
+  <data name="propSortDirection" xml:space="preserve">
+    <value>Sort Direction</value>
+  </data>
 </root>
