@@ -27,7 +27,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         public override bool Match(HtmlFragment fragment)
         {
             var src = GetIframeSrc(fragment);
-            return !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("channel9.msdn.com");
+            return fragment.Name == "iframe" && !string.IsNullOrWhiteSpace(src) && src.ToLowerInvariant().Contains("channel9.msdn.com");
         }
 
         protected override ImageStyle GetStyle(DocumentStyle style)
