@@ -7,23 +7,34 @@ using Windows.System;
 using Windows.UI.Xaml.Controls;
 
 using AppStudio.Uwp.Commands;
+using Windows.UI.Xaml.Navigation;
+using Windows.UI.Core;
 
 namespace AppStudio.Uwp.Navigation
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
     public class NavigationService
     {
-        public static event EventHandler<NavigatedEventArgs> NavigatedToPage;
+        public static event EventHandler<NavigationEventArgs> Navigated;
 
         private static Assembly _appAssembly;
         private static Frame _rootFrame;
         private static Type _rootPage;
+        private static bool _handleSystemButtons;
 
-        public static void Initialize(Type app, Frame rootFrame, Type rootPage = null)
+        public static void Initialize(Type app, Frame rootFrame, bool handleSystemButtons = false, Type rootPage = null)
         {
             _appAssembly = app.GetTypeInfo().Assembly;
             _rootFrame = rootFrame;
             _rootPage = rootPage;
+            _handleSystemButtons = handleSystemButtons;
+
+            _rootFrame.Navigated += _rootFrame_Navigated;
+
+            if (_handleSystemButtons && SystemNavigationManager.GetForCurrentView() != null)
+            {
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            }
         }
 
         public static Frame RootFrame
@@ -90,12 +101,6 @@ namespace AppStudio.Uwp.Navigation
             if (!IsSamePage(page) || force)
             {
                 _rootFrame.Navigate(page, parameter);
-
-                var navigatedToPage = NavigatedToPage;
-                if (navigatedToPage != null)
-                {
-                    NavigatedToPage(null, new NavigatedEventArgs(page, parameter));
-                }
             }
         }
 
@@ -156,14 +161,7 @@ namespace AppStudio.Uwp.Navigation
         {
             if (CanGoBack())
             {
-                var targetBackStack = _rootFrame.BackStack.Last();
-
                 _rootFrame.GoBack();
-
-                if (targetBackStack != null && NavigatedToPage != null)
-                {
-                    NavigatedToPage(null, new NavigatedEventArgs(targetBackStack.SourcePageType, targetBackStack.Parameter));
-                }
             }
         }
 
@@ -190,6 +188,32 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
+        private static void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (NavigationService.CanGoBack())
+            {
+                NavigationService.GoBack();
+                e.Handled = true;
+            }
+        }
+
+        private static void _rootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            Navigated?.Invoke(sender, e);
+
+            if (_handleSystemButtons && SystemNavigationManager.GetForCurrentView() != null)
+            {
+                if (CanGoBack())
+                {
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+                }
+                else
+                {
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                }
+            }
+        }
+
         private static void CheckIsInitialized()
         {
             if (!IsInitialized())
@@ -202,17 +226,5 @@ namespace AppStudio.Uwp.Navigation
         {
             return _rootFrame != null && _appAssembly != null;
         }
-    }
-
-    public class NavigatedEventArgs : EventArgs
-    {
-        public NavigatedEventArgs(Type page, object parameter)
-        {
-            Page = page;
-            Parameter = parameter;
-        }
-
-        public Type Page { get; private set; }
-        public object Parameter { get; private set; }
     }
 }
