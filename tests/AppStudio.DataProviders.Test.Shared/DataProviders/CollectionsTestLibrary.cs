@@ -78,7 +78,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
             IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsNotNull(data);          
+            Assert.IsNotNull(data);
             Assert.AreEqual(maxRecords, data.Count());
         }
 
@@ -213,7 +213,83 @@ namespace AppStudio.DataProviders.Test.DataProviders
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
             Assert.IsFalse(dataProvider.IsInitialized);
         }
-    }   
+
+        [TestMethod]
+        public async Task LoadDynamicCollection_Sorting()
+        {
+
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6389c5e8-788e-42cc-8b74-a16fca5e4bf3&appId=d3fdeca1-ee0e-482c-bc19-82e344d2b78c")               
+            };
+
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();
+            IEnumerable<CollectionSchema2> data = await dataProvider.LoadDataAsync(config);
+
+            config.OrderBy = "Title";
+            config.SortDirection = SortDirection.Ascending;
+            IEnumerable<CollectionSchema2> dataAsc = await dataProvider.LoadDataAsync(config);
+            config.SortDirection = SortDirection.Descending;
+            IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(data.FirstOrDefault()?.Title, dataAsc.FirstOrDefault().Title);
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+
+            config.OrderBy = "Date";
+            config.SortDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config);
+            config.SortDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+            var dataExpected = data.OrderBy(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+
+            config.OrderBy = "DateTime";
+            config.SortDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config);
+            config.SortDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+
+            dataExpected = data.OrderBy(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+        }
+    }
+
+    public class CollectionSchema2 : SchemaBase
+    {
+        public string Title { get; set; }
+
+        public DateTime? DateTime { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public string Description { get; set; }
+    }
+
 
     // This is a Windows App Studio template schema from Generic Layout page.
     public class CollectionSchema : SchemaBase

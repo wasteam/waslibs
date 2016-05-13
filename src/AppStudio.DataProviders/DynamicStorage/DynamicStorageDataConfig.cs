@@ -22,5 +22,9 @@ namespace AppStudio.DataProviders.DynamicStorage
         public int PageIndex { get; set; }
 
         public int BlockSize { get; set; }
+
+        public string OrderBy { get; set; }
+
+        public SortDirection SortDirection { get; set; }
     }
 }

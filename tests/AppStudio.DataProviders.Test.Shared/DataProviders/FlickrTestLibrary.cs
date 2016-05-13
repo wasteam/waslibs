@@ -218,7 +218,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "100292344@N05",
                 QueryType = FlickrQueryType.Id,
                 OrderBy = nameof(FlickrSchema.Title),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new FlickrDataProvider();
@@ -236,7 +236,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "100292344@N05",
                 QueryType = FlickrQueryType.Id,
                 OrderBy = nameof(FlickrSchema.Title),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new FlickrDataProvider();
@@ -258,7 +258,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "100292344@N05",
                 QueryType = FlickrQueryType.Id,
                 OrderBy = nameof(FlickrSchema.Published),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new FlickrDataProvider();
@@ -276,7 +276,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "100292344@N05",
                 QueryType = FlickrQueryType.Id,
                 OrderBy = nameof(FlickrSchema.Published),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new FlickrDataProvider();
@@ -298,7 +298,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "windowsappstudio",
                 QueryType = FlickrQueryType.Tags,
                 OrderBy = nameof(FlickrSchema.Title),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new FlickrDataProvider();
@@ -316,7 +316,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "windowsappstudio",
                 QueryType = FlickrQueryType.Tags,
                 OrderBy = nameof(FlickrSchema.Title),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new FlickrDataProvider();
@@ -338,7 +338,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "windowsappstudio",
                 QueryType = FlickrQueryType.Tags,
                 OrderBy = nameof(FlickrSchema.Published),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new FlickrDataProvider();
@@ -356,7 +356,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "windowsappstudio",
                 QueryType = FlickrQueryType.Tags,
                 OrderBy = nameof(FlickrSchema.Published),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new FlickrDataProvider();

@@ -205,7 +205,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
                 OrderBy = nameof(RssSchema.Title),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new RssDataProvider();
@@ -222,7 +222,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
                 OrderBy = nameof(RssSchema.Title),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new RssDataProvider();
@@ -244,7 +244,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
                 OrderBy = nameof(RssSchema.PublishDate),
-                Direction = SortDirection.Ascending
+                SortDirection = SortDirection.Ascending
             };
 
             var dataProvider = new RssDataProvider();
@@ -262,7 +262,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Url = new Uri("http://blogs.msdn.com/b/windows_app_studio_news/rss.aspx"),
                 OrderBy = nameof(RssSchema.PublishDate),
-                Direction = SortDirection.Descending
+                SortDirection = SortDirection.Descending
             };
 
             dataProvider = new RssDataProvider();

@@ -22,7 +22,7 @@ namespace AppStudio.DataProviders.DynamicStorage
         {
             ContinuationToken = config.PageIndex.ToString();
             return await GetDataFromProvider(config, pageSize, parser);
-        }  
+        }
 
         protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
         {
@@ -54,9 +54,10 @@ namespace AppStudio.DataProviders.DynamicStorage
 
         private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(DynamicStorageDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
+                  
             var settings = new HttpRequestSettings
             {
-                RequestedUri = new Uri(string.Format("{0}&pageIndex={1}&blockSize={2}", config.Url, ContinuationToken, pageSize)),
+                RequestedUri = GetUrl(config, pageSize),
                 UserAgent = "NativeHost"
             };
 
@@ -71,10 +72,21 @@ namespace AppStudio.DataProviders.DynamicStorage
                 var items = await parser.ParseAsync(result.Result);
                 _hasMoreItems = items.Any();
                 ContinuationToken = GetContinuationToken(ContinuationToken);
-                return items;            
+                return items;
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);
+        }
+
+        private Uri GetUrl(DynamicStorageDataConfig config, int pageSize)
+        {
+            var sortDirection = config.SortDirection == SortDirection.Ascending ? "ASC" : "DESC";
+            var url = $"{config.Url}&pageIndex={ContinuationToken}&blockSize={pageSize}";
+            if (!string.IsNullOrEmpty(config.OrderBy))
+            {
+                url += $"&orderby={config.OrderBy}&sortdirection={sortDirection}";
+            }
+            return new Uri(url);
         }
     }
 }

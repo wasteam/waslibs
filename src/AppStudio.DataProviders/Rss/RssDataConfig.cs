@@ -8,6 +8,6 @@ namespace AppStudio.DataProviders.Rss
 
         public string OrderBy { get; set; }
 
-        public SortDirection Direction { get; set; }
+        public SortDirection SortDirection { get; set; }
     }   
 }
