@@ -4,7 +4,8 @@
     xmlns:controls="using:AppStudio.Uwp.Controls">
 
     <Style TargetType="controls:ImageEx">
-        <Setter Property="Background" Value="Black" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#444" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ImageEx">

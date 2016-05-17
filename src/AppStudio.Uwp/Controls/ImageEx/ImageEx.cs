@@ -24,11 +24,11 @@ namespace AppStudio.Uwp.Controls
             {
                 if (!Double.IsInfinity(availableSize.Width))
                 {
-                    progress.Width = Math.Max(8, availableSize.Width * 0.5);
+                    progress.Width = Math.Min(128, Math.Max(8, availableSize.Width * 0.5));
                 }
                 if (!Double.IsInfinity(availableSize.Height))
                 {
-                    progress.Height = Math.Max(8, availableSize.Height * 0.5);
+                    progress.Height = Math.Min(128, Math.Max(8, availableSize.Height * 0.5));
                 }
             }
 
