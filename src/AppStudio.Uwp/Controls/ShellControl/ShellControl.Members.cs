@@ -103,7 +103,7 @@ namespace AppStudio.Uwp.Controls
         {
             if (_isInitialized)
             {
-                if (_commandBar != null)
+                if (_commandBar != null && !_isFullScreen)
                 {
                     _headerContainer.Visibility = Visibility.Visible;
                     if (_commandBar.Visibility == Visibility.Visible)
@@ -285,6 +285,8 @@ namespace AppStudio.Uwp.Controls
         public event EventHandler OnEnterFullScreen;
         public event EventHandler OnExitFullScreen;
 
+        private bool _isFullScreen = false;
+
         public async Task<bool> TryEnterFullScreenAsync()
         {
             await Task.Delay(100);
@@ -294,7 +296,9 @@ namespace AppStudio.Uwp.Controls
                 {
                     OnEnterFullScreen(this, EventArgs.Empty);
                 }
+                _isFullScreen = true;
                 _splitView.AnimateDoubleProperty("CompactPaneLength", 48, 0, 250);
+                _splitView.Margin = new Thickness(0);
                 _commandBarContainer.Visibility = Visibility.Collapsed;
                 _headerContainer.Visibility = Visibility.Collapsed;
                 _toggle.Visibility = Visibility.Collapsed;
@@ -309,6 +313,7 @@ namespace AppStudio.Uwp.Controls
 
         public void ExitFullScreen()
         {
+            _isFullScreen = false;
             ApplicationView.GetForCurrentView().ExitFullScreenMode();
             if (OnExitFullScreen != null)
             {
