@@ -1,10 +1,13 @@
-﻿using AppStudio.DataProviders.YouTube;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.DataProviders.YouTube;
+
 
 namespace AppStudio.Uwp.Samples
 {
@@ -25,7 +28,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(YouTubeSample), new PropertyMetadata(null));
+            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(YouTubeSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

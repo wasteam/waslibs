@@ -1,9 +1,11 @@
-﻿using AppStudio.DataProviders;
-using AppStudio.DataProviders.LocalStorage;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.DataProviders;
+using AppStudio.DataProviders.LocalStorage;
 
 
 namespace AppStudio.Uwp.Samples
@@ -25,7 +27,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(LocalStorageSample), new PropertyMetadata(null));
+            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(LocalStorageSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -40,6 +42,8 @@ namespace AppStudio.Uwp.Samples
             SortDirection sortDirection = SortDirection.Ascending;
 
             _localStorageDataProvider = new LocalStorageDataProvider<LocalStorageDataSchema>();
+            this.Items = new ObservableCollection<object>();
+
             var config = new LocalStorageDataConfig
             {
                 FilePath = localStorageQuery,

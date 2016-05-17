@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using AppStudio.DataProviders.RestApi;
 using AppStudio.Uwp.Commands;
 
+
 namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "DataProviders", Name = "REST API", Order = 90)]

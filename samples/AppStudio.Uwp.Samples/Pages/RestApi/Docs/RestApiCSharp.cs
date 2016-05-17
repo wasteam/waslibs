@@ -9,10 +9,13 @@ using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.RestApi;
 using AppStudio.DataProviders;
 
+
 namespace AppStudio.Uwp.Samples
 {
     public sealed partial class RestApiSample : Page
     {
+        private RestApiDataProvider _dataProvider;
+
         public RestApiSample()
         {
             this.InitializeComponent();
@@ -26,7 +29,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(RestApiSample), new PropertyMetadata(null));
+            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(RestApiSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -41,7 +44,6 @@ namespace AppStudio.Uwp.Samples
             var paginationParameterName = "token";
             var itemsPerPageParameterName = "number";
             var responseTokenName = "next_page";
-
 
             var paginationConfig = new TokenPagination()
             {
@@ -58,8 +60,10 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            _dataProvider = new RestApiDataProvider();
+            this.Items = new ObservableCollection<object>();
+
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
@@ -89,8 +93,20 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            var _dataProvider = new RestApiDataProvider();
+            this.Items = new ObservableCollection<object>();
+
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _dataProvider.LoadMoreDataAsync();
+
             foreach (var item in items)
             {
                 Items.Add(item);
