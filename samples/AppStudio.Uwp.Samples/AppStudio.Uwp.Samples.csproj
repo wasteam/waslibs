@@ -323,6 +323,7 @@
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Rss\RssOrderBy.cs" />
     <Compile Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml.cs">
       <DependentUpon>SearchBoxHelp.xaml</DependentUpon>
     </Compile>

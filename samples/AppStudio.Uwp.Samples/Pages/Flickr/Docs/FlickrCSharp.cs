@@ -38,7 +38,7 @@ namespace AppStudio.Uwp.Samples
             string flickrQueryParam = "Abstract";
             FlickrQueryType queryType = FlickrQueryType.Tags;
             int maxRecordsParam = 12;
-            string orderBy = FlickrOrderBy.Published.ToString();
+            string orderBy = "Published";
             SortDirection sortDirection = SortDirection.Descending;
 
             _flickrDataProvider = new FlickrDataProvider();
