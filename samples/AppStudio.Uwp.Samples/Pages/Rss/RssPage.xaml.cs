@@ -17,7 +17,7 @@ namespace AppStudio.Uwp.Samples
     {
         private const int DefaultMaxRecordsParam = 5;
         private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
-        private const RssOrderBy DefaultOrderBy = RssOrderBy.None;
+        private const RssSampleOrderBy DefaultOrderBy = RssSampleOrderBy.None;
         private const SortDirection DefaultSortDirection = SortDirection.Ascending;
 
         RssDataProvider rssDataProvider;
@@ -57,13 +57,13 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register(nameof(RssQuery), typeof(string), typeof(RssPage), new PropertyMetadata(DefaultRssQuery));
 
-        public RssOrderBy OrderBy
+        public RssSampleOrderBy OrderBy
         {
-            get { return (RssOrderBy)GetValue(OrderByProperty); }
+            get { return (RssSampleOrderBy)GetValue(OrderByProperty); }
             set { SetValue(OrderByProperty, value); }
         }
 
-        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(RssOrderBy), typeof(RssPage), new PropertyMetadata(DefaultOrderBy));
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(RssSampleOrderBy), typeof(RssPage), new PropertyMetadata(DefaultOrderBy));
 
         public SortDirection SortDirection
         {
@@ -186,7 +186,7 @@ namespace AppStudio.Uwp.Samples
                 var config = new RssDataConfig
                 {
                     Url = new Uri(RssQuery, UriKind.Absolute),
-                    OrderBy = OrderBy != RssOrderBy.None ? OrderBy.ToString() : string.Empty,
+                    OrderBy = OrderBy != RssSampleOrderBy.None ? OrderBy.ToString() : string.Empty,
                     SortDirection = SortDirection
                 };
 

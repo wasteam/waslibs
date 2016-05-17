@@ -1,6 +1,6 @@
 ﻿namespace AppStudio.Uwp.Samples
 {
-    public enum RssOrderBy
+    public enum RssSampleOrderBy
     {
         None,
         Title,

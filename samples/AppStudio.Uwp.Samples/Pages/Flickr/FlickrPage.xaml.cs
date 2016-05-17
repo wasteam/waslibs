@@ -18,7 +18,7 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultFlickrQueryParam = "Abstract";
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
         private const int DefaultMaxRecordsParam = 12;
-        private const FlickrOrderBy DefaultOrderBy = FlickrOrderBy.None;
+        private const FlickrSampleOrderBy DefaultOrderBy = FlickrSampleOrderBy.None;
         private const SortDirection DefaultSortDirection = SortDirection.Ascending;
 
         FlickrDataProvider flickrDataProvider;
@@ -67,13 +67,13 @@ namespace AppStudio.Uwp.Samples
 
         public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(FlickrPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
-        public FlickrOrderBy OrderBy
+        public FlickrSampleOrderBy OrderBy
         {
-            get { return (FlickrOrderBy)GetValue(OrderByProperty); }
+            get { return (FlickrSampleOrderBy)GetValue(OrderByProperty); }
             set { SetValue(OrderByProperty, value); }
         }
 
-        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(FlickrOrderBy), typeof(FlickrPage), new PropertyMetadata(DefaultOrderBy));
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(FlickrSampleOrderBy), typeof(FlickrPage), new PropertyMetadata(DefaultOrderBy));
 
         public SortDirection SortDirection
         {
@@ -200,7 +200,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Query = FlickrQueryParam,
                     QueryType = FlickrQueryTypeSelectedItem,
-                    OrderBy = OrderBy != FlickrOrderBy.None? OrderBy.ToString():string.Empty,
+                    OrderBy = OrderBy != FlickrSampleOrderBy.None? OrderBy.ToString():string.Empty,
                     SortDirection = SortDirection
                 };
 

@@ -1,6 +1,6 @@
 ﻿namespace AppStudio.Uwp.Samples
 {
-    public enum FlickrOrderBy
+    public enum FlickrSampleOrderBy
     {
         None,
         Title,

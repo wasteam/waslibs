@@ -10,4 +10,11 @@ namespace AppStudio.Uwp.Samples
 
         public string Thumbnail { get; set; }
     }
+
+    public enum LocalSampleOrderBy
+    {
+        None,
+        Title,
+        Category
+    }
 }
