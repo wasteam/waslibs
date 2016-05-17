@@ -13,7 +13,12 @@ namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 40)]
     public sealed partial class YouTubePage : SamplePage
-    {
+    {        
+        private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
+        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
+        private const int DefaultMaxRecordsParam = 20;
+        private const YouTubeSearchOrderBy DefaultOrderBy = YouTubeSearchOrderBy.None;
+
         YouTubeDataProvider youTubeDataProvider;
         YouTubeDataProvider rawDataProvider;
 
@@ -75,7 +80,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(OrderByProperty, value); }
         }
 
-        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(YouTubeSearchOrderBy), typeof(YouTubePage), new PropertyMetadata(DefaultYouTubeSearchOrderBy));
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(YouTubeSearchOrderBy), typeof(YouTubePage), new PropertyMetadata(DefaultOrderBy));
 
 
         #endregion
@@ -264,7 +269,7 @@ namespace AppStudio.Uwp.Samples
             YouTubeQueryParam = DefaultYouTubeQueryParam;
             YouTubeQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
-            OrderBy = DefaultYouTubeSearchOrderBy;
+            OrderBy = DefaultOrderBy;
         }
 
         private void InitializeDataProvider()
@@ -274,9 +279,5 @@ namespace AppStudio.Uwp.Samples
         }
 
         private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
-        private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
-        private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
-        private const int DefaultMaxRecordsParam = 20;
-        private const YouTubeSearchOrderBy DefaultYouTubeSearchOrderBy = YouTubeSearchOrderBy.None;
     }
 }

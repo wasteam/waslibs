@@ -10,6 +10,8 @@ namespace AppStudio.Uwp.Samples
 {
     public sealed partial class YouTubeSample : Page
     {
+        private YouTubeDataProvider _youTubeDataProvider;
+
         public YouTubeSample()
         {
             this.InitializeComponent();
@@ -28,22 +30,15 @@ namespace AppStudio.Uwp.Samples
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             GetItems();
-        }
-
-        YouTubeDataProvider _youTubeDataProvider;
-
-        private void InitializeDataProvider()
-        {
-            string apiKey = "YourApiKey";
-            _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
-        }
-
+        }      
+        
         public async void GetItems()
         {            
             string queryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
             YouTubeQueryType queryType = YouTubeQueryType.Playlist;
             int maxRecordsParam = 20;
             YouTubeSearchOrderBy orderBy = YouTubeSearchOrderBy.None;
+
             InitializeDataProvider();
             this.Items = new ObservableCollection<object>();
 
@@ -69,6 +64,12 @@ namespace AppStudio.Uwp.Samples
             {
                 Items.Add(item);
             }          
+        }
+
+        private void InitializeDataProvider()
+        {
+            string apiKey = "YourApiKey";
+            _youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = apiKey });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AppStudio.DataProviders.Flickr;
+﻿using AppStudio.DataProviders;
+using AppStudio.DataProviders.Flickr;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,8 @@ namespace AppStudio.Uwp.Samples
 {
     public sealed partial class FlickrSample : Page
     {
+        private FlickrDataProvider _flickrDataProvider;
+
         public FlickrSample()
         {
             this.InitializeComponent();
@@ -26,7 +29,7 @@ namespace AppStudio.Uwp.Samples
             .Register("Items", typeof(ObservableCollection<object>), typeof(FlickrSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {           
+        {
             GetItems();
         }
 
@@ -35,17 +38,31 @@ namespace AppStudio.Uwp.Samples
             string flickrQueryParam = "Abstract";
             FlickrQueryType queryType = FlickrQueryType.Tags;
             int maxRecordsParam = 12;
-            Items.Clear();
+            string orderBy = FlickrOrderBy.Published.ToString();
+            SortDirection sortDirection = SortDirection.Descending;
 
-            var flickrDataProvider = new FlickrDataProvider();
+            _flickrDataProvider = new FlickrDataProvider();
+            this.Items = new ObservableCollection<object>();
+
             var config = new FlickrDataConfig
             {
                 Query = flickrQueryParam,
-                QueryType = queryType
-            };          
+                QueryType = queryType,
+                OrderBy = orderBy,
+                SortDirection = sortDirection
+            };
 
-            var items = await flickrDataProvider.LoadDataAsync(config, maxRecordsParam);
-          
+            var items = await _flickrDataProvider.LoadDataAsync(config, maxRecordsParam);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _flickrDataProvider.LoadMoreDataAsync();
+
             foreach (var item in items)
             {
                 Items.Add(item);

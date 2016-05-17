@@ -205,6 +205,7 @@
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
       <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Flickr\FlickrOrderBy.cs" />
     <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
       <DependentUpon>GifControlSettings.xaml</DependentUpon>
     </Compile>
@@ -317,7 +318,7 @@
     <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\Providers\CompareStringVisibiltyConverter.cs" />
+    <Compile Include="Common\CompareStringVisibiltyConverter.cs" />
     <Compile Include="Pages\RestApi\RestApiSample.cs" />
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
