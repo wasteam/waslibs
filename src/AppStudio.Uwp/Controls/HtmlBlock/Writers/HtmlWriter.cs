@@ -18,8 +18,6 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public abstract DependencyObject GetControl(HtmlFragment fragment);
 
-        public HtmlBlock Host { get; set; }
-
         public virtual void ApplyStyles(DocumentStyle style, DependencyObject ctrl, HtmlFragment fragment)
         {
         }
@@ -60,9 +58,9 @@ namespace AppStudio.Uwp.Controls.Html.Writers
         {
             if (style != null)
             {
-                SetBinding(Host, HtmlBlock.FontSizeProperty, () =>
+                SetBinding(style, TextStyle.FontSizeProperty, () =>
                 {
-                    var fontSize = Host.FontSize * style.FontSizeRatioValue();
+                    var fontSize = style.FontSize * style.FontSizeRatioValue();
                     if (fontSize > 0)
                     {
                         textElement.FontSize = fontSize;
@@ -71,44 +69,17 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
                 SetBinding(style, TextStyle.FontSizeRatioProperty, () =>
                 {
-                    var fontSize = Host.FontSize * style.FontSizeRatioValue();
+                    var fontSize = style.FontSize * style.FontSizeRatioValue();
                     if (fontSize > 0)
                     {
                         textElement.FontSize = fontSize;
                     }
                 });
 
-                SetBinding(style, TextStyle.FontFamilyProperty, () =>
-                {
-                    if (style.FontFamily != null)
-                    {
-                        textElement.FontFamily = style.FontFamily;
-                    }
-                });
-
-                SetBinding(style, TextStyle.FontStyleProperty, () =>
-                {
-                    if (style.FontStyle != FontStyle.Normal)
-                    {
-                        textElement.FontStyle = style.FontStyle;
-                    }
-                });
-
-                SetBinding(style, TextStyle.FontWeightProperty, () =>
-                {
-                    if (style.FontWeight.Weight != FontWeights.Normal.Weight)
-                    {
-                        textElement.FontWeight = style.FontWeight;
-                    }
-                });
-
-                SetBinding(style, TextStyle.ForegroundProperty, () =>
-                {
-                    if (style.Foreground != null)
-                    {
-                        textElement.Foreground = style.Foreground;
-                    }
-                });
+                BindingOperations.SetBinding(textElement, TextElement.FontFamilyProperty, CreateBinding(style, "FontFamily"));
+                BindingOperations.SetBinding(textElement, TextElement.FontStyleProperty, CreateBinding(style, "FontStyle"));
+                BindingOperations.SetBinding(textElement, TextElement.FontWeightProperty, CreateBinding(style, "FontWeight"));
+                BindingOperations.SetBinding(textElement, TextElement.ForegroundProperty, CreateBinding(style, "Foreground"));
             }
         }
 

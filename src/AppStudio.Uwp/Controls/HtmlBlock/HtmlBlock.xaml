@@ -40,7 +40,7 @@
     <was:TextStyle x:Key="Label" />
     <was:TextStyle x:Key="Time" />
     <was:TextStyle x:Key="Strong" FontWeight="SemiBold" />
-    <was:TextStyle x:Key="A" />
+    <was:TextStyle x:Key="A" Foreground="{ThemeResource SystemAccentColor}" />
     <was:TextStyle x:Key="Code" FontFamily="Courier New" />
     <was:TextStyle x:Key="Q" FontStyle="Italic" />
     <was:TextStyle x:Key="Cite" FontStyle="Oblique" />

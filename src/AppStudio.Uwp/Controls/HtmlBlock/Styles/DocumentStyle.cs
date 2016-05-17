@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -55,6 +56,36 @@ namespace AppStudio.Uwp.Controls
         public TextStyle Time { get; set; } = new TextStyle();
         public TextStyle Code { get; set; } = new TextStyle();
         public TextStyle Strong { get; set; } = new TextStyle();
+
+        public void Reset(Control host)
+        {
+            H1.Reset(host);
+            H2.Reset(host);
+            H3.Reset(host);
+            H4.Reset(host);
+            H5.Reset(host);
+            H6.Reset(host);
+            BlockQuote.Reset(host);
+            P.Reset(host);
+            FigCaption.Reset(host);
+            Pre.Reset(host);
+            Dt.Reset(host);
+            Dd.Reset(host);
+
+            Li.Reset(host);
+
+            A.Reset(host);
+            Span.Reset(host);
+            Label.Reset(host);
+            Q.Reset(host);
+            Cite.Reset(host);
+            I.Reset(host);
+            Em.Reset(host);
+            Mark.Reset(host);
+            Time.Reset(host);
+            Code.Reset(host);
+            Strong.Reset(host);
+        }
 
         public void Merge(params DocumentStyle[] styles)
         {

@@ -19,7 +19,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 {
     abstract class IFrameVideoWriter : HtmlWriter
     {
-        private static readonly CoreCursor _arrowCursor = new CoreCursor(CoreCursorType.Hand, 0);
+        private static readonly CoreCursor _arrowCursor = new CoreCursor(CoreCursorType.Arrow, 0);
         private static readonly CoreCursor _handCursor = new CoreCursor(CoreCursorType.Hand, 1);
 
         protected abstract void SetScreenshot(ImageEx img, HtmlNode node);
@@ -40,20 +40,20 @@ namespace AppStudio.Uwp.Controls.Html.Writers
                     NavigationService.NavigateTo(new Uri(GetIframeSrc(node))).RunAndForget();
                 };
 
+                grid.PointerEntered += (sender, e) =>
+                {
+                    Window.Current.CoreWindow.PointerCursor = _handCursor;
+                };
+                grid.PointerExited += (sender, e) =>
+                {
+                    Window.Current.CoreWindow.PointerCursor = _arrowCursor;
+                };
+
                 AddColumn(grid);
                 AddColumn(grid);
                 AddColumn(grid);
 
                 var screenShot = GetImageControl((i) => SetScreenshot(i, node));
-
-                screenShot.PointerEntered += (sender, e) =>
-                {
-                    Window.Current.CoreWindow.PointerCursor = _handCursor;
-                };
-                screenShot.PointerExited += (sender, e) =>
-                {
-                    Window.Current.CoreWindow.PointerCursor = _arrowCursor;
-                };
 
                 Grid.SetColumn(screenShot, 0);
                 Grid.SetColumnSpan(screenShot, 3);

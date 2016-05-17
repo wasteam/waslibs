@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp.Controls
@@ -25,6 +27,14 @@ namespace AppStudio.Uwp.Controls
         {
             get { return (FontFamily)GetValue(FontFamilyProperty); }
             set { SetValue(FontFamilyProperty, value); }
+        }
+
+        internal static readonly DependencyProperty FontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(TextStyle), new PropertyMetadata(0));
+
+        internal double FontSize
+        {
+            get { return (double)GetValue(FontSizeProperty); }
+            set { SetValue(FontSizeProperty, value); }
         }
 
         public static readonly DependencyProperty FontSizeRatioProperty = DependencyProperty.Register("FontSizeRatio", typeof(string), typeof(TextStyle), new PropertyMetadata(null));
@@ -51,6 +61,15 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(FontWeightProperty, value); }
         }
 
+        public void Reset(Control host)
+        {
+            BindingOperations.SetBinding(this, TextStyle.FontSizeProperty, CreateBinding(host, "FontSize"));
+            BindingOperations.SetBinding(this, TextStyle.FontFamilyProperty, CreateBinding(host, "FontFamily"));
+            BindingOperations.SetBinding(this, TextStyle.FontStyleProperty, CreateBinding(host, "FontStyle"));
+            BindingOperations.SetBinding(this, TextStyle.FontWeightProperty, CreateBinding(host, "FontWeight"));
+            BindingOperations.SetBinding(this, TextStyle.ForegroundProperty, CreateBinding(host, "Foreground"));
+        }
+
         public void Merge(TextStyle style)
         {
             if (style != null)
@@ -74,7 +93,7 @@ namespace AppStudio.Uwp.Controls
                 if (style.Foreground != null && Foreground != style.Foreground)
                 {
                     Foreground = style.Foreground;
-                } 
+                }
             }
         }
 
@@ -89,6 +108,15 @@ namespace AppStudio.Uwp.Controls
             {
                 return 0;
             }
+        }
+
+        private static Binding CreateBinding(object source, string path)
+        {
+            return new Binding
+            {
+                Path = new PropertyPath(path),
+                Source = source
+            };
         }
     }
 }
