@@ -159,6 +159,7 @@ namespace AppStudio.Uwp.Controls
                 {
                     IsActive = true
                 };
+                progress.SetBinding(ProgressRing.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("Background") });
                 progress.SetBinding(ProgressRing.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("Foreground") });
                 this.Content = progress;
             }

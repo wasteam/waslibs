@@ -2,8 +2,6 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
@@ -12,6 +10,7 @@ namespace AppStudio.Uwp.Controls
     {
         public ImageEx()
         {
+            this.DefaultStyleKey = typeof(ImageEx);
             this.HorizontalContentAlignment = HorizontalAlignment.Center;
             this.VerticalContentAlignment = VerticalAlignment.Center;
         }
@@ -25,11 +24,11 @@ namespace AppStudio.Uwp.Controls
             {
                 if (!Double.IsInfinity(availableSize.Width))
                 {
-                    progress.Width = Math.Max(8, availableSize.Width * 0.5);
+                    progress.Width = Math.Min(128, Math.Max(8, availableSize.Width * 0.5));
                 }
                 if (!Double.IsInfinity(availableSize.Height))
                 {
-                    progress.Height = Math.Max(8, availableSize.Height * 0.5);
+                    progress.Height = Math.Min(128, Math.Max(8, availableSize.Height * 0.5));
                 }
             }
 
