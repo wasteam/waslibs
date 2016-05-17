@@ -1,15 +1,18 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class ImageEx
     {
+        private bool _isHttpSource = false;
+
         #region Source
         public object Source
         {
@@ -26,102 +29,204 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ImageEx), new PropertyMetadata(null, SourceChanged));
         #endregion
 
-        private Uri _uri;
-        private bool _isHttpSource = false;
-
-        private async void SetSource(object source)
+        #region SetSource
+        private void SetSource(object source)
         {
-            if (_isInitialized)
+            _isHttpSource = false;
+            if (source != null)
             {
-                _image.Source = null;
-                _imageGif.Source = null;
-                if (source != null)
+                string url = source as String;
+                if (url != null)
                 {
-                    if (source.GetType() == typeof(string))
-                    {
-                        string url = source as String;
-                        if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out _uri))
-                        {
-                            _isHttpSource = IsHttpUri(_uri);
-                            if (_isHttpSource)
-                            {
-                                _image.Opacity = 0.0;
-                                _imageGif.Opacity = 0.0;
-                                _progress.IsActive = true;
-                            }
-                            else
-                            {
-                                if (!_uri.IsAbsoluteUri)
-                                {
-                                    _uri = new Uri("ms-appx:///" + url.TrimStart('/'));
-                                }
-                            }
-                            await LoadImageAsync();
-                        }
-                    }
-                    else
-                    {
-                        _image.Source = source as ImageSource;
-                        _image.Visibility = Visibility.Visible;
-                        _imageGif.Visibility = Visibility.Collapsed;
-                    }
-                    _progress.IsActive = false;
-                    if (_image.Source != null)
-                    {
-                        _image.FadeIn();
-                    }
-                    else
-                    {
-                        _imageGif.FadeIn();
-                    }
-                }
-            }
-        }
-
-        private bool _isLoadingImage = false;
-
-        private async Task LoadImageAsync()
-        {
-            if (!_isLoadingImage && _uri != null)
-            {
-                _isLoadingImage = true;
-                if (_isHttpSource)
-                {
-                    if (Path.GetExtension(_uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
-                    {
-                        _imageGif.Source = await BitmapCache.LoadGifFromCacheAsync(_uri);
-                        _image.Visibility = Visibility.Collapsed;
-                        _imageGif.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        _image.Source = await BitmapCache.LoadFromCacheAsync(_uri, (int)_currentSize.Width, (int)_currentSize.Height);
-                        _image.Visibility = Visibility.Visible;
-                        _imageGif.Visibility = Visibility.Collapsed;
-                    }
+                    SetSourceString(url);
                 }
                 else
                 {
-                    if (Path.GetExtension(_uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                    Uri uri = source as Uri;
+                    if (uri != null)
                     {
-                        _imageGif.Source = _uri;
-                        _image.Visibility = Visibility.Collapsed;
-                        _imageGif.Visibility = Visibility.Visible;
+                        SetSourceUri(uri);
                     }
                     else
                     {
-                        _image.Source = new BitmapImage(_uri);
-                        _image.Visibility = Visibility.Visible;
-                        _imageGif.Visibility = Visibility.Collapsed;
+                        ImageSource imageSource = source as ImageSource;
+                        if (imageSource != null)
+                        {
+                            SetImage(imageSource);
+                        }
+                        else
+                        {
+                            ClearImage();
+                            ClearImageGif();
+                        }
                     }
                 }
-                _isLoadingImage = false;
+            }
+            else
+            {
+                ClearImage();
+                ClearImageGif();
             }
         }
 
-        private static bool IsHttpUri(Uri uri)
+        private void SetSourceString(string url)
         {
-            return uri.IsAbsoluteUri && (uri.Scheme == "http" || uri.Scheme == "https");
+            if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                SetSourceUri(new Uri(url));
+            }
+            else if (Uri.IsWellFormedUriString(url, UriKind.Relative))
+            {
+                Uri uri = null;
+                if (Uri.TryCreate("ms-appx:///" + url.TrimStart('/'), UriKind.Absolute, out uri))
+                {
+                    SetSourceUri(uri);
+                }
+                else
+                {
+                    ClearImage();
+                    ClearImageGif();
+                }
+            }
+            else
+            {
+                ClearImage();
+                ClearImageGif();
+            }
+        }
+
+        private Uri _currentUri = null;
+
+        private async void SetSourceUri(Uri uri)
+        {
+            _currentUri = uri;
+            if (uri.IsAbsoluteUri)
+            {
+                var cachedUri = uri;
+                if (uri.Scheme == "http" || uri.Scheme == "https")
+                {
+                    SetProgress();
+                    _isHttpSource = true;
+                    cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                }
+                if (Path.GetExtension(uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.SetImageGif(cachedUri);
+                }
+                else
+                {
+                    this.SetImage(new BitmapImage(cachedUri));
+                }
+            }
+            else
+            {
+                ClearImage();
+                ClearImageGif();
+            }
+        }
+        #endregion
+
+        private async void RefreshSourceUri(Uri uri)
+        {
+            uri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+            this.SetImage(new BitmapImage(uri));
+        }
+
+        private static int _progressCount = 0;
+        private object _progressCountLock = new object();
+
+        private void SetProgress()
+        {
+            if (this.Progress != null)
+            {
+                return;
+            }
+
+            bool available = false;
+
+            lock (_progressCountLock)
+            {
+                if (_progressCount < 100)
+                {
+                    _progressCount++;
+                    available = true;
+                }
+            }
+
+            if (available)
+            {
+                var progress = new ProgressRing
+                {
+                    IsActive = true
+                };
+                progress.SetBinding(ProgressRing.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("Foreground") });
+                this.Content = progress;
+            }
+        }
+
+        private void SetImage(ImageSource imageSource)
+        {
+            ClearProgress();
+            ClearImageGif();
+
+            var image = this.Image;
+            if (image == null)
+            {
+                image = new Image();
+                image.SetBinding(Image.StretchProperty, new Binding { Source = this, Path = new PropertyPath("Stretch") });
+                image.SetBinding(Image.HorizontalAlignmentProperty, new Binding { Source = this, Path = new PropertyPath("HorizontalAlignment") });
+                image.SetBinding(Image.VerticalAlignmentProperty, new Binding { Source = this, Path = new PropertyPath("VerticalAlignment") });
+                image.SetBinding(Image.NineGridProperty, new Binding { Source = this, Path = new PropertyPath("NineGrid") });
+                this.Content = image;
+            }
+            image.Source = imageSource;
+        }
+
+        private void SetImageGif(Uri uri)
+        {
+            ClearProgress();
+            ClearImage();
+            ClearImageGif();
+
+            var imageGif = new GifControl();
+            imageGif.SetBinding(GifControl.StretchProperty, new Binding { Source = this, Path = new PropertyPath("Stretch") });
+            imageGif.SetBinding(GifControl.HorizontalAlignmentProperty, new Binding { Source = this, Path = new PropertyPath("HorizontalAlignment") });
+            imageGif.SetBinding(GifControl.VerticalAlignmentProperty, new Binding { Source = this, Path = new PropertyPath("VerticalAlignment") });
+            imageGif.SetBinding(GifControl.NineGridProperty, new Binding { Source = this, Path = new PropertyPath("NineGrid") });
+            imageGif.SetBinding(GifControl.AutoPlayProperty, new Binding { Source = this, Path = new PropertyPath("AnimateGif") });
+            imageGif.Source = uri;
+            this.Content = imageGif;
+        }
+
+        private void ClearProgress()
+        {
+            if (this.Progress != null)
+            {
+                this.Progress.IsActive = false;
+                this.Content = null;
+                lock (_progressCountLock)
+                {
+                    _progressCount--;
+                }
+            }
+        }
+
+        private void ClearImage()
+        {
+            if (this.Image != null)
+            {
+                this.Image.Source = null;
+                this.Content = null;
+            }
+        }
+
+        private void ClearImageGif()
+        {
+            if (this.ImageGif != null)
+            {
+                this.ImageGif.Source = null;
+                this.Content = null;
+            }
         }
     }
 }

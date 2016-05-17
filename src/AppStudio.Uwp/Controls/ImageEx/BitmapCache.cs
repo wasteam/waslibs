@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.Foundation;
 using Windows.Storage;
 
@@ -11,12 +10,13 @@ namespace AppStudio.Uwp.Controls
 {
     public static class BitmapCache
     {
-        const string FOLDER_NAME = "ImageCache";
-        const int MAX_RESOLUTION = 1920;
+        public const int MAXRESOLUTION = 1920;
+        public const int MIDRESOLUTION = 960;
 
-        static private object _lock = new object();
+        const string FOLDER_NAME = "ImageCache";
 
         static private Dictionary<string, Task> _concurrentTasks = new Dictionary<string, Task>();
+        static private object _lock = new object();
 
         static BitmapCache()
         {
@@ -25,7 +25,7 @@ namespace AppStudio.Uwp.Controls
 
         static public TimeSpan CacheDuration { get; set; }
 
-        #region ClearCache
+        #region ClearCacheAsync
         public static async Task ClearCacheAsync(TimeSpan? duration = null)
         {
             duration = duration ?? TimeSpan.FromSeconds(0);
@@ -49,7 +49,7 @@ namespace AppStudio.Uwp.Controls
         }
         #endregion
 
-        public static async Task<BitmapImage> LoadFromCacheAsync(Uri uri, int maxWidth, int maxHeight)
+        public static async Task<Uri> GetImageUriAsync(Uri uri, int maxWidth, int maxHeight)
         {
             Task busy = null;
             string key = BuildKey(uri);
@@ -84,86 +84,48 @@ namespace AppStudio.Uwp.Controls
                 }
             }
 
-            return CreateBitmapImage(BuildFileName(uri, maxWidth, maxHeight));
-        }
-
-        public static async Task<Uri> LoadGifFromCacheAsync(Uri uri)
-        {
-            Task busy = null;
-            string key = BuildKey(uri);
-
-            lock (_lock)
+            string fileName = BuildFileName(uri, maxWidth, maxHeight);
+            var cacheFolder = await GetCacheFolderAsync();
+            if (await cacheFolder.TryGetItemAsync(fileName) != null)
             {
-                if (_concurrentTasks.ContainsKey(key))
-                {
-                    busy = _concurrentTasks[key];
-                }
-                else
-                {
-                    busy = EnsureFilesAsync(uri);
-                    _concurrentTasks.Add(key, busy);
-                }
+                return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}");
             }
-
-            try
-            {
-                await busy;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-
-            lock (_lock)
-            {
-                if (_concurrentTasks.ContainsKey(key))
-                {
-                    _concurrentTasks.Remove(key);
-                }
-            }
-
-            return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{BuildFileName(uri, MAX_RESOLUTION, MAX_RESOLUTION)}");
-        }
-
-        private static BitmapImage CreateBitmapImage(string fileName)
-        {
-            return new BitmapImage(new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}"));
+            return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{BuildFileName(uri, MAXRESOLUTION, MAXRESOLUTION)}");
         }
 
         private static async Task EnsureFilesAsync(Uri uri)
         {
             DateTime expirationDate = DateTime.Now.Subtract(CacheDuration);
 
-            var folder = await GetCacheFolderAsync();
+            var cacheFolder = await GetCacheFolderAsync();
 
-            string fileName = BuildFileName(uri, MAX_RESOLUTION, MAX_RESOLUTION);
-            var baseFile = await folder.TryGetItemAsync(fileName) as StorageFile;
-            if (await IsFileOutOfDate(baseFile, expirationDate))
+            string fileName = BuildFileName(uri, MAXRESOLUTION, MAXRESOLUTION);
+            StorageFile mainFile = await cacheFolder.TryGetItemAsync(fileName) as StorageFile;
+            if (await IsFileOutOfDate(mainFile, expirationDate))
             {
-                baseFile = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
-                if (!await BitmapTools.DownloadImageAsync(baseFile, uri, MAX_RESOLUTION, MAX_RESOLUTION))
+                mainFile = await cacheFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                if (!await BitmapTools.DownloadImageAsync(mainFile, uri, MAXRESOLUTION, MAXRESOLUTION))
                 {
-                    await baseFile.DeleteAsync();
+                    await mainFile.DeleteAsync();
                     return;
                 }
             }
 
-            fileName = BuildFileName(uri, 960, 960);
-            var file = await folder.TryGetItemAsync(fileName) as StorageFile;
-            if (await IsFileOutOfDate(file, expirationDate))
+            fileName = BuildFileName(uri, MIDRESOLUTION, MIDRESOLUTION);
+            var resizedFile = await cacheFolder.TryGetItemAsync(fileName) as StorageFile;
+            if (await IsFileOutOfDate(resizedFile, expirationDate))
             {
-                file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                resizedFile = await cacheFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 try
                 {
-                    await BitmapTools.ResizeImageUniformAsync(baseFile, file, 960, 960);
+                    await BitmapTools.ResizeImageUniformAsync(mainFile, resizedFile, MIDRESOLUTION, MIDRESOLUTION);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    await file.DeleteAsync();
-                    return;
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    await resizedFile.DeleteAsync();
                 }
             }
-            baseFile = file;
         }
 
         private static async Task<bool> IsFileOutOfDate(StorageFile file, DateTime expirationDate)
@@ -207,7 +169,7 @@ namespace AppStudio.Uwp.Controls
         private static string BuildKey(Uri uri)
         {
             ulong uriHash = CreateHash64(uri);
-            return $"{uriHash}.jpg";
+            return $"{uriHash}";
         }
 
         private static string BuildFileName(Uri uri, int maxWidth, int maxHeight)
@@ -215,7 +177,7 @@ namespace AppStudio.Uwp.Controls
             string prefix = GetPrefixName(maxWidth, maxHeight);
             ulong uriHash = CreateHash64(uri);
 
-            return $"{prefix}.{uriHash}.jpg";
+            return $"{prefix}.{uriHash}";
         }
 
         private static UInt64 CreateHash64(Uri uri)
@@ -235,12 +197,10 @@ namespace AppStudio.Uwp.Controls
 
             return value;
         }
-        #endregion
 
-        #region GetPrefixName
         private static string GetPrefixName(double width, double height)
         {
-            if (width <= 960 && height <= 960)
+            if (width <= MIDRESOLUTION && height <= MIDRESOLUTION)
             {
                 return "M";
             }
@@ -253,7 +213,7 @@ namespace AppStudio.Uwp.Controls
         {
             double width = size.Width;
             double height = size.Height;
-            if (width <= 960 && height <= 960)
+            if (width <= MIDRESOLUTION && height <= MIDRESOLUTION)
             {
                 return 1;
             }
