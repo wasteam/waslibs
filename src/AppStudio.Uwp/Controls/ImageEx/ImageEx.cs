@@ -2,8 +2,6 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 using Windows.Foundation;
 
 namespace AppStudio.Uwp.Controls
@@ -12,6 +10,7 @@ namespace AppStudio.Uwp.Controls
     {
         public ImageEx()
         {
+            this.DefaultStyleKey = typeof(ImageEx);
             this.HorizontalContentAlignment = HorizontalAlignment.Center;
             this.VerticalContentAlignment = VerticalAlignment.Center;
         }
