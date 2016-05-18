@@ -56,6 +56,8 @@ namespace AppStudio.Uwp.Controls
         private static void DocumentStylesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var self = d as HtmlBlock;
+
+            self._docStyles.Reset(self);
             self._docStyles.Merge(self.DefaultDocumentStyle, self.DocumentStyle);
         }
 
@@ -63,7 +65,6 @@ namespace AppStudio.Uwp.Controls
         {
             this.DefaultStyleKey = typeof(HtmlBlock);
 
-            HtmlWriterFactory.Init(this);
             _docStyles = new DocumentStyle();
         }
 

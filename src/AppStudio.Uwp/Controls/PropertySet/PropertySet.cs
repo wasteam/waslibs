@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows.Input;
 
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Data;
-using System.Windows.Input;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -54,7 +54,39 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ValueProperty, value); }
         }
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(object), typeof(PropertySet), new PropertyMetadata(null));
+        private static void ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as PropertySet;
+            control.SetValue(e.NewValue);
+        }
+
+        private void SetValue(object value)
+        {
+            if (_isInitialized)
+            {
+                if (value != null)
+                {
+                    if (this.Source != null && this.Property != null)
+                    {
+                        var element = this.Source as FrameworkElement;
+                        var prop = element.GetType().GetProperty(this.Property);
+                        var type = prop.PropertyType;
+
+                        if (type.GetTypeInfo().IsEnum)
+                        {
+                            _combo.SelectedIndex = GetIndexOf(type, value.ToString());
+                        }
+                    }
+                }
+            }
+        }
+
+        private static int GetIndexOf(Type type, string value)
+        {
+            return Enum.GetNames(type).ToList().IndexOf(value);
+        }
+
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(object), typeof(PropertySet), new PropertyMetadata(null, ValueChanged));
         #endregion
 
         #region Label
@@ -133,7 +165,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ComboSelectionChangedCommandProperty, value); }
         }
 
-        public static readonly DependencyProperty ComboSelectionChangedCommandProperty =DependencyProperty.Register("ComboSelectionChangedCommand", typeof(ICommand), typeof(PropertySet), new PropertyMetadata(null));
+        public static readonly DependencyProperty ComboSelectionChangedCommandProperty = DependencyProperty.Register("ComboSelectionChangedCommand", typeof(ICommand), typeof(PropertySet), new PropertyMetadata(null));
         #endregion
 
         protected override void OnApplyTemplate()
@@ -147,11 +179,14 @@ namespace AppStudio.Uwp.Controls
             _isInitialized = true;
 
             ExploreProperty();
+            this.SetValue(this.Value);
+
             if (string.IsNullOrEmpty(Label))
             {
                 Label = Property;
             }
             _combo.SelectionChanged += ComboSelectionChanged;
+
             base.OnApplyTemplate();
         }
 
