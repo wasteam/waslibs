@@ -18,11 +18,11 @@ namespace AppStudio.DataProviders.RestApi
         {
             get
             {
-                if (Config?.PaginationConfig?.IsInMemory == true)
+                if (Config?.PaginationConfig?.IsServerSidePagination == false)
                 {
                     return _hasMoreItems;
                 }
-                return ContinuationToken != Config?.PaginationConfig?.ContinuationTokenInitialValue;
+                return ContinuationToken != Config?.PaginationConfig?.TokenInitialValue.ToString();
             }
         }
 
@@ -87,11 +87,11 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            ContinuationToken = config?.PaginationConfig?.ContinuationTokenInitialValue;
+            ContinuationToken = config?.PaginationConfig?.TokenInitialValue.ToString();
             var url = GetUrl(config, pageSize);
             var result = await GetDataFromProvider(new Uri(url), parser);
 
-            if (Config?.PaginationConfig?.IsInMemory == true)
+            if (Config?.PaginationConfig?.IsServerSidePagination == false)
             {
                 _totalItems = result.Items;
                 var total = (_totalItems as IEnumerable<TSchema>);
@@ -104,7 +104,7 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            if (Config?.PaginationConfig.IsInMemory == true)
+            if (Config?.PaginationConfig.IsServerSidePagination == false)
             {
                 int page = Convert.ToInt32(ContinuationToken);
                 var total = (_totalItems as IEnumerable<TSchema>);
@@ -124,6 +124,10 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
         {
+            if (uri == null)
+            {
+                return new HttpRequestResult<TSchema>();
+            }
             var result = await HttpRequest.ExecuteGetAsync(uri, parser);
             if (result.Success)
             {
@@ -152,7 +156,7 @@ namespace AppStudio.DataProviders.RestApi
         private Uri GetContinuationUrl(string url)
         {
             var uri = new Uri(url);
-            return Config.PaginationConfig?.GetContinuationUrl(uri, ContinuationToken);
+            return Config.PaginationConfig?.BuildContinuationUrl(uri, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)

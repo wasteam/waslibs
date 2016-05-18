@@ -33,9 +33,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task LoadDataNumericPagination()
+        public async Task LoadDataPageNumberPagination()
         {
-            var pagination = new NumericPagination() { IncrementalValue = 1, PaginationParameterName = "page" };
+            var pagination = new PageNumberPagination("page", false, "");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
@@ -53,9 +53,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
         }
 
         [TestMethod]
-        public async Task LoadDataTokenPagination()
+        public async Task LoadDataPageNumberPagination_NullParameters()
         {
-            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new PageNumberPagination(null, false, null);
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
@@ -70,6 +70,161 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
+        }       
+
+        [TestMethod]
+        public async Task LoadDataItemOffsetPagination()
+        {
+            var pagination = new ItemOffsetPagination("offset", true, "", 20);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadDataItemOffsetPagination_NullParameters()
+        {
+            var pagination = new ItemOffsetPagination(null, true, null, 20);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+       
+
+        [TestMethod]
+        public async Task LoadDataTokenPagination()
+        {
+            var pagination = new TokenPagination("page_handle", "next_page", "number");
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadDataTokenPagination_NullParameters()
+        {
+            var pagination = new TokenPagination(null, null, null);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadDataTokenPagination_InvalidTokenPathName()
+        {
+            var pagination = new TokenPagination(null, "invalid", null);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, 20, new WordPress.WordPressParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<WordPress.WordPressSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadDataNextPageUrlPagination()
+        {
+            var pagination = new NextPageUrlPagination("paging.next", string.Empty);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://graph.facebook.com/v2.5/8195378771/posts?&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&fields=id,message,from,created_time,link,full_picture"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<Facebook.FacebookSchema> data = await dataProvider.LoadDataAsync(config, 20, new Facebook.FacebookParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            data = await dataProvider.LoadMoreDataAsync<Facebook.FacebookSchema>();
+
+            Assert.IsNotNull(data);
+            Assert.AreNotEqual(data.Count(), 0);
+        }
+
+        [TestMethod]
+        public async Task LoadDataNextPageUrlPagination_NullParameters()
+        {
+            var pagination = new NextPageUrlPagination(null, null);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://graph.facebook.com/v2.5/8195378771/posts?&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&fields=id,message,from,created_time,link,full_picture"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<Facebook.FacebookSchema> data = await dataProvider.LoadDataAsync(config, 20, new Facebook.FacebookParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            ArgumentNullException exception = await ExceptionsAssert.ThrowsAsync<ArgumentNullException>(async () => await dataProvider.LoadMoreDataAsync<Facebook.FacebookSchema>());          
+        }
+
+        [TestMethod]
+        public async Task LoadDataNextPageUrlPagination_NextPagePath()
+        {
+            var pagination = new NextPageUrlPagination("invalid", null);
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri(@"https://graph.facebook.com/v2.5/8195378771/posts?&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&fields=id,message,from,created_time,link,full_picture"),
+                PaginationConfig = pagination
+            };
+
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<Facebook.FacebookSchema> data = await dataProvider.LoadDataAsync(config, 20, new Facebook.FacebookParser());
+
+            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
+            ArgumentNullException exception = await ExceptionsAssert.ThrowsAsync<ArgumentNullException>(async () => await dataProvider.LoadMoreDataAsync<Facebook.FacebookSchema>());
         }
 
         [TestMethod]
@@ -93,7 +248,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task LoadDataTokenPagination_QueryString()
         {
-            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination("page_handle", "next_page", "number");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
@@ -108,32 +263,12 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
-        }
-
-        [TestMethod]
-        public async Task LoadDataTokenPagination_TokenIsUrl()
-        {
-            var pagination = new TokenPagination() { ContinuationTokenPath = "paging.next", ContinuationTokenIsUrl = true };
-            var config = new RestApiDataConfig
-            {
-                Url = new Uri(@"https://graph.facebook.com/v2.5/8195378771/posts?&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&fields=id,message,from,created_time,link,full_picture"),
-                PaginationConfig = pagination
-            };
-
-            var dataProvider = new RestApiDataProvider();
-            IEnumerable<Facebook.FacebookSchema> data = await dataProvider.LoadDataAsync(config, 20, new Facebook.FacebookParser());
-
-            Assert.IsTrue(dataProvider.HasMoreItems, $"{nameof(dataProvider.HasMoreItems)} is false");
-            data = await dataProvider.LoadMoreDataAsync<Facebook.FacebookSchema>();
-
-            Assert.IsNotNull(data);
-            Assert.AreNotEqual(data.Count(), 0);
-        }
+        }       
 
         [TestMethod]
         public async Task LoadMoreDataInvalidOperation()
         {
-            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination("page_handle", "next_page", string.Empty);
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
@@ -207,7 +342,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         [TestMethod]
         public async Task TestGetMoreApiDataAsync()
         {
-            var pagination = new TokenPagination() { PaginationParameterName = "page_handle", ContinuationTokenPath = "next_page" };
+            var pagination = new TokenPagination("page_handle", "next_page", string.Empty);
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
@@ -237,7 +372,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestMaxRecordsRestApiDataProvider()
         {
             int maxRecords = 50;
-            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
+            var pagination = new TokenPagination(string.Empty, string.Empty, "number");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/"),
@@ -254,7 +389,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestMaxRecordsRestApiDataProvider_Min()
         {
             int maxRecords = 1;
-            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
+            var pagination = new TokenPagination(string.Empty, string.Empty, "number");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/")
@@ -270,7 +405,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestMaxRecordsRestApiDataProvider_QueryString()
         {
             int maxRecords = 50;
-            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
+            var pagination = new TokenPagination(string.Empty, string.Empty, "number");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),

@@ -12,17 +12,30 @@ namespace AppStudio.Uwp.Samples.Pages.RestApi
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            Visibility visibility = Visibility.Collapsed;
             if (value == null || string.IsNullOrEmpty(value.ToString()) || parameter == null)
             {
-                visibility = Visibility.Collapsed;
+                return Visibility.Collapsed;
             }
-            else if (value.ToString().Equals(parameter.ToString()))
+            else
             {
-                visibility = Visibility.Visible;
+                string[] parameters = parameter.ToString().Split(';');
+                if (parameters.Length > 0)
+                {
+                    foreach (string param in parameters)
+                    {
+                        if (param.Equals(value.ToString()))
+                        {
+                            return Visibility.Visible;
+                        }
+                    }
+                }
+                else if (value.ToString().Equals(parameter.ToString()))
+                {
+                    return Visibility.Visible;
+                }
             }
 
-            return visibility;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

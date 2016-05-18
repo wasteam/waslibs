@@ -77,20 +77,18 @@ namespace AppStudio.Uwp.Samples
     public enum PaginationParameterType
     {
         None,
-        Numeric,
-        Token
+        PageNumber,
+        ItemOffset,
+        Token,
+        NextPageUrl
     }
 
     public enum RestApiSampleType
     {
-        NumericPaginationSample,
-        TokenAsParameterPaginationSample,
-        TokenAsUrlPaginationSample,
+        PageNumberPaginationSample,
+        ItemOffsetPaginationSample,
+        TokenPaginationSample,
+        NextPageUrlPaginationSample,
         Custom
-    }
-    public enum RestApiTokenType
-    {
-        Parameter,
-        Url       
-    }
+    }   
 }
