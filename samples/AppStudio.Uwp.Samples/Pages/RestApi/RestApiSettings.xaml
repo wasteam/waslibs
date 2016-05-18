@@ -60,8 +60,8 @@
                  <controls:PropertySet
                     x:Uid="propRestApiItemsPerPageParameterName"   
                     Source="{Binding}"
-                    Property="ItemsPerPageParameterName"
-                    Value="{Binding ItemsPerPageParameterName, Mode=TwoWay}"/> 
+                    Property="PageSizeParameterName"
+                    Value="{Binding PageSizeParameterName, Mode=TwoWay}"/> 
                 <controls:PropertySet
                     x:Uid="propMaxRecords"
                     Source="{Binding}"

@@ -16,8 +16,7 @@ namespace AppStudio.Uwp.Samples
     {
 
         private const RestApiSampleType DefaultSample = RestApiSampleType.PageNumberPaginationSample;
-        private const int DefaultMaxRecordsParam = 20;
-        private const bool DefaultIsZeroIndexed = false;
+        private const int DefaultMaxRecordsParam = 20;  
 
         RestApiDataProvider restApiDataProvider;
         RestApiDataProvider rawDataProvider;
@@ -91,16 +90,16 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(IsZeroIndexedProperty, value); }
         }
 
-        public static readonly DependencyProperty IsZeroIndexedProperty = DependencyProperty.Register(nameof(IsZeroIndexed), typeof(bool), typeof(RestApiPage), new PropertyMetadata(DefaultIsZeroIndexed));
+        public static readonly DependencyProperty IsZeroIndexedProperty = DependencyProperty.Register(nameof(IsZeroIndexed), typeof(bool), typeof(RestApiPage), new PropertyMetadata(false));
 
 
-        public string ItemsPerPageParameterName
+        public string PageSizeParameterName
         {
-            get { return (string)GetValue(ItemsPerPageParameterNameProperty); }
-            set { SetValue(ItemsPerPageParameterNameProperty, value); }
+            get { return (string)GetValue(PageSizeParameterNameParameterNameProperty); }
+            set { SetValue(PageSizeParameterNameParameterNameProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsPerPageParameterNameProperty = DependencyProperty.Register(nameof(ItemsPerPageParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty PageSizeParameterNameParameterNameProperty = DependencyProperty.Register(nameof(PageSizeParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public int MaxRecordsParam
@@ -303,13 +302,13 @@ namespace AppStudio.Uwp.Samples
             switch (PaginationParameterType)
             {
                 case PaginationParameterType.PageNumber:
-                    return new PageNumberPagination(PaginationParameterName, IsZeroIndexed, ItemsPerPageParameterName);
+                    return new PageNumberPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName);
                 case PaginationParameterType.ItemOffset:
-                    return new ItemOffsetPagination(PaginationParameterName, IsZeroIndexed, ItemsPerPageParameterName, MaxRecordsParam);
+                    return new ItemOffsetPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName, MaxRecordsParam);
                 case PaginationParameterType.Token:
-                    return new TokenPagination(PaginationParameterName, ResponseTokenName, ItemsPerPageParameterName);
+                    return new TokenPagination(PaginationParameterName, ResponseTokenName, PageSizeParameterName);
                 case PaginationParameterType.NextPageUrl:
-                    return new NextPageUrlPagination(ResponseTokenName, ItemsPerPageParameterName);
+                    return new NextPageUrlPagination(ResponseTokenName, PageSizeParameterName);
                 case PaginationParameterType.None:
                 default:
                     return null;
@@ -393,7 +392,7 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterName = "page";
             IsZeroIndexed = false;
             ResponseTokenName = string.Empty;          
-            ItemsPerPageParameterName = "number";
+            PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
 
             RestApiMainRoot = "posts";
@@ -409,7 +408,7 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterName = "page_handle";
             IsZeroIndexed = true;
             ResponseTokenName = "meta.next_page";          
-            ItemsPerPageParameterName = "number";
+            PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
 
             RestApiMainRoot = "posts";
@@ -420,12 +419,12 @@ namespace AppStudio.Uwp.Samples
 
         private void SetNextPageUrlSampleDataConfig()
         {
-            RestApiQuery = "https://graph.facebook.com/v2.5/8195378771/posts?fields=id,message,from,created_time,link,full_picture&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2&";
+            RestApiQuery = "https://graph.facebook.com/v2.5/8195378771/posts?fields=id,message,from,created_time,link,full_picture&access_token=351842111678417|74b187b46cf37a8ef6349b990bc039c2";
             PaginationParameterType = PaginationParameterType.NextPageUrl;
             PaginationParameterName = string.Empty;
             IsZeroIndexed = true;
             ResponseTokenName = "paging.next";           
-            ItemsPerPageParameterName = "limit";
+            PageSizeParameterName = "limit";
             MaxRecordsParam = DefaultMaxRecordsParam;
 
             RestApiMainRoot = "data";
@@ -441,7 +440,7 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterName = "offset";
             IsZeroIndexed = true;
             ResponseTokenName = string.Empty;
-            ItemsPerPageParameterName = "number";
+            PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
 
             RestApiMainRoot = "posts";
@@ -457,7 +456,7 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterName = string.Empty;
             IsZeroIndexed = true;
             ResponseTokenName = string.Empty;            
-            ItemsPerPageParameterName = string.Empty;
+            PageSizeParameterName = string.Empty;
             MaxRecordsParam = DefaultMaxRecordsParam;
 
             RestApiMainRoot = string.Empty;
