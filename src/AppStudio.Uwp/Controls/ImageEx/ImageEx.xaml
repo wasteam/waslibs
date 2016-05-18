@@ -4,17 +4,13 @@
     xmlns:controls="using:AppStudio.Uwp.Controls">
 
     <Style TargetType="controls:ImageEx">
-        <Setter Property="Background" Value="Black" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#444" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ImageEx">
                     <Grid Background="{TemplateBinding Background}">
-                        <Image Name="image" Stretch="{TemplateBinding Stretch}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               Opacity="0.0" Visibility="Collapsed" />
-                        <controls:GifControl x:Name="imageGif" Stretch="{TemplateBinding Stretch}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                                             Opacity="0.0" Visibility="Collapsed" AutoPlay="{TemplateBinding AnimateGif}" />
-                        <ProgressRing Name="progress" Margin="16" IsActive="True" Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

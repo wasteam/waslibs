@@ -63,15 +63,24 @@
 
     <Grid
         Background="{StaticResource AppBackground}">
-        <controls:VariableSizedGrid
-            x:Name="control"
-            Margin="0"
-            AspectRatio="1"
-            ItemsSource="{Binding Items}"
-            ItemTemplate="{Binding ItemTemplate}"
-            Orientation="Horizontal"
-            MaximumRowsOrColumns="4"            
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+        <controls:VariableSizedGrid x:Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+                                    AspectRatio="1" Orientation="Horizontal" MaximumRowsOrColumns="4"
+                                    Header="VariableSizedGrid Header" Footer="VariableSizedGrid Footer"
+                                    HorizontalAlignment="Left" VerticalAlignment="Top">
+            <controls:VariableSizedGrid.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="4,6,4,2" Background="#222">
+                        <TextBlock Margin="6" Text="{Binding}" FontSize="24" Foreground="White" HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </controls:VariableSizedGrid.HeaderTemplate>
+            <controls:VariableSizedGrid.FooterTemplate>
+                <DataTemplate>
+                    <Grid Margin="4,2,4,6" Background="#222">
+                        <TextBlock Margin="6" Text="{Binding}" FontSize="24" Foreground="White" HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </controls:VariableSizedGrid.FooterTemplate>
+        </controls:VariableSizedGrid>
     </Grid>
 </local:SamplePage>

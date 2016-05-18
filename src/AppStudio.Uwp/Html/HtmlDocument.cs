@@ -34,16 +34,15 @@ namespace AppStudio.Uwp.Html
         public static HtmlDocument Load(string document)
         {
             var root = new HtmlDocument();
-            var openTagStack = new Stack<string>();
-
-            document = Clean(document);
 
             if (!string.IsNullOrWhiteSpace(document))
             {
                 if (IsMarkup(document))
                 {
+                    document = Clean(document);
+
                     var reader = TagReader.Create(document);
-                    AddFragments(reader, root, openTagStack);
+                    AddFragments(reader, root, new Stack<string>());
                 }
                 else
                 {

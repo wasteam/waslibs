@@ -12,16 +12,6 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         private static List<HtmlWriter> _writers;
 
-        public static void Init(HtmlBlock host)
-        {
-            EnsureWriters();
-
-            foreach (var w in _writers)
-            {
-                w.Host = host;
-            }
-        }
-
         public static HtmlWriter Find(HtmlFragment fragment)
         {
             EnsureWriters();

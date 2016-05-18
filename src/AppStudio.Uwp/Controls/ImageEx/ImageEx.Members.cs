@@ -1,18 +1,12 @@
-﻿using System;
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using Windows.Media.Casting;
-using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class ImageEx
     {
-        public event RoutedEventHandler ImageOpened;
-        public event ExceptionRoutedEventHandler ImageFailed;
-        public event EventHandler<ExceptionEventArgs> ImageGifFailed;
-
         #region Stretch
         public Stretch Stretch
         {
@@ -30,22 +24,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(NineGridProperty, value); }
         }
 
-        private static void NineGridChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as ImageEx;
-            control.SetNineGrid((Thickness)e.NewValue);
-        }
-
-        private void SetNineGrid(Thickness nineGrid)
-        {
-            if (_isInitialized)
-            {
-                _image.NineGrid = nineGrid;
-                _imageGif.NineGrid = nineGrid;
-            }
-        }
-
-        public static readonly DependencyProperty NineGridProperty = DependencyProperty.Register("NineGrid", typeof(Thickness), typeof(ImageEx), new PropertyMetadata(new Thickness(), NineGridChanged));
+        public static readonly DependencyProperty NineGridProperty = DependencyProperty.Register("NineGrid", typeof(Thickness), typeof(ImageEx), new PropertyMetadata(null));
         #endregion
 
         #region AnimateGif
@@ -58,18 +37,26 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty AnimateGifProperty = DependencyProperty.Register("AnimateGif", typeof(bool), typeof(ImageEx), new PropertyMetadata(false));
         #endregion
 
+        public ProgressRing Progress
+        {
+            get { return this.Content as ProgressRing; }
+        }
+
+        public Image Image
+        {
+            get { return this.Content as Image; }
+        }
+
+        public GifControl ImageGif
+        {
+            get { return this.Content as GifControl; }
+        }
+
         public CastingSource GetAsCastingSource()
         {
-            if (_isInitialized)
+            if (this.Image != null)
             {
-                if (_image.Visibility == Visibility.Visible)
-                {
-                    return _image.GetAsCastingSource();
-                }
-                else if (_imageGif.Visibility == Visibility.Visible)
-                {
-                    return _imageGif.GetAsCastingSource();
-                }
+                return this.Image.GetAsCastingSource();
             }
             return null;
         }

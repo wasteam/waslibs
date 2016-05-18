@@ -2,10 +2,12 @@
 using System.Linq;
 using Windows.ApplicationModel.Resources;
 using Windows.Graphics.Display;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp.Actions
 {
@@ -93,7 +95,7 @@ namespace AppStudio.Uwp.Actions
                     AutomationProperties.SetName(button, automationPropertiesName);
                     if (!string.IsNullOrEmpty(label))
                     {
-                        ToolTipService.SetToolTip(button, label);
+                        ToolTipService.SetToolTip(button, GetTooltip(label));
                         ToolTipService.SetPlacement(button, PlacementMode.Mouse);
                     }
                     if (Application.Current.Resources.ContainsKey(action.Style))
@@ -104,6 +106,16 @@ namespace AppStudio.Uwp.Actions
                 }
             }
         }
+
+        private static TextBlock GetTooltip(string label)
+        {
+            return new TextBlock()
+            {
+                Text = label,
+                Foreground = new SolidColorBrush((Color)Application.Current.Resources["SystemBaseHighColor"])
+            };
+        }
+
         private enum ActionTextProperties { Label, AutomationPropertiesName };
         private static string GetText(ActionInfo action, ActionTextProperties property)
         {
