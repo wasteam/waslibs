@@ -89,7 +89,7 @@ namespace AppStudio.DataProviders.RestApi
         {
             ContinuationToken = config?.PaginationConfig?.TokenInitialValue.ToString();
             var url = GetUrl(config, pageSize);
-            var result = await GetDataFromProvider(new Uri(url), parser);
+            var result = await GetDataFromProvider(new Uri(url), parser, config.Headers);
 
             if (Config?.PaginationConfig?.IsServerSidePagination == false)
             {
@@ -118,17 +118,18 @@ namespace AppStudio.DataProviders.RestApi
             {
                 var url = GetUrl(config, PageSize);
                 var uri = GetContinuationUrl(url);
-                return await GetDataFromProvider(uri, parser);
+                return await GetDataFromProvider(uri, parser, config.Headers);
             }
         }
 
-        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser, IDictionary<string, string> headers) where TSchema : SchemaBase
         {
+
             if (uri == null)
             {
                 return new HttpRequestResult<TSchema>();
             }
-            var result = await HttpRequest.ExecuteGetAsync(uri, parser);
+            var result = await HttpRequest.ExecuteGetAsync(parser, uri, headers);
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
@@ -162,6 +163,6 @@ namespace AppStudio.DataProviders.RestApi
         private string GetContinuationToken(string data)
         {
             return Config.PaginationConfig?.GetContinuationToken(data, ContinuationToken);
-        }
+        }       
     }
 }

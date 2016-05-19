@@ -1,12 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.ViewManagement;
-using System.Threading.Tasks;
-using System;
 
 namespace AppStudio.Uwp.Controls
 {
@@ -178,7 +178,7 @@ namespace AppStudio.Uwp.Controls
         {
             get { return (Style)GetValue(ListViewItemContainerStyleProperty); }
             set { SetValue(ListViewItemContainerStyleProperty, value); }
-        }        
+        }
 
         public static readonly DependencyProperty ListViewItemContainerStyleProperty = DependencyProperty.Register("ListViewItemContainerStyle", typeof(Style), typeof(ShellControl), new PropertyMetadata(null));
         #endregion
@@ -292,10 +292,7 @@ namespace AppStudio.Uwp.Controls
             await Task.Delay(100);
             if (ApplicationView.GetForCurrentView().TryEnterFullScreenMode())
             {
-                if (OnEnterFullScreen != null)
-                {
-                    OnEnterFullScreen(this, EventArgs.Empty);
-                }
+                OnEnterFullScreen?.Invoke(this, EventArgs.Empty);
                 _isFullScreen = true;
                 _splitView.AnimateDoubleProperty("CompactPaneLength", 48, 0, 250);
                 _splitView.Margin = new Thickness(0);
@@ -315,16 +312,14 @@ namespace AppStudio.Uwp.Controls
         {
             _isFullScreen = false;
             ApplicationView.GetForCurrentView().ExitFullScreenMode();
-            if (OnExitFullScreen != null)
-            {
-                OnExitFullScreen(this, EventArgs.Empty);
-            }
+            OnExitFullScreen?.Invoke(this, EventArgs.Empty);
             _splitView.AnimateDoubleProperty("CompactPaneLength", 0, 48, 250);
             _lview.AnimateDoubleProperty("Width", 0, 48, 250);
             _commandBarContainer.Visibility = Visibility.Visible;
             _headerContainer.Visibility = Visibility.Visible;
             _toggle.Visibility = Visibility.Visible;
             _exitFS.Visibility = Visibility.Collapsed;
+            this.SetCommandBarVerticalAlignment(this.CommandBarVerticalAlignment);
         }
         #endregion
 

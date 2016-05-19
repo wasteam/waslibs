@@ -416,6 +416,23 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<WordPress.WordPressSchema> data = await dataProvider.LoadDataAsync(config, maxRecords, new WordPress.WordPressParser());
 
             Assert.IsTrue(data.Count() > 20);
+        }
+
+        [TestMethod]
+        public async Task LoadData_Headers()
+        {
+            var headers = new Dictionary<string, string>();
+
+            var config = new RestApiDataConfig
+            {
+                Url = new Uri("https://www.googleapis.com/youtube/v3/search?q=Windows&part=snippet&key=AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ&type=video&maxResults=20&order=date"),
+                Headers = headers
+            };
+            headers["Accept-Encoding"] = "gzip";
+            headers["User-Agent"] = "Mozilla/5.0 (gzip)";
+            headers["Test-Header"] = "Test header";
+            var dataProvider = new RestApiDataProvider();
+            IEnumerable<YouTube.YouTubeSchema> result = await dataProvider.LoadDataAsync(config, 20, new YouTube.YouTubeSearchParser());         
         }       
     }
 }
