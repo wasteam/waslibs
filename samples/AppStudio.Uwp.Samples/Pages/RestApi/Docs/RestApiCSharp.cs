@@ -9,13 +9,10 @@ using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.RestApi;
 using AppStudio.DataProviders;
 
-
 namespace AppStudio.Uwp.Samples
 {
     public sealed partial class RestApiSample : Page
     {
-        private RestApiDataProvider _dataProvider;
-
         public RestApiSample()
         {
             this.InitializeComponent();
@@ -29,29 +26,19 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(RestApiSample), new PropertyMetadata(null));
+            .Register("Items", typeof(ObservableCollection<object>), typeof(RestApiSample), new PropertyMetadata(null));
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            GetItemsTokenPagination();
-            GetItemsNumericPagination();
-        }
-
+      
         public async void GetItemsTokenPagination()
         {
             string endPoint = "http://MyRestApiEndPoint.com";
             var maxRecordsParam = 20;
             var paginationParameterName = "token";
-            var itemsPerPageParameterName = "number";
-            var responseTokenName = "next_page";
+            var pageSizeParemeterName = "limit";
+            var responseTokenName = "meta.next_token";
 
-            var paginationConfig = new TokenPagination()
-            {
-                PageSizeParameterName = paginationParameterName,
-                PaginationParameterName = itemsPerPageParameterName,
-                ContinuationTokenIsUrl = false,
-                ContinuationTokenPath = responseTokenName
-            };
+
+            var paginationConfig = new TokenPagination(paginationParameterName, responseTokenName, pageSizeParemeterName);
 
             var config = new RestApiDataConfig()
             {
@@ -60,31 +47,22 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            _dataProvider = new RestApiDataProvider();
-            this.Items = new ObservableCollection<object>();
-
-            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            var dataProvider = new RestApiDataProvider();
+            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
             }
         }
 
-        public async void GetItemsNumericPagination()
+        public async void GetItemsPageNumberPagination()
         {
             string endPoint = "http://MyRestApiEndPoint.com";
             var maxRecordsParam = 20;
             var paginationParameterName = "page";
-            var itemsPerPageParameterName = "number";
+            var pageSizeParemeterName = "limit";
 
-
-            var paginationConfig = new NumericPagination()
-            {
-                PageSizeParameterName = itemsPerPageParameterName,
-                PaginationParameterName = paginationParameterName,
-                ContinuationTokenInitialValue = "1",
-                IncrementalValue = 1
-            };
+            var paginationConfig = new PageNumberPagination(paginationParameterName, false, pageSizeParemeterName);
 
             var config = new RestApiDataConfig()
             {
@@ -93,20 +71,58 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var _dataProvider = new RestApiDataProvider();
-            this.Items = new ObservableCollection<object>();
-
-            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            var dataProvider = new RestApiDataProvider();
+            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
             }
         }
 
-        private async void GetMoreItems()
+        public async void GetItemsItemOffsetPagination()
         {
-            var items = await _dataProvider.LoadMoreDataAsync();
+            string endPoint = "http://MyRestApiEndPoint.com";
+            var maxRecordsParam = 20;
+            var offsetParemeterName = "offset";
+            var pageSizeParemeterName = "limit";
+          
 
+            var paginationConfig = new ItemOffsetPagination(offsetParemeterName, true, pageSizeParemeterName, maxRecordsParam);
+
+            var config = new RestApiDataConfig()
+            {
+                Url = new Uri(endPoint),
+                PaginationConfig = paginationConfig
+            };
+
+            var parser = new JsonParser<MySchema>();
+            var dataProvider = new RestApiDataProvider();
+            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        public async void GetItemsNextUrlPagination()
+        {
+            string endPoint = "http://MyRestApiEndPoint.com";
+            var maxRecordsParam = 20;
+            var responseTokenName = "meta.next_page";
+            var pageSizeParemeterName = "limit";
+
+
+            var paginationConfig = new NextPageUrlPagination(responseTokenName, pageSizeParemeterName);
+
+            var config = new RestApiDataConfig()
+            {
+                Url = new Uri(endPoint),
+                PaginationConfig = paginationConfig
+            };
+
+            var parser = new JsonParser<MySchema>();
+            var dataProvider = new RestApiDataProvider();
+            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);

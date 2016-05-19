@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+
 using Windows.Web.Http;
 using Windows.Web.Http.Filters;
 
@@ -9,12 +11,21 @@ namespace AppStudio.DataProviders.Core
 {
     internal static class HttpRequest
     {
-        internal static async Task<HttpRequestResult<TSchema>> ExecuteGetAsync<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
+
+        internal static async Task<HttpRequestResult<TSchema>> ExecuteGetAsync<TSchema>(IParser<TSchema> parser, Uri uri, IDictionary<string, string> headers = null) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = uri
             };
+
+            if (headers != null && headers.Count > 0)
+            {
+                foreach (var item in headers)
+                {
+                    settings.Headers[item.Key] = item.Value;
+                }
+            }
 
             HttpRequestResult httpResult = await DownloadAsync(settings);
             HttpRequestResult<TSchema> result;
@@ -37,7 +48,7 @@ namespace AppStudio.DataProviders.Core
             var result = new HttpRequestResult();
             HttpResponseMessage response = await GetResponseMessage(settings);
             result.StatusCode = response.StatusCode;
-            FixInvalidCharset(response);            
+            FixInvalidCharset(response);
             var content = await response.Content.ReadAsStringAsync();
             result.Result = content;
             return result;
@@ -49,14 +60,14 @@ namespace AppStudio.DataProviders.Core
             HttpResponseMessage response = await GetResponseMessage(settings);
             result.StatusCode = response.StatusCode;
             FixInvalidCharset(response);
-            await SetEncoding(response);            
+            await SetEncoding(response);
             var content = await response.Content.ReadAsStringAsync();
             result.Result = content;
             return result;
         }
 
         private static async Task<HttpResponseMessage> GetResponseMessage(HttpRequestSettings settings)
-        {  
+        {
             var filter = new HttpBaseProtocolFilter();
             filter.CacheControl.ReadBehavior = HttpCacheReadBehavior.MostRecent;
 
@@ -81,8 +92,9 @@ namespace AppStudio.DataProviders.Core
                 {
                     if (!String.IsNullOrEmpty(settings.Headers[customHeaderName]))
                     {
-                        httpClient.DefaultRequestHeaders.Add(customHeaderName, settings.Headers[customHeaderName]);
+                        httpClient.DefaultRequestHeaders[customHeaderName] = settings.Headers[customHeaderName];
                     }
+
                 }
             }
         }
@@ -97,7 +109,7 @@ namespace AppStudio.DataProviders.Core
                 {
                     response.Content.Headers.ContentType.CharSet = charset.Replace("\"", string.Empty);
                 }
-              
+
             }
         }
 
@@ -110,7 +122,7 @@ namespace AppStudio.DataProviders.Core
                     string charset = response.Content.Headers.ContentType.CharSet;
                     if (string.IsNullOrEmpty(charset))
                     {
-                        var content = await response.Content.ReadAsStringAsync();                     
+                        var content = await response.Content.ReadAsStringAsync();
                         var encoding = "UTF-8";
                         try
                         {
@@ -125,7 +137,7 @@ namespace AppStudio.DataProviders.Core
                         {
                             response.Content.Headers.ContentType.CharSet = charset;
                         }
-                       
+
                     }
                 }
             }

@@ -400,7 +400,7 @@
     <value>Country</value>
   </data>
   <data name="propMaxRecords.Label" xml:space="preserve">
-    <value>Page Size</value>
+    <value>Page size</value>
   </data>
   <data name="propQuery.Label" xml:space="preserve">
     <value>Query</value>
@@ -477,10 +477,10 @@ Now is time to map the service endpoint data to the REST API data source. We nee
     <value>Incremental value</value>
   </data>
   <data name="propRestApiInitialValue.Label" xml:space="preserve">
-    <value>Initial value</value>
+    <value>Pagination Parameter is 0-indexed</value>
   </data>
   <data name="propRestApiItemsPerPageParameterName.Label" xml:space="preserve">
-    <value>ItemsPerPage Parameter Name</value>
+    <value>Page size parameter name</value>
   </data>
   <data name="propRestApiMainRoot.Label" xml:space="preserve">
     <value>Main root string path</value>
@@ -489,7 +489,7 @@ Now is time to map the service endpoint data to the REST API data source. We nee
     <value>Pagination parameter Name</value>
   </data>
   <data name="propRestApiParameterType.Label" xml:space="preserve">
-    <value>Pagination parameter type</value>
+    <value>Pagination type</value>
   </data>
   <data name="propRestApiSampleImage.Label" xml:space="preserve">
     <value>String path to sample image property</value>
@@ -511,6 +511,15 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   </data>
   <data name="RestApiMapping.Text" xml:space="preserve">
     <value>Mapping</value>
+  </data>
+  <data name="propRestApiInitialValue.ToggleOffContent" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="propRestApiInitialValue.ToggleOnContent" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="propRestApiSampleSelect.Label" xml:space="preserve">
+    <value>Choose REST API sample</value>
   </data>
   <data name="propOrderBy" xml:space="preserve">
     <value>Order by</value>

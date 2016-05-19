@@ -19,11 +19,11 @@ namespace AppStudio.DataProviders.RestApi
         {
             get
             {
-                if (Config?.PaginationConfig?.IsInMemory == true)
+                if (Config?.PaginationConfig?.IsServerSidePagination == false)
                 {
                     return _hasMoreItems;
                 }
-                return ContinuationToken != Config?.PaginationConfig?.ContinuationTokenInitialValue;
+                return ContinuationToken != Config?.PaginationConfig?.TokenInitialValue.ToString();
             }
         }
 
@@ -88,12 +88,11 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            ContinuationToken = config?.PaginationConfig?.ContinuationTokenInitialValue;
-
+            ContinuationToken = config?.PaginationConfig?.TokenInitialValue.ToString();
             var url = GetUrl(config, pageSize);
-            var result = await GetDataFromProvider(new Uri(url), parser);
+            var result = await GetDataFromProvider(new Uri(url), parser, config.Headers);
 
-            if (Config?.PaginationConfig?.IsInMemory == true)
+            if (Config?.PaginationConfig?.IsServerSidePagination == false)
             {
                 _totalItems = result.Items;
 
@@ -107,7 +106,7 @@ namespace AppStudio.DataProviders.RestApi
 
         private async Task<HttpRequestResult<TSchema>> GetMoreAsync<TSchema>(RestApiDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            if (Config?.PaginationConfig.IsInMemory == true)
+            if (Config?.PaginationConfig.IsServerSidePagination == false)
             {
                 int page = Convert.ToInt32(ContinuationToken);
                 var total = (_totalItems as IEnumerable<TSchema>);
@@ -121,13 +120,18 @@ namespace AppStudio.DataProviders.RestApi
             {
                 var url = GetUrl(config, PageSize);
                 var uri = GetContinuationUrl(url);
-                return await GetDataFromProvider(uri, parser);
+                return await GetDataFromProvider(uri, parser, config.Headers);
             }
         }
 
-        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<HttpRequestResult<TSchema>> GetDataFromProvider<TSchema>(Uri uri, IParser<TSchema> parser, IDictionary<string, string> headers) where TSchema : SchemaBase
         {
-            var result = await HttpRequest.ExecuteGetAsync(uri, parser);
+
+            if (uri == null)
+            {
+                return new HttpRequestResult<TSchema>();
+            }
+            var result = await HttpRequest.ExecuteGetAsync(parser, uri, headers);
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
@@ -155,13 +159,12 @@ namespace AppStudio.DataProviders.RestApi
         private Uri GetContinuationUrl(string url)
         {
             var uri = new Uri(url);
-            return Config.PaginationConfig?.GetContinuationUrl(uri, ContinuationToken);
+            return Config.PaginationConfig?.BuildContinuationUrl(uri, ContinuationToken);
         }
 
         private string GetContinuationToken(string data)
         {
             return Config.PaginationConfig?.GetContinuationToken(data, ContinuationToken);
-        }
-       
+        }       
     }
 }

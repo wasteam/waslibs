@@ -18,11 +18,17 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">                
                 <controls:PropertySet
-                    Label="Sample"
+                    x:Uid="propRestApiSampleSelect"
                     Source="{Binding}"
                     Property="Sample"
                     Value="{Binding Sample, Mode=TwoWay}" 
                     ComboSelectionChangedCommand="{Binding SampleSelectionChanged}"/>    
+                <Grid                    
+                    Height="2"
+                    Margin="0,20,0,20"
+                    Background="LightGray"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
                 <controls:PropertySet
                     x:Uid="propRestApiUrl"
                     Source="{Binding}"
@@ -37,40 +43,25 @@
                     x:Uid="propRestApiParameterName"  
                     Source="{Binding}"                    
                     Property="PaginationParameterName"
-                    Value="{Binding PaginationParameterName, Mode=TwoWay}"/>    
-                 <controls:PropertySet
+                    Value="{Binding PaginationParameterName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token}" />     
+                  <controls:PropertySet
                     x:Uid="propRestApiTokenName"  
                     Source="{Binding}"                    
                     Property="ResponseTokenName"
                     Value="{Binding ResponseTokenName, Mode=TwoWay}"
-                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
-                 <controls:PropertySet
-                    x:Uid="propRestApiTokenIsUrl"                    
-                    Source="{Binding}"                    
-                    Property="TokenParameterType"
-                    Value="{Binding TokenParameterType, Mode=TwoWay}"                    
-                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token}" />    
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token;NextPageUrl}" />     
                   <controls:PropertySet
                     x:Uid="propRestApiInitialValue"   
                     Source="{Binding}"
-                    Property="InitialValue"
-                    Value="{Binding InitialValue, Mode=TwoWay}"
-                    Minimun="0"
-                    Maximun="1"
-                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>   
-                  <controls:PropertySet
-                    x:Uid="propRestApiIncrementalValue" 
-                    Source="{Binding}"
-                    Property="IncrementalValue"
-                    Value="{Binding IncrementalValue, Mode=TwoWay}" 
-                    Minimun="1"
-                    Maximun="50"
-                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Numeric}"/>  
+                    Property="IsZeroIndexed"
+                    Value="{Binding IsZeroIndexed, Mode=TwoWay}"                      
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset}"/>                    
                  <controls:PropertySet
                     x:Uid="propRestApiItemsPerPageParameterName"   
                     Source="{Binding}"
-                    Property="ItemsPerPageParameterName"
-                    Value="{Binding ItemsPerPageParameterName, Mode=TwoWay}"/> 
+                    Property="PageSizeParameterName"
+                    Value="{Binding PageSizeParameterName, Mode=TwoWay}"/> 
                 <controls:PropertySet
                     x:Uid="propMaxRecords"
                     Source="{Binding}"
