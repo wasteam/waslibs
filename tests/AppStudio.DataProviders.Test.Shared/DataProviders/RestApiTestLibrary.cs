@@ -443,7 +443,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
         public async Task TestRestApiDataProvider_Sorting()
         {
             int maxRecords = 50;
-            var pagination = new TokenPagination() { PageSizeParameterName = "number" };
+            var pagination = new TokenPagination(string.Empty, string.Empty, "number");
             var config = new RestApiDataConfig
             {
                 Url = new Uri(@"https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?tag=wordpress"),
