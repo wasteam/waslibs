@@ -2,6 +2,7 @@
 using System.Net;
 
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace AppStudio.DataProviders.RestApi
 {
@@ -10,6 +11,8 @@ namespace AppStudio.DataProviders.RestApi
         public Uri Url { get; set; }
 
         public IPaginationConfig PaginationConfig { get; set; } = new MemoryPagination();
+
+        public IDictionary<string, string> Headers { get; set; }
     }  
 
     public interface IPaginationConfig
