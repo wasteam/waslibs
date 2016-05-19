@@ -125,6 +125,27 @@ namespace AppStudio.DataProviders.Core
             return withoutStyles;
         }
 
+        public static Dictionary<string, string> ParseQueryString(this Uri uri)
+        {
+            if (uri != null && !string.IsNullOrEmpty(uri.Query))
+            {
+                var result = uri.Query.Split(new char[] { '?', '&' }, StringSplitOptions.RemoveEmptyEntries).Select(p => p.Split('=')).GroupBy(p => p[0]).
+                   Select(p => p.First()).ToDictionary(p => p[0], p => p.Length > 1 ? Uri.UnescapeDataString(p[1]) : null);
+                return result;
+            }
+            return new Dictionary<string, string>();
+        }
+
+        public static string ToQueryString(this Dictionary<string, string> dictionary)
+        {
+            if (dictionary.Count > 0)
+            {
+                var array = dictionary.Select(p => $"{Uri.UnescapeDataString(p.Key)}={Uri.UnescapeDataString(p.Value)}").ToArray();
+                return $"?{string.Join("&", array)}";
+            }
+            return string.Empty;
+        }
+
         public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string propertyName, SortDirection sortDirection)
         {
             if (string.IsNullOrEmpty(propertyName))
@@ -141,6 +162,7 @@ namespace AppStudio.DataProviders.Core
                 return ApplyOrder(source, propertyName, nameof(Queryable.OrderByDescending));
             }
         }
+
         private static IOrderedQueryable<T> ApplyOrder<T>(IQueryable<T> source, string propertyName, string methodName)
         {
             try

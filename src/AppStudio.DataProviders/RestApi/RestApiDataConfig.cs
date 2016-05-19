@@ -10,12 +10,12 @@ namespace AppStudio.DataProviders.RestApi
     {
         public Uri Url { get; set; }
 
-        public IPaginationConfig PaginationConfig { get; set; } = new MemoryPagination();
+        public IPagination PaginationConfig { get; set; } = new MemoryPagination();
 
         public IDictionary<string, string> Headers { get; set; }
-    }  
+    }
 
-    public interface IPaginationConfig
+    public interface IPagination
     {
         bool IsServerSidePagination { get; }
 
@@ -23,28 +23,55 @@ namespace AppStudio.DataProviders.RestApi
 
         int TokenInitialValue { get; }
 
-
         string GetContinuationToken(object data, object currentToken);
 
         Uri BuildContinuationUrl(Uri dataProviderUrl, string currentContinuationToken);
     }
 
-    public class PageNumberPagination : IPaginationConfig
+    public interface IQueryStringSorting
+    {
+        string OrderByParameterName { get; set; }
+
+        string OrderByValue { get; set; }
+
+        string SortDirectionParameterName { get; set; }
+
+        string SortDirectionValue { get; set; }
+    }
+
+    public interface IMemorySorting
+    {
+        string OrderBy { get; set; }
+
+        SortDirection SortDirection { get; set; }
+    }
+
+    public class PageNumberPagination : IPagination, IQueryStringSorting
     {
         public bool IsPageNumberZeroIndexed { get; }
+
         public string PageSizeParameterName { get; }
+
         public string PageParameterName { get; }
+
         public bool IsServerSidePagination { get; } = true;
+
         public int TokenInitialValue { get { return IsPageNumberZeroIndexed ? 0 : 1; } }
 
+        public string OrderByParameterName { get; set; }
+
+        public string OrderByValue { get; set; }
+
+        public string SortDirectionParameterName { get; set; }
+
+        public string SortDirectionValue { get; set; }
 
         public PageNumberPagination(string pageParameterName, bool isPageNumberZeroIndexed, string pageSizeParameterName = null)
-        {           
+        {
             PageParameterName = pageParameterName;
             IsPageNumberZeroIndexed = isPageNumberZeroIndexed;
             PageSizeParameterName = pageSizeParameterName;
         }
-
 
         public string GetContinuationToken(object data, object currentToken)
         {
@@ -87,7 +114,7 @@ namespace AppStudio.DataProviders.RestApi
         }
     }
 
-    public class ItemOffsetPagination : IPaginationConfig
+    public class ItemOffsetPagination : IPagination, IQueryStringSorting
     {
         public bool IsServerSidePagination { get; } = true;
 
@@ -101,8 +128,16 @@ namespace AppStudio.DataProviders.RestApi
 
         public bool IsOffsetZeroIndexed { get; set; }
 
+        public string OrderByParameterName { get; set; }
+
+        public string OrderByValue { get; set; }
+
+        public string SortDirectionParameterName { get; set; }
+
+        public string SortDirectionValue { get; set; }
+
         public ItemOffsetPagination(string offsetParameterName, bool isOffsetZeroIndexed, string pageSizeParameterName, int pageSize)
-        {           
+        {
             OffsetParameterName = offsetParameterName;
             IsOffsetZeroIndexed = isOffsetZeroIndexed;
             PageSizeParameterName = pageSizeParameterName;
@@ -152,7 +187,7 @@ namespace AppStudio.DataProviders.RestApi
 
     }
 
-    public class NextPageUrlPagination : IPaginationConfig
+    public class NextPageUrlPagination : IPagination, IQueryStringSorting
     {
         public bool IsServerSidePagination { get; } = true;
 
@@ -161,6 +196,14 @@ namespace AppStudio.DataProviders.RestApi
         public int TokenInitialValue { get { return 0; } }
 
         public string NextPagePath { get; }
+
+        public string OrderByParameterName { get; set; }
+
+        public string OrderByValue { get; set; }
+
+        public string SortDirectionParameterName { get; set; }
+
+        public string SortDirectionValue { get; set; }
 
         public NextPageUrlPagination(string nextPageResponsePath, string pageSizeParameterName)
         {
@@ -183,7 +226,7 @@ namespace AppStudio.DataProviders.RestApi
         }
 
         private static Uri GetNextPageUrl(string nextUrl)
-        {   
+        {
             if (string.IsNullOrEmpty(nextUrl))
             {
                 throw new ArgumentNullException(nameof(nextUrl));
@@ -210,7 +253,7 @@ namespace AppStudio.DataProviders.RestApi
 
     }
 
-    public class TokenPagination : IPaginationConfig
+    public class TokenPagination : IPagination, IQueryStringSorting
     {
         public bool IsServerSidePagination { get; } = true;
 
@@ -221,6 +264,14 @@ namespace AppStudio.DataProviders.RestApi
         public string TokenParameterName { get; }
 
         public string TokenPath { get; }
+
+        public string OrderByParameterName { get; set; }
+
+        public string OrderByValue { get; set; }
+
+        public string SortDirectionParameterName { get; set; }
+
+        public string SortDirectionValue { get; set; }
 
         public TokenPagination(string tokenParameterName, string tokenResponsePath, string pageSizeParameterName)
         {
@@ -234,7 +285,7 @@ namespace AppStudio.DataProviders.RestApi
             if (dataProviderUrl == null)
             {
                 throw new ArgumentNullException(nameof(dataProviderUrl));
-            }           
+            }
 
             var url = dataProviderUrl.AbsoluteUri;
             if (string.IsNullOrEmpty(dataProviderUrl.Query))
@@ -274,16 +325,25 @@ namespace AppStudio.DataProviders.RestApi
         }
     }
 
-    public class MemoryPagination : IPaginationConfig
+    public class MemoryPagination : IPagination, IMemorySorting
     {
         public bool IsServerSidePagination { get; } = false;
 
         public string PageSizeParameterName { get; }
 
-        public int TokenInitialValue
-        {
-            get { return 1; }
-        }
+        public int TokenInitialValue { get { return 1; } }
+
+        public string OrderByParameterName { get; set; }
+
+        public string OrderByValue { get; set; }
+
+        public string SortDirectionParameterName { get; set; }
+
+        public string SortDirectionValue { get; set; }
+
+        public string OrderBy { get; set; }
+
+        public SortDirection SortDirection { get; set; }
 
         public Uri BuildContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
         {

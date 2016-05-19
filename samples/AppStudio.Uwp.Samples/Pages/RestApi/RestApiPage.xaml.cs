@@ -298,7 +298,7 @@ namespace AppStudio.Uwp.Samples
             }
         }
 
-        private IPaginationConfig GetPaginationConfig()
+        private IPagination GetPaginationConfig()
         {
             switch (PaginationParameterType)
             {
