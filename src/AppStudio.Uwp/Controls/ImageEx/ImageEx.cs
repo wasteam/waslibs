@@ -30,6 +30,7 @@ namespace AppStudio.Uwp.Controls
                 {
                     progress.Height = Math.Min(96, Math.Max(8, availableSize.Height * 0.5));
                 }
+                base.MeasureOverride(availableSize);
                 _currentSize = NormalizeSize(availableSize);
                 return _currentSize;
             }
