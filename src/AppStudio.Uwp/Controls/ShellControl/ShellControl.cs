@@ -123,6 +123,7 @@ namespace AppStudio.Uwp.Controls
                 }
                 _lviewSub.SelectedItem = null;
             }
+            _currentItem = null;
             _content.Children.Clear();
             _container.Visibility = Visibility.Collapsed;
 
