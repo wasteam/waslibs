@@ -107,7 +107,10 @@ namespace AppStudio.Uwp.Controls
                 {
                     SetProgress();
                     _isHttpSource = true;
-                    cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                    if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                    {
+                        cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                    }
                 }
                 if (Path.GetExtension(uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
                 {
@@ -128,7 +131,10 @@ namespace AppStudio.Uwp.Controls
 
         private async void RefreshSourceUri(Uri uri)
         {
-            uri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                uri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+            }
             this.SetImage(new BitmapImage(uri));
         }
 
