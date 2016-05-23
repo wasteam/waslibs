@@ -114,6 +114,23 @@ namespace AppStudio.Uwp.Cache
             return results;
         }
 
+        public static async Task ClearItemsByPrefixAsync<T>(string prefix)
+        {
+            List<string> keys = _memoryCache.Keys.Where(k => k.StartsWith(prefix)).ToList();
+
+            foreach (var key in keys)
+            {
+                _memoryCache.Remove(key);
+            }
+
+            List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefixAsync(prefix, keys);
+
+            foreach (var fileKey in inFileKeys)
+            {
+                await UserStorage.DeleteFileIfExistsAsync(fileKey);
+            }
+        }
+
         public static async Task AddItemsAsync<T>(string key, CachedContent<T> data)
         {
             await AddItemsAsync<T>(key, data, true);
