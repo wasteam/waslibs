@@ -39,14 +39,31 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
+        private long _commandBarVisibilityToken = -1;
+
         public void SetCommandBar(CommandBar commandBar)
         {
+            if (_commandBarVisibilityToken > 0)
+            {
+                _commandBar.UnregisterPropertyChangedCallback(CommandBar.VisibilityProperty, _commandBarVisibilityToken);
+                _commandBarVisibilityToken = -1;
+            }
+
             _commandBar = commandBar;
             if (_isInitialized)
             {
+                if (_commandBar != null)
+                {
+                    _commandBarVisibilityToken = _commandBar.RegisterPropertyChangedCallback(CommandBar.VisibilityProperty, OnCommandBarVisibilityChanged);
+                }
                 _commandBarContainer.Content = _commandBar;
                 SetCommandBarVerticalAlignment(this.CommandBarVerticalAlignment);
             }
+        }
+
+        private void OnCommandBarVisibilityChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            SetCommandBarVerticalAlignment(this.CommandBarVerticalAlignment);
         }
 
         public static readonly DependencyProperty CommandBarProperty = DependencyProperty.RegisterAttached("CommandBar", typeof(CommandBar), typeof(ShellControl), new PropertyMetadata(null, CommandBarChanged));

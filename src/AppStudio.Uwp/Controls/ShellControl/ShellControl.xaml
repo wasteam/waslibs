@@ -121,8 +121,6 @@
                                                 </ListView.ItemContainerStyle>
                                             </ListView>
                                         </Grid>
-
-                                        <Line Margin="47,0,0,0" Y1="0" Y2="1" Stroke="{TemplateBinding NavigationForeground}" Stretch="UniformToFill" HorizontalAlignment="Left" />
                                     </Grid>
                                 </Grid>
                             </SplitView.Pane>

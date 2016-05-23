@@ -30,7 +30,7 @@ namespace AppStudio.DataProviders.Core
            
         }
 
-        public IEnumerable<TSchema> Items { get; set; }
+        public IEnumerable<TSchema> Items { get; set; } = new TSchema[0];
 
         public int HttpStatusCode
         {
