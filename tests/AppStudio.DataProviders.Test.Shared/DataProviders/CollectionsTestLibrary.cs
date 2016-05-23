@@ -230,9 +230,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<CollectionSchema2> data = await dataProvider.LoadDataAsync(config);
 
             config.OrderBy = "Title";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             IEnumerable<CollectionSchema2> dataAsc = await dataProvider.LoadDataAsync(config);
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config);
 
             Assert.AreNotEqual(data.FirstOrDefault()?.Title, dataAsc.FirstOrDefault().Title);
@@ -250,9 +250,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             }
 
             config.OrderBy = "Date";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             dataAsc = await dataProvider.LoadDataAsync(config);
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config);
 
             Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
@@ -269,9 +269,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             }
 
             config.OrderBy = "DateTime";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             dataAsc = await dataProvider.LoadDataAsync(config);
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config);
 
             Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
@@ -304,10 +304,10 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();           
 
             config.OrderBy = "Title";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             IEnumerable<CollectionSchema2> dataAsc = await dataProvider.LoadDataAsync(config, 2);
             dataAsc = await dataProvider.LoadMoreDataAsync();
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config, 2);
             dataDesc = await dataProvider.LoadMoreDataAsync();            
 
@@ -324,10 +324,10 @@ namespace AppStudio.DataProviders.Test.DataProviders
             }   
 
             config.OrderBy = "Date";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             dataAsc = await dataProvider.LoadDataAsync(config, 2);
             dataAsc = await dataProvider.LoadMoreDataAsync();
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config, 2);
             dataDesc = await dataProvider.LoadMoreDataAsync();
          
@@ -344,10 +344,10 @@ namespace AppStudio.DataProviders.Test.DataProviders
             }
 
             config.OrderBy = "DateTime";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             dataAsc = await dataProvider.LoadDataAsync(config, 2);
             dataAsc = await dataProvider.LoadMoreDataAsync();
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config, 2);
             dataDesc = await dataProvider.LoadMoreDataAsync();                      
 
@@ -376,9 +376,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config);
 
             config.OrderBy = "Name";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             IEnumerable<CollectionSchema> dataAsc = await dataProvider.LoadDataAsync(config);
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             IEnumerable<CollectionSchema> dataDesc = await dataProvider.LoadDataAsync(config);
 
             Assert.AreNotEqual(data.FirstOrDefault()?.Name, dataAsc.FirstOrDefault().Name);
@@ -409,10 +409,10 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<CollectionSchema> data = await dataProvider.LoadMoreDataAsync();
 
             config.OrderBy = "Name";
-            config.SortDirection = SortDirection.Ascending;
+            config.OrderDirection = SortDirection.Ascending;
             IEnumerable<CollectionSchema> dataAsc = await dataProvider.LoadDataAsync(config, 2);
             dataAsc = await dataProvider.LoadMoreDataAsync();
-            config.SortDirection = SortDirection.Descending;
+            config.OrderDirection = SortDirection.Descending;
             IEnumerable<CollectionSchema> dataDesc = await dataProvider.LoadDataAsync(config, 2);
             dataDesc = await dataProvider.LoadMoreDataAsync();
 

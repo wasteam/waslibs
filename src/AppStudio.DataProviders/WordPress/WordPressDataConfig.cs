@@ -10,7 +10,7 @@
 
         public WordPressOrderBy OrderBy { get; set; } 
 
-        public SortDirection SortDirection { get; set; } = SortDirection.Descending;
+        public SortDirection OrderDirection { get; set; } = SortDirection.Descending;
     }
 
     public enum WordPressQueryType

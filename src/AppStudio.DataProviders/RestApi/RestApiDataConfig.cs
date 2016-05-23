@@ -32,18 +32,18 @@ namespace AppStudio.DataProviders.RestApi
     {
         string OrderByParameterName { get; set; }
 
-        string OrderByValue { get; set; }
+        string OrderByParameterValue { get; set; }
 
-        string SortDirectionParameterName { get; set; }
+        string OrderDirectionParameterName { get; set; }
 
-        string SortDirectionValue { get; set; }
+        string OrderDirectionParameterValue { get; set; }
     }
 
     public interface IMemorySorting
     {
         string OrderBy { get; set; }
 
-        SortDirection SortDirection { get; set; }
+        SortDirection OrderDirection { get; set; }
     }
 
     public class PageNumberPagination : IPagination, IQueryStringSorting
@@ -60,11 +60,11 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderByParameterName { get; set; }
 
-        public string OrderByValue { get; set; }
+        public string OrderByParameterValue { get; set; }
 
-        public string SortDirectionParameterName { get; set; }
+        public string OrderDirectionParameterName { get; set; }
 
-        public string SortDirectionValue { get; set; }
+        public string OrderDirectionParameterValue { get; set; }
 
         public PageNumberPagination(string pageParameterName, bool isPageNumberZeroIndexed, string pageSizeParameterName = null)
         {
@@ -130,11 +130,11 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderByParameterName { get; set; }
 
-        public string OrderByValue { get; set; }
+        public string OrderByParameterValue { get; set; }
 
-        public string SortDirectionParameterName { get; set; }
+        public string OrderDirectionParameterName { get; set; }
 
-        public string SortDirectionValue { get; set; }
+        public string OrderDirectionParameterValue { get; set; }
 
         public ItemOffsetPagination(string offsetParameterName, bool isOffsetZeroIndexed, string pageSizeParameterName, int pageSize)
         {
@@ -199,11 +199,11 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderByParameterName { get; set; }
 
-        public string OrderByValue { get; set; }
+        public string OrderByParameterValue { get; set; }
 
-        public string SortDirectionParameterName { get; set; }
+        public string OrderDirectionParameterName { get; set; }
 
-        public string SortDirectionValue { get; set; }
+        public string OrderDirectionParameterValue { get; set; }
 
         public NextPageUrlPagination(string nextPageResponsePath, string pageSizeParameterName)
         {
@@ -267,11 +267,11 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderByParameterName { get; set; }
 
-        public string OrderByValue { get; set; }
+        public string OrderByParameterValue { get; set; }
 
-        public string SortDirectionParameterName { get; set; }
+        public string OrderDirectionParameterName { get; set; }
 
-        public string SortDirectionValue { get; set; }
+        public string OrderDirectionParameterValue { get; set; }
 
         public TokenPagination(string tokenParameterName, string tokenResponsePath, string pageSizeParameterName)
         {
@@ -343,7 +343,7 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderBy { get; set; }
 
-        public SortDirection SortDirection { get; set; }
+        public SortDirection OrderDirection { get; set; }
 
         public Uri BuildContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
         {

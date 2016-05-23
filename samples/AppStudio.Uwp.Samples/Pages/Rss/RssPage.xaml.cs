@@ -187,7 +187,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     Url = new Uri(RssQuery, UriKind.Absolute),
                     OrderBy = OrderBy != RssSampleOrderBy.None ? OrderBy.ToString() : string.Empty,
-                    SortDirection = SortDirection
+                    OrderDirection = SortDirection
                 };
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);

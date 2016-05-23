@@ -80,7 +80,7 @@ namespace AppStudio.DataProviders.DynamicStorage
 
         private Uri GetUrl(DynamicStorageDataConfig config, int pageSize)
         {
-            var sortDirection = config.SortDirection == SortDirection.Ascending ? "ASC" : "DESC";
+            var sortDirection = config.OrderDirection == SortDirection.Ascending ? "ASC" : "DESC";
             var url = $"{config.Url}&pageIndex={ContinuationToken}&blockSize={pageSize}";
             if (!string.IsNullOrEmpty(config.OrderBy))
             {

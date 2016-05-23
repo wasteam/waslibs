@@ -362,7 +362,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Posts,
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Ascending
+                OrderDirection = SortDirection.Ascending
             };
 
             var dataProvider = new WordPressDataProvider();
@@ -374,7 +374,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Posts,
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Descending
+                OrderDirection = SortDirection.Descending
             };
 
             var dataProviderDesc = new WordPressDataProvider();
@@ -408,7 +408,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = WordPressQueryType.Category,
                 FilterBy = "themes",
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Ascending
+                OrderDirection = SortDirection.Ascending
             };
 
             var dataProvider = new WordPressDataProvider();
@@ -421,7 +421,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = WordPressQueryType.Category,
                 FilterBy = "themes",
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Descending
+                OrderDirection = SortDirection.Descending
             };
 
             var dataProviderDesc = new WordPressDataProvider();
@@ -454,7 +454,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = WordPressQueryType.Tag,
                 FilterBy = "wordpress",
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Ascending
+                OrderDirection = SortDirection.Ascending
             };
 
             var dataProvider = new WordPressDataProvider();
@@ -467,7 +467,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 QueryType = WordPressQueryType.Tag,
                 FilterBy = "wordpress",
                 OrderBy = WordPressOrderBy.Id,
-                SortDirection = SortDirection.Descending
+                OrderDirection = SortDirection.Descending
             };
 
             var dataProviderDesc = new WordPressDataProvider();

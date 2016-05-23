@@ -44,7 +44,7 @@ namespace AppStudio.DataProviders.Flickr
                     _hasMoreItems = totalAsTSchema.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
 
-                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.SortDirection).Take(pageSize).ToList();
+                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.OrderDirection).Take(pageSize).ToList();
                     return resultToReturn;
                 }
                 _hasMoreItems = false;
@@ -106,7 +106,7 @@ namespace AppStudio.DataProviders.Flickr
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
             var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);
-            var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(Config.OrderBy, Config.SortDirection).Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(Config.OrderBy, Config.OrderDirection).Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }        
     }

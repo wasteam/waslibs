@@ -201,7 +201,7 @@ namespace AppStudio.Uwp.Samples
                     Query = FlickrQueryParam,
                     QueryType = FlickrQueryTypeSelectedItem,
                     OrderBy = OrderBy != FlickrSampleOrderBy.None? OrderBy.ToString():string.Empty,
-                    SortDirection = SortDirection
+                    OrderDirection = SortDirection
                 };
 
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);

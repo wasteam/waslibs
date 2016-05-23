@@ -208,7 +208,7 @@ namespace AppStudio.Uwp.Samples
                     QueryType = WordPressQueryTypeSelectedItem,
                     FilterBy = WordPressQueryFilterBy,
                     OrderBy = OrderBy,
-                    SortDirection = SortDirection
+                    OrderDirection = SortDirection
                 };  
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
 

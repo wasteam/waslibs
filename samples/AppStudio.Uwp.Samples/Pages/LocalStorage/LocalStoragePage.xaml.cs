@@ -187,7 +187,7 @@ namespace AppStudio.Uwp.Samples
                 {
                     FilePath = LocalStorageQuery,
                     OrderBy = OrderBy.ToString(),
-                    SortDirection = SortDirection
+                    OrderDirection = SortDirection
                 };
 
                 var items = await localStorageDataProvider.LoadDataAsync(config, MaxRecordsParam);

@@ -102,7 +102,7 @@ namespace AppStudio.DataProviders.RestApi
                 var pagination = config?.PaginationConfig as IMemorySorting;
                 if (pagination != null)
                 {
-                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.SortDirection).Take(pageSize).ToList();
+                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.OrderDirection).Take(pageSize).ToList();
                 }
                 else
                 {
@@ -125,7 +125,7 @@ namespace AppStudio.DataProviders.RestApi
                 var pagination = config?.PaginationConfig as IMemorySorting;
                 if (pagination != null)
                 {
-                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.SortDirection).Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.OrderDirection).Skip(PageSize * (page - 1)).Take(PageSize).ToList();
                 }
                 else
                 {
@@ -173,14 +173,14 @@ namespace AppStudio.DataProviders.RestApi
             if (pagination != null)
             {
                 string orderByName = pagination.OrderByParameterName;
-                string orderByValue = pagination.OrderByValue;
+                string orderByValue = pagination.OrderByParameterValue;
                 if (!string.IsNullOrEmpty(orderByName) && !string.IsNullOrEmpty(orderByValue))
                 {
                     query[orderByName] = orderByValue;
                 }
 
-                string sortDirectionName = pagination.SortDirectionParameterName;
-                string sortDirectionValue = pagination.SortDirectionValue;
+                string sortDirectionName = pagination.OrderDirectionParameterName;
+                string sortDirectionValue = pagination.OrderDirectionParameterValue;
                 if (!string.IsNullOrEmpty(sortDirectionName) && !string.IsNullOrEmpty(sortDirectionValue))
                 {
                     query[sortDirectionName] = sortDirectionValue;

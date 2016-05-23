@@ -8,7 +8,7 @@
 
         public string OrderBy { get; set; }
 
-        public SortDirection SortDirection { get; set; }
+        public SortDirection OrderDirection { get; set; }
     }
 
     public enum FlickrQueryType

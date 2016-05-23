@@ -44,7 +44,7 @@ namespace AppStudio.DataProviders.LocalStorage
                     _hasMoreItems = totalAsTSchema.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
 
-                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.SortDirection).Take(pageSize).ToList();
+                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.OrderDirection).Take(pageSize).ToList();
                     return resultToReturn;
                 }
                 _hasMoreItems = false;
@@ -94,7 +94,7 @@ namespace AppStudio.DataProviders.LocalStorage
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
             var total = (_totalItems as IEnumerable<TSchema>);
-            var resultToReturn = total.AsQueryable().OrderBy(Config.OrderBy, Config.SortDirection).Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            var resultToReturn = total.AsQueryable().OrderBy(Config.OrderBy, Config.OrderDirection).Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
         }
     }
