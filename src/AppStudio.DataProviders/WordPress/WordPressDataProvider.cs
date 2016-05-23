@@ -124,7 +124,7 @@ namespace AppStudio.DataProviders.WordPress
             if (config.OrderBy != WordPressOrderByType.None)
             {
                 var order = config.OrderDirection == SortDirection.Ascending ? "ASC" : "DESC";
-                url += $@"&order_by={config.OrderBy.ToString().ToLower()}&order={order}";
+                url += $@"&order_by={config.OrderBy.GetStringValue()}&order={order}";
             }
             return url;
         }

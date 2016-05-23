@@ -125,6 +125,21 @@ namespace AppStudio.DataProviders.Core
             return withoutStyles;
         }
 
+        public static string GetStringValue(this Enum value)
+        {
+            string output = null;
+            Type type = value.GetType();
+
+            FieldInfo fi = type.GetRuntimeField(value.ToString());
+            StringValueAttribute[] attrs = fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
+            if (attrs.Length > 0)
+            {
+                output = attrs[0].Value;
+            }
+
+            return output;
+        }
+
         public static Dictionary<string, string> ParseQueryString(this Uri uri)
         {
             if (uri != null && !string.IsNullOrEmpty(uri.Query))

@@ -1,4 +1,6 @@
-﻿namespace AppStudio.DataProviders.WordPress
+﻿using AppStudio.DataProviders.Core;
+
+namespace AppStudio.DataProviders.WordPress
 {
     public class WordPressDataConfig
     {
@@ -22,11 +24,11 @@
 
     public enum WordPressOrderByType
     {   
-        None,        
-        Date,
-        Modified,
-        Title,
-        Comment_Count,
-        Id
+        None,
+        [StringValue("date")]Date,
+        [StringValue("modified")]Modified,
+        [StringValue("title")]Title,
+        [StringValue("comment_count")]CommentCount,
+        [StringValue("ID")]Id
     }
 }
