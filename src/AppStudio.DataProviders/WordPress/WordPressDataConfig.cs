@@ -8,7 +8,7 @@
 
         public string FilterBy { get; set; }
 
-        public WordPressOrderBy OrderBy { get; set; } 
+        public WordPressOrderByType OrderBy { get; set; } 
 
         public SortDirection OrderDirection { get; set; } = SortDirection.Descending;
     }
@@ -20,7 +20,7 @@
         Category
     }
 
-    public enum WordPressOrderBy
+    public enum WordPressOrderByType
     {   
         None,        
         Date,

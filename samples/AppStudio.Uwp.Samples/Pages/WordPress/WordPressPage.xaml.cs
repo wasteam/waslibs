@@ -19,7 +19,7 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultWordPressQueryFilterBy = "";
         private const WordPressQueryType DefaultQueryType = WordPressQueryType.Posts;
         private const int DefaultMaxRecordsParam = 20;
-        private const WordPressOrderBy DefaultOrderBy = WordPressOrderBy.None;
+        private const WordPressOrderByType DefaultOrderBy = WordPressOrderByType.None;
         private const SortDirection DefaultSortDirection = SortDirection.Ascending;
 
         WordPressDataProvider wordPressDataProvider;
@@ -77,13 +77,13 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty WordPressQueryTypeSelectedItemProperty = DependencyProperty.Register(nameof(WordPressQueryTypeSelectedItemProperty), typeof(WordPressQueryType), typeof(WordPressPage), new PropertyMetadata(DefaultQueryType));
 
 
-        public WordPressOrderBy OrderBy
+        public WordPressOrderByType OrderBy
         {
-            get { return (WordPressOrderBy)GetValue(OrderByProperty); }
+            get { return (WordPressOrderByType)GetValue(OrderByProperty); }
             set { SetValue(OrderByProperty, value); }
         }
 
-        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(WordPressOrderBy), typeof(WordPressPage), new PropertyMetadata(DefaultOrderBy));
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(WordPressOrderByType), typeof(WordPressPage), new PropertyMetadata(DefaultOrderBy));
 
         public SortDirection SortDirection
         {
