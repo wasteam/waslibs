@@ -114,7 +114,7 @@ namespace AppStudio.Uwp.Cache
             return results;
         }
 
-        public static async Task ClearItemsByPrefixAsync<T>(string prefix)
+        public static async Task ClearItemsByPrefixAsync(string prefix)
         {
             List<string> keys = _memoryCache.Keys.Where(k => k.StartsWith(prefix)).ToList();
 
