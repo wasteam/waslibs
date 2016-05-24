@@ -78,7 +78,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
             IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsNotNull(data);          
+            Assert.IsNotNull(data);
             Assert.AreEqual(maxRecords, data.Count());
         }
 
@@ -213,7 +213,236 @@ namespace AppStudio.DataProviders.Test.DataProviders
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
             Assert.IsFalse(dataProvider.IsInitialized);
         }
-    }   
+
+        [TestMethod]
+        public async Task LoadDynamicCollection_Sorting()
+        {
+
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6389c5e8-788e-42cc-8b74-a16fca5e4bf3&appId=d3fdeca1-ee0e-482c-bc19-82e344d2b78c")
+            };
+
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();
+            IEnumerable<CollectionSchema2> data = await dataProvider.LoadDataAsync(config);
+
+            config.OrderBy = "Title";
+            config.OrderDirection = SortDirection.Ascending;
+            IEnumerable<CollectionSchema2> dataAsc = await dataProvider.LoadDataAsync(config);
+            config.OrderDirection = SortDirection.Descending;
+            IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(data.FirstOrDefault()?.Title, dataAsc.FirstOrDefault().Title);
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+            var dataExpected = data.OrderBy(x => x.Title).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.Title).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+
+            config.OrderBy = "Date";
+            config.OrderDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config);
+            config.OrderDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+            dataExpected = data.OrderBy(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+
+            config.OrderBy = "DateTime";
+            config.OrderDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config);
+            config.OrderDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Title, dataDesc.FirstOrDefault().Title);
+
+            dataExpected = data.OrderBy(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDynamicCollection_Sorting()
+        {
+
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6389c5e8-788e-42cc-8b74-a16fca5e4bf3&appId=d3fdeca1-ee0e-482c-bc19-82e344d2b78c")
+            };
+
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();           
+
+            config.OrderBy = "Title";
+            config.OrderDirection = SortDirection.Ascending;
+            IEnumerable<CollectionSchema2> dataAsc = await dataProvider.LoadDataAsync(config, 2);
+            dataAsc = await dataProvider.LoadMoreDataAsync();
+            config.OrderDirection = SortDirection.Descending;
+            IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config, 2);
+            dataDesc = await dataProvider.LoadMoreDataAsync();            
+
+            var dataExpected = dataAsc.OrderBy(x => x.Title).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = dataDesc.OrderByDescending(x => x.Title).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }   
+
+            config.OrderBy = "Date";
+            config.OrderDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config, 2);
+            dataAsc = await dataProvider.LoadMoreDataAsync();
+            config.OrderDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config, 2);
+            dataDesc = await dataProvider.LoadMoreDataAsync();
+         
+            dataExpected = dataAsc.OrderBy(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = dataDesc.OrderByDescending(x => x.Date).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+
+            config.OrderBy = "DateTime";
+            config.OrderDirection = SortDirection.Ascending;
+            dataAsc = await dataProvider.LoadDataAsync(config, 2);
+            dataAsc = await dataProvider.LoadMoreDataAsync();
+            config.OrderDirection = SortDirection.Descending;
+            dataDesc = await dataProvider.LoadDataAsync(config, 2);
+            dataDesc = await dataProvider.LoadMoreDataAsync();                      
+
+            dataExpected = dataAsc.OrderBy(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataAsc.ToList()[i].Title);
+            }
+
+            dataExpected = dataDesc.OrderByDescending(x => x.DateTime).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadStaticCollection_Sorting()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadDataAsync(config);
+
+            config.OrderBy = "Name";
+            config.OrderDirection = SortDirection.Ascending;
+            IEnumerable<CollectionSchema> dataAsc = await dataProvider.LoadDataAsync(config);
+            config.OrderDirection = SortDirection.Descending;
+            IEnumerable<CollectionSchema> dataDesc = await dataProvider.LoadDataAsync(config);
+
+            Assert.AreNotEqual(data.FirstOrDefault()?.Name, dataAsc.FirstOrDefault().Name);
+            Assert.AreNotEqual(dataAsc.FirstOrDefault()?.Name, dataDesc.FirstOrDefault().Name);
+            var dataExpected = data.OrderBy(x => x.Name).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Name, dataAsc.ToList()[i].Name);
+            }
+
+            dataExpected = data.OrderByDescending(x => x.Name).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Name, dataDesc.ToList()[i].Name);
+            }
+        }
+
+        [TestMethod]
+        public async Task LoadMoreStaticCollection_Sorting()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            await dataProvider.LoadDataAsync(config, 2);
+            IEnumerable<CollectionSchema> data = await dataProvider.LoadMoreDataAsync();
+
+            config.OrderBy = "Name";
+            config.OrderDirection = SortDirection.Ascending;
+            IEnumerable<CollectionSchema> dataAsc = await dataProvider.LoadDataAsync(config, 2);
+            dataAsc = await dataProvider.LoadMoreDataAsync();
+            config.OrderDirection = SortDirection.Descending;
+            IEnumerable<CollectionSchema> dataDesc = await dataProvider.LoadDataAsync(config, 2);
+            dataDesc = await dataProvider.LoadMoreDataAsync();
+
+            Assert.AreNotEqual(data.FirstOrDefault()?.Name, dataAsc.FirstOrDefault().Name);
+           
+            var dataExpected = dataAsc.OrderBy(x => x.Name).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Name, dataAsc.ToList()[i].Name);
+            }
+
+            dataExpected = dataDesc.OrderByDescending(x => x.Name).ToList();
+            for (int i = 0; i < dataExpected.Count() - 1; i++)
+            {
+                Assert.AreEqual(dataExpected[i].Name, dataDesc.ToList()[i].Name);
+            }
+        }
+    }
+
+    public class CollectionSchema2 : SchemaBase
+    {
+        public string Title { get; set; }
+
+        public DateTime? DateTime { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public string Description { get; set; }
+    }
+
 
     // This is a Windows App Studio template schema from Generic Layout page.
     public class CollectionSchema : SchemaBase

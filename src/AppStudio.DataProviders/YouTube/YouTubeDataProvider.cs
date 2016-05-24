@@ -39,7 +39,7 @@ namespace AppStudio.DataProviders.YouTube
                     result = await LoadChannelAsync(config.Query, pageSize, parser);
                     break;
                 case YouTubeQueryType.Videos:
-                    result = await SearchAsync(config.Query, pageSize, parser);
+                    result = await SearchAsync(config, pageSize, parser);
                     break;
                 case YouTubeQueryType.Playlist:
                 default:
@@ -137,11 +137,11 @@ namespace AppStudio.DataProviders.YouTube
             }
         }
 
-        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string query, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(YouTubeDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = new Uri(GetSearchUrl(query, pageSize), UriKind.Absolute)
+                RequestedUri = new Uri(GetSearchUrl(config, pageSize), UriKind.Absolute)
             };
 
             return await GetDataFromProvider(parser, settings);
@@ -149,7 +149,7 @@ namespace AppStudio.DataProviders.YouTube
 
         private async Task<IEnumerable<TSchema>> LoadMoreDataSearchAsync<TSchema>(string query, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-            var requestUrl = GetSearchUrl(query, pageSize);
+            var requestUrl = GetSearchUrl(Config, pageSize);
             var continuacionUrl = GetContinuationUrl(requestUrl);
             var settings = new HttpRequestSettings
             {
@@ -239,9 +239,13 @@ namespace AppStudio.DataProviders.YouTube
             return url;
         }
 
-        private string GetSearchUrl(string query, int pageSize)
+        private string GetSearchUrl(YouTubeDataConfig config, int pageSize)
         {
-            var url = $"{BaseUrl}/search?q={query}&part=snippet&maxResults={pageSize}&key={_tokens.ApiKey}&type=video";
+            var url = $"{BaseUrl}/search?q={config.Query}&part=snippet&maxResults={pageSize}&key={_tokens.ApiKey}&type=video";
+            if (config.SearchVideosOrderBy != YouTubeSearchOrderBy.None)
+            {
+                url += $"&order={config.SearchVideosOrderBy.ToString().ToLower()}";
+            }
             return url;
         }
 

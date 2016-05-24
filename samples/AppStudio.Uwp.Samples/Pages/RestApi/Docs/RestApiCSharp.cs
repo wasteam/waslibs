@@ -3,16 +3,18 @@ using System.Collections.ObjectModel;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.RestApi;
 using AppStudio.DataProviders;
 
+
 namespace AppStudio.Uwp.Samples
 {
     public sealed partial class RestApiSample : Page
     {
+        private RestApiDataProvider _dataProvider;
+
         public RestApiSample()
         {
             this.InitializeComponent();
@@ -28,7 +30,7 @@ namespace AppStudio.Uwp.Samples
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
             .Register("Items", typeof(ObservableCollection<object>), typeof(RestApiSample), new PropertyMetadata(null));
 
-      
+
         public async void GetItemsTokenPagination()
         {
             string endPoint = "http://MyRestApiEndPoint.com";
@@ -47,8 +49,8 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            _dataProvider = new RestApiDataProvider();
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
@@ -71,8 +73,8 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            _dataProvider = new RestApiDataProvider();
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
@@ -85,7 +87,7 @@ namespace AppStudio.Uwp.Samples
             var maxRecordsParam = 20;
             var offsetParemeterName = "offset";
             var pageSizeParemeterName = "limit";
-          
+
 
             var paginationConfig = new ItemOffsetPagination(offsetParemeterName, true, pageSizeParemeterName, maxRecordsParam);
 
@@ -96,8 +98,8 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            _dataProvider = new RestApiDataProvider();
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
             foreach (var item in items)
             {
                 Items.Add(item);
@@ -121,8 +123,18 @@ namespace AppStudio.Uwp.Samples
             };
 
             var parser = new JsonParser<MySchema>();
-            var dataProvider = new RestApiDataProvider();
-            var items = await dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            _dataProvider = new RestApiDataProvider();
+            var items = await _dataProvider.LoadDataAsync(config, maxRecordsParam, parser);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _dataProvider.LoadMoreDataAsync<MySchema>();
+
             foreach (var item in items)
             {
                 Items.Add(item);

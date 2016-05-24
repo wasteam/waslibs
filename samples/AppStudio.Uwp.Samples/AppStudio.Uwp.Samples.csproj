@@ -192,6 +192,7 @@
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Controls\IndexTemplateSelector.cs" />
     <Compile Include="Controls\PrettifyControl.cs" />
+    <Compile Include="Converters\CompareStringVisibiltyConverter.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
       <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Flickr\FlickrOrderBy.cs" />
     <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
       <DependentUpon>GifControlSettings.xaml</DependentUpon>
     </Compile>
@@ -317,11 +319,11 @@
     <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RestApi\CompareStringVisibiltyConverter.cs" />
     <Compile Include="Pages\RestApi\RestApiSample.cs" />
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Rss\RssOrderBy.cs" />
     <Compile Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml.cs">
       <DependentUpon>SearchBoxHelp.xaml</DependentUpon>
     </Compile>

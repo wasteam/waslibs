@@ -209,5 +209,180 @@ namespace AppStudio.DataProviders.Test.DataProviders
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
             Assert.IsFalse(dataProvider.IsInitialized);
         }
+
+        [TestMethod]
+        public async Task LoadFlickrUser_OrderByTitle()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id,
+                OrderBy = nameof(FlickrSchema.Title),
+                OrderDirection = SortDirection.Ascending
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadDataAsync: Flickr sorting (ascending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+
+            config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id,
+                OrderBy = nameof(FlickrSchema.Title),
+                OrderDirection = SortDirection.Descending
+            };
+
+            dataProvider = new FlickrDataProvider();
+             data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadDataAsync: Flickr sorting (descending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadFlickrUser_OrderByPublished()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id,
+                OrderBy = nameof(FlickrSchema.Published),
+                OrderDirection = SortDirection.Ascending
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadDataAsync: Flickr sorting (ascending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+
+            config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id,
+                OrderBy = nameof(FlickrSchema.Published),
+                OrderDirection = SortDirection.Descending
+            };
+
+            dataProvider = new FlickrDataProvider();
+            data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadDataAsync: Flickr sorting (descending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadFlickrTags_OrderByTitle()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags,
+                OrderBy = nameof(FlickrSchema.Title),
+                OrderDirection = SortDirection.Ascending
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadDataAsync: Flickr sorting (ascending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+
+            config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags,
+                OrderBy = nameof(FlickrSchema.Title),
+                OrderDirection = SortDirection.Descending
+            };
+
+            dataProvider = new FlickrDataProvider();
+            data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadDataAsync: Flickr sorting (descending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).FirstOrDefault(), data.ToList()[0].Title, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Title).Select(x => x.Title).LastOrDefault(), data.ToList()[data.Count() - 1].Title, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadFlickrTags_OrderByPublished()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags,
+                OrderBy = nameof(FlickrSchema.Published),
+                OrderDirection = SortDirection.Ascending
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadDataAsync: Flickr sorting (ascending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+            Assert.AreEqual(data.OrderBy(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadMoreDataAsync: Flickr sorting (ascending) is not working");
+
+            config = new FlickrDataConfig
+            {
+                Query = "windowsappstudio",
+                QueryType = FlickrQueryType.Tags,
+                OrderBy = nameof(FlickrSchema.Published),
+                OrderDirection = SortDirection.Descending
+            };
+
+            dataProvider = new FlickrDataProvider();
+            data = await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadDataAsync: Flickr sorting (descending) is not working");
+
+            data = await dataProvider.LoadMoreDataAsync();
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).FirstOrDefault(), data.ToList()[0].Published, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+            Assert.AreEqual(data.OrderByDescending(x => x.Published).Select(x => x.Published).LastOrDefault(), data.ToList()[data.Count() - 1].Published, "LoadMoreDataAsync: Flickr sorting (descending) is not working");
+        }
+
+        [TestMethod]
+        public async Task LoadFlickr_OrderBy_InvalidProperty()
+        {
+            var config = new FlickrDataConfig
+            {
+                Query = "100292344@N05",
+                QueryType = FlickrQueryType.Id,
+                OrderBy = "InvalidProperty"
+            };
+
+            var dataProvider = new FlickrDataProvider();
+            IEnumerable<FlickrSchema> data = await dataProvider.LoadDataAsync(config, 5);
+            data = await dataProvider.LoadMoreDataAsync();         
+        }
     }
 }

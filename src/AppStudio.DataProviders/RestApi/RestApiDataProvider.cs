@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
+using System.Net;
 
 namespace AppStudio.DataProviders.RestApi
 {
@@ -94,10 +96,18 @@ namespace AppStudio.DataProviders.RestApi
             if (Config?.PaginationConfig?.IsServerSidePagination == false)
             {
                 _totalItems = result.Items;
-                var total = (_totalItems as IEnumerable<TSchema>);
-                _hasMoreItems = total.Count() > pageSize;
-                var items = total.Take(pageSize).ToList();
-                result.Items = items;
+
+                var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);
+                _hasMoreItems = totalAsTSchema.Count() > pageSize;
+                var pagination = config?.PaginationConfig as IMemorySorting;
+                if (pagination != null)
+                {
+                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.OrderDirection).Take(pageSize).ToList();
+                }
+                else
+                {
+                    result.Items = totalAsTSchema.Take(pageSize).ToList();
+                }               
             }
             return result;
         }
@@ -107,11 +117,20 @@ namespace AppStudio.DataProviders.RestApi
             if (Config?.PaginationConfig.IsServerSidePagination == false)
             {
                 int page = Convert.ToInt32(ContinuationToken);
-                var total = (_totalItems as IEnumerable<TSchema>);
-                var nextItems = total.Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+                var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);               
+
                 ContinuationToken = GetContinuationToken(string.Empty);
                 var result = new HttpRequestResult<TSchema>();
-                result.Items = nextItems;
+
+                var pagination = config?.PaginationConfig as IMemorySorting;
+                if (pagination != null)
+                {
+                    result.Items = totalAsTSchema.AsQueryable().OrderBy(pagination.OrderBy, pagination.OrderDirection).Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+                }
+                else
+                {
+                    result.Items = totalAsTSchema.Skip(PageSize * (page - 1)).Take(PageSize).ToList();
+                }     
                 return result;
             }
             else
@@ -142,16 +161,40 @@ namespace AppStudio.DataProviders.RestApi
         {
             Uri uri = config.Url;
             var absoluteUri = uri.AbsoluteUri;
-            var pageSizeParameterName = config?.PaginationConfig?.PageSizeParameterName;
+            var query = uri.ParseQueryString();          
+
+            var pageSizeParameterName = config?.PaginationConfig?.PageSizeParameterName;            
             if (!string.IsNullOrEmpty(pageSizeParameterName))
             {
-                if (string.IsNullOrEmpty(uri.Query))
-                {
-                    return $"{absoluteUri}?{pageSizeParameterName}={pageSize}";
-                }
-                return $"{absoluteUri}&{pageSizeParameterName}={pageSize}";
+                query[pageSizeParameterName] = pageSize.ToString();  
             }
-            return absoluteUri;
+
+            var pagination = config?.PaginationConfig as IQueryStringSorting;
+            if (pagination != null)
+            {
+                string orderByName = pagination.OrderByParameterName;
+                string orderByValue = pagination.OrderByParameterValue;
+                if (!string.IsNullOrEmpty(orderByName) && !string.IsNullOrEmpty(orderByValue))
+                {
+                    query[orderByName] = orderByValue;
+                }
+
+                string sortDirectionName = pagination.OrderDirectionParameterName;
+                string sortDirectionValue = pagination.OrderDirectionParameterValue;
+                if (!string.IsNullOrEmpty(sortDirectionName) && !string.IsNullOrEmpty(sortDirectionValue))
+                {
+                    query[sortDirectionName] = sortDirectionValue;
+                }
+            }
+
+            var queryString = query.ToQueryString();
+            if (string.IsNullOrEmpty(uri.Query))
+            {
+                return $"{absoluteUri}{queryString}";
+            }
+            
+            var uriWithoutQuery = absoluteUri.Replace(uri.Query, string.Empty);
+            return $"{uriWithoutQuery}{queryString}";
         }
 
         private Uri GetContinuationUrl(string url)
