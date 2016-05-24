@@ -121,7 +121,7 @@ namespace AppStudio.DataProviders.WordPress
                     url = $"{BaseUrl}/sites/{config.Query}/posts/?number={pageSize}";
                     break;
             }
-            if (config.OrderBy != WordPressOrderByType.None)
+            if (config.OrderBy != WordPressOrderBy.None)
             {
                 var order = config.OrderDirection == SortDirection.Ascending ? "ASC" : "DESC";
                 url += $@"&order_by={config.OrderBy.GetStringValue()}&order={order}";

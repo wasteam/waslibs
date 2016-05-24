@@ -361,7 +361,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Posts,
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Ascending
             };
 
@@ -373,7 +373,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Posts,
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Descending
             };
 
@@ -407,7 +407,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Category,
                 FilterBy = "themes",
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Ascending
             };
 
@@ -420,7 +420,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Category,
                 FilterBy = "themes",
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Descending
             };
 
@@ -453,7 +453,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Tag,
                 FilterBy = "wordpress",
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Ascending
             };
 
@@ -466,7 +466,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Query = "en.blog.wordpress.com",
                 QueryType = WordPressQueryType.Tag,
                 FilterBy = "wordpress",
-                OrderBy = WordPressOrderByType.Id,
+                OrderBy = WordPressOrderBy.Id,
                 OrderDirection = SortDirection.Descending
             };
 
