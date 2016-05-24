@@ -317,7 +317,7 @@
     <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RestApi\PaginationTypeToVisibiltyConverter.cs" />
+    <Compile Include="Pages\RestApi\CompareStringVisibiltyConverter.cs" />
     <Compile Include="Pages\RestApi\RestApiSample.cs" />
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
