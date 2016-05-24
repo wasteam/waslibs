@@ -10,7 +10,7 @@ namespace AppStudio.DataProviders.WordPress
 
         public string FilterBy { get; set; }
 
-        public WordPressOrderByType OrderBy { get; set; } 
+        public WordPressOrderBy OrderBy { get; set; }
 
         public SortDirection OrderDirection { get; set; } = SortDirection.Descending;
     }
@@ -22,13 +22,18 @@ namespace AppStudio.DataProviders.WordPress
         Category
     }
 
-    public enum WordPressOrderByType
-    {   
+    public enum WordPressOrderBy
+    {
         None,
-        [StringValue("date")]Date,
-        [StringValue("modified")]Modified,
-        [StringValue("title")]Title,
-        [StringValue("comment_count")]CommentCount,
-        [StringValue("ID")]Id
+        [StringValue("date")]
+        Date,
+        [StringValue("modified")]
+        Modified,
+        [StringValue("title")]
+        Title,
+        [StringValue("comment_count")]
+        CommentCount,
+        [StringValue("ID")]
+        Id
     }
 }
