@@ -13,11 +13,12 @@ namespace AppStudio.Uwp.Samples
 {
     [SamplePage(Category = "DataProviders", Name = "YouTube", Order = 40)]
     public sealed partial class YouTubePage : SamplePage
-    {
-        private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
+    {        
         private const string DefaultYouTubeQueryParam = "PLZCHH_4VqpRjpQP36-XM1jb1E_JIxJZFJ";
         private const YouTubeQueryType DefaultQueryType = YouTubeQueryType.Playlist;
         private const int DefaultMaxRecordsParam = 20;
+        private const YouTubeSearchOrderBy DefaultOrderBy = YouTubeSearchOrderBy.None;
+
         YouTubeDataProvider youTubeDataProvider;
         YouTubeDataProvider rawDataProvider;
 
@@ -29,7 +30,7 @@ namespace AppStudio.Uwp.Samples
             paneHeader.DataContext = this;
 
             InitializeDataProvider();
-        }       
+        }
 
         public override string Caption
         {
@@ -43,7 +44,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ApiKeyProperty, value); }
         }
 
-        public static readonly DependencyProperty ApiKeyProperty = DependencyProperty.Register("ApiKey", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultApiKey));
+        public static readonly DependencyProperty ApiKeyProperty = DependencyProperty.Register(nameof(ApiKey), typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultApiKey));
 
 
         public string YouTubeQueryParam
@@ -52,7 +53,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(YouTubeQueryParamProperty, value); }
         }
 
-        public static readonly DependencyProperty YouTubeQueryParamProperty = DependencyProperty.Register("YouTubeQueryParam", typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultYouTubeQueryParam));
+        public static readonly DependencyProperty YouTubeQueryParamProperty = DependencyProperty.Register(nameof(YouTubeQueryParam), typeof(string), typeof(YouTubePage), new PropertyMetadata(DefaultYouTubeQueryParam));
 
 
         public YouTubeQueryType YouTubeQueryTypeSelectedItem
@@ -61,7 +62,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(YouTubeQueryTypeSelectedItemProperty, value); }
         }
 
-        public static readonly DependencyProperty YouTubeQueryTypeSelectedItemProperty = DependencyProperty.Register("YouTubeQueryTypeSelectedItem", typeof(YouTubeQueryType), typeof(YouTubePage), new PropertyMetadata(DefaultQueryType));
+        public static readonly DependencyProperty YouTubeQueryTypeSelectedItemProperty = DependencyProperty.Register(nameof(YouTubeQueryTypeSelectedItem), typeof(YouTubeQueryType), typeof(YouTubePage), new PropertyMetadata(DefaultQueryType));
 
 
         public int MaxRecordsParam
@@ -70,7 +71,17 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(YouTubePage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(YouTubePage), new PropertyMetadata(DefaultMaxRecordsParam));
+
+
+        public YouTubeSearchOrderBy OrderBy
+        {
+            get { return (YouTubeSearchOrderBy)GetValue(OrderByProperty); }
+            set { SetValue(OrderByProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(YouTubeSearchOrderBy), typeof(YouTubePage), new PropertyMetadata(DefaultOrderBy));
+
 
         #endregion
 
@@ -81,7 +92,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(YouTubePage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<object>), typeof(YouTubePage), new PropertyMetadata(null));
 
         #endregion        
 
@@ -92,7 +103,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register(nameof(DataProviderRawData), typeof(string), typeof(YouTubePage), new PropertyMetadata(string.Empty));
 
         #endregion    
 
@@ -102,7 +113,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register(nameof(HasErrors), typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -111,7 +122,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register(nameof(NoItems), typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -120,7 +131,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(YouTubePage), new PropertyMetadata(false));
 
         #endregion
 
@@ -157,7 +168,7 @@ namespace AppStudio.Uwp.Samples
                     Request();
                 });
             }
-        }
+        }        
 
         #endregion
 
@@ -174,7 +185,7 @@ namespace AppStudio.Uwp.Samples
         {
             AppShell.Current.Shell.ShowRightPane(new YouTubeSettings() { DataContext = this });
         }
-        
+
 
         private async void Request()
         {
@@ -185,12 +196,13 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-               
+
                 var config = new YouTubeDataConfig
                 {
                     Query = YouTubeQueryParam,
-                    QueryType = YouTubeQueryTypeSelectedItem
-                };              
+                    QueryType = YouTubeQueryTypeSelectedItem,
+                    SearchVideosOrderBy = OrderBy
+                };
 
                 var items = await youTubeDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -225,7 +237,7 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();      
+                Items.Clear();
 
                 var items = await youTubeDataProvider.LoadMoreDataAsync();
 
@@ -257,6 +269,7 @@ namespace AppStudio.Uwp.Samples
             YouTubeQueryParam = DefaultYouTubeQueryParam;
             YouTubeQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderBy = DefaultOrderBy;
         }
 
         private void InitializeDataProvider()
@@ -264,5 +277,7 @@ namespace AppStudio.Uwp.Samples
             youTubeDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
             rawDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
         }
+
+        private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
     }
 }

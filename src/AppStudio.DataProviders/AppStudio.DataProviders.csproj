@@ -45,6 +45,7 @@
     <Compile Include="Bing\BingDataConfig.cs" />
     <Compile Include="Bing\BingDataProvider.cs" />
     <Compile Include="Bing\BingParser.cs" />
+    <Compile Include="Core\AssemblyUtils.cs" />
     <Compile Include="Core\JsonParser.cs" />
     <Compile Include="Core\StringValue.cs" />
     <Compile Include="Core\ExtensionMethods.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Facebook\FacebookSchema.cs" />
     <Compile Include="Flickr\FlickrSchema.cs" />
     <Compile Include="Core\HttpRequest.cs" />
+    <Compile Include="SortDirection.cs" />
     <Compile Include="RestApi\RestApiDataConfig.cs" />
     <Compile Include="RestApi\RestApiDataProvider.cs" />
     <Compile Include="Rss\RssDataConfig.cs" />

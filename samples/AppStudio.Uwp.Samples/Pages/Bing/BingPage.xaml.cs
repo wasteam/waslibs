@@ -37,24 +37,15 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region DataProvider Config    
-        public int MaxRecordsParam
-        {
-            get { return (int)GetValue(MaxRecordsParamProperty); }
-            set { SetValue(MaxRecordsParamProperty, value); }
-        }
-
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(BingPage), new PropertyMetadata(DefaultMaxRecordsParam));
-
-
+       
         public string BingQueryParam
         {
             get { return (string)GetValue(BingQueryParamProperty); }
             set { SetValue(BingQueryParamProperty, value); }
         }
 
-        public static readonly DependencyProperty BingQueryParamProperty = DependencyProperty.Register("BingQueryParam", typeof(string), typeof(BingPage), new PropertyMetadata(DefaultBingQueryParam));
-
-
+        public static readonly DependencyProperty BingQueryParamProperty = DependencyProperty.Register(nameof(BingQueryParam), typeof(string), typeof(BingPage), new PropertyMetadata(DefaultBingQueryParam));
+        
 
         public BingCountry BingCountrySelectedItem
         {
@@ -62,7 +53,16 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(BingCountrySelectedItemProperty, value); }
         }
 
-        public static readonly DependencyProperty BingCountrySelectedItemProperty = DependencyProperty.Register("BingCountrySelectedItem", typeof(BingCountry), typeof(BingPage), new PropertyMetadata(DefaultBingCountry));
+        public static readonly DependencyProperty BingCountrySelectedItemProperty = DependencyProperty.Register(nameof(BingCountrySelectedItem), typeof(BingCountry), typeof(BingPage), new PropertyMetadata(DefaultBingCountry));
+
+
+        public int MaxRecordsParam
+        {
+            get { return (int)GetValue(MaxRecordsParamProperty); }
+            set { SetValue(MaxRecordsParamProperty, value); }
+        }
+
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(BingPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(BingPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<object>), typeof(BingPage), new PropertyMetadata(null));
         #endregion      
 
         #region DataProviderRawData
@@ -83,7 +83,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(BingPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register(nameof(DataProviderRawData), typeof(string), typeof(BingPage), new PropertyMetadata(string.Empty));
         #endregion
 
         #region HasErrors
@@ -92,7 +92,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register(nameof(HasErrors), typeof(bool), typeof(BingPage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -101,7 +101,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register(nameof(NoItems), typeof(bool), typeof(BingPage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -110,7 +110,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(BingPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(BingPage), new PropertyMetadata(false));
 
         #endregion
 

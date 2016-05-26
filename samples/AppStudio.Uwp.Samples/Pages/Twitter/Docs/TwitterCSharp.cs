@@ -1,15 +1,20 @@
-﻿using AppStudio.DataProviders.Twitter;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.DataProviders.Twitter;
+
 
 namespace AppStudio.Uwp.Samples
 {
     public sealed partial class TwitterSample : Page
     {
+        private TwitterDataProvider _twitterDataProvider;
+
         public TwitterSample()
         {
             this.InitializeComponent();
@@ -23,7 +28,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(TwitterSample), new PropertyMetadata(null));
+            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(TwitterSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -42,7 +47,7 @@ namespace AppStudio.Uwp.Samples
 
             Items.Clear();
 
-            var twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
+            _twitterDataProvider = new TwitterDataProvider(new TwitterOAuthTokens
             {
                 AccessToken = accessToken,
                 AccessTokenSecret = accessTokenSecret,
@@ -56,7 +61,17 @@ namespace AppStudio.Uwp.Samples
                 QueryType = queryType
             };          
 
-            var items = await twitterDataProvider.LoadDataAsync(config, maxRecordsParam);
+            var items = await _twitterDataProvider.LoadDataAsync(config, maxRecordsParam);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _twitterDataProvider.LoadMoreDataAsync();
+
             foreach (var item in items)
             {
                 Items.Add(item);

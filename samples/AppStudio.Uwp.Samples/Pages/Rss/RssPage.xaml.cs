@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.Uwp.Commands;
 using AppStudio.DataProviders.Rss;
+using AppStudio.DataProviders;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -16,6 +17,8 @@ namespace AppStudio.Uwp.Samples
     {
         private const int DefaultMaxRecordsParam = 5;
         private const string DefaultRssQuery = "http://blogs.windows.com/windows/b/bloggingwindows/rss.aspx";
+        private const RssSampleOrderBy DefaultOrderBy = RssSampleOrderBy.None;
+        private const SortDirection DefaultSortDirection = SortDirection.Ascending;
 
         RssDataProvider rssDataProvider;
         RssDataProvider rawDataProvider;
@@ -36,13 +39,14 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region DataProvider Config    
+
         public int MaxRecordsParam
         {
             get { return (int)GetValue(MaxRecordsParamProperty); }
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(RssPage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(RssPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
 
         public string RssQuery
@@ -51,7 +55,23 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(RssQueryProperty, value); }
         }
 
-        public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register("RssQuery", typeof(string), typeof(RssPage), new PropertyMetadata(DefaultRssQuery));
+        public static readonly DependencyProperty RssQueryProperty = DependencyProperty.Register(nameof(RssQuery), typeof(string), typeof(RssPage), new PropertyMetadata(DefaultRssQuery));
+
+        public RssSampleOrderBy OrderBy
+        {
+            get { return (RssSampleOrderBy)GetValue(OrderByProperty); }
+            set { SetValue(OrderByProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(RssSampleOrderBy), typeof(RssPage), new PropertyMetadata(DefaultOrderBy));
+
+        public SortDirection SortDirection
+        {
+            get { return (SortDirection)GetValue(SortDirectionProperty); }
+            set { SetValue(SortDirectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty SortDirectionProperty = DependencyProperty.Register(nameof(SortDirection), typeof(SortDirection), typeof(RssPage), new PropertyMetadata(DefaultSortDirection));
 
         #endregion
 
@@ -62,7 +82,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<object>), typeof(RssPage), new PropertyMetadata(null));
         #endregion      
 
         #region DataProviderRawData
@@ -72,7 +92,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register(nameof(DataProviderRawData), typeof(string), typeof(RssPage), new PropertyMetadata(string.Empty));
         #endregion
 
         #region HasErrors
@@ -81,7 +101,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register(nameof(HasErrors), typeof(bool), typeof(RssPage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -90,7 +110,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register(nameof(NoItems), typeof(bool), typeof(RssPage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -99,7 +119,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(RssPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(RssPage), new PropertyMetadata(false));
 
         #endregion
 
@@ -162,8 +182,13 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-              
-                var config = new RssDataConfig { Url = new Uri(RssQuery, UriKind.Absolute) };                
+
+                var config = new RssDataConfig
+                {
+                    Url = new Uri(RssQuery, UriKind.Absolute),
+                    OrderBy = OrderBy != RssSampleOrderBy.None ? OrderBy.ToString() : string.Empty,
+                    OrderDirection = SortDirection
+                };
 
                 var items = await rssDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -198,7 +223,7 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();               
+                Items.Clear();
 
                 var items = await rssDataProvider.LoadMoreDataAsync();
 
@@ -227,7 +252,9 @@ namespace AppStudio.Uwp.Samples
         private void RestoreConfig()
         {
             RssQuery = DefaultRssQuery;
-            MaxRecordsParam = DefaultMaxRecordsParam;            
+            MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderBy = DefaultOrderBy;
+            SortDirection = DefaultSortDirection;
         }
 
         private void InitializeDataProvider()

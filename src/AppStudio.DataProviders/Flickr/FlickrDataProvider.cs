@@ -4,9 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using AppStudio.DataProviders.Core;
 using AppStudio.DataProviders.Exceptions;
-using AppStudio.DataProviders.Rss;
-using System.Collections.ObjectModel;
-using System.Xml.Linq;
 using System.Linq;
 
 namespace AppStudio.DataProviders.Flickr
@@ -41,10 +38,13 @@ namespace AppStudio.DataProviders.Flickr
                 if (items != null && items.Any())
                 {
                     _totalItems = items.ToList();
-                    var total = (_totalItems as IEnumerable<TSchema>);
-                    var resultToReturn = total.Take(pageSize).ToList();
-                    _hasMoreItems = total.Count() > pageSize;
+
+                    var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);
+
+                    _hasMoreItems = totalAsTSchema.Count() > pageSize;
                     ContinuationToken = GetContinuationToken(ContinuationToken);
+
+                    var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(config.OrderBy, config.OrderDirection).Take(pageSize).ToList();
                     return resultToReturn;
                 }
                 _hasMoreItems = false;
@@ -59,8 +59,10 @@ namespace AppStudio.DataProviders.Flickr
             int page = Convert.ToInt32(ContinuationToken);
             var task = Task.Run(() => { return GetMoreData<TSchema>(pageSize, page); });
             var items = await task;
+
             _hasMoreItems = items.Any();
             ContinuationToken = GetContinuationToken(ContinuationToken);
+
             return items;
         }
 
@@ -103,12 +105,10 @@ namespace AppStudio.DataProviders.Flickr
             {
                 throw new InvalidOperationException("LoadMoreDataAsync can not be called. You must call the LoadDataAsync method prior to calling this method");
             }
-            var total = (_totalItems as IEnumerable<TSchema>);
-            var resultToReturn = total.Skip(pageSize * (page - 1)).Take(pageSize).ToList();
+            var totalAsTSchema = (_totalItems as IEnumerable<TSchema>);
+            var resultToReturn = totalAsTSchema.AsQueryable().OrderBy(Config.OrderBy, Config.OrderDirection).Skip(pageSize * (page - 1)).Take(pageSize).ToList();
             return resultToReturn;
-        }
-
-        
+        }        
     }
 }
 

@@ -1,16 +1,20 @@
-﻿using AppStudio.DataProviders.Rss;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+using AppStudio.DataProviders;
+using AppStudio.DataProviders.Rss;
 
 
 namespace AppStudio.Uwp.Samples
 {
     public sealed partial class RssSample : Page
     {
+        private RssDataProvider _rssDataProvider;
+
         public RssSample()
         {
             this.InitializeComponent();
@@ -24,22 +28,41 @@ namespace AppStudio.Uwp.Samples
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty
-            .Register("Items", typeof(ObservableCollection<object>), typeof(RssSample), new PropertyMetadata(null));
+            .Register(nameof(Items), typeof(ObservableCollection<object>), typeof(RssSample), new PropertyMetadata(null));
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {           
+        {
             GetItems();
         }
 
         public async void GetItems()
-        {           
+        {
             string rssQuery = "http://www.blogger.com/feeds/6781693/posts/default";
             int maxRecordsParam = 20;
+            string orderBy = "PublishDate";
+            SortDirection sortDirection = SortDirection.Descending;
 
-            var rssDataProvider = new RssDataProvider();
-            var config = new RssDataConfig { Url = new Uri(rssQuery, UriKind.Absolute) };        
+            _rssDataProvider = new RssDataProvider();
+            this.Items = new ObservableCollection<object>();
 
-            var items = await rssDataProvider.LoadDataAsync(config, maxRecordsParam);          
+            var config = new RssDataConfig
+            {
+                Url = new Uri(rssQuery, UriKind.Absolute),
+                OrderBy = orderBy,
+                SortDirection = sortDirection
+            };
+
+            var items = await _rssDataProvider.LoadDataAsync(config, maxRecordsParam);
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+        }
+
+        private async void GetMoreItems()
+        {
+            var items = await _rssDataProvider.LoadMoreDataAsync();
+
             foreach (var item in items)
             {
                 Items.Add(item);

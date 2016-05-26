@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.DataProviders.WordPress;
 using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -18,6 +19,8 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultWordPressQueryFilterBy = "";
         private const WordPressQueryType DefaultQueryType = WordPressQueryType.Posts;
         private const int DefaultMaxRecordsParam = 20;
+        private const WordPressOrderBy DefaultOrderBy = WordPressOrderBy.None;
+        private const SortDirection DefaultSortDirection = SortDirection.Ascending;
 
         WordPressDataProvider wordPressDataProvider;
         WordPressDataProvider rawDataProvider;
@@ -44,7 +47,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(WordPressPage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(WordPressPage), new PropertyMetadata(DefaultMaxRecordsParam));
 
 
         public string WordPressQuery
@@ -53,7 +56,8 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(WordPressQueryProperty, value); }
         }
 
-        public static readonly DependencyProperty WordPressQueryProperty = DependencyProperty.Register("WordPressQuery", typeof(string), typeof(WordPressPage), new PropertyMetadata(DefaultWordPressQuery));
+        public static readonly DependencyProperty WordPressQueryProperty = DependencyProperty.Register(nameof(WordPressQuery), typeof(string), typeof(WordPressPage), new PropertyMetadata(DefaultWordPressQuery));
+
 
         public string WordPressQueryFilterBy
         {
@@ -61,7 +65,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(WordPressQueryFilterByProperty, value); }
         }
 
-        public static readonly DependencyProperty WordPressQueryFilterByProperty = DependencyProperty.Register("WordPressQueryFilterBy", typeof(string), typeof(WordPressPage), new PropertyMetadata(DefaultWordPressQueryFilterBy));
+        public static readonly DependencyProperty WordPressQueryFilterByProperty = DependencyProperty.Register(nameof(WordPressQueryFilterBy), typeof(string), typeof(WordPressPage), new PropertyMetadata(DefaultWordPressQueryFilterBy));
 
 
         public WordPressQueryType WordPressQueryTypeSelectedItem
@@ -70,8 +74,25 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(WordPressQueryTypeSelectedItemProperty, value); }
         }
 
-        public static readonly DependencyProperty WordPressQueryTypeSelectedItemProperty = DependencyProperty.Register("WordPressQueryTypeSelectedItemProperty", typeof(WordPressQueryType), typeof(WordPressPage), new PropertyMetadata(DefaultQueryType));
+        public static readonly DependencyProperty WordPressQueryTypeSelectedItemProperty = DependencyProperty.Register(nameof(WordPressQueryTypeSelectedItemProperty), typeof(WordPressQueryType), typeof(WordPressPage), new PropertyMetadata(DefaultQueryType));
 
+
+        public WordPressOrderBy OrderBy
+        {
+            get { return (WordPressOrderBy)GetValue(OrderByProperty); }
+            set { SetValue(OrderByProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(WordPressOrderBy), typeof(WordPressPage), new PropertyMetadata(DefaultOrderBy));
+
+        public SortDirection SortDirection
+        {
+            get { return (SortDirection)GetValue(SortDirectionProperty); }
+            set { SetValue(SortDirectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty SortDirectionProperty = DependencyProperty.Register(nameof(SortDirection), typeof(SortDirection), typeof(WordPressPage), new PropertyMetadata(DefaultSortDirection));
+        
         #endregion
 
         #region Items
@@ -81,7 +102,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(WordPressPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<object>), typeof(WordPressPage), new PropertyMetadata(null));
         #endregion      
 
         #region RawData
@@ -91,7 +112,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(WordPressPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register(nameof(DataProviderRawData), typeof(string), typeof(WordPressPage), new PropertyMetadata(string.Empty));
         #endregion
 
         #region HasErrors
@@ -185,7 +206,9 @@ namespace AppStudio.Uwp.Samples
                 {
                     Query = WordPressQuery,
                     QueryType = WordPressQueryTypeSelectedItem,
-                    FilterBy = WordPressQueryFilterBy
+                    FilterBy = WordPressQueryFilterBy,
+                    OrderBy = OrderBy,
+                    OrderDirection = SortDirection
                 };  
                 var items = await wordPressDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -221,13 +244,6 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-               
-                var config = new WordPressDataConfig()
-                {
-                    Query = WordPressQuery,
-                    QueryType = WordPressQueryTypeSelectedItem,
-                    FilterBy = WordPressQueryFilterBy
-                };             
 
                 var items = await wordPressDataProvider.LoadMoreDataAsync();
 
@@ -259,6 +275,8 @@ namespace AppStudio.Uwp.Samples
             WordPressQueryFilterBy = DefaultWordPressQueryFilterBy;
             WordPressQueryTypeSelectedItem = DefaultQueryType;
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderBy = DefaultOrderBy;
+            SortDirection = DefaultSortDirection;
         }
 
         private void InitializeDataProvider()

@@ -19,7 +19,7 @@ namespace AppStudio.DataProviders.WordPress
         private string _site;
         int _commentsPageSize;
         object _commentsParser;
-      
+
         public override bool HasMoreItems
         {
             get
@@ -37,9 +37,18 @@ namespace AppStudio.DataProviders.WordPress
             }
         }
 
+        bool _isInitialize = false;
+        public override bool IsInitialized
+        {
+            get
+            {
+                return base.IsInitialized || _isInitialize;       
+            }
+        }
+
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            var url = GetUrl(config, pageSize);    
+            var url = GetUrl(config, pageSize);
             return await GetDataFromProvider(url, parser);
         }
 
@@ -61,11 +70,22 @@ namespace AppStudio.DataProviders.WordPress
             {
                 throw new ParserNullException();
             }
+
+            if (string.IsNullOrEmpty(site))
+            {
+                throw new ArgumentNullException(nameof(site));
+            }
+
+            if (string.IsNullOrEmpty(postId))
+            {
+                throw new ArgumentNullException(nameof(postId));
+            }
             _commentsContinuationToken = "1";
             _commentsParser = parser;
             _commentsPageSize = pageSize;
             _site = site;
             _postId = postId;
+            _isInitialize = true;
             return await GetCommentsFromProvider(site, postId, pageSize, parser);
         }
 
@@ -83,10 +103,10 @@ namespace AppStudio.DataProviders.WordPress
 
             if (HasMoreComments)
             {
-                var parser = _commentsParser as IParser<TSchema>;                
+                var parser = _commentsParser as IParser<TSchema>;
                 return await GetCommentsFromProvider(_site, _postId, _commentsPageSize, parser);
             }
-            return new TSchema[0];            
+            return new TSchema[0];
         }
 
         protected override IParser<WordPressSchema> GetDefaultParserInternal(WordPressDataConfig config)
@@ -121,8 +141,15 @@ namespace AppStudio.DataProviders.WordPress
                     url = $"{BaseUrl}/sites/{config.Query}/posts/?number={pageSize}";
                     break;
             }
+            if (config.OrderBy != WordPressOrderBy.None)
+            {
+                var order = config.OrderDirection == SortDirection.Ascending ? "ASC" : "DESC";
+                url += $@"&order_by={config.OrderBy.GetStringValue()}&order={order}";
+            }
             return url;
         }
+
+
 
         private static string GetContinuationUrl(string url, string currentContinuationToken)
         {
@@ -143,7 +170,7 @@ namespace AppStudio.DataProviders.WordPress
         }
 
         private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(string url, IParser<TSchema> parser) where TSchema : SchemaBase
-        {    
+        {
             var settings = new HttpRequestSettings()
             {
                 RequestedUri = new Uri(url)
@@ -153,7 +180,7 @@ namespace AppStudio.DataProviders.WordPress
             if (result.Success)
             {
                 ContinuationToken = GetContinuationToken(result.Result);
-                return await parser.ParseAsync(result.Result);              
+                return await parser.ParseAsync(result.Result);
             }
 
             throw new RequestFailedException(result.StatusCode, result.Result);

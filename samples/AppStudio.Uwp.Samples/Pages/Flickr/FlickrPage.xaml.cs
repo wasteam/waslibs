@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 using AppStudio.DataProviders.Flickr;
 using AppStudio.Uwp.Commands;
+using AppStudio.DataProviders;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -17,6 +18,9 @@ namespace AppStudio.Uwp.Samples
         private const string DefaultFlickrQueryParam = "Abstract";
         private const FlickrQueryType DefaultQueryType = FlickrQueryType.Tags;
         private const int DefaultMaxRecordsParam = 12;
+        private const FlickrSampleOrderBy DefaultOrderBy = FlickrSampleOrderBy.None;
+        private const SortDirection DefaultSortDirection = SortDirection.Ascending;
+
         FlickrDataProvider flickrDataProvider;
         FlickrDataProvider rawDataProvider;
 
@@ -43,7 +47,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(FlickrQueryParamProperty, value); }
         }
 
-        public static readonly DependencyProperty FlickrQueryParamProperty = DependencyProperty.Register("FlickrQueryParam", typeof(string), typeof(FlickrPage), new PropertyMetadata(DefaultFlickrQueryParam));
+        public static readonly DependencyProperty FlickrQueryParamProperty = DependencyProperty.Register(nameof(FlickrQueryParam), typeof(string), typeof(FlickrPage), new PropertyMetadata(DefaultFlickrQueryParam));
 
 
         public FlickrQueryType FlickrQueryTypeSelectedItem
@@ -52,7 +56,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(FlickrQueryTypeSelectedItemProperty, value); }
         }
 
-        public static readonly DependencyProperty FlickrQueryTypeSelectedItemProperty = DependencyProperty.Register("FlickrQueryTypeSelectedItem", typeof(FlickrQueryType), typeof(FlickrPage), new PropertyMetadata(DefaultQueryType));
+        public static readonly DependencyProperty FlickrQueryTypeSelectedItemProperty = DependencyProperty.Register(nameof(FlickrQueryTypeSelectedItem), typeof(FlickrQueryType), typeof(FlickrPage), new PropertyMetadata(DefaultQueryType));
 
 
         public int MaxRecordsParam
@@ -61,7 +65,23 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(MaxRecordsParamProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register("MaxRecordsParam", typeof(int), typeof(FlickrPage), new PropertyMetadata(DefaultMaxRecordsParam));
+        public static readonly DependencyProperty MaxRecordsParamProperty = DependencyProperty.Register(nameof(MaxRecordsParam), typeof(int), typeof(FlickrPage), new PropertyMetadata(DefaultMaxRecordsParam));
+
+        public FlickrSampleOrderBy OrderBy
+        {
+            get { return (FlickrSampleOrderBy)GetValue(OrderByProperty); }
+            set { SetValue(OrderByProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByProperty = DependencyProperty.Register(nameof(OrderBy), typeof(FlickrSampleOrderBy), typeof(FlickrPage), new PropertyMetadata(DefaultOrderBy));
+
+        public SortDirection SortDirection
+        {
+            get { return (SortDirection)GetValue(SortDirectionProperty); }
+            set { SetValue(SortDirectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty SortDirectionProperty = DependencyProperty.Register(nameof(SortDirection), typeof(SortDirection), typeof(FlickrPage), new PropertyMetadata(DefaultSortDirection));
 
         #endregion
 
@@ -72,7 +92,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(ItemsProperty, value); }
         }
 
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(ObservableCollection<object>), typeof(FlickrPage), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(ObservableCollection<object>), typeof(FlickrPage), new PropertyMetadata(null));
 
         #endregion        
 
@@ -83,7 +103,7 @@ namespace AppStudio.Uwp.Samples
             set { SetValue(DataProviderRawDataProperty, value); }
         }
 
-        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register("DataProviderRawData", typeof(string), typeof(FlickrPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty DataProviderRawDataProperty = DependencyProperty.Register(nameof(DataProviderRawData), typeof(string), typeof(FlickrPage), new PropertyMetadata(string.Empty));
 
         #endregion    
 
@@ -93,7 +113,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(HasErrorsProperty); }
             set { SetValue(HasErrorsProperty, value); }
         }
-        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register("HasErrors", typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty HasErrorsProperty = DependencyProperty.Register(nameof(HasErrors), typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
         #endregion
 
         #region NoItems
@@ -102,7 +122,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(NoItemsProperty); }
             set { SetValue(NoItemsProperty, value); }
         }
-        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register("NoItems", typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty NoItemsProperty = DependencyProperty.Register(nameof(NoItems), typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
         #endregion
 
         #region IsBusy
@@ -111,7 +131,7 @@ namespace AppStudio.Uwp.Samples
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register("IsBusy", typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
+        public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(nameof(IsBusy), typeof(bool), typeof(FlickrPage), new PropertyMetadata(false));
 
         #endregion
 
@@ -175,12 +195,14 @@ namespace AppStudio.Uwp.Samples
                 NoItems = false;
                 DataProviderRawData = string.Empty;
                 Items.Clear();
-             
+
                 var config = new FlickrDataConfig
                 {
                     Query = FlickrQueryParam,
-                    QueryType = FlickrQueryTypeSelectedItem
-                };              
+                    QueryType = FlickrQueryTypeSelectedItem,
+                    OrderBy = OrderBy != FlickrSampleOrderBy.None? OrderBy.ToString():string.Empty,
+                    OrderDirection = SortDirection
+                };
 
                 var items = await flickrDataProvider.LoadDataAsync(config, MaxRecordsParam);
 
@@ -215,8 +237,8 @@ namespace AppStudio.Uwp.Samples
                 HasErrors = false;
                 NoItems = false;
                 DataProviderRawData = string.Empty;
-                Items.Clear();  
-            
+                Items.Clear();
+
                 var items = await flickrDataProvider.LoadMoreDataAsync();
 
                 NoItems = !items.Any();
@@ -245,7 +267,9 @@ namespace AppStudio.Uwp.Samples
         {
             FlickrQueryParam = DefaultFlickrQueryParam;
             FlickrQueryTypeSelectedItem = DefaultQueryType;
-            MaxRecordsParam = DefaultMaxRecordsParam;           
+            MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderBy = DefaultOrderBy;
+            SortDirection = DefaultSortDirection;
         }
 
         private void InitializeDataProvider()

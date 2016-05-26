@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace AppStudio.Uwp
@@ -36,6 +37,16 @@ namespace AppStudio.Uwp
             }
             return foundChild;
         }
+
+        public static void ScrollToTop(this DependencyObject parent)
+        {
+            ScrollViewer scrollViewer = parent.FindChildOfType<ScrollViewer>();
+            if (scrollViewer != null)
+            {
+                scrollViewer.ChangeView(0, 0, scrollViewer.ZoomFactor, true);
+            }
+        }
+
         public static object Resource(this string self)
         {
             if (Application.Current.Resources.ContainsKey(self))

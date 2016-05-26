@@ -92,6 +92,10 @@ namespace AppStudio.DataProviders.Core
                 {
                     if (!String.IsNullOrEmpty(settings.Headers[customHeaderName]))
                     {
+                        if (customHeaderName.ToLower() == "user-agent")
+                        {
+                            settings.Headers[customHeaderName] += $" {GetWASSufix()}";
+                        }
                         httpClient.DefaultRequestHeaders[customHeaderName] = settings.Headers[customHeaderName];
                     }
 
@@ -141,6 +145,11 @@ namespace AppStudio.DataProviders.Core
                     }
                 }
             }
+        }
+
+        internal static string GetWASSufix()
+        {
+            return  $"WAS/{AssemblyUtils.GetVersion()}";
         }
     }
 }

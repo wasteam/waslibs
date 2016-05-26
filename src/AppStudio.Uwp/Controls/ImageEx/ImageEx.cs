@@ -24,12 +24,15 @@ namespace AppStudio.Uwp.Controls
             {
                 if (!Double.IsInfinity(availableSize.Width))
                 {
-                    progress.Width = Math.Min(128, Math.Max(8, availableSize.Width * 0.5));
+                    progress.Width = Math.Min(96, Math.Max(8, availableSize.Width * 0.5));
                 }
                 if (!Double.IsInfinity(availableSize.Height))
                 {
-                    progress.Height = Math.Min(128, Math.Max(8, availableSize.Height * 0.5));
+                    progress.Height = Math.Min(96, Math.Max(8, availableSize.Height * 0.5));
                 }
+                base.MeasureOverride(availableSize);
+                _currentSize = NormalizeSize(availableSize);
+                return _currentSize;
             }
 
             var newSize = new Size(Math.Min(Int16.MaxValue, availableSize.Width), Math.Min(Int16.MaxValue, availableSize.Height));
@@ -40,5 +43,24 @@ namespace AppStudio.Uwp.Controls
             }
             return base.MeasureOverride(availableSize);
         }
+
+        #region NormalizeSize
+        private static Size NormalizeSize(Size size)
+        {
+            double width = size.Width;
+            double height = size.Height;
+
+            if (double.IsInfinity(width))
+            {
+                width = Window.Current.Bounds.Width;
+            }
+            if (double.IsInfinity(height))
+            {
+                height = Window.Current.Bounds.Height;
+            }
+
+            return new Size(width, height);
+        }
+        #endregion
     }
 }

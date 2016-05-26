@@ -33,7 +33,7 @@ namespace AppStudio.DataProviders
 
         protected string ContinuationToken { get; set; }
 
-        public bool IsInitialized
+        public virtual bool IsInitialized
         {
             get { return (_config != null && _parser != null); }
         }
