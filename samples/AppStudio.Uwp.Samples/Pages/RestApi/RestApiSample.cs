@@ -4,6 +4,7 @@ using AppStudio.DataProviders;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using AppStudio.DataProviders.Core;
 
 namespace AppStudio.Uwp.Samples
 {
@@ -44,15 +45,15 @@ namespace AppStudio.Uwp.Samples
                         
                         if (!string.IsNullOrEmpty(_property1))
                         {
-                            itemResult.TextProperty1 = (string)item.SelectToken(_property1);
+                            itemResult.TextProperty1 = item.SelectToken(_property1)?.ToString().DecodeHtml();
                         }
                         if (!string.IsNullOrEmpty(_property2))
                         {
-                            itemResult.TextProperty2 = (string)item.SelectToken(_property2);
+                            itemResult.TextProperty2 = item.SelectToken(_property2)?.ToString().DecodeHtml();
                         }
                         if (!string.IsNullOrEmpty(_property3))
                         {
-                            itemResult.ImageProperty = (string)item.SelectToken(_property3);
+                            itemResult.ImageProperty = item.SelectToken(_property3)?.ToString();
                         }                        
                     }
                     catch (Exception)

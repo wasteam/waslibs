@@ -72,6 +72,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -327,6 +328,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result, $"{nameof(result)} is not null");
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -340,9 +342,9 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
 
             var dataProvider = new WordPressDataProvider();
-            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.GetMoreComments());
             Assert.IsFalse(dataProvider.IsInitialized);
-        }
+        }        
 
         [TestMethod]
         public async Task LoadWordPressPost_Sorting()
