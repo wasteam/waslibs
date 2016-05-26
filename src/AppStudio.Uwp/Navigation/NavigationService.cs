@@ -15,6 +15,7 @@ namespace AppStudio.Uwp.Navigation
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "This class needs to be instantiated from XAML.")]
     public class NavigationService
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1009:DeclareEventHandlersCorrectly")]
         public static event EventHandler<NavigationEventArgs> Navigated;
 
         private static Assembly _appAssembly;
@@ -61,12 +62,7 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
-        public static void NavigateToPage<T>(bool force)
-        {
-            NavigateToPage<T>(null, force);
-        }
-
-        public static void NavigateToPage<T>(object parameter, bool force = false)
+        public static void NavigateToPage<T>(object parameter = null, bool force = false)
         {
             NavigateToPage(typeof(T), parameter, force);
         }
@@ -113,6 +109,7 @@ namespace AppStudio.Uwp.Navigation
             return false;
         }
 
+        [Obsolete("Use Launcher.LaunchUriAsync instead")]
         public static async Task NavigateTo(Uri uri)
         {
             if (uri != null)
@@ -121,6 +118,7 @@ namespace AppStudio.Uwp.Navigation
             }
         }
 
+        [Obsolete("Implement your custom navigation logic")]
         public static void NavigateTo(INavigable item, bool force = false)
         {
             if (item != null && item.NavigationInfo != null)
@@ -133,7 +131,7 @@ namespace AppStudio.Uwp.Navigation
                 }
                 else if (item.NavigationInfo.NavigationType == NavigationType.DeepLink)
                 {
-                    NavigationService.NavigateTo(item.NavigationInfo.TargetUri).RunAndForget();
+                    NavigationService.NavigateTo(item.NavigationInfo.TargetUri).FireAndForget();
                 }
                 else
                 {

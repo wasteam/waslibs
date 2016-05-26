@@ -14,6 +14,7 @@ using System.Reflection;
 using System.IO;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Core;
+using Windows.System;
 
 namespace AppStudio.Uwp.Controls.Html.Writers
 {
@@ -37,7 +38,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
                 grid.Tapped += (sender, e) =>
                 {
-                    NavigationService.NavigateTo(new Uri(GetIframeSrc(node))).RunAndForget();
+                    Launcher.LaunchUriAsync(new Uri(GetIframeSrc(node))).AsTask().FireAndForget();
                 };
 
                 grid.PointerEntered += (sender, e) =>

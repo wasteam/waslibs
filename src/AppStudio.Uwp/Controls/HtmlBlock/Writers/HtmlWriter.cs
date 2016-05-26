@@ -45,7 +45,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected void ApplyParagraphStyles(Paragraph paragraph, ParagraphStyle style)
+        protected static void ApplyParagraphStyles(Paragraph paragraph, ParagraphStyle style)
         {
             if (style != null)
             {
@@ -54,7 +54,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             }
         }
 
-        protected void ApplyTextStyles(TextElement textElement, TextStyle style)
+        protected static void ApplyTextStyles(TextElement textElement, TextStyle style)
         {
             if (style != null)
             {

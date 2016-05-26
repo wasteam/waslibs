@@ -2,6 +2,7 @@
 
 namespace AppStudio.Uwp.Navigation
 {
+    [Obsolete("Implement your custom navigation logic")]
     public class NavigationInfo
     {
         public string TargetPage { get; set; }
@@ -28,6 +29,7 @@ namespace AppStudio.Uwp.Navigation
         }
     }
 
+    [Obsolete("Implement your custom navigation logic")]
     public enum NavigationType
     {
         Page,
