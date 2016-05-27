@@ -11,6 +11,7 @@ namespace AppStudio.Uwp.Cache
     {
         private static Dictionary<string, string> _memoryCache = new Dictionary<string, string>();
 
+        [Obsolete("Use a custom loading strategy in your app")]
         public static async Task<DateTime?> LoadItemsAsync<T>(CacheSettings settings, Func<Task<IEnumerable<T>>> loadDataAsync, Action<CachedContent<T>> parseItems, bool refreshForced = false)
         {
             if (settings == null)

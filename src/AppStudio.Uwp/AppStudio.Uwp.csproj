@@ -279,7 +279,7 @@
     <Compile Include="Controls\VisualBreakpoints\VisualBreakpoints.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="Singleton.cs" />
-    <Compile Include="TasksExtensions.cs" />
+    <Compile Include="Extensions\TasksExtensions.cs" />
     <EmbeddedResource Include="Controls\HtmlBlock\channel9-screen.png" />
     <EmbeddedResource Include="Controls\HtmlBlock\PlayButton.png" />
     <CodeAnalysisDictionary Include="Dictionary.xml" />

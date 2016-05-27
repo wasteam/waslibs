@@ -12,8 +12,8 @@ namespace AppStudio.Uwp.Commands
     using AppStudio.Uwp.Navigation;
     using Windows.ApplicationModel.DataTransfer;
     using Windows.ApplicationModel.Appointments;
-    using Windows.UI.Xaml;    
-    
+    using Windows.UI.Xaml;
+    using Windows.System;
     /// <summary>
     /// This class defines commands used to implement the actions.
     /// </summary>
@@ -47,7 +47,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri(string.Format("mailto:{0}", p)));
+                        await Launcher.LaunchUriAsync(new Uri(string.Format("mailto:{0}", p)));
                     }
                 });
             }
@@ -64,7 +64,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri(string.Format("tel:{0}", p)));
+                        await Launcher.LaunchUriAsync(new Uri(string.Format("tel:{0}", p)));
                     }
                 });
             }
@@ -81,7 +81,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri(p));
+                        await Launcher.LaunchUriAsync(new Uri(p));
                     }
                 });
             }
@@ -95,7 +95,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri("bingmaps:" + p, UriKind.Absolute));
+                        await Launcher.LaunchUriAsync(new Uri("bingmaps:" + p, UriKind.Absolute));
                     }
                 });
             }
@@ -109,7 +109,7 @@ namespace AppStudio.Uwp.Commands
                 {
                     if (!string.IsNullOrEmpty(p))
                     {
-                        await NavigationService.NavigateTo(new Uri("bingmaps:?rtp=~adr." + p, UriKind.Absolute));
+                        await Launcher.LaunchUriAsync(new Uri("bingmaps:?rtp=~adr." + p, UriKind.Absolute));
                     }
                 });
             }

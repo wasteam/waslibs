@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppStudio.Uwp.Cache
 {
+    [Obsolete("Use a custom loading strategy in your app")]
     public class CacheSettings
     {
         public string Key { get; set; }
