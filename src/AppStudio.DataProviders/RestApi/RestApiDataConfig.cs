@@ -325,7 +325,7 @@ namespace AppStudio.DataProviders.RestApi
         }
     }
 
-    public class MemoryPagination : IPagination, IMemorySorting
+    public class MemoryPagination : IPagination, IMemorySorting, IQueryStringSorting
     {
         public bool IsServerSidePagination { get; } = false;
 
@@ -335,15 +335,16 @@ namespace AppStudio.DataProviders.RestApi
 
         public string OrderByParameterName { get; set; }
 
-        public string OrderByValue { get; set; }
+        public string OrderByParameterValue { get; set; }
 
-        public string SortDirectionParameterName { get; set; }
+        public string OrderDirectionParameterName { get; set; }
 
-        public string SortDirectionValue { get; set; }
+        public string OrderDirectionParameterValue { get; set; }
 
         public string OrderBy { get; set; }
 
-        public SortDirection OrderDirection { get; set; }
+        public SortDirection OrderDirection { get; set; }  
+
 
         public Uri BuildContinuationUrl(Uri dataProviderUrl, string currentContinuationToken)
         {
