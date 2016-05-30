@@ -22,29 +22,6 @@ namespace AppStudio.Uwp.Samples
         public HtmlBlockSettings()
         {
             this.InitializeComponent();
-            Loaded += HtmlBlockSettings_Loaded;
-        }
-
-        private void HtmlBlockSettings_Loaded(object sender, RoutedEventArgs e)
-        {
-            stylesCombo.Items.Add("None");
-            stylesCombo.Items.Add("Sample style");
-            stylesCombo.SelectedIndex = 0;
-        }
-
-        private void stylesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var htmlBlock = DataContext as HtmlBlock;
-
-            if (stylesCombo.SelectedIndex == 0)
-            {
-                htmlBlock.Style = null;
-            }
-            else if(stylesCombo.SelectedIndex == 1)
-            {
-                var r = this.Resources["sampleStyle"];
-                htmlBlock.Style = r as Style;
-            }
         }
     }
 }

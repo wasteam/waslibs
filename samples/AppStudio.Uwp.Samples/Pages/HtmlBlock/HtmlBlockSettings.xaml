@@ -61,12 +61,14 @@
                 <was:PropertySet
                     Source="{Binding}"
                     Property="FontSize"
-                    Value="{Binding FontSize, Mode=TwoWay}"
+                    Value="{Binding Control.FontSize, Mode=TwoWay}"
                     Minimun="10"
                     Maximun="60"
                     SmallChange="1"/>
-                <TextBlock Text="Document styles" Margin="0,12,0,0"></TextBlock>
-                <ComboBox x:Name="stylesCombo" SelectionChanged="stylesCombo_SelectionChanged" Margin="0,12,0,0"></ComboBox>
+                <was:PropertySet
+                    Source="{Binding}"
+                    Property="DocumentStyle"
+                    Value="{Binding DocumentStyle, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
