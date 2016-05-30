@@ -527,4 +527,16 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   <data name="propSortDirection.Label" xml:space="preserve">
     <value>Order Direction</value>
   </data>
+  <data name="propOrderByParameterName.Label" xml:space="preserve">
+    <value>Order By parameter name</value>
+  </data>
+  <data name="propOrderByParameterValue.Label" xml:space="preserve">
+    <value>Order By parameter value</value>
+  </data>
+  <data name="propOrderDirectionParameterName.Label" xml:space="preserve">
+    <value>Order Direction parameter name</value>
+  </data>
+  <data name="propOrderDirectionParameterValue.Label" xml:space="preserve">
+    <value>Order Direction parameter value</value>
+  </data>
 </root>

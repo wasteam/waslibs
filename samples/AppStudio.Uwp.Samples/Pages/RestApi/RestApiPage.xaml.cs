@@ -17,7 +17,7 @@ namespace AppStudio.Uwp.Samples
     {
 
         private const RestApiSampleType DefaultSample = RestApiSampleType.PageNumberPaginationSample;
-        private const int DefaultMaxRecordsParam = 20;  
+        private const int DefaultMaxRecordsParam = 20;
 
         RestApiDataProvider restApiDataProvider;
         RestApiDataProvider rawDataProvider;
@@ -96,11 +96,43 @@ namespace AppStudio.Uwp.Samples
 
         public string PageSizeParameterName
         {
-            get { return (string)GetValue(PageSizeParameterNameParameterNameProperty); }
-            set { SetValue(PageSizeParameterNameParameterNameProperty, value); }
+            get { return (string)GetValue(PageSizeParameterNameProperty); }
+            set { SetValue(PageSizeParameterNameProperty, value); }
         }
 
-        public static readonly DependencyProperty PageSizeParameterNameParameterNameProperty = DependencyProperty.Register(nameof(PageSizeParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty PageSizeParameterNameProperty = DependencyProperty.Register(nameof(PageSizeParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+
+        public string OrderByParameterName
+        {
+            get { return (string)GetValue(OrderByParameterNameProperty); }
+            set { SetValue(OrderByParameterNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByParameterNameProperty = DependencyProperty.Register(nameof(OrderByParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+
+        public string OrderByParameterValue
+        {
+            get { return (string)GetValue(OrderByParameterValueProperty); }
+            set { SetValue(OrderByParameterValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderByParameterValueProperty = DependencyProperty.Register(nameof(OrderByParameterValue), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+
+        public string OrderDirectionParameterName
+        {
+            get { return (string)GetValue(OrderDirectionParameterNameProperty); }
+            set { SetValue(OrderDirectionParameterNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderDirectionParameterNameProperty = DependencyProperty.Register(nameof(OrderDirectionParameterName), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
+
+        public string OrderDirectionParameterValue
+        {
+            get { return (string)GetValue(OrderDirectionParameterValueProperty); }
+            set { SetValue(OrderDirectionParameterValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty OrderDirectionParameterValueProperty = DependencyProperty.Register(nameof(OrderDirectionParameterValue), typeof(string), typeof(RestApiPage), new PropertyMetadata(string.Empty));
 
 
         public int MaxRecordsParam
@@ -300,20 +332,48 @@ namespace AppStudio.Uwp.Samples
 
         private IPagination GetPaginationConfig()
         {
+            IPagination pagination = null;
             switch (PaginationParameterType)
             {
                 case PaginationParameterType.PageNumber:
-                    return new PageNumberPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName);
+                    pagination = new PageNumberPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName);
+                    break;
                 case PaginationParameterType.ItemOffset:
-                    return new ItemOffsetPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName, MaxRecordsParam);
+                    pagination = new ItemOffsetPagination(PaginationParameterName, IsZeroIndexed, PageSizeParameterName, MaxRecordsParam);
+                    break;
                 case PaginationParameterType.Token:
-                    return new TokenPagination(PaginationParameterName, ResponseTokenName, PageSizeParameterName);
+                    pagination = new TokenPagination(PaginationParameterName, ResponseTokenName, PageSizeParameterName);
+                    break;
                 case PaginationParameterType.NextPageUrl:
-                    return new NextPageUrlPagination(ResponseTokenName, PageSizeParameterName);
+                    pagination = new NextPageUrlPagination(ResponseTokenName, PageSizeParameterName);
+                    break;
                 case PaginationParameterType.None:
                 default:
                     return null;
             }
+
+            pagination = GetSorting(pagination);
+            return pagination;
+        }
+
+        private IPagination GetSorting(IPagination pagination)
+        {
+            var queryStringSortingPagination = pagination as IQueryStringSorting;
+            if (queryStringSortingPagination != null)
+            {
+                if (!string.IsNullOrEmpty(OrderByParameterName) && !string.IsNullOrEmpty(OrderByParameterValue))
+                {
+                    queryStringSortingPagination.OrderByParameterName = OrderByParameterName;
+                    queryStringSortingPagination.OrderByParameterValue = OrderByParameterValue;
+                }
+                if (!string.IsNullOrEmpty(OrderDirectionParameterName) && !string.IsNullOrEmpty(OrderDirectionParameterValue))
+                {
+                    queryStringSortingPagination.OrderDirectionParameterName = OrderDirectionParameterName;
+                    queryStringSortingPagination.OrderDirectionParameterValue = OrderDirectionParameterValue;
+                }
+                return queryStringSortingPagination as IPagination;
+            }           
+            return pagination;
         }
 
         private async void MoreItemsRequest()
@@ -392,15 +452,19 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterType = PaginationParameterType.PageNumber;
             PaginationParameterName = "page";
             IsZeroIndexed = false;
-            ResponseTokenName = string.Empty;          
+            ResponseTokenName = string.Empty;
             PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderByParameterName = "order_by";
+            OrderByParameterValue = "date";
+            OrderDirectionParameterName = "order";
+            OrderDirectionParameterValue = "DESC";
 
             RestApiMainRoot = "posts";
             TextProperty1 = "title";
             TextProperty2 = "author.name";
             ImageProperty = "post_thumbnail.URL";
-        }       
+        }
 
         private void SetTokenSampleDataConfig()
         {
@@ -408,9 +472,13 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterType = PaginationParameterType.Token;
             PaginationParameterName = "page_handle";
             IsZeroIndexed = true;
-            ResponseTokenName = "meta.next_page";          
+            ResponseTokenName = "meta.next_page";
             PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderByParameterName = "order_by";
+            OrderByParameterValue = "date";
+            OrderDirectionParameterName = "order";
+            OrderDirectionParameterValue = "DESC";
 
             RestApiMainRoot = "posts";
             TextProperty1 = "title";
@@ -424,9 +492,13 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterType = PaginationParameterType.NextPageUrl;
             PaginationParameterName = string.Empty;
             IsZeroIndexed = true;
-            ResponseTokenName = "paging.next";           
+            ResponseTokenName = "paging.next";
             PageSizeParameterName = "limit";
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderByParameterName = string.Empty;
+            OrderByParameterValue = string.Empty;
+            OrderDirectionParameterName = string.Empty;
+            OrderDirectionParameterValue = string.Empty;
 
             RestApiMainRoot = "data";
             TextProperty1 = "message";
@@ -443,6 +515,10 @@ namespace AppStudio.Uwp.Samples
             ResponseTokenName = string.Empty;
             PageSizeParameterName = "number";
             MaxRecordsParam = DefaultMaxRecordsParam;
+            OrderByParameterName = "order_by";
+            OrderByParameterValue = "title";
+            OrderDirectionParameterName = "order";
+            OrderDirectionParameterValue = "ASC";
 
             RestApiMainRoot = "posts";
             TextProperty1 = "title";
@@ -456,7 +532,7 @@ namespace AppStudio.Uwp.Samples
             PaginationParameterType = PaginationParameterType.None;
             PaginationParameterName = string.Empty;
             IsZeroIndexed = true;
-            ResponseTokenName = string.Empty;            
+            ResponseTokenName = string.Empty;
             PageSizeParameterName = string.Empty;
             MaxRecordsParam = DefaultMaxRecordsParam;
 

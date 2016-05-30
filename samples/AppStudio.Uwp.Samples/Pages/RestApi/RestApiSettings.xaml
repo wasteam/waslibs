@@ -62,6 +62,30 @@
                     Source="{Binding}"
                     Property="PageSizeParameterName"
                     Value="{Binding PageSizeParameterName, Mode=TwoWay}"/> 
+                 <controls:PropertySet
+                    x:Uid="propOrderByParameterName"   
+                    Source="{Binding}"
+                    Property="OrderByParameterName"
+                    Value="{Binding OrderByParameterName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token;NextPageUrl}"/> 
+                 <controls:PropertySet
+                    x:Uid="propOrderByParameterValue"   
+                    Source="{Binding}"
+                    Property="OrderByParameterValue"
+                    Value="{Binding OrderByParameterValue, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token;NextPageUrl}"/> 
+                 <controls:PropertySet
+                    x:Uid="propOrderDirectionParameterName"   
+                    Source="{Binding}"
+                    Property="OrderDirectionParameterName"
+                    Value="{Binding OrderDirectionParameterName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token;NextPageUrl}"/> 
+                 <controls:PropertySet
+                    x:Uid="propOrderDirectionParameterValue"   
+                    Source="{Binding}"
+                    Property="OrderDirectionParameterValue"
+                    Value="{Binding OrderDirectionParameterValue, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token;NextPageUrl}"/> 
                 <controls:PropertySet
                     x:Uid="propMaxRecords"
                     Source="{Binding}"
