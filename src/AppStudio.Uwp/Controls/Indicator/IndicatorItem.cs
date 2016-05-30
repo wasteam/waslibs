@@ -1,105 +1,43 @@
-﻿using System;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI;
+using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
-    public sealed class IndicatorItem : ContentControl
+    public sealed class IndicatorItem : ListViewItem
     {
-        internal event EventHandler IsSelectedChanged;
-
         public IndicatorItem()
         {
             this.DefaultStyleKey = typeof(IndicatorItem);
         }
 
-        #region IsSelected
-        public bool IsSelected
+        #region PressedBackground
+        public Brush PressedBackground
         {
-            get { return (bool)GetValue(IsSelectedProperty); }
-            set { SetValue(IsSelectedProperty, value); }
+            get { return (Brush)GetValue(PressedBackgroundProperty); }
+            set { SetValue(PressedBackgroundProperty, value); }
         }
 
-        private static void SelectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as IndicatorItem;
-            control.SelectionChanged((bool)e.NewValue);
-        }
-
-        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register("IsSelected", typeof(bool), typeof(IndicatorItem), new PropertyMetadata(null, SelectionChanged));
+        public static readonly DependencyProperty PressedBackgroundProperty = DependencyProperty.Register("PressedBackground", typeof(Brush), typeof(IndicatorItem), new PropertyMetadata(null));
         #endregion
 
-        protected override void OnApplyTemplate()
+        #region SelectedBackground
+        public Brush SelectedBackground
         {
-            SetCurrentStateManager("Selected", "Normal");
-
-            base.OnApplyTemplate();
+            get { return (Brush)GetValue(SelectedBackgroundProperty); }
+            set { SetValue(SelectedBackgroundProperty, value); }
         }
 
-        private void SelectionChanged(bool isSelected)
+        private static void SelectedBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            SetCurrentStateManager("Selected", "Normal");
-            if (IsSelectedChanged != null)
+            var control = d as IndicatorItem;
+            if (control.IsSelected)
             {
-                IsSelectedChanged(this, EventArgs.Empty);
+                VisualStateManager.GoToState(control, "Selected", false);
             }
         }
 
-        protected override void OnPointerEntered(PointerRoutedEventArgs e)
-        {
-            SetCurrentStateManager("SelectedPointerOver", "PointerOver");
-            base.OnPointerEntered(e);
-        }
-
-        protected override void OnPointerExited(PointerRoutedEventArgs e)
-        {
-            SetCurrentStateManager("Selected", "Normal");
-            base.OnPointerExited(e);
-        }
-
-        protected override void OnPointerPressed(PointerRoutedEventArgs e)
-        {
-            SetCurrentStateManager("SelectedPressed", "Pressed");
-            base.OnPointerPressed(e);
-        }
-
-        protected override void OnPointerReleased(PointerRoutedEventArgs e)
-        {
-            SetCurrentStateManager("Selected", "Normal");
-            base.OnPointerReleased(e);
-        }
-
-        protected override void OnTapped(TappedRoutedEventArgs e)
-        {
-            IsSelected = true;
-            VisualStateManager.GoToState(this, "Selected", false);
-            base.OnTapped(e);
-        }
-
-        private void SetCurrentStateManager(string selected, string unselected)
-        {
-            if (this.IsSelected)
-            {
-                VisualStateManager.GoToState(this, selected, false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, unselected, false);
-            }
-        }
-
-
-        #region SelectedForeground
-        public Brush SelectedForeground
-        {
-            get { return (Brush)GetValue(SelectedForegroundProperty); }
-            set { SetValue(SelectedForegroundProperty, value); }
-        }
-        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.Register("SelectedForeground", typeof(Brush), typeof(IndicatorItem), new PropertyMetadata(new SolidColorBrush(Colors.Red)));
+        public static readonly DependencyProperty SelectedBackgroundProperty = DependencyProperty.Register("SelectedBackground", typeof(Brush), typeof(IndicatorItem), new PropertyMetadata(null, SelectedBackgroundChanged));
         #endregion
     }
 }

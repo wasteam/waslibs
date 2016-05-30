@@ -220,7 +220,7 @@ namespace AppStudio.Uwp.Controls
 
         private async Task ReadBreakPoints(string contents, List<string> loadedFiles)
         {
-            var configContents = JsonConvert.DeserializeObject<BreakpointsConfig>(contents);
+            var configContents = await Json.ToObjectAsync<BreakpointsConfig>(contents);
 
             if (configContents == null)
             {

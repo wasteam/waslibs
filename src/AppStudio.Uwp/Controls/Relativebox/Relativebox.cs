@@ -8,8 +8,6 @@ namespace AppStudio.Uwp.Controls
 {
     public sealed class Relativebox : ContentControl
     {
-        private ContentPresenter _content = null;
-
         public Relativebox()
         {
             this.DefaultStyleKey = typeof(Relativebox);
@@ -30,13 +28,6 @@ namespace AppStudio.Uwp.Controls
 
         public static readonly DependencyProperty AspectRatioProperty = DependencyProperty.Register("AspectRatio", typeof(double), typeof(Relativebox), new PropertyMetadata(1.0, AspectRatioChanged));
         #endregion
-
-        protected override void OnApplyTemplate()
-        {
-            _content = base.GetTemplateChild("content") as ContentPresenter;
-
-            base.OnApplyTemplate();
-        }
 
         protected override Size MeasureOverride(Size availableSize)
         {

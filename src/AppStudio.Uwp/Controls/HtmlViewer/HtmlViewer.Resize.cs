@@ -10,7 +10,6 @@ namespace AppStudio.Uwp.Controls
         private Rect _documentSize;
 
         double _currentHeaderHeight = 0;
-        double _currentFooterHeight = 0;
 
         private async Task OnControlResize()
         {
@@ -57,7 +56,6 @@ namespace AppStudio.Uwp.Controls
                 _footer.TranslateY(HeaderHeight + _documentSize.Height);
 
                 _currentHeaderHeight = HeaderHeight;
-                _currentFooterHeight = FooterHeight;
             }
         }
     }

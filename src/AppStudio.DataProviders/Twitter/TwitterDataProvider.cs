@@ -7,46 +7,141 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using AppStudio.DataProviders.Exceptions;
+using System.IO.Compression;
+
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
-using System.IO.Compression;
+
+using AppStudio.DataProviders.Exceptions;
+using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.Twitter
 {
     public class TwitterDataProvider : DataProviderBase<TwitterDataConfig, TwitterSchema>
     {
         private TwitterOAuthTokens _tokens;
-        private const string BaseUrl = "https://api.twitter.com/1.1";
+        private const string BaseUrl = "https://api.twitter.com/1.1";       
+
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(ContinuationToken);
+            }
+        }
 
         public TwitterDataProvider(TwitterOAuthTokens tokens)
         {
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TwitterDataConfig config, int maxRecords, IParser<TSchema> parser)
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(TwitterDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             IEnumerable<TSchema> items;
             switch (config.QueryType)
             {
                 case TwitterQueryType.User:
-                    items = await GetUserTimeLineAsync(config.Query, maxRecords, parser);
+                    items = await GetUserTimeLineAsync(config.Query, pageSize, parser);
                     break;
                 case TwitterQueryType.Search:
-                    items = await SearchAsync(config.Query, maxRecords, parser);
+                    items = await SearchAsync(config.Query, pageSize, parser);
                     break;
                 case TwitterQueryType.Home:
                 default:
-                    items = await GetHomeTimeLineAsync(maxRecords, parser);
+                    items = await GetHomeTimeLineAsync(pageSize, parser);
                     break;
             }
 
             return items;
         }
 
+        protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(TwitterDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            IEnumerable<TSchema> items;
+            switch (config.QueryType)
+            {
+                case TwitterQueryType.User:
+                    items = await GetMoreUserTimeLineAsync(config.Query, pageSize, parser);
+                    break;
+                case TwitterQueryType.Search:
+                    items = await SearchMoreAsync(config.Query, pageSize, parser);
+                    break;
+                case TwitterQueryType.Home:
+                default:
+                    items = await GetMoreHomeTimeLineAsync(pageSize, parser);
+                    break;
+            }
+
+            return items;
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> GetUserTimeLineAsync(string screenName, int pageSize)
+        {
+            return await GetUserTimeLineAsync(screenName, pageSize, new TwitterTimelineParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetUserTimeLineUrl(screenName, pageSize);
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> GetMoreUserTimeLineAsync(string screenName, int pageSize)
+        {
+            return await GetMoreUserTimeLineAsync(screenName, pageSize, new TwitterTimelineParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetMoreUserTimeLineAsync<TSchema>(string screenName, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetUserTimeLineUrl(screenName, pageSize);
+            if (HasMoreItems)
+            {
+                url += $"&max_id={ContinuationToken}";
+            }
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> SearchAsync(string hashTag, int pageSize)
+        {
+            return await SearchAsync(hashTag, pageSize, new TwitterSearchParser());
+        }
+
+        public async Task<IEnumerable<TwitterSchema>> SearchMoreAsync(string hashTag, int pageSize)
+        {
+            return await SearchMoreAsync(hashTag, pageSize, new TwitterSearchParser());
+        }
+
+        public async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetSearchUrl(hashTag, pageSize);
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        public async Task<IEnumerable<TSchema>> SearchMoreAsync<TSchema>(string hashTag, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetSearchUrl(hashTag, pageSize);
+            if (HasMoreItems)
+            {
+                url += $"&max_id={ContinuationToken}";
+            }
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
         protected override IParser<TwitterSchema> GetDefaultParserInternal(TwitterDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             switch (config.QueryType)
             {
                 case TwitterQueryType.Search:
@@ -58,85 +153,12 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        public async Task<IEnumerable<TwitterSchema>> GetUserTimeLineAsync(string screenName, int maxRecords)
-        {
-            return await GetUserTimeLineAsync(screenName, maxRecords, new TwitterTimelineParser());
-        }
-
-        public async Task<IEnumerable<TSchema>> GetUserTimeLineAsync<TSchema>(string screenName, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
-        {
-            try
-            {
-                var uri = new Uri($"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={maxRecords}&include_rts=1");
-
-                OAuthRequest request = new OAuthRequest();
-                var rawResult = await request.ExecuteAsync(uri, _tokens);
-
-                var result = parser.Parse(rawResult);
-                return result
-                        .Take(maxRecords)
-                        .ToList();
-            }
-            catch (WebException wex)
-            {
-                HttpWebResponse response = wex.Response as HttpWebResponse;
-                if (response != null)
-                {
-                    if (response.StatusCode == HttpStatusCode.NotFound)
-                    {
-                        throw new UserNotFoundException(screenName);
-                    }
-                    if ((int)response.StatusCode == 429)
-                    {
-                        throw new TooManyRequestsException();
-                    }
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        throw new OAuthKeysRevokedException();
-                    }
-                }
-                throw;
-            }
-        }
-
-        public async Task<IEnumerable<TwitterSchema>> SearchAsync(string hashTag, int maxRecords)
-        {
-            return await SearchAsync(hashTag, maxRecords, new TwitterSearchParser());
-        }
-
-        public async Task<IEnumerable<TSchema>> SearchAsync<TSchema>(string hashTag, int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
-        {
-            try
-            {
-                var uri = new Uri($"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={maxRecords}");
-                OAuthRequest request = new OAuthRequest();
-                var rawResult = await request.ExecuteAsync(uri, _tokens);
-
-                var result = parser.Parse(rawResult);
-                return result
-                        .Take(maxRecords)
-                        .ToList();
-            }
-            catch (WebException wex)
-            {
-                HttpWebResponse response = wex.Response as HttpWebResponse;
-                if (response != null)
-                {
-                    if ((int)response.StatusCode == 429)
-                    {
-                        throw new TooManyRequestsException();
-                    }
-                    if (response.StatusCode == HttpStatusCode.Unauthorized)
-                    {
-                        throw new OAuthKeysRevokedException();
-                    }
-                }
-                throw;
-            }
-        }
-
         protected override void ValidateConfig(TwitterDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null && config.QueryType != TwitterQueryType.Home)
             {
                 throw new ConfigParameterNullException("Query");
@@ -163,16 +185,36 @@ namespace AppStudio.DataProviders.Twitter
             }
         }
 
-        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int maxRecords, IParser<TSchema> parser) where TSchema : SchemaBase
+        private async Task<IEnumerable<TSchema>> GetHomeTimeLineAsync<TSchema>(int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetHomeTimeLineUrl(pageSize);
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        private async Task<IEnumerable<TSchema>> GetMoreHomeTimeLineAsync<TSchema>(int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            var url = GetHomeTimeLineUrl(pageSize);
+            if (HasMoreItems)
+            {
+                url += $"&max_id={ContinuationToken}";
+            }
+            var uri = new Uri(url);
+
+            return await GetDataFromProvider(parser, uri);
+        }
+
+        private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(IParser<TSchema> parser, Uri uri) where TSchema : SchemaBase
         {
             try
             {
-                var uri = new Uri($"{BaseUrl}/statuses/home_timeline.json?count={maxRecords}");
-
                 OAuthRequest request = new OAuthRequest();
                 var rawResult = await request.ExecuteAsync(uri, _tokens);
 
-                return parser.Parse(rawResult);
+                var items = await parser.ParseAsync(rawResult);
+                ContinuationToken = await GetContinuationTokenAsync(rawResult);
+                return items;
             }
             catch (WebException wex)
             {
@@ -190,6 +232,38 @@ namespace AppStudio.DataProviders.Twitter
                 }
                 throw;
             }
+        }
+
+        private static string GetUserTimeLineUrl(string screenName, int pageSize)
+        {
+            var url = $"{BaseUrl}/statuses/user_timeline.json?screen_name={screenName}&count={pageSize}&include_rts=1";
+            return url;
+        }
+
+        private static string GetHomeTimeLineUrl(int pageSize)
+        {
+            var url = $"{BaseUrl}/statuses/home_timeline.json?count={pageSize}";
+            return url;
+        }
+
+        private static string GetSearchUrl(string hashTag, int pageSize)
+        {
+            var url = $"{BaseUrl}/search/tweets.json?q={Uri.EscapeDataString(hashTag)}&count={pageSize}";
+            return url;
+        }       
+
+        private async Task<string> GetContinuationTokenAsync(string data)
+        {
+            var defaultParser = GetDefaultParser(Config);
+            var items = await defaultParser.ParseAsync(data);
+            var id_str = items?.LastOrDefault()?._id;
+            long id;
+            if (long.TryParse(id_str, out id))
+            {
+                var result = id - 1;
+                return result.ToString();
+            }
+            return string.Empty;
         }
     }
 

@@ -14,6 +14,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption
@@ -22,7 +24,7 @@ namespace AppStudio.Uwp.Samples
         }
 
         #region Commands
-        public ICommand NavigateCommand
+        public static ICommand NavigateCommand
         {
             get
             {

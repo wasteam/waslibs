@@ -16,7 +16,7 @@ namespace AppStudio.Uwp.Samples
     {
         static private IEnumerable<ControlDataItem> _featuredControls = null;
 
-        public IEnumerable<ControlDataItem> GetItems()
+        public static IEnumerable<ControlDataItem> GetItems()
         {
             return _featuredControls;
         }

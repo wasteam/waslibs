@@ -13,6 +13,7 @@
     <SolidColorBrush x:Key="AppServicesBackground" Color="{StaticResource AppServicesBackgroundColor}"/>
     <SolidColorBrush x:Key="UtilitiesBackground" Color="{StaticResource UtilitiesBackgroundColor}"/>
     <SolidColorBrush x:Key="DataProvidersBackground" Color="{StaticResource DataProvidersBackgroundColor}"/>
+    <SolidColorBrush x:Key="LabsBackground" Color="{StaticResource LabsBackgroundColor}"/>
 
     <!--ShellControl-->
     <SolidColorBrush x:Key="AppBarForeground" Color="{StaticResource AppBarForegroundColor}"/>

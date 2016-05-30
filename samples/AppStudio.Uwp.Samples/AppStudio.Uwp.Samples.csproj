@@ -28,6 +28,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -89,11 +91,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\HtmlBlock\Sample.html" />
     <Content Include="Assets\Images\BigFourSummerHeat.png" />
     <Content Include="Assets\Images\BisonBadlandsChillin.png" />
     <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
+    <Content Include="Assets\Images\CreateApp.gif" />
     <Content Include="Assets\Images\GiantSlabInOregon.png" />
     <Content Include="Assets\Images\GrandTetons.png" />
+    <Content Include="Assets\Images\html-block.png" />
     <Content Include="Assets\Images\LakeAnnMushroom.png" />
     <Content Include="Assets\Images\LunchBreak.png" />
     <Content Include="Assets\Images\MilkyWayStHelensHikePurple.png" />
@@ -147,17 +152,22 @@
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\VBPDevices.json" />
+    <CodeAnalysisDictionary Include="Dictionary.xml" />
+    <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
     <Content Include="Pages\ErrorNotificationControl\Docs\ErrorNotificationControlXaml.xml" />
+    <Content Include="Pages\HtmlBlock\Docs\HtmlBlockXaml.xml" />
+    <Content Include="Pages\GifControl\Docs\GifControlXaml.xml" />
+    <Content Include="Pages\InfiniteScroll\Docs\InfiniteScrollXaml.xml" />
     <Content Include="Pages\RelativeAndVirtualBox\Docs\RelativeAndVirtualBoxXaml.xml" />
+    <Content Include="Pages\SliderView\Docs\SliderViewXaml.xml" />
     <Content Include="Pages\SplitterCard\Docs\SplitterCardXaml.xml" />
     <Content Include="Pages\RelativeBox\Docs\RelativeBoxXaml.xml" />
     <Content Include="Pages\ImageEx\Docs\ImageExXaml.xml" />
     <Content Include="Pages\VirtualBox\Docs\VirtualBoxXaml.xml" />
     <Content Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsJson.json" />
-    <Content Include="Assets\LocalStorageSamples.json" />
     <Content Include="Assets\FeaturedControls.json" />
     <Content Include="Assets\VBPVariableSizedGrid.json" />
     <None Include="project.json" />
@@ -182,11 +192,24 @@
     <Compile Include="Common\SamplePageAttribute.cs" />
     <Compile Include="Controls\IndexTemplateSelector.cs" />
     <Compile Include="Controls\PrettifyControl.cs" />
-    <Compile Include="Data\ColorsDataSource.cs" />
+    <Compile Include="Converters\CompareStringVisibiltyConverter.cs" />
     <Compile Include="Data\FeaturedControlsDataSource.cs" />
     <Compile Include="Data\PhotosDataSource.cs" />
-    <Compile Include="Data\SymbolsDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
+      <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewPage.xaml.cs">
+      <DependentUpon>ResponsiveGridViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
+      <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Flickr\FlickrOrderBy.cs" />
+    <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
+      <DependentUpon>GifControlSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -222,6 +245,28 @@
       <DependentUpon>FlickrHelp.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\LocalStorage\Docs\LocalStorageCSharp.cs" />
+    <Compile Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml.cs">
+      <DependentUpon>HtmlBlockHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockPage.xaml.cs">
+      <DependentUpon>HtmlBlockPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockSettings.xaml.cs">
+      <DependentUpon>HtmlBlockSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HtmlBlock\HtmlBlockViewModel.cs" />
+    <Compile Include="Pages\GifControl\Docs\GifControlHelp.xaml.cs">
+      <DependentUpon>GifControlHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GifControl\GifControlPage.xaml.cs">
+      <DependentUpon>GifControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InfiniteScroll\Docs\InfiniteScrollHelp.xaml.cs">
+      <DependentUpon>InfiniteScrollHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InfiniteScroll\InfiniteScrollPage.xaml.cs">
+      <DependentUpon>InfiniteScrollPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LocalStorage\Docs\LocalStorageHelp.xaml.cs">
       <DependentUpon>LocalStorageHelp.xaml</DependentUpon>
     </Compile>
@@ -274,14 +319,25 @@
     <Compile Include="Pages\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RestApi\RestApiSample.cs" />
     <Compile Include="Pages\Rss\Docs\RssHelp.xaml.cs">
       <DependentUpon>RssHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Rss\RssOrderBy.cs" />
     <Compile Include="Pages\SearchBox\Docs\SearchBoxHelp.xaml.cs">
       <DependentUpon>SearchBoxHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SectionList\Docs\SectionListHelp.xaml.cs">
       <DependentUpon>SectionListHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\Docs\SliderViewHelp.xaml.cs">
+      <DependentUpon>SliderViewHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\SliderViewPage.xaml.cs">
+      <DependentUpon>SliderViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SliderView\SliderViewSettings.xaml.cs">
+      <DependentUpon>SliderViewSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml.cs">
       <DependentUpon>SplitterCardHelp.xaml</DependentUpon>
@@ -405,6 +461,16 @@
       <DependentUpon>TwitterSettings.xaml</DependentUpon>
     </Compile>
     <Content Include="Pages\WordPress\Docs\WordPressCSharp.cs" />
+    <Content Include="Pages\RestApi\Docs\RestApiCSharp.cs" />
+    <Compile Include="Pages\RestApi\Docs\RestApiHelp.xaml.cs">
+      <DependentUpon>RestApiHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RestApi\RestApiPage.xaml.cs">
+      <DependentUpon>RestApiPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RestApi\RestApiSettings.xaml.cs">
+      <DependentUpon>RestApiSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WordPress\Docs\WordPressHelp.xaml.cs">
       <DependentUpon>WordPressHelp.xaml</DependentUpon>
     </Compile>
@@ -466,6 +532,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\GifControl\GifControlSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -538,6 +620,34 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Flickr\Docs\FlickrHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\Docs\HtmlBlockHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HtmlBlock\HtmlBlockSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GifControl\Docs\GifControlHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\GifControl\GifControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InfiniteScroll\Docs\InfiniteScrollHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\InfiniteScroll\InfiniteScrollPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -625,6 +735,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\SliderView\Docs\SliderViewHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SliderView\SliderViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SliderView\SliderViewSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SplitterCard\Docs\SplitterCardHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -654,6 +776,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\VisualBreakpoints\Docs\VisualBreakpointsHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\Docs\RestApiHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\RestApiPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RestApi\RestApiSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

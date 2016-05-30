@@ -26,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\CodeAnalysisRules\ExtendedDesignGuidelineRulesAppStudioCustom.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,6 +45,7 @@
     <Compile Include="Bing\BingDataConfig.cs" />
     <Compile Include="Bing\BingDataProvider.cs" />
     <Compile Include="Bing\BingParser.cs" />
+    <Compile Include="Core\AssemblyUtils.cs" />
     <Compile Include="Core\JsonParser.cs" />
     <Compile Include="Core\StringValue.cs" />
     <Compile Include="Core\ExtensionMethods.cs" />
@@ -72,12 +73,16 @@
     <Compile Include="Core\HttpRequestResult.cs" />
     <Compile Include="Core\HttpRequestSettings.cs" />
     <Compile Include="IParser.cs" />
+    <Compile Include="IParserExtensions.cs" />
     <Compile Include="LocalStorage\LocalStorageDataConfig.cs" />
     <Compile Include="LocalStorage\LocalStorageDataProvider.cs" />
     <Compile Include="Bing\BingSchema.cs" />
     <Compile Include="Facebook\FacebookSchema.cs" />
     <Compile Include="Flickr\FlickrSchema.cs" />
     <Compile Include="Core\HttpRequest.cs" />
+    <Compile Include="SortDirection.cs" />
+    <Compile Include="RestApi\RestApiDataConfig.cs" />
+    <Compile Include="RestApi\RestApiDataProvider.cs" />
     <Compile Include="Rss\RssDataConfig.cs" />
     <Compile Include="Rss\RssDataProvider.cs" />
     <Compile Include="Html\HtmlSchema.cs" />
@@ -120,11 +125,14 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="Dictionary.xml" />
+    <CodeAnalysisDictionary Include="Dictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Users\ljsanche.EUROPE\Downloads\Build.Source-v1.0.6.0\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

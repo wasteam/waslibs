@@ -1,0 +1,120 @@
+﻿<UserControl
+    x:Class="AppStudio.Uwp.Samples.RestApiSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:converters="using:AppStudio.Uwp.Samples"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300">
+    <UserControl.Resources>      
+        <converters:CompareStringVisibiltyConverter x:Name="CompareStringVisibiltyConverter"/>
+    </UserControl.Resources>
+
+    <Grid BorderBrush="LightGray" BorderThickness="1,0,0,0">
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.85"/>
+        </Grid.Background>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="24">                
+                <controls:PropertySet
+                    x:Uid="propRestApiSampleSelect"
+                    Source="{Binding}"
+                    Property="Sample"
+                    Value="{Binding Sample, Mode=TwoWay}" 
+                    ComboSelectionChangedCommand="{Binding SampleSelectionChanged}"/>    
+                <Grid                    
+                    Height="2"
+                    Margin="0,20,0,20"
+                    Background="LightGray"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
+                <controls:PropertySet
+                    x:Uid="propRestApiUrl"
+                    Source="{Binding}"
+                    Property="RestApiQuery"
+                    Value="{Binding RestApiQuery, Mode=TwoWay}"/>                      
+                 <controls:PropertySet      
+                    x:Uid="propRestApiParameterType"                    
+                    Source="{Binding}"
+                    Property="PaginationParameterType"
+                    Value="{Binding PaginationParameterType, Mode=TwoWay}"/>        
+                 <controls:PropertySet
+                    x:Uid="propRestApiParameterName"  
+                    Source="{Binding}"                    
+                    Property="PaginationParameterName"
+                    Value="{Binding PaginationParameterName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset;Token}" />     
+                  <controls:PropertySet
+                    x:Uid="propRestApiTokenName"  
+                    Source="{Binding}"                    
+                    Property="ResponseTokenName"
+                    Value="{Binding ResponseTokenName, Mode=TwoWay}"
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=Token;NextPageUrl}" />     
+                  <controls:PropertySet
+                    x:Uid="propRestApiInitialValue"   
+                    Source="{Binding}"
+                    Property="IsZeroIndexed"
+                    Value="{Binding IsZeroIndexed, Mode=TwoWay}"                      
+                    Visibility="{Binding PaginationParameterType, Converter={StaticResource CompareStringVisibiltyConverter}, ConverterParameter=PageNumber;ItemOffset}"/>                    
+                 <controls:PropertySet
+                    x:Uid="propRestApiItemsPerPageParameterName"   
+                    Source="{Binding}"
+                    Property="PageSizeParameterName"
+                    Value="{Binding PageSizeParameterName, Mode=TwoWay}"/> 
+                <controls:PropertySet
+                    x:Uid="propMaxRecords"
+                    Source="{Binding}"
+                    Property="MaxRecordsParam"
+                    Value="{Binding MaxRecordsParam, Mode=TwoWay}"
+                    Minimun="1"
+                    Maximun="50"
+                    SmallChange="1"/>
+                <Grid                    
+                    Height="1"
+                    Margin="0,20,0,20"
+                    Background="LightGray"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"/>
+                <TextBlock    
+                    x:Uid="RestApiMapping"                     
+                    Style="{StaticResource LayoutTitleStyle}"/>
+                <controls:PropertySet
+                    x:Uid="propRestApiMainRoot" 
+                    Source="{Binding}"
+                    Property="RestApiMainRoot"
+                    Value="{Binding RestApiMainRoot, Mode=TwoWay}"/>        
+                 <controls:PropertySet
+                    x:Uid="propRestApiSampleProperty1" 
+                    Source="{Binding}"
+                    Property="TextProperty1"
+                    Value="{Binding TextProperty1, Mode=TwoWay}"/>
+                  <controls:PropertySet
+                    x:Uid="propRestApiSampleProperty2" 
+                    Source="{Binding}"
+                    Property="TextProperty2"
+                    Value="{Binding TextProperty2, Mode=TwoWay}"/>   
+                 <controls:PropertySet
+                    x:Uid="propRestApiSampleImage" 
+                    Source="{Binding}"
+                    Property="ImageProperty"
+                    Value="{Binding ImageProperty, Mode=TwoWay}"/>   
+                <StackPanel
+                    Margin="0,30,0,0">
+                     <Button
+                        x:Uid="DataProviderRefreshButton"
+                        Command="{Binding RefreshDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        x:Uid="DataProviderMoreItemsButton"
+                        Command="{Binding MoreDataCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                    <Button
+                        x:Uid="DataProviderRestoreConfigButton"
+                        Command="{Binding RestoreConfigCommand}"
+                        Style="{StaticResource SettingsButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -12,6 +12,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption
@@ -31,7 +33,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Items = new ObservableCollection<object>(new PhotosDataSource().GetGroupedItems());
+            Items = new ObservableCollection<object>(PhotosDataSource.GetGroupedItems());
 
             base.OnNavigatedTo(e);
         }

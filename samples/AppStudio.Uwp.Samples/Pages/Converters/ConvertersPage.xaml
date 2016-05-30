@@ -13,7 +13,15 @@
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
         <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"             />
     </Page.Resources>
-    
+
+    <controls:ShellControl.CommandBar>
+        <controls:CommandBarEx x:Name="commandBar" PrimaryCommandItems="{Binding PrimaryCommands}" />
+    </controls:ShellControl.CommandBar>
+
+    <controls:ShellControl.PaneHeader>
+        <Grid Name="paneHeader" Background="{Binding CommandBarBackground}" />
+    </controls:ShellControl.PaneHeader>
+
     <Grid Background="{StaticResource AppBackground}">
         <ScrollViewer>
             <StackPanel Margin="12" MaxWidth="800" HorizontalAlignment="Left">

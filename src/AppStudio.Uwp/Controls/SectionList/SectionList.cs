@@ -140,7 +140,7 @@ namespace AppStudio.Uwp.Controls
             }
             base.OnApplyTemplate();
         }
-        private DataTemplate DefaultLoadingTemplate()
+        private static DataTemplate DefaultLoadingTemplate()
         {
             DataTemplate retVal = null;
             String markup = String.Empty;

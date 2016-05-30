@@ -13,6 +13,8 @@ namespace AppStudio.Uwp.Samples
         {
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption
@@ -72,7 +74,7 @@ namespace AppStudio.Uwp.Samples
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var items = new PhotosDataSource().GetItems();
+            var items = PhotosDataSource.GetItems();
 
             this.NatureItems = new ObservableCollection<object>(items.Where(x => x.Category == "Nature"));
             this.AnimalItems = new ObservableCollection<object>(items.Where(x => x.Category == "Animal"));

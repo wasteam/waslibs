@@ -55,7 +55,7 @@
             VerticalContentAlignment="Stretch"/>
         <Grid Grid.Row="1">
             <was_controls:VariableSizedGrid
-                Name="HomeVariableSizedGrid"
+                x:Name="HomeVariableSizedGrid"
                 Margin="8"
                 AspectRatio="1"
                 ItemsSource="{Binding Items}"

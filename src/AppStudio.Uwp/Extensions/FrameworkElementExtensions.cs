@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
+using System;
 
 namespace AppStudio.Uwp
 {
@@ -9,6 +10,10 @@ namespace AppStudio.Uwp
     {
         public static void SetVisibility(this FrameworkElement elem, bool visibility)
         {
+            if (elem == null)
+            {
+                throw new ArgumentNullException("elem");
+            }
             elem.Visibility = visibility ? Visibility.Visible : Visibility.Collapsed;
         }
 
@@ -41,6 +46,11 @@ namespace AppStudio.Uwp
 
         public static CompositeTransform GetCompositeTransform(this FrameworkElement elem)
         {
+            if (elem == null)
+            {
+                throw new ArgumentNullException("elem");
+            }
+
             var trans = elem.RenderTransform as CompositeTransform;
             if (trans == null)
             {
@@ -52,13 +62,23 @@ namespace AppStudio.Uwp
 
         public static Size GetSize(this FrameworkElement elem)
         {
+            if (elem == null)
+            {
+                throw new ArgumentNullException("elem");
+            }
+
             return new Size(elem.ActualWidth, elem.ActualHeight);
         }
 
-        public static void Size(this FrameworkElement elem, Size size)
+        public static void Size(this FrameworkElement elem, Size s)
         {
-            elem.Width = size.Width;
-            elem.Height = size.Height;
+            if (elem == null)
+            {
+                throw new ArgumentNullException("elem");
+            }
+
+            elem.Width = s.Width;
+            elem.Height = s.Height;
         }
     }
 }

@@ -6,7 +6,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="was_controls:SearchBox">
-                    <Grid Background="{TemplateBinding Background}" Height="{TemplateBinding Height}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                    <Grid
+                        Background="{TemplateBinding Background}"
+                        Height="{TemplateBinding Height}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
@@ -59,8 +63,20 @@
                                                                 <Setter Property="Template">
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="Button">
-                                                                            <Grid x:Name="ButtonLayoutGrid" BorderThickness="{TemplateBinding BorderThickness}" Background="Transparent">
-                                                                                <TextBlock x:Name="GlyphElement" AutomationProperties.AccessibilityView="Raw" Foreground="{TemplateBinding Foreground}" FontStyle="Normal" FontSize="12" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Center" Text="&#xE10A;" VerticalAlignment="Center"/>
+                                                                            <Grid
+                                                                                x:Name="ButtonLayoutGrid"
+                                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                                Background="Transparent">
+                                                                                <TextBlock
+                                                                                    x:Name="GlyphElement"
+                                                                                    FontSize="12"
+                                                                                    Text="&#xE10A;"
+                                                                                    FontStyle="Normal"                                                                                    
+                                                                                    VerticalAlignment="Center"
+                                                                                    HorizontalAlignment="Center"
+                                                                                    Foreground="{TemplateBinding Foreground}"
+                                                                                    AutomationProperties.AccessibilityView="Raw"
+                                                                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
                                                                             </Grid>
                                                                         </ControlTemplate>
                                                                     </Setter.Value>
@@ -84,7 +100,9 @@
                                                             <VisualStateGroup x:Name="ButtonStates">
                                                                 <VisualState x:Name="ButtonVisible">
                                                                     <Storyboard>
-                                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DeleteButton">
+                                                                        <ObjectAnimationUsingKeyFrames
+                                                                            Storyboard.TargetProperty="Visibility"
+                                                                            Storyboard.TargetName="DeleteButton">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
                                                                                     <Visibility>Visible</Visibility>
@@ -96,9 +114,37 @@
                                                                 <VisualState x:Name="ButtonCollapsed"/>
                                                             </VisualStateGroup>
                                                         </VisualStateManager.VisualStateGroups>
-                                                        <ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="0" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
-                                                        <Button x:Name="DeleteButton" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" FontSize="{TemplateBinding FontSize}" IsTabStop="False" Margin="{ThemeResource HelperButtonThemePadding}" MinWidth="34" Grid.Row="0" Style="{StaticResource DeleteButtonStyle}" Visibility="Collapsed" VerticalAlignment="Stretch"/>
-                                                        <Grid Grid.Row="1" Height="1" HorizontalAlignment="Stretch" Background="{TemplateBinding Foreground}"/>
+                                                        <ScrollViewer
+                                                            x:Name="ContentElement"
+                                                            IsTabStop="False"
+                                                            ZoomMode="Disabled"
+                                                            AutomationProperties.AccessibilityView="Raw"
+                                                            Padding="{TemplateBinding Padding}"
+                                                            Margin="{TemplateBinding BorderThickness}"
+                                                            IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                                            HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                                            IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                                            IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                                            VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"/>
+                                                        <Button
+                                                            x:Name="DeleteButton"
+                                                            Grid.Column="1"
+                                                            MinWidth="34"
+                                                            IsTabStop="False"
+                                                            Visibility="Collapsed"
+                                                            VerticalAlignment="Stretch"
+                                                            FontSize="{TemplateBinding FontSize}"
+                                                            Foreground="{TemplateBinding Foreground}"
+                                                            Style="{StaticResource DeleteButtonStyle}"
+                                                            Margin="{ThemeResource HelperButtonThemePadding}"
+                                                            BorderThickness="{TemplateBinding BorderThickness}"/>
+                                                        <Grid
+                                                            Grid.Row="1"
+                                                            Height="1"
+                                                            HorizontalAlignment="Stretch"
+                                                            Background="{TemplateBinding Foreground}"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>

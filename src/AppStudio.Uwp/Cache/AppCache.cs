@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Net.NetworkInformation;
-
 namespace AppStudio.Uwp.Cache
 {
     public static class AppCache
     {
         private static Dictionary<string, string> _memoryCache = new Dictionary<string, string>();
 
+        [Obsolete("Use a custom loading strategy in your app")]
         public static async Task<DateTime?> LoadItemsAsync<T>(CacheSettings settings, Func<Task<IEnumerable<T>>> loadDataAsync, Action<CachedContent<T>> parseItems, bool refreshForced = false)
         {
             if (settings == null)
@@ -53,14 +53,14 @@ namespace AppStudio.Uwp.Cache
             }
             else
             {
-                json = await UserStorage.ReadTextFromFile(key);
+                json = await UserStorage.ReadTextFromFileAsync(key);
                 _memoryCache[key] = json;
             }
             if (!String.IsNullOrEmpty(json))
             {
                 try
                 {
-                    CachedContent<T> records = JsonConvert.DeserializeObject<CachedContent<T>>(json);
+                    CachedContent<T> records = await Json.ToObjectAsync<CachedContent<T>>(json);
                     return records;
                 }
                 catch (Exception ex)
@@ -80,14 +80,14 @@ namespace AppStudio.Uwp.Cache
             }
             else
             {
-                json = await UserStorage.ReadTextFromFile(key);
+                json = await UserStorage.ReadTextFromFileAsync(key);
                 _memoryCache[key] = json;
             }
             if (!String.IsNullOrEmpty(json))
             {
                 try
                 {
-                    T data = JsonConvert.DeserializeObject<T>(json);
+                    T data = await Json.ToObjectAsync<T>(json);
                     return data;
                 }
                 catch (Exception ex)
@@ -115,6 +115,23 @@ namespace AppStudio.Uwp.Cache
             return results;
         }
 
+        public static async Task ClearItemsByPrefixAsync(string prefix)
+        {
+            List<string> keys = _memoryCache.Keys.Where(k => k.StartsWith(prefix)).ToList();
+
+            foreach (var key in keys)
+            {
+                _memoryCache.Remove(key);
+            }
+
+            List<string> inFileKeys = await UserStorage.GetMatchingFilesByPrefixAsync(prefix, keys);
+
+            foreach (var fileKey in inFileKeys)
+            {
+                await UserStorage.DeleteFileIfExistsAsync(fileKey);
+            }
+        }
+
         public static async Task AddItemsAsync<T>(string key, CachedContent<T> data)
         {
             await AddItemsAsync<T>(key, data, true);
@@ -124,11 +141,11 @@ namespace AppStudio.Uwp.Cache
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data);
+                string json = await Json.StringifyAsync(data);
 
                 if (useStorageCache)
                 {
-                    await UserStorage.WriteText(key, json);
+                    await UserStorage.WriteTextAsync(key, json);
                 }
 
                 if (_memoryCache.ContainsKey(key))
@@ -156,11 +173,11 @@ namespace AppStudio.Uwp.Cache
         {
             try
             {
-                string json = JsonConvert.SerializeObject(data);
+                string json = await Json.StringifyAsync(data);
 
                 if (useStorageCache)
                 {
-                    await UserStorage.WriteText(key, json);
+                    await UserStorage.WriteTextAsync(key, json);
                 }
 
                 if (_memoryCache.ContainsKey(key))

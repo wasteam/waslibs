@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AppStudio.DataProviders.Exceptions;
 using AppStudio.DataProviders.Facebook;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using System;
 
 namespace AppStudio.DataProviders.Test.DataProviders
 {
@@ -22,6 +23,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
+            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -125,7 +127,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<FacebookSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.AreEqual(maxRecords, result.Count());
-
         }
 
         [TestMethod]
@@ -140,6 +141,36 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<FacebookSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
             Assert.IsTrue(result.Count() > 25);
+        }
+
+        [TestMethod]
+        public async Task LoadPaginationFacebook()
+        {
+            var config = new FacebookDataConfig
+            {
+                UserId = "8195378771",
+            };
+            var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
+            await dataProvider.LoadDataAsync(config, 5);
+
+            Assert.IsTrue(dataProvider.HasMoreItems);
+
+            IEnumerable<FacebookSchema> result = await dataProvider.LoadMoreDataAsync();
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Any());
+        }
+
+        [TestMethod]
+        public async Task LoadMoreDataInvalidOperationFacebook()
+        {
+            var config = new FacebookDataConfig
+            {
+                UserId = "8195378771",
+            };
+            var dataProvider = new FacebookDataProvider(OAuthKeys.FacebookValidKeys);
+            InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
+            Assert.IsFalse(dataProvider.IsInitialized);
         }
     }
 }

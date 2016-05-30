@@ -29,6 +29,8 @@ namespace AppStudio.Uwp.Samples
             this.Options.Add(new Option() { Text = this.GetResourceString("AppCacheCleanCache"), Symbol = Symbol.Clear, Command = CleanCacheCommand });
 
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption
@@ -189,7 +191,7 @@ namespace AppStudio.Uwp.Samples
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.Items = new ObservableCollection<PhotoDataItem>(new PhotosDataSource().GetItems());
+            this.Items = new ObservableCollection<PhotoDataItem>(PhotosDataSource.GetItems());
             this.MemoryItems = new ObservableCollection<PhotoDataItem>();
             this.ItemsInMemory = MemoryItems.Count;
             var cacheData = await AppCache.GetItemsAsync<PhotoDataItem>("AppCacheSample");

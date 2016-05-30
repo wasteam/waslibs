@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
 namespace AppStudio.DataProviders
-{   
-    public interface IParser<T> where T : SchemaBase
+{
+    public interface IParser<TSchema>
+        where TSchema : SchemaBase
     {
-        IEnumerable<T> Parse(string data);
+        IEnumerable<TSchema> Parse(string data);
     }
 }

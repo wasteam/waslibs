@@ -18,17 +18,25 @@ namespace AppStudio.DataProviders.Instagram
             _tokens = tokens;
         }
 
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int maxRecords, IParser<TSchema> parser)
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(InstagramDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var settings = new HttpRequestSettings
             {
-                RequestedUri = this.GetApiUrl(config, maxRecords)
+                RequestedUri = this.GetApiUrl(config, pageSize)
             };
 
             HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
             if (result.Success)
             {
-                return parser.Parse(result.Result);
+                return await parser.ParseAsync(result.Result);
             }
 
             if (result.StatusCode == HttpStatusCode.BadRequest && !string.IsNullOrEmpty(result.Result) && (result.Result.Contains("OAuthParameterException") || result.Result.Contains("OAuthAccessTokenException")))
@@ -44,8 +52,17 @@ namespace AppStudio.DataProviders.Instagram
             return new InstagramParser();
         }
 
+        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(InstagramDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void ValidateConfig(InstagramDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.Query == null)
             {
                 throw new ConfigParameterNullException("Query");
