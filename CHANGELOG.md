@@ -1,6 +1,6 @@
 Windows AppStudio Libraries ChangeLog
 =====================================
-- **1.5.0** (May 29th 2016) Animated gifs support, html to xaml, infinite scroll, pagination & order in data providers, Rest Api data provider. Improvements and Bug fixing.
+- **1.4.0** (May 29th 2016) Animated gifs support, html to xaml, infinite scroll, pagination & order in data providers, Rest Api data provider. Improvements and Bug fixing.
 - **1.3.0** (Mar 23th 2016) New Samples App, VariableSizedGrid, ImageEx, ShellControl
 - **1.2.1** (Feb 25th 2016) BugFixing.
 - **1.2.0** (Feb 22th 2016) BugFixing, Pivorama, SearchBox & SplitterCard controls.
