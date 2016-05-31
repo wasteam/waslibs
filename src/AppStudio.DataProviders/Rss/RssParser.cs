@@ -82,6 +82,7 @@ namespace AppStudio.DataProviders.Rss
         private static readonly XNamespace NsRdfNamespaceUri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
         private static readonly XNamespace NsRdfElementsNamespaceUri = "http://purl.org/dc/elements/1.1/";
         private static readonly XNamespace NsRdfContentNamespaceUri = "http://purl.org/rss/1.0/modules/content/";
+        private static readonly XNamespace NsYandexContentNamespaceUri = "http://news.yandex.ru";
 
         /// <summary>
         /// THis override load and parses the document and return a list of RssSchema values.
@@ -124,10 +125,14 @@ namespace AppStudio.DataProviders.Rss
             string content = item.GetSafeElementString("encoded", NsRdfContentNamespaceUri);
             if (string.IsNullOrEmpty(content))
             {
-                content = item.GetSafeElementString("description");
+                content = item.GetSafeElementString("full-text", NsYandexContentNamespaceUri);
                 if (string.IsNullOrEmpty(content))
                 {
-                    content = item.GetSafeElementString("content");
+                    content = item.GetSafeElementString("description");
+                    if (string.IsNullOrEmpty(content))
+                    {
+                        content = item.GetSafeElementString("content");
+                    }
                 }
             }
 

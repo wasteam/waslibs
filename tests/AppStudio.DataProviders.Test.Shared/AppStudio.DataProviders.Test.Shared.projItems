@@ -67,6 +67,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssTumblr.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssUDiscoverMusic.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssWordpress.xml" />
+	<Content Include="$(MSBuildThisFileDirectory)Assets\Rss\RssYandexFulltextTag.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterHomeTimelineQuery.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterSearchQuery.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Twitter\TwitterUserTimelineQuery.json" />

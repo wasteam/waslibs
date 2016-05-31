@@ -401,6 +401,17 @@ namespace AppStudio.DataProviders.Test.Parsers
         }
 
         [TestMethod]
+        public async Task TestRssYandexFulltextTag() {
+            string rssContents = await Common.ReadAssetFile("/Assets/Rss/RssYandexFulltextTag.xml");
+
+            var data = Parser.Parse(rssContents);
+
+            Assert.IsTrue(data.Any());
+            var item = data.First();
+            Assert.IsTrue(item.Content.Contains("Международный день памятников и"), "Content should contains 'yandex:full-text' tag text in priority to 'description' tag");
+        }
+
+        [TestMethod]
         public void LoadNullQuery()
         {
             var data = Parser.Parse(null);
