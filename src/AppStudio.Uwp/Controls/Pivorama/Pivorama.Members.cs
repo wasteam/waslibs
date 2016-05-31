@@ -87,10 +87,10 @@ namespace AppStudio.Uwp.Controls
         private static void ItemWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as Pivorama;
-            control.SetItemWidth((double)e.NewValue, (double)e.OldValue);
+            control.SetItemWidth((double)e.NewValue);
         }
 
-        private void SetItemWidth(double newValue, double oldValue)
+        private void SetItemWidth(double newValue)
         {
             if (_isInitialized)
             {

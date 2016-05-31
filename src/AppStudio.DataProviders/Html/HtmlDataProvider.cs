@@ -11,7 +11,15 @@ namespace AppStudio.DataProviders.Html
 {
     public class HtmlDataProvider : DataProviderBase<LocalStorageDataConfig, HtmlSchema>
     {
-        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int maxRecords, IParser<TSchema> parser)
+        public override bool HasMoreItems
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
 
@@ -20,7 +28,7 @@ namespace AppStudio.DataProviders.Html
 
             using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
             {
-                return parser.Parse(await r.ReadToEndAsync());
+                return await parser.ParseAsync(await r.ReadToEndAsync());
             }
         }
 
@@ -29,8 +37,17 @@ namespace AppStudio.DataProviders.Html
             return new HtmlParser();
         }
 
+        protected override Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
+        {
+            throw new NotSupportedException();
+        }
+
         protected override void ValidateConfig(LocalStorageDataConfig config)
         {
+            if (config == null)
+            {
+                throw new ConfigNullException();
+            }
             if (config.FilePath == null)
             {
                 throw new ConfigParameterNullException("FilePath");

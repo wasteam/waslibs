@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Newtonsoft.Json;
 
 namespace AppStudio.DataProviders.YouTube
@@ -68,10 +69,12 @@ namespace AppStudio.DataProviders.YouTube
         }
     }
 
+
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "This class is used in serialization.")]
     internal class YouTubeResult<T>
     {
         public string error { get; set; }
+        public string nextPageToken { get; set; }
         public List<T> items { get; set; }
     }
 

@@ -1,7 +1,9 @@
-﻿using AppStudio.DataProviders.Core;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
+using Newtonsoft.Json;
+
+using AppStudio.DataProviders.Core;
 
 namespace AppStudio.DataProviders.WordPress
 {
@@ -23,7 +25,7 @@ namespace AppStudio.DataProviders.WordPress
                         Title = r.title.DecodeHtml(),
                         Summary = r.excerpt.DecodeHtml(),
                         Content = r.content,
-                        Author = r.author.name.DecodeHtml(),                  
+                        Author = r.author.name.DecodeHtml(),
                         ImageUrl = r.featured_image,
                         PublishDate = r.date,
                         FeedUrl = r.url

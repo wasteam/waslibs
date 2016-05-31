@@ -32,6 +32,12 @@ namespace AppStudio.Uwp.Controls
         private static readonly DependencyProperty ItemWidthProperty =
             DependencyProperty.Register("ItemWidth", typeof(double), typeof(ResponsiveGridView), new PropertyMetadata(0D));
 
+        private static readonly DependencyProperty HeaderProperty =
+            DependencyProperty.Register("Header", typeof(object), typeof(ResponsiveGridView), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderTemplateProperty =
+            DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(ResponsiveGridView), new PropertyMetadata(null));        
+
         private static void OnOneRowModeEnabledChanged(DependencyObject d, object newValue)
         {
             var self = d as ResponsiveGridView;
@@ -120,6 +126,17 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemWidthProperty, value); }
         }
 
+        public object Header
+        {
+            get { return GetValue(HeaderProperty); }
+            set { SetValue(HeaderProperty, value); }
+        }
+
+        public DataTemplate HeaderTemplate
+        {
+            get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
+            set { SetValue(HeaderTemplateProperty, value); }
+        }
 
         public void RefreshLayout(double desiredWidth)
         {

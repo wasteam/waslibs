@@ -6,6 +6,8 @@
             <Word>auth</Word>
             <Word>api</Word>
             <Word>el</Word>
+            <Word>LoadDataAsync</Word>
+          <Word>LoadMoreDataAsync</Word>
         </Recognized>
     </Words>
 </Dictionary>

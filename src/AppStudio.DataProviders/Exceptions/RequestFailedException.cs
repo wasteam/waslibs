@@ -5,6 +5,10 @@ namespace AppStudio.DataProviders.Exceptions
 {
     public class RequestFailedException : Exception
     {
+        public int StatusCode { get; protected set; }
+
+        public string ResponseBody { get; protected set; }
+
         public RequestFailedException()
         {
         }
@@ -16,8 +20,10 @@ namespace AppStudio.DataProviders.Exceptions
 
         [CLSCompliant(false)]
         public RequestFailedException(HttpStatusCode statusCode, string reason)
-            : base(string.Format("Request failed with status code {0} and reason '{1}'", (int)statusCode, reason))
+            : base($"Request failed with status code {(int)statusCode} and reason '{reason}'")
         {
+            StatusCode = (int)statusCode;
+            ResponseBody = reason;
         }
 
         public RequestFailedException(string message, Exception innerException)

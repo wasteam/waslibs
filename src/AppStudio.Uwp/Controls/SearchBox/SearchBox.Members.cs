@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppStudio.Uwp.EventArguments;
+using System;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -9,7 +10,7 @@ namespace AppStudio.Uwp.Controls
     {
         #region Properties
         public enum DisplayModeValue { Visible, Expand, FadeIn };
-        public event EventHandler<bool> IsTextVisibleChanged;
+        public event EventHandler<BoolEventArgs> IsTextVisibleChanged;
 
         public static readonly DependencyProperty PlaceholderTextProperty =
             DependencyProperty.Register("PlaceholderText", typeof(string), typeof(SearchBox), new PropertyMetadata("search"));        

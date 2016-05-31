@@ -35,6 +35,8 @@ namespace AppStudio.Uwp.Samples
             });
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         #region ActionCommands
@@ -48,7 +50,7 @@ namespace AppStudio.Uwp.Samples
         #endregion
 
         #region MessageCommand        
-        public ICommand MessageCommand
+        public static ICommand MessageCommand
         {
             get
             {

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using AppStudio.DataProviders.Core;
+
 using Newtonsoft.Json;
 
+using AppStudio.DataProviders.Core;
 
 namespace AppStudio.DataProviders.Facebook
 {
@@ -82,12 +83,13 @@ namespace AppStudio.DataProviders.Facebook
 
             return $"{baseUrl}/{authorId}";
         }
-
     }
 
     internal class FacebookGraphResponse
     {
         public GraphData[] data { get; set; }
+
+        public Paging paging { get; set; }
     }
 
     internal class From
@@ -107,5 +109,11 @@ namespace AppStudio.DataProviders.Facebook
         public string message { get; set; }
         public string full_picture { get; set; }
         public string link { get; set; }
+    }
+
+    internal class Paging
+    {
+        public string previous { get; set; }
+        public string next { get; set; }
     }
 }

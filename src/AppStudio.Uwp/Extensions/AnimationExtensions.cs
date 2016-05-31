@@ -42,6 +42,11 @@ namespace AppStudio.Uwp
 
         public static Storyboard AnimateWidth(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
         {
+            if(element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
+
             if (element.ActualWidth != width)
             {
                 return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
@@ -58,6 +63,10 @@ namespace AppStudio.Uwp
 
         public static Storyboard AnimateHeight(this FrameworkElement element, double height, double duration = 250, EasingFunctionBase easingFunction = null)
         {
+            if(element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
             if (element.Height != height)
             {
                 return AnimateDoubleProperty(element, "Height", element.ActualHeight, height, duration, easingFunction);
@@ -74,6 +83,10 @@ namespace AppStudio.Uwp
 
         public static Storyboard FadeIn(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
             if (element.Opacity < 1.0)
             {
                 return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
@@ -90,6 +103,10 @@ namespace AppStudio.Uwp
 
         public static Storyboard FadeOut(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
         {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
             if (element.Opacity > 0.0)
             {
                 return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);

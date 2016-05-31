@@ -31,10 +31,10 @@ namespace AppStudio.DataProviders.Test
 
         internal static TwitterOAuthTokens TwitterValidKeys = new TwitterOAuthTokens
         {
-            ConsumerKey = "OszocwdQB1zaFzXHlQCn4rVkZ",
-            ConsumerSecret = "tehGYqkm7390zhdtDxoyEvvsuqgC3JTCsycn6E5pkQXxgzE4Av",
-            AccessToken = "3223747883-e1DPeXqEoDm1JpkpTHHaHUPpw1jfGMw9CGOIK0F",
-            AccessTokenSecret = "gq7nf0LCqtgdXTA6by3gx7kSkfrqG3MnXYwFTHvJW16mp"
+            ConsumerKey = "euHG9Gn6lb7JKp4Ik5aS9ZX8l",
+            ConsumerSecret = "UkzND4yZe2wiTEf1qY6hKRrLk45SWQIbnnrzwNmeeLdbgmTl6c",
+            AccessToken = "3223747883-TjRbgfXiRZLX1C0qbHg1IeRioAwLPZg1zcal7kH",
+            AccessTokenSecret = "hJW03CpWsv1MI8jEsYycUXH9qbsbeNyRXqWznqqtfn3yS"
         };
 
         internal static TwitterOAuthTokens TwitterRevokedKeys = new TwitterOAuthTokens

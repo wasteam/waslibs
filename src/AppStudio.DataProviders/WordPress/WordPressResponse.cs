@@ -8,6 +8,7 @@ namespace AppStudio.DataProviders.WordPress
     public class WordPressResponse
     {
         public WordPressPost[] posts { get; set; }
+        public Meta meta { get; set; }
     }
 
     public class WordPressPost
@@ -27,5 +28,10 @@ namespace AppStudio.DataProviders.WordPress
         public string id { get; set; }
         public string name { get; set; }
         public string avatar_url { get; set; }
+    }
+
+    public class Meta
+    {
+        public string next_page { get; set; }
     }
 }

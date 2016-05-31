@@ -21,7 +21,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="\bin\$configuration$\AppStudio.DataProviders.*" target="lib\portable-win81+wpa81" />
+    <file src="bin\$configuration$\AppStudio.DataProviders.*" target="lib\portable-win81+wpa81" />
     <file src="**\*.cs" target="src" />
   </files>
 </package>

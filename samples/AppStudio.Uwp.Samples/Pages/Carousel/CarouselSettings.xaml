@@ -18,41 +18,42 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Padding="24">
                 <controls:PropertySet
-                    Source="{Binding}"
+                    Source="{Binding Carousel}"
                     Property="AspectRatio"
-                    Value="{Binding AspectRatio, Mode=TwoWay}"
+                    Value="{Binding Carousel.AspectRatio, Mode=TwoWay}"
                     Minimun="0.1"
                     Maximun="2.0"
                     SmallChange="0.05"/>
                 <controls:PropertySet
-                    Source="{Binding}"
+                    Source="{Binding Carousel}"
                     Property="MaxItems"
-                    Value="{Binding MaxItems, Mode=TwoWay}"
+                    Value="{Binding Carousel.MaxItems, Mode=TwoWay}"
                     Minimun="1"
                     Maximun="10"/>
                 <controls:PropertySet
-                    Source="{Binding}"
+                    Source="{Binding Carousel}"
                     Property="MinHeight"
-                    Value="{Binding MinHeight, Mode=TwoWay}"
+                    Value="{Binding Carousel.MinHeight, Mode=TwoWay}"
                     Minimun="0"
                     Maximun="800"/>
                 <controls:PropertySet
-                    Source="{Binding}"                    
+                    Source="{Binding Carousel}"                    
                     Property="MaxHeight"
-                    Value="{Binding MaxHeight, Mode=TwoWay}"
+                    Value="{Binding Carousel.MaxHeight, Mode=TwoWay}"
                     Minimun="100"
                     Maximun="800"/>
                 <controls:PropertySet
-                    Source="{Binding}"
+                    Source="{Binding Carousel}"
                     Property="GradientOpacity"
-                    Value="{Binding GradientOpacity, Mode=TwoWay}"
+                    Value="{Binding Carousel.GradientOpacity, Mode=TwoWay}"
                     Minimun="0.0"
                     Maximun="1.0"
                     SmallChange="0.1"/>
-                <controls:PropertySet
-                    Source="{Binding}"
-                    Property="AlignmentX"
-                    Value="{Binding AlignmentX, Mode=TwoWay}"/>
+                <TextBlock Margin="0,12,0,6" Text="Indicator" FontSize="18" />
+                <controls:PropertySet Source="{Binding Indicator}" Property="ShapeMode" Value="{Binding Indicator.ShapeMode, Mode=TwoWay}"/>
+                <controls:PropertySet Source="{Binding Indicator}" Property="Background" Value="{Binding Indicator.Background, Mode=TwoWay}"/>
+                <controls:PropertySet Source="{Binding Indicator}" Property="SelectedBackground" Value="{Binding Indicator.SelectedBackground, Mode=TwoWay}"/>
+                <controls:PropertySet Source="{Binding Indicator}" Property="PressedBackground" Value="{Binding Indicator.PressedBackground, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

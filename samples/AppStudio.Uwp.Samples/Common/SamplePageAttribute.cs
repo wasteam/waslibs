@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 namespace AppStudio.Uwp.Samples
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class SamplePageAttribute : Attribute
+    public sealed class SamplePageAttribute : Attribute
     {
         public SamplePageAttribute()
         {

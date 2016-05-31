@@ -8,7 +8,16 @@ namespace AppStudio.Uwp.Navigation
 {
     public sealed class NavigationInitializationException : Exception
     {
-        public NavigationInitializationException() : base("NavigationService wasn't initialized. Call 'Initialize' method before use it.")
+        const string exceptionMessage = "NavigationService wasn't initialized. Call 'Initialize' method before use it.";
+        public NavigationInitializationException() : base(exceptionMessage)
+        {
+        }
+
+        public NavigationInitializationException(string s) : base($"{exceptionMessage} {s}")
+        {
+        }
+
+        public NavigationInitializationException(string s, Exception ex) : base($"{exceptionMessage} {s}", ex)
         {
         }
     }

@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.Foundation.Metadata;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class Carousel
     {
-        private bool _disableSelectedIndexCallback = false;
-
-        #region Items
-        public IList<object> Items
+        #region ItemsSource
+        public object ItemsSource
         {
-            get { return _items; }
+            get { return (object)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
         }
+
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(object), typeof(Carousel), new PropertyMetadata(null));
         #endregion
 
         #region SelectedIndex
@@ -33,17 +33,46 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
+        private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Carousel;
+            control.SetIndex((int)e.NewValue);
+        }
+
+        private void SetIndex(int index)
+        {
+            int itemCount = _panel.Items.Count;
+            index = index.Mod(itemCount);
+            if (index != this.Index.Mod(itemCount))
+            {
+                this.Index = index;
+                this.Position = -index * this.ItemWidth;
+            }
+        }
+
         public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(Carousel), new PropertyMetadata(-1, SelectedIndexChanged));
         #endregion
 
-        #region MaxItems
-        public int MaxItems
+        #region Index
+        public int Index
         {
-            get { return (int)GetValue(MaxItemsProperty); }
-            set { SetValue(MaxItemsProperty, value); }
+            get { return (int)GetValue(IndexProperty); }
+            set { SetValue(IndexProperty, value); }
         }
 
-        public static readonly DependencyProperty MaxItemsProperty = DependencyProperty.Register("MaxItems", typeof(int), typeof(Carousel), new PropertyMetadata(3, MaxItemsChanged));
+        private static void IndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Carousel;
+            control.SetIndexInternal((int)e.NewValue);
+        }
+
+        private void SetIndexInternal(int index)
+        {
+            int itemCount = _panel.Items.Count;
+            this.SelectedIndex = index.Mod(itemCount);
+        }
+
+        public static readonly DependencyProperty IndexProperty = DependencyProperty.Register("Index", typeof(int), typeof(Carousel), new PropertyMetadata(0, IndexChanged));
         #endregion
 
         #region ContentTemplate
@@ -56,6 +85,22 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(Carousel), new PropertyMetadata(null));
         #endregion
 
+        #region MaxItems
+        public int MaxItems
+        {
+            get { return (int)GetValue(MaxItemsProperty); }
+            set { SetValue(MaxItemsProperty, value); }
+        }
+
+        private static void MaxItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Carousel;
+            control.InvalidateMeasure();
+        }
+
+        public static readonly DependencyProperty MaxItemsProperty = DependencyProperty.Register("MaxItems", typeof(int), typeof(Carousel), new PropertyMetadata(3, MaxItemsChanged));
+        #endregion
+
         #region AspectRatio
         public double AspectRatio
         {
@@ -63,17 +108,13 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(AspectRatioProperty, value); }
         }
 
-        public static readonly DependencyProperty AspectRatioProperty = DependencyProperty.Register("AspectRatio", typeof(double), typeof(Carousel), new PropertyMetadata(1.6, OnInvalidate));
-        #endregion
-
-        #region AlignmentX
-        public AlignmentX AlignmentX
+        private static void AspectRatioChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            get { return (AlignmentX)GetValue(AlignmentXProperty); }
-            set { SetValue(AlignmentXProperty, value); }
+            var control = d as Carousel;
+            control.InvalidateMeasure();
         }
 
-        public static readonly DependencyProperty AlignmentXProperty = DependencyProperty.Register("AlignmentX", typeof(AlignmentX), typeof(Carousel), new PropertyMetadata(AlignmentX.Left, OnInvalidate));
+        public static readonly DependencyProperty AspectRatioProperty = DependencyProperty.Register("AspectRatio", typeof(double), typeof(Carousel), new PropertyMetadata(1.6, AspectRatioChanged));
         #endregion
 
         #region GradientOpacity
@@ -93,52 +134,24 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(ItemClickCommandProperty, value); }
         }
 
-        private static void ItemClickCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Carousel;
-            control.SetItemClickCommand(e.NewValue as ICommand);
-        }
-
-        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(Carousel), new PropertyMetadata(null, ItemClickCommandChanged));
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(Carousel), new PropertyMetadata(null));
         #endregion
 
-        private void SetItemClickCommand(ICommand command)
+        public double ItemWidth
         {
-            if (_container != null)
-            {
-                foreach (CarouselSlot item in _container.Children)
-                {
-                    item.ItemClickCommand = command;
-                }
-            }
+            get { return _panel.ItemWidth; }
         }
 
-        private static void OnInvalidate(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        // Obsolete
+        #region AlignmentX
+        [Deprecated("AligmentX property will be removed in future versions.", DeprecationType.Deprecate, 65536)]
+        public AlignmentX AlignmentX
         {
-            var control = d as Carousel;
-            control.InvalidateMeasure();
+            get { return (AlignmentX)GetValue(AlignmentXProperty); }
+            set { SetValue(AlignmentXProperty, value); }
         }
 
-        private static void MaxItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Carousel;
-            control.BuildSlots();
-            control.ArrangeItems();
-            control.InvalidateMeasure();
-        }
-
-        private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = d as Carousel;
-            if (control._disableSelectedIndexCallback)
-            {
-                return;
-            }
-
-            if ((int)e.NewValue > -1)
-            {
-                control.ArrangeItems();
-            }
-        }
+        public static readonly DependencyProperty AlignmentXProperty = DependencyProperty.Register("AlignmentX", typeof(AlignmentX), typeof(Carousel), new PropertyMetadata(AlignmentX.Left));
+        #endregion
     }
 }

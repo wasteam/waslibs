@@ -11,6 +11,8 @@ namespace AppStudio.Uwp.Samples
             this.StringVisibilityValue = this.GetResourceString("ConvertersStringVisibilityConverterDefault");
             this.InitializeComponent();
             this.DataContext = this;
+            commandBar.DataContext = this;
+            paneHeader.DataContext = this;
         }
 
         public override string Caption
