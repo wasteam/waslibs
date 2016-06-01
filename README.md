@@ -20,12 +20,15 @@ https://www.nuget.org/packages/WindowsAppStudio.Common
         - [SectionList](#section-list)
         - [SplitterCard](#splitter-card)
     - [Foundation Controls](#foundation-controls)
+        - [HtmlBlock](#html-block)
         - [VisualBreakpoints](#visual-breakpoints)
         - [ImageEx](#image-ex)
+        - [GifControl](#gif-control)
         - [VirtualBox](#virtual-box)
         - [RelativeBox](#relative-box)
         - [RelativeBox and VirtualBox](#relative-and-virtual-box)
         - [SearchBox](#search-box)
+        - [InfiniteScroll](#infinite-scroll)
     - [App Services](#app-services)
         - [Navigation](#navigation)
         - [AppCache](#appcache)
@@ -43,13 +46,14 @@ https://www.nuget.org/packages/WindowsAppStudio.Common
     - [Rss](#rss)
     - [Bing](#bing)
     - [LocalStorage](#local-storage)
+    - [REST API](#rest-api) (TBD)
 - [Common](#common)
 
 # Uwp Library <a name="uwp"></a>
 This library contains XAML controls for Windows 10 apps **only**.
 
 ##Layout Controls <a name="layout-controls"></a>
-###ResponsiveGridView Control
+###ResponsiveGridView Control <a name="responsive-grid-view"></a>
 The ResponsiveGridView control allows to present information within a Grid View perfectly adjusting the total display available space. It reacts to changes in the layout as well as the content so it can adapt to different form factors automatically. The number and the width of items are calculated based on the screen resolution in order to fully leverage the available screen space. The property ItemsHeight define the items fixed height and the property DesiredWidth sets the minimum width for the elements to add a new column.
 
 *View code*  
@@ -86,6 +90,12 @@ The SplitterCard control applies a specific design to strings. For any given str
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SplitterCard
 
 ##Foundation Controls <a name="foundation-controls"></a>
+###HtmlBlock <a name="html-block"></a>
+The HtmlBlock renders Html formatted content using a native Xaml representation. The control is optimized to friendly visualize Html content within your Apps creating a Xaml reading view for your content. It applies a set of default styles to represent each Html tag, the default styles can be overriden as your preference. It supports most common Html tags as well as videos from YouTube and Channel9 embedded using an iframe tag. Following are the currently supported Html tags: a, article, blockQuote, cite, code, dd, details, div, dl, dt, em, figCaption, figure, footer, h1, h2, h3, h4, h5, h6, header, i, img, label, li, main, mark, ol, p, pre, q, section, span, strong, summary, table, td, th, time, tr, ul. Finally, the control does not interpret or parse JavaScript code as is not thought download content from Internet (use the WebView control instead).
+
+*View code*  
+https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/HtmlBlock
+
 ###VisualBreakpoints <a name="visual-breakpoints"></a>
 Enables the definition of different visual breakpoints for a certain layout as well as modifies the properties of child controls based on the breakpoints defined. In other words, adds the ability to change the layout and property values of controls based on the defined 'breakpoint values'. There are two main advantages over the platform VisualStateManager control: 1) all the visual breakpoints are defined in a centralized JSON file, which can reference other JSON files; 2) allows the modification of properties inside controls that belongs to DataTemplates.
 
@@ -97,6 +107,12 @@ The ImageEx control extends the default Image platform control improving the per
 
 *View code*  
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ImageEx
+
+###GifControl Control <a name="gif-control"></a>
+The GifControl allows animated gif renderization in XAML. [ImageEx Control](#image-ex) determines the format of the inbound image and uses Gif Control in case the image is an animated gif.
+
+*View code*  
+https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/GifControl
 
 ###VirtualBox Control <a name="virtual-box"></a>
 The VirtualBox control allows to redimension any XAML DataTemplate proportionaly. The control works directly with the underlying ContentPresenter to have a smooth behavior and high optimized performance.
@@ -118,6 +134,12 @@ The SearchBox control allows to handle the App search feature. You can decide ho
 
 *View code*  
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SearchBox
+
+###InfiniteScroll Control <a name="infinite-scroll"></a>
+To create the Infinite Scroll behavior we use the EndOfScrollCommand attached property. Applying the EndOfScrollCommand to a Xaml control (ListView, GridView or ScrollViewer) we look for changes in the VerticalOffset property. When the VerticalOffset reaches the end of the scrollable size it executes a command in C#. In the sample, the command execution results in loading more items and add them at the end of the item collection.
+
+*View code*  
+https://github.com/wasteam/waslibs/blob/master/src/AppStudio.Uwp/Commands/EndOfScrollCommand.cs
 
 ##App Services <a name="app-services"></a>
 ###Navigation Service <a name="navigation-service"></a>
@@ -232,6 +254,14 @@ This Data Provider access data from the LocalStorage. You can configure which fi
 
 *View code*  
 https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/LocalStorage
+
+##REST API Data Provider <a name="rest-api"></a>
+Among the Data Provider classes implemented in Windows App Studio, those which access third party data, help handling the complexity of each particular provider (API calls, authentication and authorization requirements, data parsing, etc.) so provides a smooth and uniform way to access the content from these providers.  All Data Providers take advantage of the AppCache service to improve the App performance.
+
+The RestApiDataProvider retrieve information from the configured endpoint Url. You can configure de pagination type and items per page.
+
+*View code*  
+https://github.com/wasteam/waslibs/tree/master/src/AppStudio.DataProviders/RestApi
 
 # Common
 This library contains utility classes to create XAML applications. 

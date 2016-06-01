@@ -21,6 +21,17 @@
                 <Paragraph>
                     <Run x:Uid="HelpInfiniteScroll1"/>
                 </Paragraph>
+                <Paragraph/>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/blob/master/src/AppStudio.Uwp/Commands/EndOfScrollCommand.cs">
+                        https://github.com/wasteam/waslibs/blob/master/src/AppStudio.Uwp/Commands/EndOfScrollCommand.cs
+                    </Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

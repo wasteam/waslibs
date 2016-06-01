@@ -543,4 +543,7 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   <data name="propOrderDirectionParameterValue.Label" xml:space="preserve">
     <value>Order Direction parameter value</value>
   </data>
+  <data name="HelpGifControl.Text" xml:space="preserve">
+    <value>The GifControl allows animated gif renderization in XAML.</value>
+  </data>
 </root>
