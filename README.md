@@ -46,7 +46,7 @@ https://www.nuget.org/packages/WindowsAppStudio.Common
     - [Rss](#rss)
     - [Bing](#bing)
     - [LocalStorage](#local-storage)
-    - [REST API](#rest-api) (TBD)
+    - [REST API](#rest-api)
 - [Common](#common)
 
 # Uwp Library <a name="uwp"></a>
