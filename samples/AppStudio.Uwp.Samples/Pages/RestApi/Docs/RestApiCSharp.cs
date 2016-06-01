@@ -38,9 +38,20 @@ namespace AppStudio.Uwp.Samples
             var paginationParameterName = "token";
             var pageSizeParemeterName = "limit";
             var responseTokenName = "meta.next_token";
+            var orderByParameterName = "order_by";
+            var orderByParameterValue = "date";
+            var orderDirectionParameterName = "order";
+            var orderDirectionParameterValue = "DESC";
 
 
-            var paginationConfig = new TokenPagination(paginationParameterName, responseTokenName, pageSizeParemeterName);
+            var paginationConfig = new TokenPagination(paginationParameterName, responseTokenName, pageSizeParemeterName)
+            {
+                OrderByParameterName = orderByParameterName,
+                OrderByParameterValue = orderByParameterValue,
+                OrderDirectionParameterName = orderDirectionParameterName,
+                OrderDirectionParameterValue= orderDirectionParameterValue
+            };
+
 
             var config = new RestApiDataConfig()
             {
@@ -63,8 +74,18 @@ namespace AppStudio.Uwp.Samples
             var maxRecordsParam = 20;
             var paginationParameterName = "page";
             var pageSizeParemeterName = "limit";
+            var orderByParameterName = "order_by";
+            var orderByParameterValue = "date";
+            var orderDirectionParameterName = "order";
+            var orderDirectionParameterValue = "DESC";
 
-            var paginationConfig = new PageNumberPagination(paginationParameterName, false, pageSizeParemeterName);
+            var paginationConfig = new PageNumberPagination(paginationParameterName, false, pageSizeParemeterName)
+            {
+                OrderByParameterName = orderByParameterName,
+                OrderByParameterValue = orderByParameterValue,
+                OrderDirectionParameterName = orderDirectionParameterName,
+                OrderDirectionParameterValue = orderDirectionParameterValue
+            };
 
             var config = new RestApiDataConfig()
             {
@@ -87,9 +108,19 @@ namespace AppStudio.Uwp.Samples
             var maxRecordsParam = 20;
             var offsetParemeterName = "offset";
             var pageSizeParemeterName = "limit";
+            var orderByParameterName = "order_by";
+            var orderByParameterValue = "date";
+            var orderDirectionParameterName = "order";
+            var orderDirectionParameterValue = "DESC";
 
 
-            var paginationConfig = new ItemOffsetPagination(offsetParemeterName, true, pageSizeParemeterName, maxRecordsParam);
+            var paginationConfig = new ItemOffsetPagination(offsetParemeterName, true, pageSizeParemeterName, maxRecordsParam)
+            {
+                OrderByParameterName = orderByParameterName,
+                OrderByParameterValue = orderByParameterValue,
+                OrderDirectionParameterName = orderDirectionParameterName,
+                OrderDirectionParameterValue = orderDirectionParameterValue
+            };
 
             var config = new RestApiDataConfig()
             {
@@ -112,9 +143,19 @@ namespace AppStudio.Uwp.Samples
             var maxRecordsParam = 20;
             var responseTokenName = "meta.next_page";
             var pageSizeParemeterName = "limit";
+            var orderByParameterName = "order_by";
+            var orderByParameterValue = "date";
+            var orderDirectionParameterName = "order";
+            var orderDirectionParameterValue = "DESC";
 
 
-            var paginationConfig = new NextPageUrlPagination(responseTokenName, pageSizeParemeterName);
+            var paginationConfig = new NextPageUrlPagination(responseTokenName, pageSizeParemeterName)
+            {
+                OrderByParameterName = orderByParameterName,
+                OrderByParameterValue = orderByParameterValue,
+                OrderDirectionParameterName = orderDirectionParameterName,
+                OrderDirectionParameterValue = orderDirectionParameterValue
+            };
 
             var config = new RestApiDataConfig()
             {

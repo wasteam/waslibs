@@ -17,6 +17,21 @@
                         FontSize="32"
                         Text="GifControl Help"/>
                 </Paragraph>
+                <Paragraph/>
+                <Paragraph>
+                    <Run x:Uid="HelpGifControl"/>
+                </Paragraph>
+                <Paragraph/>
+                <Paragraph>
+                    <Run x:Uid="HelpViewCode"/>
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/GifControl">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/GifControl
+                    </Hyperlink>
+                </Paragraph>
+                <Paragraph />
             </RichTextBlock>
         </ScrollViewer>
     </Grid>

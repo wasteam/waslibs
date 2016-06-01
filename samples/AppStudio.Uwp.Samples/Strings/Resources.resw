@@ -451,9 +451,13 @@
     <value>Add url</value>
   </data>
   <data name="HelpRestApi3.Text" xml:space="preserve">
-    <value>You can specify the pagination configuration if the target REST API service allows it. We support two types of pagination: Numeric and Token.
-Numeric: a) Specify the query string parameter name to be used for pagination. For example, the WordPress Numeric Pagination parameter name is "page". b) Set the Initial Value: page number or number of items to retrieve. For example, the WordPress REST API supports pagination based on "pages", so the initial value must be "1". c) Set the Incremental Value: given the initial value, this usually represents the amount to increment the initial value to retreive the next page of items. For example, the WordPress REST API use increments of "1" to get the next page.
-Token: a) Specify the query string parameter name to be used for pagination. For example, the WordPress Token Pagination parameter name is "page_handle". b) Select the Response Token name: this is the element in the response which contains the token to be used in the next request. For example, in WordPress the token pagination is "next_page" which belongs to the "meta" element in the response. c) Set if the Token is a parameter to be used in the query string or is the whole "Url" for the next request. Finally, set if the REST API Allows to Configure Items per Page, that is, the number of items to be retrieved each request. In the case it is supported, you have to define the query string parameter to use and the number of items per page.</value>
+    <value>You can specify the pagination configuration if the target REST API service supports it. There are four types of pagination:
+a) Page Number: retreive the information based on the page number. The "Pagination parameter" is incremented one by one. Depending on the service, the "Initial Value" can be "0" or "1". If allowed, you can define the page size in combination with page number.
+b) Page Size: retrieve the information based on the page size. In each request the "Pagination parameter" is incremented by the page size.
+c) Token Parameter: the pagination uses a token returned in the response as the value for the next request.
+d) Token URL: the response incudes a token which represents the whole url to be used for the next request.
+Each API service may implement this a bit differently, so for this step, make sure to consult the API documentation for the service you are integrating and sure that you get the parameter names correct.
+Define the order for results returned by the REST API DataSource.</value>
   </data>
   <data name="HelpRestApi3Title.Text" xml:space="preserve">
     <value>Pagination</value>
@@ -526,5 +530,20 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   </data>
   <data name="propSortDirection.Label" xml:space="preserve">
     <value>Order Direction</value>
+  </data>
+  <data name="propOrderByParameterName.Label" xml:space="preserve">
+    <value>Order By parameter name</value>
+  </data>
+  <data name="propOrderByParameterValue.Label" xml:space="preserve">
+    <value>Order By parameter value</value>
+  </data>
+  <data name="propOrderDirectionParameterName.Label" xml:space="preserve">
+    <value>Order Direction parameter name</value>
+  </data>
+  <data name="propOrderDirectionParameterValue.Label" xml:space="preserve">
+    <value>Order Direction parameter value</value>
+  </data>
+  <data name="HelpGifControl.Text" xml:space="preserve">
+    <value>The GifControl allows animated gif renderization in XAML.</value>
   </data>
 </root>
