@@ -31,12 +31,7 @@ namespace AppStudio.DataProviders
             set { _parser = value; }
         }
 
-        protected string ContinuationToken { get; set; }
-
-        public virtual bool IsInitialized
-        {
-            get { return (_config != null && _parser != null); }
-        }
+        protected string ContinuationToken { get; set; }       
 
         public abstract bool HasMoreItems { get; }
 

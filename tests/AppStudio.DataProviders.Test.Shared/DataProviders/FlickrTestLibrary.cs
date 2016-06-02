@@ -25,7 +25,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -42,7 +41,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(data);
             Assert.AreNotEqual(data.Count(), 0);
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -172,7 +170,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new FlickrDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-            Assert.IsFalse(dataProvider.IsInitialized);
+           
         }
 
         [TestMethod]
@@ -207,7 +205,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new FlickrDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-            Assert.IsFalse(dataProvider.IsInitialized);
+        
         }
 
         [TestMethod]

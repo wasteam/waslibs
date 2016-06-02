@@ -36,15 +36,7 @@ namespace AppStudio.DataProviders.WordPress
                 return _hasMoreComments;
             }
         }
-
-        bool _isInitialize = false;
-        public override bool IsInitialized
-        {
-            get
-            {
-                return base.IsInitialized || _isInitialize;       
-            }
-        }
+       
 
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(WordPressDataConfig config, int pageSize, IParser<TSchema> parser)
         {
@@ -84,8 +76,7 @@ namespace AppStudio.DataProviders.WordPress
             _commentsParser = parser;
             _commentsPageSize = pageSize;
             _site = site;
-            _postId = postId;
-            _isInitialize = true;
+            _postId = postId;           
             return await GetCommentsFromProvider(site, postId, pageSize, parser);
         }
 
