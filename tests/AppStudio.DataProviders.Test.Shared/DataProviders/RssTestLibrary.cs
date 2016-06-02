@@ -24,7 +24,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(rssItems);
             Assert.AreNotEqual(rssItems.Count(), 0);
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -101,7 +100,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new RssDataProvider();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]

@@ -24,8 +24,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             IEnumerable<BingSchema> data = await dataProvider.LoadDataAsync(config);
 
             Assert.IsNotNull(data);
-            Assert.AreNotEqual(data.Count(), 0);
-            Assert.IsTrue(dataProvider.IsInitialized);
+            Assert.AreNotEqual(data.Count(), 0);           
         }
 
         [TestMethod]
@@ -123,7 +122,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new BingDataProvider();          
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
 
-            Assert.IsFalse(dataProvider.IsInitialized);
         }
     }
 }

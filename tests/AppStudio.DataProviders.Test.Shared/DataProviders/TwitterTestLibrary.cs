@@ -23,7 +23,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -39,7 +38,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -55,7 +53,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -300,7 +297,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-            Assert.IsFalse(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -333,7 +329,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
             };
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-            Assert.IsFalse(dataProvider.IsInitialized);
         }
     }
 }

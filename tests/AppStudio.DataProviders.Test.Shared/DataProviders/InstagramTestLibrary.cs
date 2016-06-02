@@ -23,7 +23,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
@@ -39,7 +38,6 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Any());
-            Assert.IsTrue(dataProvider.IsInitialized);
         }
 
         [TestMethod]
