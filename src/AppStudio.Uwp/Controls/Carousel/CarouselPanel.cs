@@ -12,7 +12,7 @@ namespace AppStudio.Uwp.Controls
         {
             this.UseLayoutRounding = true;
             this.HorizontalAlignment = HorizontalAlignment.Left;
-            this.VerticalAlignment = VerticalAlignment.Top;
+            this.VerticalAlignment = VerticalAlignment.Center;
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -39,7 +39,7 @@ namespace AppStudio.Uwp.Controls
                     pane.Measure(new Size(this.ItemWidth, this.ItemHeight));
                 }
 
-                return new Size(availableSize.Width, this.ItemHeight);
+                return availableSize;
             }
 
             return base.MeasureOverride(availableSize);
