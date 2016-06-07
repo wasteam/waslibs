@@ -24,7 +24,7 @@
             <Color x:Key="AppServicesBackgroundColor">#5270c1</Color>
             <Color x:Key="UtilitiesBackgroundColor">#fec631</Color>
             <Color x:Key="DataProvidersBackgroundColor">#238c7f</Color>
-            <Color x:Key="LabsBackgroundColor">#9d5192</Color>
+            <Color x:Key="LabsBackgroundColor">#d24726</Color>
 
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

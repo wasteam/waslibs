@@ -57,7 +57,7 @@ namespace AppStudio.Uwp.Samples
             yield return new NavigationItem("DataProviders", new Uri("ms-appx:///Assets/Icons/IconDataProviders.png"), this.GetResourceString("ShellMenuDataProviders"), GetControlsByCategory("DataProviders"), this.GetCategoryBackground("DataProviders"), this.GetCategoryBackground("DataProviders"));
 
             yield return NavigationItem.Separator;
-            yield return new NavigationItem("Labs", new Uri("ms-appx:///Assets/Icons/IconLayouts.png"), this.GetResourceString("ShellMenuLabsControls"), GetControlsByCategory("Labs"), this.GetCategoryBackground("Labs"), this.GetCategoryBackground("Labs"));
+            yield return new NavigationItem("Labs", new Uri("ms-appx:///Assets/Icons/Flask.png"), this.GetResourceString("ShellMenuLabsControls"), GetControlsByCategory("Labs"), this.GetCategoryBackground("Labs"), this.GetCategoryBackground("Labs"));
 
             yield return NavigationItem.Separator;
             yield return new NavigationItem("About", new Uri("ms-appx:///Assets/Icons/about.png"), "About", new About()) { ClearSelection = true };
