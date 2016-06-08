@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(BorderForegroundProperty, value); }
         }
 
-        public static readonly DependencyProperty ColumnWidthProperty = DependencyProperty.Register("ColumnWidth", typeof(GridLength), typeof(TableStyle), new PropertyMetadata(GridLength.Auto));
+        public static readonly DependencyProperty ColumnWidthProperty = DependencyProperty.Register("ColumnWidth", typeof(GridLength), typeof(TableStyle), new PropertyMetadata(new GridLength(0, GridUnitType.Pixel)));
 
         public GridLength ColumnWidth
         {
@@ -48,7 +48,7 @@ namespace AppStudio.Uwp.Controls
             {
                 Border = Border.Merge(style.Border);
 
-                if (ColumnWidth != style.ColumnWidth)
+                if (!IsDefault(style) && ColumnWidth != style.ColumnWidth)
                 {
                     ColumnWidth = style.ColumnWidth;
                 }
@@ -63,6 +63,11 @@ namespace AppStudio.Uwp.Controls
             }
 
             base.Merge(style);
+        }
+
+        private static bool IsDefault(TableStyle style)
+        {
+            return (style.ColumnWidth.Value == 0 && style.ColumnWidth.GridUnitType == GridUnitType.Pixel);
         }
     }
 }

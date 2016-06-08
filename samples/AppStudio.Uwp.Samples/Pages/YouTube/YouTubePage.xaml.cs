@@ -278,6 +278,6 @@ namespace AppStudio.Uwp.Samples
             rawDataProvider = new YouTubeDataProvider(new YouTubeOAuthTokens { ApiKey = ApiKey });
         }
 
-        private const string DefaultApiKey = "AIzaSyDdOl3JfYah7b74Bz6BN9HzsnewSqVTItQ";
+        private const string DefaultApiKey = "AIzaSyBTho5YSdBMdiM78irZNljWItF25VJngkk";
     }
 }

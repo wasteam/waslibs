@@ -43,11 +43,11 @@ namespace AppStudio.DataProviders.Test
             ConsumerSecret = "rCLKeJKGIZWSX0veLXFK8A551siFsGrAIT805PdcTAY7eGzfk3",
             AccessToken = "3223747883-cuu5w6hoeBZLOhzYyY4P3TAnTYRxzGI9ipzPVC9",
             AccessTokenSecret = "YSxC2zP4b8E7mE2GxsfYcRu3abF7G3tXNFDJwof4xHLXc"
-        };
+        };       
 
         internal static YouTubeOAuthTokens YouTubeValidKeys = new YouTubeOAuthTokens
         {
-            ApiKey = "AIzaSyDW1n4GxCJVOHLQfikihwFdukYtZb0Jxo4"
+            ApiKey = "AIzaSyCawgkS1q9YasaZwOk9n2Q8VZY_GFwO24I"
         };
 
         internal static YouTubeOAuthTokens YouTubeRevokedKeys = new YouTubeOAuthTokens
