@@ -96,6 +96,7 @@
     <Content Include="Assets\Images\BisonBadlandsChillin.png" />
     <Content Include="Assets\Images\ColumbiaRiverGorge.png" />
     <Content Include="Assets\Images\CreateApp.gif" />
+    <Content Include="Assets\Icons\Flask.png" />
     <Content Include="Assets\Images\GiantSlabInOregon.png" />
     <Content Include="Assets\Images\GrandTetons.png" />
     <Content Include="Assets\Images\html-block.png" />

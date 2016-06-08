@@ -88,7 +88,7 @@ namespace AppStudio.Uwp.Actions
                         {
                             control.SecondaryCommands.Add(button);
                         }
-                    }
+                    }                    
                     button.Command = action.Command;
                     button.CommandParameter = action.CommandParameter;
                     button.Label = label;
@@ -102,7 +102,14 @@ namespace AppStudio.Uwp.Actions
                     {
                         button.Style = Application.Current.Resources[action.Style] as Style;
                     }
-
+                    if (button.Command?.CanExecute(button?.CommandParameter) == true)
+                    {
+                        button.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        button.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }

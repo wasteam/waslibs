@@ -39,6 +39,8 @@ namespace AppStudio.Uwp.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            availableSize = NormalizeSize(availableSize);
+
             double width = availableSize.Width / this.MaxItems;
             double height = width / this.AspectRatio;
 
@@ -59,7 +61,12 @@ namespace AppStudio.Uwp.Controls
 
             this.Position = -this.Index * width;
 
-            return base.MeasureOverride(availableSize);
+            return base.MeasureOverride(new Size(availableSize.Width, height));
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            return base.ArrangeOverride(new Size(finalSize.Width, _panel.ItemHeight));
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -84,5 +91,24 @@ namespace AppStudio.Uwp.Controls
                 _gradient.GradientStops[2].Offset = factor * (index + count);
             }
         }
+
+        #region NormalizeSize
+        private static Size NormalizeSize(Size size)
+        {
+            double width = size.Width;
+            double height = size.Height;
+
+            if (double.IsInfinity(width))
+            {
+                width = Window.Current.Bounds.Width;
+            }
+            if (double.IsInfinity(height))
+            {
+                height = Window.Current.Bounds.Height;
+            }
+
+            return new Size(width, height);
+        }
+        #endregion
     }
 }
