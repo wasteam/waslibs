@@ -49,10 +49,11 @@ namespace AppStudio.DataProviders.Core
             HttpResponseMessage response = await GetResponseMessage(settings);
             result.StatusCode = response.StatusCode;
             FixInvalidCharset(response);
+            SetEncoding(response);
             var content = await response.Content.ReadAsStringAsync();
             result.Result = content;
             return result;
-        }
+        }      
 
         internal static async Task<HttpRequestResult> DownloadRssAsync(HttpRequestSettings settings)
         {
@@ -60,7 +61,7 @@ namespace AppStudio.DataProviders.Core
             HttpResponseMessage response = await GetResponseMessage(settings);
             result.StatusCode = response.StatusCode;
             FixInvalidCharset(response);
-            await SetEncoding(response);
+            await SetRssEncoding(response);
             var content = await response.Content.ReadAsStringAsync();
             result.Result = content;
             return result;
@@ -117,7 +118,7 @@ namespace AppStudio.DataProviders.Core
             }
         }
 
-        private async static Task SetEncoding(HttpResponseMessage response)
+        private async static Task SetRssEncoding(HttpResponseMessage response)
         {
             if (response?.Content?.Headers?.ContentType?.CharSet != null)
             {
@@ -144,6 +145,14 @@ namespace AppStudio.DataProviders.Core
 
                     }
                 }
+            }
+        }
+
+        private static void SetEncoding(HttpResponseMessage response)
+        {
+            if (string.IsNullOrEmpty(response?.Content?.Headers?.ContentType?.CharSet))
+            {
+                response.Content.Headers.ContentType.CharSet = "utf-8";
             }
         }
 
