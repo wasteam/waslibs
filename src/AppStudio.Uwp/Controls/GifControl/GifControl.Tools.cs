@@ -41,24 +41,31 @@ namespace AppStudio.Uwp.Controls
 
         private static void MergePixels(byte[] pixels1, int width, byte[] pixels2, Rect rect)
         {
-            int x0 = (int)rect.X;
-            int y0 = (int)rect.Y;
-            int stride = (int)rect.Width;
-
-            for (int y = 0; y < rect.Height; y++)
+            try
             {
-                for (int x = 0; x < rect.Width; x++)
+                int x0 = (int)rect.X;
+                int y0 = (int)rect.Y;
+                int stride = (int)rect.Width;
+
+                for (int y = 0; y < rect.Height; y++)
                 {
-                    int index1 = (x0 + x + (y0 + y) * width) * 4;
-                    int index2 = (x + y * stride) * 4;
-                    if (pixels2[index2 + 3] > 0)
+                    for (int x = 0; x < rect.Width; x++)
                     {
-                        pixels1[index1 + 0] = pixels2[index2 + 0];
-                        pixels1[index1 + 1] = pixels2[index2 + 1];
-                        pixels1[index1 + 2] = pixels2[index2 + 2];
-                        pixels1[index1 + 3] = pixels2[index2 + 3];
+                        int index1 = (x0 + x + (y0 + y) * width) * 4;
+                        int index2 = (x + y * stride) * 4;
+                        if (pixels2[index2 + 3] > 0)
+                        {
+                            pixels1[index1 + 0] = pixels2[index2 + 0];
+                            pixels1[index1 + 1] = pixels2[index2 + 1];
+                            pixels1[index1 + 2] = pixels2[index2 + 2];
+                            pixels1[index1 + 3] = pixels2[index2 + 3];
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
         }
 

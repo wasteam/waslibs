@@ -14,7 +14,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
     {
         public override string[] TargetTags
         {
-            get { return new string[] { "div", "ul", "ol", "dl", "section", "article", "header", "footer", "main", "figure", "details", "summary" };  }
+            get { return new string[] { "div", "ul", "ol", "dl", "section", "article", "header", "footer", "main", "figure", "details", "summary", "tbody" };  }
         }
 
         public override DependencyObject GetControl(HtmlFragment fragment)
@@ -36,6 +36,7 @@ namespace AppStudio.Uwp.Controls.Html.Writers
             switch (fragment.Name.ToLowerInvariant())
             {
                 case "div":
+                case "tbody":
                     return style.Div;
                 case "ul":
                     return style.Ul;

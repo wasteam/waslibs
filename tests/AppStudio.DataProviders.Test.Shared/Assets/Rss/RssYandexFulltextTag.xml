@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns="http://backend.userland.com/rss2" xmlns:yandex="http://news.yandex.ru">
+  <channel>
+    <item>
+      <title>title</title>
+      <link>http://mk.tula.ru/news/n/59619/</link>
+      <description>&lt;b&gt;18 апреля, Тульская областная универсальная научная библиотека (ул. Тургеневская, 48). Начало в 15.00.&lt;/b&gt;</description>
+      <enclosure url="http://mk.tula.ru/upload/iblock/f0b/_Kulikovo.jpg" length="10959" type="image/jpeg"/>
+      <yandex:full-text>
+        &lt;p&gt;&lt;strong&gt;18&amp;nbsp;апреля, Тульская областная универсальная научная библиотека (ул. Тургеневская, 48). Начало в&amp;nbsp;15.00.&lt;/strong&gt;&lt;/p&gt;
+
+        &lt;p&gt; В&amp;nbsp;Международный день памятников и&amp;nbsp;исторических мест будут представлены книги: &lt;/p&gt;
+
+        &lt;p&gt;
+      </yandex:full-text>
+      <pubDate>Tue, 12 Apr 2016 13:32:01 +0300</pubDate>
+    </item>
+  </channel>
+  </rss>

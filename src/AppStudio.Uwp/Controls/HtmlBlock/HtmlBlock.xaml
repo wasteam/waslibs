@@ -48,7 +48,7 @@
     <was:TextStyle x:Key="Em" FontStyle="Italic" />
     <was:TextStyle x:Key="Mark" FontWeight="SemiBold" />
 
-    <was:TableStyle x:Key="Table" Border="0" Margin="0,12,0,12" HorizontalAlignment="Center" />
+    <was:TableStyle x:Key="Table" Border="0" Margin="0,12,0,12" HorizontalAlignment="Center" ColumnWidth="*" />
     <was:ContainerStyle x:Key="Td" Margin="0" Padding="6"></was:ContainerStyle>
 
     <Style TargetType="was:HtmlBlock">
