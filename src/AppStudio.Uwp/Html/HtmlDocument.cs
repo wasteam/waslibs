@@ -86,7 +86,7 @@ namespace AppStudio.Uwp.Html
 
         private static string Clean(string doc)
         {
-            doc = Regex.Replace(doc, @"^\r\n|\r\n\s+|\n|\n\s+|\r$", string.Empty, RegexOptions.Multiline);
+            doc = Regex.Replace(doc, @"\r\n\s+|\n\s+|\r\n|\n|\r", string.Empty, RegexOptions.Singleline);
             doc = Regex.Replace(doc, "<!--.*?-->", string.Empty);
 
             return doc;
