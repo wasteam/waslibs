@@ -181,6 +181,7 @@
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
+    <Compile Include="Controls\RoundButton\RoundButton.cs" />
     <Compile Include="EventArguments\BoolEventArgs.cs" />
     <Compile Include="EventArguments\ExceptionEventArgs.cs" />
     <Compile Include="EventArguments\IntEventArgs.cs" />
@@ -325,6 +326,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Relativebox\Relativebox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RoundButton\RoundButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
