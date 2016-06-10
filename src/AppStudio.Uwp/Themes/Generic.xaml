@@ -1,8 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:was_commands="using:AppStudio.Uwp.Commands"
-    xmlns:converters="using:AppStudio.Uwp.Converters">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Carousel/Carousel.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SplitterCard/SplitterCard.xaml"/>
@@ -14,7 +13,6 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Pivorama/Pivorama.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Relativebox/Relativebox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/ResponsiveGridView/ResponsiveGridView.xaml"/>
-        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveGridView/ResponsiveGridView.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SearchBox/SearchBox.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/SectionList/SectionList.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/Virtualbox/Virtualbox.xaml"/>
@@ -23,5 +21,9 @@
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/PropertySet/PropertySet.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/VariableSizedGrid/VariableSizedGrid.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Controls/HtmlBlock/HtmlBlock.xaml"/>
+
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveGridView/ResponsiveGridView.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveTextBlock/ResponsiveTextBlock.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+    
 </ResourceDictionary>
