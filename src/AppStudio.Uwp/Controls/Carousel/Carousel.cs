@@ -13,13 +13,29 @@ namespace AppStudio.Uwp.Controls
         private Panel _frame = null;
         private CarouselPanel _panel = null;
 
+        private Grid _arrows = null;
+        private Button _left = null;
+        private Button _right = null;
+
         private LinearGradientBrush _gradient;
         private RectangleGeometry _clip;
 
         public Carousel()
         {
             this.DefaultStyleKey = typeof(Carousel);
+            this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
             this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            CreateFadeTimer();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            DisposeFadeTimer();
         }
 
         protected override void OnApplyTemplate()
@@ -27,12 +43,24 @@ namespace AppStudio.Uwp.Controls
             _frame = base.GetTemplateChild("frame") as Panel;
             _panel = base.GetTemplateChild("panel") as CarouselPanel;
 
+            _arrows = base.GetTemplateChild("arrows") as Grid;
+            _left = base.GetTemplateChild("left") as Button;
+            _right = base.GetTemplateChild("right") as Button;
+
             _gradient = base.GetTemplateChild("gradient") as LinearGradientBrush;
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             _frame.ManipulationDelta += OnManipulationDelta;
             _frame.ManipulationCompleted += OnManipulationCompleted;
             _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.System;
+
+            _frame.PointerMoved += OnPointerMoved;
+            _left.Click += OnLeftClick;
+            _right.Click += OnRightClick;
+            _left.PointerEntered += OnArrowPointerEntered;
+            _left.PointerExited += OnArrowPointerExited;
+            _right.PointerEntered += OnArrowPointerEntered;
+            _right.PointerExited += OnArrowPointerExited;
 
             base.OnApplyTemplate();
         }

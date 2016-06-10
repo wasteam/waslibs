@@ -49,6 +49,10 @@
                     Minimun="0.0"
                     Maximun="1.0"
                     SmallChange="0.1"/>
+                <controls:PropertySet
+                    Source="{Binding Carousel}"
+                    Property="ArrowsVisibility"
+                    Value="{Binding Carousel.ArrowsVisibility, Mode=TwoWay}"/>
                 <TextBlock Margin="0,12,0,6" Text="Indicator" FontSize="18" />
                 <controls:PropertySet Source="{Binding Indicator}" Property="ShapeMode" Value="{Binding Indicator.ShapeMode, Mode=TwoWay}"/>
                 <controls:PropertySet Source="{Binding Indicator}" Property="Background" Value="{Binding Indicator.Background, Mode=TwoWay}"/>

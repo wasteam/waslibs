@@ -118,6 +118,7 @@
     <Compile Include="Controls\Carousel\Carousel.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
     <Compile Include="Controls\Carousel\Carousel.Members.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Mouse.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.Items.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.Members.cs" />
