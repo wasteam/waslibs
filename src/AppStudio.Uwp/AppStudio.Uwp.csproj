@@ -180,6 +180,7 @@
     <Compile Include="Controls\ImageEx\ImageEx.Source.cs" />
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
+    <Compile Include="Controls\Pivorama\Pivorama.Mouse.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
     <Compile Include="Controls\RoundButton\RoundButton.cs" />
     <Compile Include="EventArguments\BoolEventArgs.cs" />
