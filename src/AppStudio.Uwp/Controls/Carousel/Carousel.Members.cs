@@ -127,6 +127,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty GradientOpacityProperty = DependencyProperty.Register("GradientOpacity", typeof(double), typeof(Carousel), new PropertyMetadata(0.0));
         #endregion
 
+        #region ArrowsVisibility
+        public Visibility ArrowsVisibility
+        {
+            get { return (Visibility)GetValue(ArrowsVisibilityProperty); }
+            set { SetValue(ArrowsVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty ArrowsVisibilityProperty = DependencyProperty.Register("ArrowsVisibility", typeof(Visibility), typeof(Carousel), new PropertyMetadata(Visibility.Visible));
+        #endregion
+
         #region ItemClickCommand
         public ICommand ItemClickCommand
         {

@@ -118,6 +118,7 @@
     <Compile Include="Controls\Carousel\Carousel.cs" />
     <Compile Include="Controls\Carousel\Carousel.Manipulation.cs" />
     <Compile Include="Controls\Carousel\Carousel.Members.cs" />
+    <Compile Include="Controls\Carousel\Carousel.Mouse.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.Items.cs" />
     <Compile Include="Controls\Carousel\CarouselPanel.Members.cs" />
@@ -180,7 +181,9 @@
     <Compile Include="Controls\ImageEx\ImageEx.Source.cs" />
     <Compile Include="Controls\Indicator\Indicator.cs" />
     <Compile Include="Controls\Indicator\IndicatorItem.cs" />
+    <Compile Include="Controls\Pivorama\Pivorama.Mouse.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
+    <Compile Include="Controls\RoundButton\RoundButton.cs" />
     <Compile Include="EventArguments\BoolEventArgs.cs" />
     <Compile Include="EventArguments\ExceptionEventArgs.cs" />
     <Compile Include="EventArguments\IntEventArgs.cs" />
@@ -261,6 +264,7 @@
     <Compile Include="Html\HtmlTag.cs" />
     <Compile Include="Html\HtmlText.cs" />
     <Compile Include="Html\TagReader.cs" />
+    <Compile Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
@@ -327,6 +331,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\RoundButton\RoundButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Labs\ResponsiveGridView\ResponsiveGridView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -362,6 +370,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Virtualbox\Virtualbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

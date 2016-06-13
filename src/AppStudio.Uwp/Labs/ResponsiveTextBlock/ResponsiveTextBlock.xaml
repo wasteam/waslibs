@@ -1,0 +1,17 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Uwp.Labs">
+
+    <Style TargetType="controls:ResponsiveTextBlock">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ResponsiveTextBlock">
+                    <Grid>
+                        <TextBlock Name="textBlock" Text="{TemplateBinding Text}" TextWrapping="{TemplateBinding TextWrapping}" TextTrimming="{TemplateBinding TextTrimming}" TextAlignment="{TemplateBinding TextAlignment}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

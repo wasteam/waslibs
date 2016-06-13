@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
+
 using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
@@ -24,6 +25,10 @@ namespace AppStudio.Uwp.Controls
 
         private ScrollViewer _scrollViewer = null;
 
+        private Grid _arrows = null;
+        private Button _left = null;
+        private Button _right = null;
+
         private RectangleGeometry _clip = null;
 
         private bool _isInitialized = false;
@@ -31,6 +36,18 @@ namespace AppStudio.Uwp.Controls
         public Pivorama()
         {
             this.DefaultStyleKey = typeof(Pivorama);
+            this.Loaded += OnLoaded;
+            this.Unloaded += OnUnloaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            CreateFadeTimer();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            DisposeFadeTimer();
         }
 
         protected override void OnApplyTemplate()
@@ -50,6 +67,10 @@ namespace AppStudio.Uwp.Controls
 
             _scrollViewer = base.GetTemplateChild("scrollViewer") as ScrollViewer;
 
+            _arrows = base.GetTemplateChild("arrows") as Grid;
+            _left = base.GetTemplateChild("left") as Button;
+            _right = base.GetTemplateChild("right") as Button;
+
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             _frame.ManipulationDelta += OnManipulationDelta;
@@ -60,7 +81,14 @@ namespace AppStudio.Uwp.Controls
             _panelContainer.ManipulationDelta += OnManipulationDelta;
             _panelContainer.ManipulationCompleted += OnManipulationCompleted;
             _panelContainer.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
-            _panelContainer.PointerWheelChanged += OnPointerWheelChanged;
+
+            _frame.PointerMoved += OnPointerMoved;
+            _left.Click += OnLeftClick;
+            _right.Click += OnRightClick;
+            _left.PointerEntered += OnArrowPointerEntered;
+            _left.PointerExited += OnArrowPointerExited;
+            _right.PointerEntered += OnArrowPointerEntered;
+            _right.PointerExited += OnArrowPointerExited;
 
             _isInitialized = true;
 

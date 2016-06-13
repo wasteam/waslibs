@@ -27,6 +27,14 @@
                                                         ItemTemplate="{TemplateBinding ContentTemplate}" ItemWidth="{TemplateBinding ItemWidthEx}" />
                             </Grid>
                         </ScrollViewer>
+                        <Grid Name="arrows" Grid.Row="1" Opacity="0.0">
+                            <controls:RoundButton x:Name="left" Margin="12,0,0,0" Padding="16" Foreground="#eee" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Back" />
+                            </controls:RoundButton>
+                            <controls:RoundButton x:Name="right" Margin="0,0,12,0" Padding="16" Foreground="#eee" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Forward" />
+                            </controls:RoundButton>
+                        </Grid>
                         <Grid.Clip>
                             <RectangleGeometry x:Name="clip" />
                         </Grid.Clip>

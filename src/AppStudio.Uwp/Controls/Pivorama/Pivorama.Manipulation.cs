@@ -52,23 +52,17 @@ namespace AppStudio.Uwp.Controls
             int sign = Math.Sign(point.Properties.MouseWheelDelta);
             if (sign > 0)
             {
-                if (_scrollViewer.VerticalOffset == 0)
-                {
-                    _headerContainer.TranslateDeltaX(1);
-                    _panelContainer.TranslateDeltaX(1);
-                    AnimatePrev();
-                    e.Handled = true;
-                }
+                _headerContainer.TranslateDeltaX(1);
+                _panelContainer.TranslateDeltaX(1);
+                AnimatePrev();
+                e.Handled = true;
             }
             else
             {
-                if (!(_scrollViewer.VerticalOffset < _scrollViewer.ScrollableHeight))
-                {
-                    _headerContainer.TranslateDeltaX(-1);
-                    _panelContainer.TranslateDeltaX(-1);
-                    AnimateNext();
-                    e.Handled = true;
-                }
+                _headerContainer.TranslateDeltaX(-1);
+                _panelContainer.TranslateDeltaX(-1);
+                AnimateNext();
+                e.Handled = true;
             }
         }
 

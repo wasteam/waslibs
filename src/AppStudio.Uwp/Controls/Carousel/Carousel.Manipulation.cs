@@ -6,6 +6,8 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Carousel
     {
+        private bool _isBusy = false;
+
         #region Position
         public double Position
         {
@@ -55,22 +57,26 @@ namespace AppStudio.Uwp.Controls
 
         private async void AnimateNext(double duration = 150)
         {
+            _isBusy = true;
             double delta = this.ItemWidth - this.Offset;
             double position = Position - delta;
 
             await _panel.AnimateXAsync(position, duration);
 
             this.Index = (int)(-position / this.ItemWidth);
+            _isBusy = false;
         }
 
         private async void AnimatePrev(double duration = 150)
         {
+            _isBusy = true;
             double delta = this.Offset;
             double position = Position + delta;
 
             await _panel.AnimateXAsync(position, duration);
 
             this.Index = (int)(-position / this.ItemWidth);
+            _isBusy = false;
         }
     }
 }
