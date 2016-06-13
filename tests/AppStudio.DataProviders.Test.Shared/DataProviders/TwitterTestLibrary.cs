@@ -234,7 +234,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new TwitterDataProvider(OAuthKeys.TwitterValidKeys);
             IEnumerable<TwitterSchema> result = await dataProvider.LoadDataAsync(config, maxRecords);
 
-            Assert.IsTrue(result.Count() > 25);
+            Assert.IsTrue(result.Count() > 25, $"There are {result.Count()} elements");
         }
 
         [TestMethod]
