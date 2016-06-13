@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -8,6 +9,8 @@ namespace AppStudio.Uwp.Controls
 {
     partial class Carousel
     {
+        private DispatcherTimer _slideTimer = null;
+
         #region ItemsSource
         public object ItemsSource
         {
@@ -146,6 +149,51 @@ namespace AppStudio.Uwp.Controls
 
         public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(Carousel), new PropertyMetadata(null));
         #endregion
+
+        #region SlideInterval
+        public double SlideInterval
+        {
+            get { return (double)GetValue(SlideIntervalProperty); }
+            set { SetValue(SlideIntervalProperty, value); }
+        }
+
+        private static void SlideIntervalChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as Carousel;
+            control.SetSlideInterval((double)e.NewValue);
+        }
+
+        public static readonly DependencyProperty SlideIntervalProperty = DependencyProperty.Register("SlideInterval", typeof(double), typeof(Carousel), new PropertyMetadata(0.0, SlideIntervalChanged));
+        #endregion
+
+        private void SetSlideInterval(double milliseconds)
+        {
+            if (milliseconds > 150.0)
+            {
+                if (_slideTimer == null)
+                {
+                    _slideTimer = new DispatcherTimer();
+                    _slideTimer.Tick += OnSlideTimerTick;
+                }
+                _slideTimer.Interval = TimeSpan.FromMilliseconds(milliseconds);
+                _slideTimer.Start();
+            }
+            else
+            {
+                if (_slideTimer != null)
+                {
+                    _slideTimer.Stop();
+                }
+            }
+        }
+
+        private void OnSlideTimerTick(object sender, object e)
+        {
+            if (!_isBusy)
+            {
+                this.AnimateNext();
+            }
+        }
 
         public double ItemWidth
         {

@@ -51,6 +51,13 @@
                     SmallChange="0.1"/>
                 <controls:PropertySet
                     Source="{Binding Carousel}"
+                    Property="SlideInterval"
+                    Value="{Binding Carousel.SlideInterval, Mode=TwoWay}"
+                    Minimun="0.0"
+                    Maximun="3000.0"
+                    SmallChange="500.0"/>
+                <controls:PropertySet
+                    Source="{Binding Carousel}"
                     Property="ArrowsVisibility"
                     Value="{Binding Carousel.ArrowsVisibility, Mode=TwoWay}"/>
                 <TextBlock Margin="0,12,0,6" Text="Indicator" FontSize="18" />

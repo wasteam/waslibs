@@ -31,11 +31,19 @@ namespace AppStudio.Uwp.Controls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             CreateFadeTimer();
+            if (_slideTimer != null && this.SlideInterval > 150.0)
+            {
+                _slideTimer.Start();
+            }
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             DisposeFadeTimer();
+            if (_slideTimer != null)
+            {
+                _slideTimer.Stop();
+            }
         }
 
         protected override void OnApplyTemplate()
