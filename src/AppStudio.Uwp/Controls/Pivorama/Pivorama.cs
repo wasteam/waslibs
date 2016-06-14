@@ -23,8 +23,6 @@ namespace AppStudio.Uwp.Controls
         private Panel _panelContainer = null;
         private PivoramaPanel _panel = null;
 
-        private ScrollViewer _scrollViewer = null;
-
         private Grid _arrows = null;
         private Button _left = null;
         private Button _right = null;
@@ -64,8 +62,6 @@ namespace AppStudio.Uwp.Controls
 
             _panelContainer = base.GetTemplateChild("panelContainer") as Panel;
             _panel = base.GetTemplateChild("panel") as PivoramaPanel;
-
-            _scrollViewer = base.GetTemplateChild("scrollViewer") as ScrollViewer;
 
             _arrows = base.GetTemplateChild("arrows") as Grid;
             _left = base.GetTemplateChild("left") as Button;
