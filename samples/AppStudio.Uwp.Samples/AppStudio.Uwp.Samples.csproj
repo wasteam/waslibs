@@ -154,6 +154,7 @@
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\VBPDevices.json" />
     <CodeAnalysisDictionary Include="Dictionary.xml" />
+    <Content Include="Labs\Accordion\Docs\AccordionXaml.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
@@ -198,6 +199,15 @@
     <Compile Include="Data\PhotosDataSource.cs" />
     <Compile Include="Extensions\PageExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Labs\Accordion\AccordionPage.xaml.cs">
+      <DependentUpon>AccordionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\Accordion\AccordionSettings.xaml.cs">
+      <DependentUpon>AccordionSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\Accordion\Docs\AccordionHelp.xaml.cs">
+      <DependentUpon>AccordionHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
     </Compile>
@@ -535,6 +545,18 @@
     <Page Include="AppShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Labs\Accordion\AccordionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\Accordion\AccordionSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\Accordion\Docs\AccordionHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml">
       <SubType>Designer</SubType>
