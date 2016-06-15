@@ -92,15 +92,5 @@ namespace AppStudio.Uwp.Html
 
             return doc;
         }
-
-        private static bool IsMarkup(string doc)
-        {
-            if (!string.IsNullOrWhiteSpace(doc))
-            {
-                doc = doc.Trim();
-                return doc.StartsWith("<") && doc.EndsWith(">");
-            }
-            return false;
-        }
     }
 }
