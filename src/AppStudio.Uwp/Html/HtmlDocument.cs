@@ -37,7 +37,7 @@ namespace AppStudio.Uwp.Html
 
             if (!string.IsNullOrWhiteSpace(document))
             {
-                if (IsMarkup(document))
+                if(TagReader.Any(document))
                 {
                     document = Clean(document);
 
@@ -81,6 +81,7 @@ namespace AppStudio.Uwp.Html
                     }
                 }
             }
+            parentFragment.TryToAddText(HtmlText.Create(reader.Document, reader.CurrentTag, null));
             return null;
         }
 
