@@ -37,7 +37,7 @@ namespace AppStudio.Uwp.Html
 
             if (!string.IsNullOrWhiteSpace(document))
             {
-                if (IsMarkup(document))
+                if(TagReader.Any(document))
                 {
                     document = Clean(document);
 
@@ -81,6 +81,7 @@ namespace AppStudio.Uwp.Html
                     }
                 }
             }
+            parentFragment.TryToAddText(HtmlText.Create(reader.Document, reader.CurrentTag, null));
             return null;
         }
 
@@ -90,16 +91,6 @@ namespace AppStudio.Uwp.Html
             doc = Regex.Replace(doc, "<!--.*?-->", string.Empty);
 
             return doc;
-        }
-
-        private static bool IsMarkup(string doc)
-        {
-            if (!string.IsNullOrWhiteSpace(doc))
-            {
-                doc = doc.Trim();
-                return doc.StartsWith("<") && doc.EndsWith(">");
-            }
-            return false;
         }
     }
 }
