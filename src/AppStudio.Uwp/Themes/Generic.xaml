@@ -25,6 +25,7 @@
 
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/Accordion/Accordion.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveGridView/ResponsiveGridView.xaml"/>
+        <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveRow/ResponsiveRow.xaml"/>
         <ResourceDictionary Source="ms-appx:///AppStudio.Uwp/Labs/ResponsiveTextBlock/ResponsiveTextBlock.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     

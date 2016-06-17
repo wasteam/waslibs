@@ -269,6 +269,7 @@
     <Compile Include="Html\HtmlTag.cs" />
     <Compile Include="Html\HtmlText.cs" />
     <Compile Include="Html\TagReader.cs" />
+    <Compile Include="Labs\ResponsiveRow\ResponsiveRow.cs" />
     <Compile Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
@@ -379,6 +380,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Virtualbox\Virtualbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ResponsiveRow\ResponsiveRow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
