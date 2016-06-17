@@ -18,7 +18,7 @@
                     <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <ContentControl ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="Stretch" />
-                            <ItemsPresenter Padding="{TemplateBinding Padding}"/>
+                            <ItemsPresenter Margin="{TemplateBinding Padding}"/>
                             <ContentControl ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" HorizontalContentAlignment="Stretch" />
                         </StackPanel>
                         <!--<ItemsPresenter VerticalAlignment="Top" />-->
