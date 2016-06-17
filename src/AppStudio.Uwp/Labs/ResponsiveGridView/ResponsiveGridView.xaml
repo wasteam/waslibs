@@ -16,7 +16,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ResponsiveGridView">
                     <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ItemsPresenter VerticalAlignment="Top" />
+                        <StackPanel>
+                            <ContentControl ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="Stretch" />
+                            <ItemsPresenter Padding="{TemplateBinding Padding}"/>
+                            <ContentControl ContentTemplate="{TemplateBinding FooterTemplate}" Content="{TemplateBinding Footer}" HorizontalContentAlignment="Stretch" />
+                        </StackPanel>
+                        <!--<ItemsPresenter VerticalAlignment="Top" />-->
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>

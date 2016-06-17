@@ -7,27 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-  <Page.Resources>
-    <DataTemplate x:Key="DeviceDataTemplate">
-      <Grid
-        Background="White"
-        BorderBrush="Black"
-        BorderThickness="1">
-        <Image
-            Source="{Binding Thumbnail}"
-            Stretch="UniformToFill"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
-      </Grid>
-    </DataTemplate>
-  </Page.Resources>
+    <Page.Resources>
+        <DataTemplate x:Key="PhotoDataTemplate">
+            <Grid Margin="2" Background="White" BorderBrush="LightGray" BorderThickness="1">
+                <Image Source="{Binding Thumbnail}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
 
-  <Grid Background="{StaticResource AppBackground}">
-    <controls:ResponsiveGridView
-        x:Name="control"
-        ItemsSource="{Binding Items}"
-        DesiredWidth="300"
-        DesiredHeight="200"
-        ItemTemplate="{Binding ItemTemplate}"/>
-  </Grid>
+    <Grid Background="{StaticResource AppBackground}">
+        <labs:ResponsiveGridView x:Name="control" Margin="12,12,6,12" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+                                 DesiredWidth="300" DesiredHeight="200"
+                                 Header="ResponsiveGridView Header" Footer="ResponsiveGridView Footer">
+            <labs:ResponsiveGridView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="4,6,4,2" Background="#222">
+                        <TextBlock Margin="6" Text="{Binding}" FontSize="24" Foreground="White" HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </labs:ResponsiveGridView.HeaderTemplate>
+            <labs:ResponsiveGridView.FooterTemplate>
+                <DataTemplate>
+                    <Grid Margin="4,2,4,6" Background="#222">
+                        <TextBlock Margin="6" Text="{Binding}" FontSize="24" Foreground="White" HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </labs:ResponsiveGridView.FooterTemplate>
+        </labs:ResponsiveGridView>
+    </Grid>
 </Page>
