@@ -79,8 +79,25 @@ namespace AppStudio.Uwp.Labs
                 availableSize = NormalizeSize(availableSize);
                 var itemSize = GetItemSize(availableSize);
 
+                double x = 0;
                 foreach (var item in base.Children)
                 {
+                    if (this.OneRowModeEnabled)
+                    {
+                        if (x + itemSize.Width > availableSize.Width + 1)
+                        {
+                            item.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            item.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else
+                    {
+                        item.Visibility = Visibility.Visible;
+                    }
+                    x += itemSize.Width;
                     item.Measure(itemSize);
                 }
 
@@ -118,11 +135,12 @@ namespace AppStudio.Uwp.Labs
                     double nextX = x + itemSize.Width;
                     if (nextX > finalSize.Width + 1)
                     {
-                        if (!this.OneRowModeEnabled)
+                        if (this.OneRowModeEnabled)
                         {
-                            x = 0;
-                            y += itemSize.Height;
+                            break;
                         }
+                        x = 0;
+                        y += itemSize.Height;
                     }
                 }
 
