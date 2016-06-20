@@ -71,13 +71,13 @@ namespace AppStudio.Uwp.Controls
 
         private void SetSourceString(string url)
         {
-            if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            Uri uri = null;
+            if (Uri.TryCreate(url, UriKind.Absolute, out uri))
             {
-                SetSourceUri(new Uri(url));
+                SetSourceUri(uri);
             }
             else if (Uri.IsWellFormedUriString(url, UriKind.Relative))
             {
-                Uri uri = null;
                 if (Uri.TryCreate("ms-appx:///" + url.TrimStart('/'), UriKind.Absolute, out uri))
                 {
                     SetSourceUri(uri);
