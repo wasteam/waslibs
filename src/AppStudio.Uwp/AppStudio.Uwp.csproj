@@ -271,6 +271,8 @@
     <Compile Include="Html\TagReader.cs" />
     <Compile Include="Labs\ResponsiveRow\ResponsiveRow.cs" />
     <Compile Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.cs" />
+    <Compile Include="Labs\ShapeImage\ShapeImage.cs" />
+    <Compile Include="Labs\ShapeImage\ShapeImage.Source.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
@@ -388,6 +390,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ShapeImage\ShapeImage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
