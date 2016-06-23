@@ -6,11 +6,12 @@ using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Labs
 {
-    #region ShapeMode
-    public enum ShapeMode
+    #region ShapeTypes
+    public enum ShapeType
     {
         Rectangle,
-        Ellipse
+        Ellipse,
+        Border
     }
     #endregion
 
@@ -22,20 +23,20 @@ namespace AppStudio.Uwp.Labs
             this.DefaultStyleKey = typeof(ShapeImage);
         }
 
-        #region ShapeMode
-        public ShapeMode ShapeMode
+        #region ShapeType
+        public ShapeType ShapeType
         {
-            get { return (ShapeMode)GetValue(ShapeModeProperty); }
-            set { SetValue(ShapeModeProperty, value); }
+            get { return (ShapeType)GetValue(ShapeTypeProperty); }
+            set { SetValue(ShapeTypeProperty, value); }
         }
 
-        private static void ShapeModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ShapeTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as ShapeImage;
-            control.SetShapeMode((ShapeMode)e.NewValue);
+            control.SetShapeType((ShapeType)e.NewValue);
         }
 
-        public static readonly DependencyProperty ShapeModeProperty = DependencyProperty.Register("ShapeMode", typeof(ShapeMode), typeof(ShapeImage), new PropertyMetadata(ShapeMode.Rectangle, ShapeModeChanged));
+        public static readonly DependencyProperty ShapeTypeProperty = DependencyProperty.Register("ShapeType", typeof(ShapeType), typeof(ShapeImage), new PropertyMetadata(null, ShapeTypeChanged));
         #endregion
 
 
@@ -60,6 +61,16 @@ namespace AppStudio.Uwp.Labs
         #endregion
 
 
+        #region CornerRadius
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ShapeImage), new PropertyMetadata(new CornerRadius()));
+        #endregion
+
         #region RadiusX
         public double RadiusX
         {
@@ -80,6 +91,7 @@ namespace AppStudio.Uwp.Labs
         public static readonly DependencyProperty RadiusYProperty = DependencyProperty.Register("RadiusY", typeof(double), typeof(ShapeImage), new PropertyMetadata(0.0));
         #endregion
 
+
         #region Fill
         public Brush Fill
         {
@@ -89,7 +101,6 @@ namespace AppStudio.Uwp.Labs
 
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register("Fill", typeof(Brush), typeof(ShapeImage), new PropertyMetadata(null));
         #endregion
-
 
         #region Stretch
         public Stretch Stretch
@@ -121,29 +132,43 @@ namespace AppStudio.Uwp.Labs
         public static readonly DependencyProperty AlignmentYProperty = DependencyProperty.Register("AlignmentY", typeof(AlignmentY), typeof(ShapeImage), new PropertyMetadata(AlignmentY.Center, FillChanged));
         #endregion
 
-        private void SetShapeMode(ShapeMode shapeMode)
+        private void SetShapeType(ShapeType shapeType)
         {
             if (_container != null)
             {
-                Shape shape;
-                switch (shapeMode)
+                if (shapeType == ShapeType.Border)
                 {
-                    case ShapeMode.Ellipse:
-                        shape = new Ellipse();
-                        break;
-                    case ShapeMode.Rectangle:
-                    default:
-                        shape = new Rectangle();
-                        shape.SetBinding(Rectangle.RadiusXProperty, new Binding { Source = this, Path = new PropertyPath("RadiusX") });
-                        shape.SetBinding(Rectangle.RadiusYProperty, new Binding { Source = this, Path = new PropertyPath("RadiusY") });
-                        break;
+                    var border = new Border();
+
+                    border.SetBinding(Border.BackgroundProperty, new Binding { Source = this, Path = new PropertyPath("Fill") });
+                    border.SetBinding(Border.BorderBrushProperty, new Binding { Source = this, Path = new PropertyPath("BorderBrush") });
+                    border.SetBinding(Border.BorderThicknessProperty, new Binding { Source = this, Path = new PropertyPath("BorderThickness") });
+                    border.SetBinding(Border.CornerRadiusProperty, new Binding { Source = this, Path = new PropertyPath("CornerRadius") });
+
+                    _container.Child = border;
                 }
+                else
+                {
+                    Shape shape;
+                    switch (shapeType)
+                    {
+                        case ShapeType.Ellipse:
+                            shape = new Ellipse();
+                            break;
+                        case ShapeType.Rectangle:
+                        default:
+                            shape = new Rectangle();
+                            shape.SetBinding(Rectangle.RadiusXProperty, new Binding { Source = this, Path = new PropertyPath("RadiusX") });
+                            shape.SetBinding(Rectangle.RadiusYProperty, new Binding { Source = this, Path = new PropertyPath("RadiusY") });
+                            break;
+                    }
 
-                shape.SetBinding(Shape.FillProperty, new Binding { Source = this, Path = new PropertyPath("Fill") });
-                shape.SetBinding(Shape.StrokeProperty, new Binding { Source = this, Path = new PropertyPath("Stroke") });
-                shape.SetBinding(Shape.StrokeThicknessProperty, new Binding { Source = this, Path = new PropertyPath("StrokeThickness") });
+                    shape.SetBinding(Shape.FillProperty, new Binding { Source = this, Path = new PropertyPath("Fill") });
+                    shape.SetBinding(Shape.StrokeProperty, new Binding { Source = this, Path = new PropertyPath("Stroke") });
+                    shape.SetBinding(Shape.StrokeThicknessProperty, new Binding { Source = this, Path = new PropertyPath("StrokeThickness") });
 
-                _container.Child = shape;
+                    _container.Child = shape;
+                }
             }
         }
 
@@ -168,7 +193,7 @@ namespace AppStudio.Uwp.Labs
         {
             _container = base.GetTemplateChild("container") as Border;
 
-            this.SetShapeMode(this.ShapeMode);
+            this.SetShapeType(this.ShapeType);
 
             base.OnApplyTemplate();
         }
