@@ -65,11 +65,15 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 	Write-Host "New Version: $NewVersion"
 	Write-Host "Revision: $Revision"
 	Write-Host "Package Version: $PackageVersion"
-
+	Write-Host "Invoking UpdateVersionFiles.ps1..."
     Invoke-Command -ScriptBlock  { .\UpdateVersionFiles.ps1 $NewVersion $Semantic $Revision }
+	Write-Host "UpdateVersionFiles.ps1 Finished."
 	
 	Write-Host "Setting up environment variable with Package Version..."
-	[Environment]::SetEnvironmentVariable("NugetPackageVersion", $PackageVersion, "User")
+	#[Environment]::SetEnvironmentVariable("NugetPackageVersion", "$PackageVersion", "User")
+	#Write-Host "Environment Variable NugetPackageVersion set to "$env:NugetPackageVersion""
+	
+	Write-Host ("##vso[task.setvariable variable=NugetPackageVersion;]$PackageVersion")
 	Write-Host "Environment Variable NugetPackageVersion set to $env:NugetPackageVersion"
 }
 else{
