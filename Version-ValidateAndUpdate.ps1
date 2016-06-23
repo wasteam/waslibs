@@ -61,9 +61,11 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 		$PackageVersion = $PackageVersion + "-" + $Semantic + $Revision
 	}
 	
+	$PackageVersionTag = "Package Version:" + $PackageVersion + "(" + $MayorVersion + "." + $MinorVersion + "." + $Patch + "." + $Revision ")"  
 
 	Write-Host "New Version: $NewVersion"
 	Write-Host "Revision: $Revision"
+	Write-Host "Package Version: $PackageVersion"
 	Write-Host "Package Version: $PackageVersion"
 	Write-Host "Invoking UpdateVersionFiles.ps1..."
     Invoke-Command -ScriptBlock  { .\UpdateVersionFiles.ps1 $NewVersion $Semantic $Revision }
@@ -75,6 +77,9 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 	
 	Write-Host ("##vso[task.setvariable variable=NugetPackageVersion;]$PackageVersion")
 	Write-Host "Environment Variable NugetPackageVersion set to $env:NugetPackageVersion"
+	
+	Write-Host ("##vso[task.setvariable variable=PackageVersionTag;]$PackageVersionTag")
+	Write-Host "Environment Variable PackageVersionTag set to $env:PackageVersionTag"
 }
 else{
 	throw "New version for packages can't be determined."
