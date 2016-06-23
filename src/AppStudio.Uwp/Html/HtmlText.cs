@@ -31,14 +31,26 @@ namespace AppStudio.Uwp.Html
 
         internal static HtmlText Create(string doc, HtmlTag startTag, HtmlTag endTag)
         {
-            if (startTag != null && endTag != null)
+            var startIndex = 0;
+
+            if (startTag != null)
             {
-                var text = new HtmlText(doc, startTag.StartIndex + startTag.Length, endTag.StartIndex);
-                if (text != null && !string.IsNullOrEmpty(text.Content))
-                {
-                    return text;
-                }
+                startIndex = startTag.StartIndex + startTag.Length;
             }
+
+            var endIndex = doc.Length;
+
+            if (endTag != null)
+            {
+                endIndex = endTag.StartIndex;
+            }
+
+            var text = new HtmlText(doc, startIndex, endIndex);
+            if (text != null && !string.IsNullOrEmpty(text.Content))
+            {
+                return text;
+            }
+
             return null;
         }
     }

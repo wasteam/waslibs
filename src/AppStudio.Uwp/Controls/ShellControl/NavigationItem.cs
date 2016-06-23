@@ -131,6 +131,16 @@ namespace AppStudio.Uwp.Controls
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(IconElement), typeof(NavigationItem), new PropertyMetadata(null));
         #endregion
 
+        #region Image
+        public Image Image
+        {
+            get { return (Image)GetValue(ImageProperty); }
+            set { SetValue(ImageProperty, value); }
+        }
+
+        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(Image), typeof(NavigationItem), new PropertyMetadata(null));
+        #endregion
+
         #region Caption
         public string Caption
         {

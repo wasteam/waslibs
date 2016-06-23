@@ -25,13 +25,20 @@ namespace AppStudio.Uwp.Html
         private TagReader(string document)
         {
             Document = document;
-            _regexTag = new Regex(RegexPatternTag, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            _regexTag = GetTagRegex();
             _regexAttributes = new Regex(RegexPatternAttributes, RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }
 
         public static TagReader Create(string document)
         {
             return new TagReader(document);
+        }
+
+        public static bool Any(string document)
+        {
+            Regex regexTag = GetTagRegex();
+            var match = regexTag.Match(document);
+            return match.Success;
         }
 
         public bool Read()
@@ -121,6 +128,11 @@ namespace AppStudio.Uwp.Html
             }
 
             return attrValue;
+        }
+
+        private static Regex GetTagRegex()
+        {
+            return new Regex(RegexPatternTag, RegexOptions.Compiled | RegexOptions.IgnoreCase);
         }
     }
 }
