@@ -11,7 +11,7 @@ Param(
     [Parameter(Mandatory=$False,Position=5)]
 	[string]$Revision = "",
 	[Parameter(Mandatory=$False, Position=6)]
-    [string]$TfsBuildNumber="", #Must follow the pattern buildName_YYYYMMDD.r
+    [string]$TfsBuildNumber="" #Must match the pattern buildName_YYYYMMDD.r
 )
 
 if($error){
