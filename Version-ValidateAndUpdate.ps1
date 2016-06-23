@@ -67,6 +67,10 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 	Write-Host "Package Version: $PackageVersion"
 
     Invoke-Command -ScriptBlock  { .\UpdateVersionFiles.ps1 $NewVersion $Semantic $Revision }
+	
+	Write-Host "Setting up environment variable with Package Version..."
+	[Environment]::SetEnvironmentVariable("NugetPackageVersion", $PackageVersion, "Machine")
+	Write-Host "Environment Variable NugetPackageVersion set to $env:NugetPackageVersion"
 }
 else{
 	throw "New version for packages can't be determined."
