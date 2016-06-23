@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Windows.UI;
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -37,6 +37,38 @@ namespace AppStudio.Uwp
             if (element.GetTranslateY() != y)
             {
                 await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "TranslateY", element.GetTranslateY(), y, duration, easingFunction);
+            }
+        }
+
+        public static Storyboard AnimateScaleX(this FrameworkElement element, double x, double duration = 150, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetScaleX() != x)
+            {
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "ScaleX", element.GetScaleX(), x, duration, easingFunction);
+            }
+            return null;
+        }
+        public static async Task AnimateScaleXAsync(this FrameworkElement element, double x, double duration = 150, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetScaleX() != x)
+            {
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "ScaleX", element.GetScaleX(), x, duration, easingFunction);
+            }
+        }
+
+        public static Storyboard AnimateScaleY(this FrameworkElement element, double y, double duration = 150, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetScaleY() != y)
+            {
+                return AnimateDoubleProperty(element.GetCompositeTransform(), "ScaleY", element.GetScaleY(), y, duration, easingFunction);
+            }
+            return null;
+        }
+        public static async Task AnimateScaleYAsync(this FrameworkElement element, double y, double duration = 150, EasingFunctionBase easingFunction = null)
+        {
+            if (element.GetScaleY() != y)
+            {
+                await AnimateDoublePropertyAsync(element.GetCompositeTransform(), "ScaleY", element.GetScaleY(), y, duration, easingFunction);
             }
         }
 

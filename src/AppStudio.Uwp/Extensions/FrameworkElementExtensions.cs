@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using System;
+
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
-using System;
 
 namespace AppStudio.Uwp
 {
@@ -42,6 +42,33 @@ namespace AppStudio.Uwp
         public static void TranslateDeltaY(this FrameworkElement elem, double y)
         {
             elem.GetCompositeTransform().TranslateY += y;
+        }
+
+        public static double GetScaleX(this FrameworkElement elem)
+        {
+            return elem.GetCompositeTransform().ScaleX;
+        }
+        public static double GetScaleY(this FrameworkElement elem)
+        {
+            return elem.GetCompositeTransform().ScaleY;
+        }
+
+        public static void ScaleX(this FrameworkElement elem, double x)
+        {
+            elem.GetCompositeTransform().ScaleX = x;
+        }
+        public static void ScaleY(this FrameworkElement elem, double y)
+        {
+            elem.GetCompositeTransform().ScaleY = y;
+        }
+
+        public static void ScaleDeltaX(this FrameworkElement elem, double x)
+        {
+            elem.GetCompositeTransform().ScaleX += x;
+        }
+        public static void ScaleDeltaY(this FrameworkElement elem, double y)
+        {
+            elem.GetCompositeTransform().ScaleY += y;
         }
 
         public static CompositeTransform GetCompositeTransform(this FrameworkElement elem)

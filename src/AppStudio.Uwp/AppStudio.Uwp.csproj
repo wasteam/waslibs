@@ -273,6 +273,9 @@
     <Compile Include="Labs\ResponsiveTextBlock\ResponsiveTextBlock.cs" />
     <Compile Include="Labs\ShapeImage\ShapeImage.cs" />
     <Compile Include="Labs\ShapeImage\ShapeImage.Source.cs" />
+    <Compile Include="Labs\SlideShow\SlideShow.cs" />
+    <Compile Include="Labs\SlideShow\SlideShow.Items.cs" />
+    <Compile Include="Labs\SlideShow\SlideShow.Play.cs" />
     <Compile Include="LocalSettingNames.cs" />
     <Compile Include="Navigation\INavigable.cs" />
     <Compile Include="Navigation\NavigationInfo.cs" />
@@ -394,6 +397,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\ShapeImage\ShapeImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\SlideShow\SlideShow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
