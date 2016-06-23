@@ -156,6 +156,7 @@
     <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Labs\Accordion\Docs\AccordionXaml.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
+    <Content Include="Labs\SlideShow\Docs\SlideShowXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
     <Content Include="Pages\Converters\Docs\ConvertersXaml.xml" />
@@ -216,6 +217,15 @@
     </Compile>
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
       <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\SlideShow\Docs\SlideShowHelp.xaml.cs">
+      <DependentUpon>SlideShowHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\SlideShow\SlideShowPage.xaml.cs">
+      <DependentUpon>SlideShowPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\SlideShow\SlideShowSettings.xaml.cs">
+      <DependentUpon>SlideShowSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Flickr\FlickrOrderBy.cs" />
     <Compile Include="Pages\GifControl\GifControlSettings.xaml.cs">
@@ -567,6 +577,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\SlideShow\Docs\SlideShowHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\SlideShow\SlideShowPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\SlideShow\SlideShowSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

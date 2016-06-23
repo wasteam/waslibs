@@ -1,0 +1,30 @@
+﻿<local:SamplePage
+    x:Class="AppStudio.Uwp.Samples.Labs.SlideShowPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:labs="using:AppStudio.Uwp.Labs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <Image Source="{Binding Thumbnail}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DataTemplate>
+    </Page.Resources>
+
+    <controls:ShellControl.CommandBar>
+        <controls:CommandBarEx x:Name="commandBar" PrimaryCommandItems="{Binding PrimaryCommands}" />
+    </controls:ShellControl.CommandBar>
+
+    <controls:ShellControl.PaneHeader>
+        <Grid Name="paneHeader" Background="{Binding CommandBarBackground}" />
+    </controls:ShellControl.PaneHeader>
+
+    <Grid Background="{StaticResource AppBackground}">
+        <labs:SlideShow x:Name="control" ItemsSource="{Binding Items}"
+                        ItemTemplate="{StaticResource ItemTemplate}" DelayInterval="5000" FadeInterval="5000" />
+    </Grid>
+</local:SamplePage>
