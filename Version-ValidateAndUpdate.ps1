@@ -61,7 +61,7 @@ if(!$error -and $NewVersion -and $NewVersion -ne ""){
 		$PackageVersion = $PackageVersion + "-" + $Semantic + $Revision
 	}
 	
-	$PackageVersionTag = "Package Version:" + $PackageVersion + "(" + $MayorVersion + "." + $MinorVersion + "." + $Patch + "." + $Revision ")"  
+	$PackageVersionTag = "Package Version: $PackageVersion ($NewVersion.$Revision)"  
 
 	Write-Host "New Version: $NewVersion"
 	Write-Host "Revision: $Revision"
