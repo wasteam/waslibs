@@ -90,7 +90,7 @@ namespace AppStudio.Uwp.Controls
             {
                 return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}");
             }
-            return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{BuildFileName(uri, MAXRESOLUTION, MAXRESOLUTION)}");
+            return null;
         }
 
         private static async Task EnsureFilesAsync(Uri uri)

@@ -27,37 +27,40 @@ namespace AppStudio.Uwp.Labs
         #region SetSource
         private void SetSource(object source)
         {
-            if (source != null)
+            if (_container != null)
             {
-                string url = source as String;
-                if (url != null)
+                if (source != null)
                 {
-                    SetSourceString(url);
-                }
-                else
-                {
-                    Uri uri = source as Uri;
-                    if (uri != null)
+                    string url = source as String;
+                    if (url != null)
                     {
-                        SetSourceUri(uri);
+                        SetSourceString(url);
                     }
                     else
                     {
-                        ImageSource imageSource = source as ImageSource;
-                        if (imageSource != null)
+                        Uri uri = source as Uri;
+                        if (uri != null)
                         {
-                            SetImage(imageSource);
+                            SetSourceUri(uri);
                         }
                         else
                         {
-                            ClearImage();
+                            ImageSource imageSource = source as ImageSource;
+                            if (imageSource != null)
+                            {
+                                SetImage(imageSource);
+                            }
+                            else
+                            {
+                                ClearImage();
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                ClearImage();
+                else
+                {
+                    ClearImage();
+                }
             }
         }
 
@@ -97,7 +100,14 @@ namespace AppStudio.Uwp.Labs
                         cachedUri = await AppStudio.Uwp.Controls.BitmapCache.GetImageUriAsync(uri, AppStudio.Uwp.Controls.BitmapCache.MAXRESOLUTION, AppStudio.Uwp.Controls.BitmapCache.MAXRESOLUTION);
                     }
                 }
-                this.SetImage(new BitmapImage(cachedUri));
+                if (cachedUri != null)
+                {
+                    this.SetImage(new BitmapImage(cachedUri));
+                }
+                else
+                {
+                    ClearImage();
+                }
             }
             else
             {
@@ -106,11 +116,15 @@ namespace AppStudio.Uwp.Labs
         }
         #endregion
 
-        private void SetImage(ImageSource imageSource)
+        private async void SetImage(ImageSource imageSource)
         {
             var imageBrush = new ImageBrush { ImageSource = imageSource };
             this.Fill = imageBrush;
             this.RefreshFill();
+
+            await _content.FadeOutAsync(500);
+            _content.Visibility = Visibility.Collapsed;
+            _container.FadeIn(250);
         }
 
         private void ClearImage()

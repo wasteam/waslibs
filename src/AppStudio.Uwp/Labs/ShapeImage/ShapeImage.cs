@@ -15,9 +15,11 @@ namespace AppStudio.Uwp.Labs
     }
     #endregion
 
-    public partial class ShapeImage : Control
+    public partial class ShapeImage : ContentControl
     {
         private Border _container = null;
+        private FrameworkElement _content = null;
+
         public ShapeImage()
         {
             this.DefaultStyleKey = typeof(ShapeImage);
@@ -192,8 +194,10 @@ namespace AppStudio.Uwp.Labs
         protected override void OnApplyTemplate()
         {
             _container = base.GetTemplateChild("container") as Border;
+            _content = base.GetTemplateChild("content") as FrameworkElement;
 
             this.SetShapeType(this.ShapeType);
+            this.SetSource(this.Source);
 
             base.OnApplyTemplate();
         }

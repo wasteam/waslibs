@@ -156,6 +156,7 @@
     <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Labs\Accordion\Docs\AccordionXaml.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
+    <Content Include="Labs\ShapeImage\Docs\ShapeImageXaml.xml" />
     <Content Include="Labs\SlideShow\Docs\SlideShowXaml.xml" />
     <Content Include="Pages\ActionsCommandBar\Docs\ActionsCommandBarXaml.xml" />
     <Content Include="Pages\AnimationExtensions\Docs\AnimationExtensionsXaml.xml" />
@@ -217,6 +218,15 @@
     </Compile>
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml.cs">
       <DependentUpon>ResponsiveGridViewSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ShapeImage\Docs\ShapeImageHelp.xaml.cs">
+      <DependentUpon>ShapeImageHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ShapeImage\ShapeImagePage.xaml.cs">
+      <DependentUpon>ShapeImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\ShapeImage\ShapeImageSettings.xaml.cs">
+      <DependentUpon>ShapeImageSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Labs\SlideShow\Docs\SlideShowHelp.xaml.cs">
       <DependentUpon>SlideShowHelp.xaml</DependentUpon>
@@ -577,6 +587,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\ResponsiveGridView\ResponsiveGridViewSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ShapeImage\Docs\ShapeImageHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ShapeImage\ShapeImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\ShapeImage\ShapeImageSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
