@@ -100,29 +100,38 @@ namespace AppStudio.Uwp.Controls
         private async void SetSourceUri(Uri uri)
         {
             _currentUri = uri;
-            if (uri.IsAbsoluteUri)
+            try
             {
-                var cachedUri = uri;
-                if (uri.Scheme == "http" || uri.Scheme == "https")
+                if (uri.IsAbsoluteUri)
                 {
-                    SetProgress();
-                    _isHttpSource = true;
-                    if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                    var cachedUri = uri;
+                    if (uri.Scheme == "http" || uri.Scheme == "https")
                     {
-                        cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                        SetProgress();
+                        _isHttpSource = true;
+                        if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                        {
+                            cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                        }
                     }
-                }
-                if (Path.GetExtension(uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
-                {
-                    this.SetImageGif(cachedUri);
+                    if (Path.GetExtension(uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                    {
+                        this.SetImageGif(cachedUri);
+                    }
+                    else
+                    {
+                        this.SetImage(new BitmapImage(cachedUri));
+                    }
                 }
                 else
                 {
-                    this.SetImage(new BitmapImage(cachedUri));
+                    ClearImage();
+                    ClearImageGif();
                 }
             }
-            else
+            catch
             {
+                // Invalid Uri
                 ClearImage();
                 ClearImageGif();
             }
