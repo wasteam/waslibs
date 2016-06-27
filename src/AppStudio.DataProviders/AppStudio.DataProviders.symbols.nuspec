@@ -17,7 +17,7 @@
       <reference file="AppStudio.DataProviders.dll" />
     </references>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="8.0.8" />
+      <dependency id="Newtonsoft.Json" version="8.0.3" />
     </dependencies>
   </metadata>
   <files>
