@@ -193,6 +193,7 @@
     <Compile Include="Labs\Accordion\AccordionPanel.cs" />
     <Compile Include="Labs\Accordion\AccordionPanel.Items.cs" />
     <Compile Include="Labs\Accordion\AccordionPanel.Manipulation.cs" />
+    <Compile Include="Labs\AutoHide\AutoHide.cs" />
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridView.cs" />
     <Compile Include="Labs\ResponsiveGridView\ResponsiveGridViewPanel.cs" />
     <Compile Include="Controls\ShellControl\NavigationItem.cs" />
@@ -347,6 +348,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\Accordion\Accordion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\AutoHide\AutoHide.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
