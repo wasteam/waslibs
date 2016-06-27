@@ -155,6 +155,7 @@
     <Content Include="Assets\VBPDevices.json" />
     <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Labs\Accordion\Docs\AccordionXaml.xml" />
+    <Content Include="Labs\AutoHide\Docs\AutoHideXaml.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Labs\ShapeImage\Docs\ShapeImageXaml.xml" />
     <Content Include="Labs\SlideShow\Docs\SlideShowXaml.xml" />
@@ -209,6 +210,15 @@
     </Compile>
     <Compile Include="Labs\Accordion\Docs\AccordionHelp.xaml.cs">
       <DependentUpon>AccordionHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\AutoHide\AutoHidePage.xaml.cs">
+      <DependentUpon>AutoHidePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\AutoHide\AutoHideSettings.xaml.cs">
+      <DependentUpon>AutoHideSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\AutoHide\Docs\AutoHideHelp.xaml.cs">
+      <DependentUpon>AutoHideHelp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
@@ -575,6 +585,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\Accordion\Docs\AccordionHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\AutoHide\AutoHidePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\AutoHide\AutoHideSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\AutoHide\Docs\AutoHideHelp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

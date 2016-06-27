@@ -57,7 +57,7 @@ namespace AppStudio.Uwp.Labs
 
         private void OnTimerTick(object sender, object e)
         {
-            this.FadeOut(1000);
+            this.FadeOut(500);
             _isHidden = true;
         }
 
@@ -80,7 +80,7 @@ namespace AppStudio.Uwp.Labs
             _timer.Start();
             if (_isHidden)
             {
-                this.FadeIn(1000);
+                this.FadeIn(500);
                 _isHidden = false;
             }
         }
