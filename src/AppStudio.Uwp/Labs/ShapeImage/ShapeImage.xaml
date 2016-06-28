@@ -7,7 +7,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ShapeImage">
-                    <Border Name="container" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" />
+                    <Grid>
+                        <Border Name="container" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" Opacity="0.0" />
+                        <ContentPresenter Padding="{TemplateBinding Padding}" Name="content" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

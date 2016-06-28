@@ -18,7 +18,11 @@ namespace AppStudio.Uwp.Controls.Html.Writers
 
         public override DependencyObject GetControl(HtmlFragment fragment)
         {
-            return new LineBreak();
+            //LineBreak doesn't work with hyperlink
+            return new Run
+            {
+                Text = Environment.NewLine
+            };
         }
     }
 }

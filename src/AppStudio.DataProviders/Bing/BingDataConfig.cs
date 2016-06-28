@@ -76,7 +76,7 @@ namespace AppStudio.DataProviders.Bing
         [StringValue("pl")]Poland,
         [StringValue("pk")]Pakistan,
         [StringValue("pr")]PuertoRico,
-        [StringValue("ru")]Portugal,
+        [StringValue("pt")]Portugal,
         [StringValue("py")]Paraguay,
         [StringValue("qa")]Qatar,
         [StringValue("ro")]Romania,

@@ -23,6 +23,10 @@ namespace AppStudio.Uwp.Controls
                         {
                             await httpMessage.Content.WriteToStreamAsync(fileStream);
                         }
+                        using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                        {
+                            var decoder = await BitmapDecoder.CreateAsync(fileStream);
+                        }
                     }
                 }
                 return true;

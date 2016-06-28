@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="AppStudio.Uwp.Samples.AutoHideSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:AppStudio.Uwp.Labs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource AppBackground}">
+        <controls:AutoHide x:Name="control" DelayInterval="1000">
+            <Grid Padding="8" Width="200" Height="200" BorderBrush="Black" BorderThickness="8">
+                <Viewbox>
+                    <SymbolIcon Symbol="FullScreen" />
+                </Viewbox>
+            </Grid>
+        </controls:AutoHide>
+    </Grid>
+</Page>

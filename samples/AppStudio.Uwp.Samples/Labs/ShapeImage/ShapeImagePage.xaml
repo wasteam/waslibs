@@ -1,0 +1,28 @@
+﻿<local:SamplePage
+    x:Class="AppStudio.Uwp.Samples.Labs.ShapeImagePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppStudio.Uwp.Samples"
+    xmlns:controls="using:AppStudio.Uwp.Controls"
+    xmlns:labs="using:AppStudio.Uwp.Labs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <controls:ShellControl.CommandBar>
+        <controls:CommandBarEx x:Name="commandBar" PrimaryCommandItems="{Binding PrimaryCommands}" />
+    </controls:ShellControl.CommandBar>
+
+    <controls:ShellControl.PaneHeader>
+        <Grid Name="paneHeader" Background="{Binding CommandBarBackground}" />
+    </controls:ShellControl.PaneHeader>
+
+    <Grid Background="{StaticResource AppBackground}">
+        <labs:ShapeImage x:Name="control" Padding="12" ShapeType="Border" Background="White"
+                         Source="ms-appx:///Assets/Images/NorthernCascadesReflection.png" Stretch="UniformToFill" AlignmentX="Center" AlignmentY="Center"
+                         Stroke="Black" StrokeThickness="1" RadiusX="32" RadiusY="32"
+                         BorderBrush="Black" BorderThickness="1" CornerRadius="0,16,32,64">
+            <Rectangle Stroke="Black" StrokeThickness="1" RadiusX="32" RadiusY="32" StrokeDashArray="4,4" />
+        </labs:ShapeImage>
+    </Grid>
+</local:SamplePage>
