@@ -169,7 +169,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-        
+
         }
 
 
@@ -209,7 +209,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
 
             var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
             InvalidOperationException exception = await ExceptionsAssert.ThrowsAsync<InvalidOperationException>(async () => await dataProvider.LoadMoreDataAsync());
-         
+
         }
 
         [TestMethod]
@@ -299,7 +299,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
                 Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collection?dataRowListId=6389c5e8-788e-42cc-8b74-a16fca5e4bf3&appId=d3fdeca1-ee0e-482c-bc19-82e344d2b78c")
             };
 
-            var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();           
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema2>();
 
             config.OrderBy = "Title";
             config.OrderDirection = SortDirection.Ascending;
@@ -307,7 +307,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             dataAsc = await dataProvider.LoadMoreDataAsync();
             config.OrderDirection = SortDirection.Descending;
             IEnumerable<CollectionSchema2> dataDesc = await dataProvider.LoadDataAsync(config, 2);
-            dataDesc = await dataProvider.LoadMoreDataAsync();            
+            dataDesc = await dataProvider.LoadMoreDataAsync();
 
             var dataExpected = dataAsc.OrderBy(x => x.Title).ToList();
             for (int i = 0; i < dataExpected.Count() - 1; i++)
@@ -319,7 +319,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             for (int i = 0; i < dataExpected.Count() - 1; i++)
             {
                 Assert.AreEqual(dataExpected[i].Title, dataDesc.ToList()[i].Title);
-            }   
+            }
 
             config.OrderBy = "Date";
             config.OrderDirection = SortDirection.Ascending;
@@ -328,7 +328,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config, 2);
             dataDesc = await dataProvider.LoadMoreDataAsync();
-         
+
             dataExpected = dataAsc.OrderBy(x => x.Date).ToList();
             for (int i = 0; i < dataExpected.Count() - 1; i++)
             {
@@ -347,7 +347,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             dataAsc = await dataProvider.LoadMoreDataAsync();
             config.OrderDirection = SortDirection.Descending;
             dataDesc = await dataProvider.LoadDataAsync(config, 2);
-            dataDesc = await dataProvider.LoadMoreDataAsync();                      
+            dataDesc = await dataProvider.LoadMoreDataAsync();
 
             dataExpected = dataAsc.OrderBy(x => x.DateTime).ToList();
             for (int i = 0; i < dataExpected.Count() - 1; i++)
@@ -415,7 +415,7 @@ namespace AppStudio.DataProviders.Test.DataProviders
             dataDesc = await dataProvider.LoadMoreDataAsync();
 
             Assert.AreNotEqual(data.FirstOrDefault()?.Name, dataAsc.FirstOrDefault().Name);
-           
+
             var dataExpected = dataAsc.OrderBy(x => x.Name).ToList();
             for (int i = 0; i < dataExpected.Count() - 1; i++)
             {
@@ -427,6 +427,48 @@ namespace AppStudio.DataProviders.Test.DataProviders
             {
                 Assert.AreEqual(dataExpected[i].Name, dataDesc.ToList()[i].Name);
             }
+        }
+
+        [IgnoreAttribute]
+        [TestMethod]
+        public async Task LoadDynamicCollection_ByIds()
+        {
+            var config = new DynamicStorageDataConfig
+            {
+                AppId = Guid.Empty.ToString(),
+                StoreId = Guid.Empty.ToString(),
+                DeviceType = "WINDOWS",
+                Url = new Uri("http://appstudio-dev.cloudapp.net/api/data/collectionitemsbyid?dataRowListId=6db1e7d0-5216-4519-8978-d51f1452f9f2&appId=7c181582-15d0-42f7-b3eb-ab5d2e7d2c8a")
+            };
+
+            var ids = new List<string>();
+            ids.Add("565f3175e3ef7f275c35da95");
+            ids.Add("565f3175e3ef7f275c35da97");
+
+            var dataProvider = new DynamicStorageDataProvider<CollectionSchema>();
+            IEnumerable<CollectionSchema> data = await dataProvider.GetDataByIdsAsync<CollectionSchema>(config, ids);
+
+            Assert.IsNotNull(data);
+            Assert.AreEqual(2, data.Count());
+        }
+       
+        [TestMethod]
+        public async Task LoadStaticCollection_ByIds()
+        {
+            var config = new LocalStorageDataConfig
+            {
+                FilePath = "/Assets/LocalCollectionData.json"
+            };
+
+            var ids = new List<string>();
+            ids.Add("555ee83e352d0403381fdb7c");
+            ids.Add("555ee83e352d0403381fdb7a");
+
+            var dataProvider = new LocalStorageDataProvider<CollectionSchema>();
+            IEnumerable<CollectionSchema> data = await dataProvider.GetDataByIdsAsync<CollectionSchema>(config, ids);
+
+            Assert.IsNotNull(data);
+            Assert.AreEqual(2, data.Count());
         }
     }
 

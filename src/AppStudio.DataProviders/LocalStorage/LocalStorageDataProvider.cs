@@ -27,10 +27,7 @@ namespace AppStudio.DataProviders.LocalStorage
         protected override async Task<IEnumerable<TSchema>> GetDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             ContinuationToken = "1";
-            var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
-
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
-            IRandomAccessStreamWithContentType randomStream = await file.OpenReadAsync();
+            IRandomAccessStreamWithContentType randomStream = await GetRandomStream(config);
 
             using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
             {
@@ -52,21 +49,43 @@ namespace AppStudio.DataProviders.LocalStorage
             }
         }
 
-        protected override IParser<T> GetDefaultParserInternal(LocalStorageDataConfig config)
-        {
-            return new JsonParser<T>();
-        }
-
         protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(LocalStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
-            int page = Convert.ToInt32(ContinuationToken);
-            var task = Task.Run(() => { return GetMoreData<TSchema>(pageSize, page); });
-            var items = await task;
+            int page = Convert.ToInt32(ContinuationToken);           
+            var items = await Task.Run(() => { return GetMoreData<TSchema>(pageSize, page); });
 
             _hasMoreItems = items.Any();
             ContinuationToken = GetContinuationToken(ContinuationToken);
 
             return items;
+        }
+
+        public async Task<IEnumerable<TSchema>> GetDataByIdsAsync<TSchema>(LocalStorageDataConfig config, IEnumerable<string> ids) where TSchema : SchemaBase
+        {
+            return await GetDataByIdsAsync(config, ids, new JsonParser<TSchema>());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetDataByIdsAsync<TSchema>(LocalStorageDataConfig config, IEnumerable<string> ids, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+            IRandomAccessStreamWithContentType randomStream = await GetRandomStream(config);
+
+            using (StreamReader r = new StreamReader(randomStream.AsStreamForRead()))
+            {
+                var items = await parser.ParseAsync(await r.ReadToEndAsync());
+                if (items != null && items.Any())
+                {                  
+                    var totalAsTSchema = (items.ToList() as IEnumerable<TSchema>);
+
+                    var resultToReturn = totalAsTSchema.AsQueryable().Where(x => ids.Contains(x._id)).ToList();
+                    return resultToReturn;
+                }               
+                return new TSchema[0];
+            }
+        }
+
+        protected override IParser<T> GetDefaultParserInternal(LocalStorageDataConfig config)
+        {
+            return new JsonParser<T>();
         }
 
         protected override void ValidateConfig(LocalStorageDataConfig config)
@@ -85,6 +104,13 @@ namespace AppStudio.DataProviders.LocalStorage
         {
             var token = (Convert.ToInt32(currentToken) + 1).ToString();
             return token;
+        }        
+
+        private async Task<IRandomAccessStreamWithContentType> GetRandomStream(LocalStorageDataConfig config)
+        {
+            var uri = new Uri(string.Format("ms-appx://{0}", config.FilePath));
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+            return await file.OpenReadAsync();
         }
 
         private IEnumerable<TSchema> GetMoreData<TSchema>(int pageSize, int page)
