@@ -112,6 +112,13 @@ namespace AppStudio.Uwp.Controls
                         if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
                         {
                             cachedUri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                            if (cachedUri == null)
+                            {
+                                ClearProgress();
+                                ClearImage();
+                                ClearImageGif();
+                                return;
+                            }
                         }
                     }
                     if (Path.GetExtension(uri.LocalPath).Equals(".gif", StringComparison.OrdinalIgnoreCase))
@@ -140,11 +147,21 @@ namespace AppStudio.Uwp.Controls
 
         private async void RefreshSourceUri(Uri uri)
         {
-            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            try
             {
-                uri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+                {
+                    uri = await BitmapCache.GetImageUriAsync(uri, (int)_currentSize.Width, (int)_currentSize.Height);
+                }
+                if (uri != null)
+                {
+                    this.SetImage(new BitmapImage(uri));
+                }
             }
-            this.SetImage(new BitmapImage(uri));
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("RefreshSourceUri. {0}", ex.Message);
+            }
         }
 
         private static int _progressCount = 0;
