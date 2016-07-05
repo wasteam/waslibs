@@ -184,6 +184,7 @@
     <Compile Include="Controls\Pivorama\Pivorama.Mouse.cs" />
     <Compile Include="Controls\PropertySet\PropertySet.cs" />
     <Compile Include="Controls\RoundButton\RoundButton.cs" />
+    <Compile Include="Controls\SliderView\SliderView.Mouse.cs" />
     <Compile Include="EventArguments\BoolEventArgs.cs" />
     <Compile Include="EventArguments\ExceptionEventArgs.cs" />
     <Compile Include="EventArguments\IntEventArgs.cs" />

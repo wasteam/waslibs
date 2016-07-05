@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
 namespace AppStudio.Uwp.Controls
@@ -80,6 +81,8 @@ namespace AppStudio.Uwp.Controls
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
 
+                SetArrowsVisibility(position);
+
                 this.Index = (int)(-position / this.ItemWidth);
                 _isBusy = false;
             }
@@ -97,8 +100,31 @@ namespace AppStudio.Uwp.Controls
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
 
+                SetArrowsVisibility(position);
+
                 this.Index = (int)(-position / this.ItemWidth);
                 _isBusy = false;
+            }
+        }
+
+        private void SetArrowsVisibility(double position)
+        {
+            if (position >= 0)
+            {
+                _left.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                _left.Visibility = Visibility.Visible;
+            }
+
+            if (position <= -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth))
+            {
+                _right.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                _right.Visibility = Visibility.Visible;
             }
         }
     }
