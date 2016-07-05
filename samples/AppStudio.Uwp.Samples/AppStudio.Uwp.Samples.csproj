@@ -156,6 +156,7 @@
     <CodeAnalysisDictionary Include="Dictionary.xml" />
     <Content Include="Labs\Accordion\Docs\AccordionXaml.xml" />
     <Content Include="Labs\AutoHide\Docs\AutoHideXaml.xml" />
+    <Content Include="Labs\Mosaic\Docs\MosaicXaml.xml" />
     <Content Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewXaml.xml" />
     <Content Include="Labs\ShapeImage\Docs\ShapeImageXaml.xml" />
     <Content Include="Labs\SlideShow\Docs\SlideShowXaml.xml" />
@@ -219,6 +220,15 @@
     </Compile>
     <Compile Include="Labs\AutoHide\Docs\AutoHideHelp.xaml.cs">
       <DependentUpon>AutoHideHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\Mosaic\Docs\MosaicHelp.xaml.cs">
+      <DependentUpon>MosaicHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\Mosaic\MosaicPage.xaml.cs">
+      <DependentUpon>MosaicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Labs\Mosaic\MosaicSettings.xaml.cs">
+      <DependentUpon>MosaicSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Labs\ResponsiveGridView\Docs\ResponsiveGridViewHelp.xaml.cs">
       <DependentUpon>ResponsiveGridViewHelp.xaml</DependentUpon>
@@ -597,6 +607,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Labs\AutoHide\Docs\AutoHideHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\Mosaic\Docs\MosaicHelp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\Mosaic\MosaicPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Labs\Mosaic\MosaicSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
