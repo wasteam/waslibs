@@ -32,7 +32,7 @@ namespace AppStudio.Uwp.Controls
 
             _frame.ManipulationDelta += OnManipulationDelta;
             _frame.ManipulationCompleted += OnManipulationCompleted;
-            _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.System;
 
             _prevArrow.Click += OnPrevArrowClick;
             _nextArrow.Click += OnNextArrowClick;

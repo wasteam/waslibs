@@ -32,94 +32,43 @@ namespace AppStudio.Uwp.Controls
         }
         #endregion
 
+        private int _direction = 0;
+
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            double deltaX = e.Delta.Translation.X;
-
-            if (this.ActualWidth > this.ItemWidth * _panel.ItemsCount)
-            {
-                e.Complete();
-                e.Handled = true;
-                return;
-            }
-
-            if (this.Position + deltaX > this.ItemWidth / 2.5)
-            {
-                e.Complete();
-                e.Handled = true;
-                return;
-            }
-
-            if (this.Position + deltaX < -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth) - this.ItemWidth / 2.5)
-            {
-                e.Complete();
-                e.Handled = true;
-                return;
-            }
-
-            int itemsPerThird = (int)Math.Ceiling(this.ActualWidth / this.ItemWidth);
-            if (Math.Abs(e.Cumulative.Translation.X) >= this.ItemWidth * itemsPerThird)
-            {
-                e.Complete();
-            }
-            else
-            {
-                _panel.TranslateDeltaX(deltaX);
-            }
-
+            _direction = Math.Sign(e.Delta.Translation.X);
             e.Handled = true;
         }
 
         private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (this.ActualWidth > this.ItemWidth * _panel.ItemsCount)
+            if (_direction > 0 && this.Position >= 0)
             {
                 e.Handled = true;
                 return;
             }
 
-            if (this.Position > 0)
+            if (_direction < 0 && this.Position <= -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth))
             {
-                AnimateNext();
                 e.Handled = true;
                 return;
             }
 
-            if (this.Position < -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth))
+            if (_direction > 0)
             {
+                _panel.TranslateDeltaX(0.01);
                 AnimatePrev();
-                e.Handled = true;
-                return;
-            }
-
-            if (e.IsInertial)
-            {
-                if (Math.Sign(e.Cumulative.Translation.X) < 0)
-                {
-                    AnimateNext();
-                }
-                else
-                {
-                    AnimatePrev();
-                }
             }
             else
             {
-                if (this.Offset > this.ItemWidth / 2.0)
-                {
-                    AnimateNext();
-                }
-                else
-                {
-                    AnimatePrev();
-                }
+                _panel.TranslateDeltaX(-0.01);
+                AnimateNext();
             }
-            e.Handled = true;
         }
 
         private bool _isBusy = false;
 
-        private async void AnimateNext(double duration = 500)
+        private async void AnimateNext(double duration = 150)
         {
             if (!_isBusy)
             {
@@ -136,7 +85,7 @@ namespace AppStudio.Uwp.Controls
             }
         }
 
-        private async void AnimatePrev(double duration = 500)
+        private async void AnimatePrev(double duration = 150)
         {
             if (!_isBusy)
             {
