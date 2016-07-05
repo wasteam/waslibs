@@ -24,14 +24,45 @@ namespace AppStudio.DataProviders.DynamicStorage
             return await GetDataFromProvider(config, pageSize, parser);
         }
 
-        protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
-        {
-            return new JsonParser<T>();
-        }
-
         protected override async Task<IEnumerable<TSchema>> GetMoreDataAsync<TSchema>(DynamicStorageDataConfig config, int pageSize, IParser<TSchema> parser)
         {
             return await GetDataFromProvider(config, pageSize, parser);
+        }
+
+        public async Task<IEnumerable<TSchema>> GetDataByIdsAsync<TSchema>(DynamicStorageDataConfig config, IEnumerable<string> ids) where TSchema : SchemaBase
+        {
+            return await GetDataByIdsAsync(config, ids, new JsonParser<TSchema>());
+        }
+
+        public async Task<IEnumerable<TSchema>> GetDataByIdsAsync<TSchema>(DynamicStorageDataConfig config, IEnumerable<string> ids, IParser<TSchema> parser) where TSchema : SchemaBase
+        {
+
+            var url = $"{config.Url}&ids={string.Join("&ids=", ids)}";
+
+            var settings = new HttpRequestSettings
+            {
+                RequestedUri = new Uri(url),
+                UserAgent = "NativeHost"
+            };
+
+            settings.Headers["WAS-APPID"] = config.AppId;
+            settings.Headers["WAS-STOREID"] = config.StoreId;
+            settings.Headers["WAS-DEVICETYPE"] = config.DeviceType;
+            settings.Headers["WAS-ISBACKGROUND"] = config.IsBackgroundTask.ToString();
+
+            HttpRequestResult result = await HttpRequest.DownloadAsync(settings);
+            if (result.Success)
+            {
+                var items = await parser.ParseAsync(result.Result);
+                return items;
+            }
+
+            throw new RequestFailedException(result.StatusCode, result.Result);
+        }
+
+        protected override IParser<T> GetDefaultParserInternal(DynamicStorageDataConfig config)
+        {
+            return new JsonParser<T>();
         }
 
         protected override void ValidateConfig(DynamicStorageDataConfig config)
@@ -54,7 +85,7 @@ namespace AppStudio.DataProviders.DynamicStorage
 
         private async Task<IEnumerable<TSchema>> GetDataFromProvider<TSchema>(DynamicStorageDataConfig config, int pageSize, IParser<TSchema> parser) where TSchema : SchemaBase
         {
-                  
+
             var settings = new HttpRequestSettings
             {
                 RequestedUri = GetUrl(config, pageSize),

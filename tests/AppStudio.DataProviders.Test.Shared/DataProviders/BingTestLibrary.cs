@@ -56,41 +56,8 @@ namespace AppStudio.DataProviders.Test.DataProviders
             var dataProvider = new BingDataProvider();
 
             await ExceptionsAssert.ThrowsAsync<ParserNullException>(async () => await dataProvider.LoadDataAsync<BingSchema>(new BingDataConfig(), 20, null));
-        }
-
-        [TestMethod]
-        public async Task TestMaxRecords_Min()
-        {
-            int maxRecords = 1;
-            var config = new BingDataConfig
-            {
-                Query = "Windows App Studio",
-                Country = BingCountry.UnitedStates
-            };
-
-            var dataProvider = new BingDataProvider();
-            IEnumerable<BingSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
-
-            Assert.IsNotNull(data);
-            Assert.IsTrue(data.Count() >= maxRecords);
-        }
-
-        [TestMethod]
-        public async Task TestMaxRecords()
-        {
-            int maxRecords = 50;
-            var config = new BingDataConfig
-            {
-                Query = "Microsoft",
-                Country = BingCountry.UnitedStates
-            };
-
-            var dataProvider = new BingDataProvider();
-            IEnumerable<BingSchema> data = await dataProvider.LoadDataAsync(config, maxRecords);
-
-            Assert.IsTrue(data.Count() > 20);
-        }
-
+        }      
+       
         [TestMethod]
         public async Task LoadPaginationBing()
         {
