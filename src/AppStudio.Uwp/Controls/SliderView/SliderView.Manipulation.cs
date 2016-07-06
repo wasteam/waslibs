@@ -7,25 +7,11 @@ namespace AppStudio.Uwp.Controls
 {
     partial class SliderView
     {
-        #region Pos
-        public double Pos
-        {
-            get { return (double)GetValue(PosProperty); }
-            set { SetValue(PosProperty, value); }
-        }
-
-        public static readonly DependencyProperty PosProperty = DependencyProperty.Register("Pos", typeof(double), typeof(SliderView), new PropertyMetadata(1.0));
-        #endregion
-
         #region Position
         public double Position
         {
             get { return _panel.GetTranslateX(); }
-            set
-            {
-                _panel.TranslateX(value);
-                Pos = value;
-            }
+            set { _panel.TranslateX(value); }
         }
         #endregion
 
@@ -76,6 +62,7 @@ namespace AppStudio.Uwp.Controls
                 _panel.TranslateDeltaX(-0.01);
                 AnimateNext();
             }
+            e.Handled = true;
         }
 
         private bool _isBusy = false;
@@ -91,7 +78,6 @@ namespace AppStudio.Uwp.Controls
 
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
-                Pos = position;
 
                 SetArrowsOpacity(position);
 
@@ -111,7 +97,6 @@ namespace AppStudio.Uwp.Controls
 
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
-                Pos = position;
 
                 SetArrowsOpacity(position);
 
