@@ -76,11 +76,9 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.NewSize.Width < this.ItemWidth * _panel.ItemsCount)
-            {
-                this.Position = Math.Max(this.Position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
-                this.Index = (int)(-this.Position / this.ItemWidth);
-            }
+            this.Position = Math.Min(0, Math.Max(this.Position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth)));
+            this.Index = (int)(-this.Position / this.ItemWidth);
+
             _clip.Rect = new Rect(new Point(), e.NewSize);
         }
     }
