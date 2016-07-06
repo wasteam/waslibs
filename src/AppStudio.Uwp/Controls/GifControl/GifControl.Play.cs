@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +7,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.Web.Http;
+
 using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
@@ -99,18 +99,12 @@ namespace AppStudio.Uwp.Controls
                     }
                 }
 
-                if (this.ImageOpened != null)
-                {
-                    this.ImageOpened(this, new RoutedEventArgs());
-                }
+                this.ImageOpened?.Invoke(this, new RoutedEventArgs());
             }
             catch (Exception ex)
             {
-                if (this.ImageFailed != null)
-                {
-                    this.ImageFailed(this, new ExceptionEventArgs(ex));
-                }
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                this.ImageFailed?.Invoke(this, new ExceptionEventArgs(ex));
+                System.Diagnostics.Debug.WriteLine("ProcessSourceAsync. {0}", ex.Message);
             }
         }
 
