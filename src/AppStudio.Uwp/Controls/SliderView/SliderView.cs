@@ -22,19 +22,7 @@ namespace AppStudio.Uwp.Controls
         public SliderView()
         {
             this.DefaultStyleKey = typeof(SliderView);
-            this.Loaded += OnLoaded;
-            this.Unloaded += OnUnloaded;
             this.SizeChanged += OnSizeChanged;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            CreateFadeTimer();
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            DisposeFadeTimer();
         }
 
         protected override void OnApplyTemplate()
@@ -52,13 +40,10 @@ namespace AppStudio.Uwp.Controls
             _frame.ManipulationCompleted += OnManipulationCompleted;
             _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.System;
 
-            _frame.PointerMoved += OnPointerMoved;
+            this.PointerEntered += OnPointerEntered;
+            this.PointerExited += OnPointerExited;
             _left.Click += OnPrevArrowClick;
             _right.Click += OnNextArrowClick;
-            _left.PointerEntered += OnArrowPointerEntered;
-            _left.PointerExited += OnArrowPointerExited;
-            _right.PointerEntered += OnArrowPointerEntered;
-            _right.PointerExited += OnArrowPointerExited;
 
             base.OnApplyTemplate();
         }
@@ -74,11 +59,38 @@ namespace AppStudio.Uwp.Controls
             return base.ArrangeOverride(_panel.DesiredSize);
         }
 
+        private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            SetArrowsOpacity(this.Position);
+            _arrows.FadeIn(500);
+        }
+
+        private void OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            _arrows.FadeOut(500);
+        }
+
+        private void OnPrevArrowClick(object sender, RoutedEventArgs e)
+        {
+            if (!_isBusy && this.Position < 0)
+            {
+                _panel.TranslateDeltaX(1);
+                this.AnimatePrev();
+            }
+        }
+        private void OnNextArrowClick(object sender, RoutedEventArgs e)
+        {
+            if (!_isBusy && this.Position > -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth))
+            {
+                _panel.TranslateDeltaX(-1);
+                this.AnimateNext();
+            }
+        }
+
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             this.Position = Math.Min(0, Math.Max(this.Position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth)));
             this.Index = (int)(-this.Position / this.ItemWidth);
-
             _clip.Rect = new Rect(new Point(), e.NewSize);
         }
     }

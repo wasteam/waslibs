@@ -12,18 +12,16 @@
                                                   ItemTemplate="{TemplateBinding ItemTemplate}" ItemWidth="{TemplateBinding ItemWidth}"
                                                   ItemClickCommand="{TemplateBinding ItemClickCommand}"/>
                         <Grid Name="arrows" Grid.Row="1" Visibility="{TemplateBinding ArrowsVisibility}" Opacity="0.0">
-                            <controls:RoundButton x:Name="left" Margin="8,0,0,0" Padding="14" Foreground="#eee" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed">
+                            <controls:RoundButton x:Name="left" Margin="8,0,0,0" Padding="14" Foreground="#eee" HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="0.0">
                                 <SymbolIcon Symbol="Back" />
                             </controls:RoundButton>
-                            <controls:RoundButton x:Name="right" Margin="0,0,8,0" Padding="14" Foreground="#eee" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <controls:RoundButton x:Name="right" Margin="0,0,8,0" Padding="14" Foreground="#eee" HorizontalAlignment="Right" VerticalAlignment="Center" Opacity="0.0">
                                 <SymbolIcon Symbol="Forward" />
                             </controls:RoundButton>
                         </Grid>
-                        <Grid>
-                            <Grid.Clip>
-                                <RectangleGeometry x:Name="clip" />
-                            </Grid.Clip>
-                        </Grid>
+                        <Grid.Clip>
+                            <RectangleGeometry x:Name="clip" />
+                        </Grid.Clip>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

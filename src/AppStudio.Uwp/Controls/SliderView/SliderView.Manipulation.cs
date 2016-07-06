@@ -7,6 +7,16 @@ namespace AppStudio.Uwp.Controls
 {
     partial class SliderView
     {
+        #region Pos
+        public double Pos
+        {
+            get { return (double)GetValue(PosProperty); }
+            set { SetValue(PosProperty, value); }
+        }
+
+        public static readonly DependencyProperty PosProperty = DependencyProperty.Register("Pos", typeof(double), typeof(SliderView), new PropertyMetadata(1.0));
+        #endregion
+
         #region Position
         public double Position
         {
@@ -14,6 +24,7 @@ namespace AppStudio.Uwp.Controls
             set
             {
                 _panel.TranslateX(value);
+                Pos = value;
             }
         }
         #endregion
@@ -80,8 +91,9 @@ namespace AppStudio.Uwp.Controls
 
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
+                Pos = position;
 
-                SetArrowsVisibility(position);
+                SetArrowsOpacity(position);
 
                 this.Index = (int)(-position / this.ItemWidth);
                 _isBusy = false;
@@ -99,32 +111,33 @@ namespace AppStudio.Uwp.Controls
 
                 position = Math.Max(position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
                 await _panel.AnimateXAsync(position, duration);
+                Pos = position;
 
-                SetArrowsVisibility(position);
+                SetArrowsOpacity(position);
 
                 this.Index = (int)(-position / this.ItemWidth);
                 _isBusy = false;
             }
         }
 
-        private void SetArrowsVisibility(double position)
+        private void SetArrowsOpacity(double position)
         {
             if (position >= 0)
             {
-                _left.Visibility = Visibility.Collapsed;
+                _left.FadeOut();
             }
             else
             {
-                _left.Visibility = Visibility.Visible;
+                _left.FadeIn();
             }
 
             if (position <= -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth))
             {
-                _right.Visibility = Visibility.Collapsed;
+                _right.FadeOut();
             }
             else
             {
-                _right.Visibility = Visibility.Visible;
+                _right.FadeIn();
             }
         }
     }
