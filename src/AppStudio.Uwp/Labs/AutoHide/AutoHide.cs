@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Core;
 
@@ -17,6 +18,16 @@ namespace AppStudio.Uwp.Labs
             this.DefaultStyleKey = typeof(AutoHide);
         }
 
+        #region Container
+        public FrameworkElement Container
+        {
+            get { return (FrameworkElement)GetValue(ContainerProperty); }
+            set { SetValue(ContainerProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContainerProperty = DependencyProperty.Register("Container", typeof(FrameworkElement), typeof(AutoHide), new PropertyMetadata(null));
+        #endregion
+
         #region DelayInterval
         public double DelayInterval
         {
@@ -30,7 +41,7 @@ namespace AppStudio.Uwp.Labs
             control.SetDelayInterval((double)e.NewValue);
         }
 
-        public static readonly DependencyProperty DelayIntervalProperty = DependencyProperty.Register("DelayInterval", typeof(double), typeof(AutoHide), new PropertyMetadata(1000.0, DelayIntervalChanged));
+        public static readonly DependencyProperty DelayIntervalProperty = DependencyProperty.Register("DelayInterval", typeof(double), typeof(AutoHide), new PropertyMetadata(1500.0, DelayIntervalChanged));
         #endregion
 
         private void SetDelayInterval(double milliseconds)
@@ -65,17 +76,41 @@ namespace AppStudio.Uwp.Labs
         {
             _timer.Tick += OnTimerTick;
             _timer.Start();
-            Window.Current.CoreWindow.PointerMoved += OnPointerMoved;
+            if (Container != null)
+            {
+                Container.PointerMoved += OnContainerPointerMoved;
+            }
+            else
+            {
+                Window.Current.CoreWindow.PointerMoved += OnCorePointerMoved;
+            }
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             _timer.Stop();
             _timer.Tick -= OnTimerTick;
-            Window.Current.CoreWindow.PointerMoved -= OnPointerMoved;
+            if (Container != null)
+            {
+                Container.PointerMoved -= OnContainerPointerMoved;
+            }
+            else
+            {
+                Window.Current.CoreWindow.PointerMoved -= OnCorePointerMoved;
+            }
         }
 
-        private void OnPointerMoved(CoreWindow sender, PointerEventArgs args)
+        private void OnCorePointerMoved(CoreWindow sender, PointerEventArgs args)
+        {
+            OnPointerMoved();
+        }
+
+        private void OnContainerPointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            OnPointerMoved();
+        }
+
+        private void OnPointerMoved()
         {
             _timer.Start();
             if (_isHidden)
