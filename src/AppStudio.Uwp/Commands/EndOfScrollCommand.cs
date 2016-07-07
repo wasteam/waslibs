@@ -96,7 +96,7 @@ namespace AppStudio.Uwp.Commands
                         if (isAtBottom)
                         {
                             var command = GetCommand(element);
-                            if (command != null)
+                            if (command != null && command.CanExecute(null))
                             {
                                 command.Execute(null);
                             }
