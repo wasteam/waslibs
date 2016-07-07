@@ -15,23 +15,48 @@ namespace AppStudio.Uwp.Controls
             set { SetValue(PrimaryCommandItemsProperty, value); }
         }
 
-        private static void PrimaryCommandItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static readonly DependencyProperty PrimaryCommandItemsProperty = DependencyProperty.Register("PrimaryCommandItems", typeof(IEnumerable<ICommandBarElement>), typeof(CommandBarEx), new PropertyMetadata(null, CommandItemsChanged));
+        #endregion
+
+        #region SecondaryCommandItems
+        public IEnumerable<ICommandBarElement> SecondaryCommandItems
+        {
+            get { return (IEnumerable<ICommandBarElement>)GetValue(SecondaryCommandItemsProperty); }
+            set { SetValue(SecondaryCommandItemsProperty, value); }
+        }
+
+        public static readonly DependencyProperty SecondaryCommandItemsProperty = DependencyProperty.Register("SecondaryCommandItems", typeof(IEnumerable<ICommandBarElement>), typeof(CommandBarEx), new PropertyMetadata(null, CommandItemsChanged));
+        #endregion
+
+        private static void CommandItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CommandBarEx;
             control.ArrangeCommands();
         }
 
-        public static readonly DependencyProperty PrimaryCommandItemsProperty = DependencyProperty.Register("PrimaryCommandItems", typeof(IEnumerable<ICommandBarElement>), typeof(CommandBarEx), new PropertyMetadata(null, PrimaryCommandItemsChanged));
-        #endregion
-
         private void ArrangeCommands()
         {
             base.PrimaryCommands.Clear();
-            foreach (var item in this.PrimaryCommandItems)
+            base.SecondaryCommands.Clear();
+
+            if (this.PrimaryCommandItems != null)
             {
-                var fe = item as FrameworkElement;
-                fe.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("Foreground") });
-                base.PrimaryCommands.Add(item);
+                foreach (var item in this.PrimaryCommandItems)
+                {
+                    var fe = item as FrameworkElement;
+                    fe.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("Foreground") });
+                    base.PrimaryCommands.Add(item);
+                }
+            }
+
+            if (this.SecondaryCommandItems != null)
+            {
+                foreach (var item in this.SecondaryCommandItems)
+                {
+                    var fe = item as FrameworkElement;
+                    fe.SetBinding(CommandBar.ForegroundProperty, new Binding { Source = this, Path = new PropertyPath("Foreground") });
+                    base.SecondaryCommands.Add(item);
+                }
             }
         }
     }

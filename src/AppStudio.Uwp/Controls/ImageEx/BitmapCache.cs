@@ -15,15 +15,15 @@ namespace AppStudio.Uwp.Controls
 
         const string FOLDER_NAME = "ImageCache";
 
-        static private Dictionary<string, Task> _concurrentTasks = new Dictionary<string, Task>();
-        static private object _lock = new object();
+        private static Dictionary<string, Task> _concurrentTasks = new Dictionary<string, Task>();
+        private static object _lock = new object();
 
         static BitmapCache()
         {
             CacheDuration = TimeSpan.FromHours(24);
         }
 
-        static public TimeSpan CacheDuration { get; set; }
+        public static TimeSpan CacheDuration { get; set; }
 
         #region ClearCacheAsync
         public static async Task ClearCacheAsync(TimeSpan? duration = null)
@@ -32,7 +32,7 @@ namespace AppStudio.Uwp.Controls
             DateTime expirationDate = DateTime.Now.Subtract(duration.Value);
             try
             {
-                var folder = await GetCacheFolderAsync();
+                var folder = await EnsureCacheFolderAsync();
                 foreach (var file in await folder.GetFilesAsync())
                 {
                     try
@@ -73,7 +73,7 @@ namespace AppStudio.Uwp.Controls
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine("GetImageUriAsync. {0}", ex.Message);
             }
 
             lock (_lock)
@@ -85,7 +85,7 @@ namespace AppStudio.Uwp.Controls
             }
 
             string fileName = BuildFileName(uri, maxWidth, maxHeight);
-            var cacheFolder = await GetCacheFolderAsync();
+            var cacheFolder = await EnsureCacheFolderAsync();
             if (await cacheFolder.TryGetItemAsync(fileName) != null)
             {
                 return new Uri($"ms-appdata:///temp/{FOLDER_NAME}/{fileName}");
@@ -97,7 +97,7 @@ namespace AppStudio.Uwp.Controls
         {
             DateTime expirationDate = DateTime.Now.Subtract(CacheDuration);
 
-            var cacheFolder = await GetCacheFolderAsync();
+            var cacheFolder = await EnsureCacheFolderAsync();
 
             string fileName = BuildFileName(uri, MAXRESOLUTION, MAXRESOLUTION);
             StorageFile mainFile = await cacheFolder.TryGetItemAsync(fileName) as StorageFile;
@@ -122,7 +122,7 @@ namespace AppStudio.Uwp.Controls
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    System.Diagnostics.Debug.WriteLine("EnsureFilesAsync. {0}", ex.Message);
                     await resizedFile.DeleteAsync();
                 }
             }
@@ -139,10 +139,10 @@ namespace AppStudio.Uwp.Controls
         }
 
         #region GetCacheFolder
-        static private StorageFolder _cacheFolder = null;
-        static private SemaphoreSlim _cacheFolderSemaphore = new SemaphoreSlim(1);
+        private static StorageFolder _cacheFolder = null;
+        private static SemaphoreSlim _cacheFolderSemaphore = new SemaphoreSlim(1);
 
-        private static async Task<StorageFolder> GetCacheFolderAsync()
+        internal static async Task<StorageFolder> EnsureCacheFolderAsync()
         {
             if (_cacheFolder == null)
             {

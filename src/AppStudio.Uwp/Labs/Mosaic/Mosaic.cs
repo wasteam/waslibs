@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Windows.Input;
+
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Labs
@@ -10,6 +12,16 @@ namespace AppStudio.Uwp.Labs
             this.DefaultStyleKey = typeof(Mosaic);
             this.VerticalAlignment = VerticalAlignment.Top;
         }
+
+        #region ItemMargin
+        public Thickness ItemMargin
+        {
+            get { return (Thickness)GetValue(ItemMarginProperty); }
+            set { SetValue(ItemMarginProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemMarginProperty = DependencyProperty.Register("ItemMargin", typeof(Thickness), typeof(Mosaic), new PropertyMetadata(new Thickness()));
+        #endregion
 
         #region SeedWidth
         public double SeedWidth
@@ -39,6 +51,16 @@ namespace AppStudio.Uwp.Labs
         }
 
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(Mosaic), new PropertyMetadata(null));
+        #endregion
+
+        #region ItemClickCommand
+        public ICommand ItemClickCommand
+        {
+            get { return (ICommand)GetValue(ItemClickCommandProperty); }
+            set { SetValue(ItemClickCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemClickCommandProperty = DependencyProperty.Register("ItemClickCommand", typeof(ICommand), typeof(Mosaic), new PropertyMetadata(null));
         #endregion
     }
 }

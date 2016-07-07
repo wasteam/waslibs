@@ -12,8 +12,11 @@ namespace AppStudio.Uwp.Controls
     {
         private Panel _frame = null;
         private SliderViewPanel _panel = null;
-        private Button _prevArrow = null;
-        private Button _nextArrow = null;
+
+        private Grid _arrows = null;
+        private Button _left = null;
+        private Button _right = null;
+
         private RectangleGeometry _clip;
 
         public SliderView()
@@ -26,16 +29,21 @@ namespace AppStudio.Uwp.Controls
         {
             _frame = base.GetTemplateChild("frame") as Panel;
             _panel = base.GetTemplateChild("panel") as SliderViewPanel;
-            _prevArrow = base.GetTemplateChild("prevArrow") as Button;
-            _nextArrow = base.GetTemplateChild("nextArrow") as Button;
+
+            _arrows = base.GetTemplateChild("arrows") as Grid;
+            _left = base.GetTemplateChild("left") as Button;
+            _right = base.GetTemplateChild("right") as Button;
+
             _clip = base.GetTemplateChild("clip") as RectangleGeometry;
 
             _frame.ManipulationDelta += OnManipulationDelta;
             _frame.ManipulationCompleted += OnManipulationCompleted;
-            _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateInertia | ManipulationModes.System;
+            _frame.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.System;
 
-            _prevArrow.Click += OnPrevArrowClick;
-            _nextArrow.Click += OnNextArrowClick;
+            this.PointerEntered += OnPointerEntered;
+            this.PointerExited += OnPointerExited;
+            _left.Click += OnPrevArrowClick;
+            _right.Click += OnNextArrowClick;
 
             base.OnApplyTemplate();
         }
@@ -51,17 +59,15 @@ namespace AppStudio.Uwp.Controls
             return base.ArrangeOverride(_panel.DesiredSize);
         }
 
-        protected override void OnPointerEntered(PointerRoutedEventArgs e)
+        private void OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            _prevArrow.FadeIn(500.0);
-            _nextArrow.FadeIn(500.0);
-            base.OnPointerEntered(e);
+            SetArrowsOpacity(this.Position);
+            _arrows.FadeIn(500);
         }
-        protected override void OnPointerExited(PointerRoutedEventArgs e)
+
+        private void OnPointerExited(object sender, PointerRoutedEventArgs e)
         {
-            _prevArrow.FadeOut(500.0);
-            _nextArrow.FadeOut(500.0);
-            base.OnPointerExited(e);
+            _arrows.FadeOut(500);
         }
 
         private void OnPrevArrowClick(object sender, RoutedEventArgs e)
@@ -83,13 +89,8 @@ namespace AppStudio.Uwp.Controls
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.NewSize.Width < this.ItemWidth * _panel.ItemsCount)
-            {
-                this.Position = Math.Max(this.Position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth));
-                this.Index = (int)(-this.Position / this.ItemWidth);
-            }
-            _prevArrow.Height = e.NewSize.Height;
-            _nextArrow.Height = e.NewSize.Height;
+            this.Position = Math.Min(0, Math.Max(this.Position, -(this.ItemWidth * _panel.ItemsCount - this.ActualWidth)));
+            this.Index = (int)(-this.Position / this.ItemWidth);
             _clip.Rect = new Rect(new Point(), e.NewSize);
         }
     }

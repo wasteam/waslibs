@@ -140,8 +140,6 @@ namespace AppStudio.DataProviders.WordPress
             return url;
         }
 
-
-
         private static string GetContinuationUrl(string url, string currentContinuationToken)
         {
             url += $"&page_handle={WebUtility.UrlEncode(currentContinuationToken)}";

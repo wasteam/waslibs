@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.Media.Casting;
+
 using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls

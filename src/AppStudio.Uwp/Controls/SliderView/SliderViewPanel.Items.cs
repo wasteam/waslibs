@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class SliderViewPanel
     {
         private List<object> _items = new List<object>();
+
         protected List<object> Items
         {
             get { return _items; }

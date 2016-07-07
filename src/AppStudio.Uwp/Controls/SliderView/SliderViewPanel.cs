@@ -36,7 +36,7 @@ namespace AppStudio.Uwp.Controls
                     int inx = (index + i).Mod(base.Children.Count);
                     var pane = base.Children[inx] as ContentControl;
 
-                    if (i < itemsPerThird * 2)
+                    if (i < itemsPerThird + 1)
                     {
                         pane.ContentTemplate = ItemTemplate;
                         pane.Content = _items[(index + i).Mod(count)];

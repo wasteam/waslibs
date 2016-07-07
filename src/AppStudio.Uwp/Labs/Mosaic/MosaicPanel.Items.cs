@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 
 using Windows.UI.Xaml;
@@ -121,13 +120,16 @@ namespace AppStudio.Uwp.Labs
 
         private ContentControl CreateControl(object content)
         {
-            var control = new ContentControl
+            var control = new MosaicItem
             {
                 Content = content,
+                CommandParameter = content,
                 HorizontalContentAlignment = HorizontalAlignment.Stretch,
                 VerticalContentAlignment = VerticalAlignment.Stretch
             };
+            control.SetBinding(ContentControl.MarginProperty, new Binding { Source = this, Path = new PropertyPath("ItemMargin") });
             control.SetBinding(ContentControl.ContentTemplateProperty, new Binding { Source = this, Path = new PropertyPath("ItemTemplate") });
+            control.SetBinding(Button.CommandProperty, new Binding { Source = this, Path = new PropertyPath("ItemClickCommand") });
             return control;
         }
     }

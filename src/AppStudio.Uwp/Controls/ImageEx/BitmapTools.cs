@@ -13,19 +13,29 @@ namespace AppStudio.Uwp.Controls
     {
         public static async Task<bool> DownloadImageAsync(StorageFile file, Uri uri, int maxWidth = Int32.MaxValue, int maxHeight = Int32.MaxValue)
         {
+            StorageFile tempFile = null;
+
             try
             {
                 using (var httpClient = new HttpClient())
                 {
                     using (var httpMessage = await httpClient.GetAsync(uri))
                     {
-                        using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                        var cacheFolder = await BitmapCache.EnsureCacheFolderAsync();
+                        tempFile = await cacheFolder.CreateFileAsync($"{file.Name}.tmp");
+
+                        using (var fileStream = await tempFile.OpenAsync(FileAccessMode.ReadWrite))
                         {
                             await httpMessage.Content.WriteToStreamAsync(fileStream);
                         }
-                        using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                        using (var readStream = await tempFile.OpenAsync(FileAccessMode.Read))
                         {
-                            var decoder = await BitmapDecoder.CreateAsync(fileStream);
+                            var decoder = await BitmapDecoder.CreateAsync(readStream);
+                            using (var writeStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                            {
+                                var encoder = await BitmapEncoder.CreateForTranscodingAsync(writeStream, decoder);
+                                await encoder.FlushAsync();
+                            }
                         }
                     }
                 }
@@ -35,9 +45,23 @@ namespace AppStudio.Uwp.Controls
             {
                 return false;
             }
+            finally
+            {
+                try
+                {
+                    if (tempFile != null)
+                    {
+                        await tempFile.DeleteAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("DownloadImageAsync. {0}", ex.Message);
+                }
+            }
         }
 
-        static private SemaphoreSlim _semaphore = new SemaphoreSlim(10);
+        private static SemaphoreSlim _semaphore = new SemaphoreSlim(10);
 
         public static async Task ResizeImageUniformAsync(StorageFile sourceFile, StorageFile targetFile, int maxWidth = Int32.MaxValue, int maxHeight = Int32.MaxValue)
         {

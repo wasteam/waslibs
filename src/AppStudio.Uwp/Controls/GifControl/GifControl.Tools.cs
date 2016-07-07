@@ -65,7 +65,7 @@ namespace AppStudio.Uwp.Controls
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                System.Diagnostics.Debug.WriteLine("MergePixels. {0}", ex.Message);
             }
         }
 

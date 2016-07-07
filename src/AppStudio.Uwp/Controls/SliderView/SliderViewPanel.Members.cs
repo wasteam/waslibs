@@ -1,10 +1,11 @@
-﻿using AppStudio.Uwp.EventArguments;
-using System;
+﻿using System;
 using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {

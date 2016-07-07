@@ -10,14 +10,8 @@
 
     <Page.Resources>
         <DataTemplate x:Key="PhotoTemplate">
-            <Grid
-                BorderBrush="Black"
-                BorderThickness="1">
-                <controls:ImageEx
-                    Source="{Binding Thumbnail}"
-                    Stretch="UniformToFill"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
+            <Grid BorderBrush="Black" BorderThickness="1">
+                <controls:ImageEx Source="{Binding Thumbnail}" AnimateGif="True" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -31,18 +25,9 @@
     </controls:ShellControl.PaneHeader>
 
     <Grid Background="{StaticResource AppBackground}">
-        <controls:VisualBreakpoints
-            x:Name="vbp"
-            ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
-        <controls:VariableSizedGrid
-            x:Name="control"
-            Margin="0"
-            ItemsSource="{Binding Items}"
-            ItemTemplate="{Binding ItemTemplate}"
-            Orientation="Horizontal"
-            MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}"
-            AspectRatio="1"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"/>
+        <controls:VisualBreakpoints x:Name="vbp" ConfigFile="/Assets/VBPVariableSizedGrid.json"/>
+        <controls:VariableSizedGrid x:Name="control" Margin="0" ItemsSource="{Binding Items}" ItemTemplate="{Binding ItemTemplate}"
+                                    Orientation="Horizontal" MaximumRowsOrColumns="{Binding Active.maximumRowsOrColumns, ElementName=vbp}"
+                                     AspectRatio="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </local:SamplePage>

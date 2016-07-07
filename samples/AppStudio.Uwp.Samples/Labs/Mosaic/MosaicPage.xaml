@@ -26,10 +26,10 @@
     </controls:ShellControl.PaneHeader>
 
     <Grid Background="{StaticResource AppBackground}">
-        <labs:Mosaic x:Name="control" Margin="12,12,6,12" ItemsSource="{Binding Items}">
+        <labs:Mosaic x:Name="control" Margin="12,12,6,12" ItemMargin="4" ItemsSource="{Binding Items}">
             <labs:Mosaic.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="2" Background="White" BorderBrush="LightGray" BorderThickness="1">
+                    <Grid>
                         <Image Source="{Binding Thumbnail}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
