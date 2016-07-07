@@ -195,6 +195,7 @@
     <Compile Include="Labs\Accordion\AccordionPanel.Manipulation.cs" />
     <Compile Include="Labs\AutoHide\AutoHide.cs" />
     <Compile Include="Labs\Mosaic\Mosaic.cs" />
+    <Compile Include="Labs\Mosaic\MosaicItem.cs" />
     <Compile Include="Labs\Mosaic\MosaicPanel.cs" />
     <Compile Include="Labs\Mosaic\MosaicPanel.Dist.cs" />
     <Compile Include="Labs\Mosaic\MosaicPanel.Items.cs" />

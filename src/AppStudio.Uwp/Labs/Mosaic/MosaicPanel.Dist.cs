@@ -26,7 +26,7 @@ namespace AppStudio.Uwp.Labs
                 get { return _rects ?? (_rects = GetItems(_seedWidth).Take(_count).ToArray()); }
             }
 
-            static private IEnumerable<Rect> GetItems(double seedWidth)
+            private static IEnumerable<Rect> GetItems(double seedWidth)
             {
                 int n = 0;
                 double x = 0;
@@ -185,7 +185,7 @@ namespace AppStudio.Uwp.Labs
                 }
             }
 
-            static private Rect ScaleRect(Rect rect, double factor, double offsetY)
+            private static Rect ScaleRect(Rect rect, double factor, double offsetY)
             {
                 return new Rect(rect.X * factor, rect.Y * factor + offsetY, rect.Width * factor, rect.Height * factor);
             }
