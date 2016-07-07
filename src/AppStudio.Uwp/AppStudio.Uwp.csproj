@@ -203,7 +203,6 @@
     <Compile Include="Controls\ShellControl\NavigationItem.cs" />
     <Compile Include="Controls\ShellControl\NavigationStyleSelector.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.cs" />
-    <Compile Include="Controls\ShellControl\ShellControl.Items.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Members.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Selection.cs" />
     <Compile Include="Controls\ShellControl\ShellControl.Static.cs" />
