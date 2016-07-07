@@ -55,15 +55,14 @@ namespace AppStudio.Uwp.Controls
                 _headerContainer.TranslateDeltaX(1);
                 _panelContainer.TranslateDeltaX(1);
                 AnimatePrev();
-                e.Handled = true;
             }
             else
             {
                 _headerContainer.TranslateDeltaX(-1);
                 _panelContainer.TranslateDeltaX(-1);
                 AnimateNext();
-                e.Handled = true;
             }
+            e.Handled = true;
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)

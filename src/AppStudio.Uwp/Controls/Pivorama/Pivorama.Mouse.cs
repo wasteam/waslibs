@@ -85,7 +85,6 @@ namespace AppStudio.Uwp.Controls
                 _isArrowVisible = true;
             }
             this._fadeTimer.Start();
-            System.Diagnostics.Debug.WriteLine("Move");
         }
 
         private void OnFadeTimerTick(object sender, object e)
@@ -95,7 +94,6 @@ namespace AppStudio.Uwp.Controls
                 _isArrowVisible = false;
                 _arrows.FadeOut();
             }
-            System.Diagnostics.Debug.WriteLine("Timer");
         }
     }
 }

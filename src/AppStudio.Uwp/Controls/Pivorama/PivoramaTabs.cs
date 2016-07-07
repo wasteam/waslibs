@@ -1,8 +1,8 @@
 ﻿using System;
 
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
-using Windows.UI.Xaml;
 
 namespace AppStudio.Uwp.Controls
 {
