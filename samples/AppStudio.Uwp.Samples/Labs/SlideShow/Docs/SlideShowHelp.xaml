@@ -21,7 +21,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run x:Uid="HelpSlideShow1"/>
+                    <Run x:Uid="HelpSlideShow"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -29,8 +29,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Hyperlink
-                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SlideShow">
-                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/SlideShow
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/SlideShow">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/SlideShow
                     </Hyperlink>
                 </Paragraph>
                 <Paragraph />

@@ -21,7 +21,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run x:Uid="HelpMosaic1"/>
+                    <Run x:Uid="HelpMosaic"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -29,8 +29,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Hyperlink
-                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Mosaic">
-                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Mosaic
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/Mosaic">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/Mosaic
                     </Hyperlink>
                 </Paragraph>
                 <Paragraph />

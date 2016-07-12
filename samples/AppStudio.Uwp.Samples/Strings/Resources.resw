@@ -291,6 +291,9 @@
   <data name="HelpYouTube1.Text" xml:space="preserve">
     <value>The YouTube Data Provider retrieve data through the YouTube API by using the YouTube ChannelID, the PlaylistID, or a search term. To be able to request data using this provider, you must be registered for Google Developers Console and get an API Key.</value>
   </data>
+  <data name="HelpSliderView.Text" xml:space="preserve">
+    <value>The SliderView control displays a set of images in horizontal layout allowing the user to slide one by one image horizontally. The SliderView control is responsive by design and you can control images the Height and Width as well as optionally decide if you want to show arrows or not to slide the images.</value>
+  </data>
   <data name="MessageCommandFromCode" xml:space="preserve">
     <value>This CommandAppBar Button has been created from C#.</value>
   </data>
@@ -545,5 +548,23 @@ Now is time to map the service endpoint data to the REST API data source. We nee
   </data>
   <data name="HelpGifControl.Text" xml:space="preserve">
     <value>The GifControl allows animated gif renderization in XAML.</value>
+  </data>
+  <data name="HelpAccordionControl.Text" xml:space="preserve">
+    <value>The Accordion Control display a set of images stacked vertically, showing the selected image using the full size. The "stacked" images below the selected one are pre-visualized in the stack waiting to be slided vertically. By default, four images are shown in the stack. If the collection have more than four images, the remain ones will appear as the user slide the existing ones.</value>
+  </data>
+  <data name="HelpSlideShow.Text" xml:space="preserve">
+    <value>The SlideShow Control creates animated transitions between a set of images. You can control the transitions using the DelayInterval and FadeIntervale properties. The Delay Interval define how many time an image remain displayed before start the transition to the next one; The FadeInterval defines the duration of the face-in efect to display the next image.</value>
+  </data>
+  <data name="HelpShapeImage.Text" xml:space="preserve">
+    <value>Allows to show an image using a specific shape to display it. Currently it supports tree kind of pre-defined shapes: Border, Elipse and Rectangle.</value>
+  </data>
+  <data name="HelpAutoHide.Text" xml:space="preserve">
+    <value>This is generic control which allows you to hide / show a certain UI control with fade-out / fade-in effect. It is based on the existing user interaction done by mouse movement. If the user does not move the mouse for a certain duration the control contained will be hidden. If mouse move is detected, the control contained will appear.</value>
+  </data>
+  <data name="HelpMosaic.Text" xml:space="preserve">
+    <value>This responsive control allows to create a random mosaic of images making size variations. The control uses an specific with to create the mosaic.</value>
+  </data>
+  <data name="HelpResponsiveGridViewLabs.Text" xml:space="preserve">
+    <value>Improved experience and performance for the exsisting ResponsiveGridView control.</value>
   </data>
 </root>

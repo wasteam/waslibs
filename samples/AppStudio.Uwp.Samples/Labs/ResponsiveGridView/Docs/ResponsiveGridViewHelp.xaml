@@ -21,7 +21,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run x:Uid="HelpResponsiveGridView1"/>
+                    <Run x:Uid="HelpResponsiveGridViewLabs"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -29,8 +29,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Hyperlink
-                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ResponsiveGridView">
-                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ResponsiveGridView
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/ResponsiveGridView">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/ResponsiveGridView
                     </Hyperlink>
                 </Paragraph>
                 <Paragraph />
