@@ -46,7 +46,7 @@ namespace AppStudio.Uwp.Labs
 
             _isRunning = true;
 
-            this.Step0();
+            this.InitAnimation();
         }
         #endregion
 
@@ -60,12 +60,12 @@ namespace AppStudio.Uwp.Labs
             if (!_isRunning)
             {
                 this.Switch();
-                this.Step0();
+                this.InitAnimation();
                 _isRunning = true;
             }
         }
 
-        private void Step0()
+        private void InitAnimation()
         {
             var back = _container.Children[0] as Control;
             var fore = _container.Children[1] as Control;

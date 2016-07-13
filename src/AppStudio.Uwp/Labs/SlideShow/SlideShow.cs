@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Core;
 using Windows.Foundation;
 
 namespace AppStudio.Uwp.Labs
@@ -58,6 +59,7 @@ namespace AppStudio.Uwp.Labs
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            Window.Current.VisibilityChanged += OnVisibilityChanged;
             if (!_isStarted)
             {
                 this.Start();
@@ -70,12 +72,27 @@ namespace AppStudio.Uwp.Labs
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
+            Window.Current.VisibilityChanged -= OnVisibilityChanged;
             this.Stop();
+        }
+
+        private void OnVisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        {
+            if (_delayStoryboard != null)
+            {
+                if (e.Visible)
+                {
+                    var back = _container.Children[0] as Control;
+                    var fore = _container.Children[1] as Control;
+                    _container.Children.Clear();
+                    _container.Children.Add(back);
+                    _container.Children.Add(fore);
+                }
+            }
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Sized");
             if (_clip != null)
             {
                 _clip.Rect = new Rect(new Point(), e.NewSize);
