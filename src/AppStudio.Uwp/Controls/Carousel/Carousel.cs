@@ -146,5 +146,23 @@ namespace AppStudio.Uwp.Controls
             return new Size(width, height);
         }
         #endregion
+
+        #region Move between items
+        public void MoveBack()
+        {
+            if (_isBusy)
+                return;
+            _panel.TranslateDeltaX(0.01);
+            AnimatePrev();
+        }
+
+        public void MoveForward()
+        {
+            if (_isBusy)
+                return;
+            _panel.TranslateDeltaX(-0.01);
+            AnimateNext();
+        }
+        #endregion
     }
 }
