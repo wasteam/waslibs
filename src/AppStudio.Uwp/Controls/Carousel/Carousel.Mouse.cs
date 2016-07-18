@@ -46,23 +46,14 @@ namespace AppStudio.Uwp.Controls
         #region LeftClick/RightClick
         private void OnLeftClick(object sender, RoutedEventArgs e)
         {
-            if (_isBusy)
-            {
-                return;
-            }
-            _panel.TranslateDeltaX(0.01);
-            AnimatePrev();
+            MoveBack();
         }
 
         private void OnRightClick(object sender, RoutedEventArgs e)
         {
-            if (_isBusy)
-            {
-                return;
-            }
-            _panel.TranslateDeltaX(-0.01);
-            AnimateNext();
+            MoveForward();
         }
+
         #endregion
 
         private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
