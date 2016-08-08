@@ -46,7 +46,7 @@ namespace AppStudio.Uwp.Controls
 
         private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (!(e.NewValue is IEnumerable))
+            if (e.NewValue != null && !(e.NewValue is IEnumerable))
             {
                 throw new ArgumentException("ItemsSource");
             }
