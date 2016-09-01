@@ -9,7 +9,18 @@ namespace AppStudio.Uwp.Html
 {
     public sealed class HtmlText : HtmlFragment
     {
-        public string Content { get; set; }
+        private string _content;
+        public string Content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                _content = WebUtility.HtmlDecode(value);
+            }
+        }
 
         public HtmlText()
         {
@@ -20,7 +31,7 @@ namespace AppStudio.Uwp.Html
         {
             if (!string.IsNullOrEmpty(doc) && endIndex - startIndex > 0)
             {
-                Content = WebUtility.HtmlDecode(doc.Substring(startIndex, endIndex - startIndex));
+                Content = doc.Substring(startIndex, endIndex - startIndex);
             }
         }
 
