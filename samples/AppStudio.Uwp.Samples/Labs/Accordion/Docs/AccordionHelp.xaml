@@ -21,7 +21,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run x:Uid="HelpAccordion1"/>
+                    <Run x:Uid="HelpAccordionControl"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -29,8 +29,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Hyperlink
-                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Accordion">
-                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/Accordion
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/Accordion">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/Accordion
                     </Hyperlink>
                 </Paragraph>
                 <Paragraph />

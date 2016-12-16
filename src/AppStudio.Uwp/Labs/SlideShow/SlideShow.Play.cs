@@ -15,7 +15,15 @@ namespace AppStudio.Uwp.Labs
         private bool _isRunning = false;
         private bool _stopRequest = false;
 
-        private int _index = 0;
+        #region SelectedIndex
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int), typeof(SlideShow), new PropertyMetadata(0));
+        #endregion
 
         #region Start
         private void Start()
@@ -27,16 +35,16 @@ namespace AppStudio.Uwp.Labs
 
             _isStarted = true;
 
-            int inx0 = _index;
+            int inx0 = SelectedIndex;
             object content0;
             object content1;
 
             lock (_itemsLock)
             {
-                int inx1 = (_index + 1) % _items.Count;
+                int inx1 = (SelectedIndex + 1) % _items.Count;
                 content0 = _items[inx0];
                 content1 = _items[inx1];
-                _index = inx1;
+                SelectedIndex = inx1;
             }
 
             var back = CreateControl(content1);
@@ -46,7 +54,7 @@ namespace AppStudio.Uwp.Labs
 
             _isRunning = true;
 
-            this.Step0();
+            this.InitAnimation();
         }
         #endregion
 
@@ -60,12 +68,12 @@ namespace AppStudio.Uwp.Labs
             if (!_isRunning)
             {
                 this.Switch();
-                this.Step0();
+                this.InitAnimation();
                 _isRunning = true;
             }
         }
 
-        private void Step0()
+        private void InitAnimation()
         {
             var back = _container.Children[0] as Control;
             var fore = _container.Children[1] as Control;
@@ -123,10 +131,10 @@ namespace AppStudio.Uwp.Labs
         #region Switch
         private void Switch()
         {
-            _index = (_index + 1) % _items.Count;
+            SelectedIndex = (SelectedIndex + 1) % _items.Count;
 
             _container.Children.RemoveAt(1);
-            _container.Children.Insert(0, CreateControl(_items[_index]));
+            _container.Children.Insert(0, CreateControl(_items[SelectedIndex]));
         }
         #endregion
 

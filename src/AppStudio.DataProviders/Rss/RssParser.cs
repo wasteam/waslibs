@@ -137,10 +137,14 @@ namespace AppStudio.DataProviders.Rss
                 }
             }
 
-            var summary = item.GetSafeElementString("description");
-            if (string.IsNullOrEmpty(summary))
+            var summary = item.GetSafeElementString("full-text", NsYandexContentNamespaceUri);
+            if(string.IsNullOrEmpty(summary))
             {
-                summary = item.GetSafeElementString("encoded", NsRdfContentNamespaceUri);
+                summary = item.GetSafeElementString("description");
+                if (string.IsNullOrEmpty(summary))
+                {
+                    summary = item.GetSafeElementString("encoded", NsRdfContentNamespaceUri);
+                }
             }
 
             //Removes scripts from html

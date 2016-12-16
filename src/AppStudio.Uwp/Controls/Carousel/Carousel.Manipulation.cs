@@ -45,13 +45,11 @@ namespace AppStudio.Uwp.Controls
         {
             if (_direction > 0)
             {
-                _panel.TranslateDeltaX(0.01);
-                AnimatePrev();
+                MoveBack();
             }
             else
             {
-                _panel.TranslateDeltaX(-0.01);
-                AnimateNext();
+                MoveForward();
             }
         }
 

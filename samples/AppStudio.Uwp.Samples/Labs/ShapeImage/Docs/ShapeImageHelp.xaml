@@ -21,7 +21,7 @@
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
-                    <Run x:Uid="HelpShapeImage1"/>
+                    <Run x:Uid="HelpShapeImage"/>
                 </Paragraph>
                 <Paragraph/>
                 <Paragraph>
@@ -29,8 +29,8 @@
                 </Paragraph>
                 <Paragraph>
                     <Hyperlink
-                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ShapeImage">
-                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Controls/ShapeImage
+                        NavigateUri="https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/ShapeImage">
+                        https://github.com/wasteam/waslibs/tree/master/src/AppStudio.Uwp/Labs/ShapeImage
                     </Hyperlink>
                 </Paragraph>
                 <Paragraph />
