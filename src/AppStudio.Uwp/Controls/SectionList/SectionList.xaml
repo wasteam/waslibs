@@ -32,7 +32,7 @@
                             <Grid Visibility="{TemplateBinding TitleVisibility}">
                                 <TextBlock Text="{TemplateBinding Title}" Style="{TemplateBinding TitleStyle}" Visibility="{TemplateBinding TitleTextBlockVisibility}"/>
                                 <ContentPresenter ContentTemplate="{TemplateBinding TitleTemplate}" Visibility="{TemplateBinding TitleTemplateVisibility}"/>
-                            </Grid>                            
+                            </Grid>
                             <HyperlinkButton
                                 Grid.Column="1"
                                 Style="{TemplateBinding HeaderLinkStyle}"
@@ -46,8 +46,8 @@
                             <Grid Height="{TemplateBinding LoadingTemplateStaticHeight}">
                                 <ContentPresenter ContentTemplate="{TemplateBinding LoadingTemplate}" Visibility="{TemplateBinding LoadingVisibility}"/>
                             </Grid>
-                        </Grid>                        
-                        <was_controls:ErrorNotificationControl Grid.Row="2" ErrorVisibility="{TemplateBinding ErrorVisibility}" ErrorText="{TemplateBinding ErrorText}" ErrorColor="{TemplateBinding ErrorColor}" Margin="10,0,18,0"/>
+                        </Grid>
+                        <was_controls:ErrorNotificationControl Grid.Row="2" ErrorVisibility="{TemplateBinding ErrorVisibility}" ErrorText="{TemplateBinding ErrorText}" ErrorColor="{TemplateBinding ErrorColor}" Margin="28,4,22,4"/>
                         <ContentPresenter Grid.Row="3" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{Binding}" Visibility="{TemplateBinding ContentVisibility}"/>
                     </Grid>
                 </ControlTemplate>
