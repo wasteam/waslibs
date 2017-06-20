@@ -142,11 +142,13 @@ namespace AppStudio.DataProviders.Core
                         {
                             response.Content.Headers.ContentType.CharSet = charset;
                         }
-
                     }
                 }
+                else
+                {
+                    SetEncoding(response);
+                }
             }
-            SetEncoding(response);
         }
 
         private static void SetEncoding(HttpResponseMessage response)
