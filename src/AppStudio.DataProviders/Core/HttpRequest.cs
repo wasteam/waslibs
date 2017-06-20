@@ -146,6 +146,7 @@ namespace AppStudio.DataProviders.Core
                     }
                 }
             }
+            SetEncoding(response);
         }
 
         private static void SetEncoding(HttpResponseMessage response)
