@@ -187,6 +187,7 @@
     <Compile Include="EventArguments\BoolEventArgs.cs" />
     <Compile Include="EventArguments\ExceptionEventArgs.cs" />
     <Compile Include="EventArguments\IntEventArgs.cs" />
+    <Compile Include="EventArguments\SourceEventArgs.cs" />
     <Compile Include="Extensions\StorageFolderExtensions.cs" />
     <Compile Include="Labs\Accordion\Accordion.cs" />
     <Compile Include="Labs\Accordion\AccordionItem.cs" />

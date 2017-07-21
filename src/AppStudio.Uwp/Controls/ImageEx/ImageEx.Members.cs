@@ -2,11 +2,15 @@
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.Media.Casting;
+using System;
+using AppStudio.Uwp.EventArguments;
 
 namespace AppStudio.Uwp.Controls
 {
     partial class ImageEx
     {
+        public event EventHandler<SourceEventArgs> ImageFailed;
+
         #region Stretch
         public Stretch Stretch
         {

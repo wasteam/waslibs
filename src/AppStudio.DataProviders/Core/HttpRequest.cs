@@ -142,8 +142,11 @@ namespace AppStudio.DataProviders.Core
                         {
                             response.Content.Headers.ContentType.CharSet = charset;
                         }
-
                     }
+                }
+                else
+                {
+                    SetEncoding(response);
                 }
             }
         }
